@@ -14,11 +14,11 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/px_15"
-                android:layout_marginLeft="@dimen/px_40"
-                android:layout_marginRight="@dimen/px_40"
-                android:layout_marginTop="@dimen/px_15"
+                android:layout_height="@dimen/px_40"
+                android:layout_marginBottom="@dimen/px_13"
+                android:layout_marginLeft="@dimen/px_33"
+                android:layout_marginRight="@dimen/px_33"
+                android:layout_marginTop="@dimen/px_13"
                 android:gravity="center_vertical">
 
                 <EditText
@@ -26,16 +26,16 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/et_white_corner"
                     android:hint="输入关键字"
-                    android:paddingBottom="@dimen/px_10"
-                    android:paddingLeft="@dimen/px_15"
-                    android:paddingTop="@dimen/px_10"
+                    android:paddingBottom="@dimen/px_7"
+                    android:paddingLeft="@dimen/px_13"
+                    android:paddingTop="@dimen/px_8"
                     android:textColorHint="@color/textcolor_999999"
                     android:textSize="15sp" />
 
                 <ImageView
                     android:id="@+id/iv_search_homepage"
-                    android:layout_width="@dimen/px_50"
-                    android:layout_height="@dimen/px_50"
+                    android:layout_width="@dimen/px_39"
+                    android:layout_height="@dimen/px_39"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/search" />
             </RelativeLayout>
@@ -44,13 +44,13 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_home_page_head"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_210"
+            android:layout_height="@dimen/px_166"
             android:background="@drawable/startup01" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/my_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_90"
+            android:layout_height="@dimen/px_71"
             android:background="@color/white"
             android:scrollbars="none" />
 
@@ -59,9 +59,9 @@
         <LinearLayout
             style="@style/ll_match_wrap_content_hor"
             android:gravity="center_vertical"
-            android:paddingBottom="@dimen/px_15"
-            android:paddingLeft="@dimen/px_25"
-            android:paddingTop="@dimen/px_15">
+            android:paddingBottom="@dimen/px_13"
+            android:paddingLeft="@dimen/px_19"
+            android:paddingTop="@dimen/px_13">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -75,13 +75,15 @@
                 android:textColor="@color/red_c91014"
                 android:textSize="15sp" />
         </LinearLayout>
+
         <View style="@style/line_1" />
+
         <com.aglook.comapp.view.MyGridView
             android:id="@+id/gv_homepage"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@color/white"
-            android:numColumns="3"
-            android:layout_height="match_parent"></com.aglook.comapp.view.MyGridView>
+            android:numColumns="3"></com.aglook.comapp.view.MyGridView>
     </LinearLayout>
 
 

@@ -1,6 +1,5 @@
 package com.aglook.comapp.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 
-import com.aglook.comapp.Activity.GoodsDetailActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ClassificationLeftAdapter;
 import com.aglook.comapp.adapter.ClassificationRightAdapter;
@@ -68,8 +66,8 @@ public class ClassificationFragment extends Fragment {
         gv_right.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+//                startActivity(intent);
             }
         });
     }

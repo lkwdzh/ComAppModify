@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ll_match_content_ver"
     android:background="@color/gray_eeeeee">
-
+<include layout="@layout/activity_base_title_bar"/>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -108,21 +108,4 @@
         android:textColor="@color/white"
         android:textSize="13sp" />
 
-    <RelativeLayout
-        style="@style/rl_match_wrap_content"
-        android:padding="@dimen/px_20">
-
-        <TextView
-            android:id="@+id/tv_register_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="注册" />
-
-        <TextView
-            android:id="@+id/tv_find_password_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="找回密码" />
-    </RelativeLayout>
 </LinearLayout>

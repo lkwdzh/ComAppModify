@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.R;
@@ -20,7 +20,7 @@ public class ClassificationLeftAdapter extends BaseAdapter {
     private List<String> list;
     private Context context;
     private int imageArray[] = {R.drawable.liangshi, R.drawable.siliao, R.drawable.tongxun,
-            R.drawable.youlei,R.drawable.youliao};
+            R.drawable.youlei, R.drawable.youliao};
     private String nameArray[] = {"粮食", "饲料", "通讯", "油类", "油料"};
     private int position;
 
@@ -56,9 +56,11 @@ public class ClassificationLeftAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
         if (i == position) {
-            holder.ll_classify_listview.setBackgroundColor(context.getResources().getColor(R.color.red_a50000));
-        } else {
             holder.ll_classify_listview.setBackgroundColor(context.getResources().getColor(R.color.white));
+            holder.tv_classify_lisview.setTextColor(context.getResources().getColor(R.color.red_a50000));
+        } else {
+            holder.ll_classify_listview.setBackgroundColor(context.getResources().getColor(R.color.gray_eeeeee));
+            holder.tv_classify_lisview.setTextColor(context.getResources().getColor(R.color.textcolor_333333));
         }
         holder.tv_classify_lisview.setText(nameArray[i]);
         holder.iv_classify_lisview.setImageResource(imageArray[i]);
@@ -68,12 +70,12 @@ public class ClassificationLeftAdapter extends BaseAdapter {
     class ViewHolder {
         ImageView iv_classify_lisview;
         TextView tv_classify_lisview;
-        LinearLayout ll_classify_listview;
+        RelativeLayout ll_classify_listview;
 
         ViewHolder(View view) {
             iv_classify_lisview = (ImageView) view.findViewById(R.id.iv_classify_lisview);
             tv_classify_lisview = (TextView) view.findViewById(R.id.tv_classify_lisview);
-            ll_classify_listview = (LinearLayout) view.findViewById(R.id.ll_classify_listview);
+            ll_classify_listview = (RelativeLayout) view.findViewById(R.id.ll_classify_listview);
         }
     }
 

@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/rl_shopping_cart_top"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/px_54"
+        android:layout_height="@dimen/px_60"
         android:layout_alignParentTop="true"
         android:background="@color/red_c91014">
 
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
-            android:layout_marginRight="@dimen/px_10"
+            android:layout_marginRight="@dimen/px_7"
             android:button="@null"
             android:text="编辑"
             android:textColor="@color/white"
@@ -35,35 +35,61 @@
     </RelativeLayout>
 
     <LinearLayout
-       style="@style/ll_match_content_ver"
-        android:gravity="center"
-        android:visibility="gone"
+        android:id="@+id/ll_empty_shopping_cart"
+        style="@style/ll_match_content_ver"
         android:layout_below="@+id/rl_shopping_cart_top"
-        android:background="@color/gray_eeeeee">
+        android:background="@color/gray_eeeeee"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/ll_weidenglu_shopping_cart"
+            style="@style/ll_match_wrap_content_hor"
+            android:background="@color/white"
+            android:padding="@dimen/px_14">
+
+            <TextView
+                android:id="@+id/tv_denglu_shopping_cart"
+                style="@style/redTextView_f47070"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/px_16"
+                android:background="@drawable/shanchu"
+                android:gravity="center"
+                android:text="登录" />
+
+            <TextView
+                style="@style/grayTextView_333333"
+                android:text="您的账号未登录，登录后可浏览内容"
+
+                android:textSize="15sp" />
+        </LinearLayout>
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/gouwu"/>
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/px_88"
+            android:src="@drawable/gouwu" />
+
         <Button
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/px_30"
-            android:layout_marginLeft="@dimen/px_50"
-            android:layout_marginRight="@dimen/px_50"
-            android:gravity="center"
-            android:textSize="13sp"
-            android:textColor="@color/white"
+            android:layout_marginLeft="@dimen/px_22"
+            android:layout_marginRight="@dimen/px_22"
+            android:layout_marginTop="@dimen/px_24"
             android:background="@drawable/btn_orange_corner"
-            android:text="快来填满吧" />
-        </LinearLayout>
+            android:gravity="center"
+            android:text="快来填满吧"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/ll_full_content"
         style="@style/ll_match_content_ver"
-        android:visibility="visible"
         android:layout_below="@+id/rl_shopping_cart_top"
-        >
+        android:visibility="visible">
 
         <com.handmark.pulltorefresh.library.PullToRefreshListView
             android:id="@+id/lv_shopping_cart"
@@ -75,7 +101,7 @@
         <RelativeLayout
             android:id="@+id/rl_bottom_shopping_cart"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_80"
+            android:layout_height="@dimen/px_62"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"
             android:visibility="visible">
@@ -83,7 +109,7 @@
             <RelativeLayout
                 android:id="@+id/rl_edit_bottom_shopping_cart"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_70"
+                android:layout_height="@dimen/px_62"
                 android:background="@color/gray_eeeeee"
                 android:gravity="center_vertical"
                 android:visibility="gone">
@@ -93,7 +119,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_margin="@dimen/px_14"
+                    android:layout_margin="@dimen/px_13"
                     android:button="@drawable/ischecked"
                     android:text="全选"
                     android:textColor="@color/textcolor_333333"
@@ -104,7 +130,7 @@
                     style="@style/redTextView_f47070"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/px_18"
+                    android:layout_marginRight="@dimen/px_16"
                     android:background="@drawable/shanchu"
                     android:gravity="center"
                     android:text="删除" />
@@ -113,7 +139,7 @@
             <LinearLayout
                 android:id="@+id/ll_buy_bottom_shopping_cart"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_70"
+                android:layout_height="@dimen/px_55"
                 android:layout_alignParentBottom="true"
                 android:orientation="horizontal"
                 android:weightSum="4">
@@ -129,7 +155,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_margin="@dimen/px_14"
+                        android:layout_margin="@dimen/px_12"
                         android:button="@drawable/ischecked"
                         android:text="全选"
                         android:textColor="@color/white"
@@ -149,7 +175,6 @@
                             <TextView
                                 android:id="@+id/tv_total_shopping_cart_fragment"
                                 style="@style/whiteTextView"
-                                android:text="1499.90"
                                 android:textSize="18sp" />
                         </LinearLayout>
 
@@ -162,7 +187,6 @@
 
                             <TextView
                                 style="@style/whiteTextView"
-                                android:text="1499.90"
                                 android:textSize="14sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -177,9 +201,9 @@
                     android:orientation="horizontal">
 
                     <!--<TextView-->
-                        <!--style="@style/whiteTextView"-->
-                        <!--android:text="去结算"-->
-                        <!--android:textSize="18sp" />-->
+                    <!--style="@style/whiteTextView"-->
+                    <!--android:text="去结算"-->
+                    <!--android:textSize="18sp" />-->
 
                     <TextView
                         android:id="@+id/tv_shopping_cart_jiesuan"

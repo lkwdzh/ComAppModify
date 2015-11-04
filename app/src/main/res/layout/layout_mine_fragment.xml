@@ -10,35 +10,78 @@
 
         <LinearLayout style="@style/ll_match_wrap_content_ver">
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_54"
-                android:background="@color/red"
-                android:gravity="center"
-                android:text="我的"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:layout_height="@dimen/px_60"
+                android:background="@color/red_c91014">
 
-            <LinearLayout
-                android:id="@+id/ll_background_mine_fragment"
-                style="@style/ll_match_wrap_content_ver"
-                android:background="@drawable/beijing"
-                android:gravity="center">
+                <TextView
+                    android:id="@+id/tv_setting_mine_fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/px_10"
+                    android:gravity="center"
+                    android:text="设置"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="我的"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_message_mine_fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/px_10"
+                    android:gravity="center"
+                    android:text="消息"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_background_mine_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_300"
+                android:background="@drawable/beijing">
 
                 <ImageView
                     android:id="@+id/iv_icon_mine_fragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/px_20"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="@dimen/px_18"
                     android:src="@drawable/icon_user" />
 
 
                 <TextView
                     style="@style/whiteTextView"
-                    android:layout_marginTop="@dimen/px_10"
+                    android:layout_below="@+id/iv_icon_mine_fragment"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/px_8"
                     android:text="昵称" />
 
-            </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:drawableRight="@drawable/next"
+                    android:gravity="center"
+                    android:text="个人信息"
+                    android:textColor="@color/white" />
+
+            </RelativeLayout>
 
             <LinearLayout
                 style="@style/ll_match_wrap_content_ver"
@@ -58,15 +101,6 @@
                         android:text="我的订单"
                         android:textSize="15sp" />
 
-                    <TextView
-                        android:id="@+id/tv_all_order_mine_fragment"
-                        style="@style/grayTextView_999999"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:drawableRight="@drawable/next"
-                        android:gravity="center_vertical"
-                        android:text="查看全部订单"
-                        android:textSize="15sp" />
                 </RelativeLayout>
 
                 <View style="@style/line_1" />
@@ -86,7 +120,7 @@
                         android:orientation="vertical">
 
                         <RelativeLayout
-                            android:id="@+id/rl_daifukuan_mine_fragment"
+                            android:id="@+id/rl_all_order_mine_fragment"
                             android:layout_width="@dimen/px_40"
                             android:layout_height="@dimen/px_40">
 
@@ -94,7 +128,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
-                                android:src="@drawable/daifukuan" />
+                                android:src="@drawable/qubudd" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -111,12 +145,12 @@
                         </RelativeLayout>
 
                         <TextView
-                            android:id="@+id/tv_daifukuan_mine_fragment"
+                            android:id="@+id/tv_all_order_mine_fragment"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:gravity="center"
-                            android:text="代付款"
+                            android:text="全部订单"
                             android:textSize="12sp" />
 
 
@@ -166,6 +200,49 @@
 
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:id="@+id/rl_daifukuan_mine_fragment"
+                            android:layout_width="@dimen/px_40"
+                            android:layout_height="@dimen/px_40">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/daifukuan" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/red_round"
+                                android:gravity="center"
+                                android:paddingLeft="@dimen/px_5"
+                                android:paddingRight="@dimen/px_5"
+                                android:text="2"
+                                android:textColor="@color/white"
+                                android:textSize="8sp" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/tv_daifukuan_mine_fragment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:text="代付款"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
@@ -192,15 +269,6 @@
                         android:text="我的挂单"
                         android:textSize="15sp" />
 
-                    <TextView
-                        android:id="@+id/tv_gua_order_mine_fragment"
-                        style="@style/grayTextView_999999"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:drawableRight="@drawable/next"
-                        android:gravity="center_vertical"
-                        android:text="查看全部挂单"
-                        android:textSize="15sp" />
                 </RelativeLayout>
 
                 <View style="@style/line_1" />
@@ -250,7 +318,131 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:gravity="center"
-                            android:text="代付款"
+                            android:text="我要挂单"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:id="@+id/rl_all_guadan_mine_fragment"
+                            android:layout_width="@dimen/px_40"
+                            android:layout_height="@dimen/px_40">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/qubuguadan" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/red_round"
+                                android:gravity="center"
+                                android:paddingLeft="@dimen/px_5"
+                                android:paddingRight="@dimen/px_5"
+                                android:text="2"
+                                android:textColor="@color/white"
+                                android:textSize="8sp" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/tv_all_guadan_mine_fragment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:text="全部挂单"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout
+                style="@style/ll_match_wrap_content_ver"
+                android:layout_marginTop="@dimen/px_15"
+                android:background="@color/white">
+
+                <View style="@style/line_1" />
+
+                <RelativeLayout
+                    style="@style/rl_match_wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/px_10"
+                    android:paddingLeft="@dimen/px_10"
+                    android:paddingTop="@dimen/px_10">
+
+                    <TextView
+                        style="@style/grayTextView_333333"
+                        android:drawableLeft="@drawable/cangdan"
+                        android:gravity="center_vertical"
+                        android:text="我的仓单"
+                        android:textSize="15sp" />
+
+                </RelativeLayout>
+
+                <View style="@style/line_1" />
+
+                <LinearLayout
+                    style="@style/ll_match_wrap_content_hor"
+                    android:background="@color/white"
+                    android:paddingBottom="@dimen/px_10"
+                    android:paddingTop="@dimen/px_10"
+                    android:weightSum="3">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:id="@+id/rl_cangdan_mine_fragment"
+                            android:layout_width="@dimen/px_40"
+                            android:layout_height="@dimen/px_40">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/wodecangdan" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/red_round"
+                                android:gravity="center"
+                                android:paddingLeft="@dimen/px_5"
+                                android:paddingRight="@dimen/px_5"
+                                android:text="2"
+                                android:textColor="@color/white"
+                                android:textSize="8sp" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/tv_cangdan_mine_fragment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:text="我的仓单"
                             android:textSize="12sp" />
 
 
@@ -260,7 +452,9 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <View style="@style/line_1" />
+            <View
+                style="@style/line_1"
+                android:layout_marginBottom="@dimen/px_15" />
         </LinearLayout>
 
     </ScrollView>

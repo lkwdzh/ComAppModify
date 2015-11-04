@@ -11,11 +11,11 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/px_15"
-            android:layout_marginLeft="@dimen/px_35"
-            android:layout_marginRight="@dimen/px_35"
-            android:layout_marginTop="@dimen/px_15"
+            android:layout_height="@dimen/px_40"
+            android:layout_marginBottom="@dimen/px_14"
+            android:layout_marginLeft="@dimen/px_31"
+            android:layout_marginRight="@dimen/px_31"
+            android:layout_marginTop="@dimen/px_14"
             android:gravity="center_vertical">
 
             <EditText
@@ -23,16 +23,16 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_white_corner"
                 android:hint="输入关键字"
-                android:paddingBottom="@dimen/px_10"
-                android:paddingLeft="@dimen/px_15"
-                android:paddingTop="@dimen/px_10"
+                android:paddingBottom="@dimen/px_8"
+                android:paddingLeft="@dimen/px_14"
+                android:paddingTop="@dimen/px_8"
                 android:textColorHint="@color/textcolor_999999"
                 android:textSize="15sp" />
 
             <ImageView
                 android:id="@+id/iv_search_homepage"
-                android:layout_width="@dimen/px_50"
-                android:layout_height="@dimen/px_50"
+                android:layout_width="@dimen/px_45"
+                android:layout_height="@dimen/px_45"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/search" />
         </RelativeLayout>
@@ -41,14 +41,14 @@
     <LinearLayout
         style="@style/ll_match_content_hor"
         android:weightSum="7"
-        android:layout_marginTop="@dimen/px_20">
+        android:layout_marginTop="@dimen/px_18">
 
         <ListView
             android:id="@+id/lv_left"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            android:background="@color/white"
+            android:background="@color/gray_eeeeee"
             android:listSelector="@drawable/lv_classification_selector"
             android:divider="@null"
             android:scrollbars="none"></ListView>

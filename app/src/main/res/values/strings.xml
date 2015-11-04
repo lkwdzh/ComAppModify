@@ -12,4 +12,27 @@
     <string name="title_activity_guide">GuideActivity</string>
     <string name="title_activity_find_password">FindPasswordActivity</string>
 
+    <!-- 商品详情 -->
+    <string name="goods_detail_cangdanhao">仓单号：</string>
+    <string name="goods_detail_huowuzhonglei">货物种类：</string>
+    <string name="goods_detail_in_time">入库时间：</string>
+    <string name="goods_detail_producing_area">货物产地：</string>
+    <string name="goods_detail_xuetou">噱头：</string>
+    <string name="goods_detail_userful_life">挂单有效期：</string>
+    <string name="goods_detail_name">仓管名称：</string>
+    <string name="goods_detail_phone">仓管电话：</string>
+    <string name="goods_detail_email">仓管邮箱：</string>
+    <string name="goods_detail_address">仓管地址：</string>
+    <string name="goods_detail_goods_detail">商品详情：</string>
+    <!--基本信息-->
+    <string name="title_activity_basic_information">BasicInformationActivity</string>
+    <string name="basic_information_icon">头像</string>
+    <string name="basic_information_name">姓名</string>
+    <string name="basic_information_sex">性别</string>
+    <string name="basic_information_id_card">身份证号</string>
+    <string name="basic_information_email">邮箱</string>
+    <string name="basic_information_phone_num">手机号</string>
+    <string name="basic_information_fix_num">固定电话</string>
+    <string name="basic_information_safe">账户安全</string>
+
 </resources>

@@ -1,0 +1,280 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ll_match_content_ver"
+    android:background="@color/gray_eeeeee">
+
+
+    <include layout="@layout/activity_base_title_bar" />
+
+    <View
+        style="@style/line_1"
+        android:layout_marginTop="@dimen/px_14" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_70"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/px_5"
+        android:paddingTop="@dimen/px_5"
+        android:weightSum="4">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/basic_information_icon"
+            android:textColor="@color/textcolor_333333"
+            android:textSize="15sp" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="3">
+
+            <ImageView
+                android:id="@+id/iv_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/next" />
+
+            <ImageView
+                android:id="@+id/tv_icon_basic_information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/iv_right"
+                android:src="@drawable/tongxun" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_70"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/px_5"
+        android:paddingTop="@dimen/px_5"
+        android:weightSum="4">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/basic_information_name"
+            android:textColor="@color/textcolor_333333"
+            android:textSize="15sp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/px_10"
+            android:layout_weight="3"
+            android:background="@null"
+            android:text="请输入性名"
+            android:textColor="@color/textcolor_666666"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+   <View
+       style="@style/line_1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_70"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/px_5"
+        android:paddingTop="@dimen/px_5"
+        android:weightSum="4">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/basic_information_sex"
+            android:textColor="@color/textcolor_333333"
+            android:textSize="15sp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/px_10"
+            android:layout_weight="3"
+            android:background="@null"
+            android:text="请输入姓别"
+            android:textColor="@color/textcolor_666666"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <View
+        style="@style/line_1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_70"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/px_5"
+        android:paddingTop="@dimen/px_5"
+        android:weightSum="4">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/basic_information_id_card"
+            android:textColor="@color/textcolor_333333"
+            android:textSize="15sp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/px_10"
+            android:layout_weight="3"
+            android:background="@null"
+            android:text="请输入身份证号"
+            android:textColor="@color/textcolor_666666"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <View
+        style="@style/line_1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_70"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/px_5"
+        android:paddingTop="@dimen/px_5"
+        android:weightSum="4">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/basic_information_email"
+            android:textColor="@color/textcolor_333333"
+            android:textSize="15sp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/px_10"
+            android:layout_weight="3"
+            android:background="@null"
+            android:text="请输入邮箱"
+            android:textColor="@color/textcolor_666666"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+
+    <View
+        style="@style/line_1"
+        android:layout_marginTop="@dimen/px_14" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_70"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/px_5"
+        android:paddingTop="@dimen/px_5"
+        android:weightSum="4">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/basic_information_phone_num"
+            android:textColor="@color/textcolor_333333"
+            android:textSize="15sp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/px_10"
+            android:layout_weight="3"
+            android:background="@null"
+            android:text="请输入手机号"
+            android:textColor="@color/textcolor_666666"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_70"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/px_5"
+        android:paddingTop="@dimen/px_5"
+        android:weightSum="4">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/basic_information_fix_num"
+            android:textColor="@color/textcolor_333333"
+            android:textSize="15sp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/px_10"
+            android:layout_weight="3"
+            android:background="@null"
+            android:text="请输入固定电话"
+            android:textColor="@color/textcolor_666666"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_70"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/px_5"
+        android:paddingTop="@dimen/px_5"
+        android:weightSum="4">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/basic_information_safe"
+            android:textColor="@color/textcolor_333333"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/px_10"
+            android:layout_weight="3"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:text="可修改密码"
+            android:drawableRight="@drawable/next"
+            android:textColor="@color/textcolor_666666"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+</LinearLayout>

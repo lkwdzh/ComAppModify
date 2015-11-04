@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.aglook.comapp.R;
 import com.aglook.comapp.url.LoginUrl;
@@ -19,8 +18,6 @@ import com.lidroid.xutils.http.ResponseInfo;
 public class LoginActivity extends BaseActivity {
 
 
-    private TextView tv_register_login;
-    private TextView tv_find_password_login;
     private String str[] = {"账    号：", "席位号："};
     private Spinner spinner;
     private ArrayAdapter<String> adapter;
@@ -29,13 +26,12 @@ public class LoginActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_login);
+        setTitleBar("登录");
         init();
         click();
     }
 
     public void init() {
-        tv_register_login = (TextView) findViewById(R.id.tv_register_login);
-        tv_find_password_login = (TextView) findViewById(R.id.tv_find_password_login);
         spinner = (Spinner) findViewById(R.id.spinner);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, str);
         spinner.setAdapter(adapter);
@@ -44,8 +40,6 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void click() {
-        tv_register_login.setOnClickListener(this);
-        tv_find_password_login.setOnClickListener(this);
         btn_login.setOnClickListener(this);
     }
 
@@ -53,14 +47,6 @@ public class LoginActivity extends BaseActivity {
     public void widgetClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
-            case R.id.tv_register_login:
-                intent.setClass(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.tv_find_password_login:
-                intent.setClass(LoginActivity.this, FindPasswordActivity.class);
-                startActivity(intent);
-                break;
             case R.id.btn_login:
                 login();
                 break;

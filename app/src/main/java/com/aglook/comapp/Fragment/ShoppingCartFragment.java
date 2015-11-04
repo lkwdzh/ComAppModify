@@ -1,5 +1,6 @@
 package com.aglook.comapp.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.aglook.comapp.Activity.LoginActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ShoppingCartAdapter;
 import com.aglook.comapp.bean.ShoppingCart;
@@ -42,6 +44,10 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
     private TextView tv_total_shopping_cart_fragment;
     private int allNum = 0;
     private double allMoney = 0;
+    private LinearLayout ll_empty_shopping_cart;
+    private RelativeLayout ll_full_content;
+    private TextView tv_denglu_shopping_cart;
+    private Intent intent;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -87,12 +93,29 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
         tv_shopping_cart_jiesuan = (TextView) view.findViewById(R.id.tv_shopping_cart_jiesuan);
         tv_total_shopping_cart_fragment = (TextView) view.findViewById(R.id.tv_total_shopping_cart_fragment);
 
+        //空购物车
+        ll_empty_shopping_cart = (LinearLayout) view.findViewById(R.id.ll_empty_shopping_cart);
+//        有数据购物车
+        ll_full_content = (RelativeLayout) view.findViewById(R.id.ll_full_content);
+//        登录按钮
+        tv_denglu_shopping_cart = (TextView) view.findViewById(R.id.tv_denglu_shopping_cart);
+
+//        unLogin();
+    }
+
+//    如果未登录
+    public void unLogin(){
+        ll_empty_shopping_cart.setVisibility(View.VISIBLE);
+        ll_full_content.setVisibility(View.GONE);
+        cb_top_right_shopping_cart.setVisibility(View.GONE);
+        tv_denglu_shopping_cart.setOnClickListener(this);
     }
 
     public void click() {
         cb_top_right_shopping_cart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //如果选中就是编辑模式，否则是购买模式
                 if (isChecked) {
                     rl_edit_bottom_shopping_cart.setVisibility(View.VISIBLE);
                     ll_buy_bottom_shopping_cart.setVisibility(View.GONE);
@@ -130,25 +153,25 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    allMoney=0;
-                    allNum=0;
+                    allMoney = 0;
+                    allNum = 0;
                     for (int i = 0; i < mList.size(); i++) {
                         mList.get(i).setChecked(true);
-                        allNum+=mList.get(i).getNum();
-                        allMoney+=mList.get(i).getTotal();
+                        allNum += mList.get(i).getNum();
+                        allMoney += mList.get(i).getTotal();
                     }
                     tv_shopping_cart_jiesuan.setText("(" + allNum + ")");
-                    AppUtils.toastText(getActivity(),allNum+"");
-                tv_total_shopping_cart_fragment.setText(allMoney + "");
+                    AppUtils.toastText(getActivity(), allNum + "");
+                    tv_total_shopping_cart_fragment.setText(allMoney + "");
 
                 } else {
                     for (int i = 0; i < mList.size(); i++) {
                         mList.get(i).setChecked(false);
                     }
-                    allMoney=0;
-                    allNum=0;
+                    allMoney = 0;
+                    allNum = 0;
                     tv_shopping_cart_jiesuan.setText("(" + 0 + ")");
-                tv_total_shopping_cart_fragment.setText(0 + "");
+                    tv_total_shopping_cart_fragment.setText(0 + "");
                 }
 //                tv_shopping_cart_jiesuan.setText("(" + allNum + ")");
 //                tv_total_shopping_cart_fragment.setText(allMoney + "");
@@ -159,8 +182,12 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
+        intent = new Intent();
         switch (v.getId()) {
-
+            case R.id.tv_denglu_shopping_cart:
+                intent.setClass(getActivity(), LoginActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 

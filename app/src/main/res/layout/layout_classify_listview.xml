@@ -1,30 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ll_classify_listview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="@dimen/px_10"
-    android:gravity="center_vertical">
+    android:padding="@dimen/px_2">
 
     <ImageView
         android:id="@+id/iv_classify_lisview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/tongxun" />
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tv_classify_lisview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1111"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/iv_classify_lisview"
         android:textColor="@color/textcolor_333333" />
 
     <View
         style="@style/line_2"
+        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/px_10"
-        android:layout_marginTop="@dimen/px_15"
-        android:layout_marginBottom="@dimen/px_15"
-         />
-</LinearLayout>
+        android:layout_marginRight="@dimen/px_5" />
+</RelativeLayout>

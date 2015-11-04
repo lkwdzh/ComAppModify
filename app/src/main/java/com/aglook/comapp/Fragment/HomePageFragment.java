@@ -1,5 +1,6 @@
 package com.aglook.comapp.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,8 +13,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 
+import com.aglook.comapp.Activity.GoodsDetailActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.HomePageGridViewAdapter;
 import com.aglook.comapp.adapter.RecycleHomePageAdapter;
@@ -114,7 +117,13 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         gv_homepage = (MyGridView) view.findViewById(R.id.gv_homepage);
         gridViewAdapter = new HomePageGridViewAdapter(getActivity());
         gv_homepage.setAdapter(gridViewAdapter);
-
+        gv_homepage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
