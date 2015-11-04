@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_eeeeee"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_shopping_cart_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_54"
+        android:layout_alignParentTop="true"
+        android:background="@color/red_c91014">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="购物车"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <CheckBox
+            android:id="@+id/cb_top_right_shopping_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="@dimen/px_10"
+            android:button="@null"
+            android:text="编辑"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+       style="@style/ll_match_content_ver"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_below="@+id/rl_shopping_cart_top"
+        android:background="@color/gray_eeeeee">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gouwu"/>
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_30"
+            android:layout_marginLeft="@dimen/px_50"
+            android:layout_marginRight="@dimen/px_50"
+            android:gravity="center"
+            android:textSize="13sp"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_orange_corner"
+            android:text="快来填满吧" />
+        </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/ll_full_content"
+        style="@style/ll_match_content_ver"
+        android:visibility="visible"
+        android:layout_below="@+id/rl_shopping_cart_top"
+        >
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/lv_shopping_cart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/rl_bottom_shopping_cart"
+            android:background="@color/white"></com.handmark.pulltorefresh.library.PullToRefreshListView>
+
+        <RelativeLayout
+            android:id="@+id/rl_bottom_shopping_cart"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_80"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <RelativeLayout
+                android:id="@+id/rl_edit_bottom_shopping_cart"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_70"
+                android:background="@color/gray_eeeeee"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <CheckBox
+                    android:id="@+id/cb_edit_shopping_cart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/px_14"
+                    android:button="@drawable/ischecked"
+                    android:text="全选"
+                    android:textColor="@color/textcolor_333333"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_delete_shopping_cart"
+                    style="@style/redTextView_f47070"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/px_18"
+                    android:background="@drawable/shanchu"
+                    android:gravity="center"
+                    android:text="删除" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_buy_bottom_shopping_cart"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_70"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@color/black">
+
+                    <CheckBox
+                        android:id="@+id/cb_buy_shopping_cart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="@dimen/px_14"
+                        android:button="@drawable/ischecked"
+                        android:text="全选"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        style="@style/ll_match_content_ver"
+                        android:gravity="center_vertical">
+
+                        <LinearLayout style="@style/ll_match_wrap_content_hor">
+
+                            <TextView
+                                style="@style/whiteTextView"
+                                android:text="合计： ￥"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/tv_total_shopping_cart_fragment"
+                                style="@style/whiteTextView"
+                                android:text="1499.90"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
+                        <LinearLayout style="@style/ll_match_wrap_content_hor">
+
+                            <TextView
+                                style="@style/whiteTextView"
+                                android:text="总额：￥"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                style="@style/whiteTextView"
+                                android:text="1499.90"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/red"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <!--<TextView-->
+                        <!--style="@style/whiteTextView"-->
+                        <!--android:text="去结算"-->
+                        <!--android:textSize="18sp" />-->
+
+                    <TextView
+                        android:id="@+id/tv_shopping_cart_jiesuan"
+                        style="@style/whiteTextView"
+                        android:text="(0)"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

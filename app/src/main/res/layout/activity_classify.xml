@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ll_match_content_ver"
+    android:background="@color/white"
+    >
+    <RadioGroup
+       style="@style/ll_match_wrap_content_hor"
+        android:weightSum="3">
+        <RadioButton
+          style="@style/radioButton"
+            android:layout_weight="1"
+            android:text="综合"/>
+        <RadioButton
+            style="@style/radioButton"
+            android:layout_weight="1"
+            android:text="销量"/>
+        <RadioButton
+            style="@style/radioButton"
+            android:layout_weight="1"
+            android:text="价格"/>
+       </RadioGroup>
+    <com.handmark.pulltorefresh.library.PullToRefreshGridView
+        android:id="@+id/gv_classify"
+        android:layout_width="match_parent"
+        android:numColumns="2"
+        android:layout_height="match_parent"></com.handmark.pulltorefresh.library.PullToRefreshGridView>
+
+</LinearLayout>

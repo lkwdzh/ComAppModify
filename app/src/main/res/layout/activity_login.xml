@@ -1,0 +1,128 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ll_match_content_ver"
+    android:background="@color/gray_eeeeee">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/px_100"
+        android:src="@drawable/denglu" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/px_15"
+        android:layout_marginLeft="@dimen/px_30"
+        android:layout_marginTop="@dimen/px_60"
+        android:text="账号登录"
+        android:textColor="@color/textcolor_999999"
+        android:textSize="18sp" />
+
+    <View style="@style/line_1" />
+
+    <LinearLayout
+        style="@style/ll_match_wrap_content_ver"
+        android:background="@color/white">
+
+
+        <LinearLayout
+            style="@style/ll_match_wrap_content_hor"
+            android:background="@color/white"
+            android:padding="@dimen/px_15"
+            android:weightSum="4">
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_10"
+                android:layout_weight="1"
+                android:background="@drawable/spinner"></Spinner>
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="账 号："-->
+            <!--android:layout_marginLeft="@dimen/px_25"-->
+            <!--android:textSize="15sp" />-->
+
+            <EditText
+                android:id="@+id/et_username_login"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_8"
+                android:layout_weight="3"
+                android:background="@null"
+                android:hint="手机号/席位号"
+                android:textColorHint="@color/textcolor_999999"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <View
+            style="@style/line_1"
+            android:layout_marginLeft="@dimen/px_14"
+            android:layout_marginRight="@dimen/px_14" />
+
+        <LinearLayout
+            style="@style/ll_match_wrap_content_hor"
+            android:background="@color/white"
+            android:padding="@dimen/px_14"
+            android:weightSum="4">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_22"
+                android:layout_weight="1"
+                android:text="密     码："
+                android:textColor="@color/textcolor_333333"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_password_login"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@null"
+                android:hint="密码"
+
+                android:inputType="textPassword"
+                android:textColorHint="@color/textcolor_999999"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <View style="@style/line_1" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/px_50"
+        android:layout_marginRight="@dimen/px_50"
+        android:layout_marginTop="@dimen/px_20"
+        android:background="@drawable/btn_orange_corner"
+        android:gravity="center"
+        android:text="登录"
+        android:textColor="@color/white"
+        android:textSize="13sp" />
+
+    <RelativeLayout
+        style="@style/rl_match_wrap_content"
+        android:padding="@dimen/px_20">
+
+        <TextView
+            android:id="@+id/tv_register_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="注册" />
+
+        <TextView
+            android:id="@+id/tv_find_password_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="找回密码" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
+    <RelativeLayout style="@style/rl_wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ll_left"
+            style="@style/ll_wrap_content_ver"
+            android:layout_margin="@dimen/px_12">
+
+            <ImageView
+                android:id="@+id/iv_myGridView_homepage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/tongxun" />
+
+            <TextView
+                android:id="@+id/tv_name_homepage"
+                style="@style/grayTextView_333333"
+                android:text="小米" />
+
+            <LinearLayout style="@style/ll_match_wrap_content_hor">
+
+                <TextView
+                    style="@style/grayTextView_666666"
+                    android:text="产地：" />
+
+                <TextView
+                    android:id="@+id/tv_address_mygridview"
+                    style="@style/grayTextView_666666"
+                    android:text="山东" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/ll_match_wrap_content_hor">
+
+                <TextView
+                    style="@style/grayTextView_666666"
+                    android:text="等级：" />
+
+                <TextView
+                    android:id="@+id/tv_grade_mygridview"
+                    style="@style/grayTextView_666666"
+                    android:text="一级" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/ll_match_wrap_content_hor">
+
+                <TextView
+                    style="@style/grayTextView_666666"
+                    android:text="重量：" />
+
+                <TextView
+                    android:id="@+id/tv_weight_mygridview"
+                    style="@style/grayTextView_666666"
+                    android:text="30吨" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/ll_match_wrap_content_hor">
+
+                <TextView
+                    style="@style/redTextView_c91014"
+                    android:text="价格：" />
+
+                <TextView
+                    android:id="@+id/tv_price_mygridview"
+                    style="@style/redTextView_c91014"
+                    android:text="￥1999" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            style="@style/line_2"
+            android:layout_alignBottom="@id/ll_left"
+            android:layout_alignTop="@id/ll_left"
+            android:layout_toRightOf="@id/ll_left" />
+    </RelativeLayout>
+
+    <View style="@style/line_1" />
+
+</LinearLayout>

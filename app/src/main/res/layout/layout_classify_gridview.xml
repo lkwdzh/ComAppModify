@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:paddingBottom="@dimen/px_10"
+    android:paddingTop="@dimen/px_10"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        style="@style/ll_match_content_ver"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_classify_gridview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tongxun" />
+
+        <TextView
+            android:id="@+id/tv_classify_gridvew"
+            style="@style/grayTextView_333333"
+            android:text="小米" />
+    </LinearLayout>
+
+    <View style="@style/line_2" />
+</LinearLayout>
