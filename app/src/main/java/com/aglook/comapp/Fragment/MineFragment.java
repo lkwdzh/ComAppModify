@@ -8,9 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-import com.aglook.comapp.Activity.BasicInformationActivity;
+import com.aglook.comapp.Activity.GuaDanAddActivity;
+import com.aglook.comapp.Activity.GuaDanDetailActivity;
+import com.aglook.comapp.Activity.PersonInformationActivity;
+import com.aglook.comapp.Activity.SettingActivity;
 import com.aglook.comapp.R;
 
 /**
@@ -20,6 +25,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     private ImageView iv_icon_mine_fragment;
     private RelativeLayout rl_background_mine_fragment;
+    private LinearLayout ll_all_guadan_mine_fragment;
+    private LinearLayout ll_yaoguadan_mine_fragment;
+    private TextView tv_setting_mine_fragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,12 +41,18 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public void initView(View view){
         iv_icon_mine_fragment = ((ImageView) view.findViewById(R.id.iv_icon_mine_fragment));
         rl_background_mine_fragment = (RelativeLayout) view.findViewById(R.id.rl_background_mine_fragment);
+        ll_all_guadan_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_all_guadan_mine_fragment);
+        ll_yaoguadan_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_yaoguadan_mine_fragment);
+        tv_setting_mine_fragment = (TextView) view.findViewById(R.id.tv_setting_mine_fragment);
     }
 
     //点击事件
     public void click(){
 //        iv_icon_mine_fragment.setOnClickListener(this);
         rl_background_mine_fragment.setOnClickListener(this);
+        ll_all_guadan_mine_fragment.setOnClickListener(this);
+        ll_yaoguadan_mine_fragment.setOnClickListener(this);
+        tv_setting_mine_fragment.setOnClickListener(this);
     }
 
     @Override
@@ -47,7 +61,19 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()){
             case R.id.rl_background_mine_fragment:
 //                intent.setClass(getActivity(), LoginActivity.class);
-                intent.setClass(getActivity(), BasicInformationActivity.class);
+                intent.setClass(getActivity(), PersonInformationActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.ll_all_guadan_mine_fragment:
+                intent.setClass(getActivity(), GuaDanDetailActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.ll_yaoguadan_mine_fragment:
+                intent.setClass(getActivity(), GuaDanAddActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.tv_setting_mine_fragment:
+                intent.setClass(getActivity(), SettingActivity.class);
                 startActivity(intent);
                 break;
         }

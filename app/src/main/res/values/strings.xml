@@ -8,11 +8,11 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_classify">ClassifyActivity</string>
-    <string name="title_activity_goods_detail">GoodsDetailActivity</string>
     <string name="title_activity_guide">GuideActivity</string>
     <string name="title_activity_find_password">FindPasswordActivity</string>
 
     <!-- 商品详情 -->
+    <string name="title_activity_goods_detail">GoodsDetailActivity</string>
     <string name="goods_detail_cangdanhao">仓单号：</string>
     <string name="goods_detail_huowuzhonglei">货物种类：</string>
     <string name="goods_detail_in_time">入库时间：</string>
@@ -24,7 +24,12 @@
     <string name="goods_detail_email">仓管邮箱：</string>
     <string name="goods_detail_address">仓管地址：</string>
     <string name="goods_detail_goods_detail">商品详情：</string>
-    <!--基本信息-->
+    <string name="goods_detail_kefu">客服</string>
+    <string name="goods_detail_guanzhu">关注</string>
+    <string name="goods_detail_gouwuche">购物车</string>
+    <string name="goods_detail_add_cart">加入购物车</string>
+
+    <!-- 基本信息 -->
     <string name="title_activity_basic_information">BasicInformationActivity</string>
     <string name="basic_information_icon">头像</string>
     <string name="basic_information_name">姓名</string>
@@ -34,5 +39,57 @@
     <string name="basic_information_phone_num">手机号</string>
     <string name="basic_information_fix_num">固定电话</string>
     <string name="basic_information_safe">账户安全</string>
+    <string name="title_activity_gua_dan_detail">GuaDanDetailActivity</string>
+    <string name="gua_dan_goods_image">货物图片</string>
+    <string name="gua_dan_huo_quan">货权图片</string>
+    <string name="gua_dan_goods_name">商品名称</string>
+    <string name="gua_dan_cangdanhao">仓单号</string>
+    <string name="gua_dan_goods_kind">货物种类</string>
+    <string name="gua_dan_stock_weight">库存重量</string>
+    <string name="gua_dan_use_weight">可用重量</string>
+    <string name="gua_dan_in_time">入库时间</string>
+    <string name="gua_dan_goods_ara">货物产地</string>
+    <string name="gua_dan_xue_tou">噱头</string>
+    <string name="gua_dan_userful_time">挂单有效期</string>
+    <string name="gua_dan_cang_name">仓管名称</string>
+    <string name="gua_dan_cang_phone">仓管电话</string>
+    <string name="gua_dan_cang_email">仓管邮箱</string>
+    <string name="gua_dan_cang_address">仓管地址</string>
+    <string name="gua_dan_buyer">指定买家</string>
+    <string name="gua_dan_goods_detail">商品详情</string>
+
+    <!-- 我要挂单 -->
+    <string name="title_activity_gua_dan_add">GuaDanAddActivity</string>
+
+    <!-- 设置 -->
+    <string name="title_activity_setting">SettingActivity</string>
+
+    <!-- 搜索 -->
+    <string name="title_activity_search">SearchActivity</string>
+
+    <!-- 支付结果 -->
+    <string name="title_activity_pay_succeed">PayResultActivity</string>
+
+    <!-- 个人信息 -->
+    <string name="title_activity_person_information">PersonInformationActivity</string>
+    <string name="person_information_jibenxinxi">基本信息</string>
+    <string name="person_information_card">绑定银行卡</string>
+
+    <!-- 我的Fragment -->
+    <string name="mine_fragment_person_info">个人信息</string>
+    <string name="mine_fragment_my_order">我的订单</string>
+    <string name="mine_fragment_all_order">全部订单</string>
+    <string name="mine_fragment_will_shouhuo">代收货</string>
+    <string name="mine_fragment_will_pay">代付款</string>
+    <string name="mine_fragment_my_guadan">我的挂单</string>
+    <string name="mine_fragment_yao_guadan">我要挂单</string>
+    <string name="mine_fragment__all_guadan">全部挂单</string>
+    <string name="mine_fragment_my_cang">我的仓单</string>
+    <string name="mine_fragment_my_cang_dan">我的仓单</string>
+    <string name="title_activity_band_card">BandCardActivity</string>
+    <string name="band_card_name">账号名</string>
+    <string name="bang_card_num">卡号</string>
+    <string name="bang_card_bank">银行</string>
+    <string name="bang_card_phone">预留手机号</string>
 
 </resources>

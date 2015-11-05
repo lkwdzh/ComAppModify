@@ -15,8 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.aglook.comapp.Activity.GoodsDetailActivity;
+import com.aglook.comapp.Activity.SearchActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.HomePageGridViewAdapter;
 import com.aglook.comapp.adapter.RecycleHomePageAdapter;
@@ -31,7 +33,7 @@ import java.util.List;
 /**
  * Created by aglook on 2015/10/26.
  */
-public class HomePageFragment extends Fragment implements ViewPager.OnPageChangeListener {
+public class HomePageFragment extends Fragment implements ViewPager.OnPageChangeListener, View.OnClickListener {
     private List<String> list = new ArrayList<>();
     private RecycleHomePageAdapter adapter;
     private PullToRefreshGridView exlv;
@@ -62,13 +64,14 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     private RecyclerView my_recycler_view;
     private MyGridView gv_homepage;
     private HomePageGridViewAdapter gridViewAdapter;
+    private RelativeLayout rl_search_homepage_fragment;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = View.inflate(getActivity(), R.layout.layout_homepage_fragment, null);
         initView(view);
-
+        click();
 
 
         return view;
@@ -124,8 +127,13 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                 startActivity(intent);
             }
         });
+        rl_search_homepage_fragment = (RelativeLayout) view.findViewById(R.id.rl_search_homepage_fragment);
+
     }
 
+    public void click(){
+        rl_search_homepage_fragment.setOnClickListener(this);
+    }
 
     public void addImageView(int position) {
         ImageView imageView = new ImageView(getActivity());
@@ -157,6 +165,17 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                 mIsChanged = false;
                 vp_home_page_head.setCurrentItem(mCurrentPagePosition, false);
             }
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent();
+        switch (v.getId()){
+            case R.id.rl_search_homepage_fragment:
+                intent.setClass(getActivity(), SearchActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 

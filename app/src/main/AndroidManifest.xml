@@ -45,6 +45,34 @@
             android:name=".Activity.BasicInformationActivity"
             android:label="@string/title_activity_basic_information" >
         </activity>
+        <activity
+            android:name=".Activity.GuaDanDetailActivity"
+            android:label="@string/title_activity_gua_dan_detail" >
+        </activity>
+        <activity
+            android:name=".Activity.GuaDanAddActivity"
+            android:label="@string/title_activity_gua_dan_add" >
+        </activity>
+        <activity
+            android:name=".Activity.SettingActivity"
+            android:label="@string/title_activity_setting" >
+        </activity>
+        <activity
+            android:name=".Activity.SearchActivity"
+            android:label="@string/title_activity_search" >
+        </activity>
+        <activity
+            android:name=".Activity.PayResultActivity"
+            android:label="@string/title_activity_pay_succeed" >
+        </activity>
+        <activity
+            android:name=".Activity.PersonInformationActivity"
+            android:label="@string/title_activity_person_information" >
+        </activity>
+        <activity
+            android:name=".Activity.BandCardActivity"
+            android:label="@string/title_activity_band_card" >
+        </activity>
     </application>
 
 </manifest>

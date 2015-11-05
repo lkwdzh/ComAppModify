@@ -139,7 +139,7 @@
             <LinearLayout
                 android:id="@+id/ll_buy_bottom_shopping_cart"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_55"
+                android:layout_height="@dimen/px_70"
                 android:layout_alignParentBottom="true"
                 android:orientation="horizontal"
                 android:weightSum="4">

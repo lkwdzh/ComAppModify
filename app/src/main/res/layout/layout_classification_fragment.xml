@@ -10,6 +10,7 @@
         android:background="@color/red_c91014">
 
         <RelativeLayout
+            android:id="@+id/rl_search_classify"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_40"
             android:layout_marginBottom="@dimen/px_14"
@@ -18,16 +19,17 @@
             android:layout_marginTop="@dimen/px_14"
             android:gravity="center_vertical">
 
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_white_corner"
                 android:hint="输入关键字"
-                android:paddingBottom="@dimen/px_8"
+                android:paddingBottom="@dimen/px_6"
+                android:paddingTop="@dimen/px_7"
                 android:paddingLeft="@dimen/px_14"
-                android:paddingTop="@dimen/px_8"
+                android:gravity="center_vertical"
                 android:textColorHint="@color/textcolor_999999"
-                android:textSize="15sp" />
+                android:textSize="13sp" />
 
             <ImageView
                 android:id="@+id/iv_search_homepage"

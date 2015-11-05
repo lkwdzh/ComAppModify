@@ -78,7 +78,7 @@
                     android:layout_alignParentRight="true"
                     android:drawableRight="@drawable/next"
                     android:gravity="center"
-                    android:text="个人信息"
+                    android:text="@string/mine_fragment_person_info"
                     android:textColor="@color/white" />
 
             </RelativeLayout>
@@ -98,7 +98,7 @@
                         style="@style/grayTextView_333333"
                         android:drawableLeft="@drawable/dingdan"
                         android:gravity="center_vertical"
-                        android:text="我的订单"
+                        android:text="@string/mine_fragment_my_order"
                         android:textSize="15sp" />
 
                 </RelativeLayout>
@@ -150,7 +150,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:gravity="center"
-                            android:text="全部订单"
+                            android:text="@string/mine_fragment_all_order"
                             android:textSize="12sp" />
 
 
@@ -194,7 +194,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:gravity="center"
-                            android:text="代收货"
+                            android:text="@string/mine_fragment_will_shouhuo"
                             android:textSize="12sp" />
 
 
@@ -238,7 +238,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:gravity="center"
-                            android:text="代付款"
+                            android:text="@string/mine_fragment_will_pay"
                             android:textSize="12sp" />
 
 
@@ -266,7 +266,7 @@
                         style="@style/grayTextView_333333"
                         android:drawableLeft="@drawable/guadan"
                         android:gravity="center_vertical"
-                        android:text="我的挂单"
+                        android:text="@string/mine_fragment_my_guadan"
                         android:textSize="15sp" />
 
                 </RelativeLayout>
@@ -281,6 +281,7 @@
                     android:weightSum="3">
 
                     <LinearLayout
+                        android:id="@+id/ll_yaoguadan_mine_fragment"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -318,13 +319,14 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:gravity="center"
-                            android:text="我要挂单"
+                            android:text="@string/mine_fragment_yao_guadan"
                             android:textSize="12sp" />
 
 
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_all_guadan_mine_fragment"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -362,7 +364,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:gravity="center"
-                            android:text="全部挂单"
+                            android:text="@string/mine_fragment__all_guadan"
                             android:textSize="12sp" />
 
 
@@ -390,7 +392,7 @@
                         style="@style/grayTextView_333333"
                         android:drawableLeft="@drawable/cangdan"
                         android:gravity="center_vertical"
-                        android:text="我的仓单"
+                        android:text="@string/mine_fragment_my_cang"
                         android:textSize="15sp" />
 
                 </RelativeLayout>
@@ -442,7 +444,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:gravity="center"
-                            android:text="我的仓单"
+                            android:text="@string/mine_fragment_my_cang_dan"
                             android:textSize="12sp" />
 
 
