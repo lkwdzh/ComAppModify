@@ -1,0 +1,91 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_eeeeee"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/ll_match_wrap_content_hor"
+        android:background="@color/red_c91014">
+
+        <RelativeLayout
+            android:id="@+id/rl_search_classify"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_40"
+            android:layout_marginBottom="@dimen/px_14"
+            android:layout_marginLeft="@dimen/px_31"
+            android:layout_marginRight="@dimen/px_31"
+            android:layout_marginTop="@dimen/px_14"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_white_corner"
+                android:gravity="center_vertical"
+                android:hint="输入关键字"
+                android:paddingBottom="@dimen/px_6"
+                android:paddingLeft="@dimen/px_14"
+                android:paddingTop="@dimen/px_7"
+                android:textColorHint="@color/textcolor_999999"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="@dimen/px_45"
+                android:layout_height="@dimen/px_45"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/search" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:padding="@dimen/px_14">
+
+        <TextView
+            style="@style/redTextView_c91014"
+            android:text="热搜" />
+
+        <GridView
+            android:id="@+id/gv_search"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="wrap_content"
+            android:listSelector="#00000000"
+            android:numColumns="5"></GridView>
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+
+    <View
+        style="@style/line_1"
+        android:layout_marginTop="@dimen/px_14" />
+
+    <LinearLayout
+        style="@style/ll_match_content_ver"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/px_14"
+            android:text="最近搜索"
+            android:textColor="@color/textcolor_333333"
+            android:textSize="15sp" />
+
+
+    <View style="@style/line_1" />
+
+    <ListView
+        android:id="@+id/lv_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"></ListView>
+    </LinearLayout>
+</LinearLayout>

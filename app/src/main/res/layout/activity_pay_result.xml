@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_eeeeee"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_base_title_bar" />
+
+    <ImageView
+        android:id="@+id/iv_pay_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/px_180" />
+
+    <TextView
+        android:id="@+id/tv_pay_result"
+        style="@style/grayTextView_333333"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/px_35"
+        android:textSize="20sp" />
+
+</LinearLayout>

@@ -1,0 +1,267 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_eeeeee"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_base_title_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                style="@style/line_1"
+                android:layout_marginTop="@dimen/px_14" />
+
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="@string/gua_dan_goods_image" />
+
+                <TextView
+                    android:id="@+id/tv_goods_image_gua_dan_add"
+                    style="@style/guadan_edittext_weight"
+                    android:drawableRight="@drawable/next"
+                    android:hint="请上传货物图片" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="@string/gua_dan_huo_quan" />
+
+                <TextView
+                    android:id="@+id/tv_huo_quan_image_gua_dan_add"
+                    style="@style/guadan_edittext_weight"
+                    android:drawableRight="@drawable/next"
+                    android:hint="请上传货权图片" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="@string/gua_dan_goods_name" />
+
+                <EditText
+                    android:id="@+id/et_goods_name_gua_dan"
+                    style="@style/guadan_edittext_weight"
+                    android:hint="请输入商品名称" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="@string/gua_dan_cangdanhao" />
+
+                <TextView
+                    android:id="@+id/tv_cangdanhao_gua_dan_add"
+                    style="@style/guadan_edittext_weight"
+                    android:text="16558764734" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="@string/gua_dan_goods_kind" />
+
+                <EditText
+                    android:id="@+id/tv_goods_kind_gua_dan"
+                    style="@style/guadan_edittext_weight"
+                    android:hint="请输入货物种类" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="@string/gua_dan_stock_weight" />
+
+                <EditText
+                    android:id="@+id/tv_stock_weight_gua_dan"
+                    style="@style/guadan_edittext_weight"
+                    android:hint="请输入库存重量" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="@string/gua_dan_use_weight" />
+
+                <EditText
+                    android:id="@+id/tv_use_weight_gua_dan"
+                    style="@style/guadan_edittext_weight"
+                    android:hint="请输入可用重量" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="@string/gua_dan_in_time" />
+
+                <TextView
+                    android:id="@+id/tv_in_time_gua_dan_add"
+                    style="@style/guadan_edittext_weight"
+                    android:hint="请选择入库时间" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="@string/gua_dan_goods_ara" />
+
+                <EditText
+                    android:id="@+id/et_goods_ara_gua_dan"
+                    style="@style/guadan_edittext_weight"
+                    android:hint="请输入货物产地" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="@string/gua_dan_xue_tou" />
+
+                <TextView
+                    android:id="@+id/tv_xue_tou_gua_dan_add"
+                    style="@style/guadan_edittext_weight"
+                    android:text="mark" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="@string/gua_dan_userful_time" />
+
+                <TextView
+                    android:id="@+id/tv_userful_time_gua_dan_add"
+                    style="@style/guadan_edittext_weight"
+                    android:hint="请选择挂单有效期"
+                    />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="@string/gua_dan_cang_name" />
+
+                <EditText
+                    android:id="@+id/et_cang_name_gua_dan"
+                    style="@style/guadan_edittext_weight"
+                    android:hint="请输入仓管名称" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="@string/gua_dan_cang_phone" />
+
+                <EditText
+                    android:id="@+id/et_cang_phone_gua_dan"
+                    style="@style/guadan_edittext_weight"
+                    android:hint="请输入仓管电话"
+                    android:inputType="phone" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="@string/gua_dan_cang_email" />
+
+                <EditText
+                    android:id="@+id/et_cang_email_gua_dan"
+                    style="@style/guadan_edittext_weight"
+                    android:hint="请输入仓管邮箱"
+                    android:inputType="textEmailAddress" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="@string/gua_dan_cang_address" />
+
+                <EditText
+                    android:id="@+id/et_cang_address_gua_dan"
+                    style="@style/guadan_edittext_weight"
+                    android:hint="请输入仓管地址" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="@string/gua_dan_buyer" />
+
+                <EditText
+                    android:id="@+id/et_buyer_gua_dan"
+                    style="@style/guadan_edittext_weight"
+                    android:hint="请输入指定买家" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="@string/gua_dan_goods_detail" />
+
+                <EditText
+                    android:id="@+id/et_goods_detail_gua_dan"
+                    style="@style/guadan_edittext_weight"
+                    android:hint="请输入商品详情" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

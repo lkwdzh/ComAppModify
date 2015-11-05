@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_eeeeee"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_base_title_bar" />
+
+    <View
+        style="@style/line_1"
+        android:layout_marginTop="@dimen/px_14" />
+
+    <LinearLayout style="@style/basic_infor_ll_weight">
+
+        <TextView
+            style="@style/basic_infor_TextView_333333"
+            android:text="@string/band_card_name" />
+
+        <EditText
+            android:id="@+id/et_name_bang_card"
+            style="@style/basic_infor_edittext_weight"
+            android:hint="请输入账户名" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+    <LinearLayout style="@style/basic_infor_ll_weight">
+
+        <TextView
+            style="@style/basic_infor_TextView_333333"
+            android:text="@string/bang_card_num" />
+
+        <EditText
+            android:id="@+id/et_num_bang_card"
+            style="@style/basic_infor_edittext_weight"
+            android:hint="请输入卡号" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+    <LinearLayout style="@style/basic_infor_ll_weight">
+
+        <TextView
+            style="@style/basic_infor_TextView_333333"
+            android:text="@string/bang_card_bank" />
+
+        <EditText
+            android:id="@+id/et_bank_bang_card"
+            style="@style/basic_infor_edittext_weight"
+            android:hint="请输入银行" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+    <LinearLayout style="@style/basic_infor_ll_weight">
+
+        <TextView
+            style="@style/basic_infor_TextView_333333"
+            android:text="@string/bang_card_phone" />
+
+        <EditText
+            android:id="@+id/et_phone_bang_card"
+            style="@style/basic_infor_edittext_weight"
+            android:hint="请输入预留手机号" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+</LinearLayout>

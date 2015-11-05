@@ -1,0 +1,117 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ll_match_content_ver"
+    android:background="@color/gray_eeeeee">
+<include layout="@layout/activity_base_title_bar"/>
+    <RelativeLayout
+        style="@style/rl_match_wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/px_14">
+
+        <TextView
+            style="@style/grayTextView_333333_15"
+            android:layout_centerVertical="true"
+            android:text="设置地理位置信息" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/next" />
+    </RelativeLayout>
+
+    <View style="@style/line_1" />
+
+    <RelativeLayout
+        style="@style/rl_match_wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/px_14">
+
+        <TextView
+            style="@style/grayTextView_333333_15"
+            android:layout_centerVertical="true"
+            android:text="调节亮度" />
+
+        <CheckBox
+            android:id="@+id/cb_light_setting"
+            style="@style/checkBox_setting" />
+    </RelativeLayout>
+
+    <View style="@style/line_1" />
+
+    <RelativeLayout
+        style="@style/rl_match_wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/px_14">
+
+        <TextView
+            style="@style/grayTextView_333333_15"
+            android:layout_centerVertical="true"
+            android:text="非WiFi环境下自动下载图片" />
+
+        <CheckBox
+            android:id="@+id/cb_image_setting"
+            style="@style/checkBox_setting" />
+    </RelativeLayout>
+
+    <View style="@style/line_1" />
+
+    <RelativeLayout
+        style="@style/rl_match_wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/px_14">
+
+        <TextView
+            style="@style/grayTextView_333333_15"
+            android:layout_centerVertical="true"
+            android:text="WiFi环境下自动下载客户端" />
+
+        <CheckBox
+            android:id="@+id/cb_app_setting"
+            style="@style/checkBox_setting"
+            android:checked="true" />
+    </RelativeLayout>
+
+    <View style="@style/line_1" />
+
+    <RelativeLayout
+        style="@style/rl_match_wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/px_14">
+
+        <TextView
+            style="@style/grayTextView_333333_15"
+            android:layout_centerVertical="true"
+            android:text="清除本地缓存" />
+
+        <TextView
+            style="@style/grayTextView_999999_15"
+            android:layout_alignParentRight="true"
+            android:text="0.06M"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+
+    <View style="@style/line_1" />
+
+    <View style="@style/line_1"
+        android:layout_marginTop="@dimen/px_14"/>
+    <RelativeLayout
+        style="@style/rl_match_wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/px_14">
+
+        <TextView
+            style="@style/grayTextView_333333_15"
+            android:layout_centerVertical="true"
+            android:text="关于" />
+
+        <TextView
+            style="@style/grayTextView_999999_15"
+            android:layout_alignParentRight="true"
+            android:text="V1.0.0"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+
+    <View style="@style/line_1" />
+</LinearLayout>
