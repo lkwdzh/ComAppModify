@@ -113,6 +113,7 @@
                     android:weightSum="3">
 
                     <LinearLayout
+                        android:id="@+id/ll_all_order_mine_fragment"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -157,6 +158,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_to_receive_mine_fragment"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -201,6 +203,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_to_pay_mine_fragment"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

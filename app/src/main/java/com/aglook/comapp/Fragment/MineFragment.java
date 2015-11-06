@@ -12,10 +12,13 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.aglook.comapp.Activity.AllGuaDanActivity;
+import com.aglook.comapp.Activity.AllOrderActivity;
 import com.aglook.comapp.Activity.GuaDanAddActivity;
-import com.aglook.comapp.Activity.GuaDanDetailActivity;
 import com.aglook.comapp.Activity.PersonInformationActivity;
 import com.aglook.comapp.Activity.SettingActivity;
+import com.aglook.comapp.Activity.ToPayActivity;
+import com.aglook.comapp.Activity.ToReceiveActivity;
 import com.aglook.comapp.R;
 
 /**
@@ -28,6 +31,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private LinearLayout ll_all_guadan_mine_fragment;
     private LinearLayout ll_yaoguadan_mine_fragment;
     private TextView tv_setting_mine_fragment;
+    private LinearLayout ll_all_order_mine_fragment;
+    private LinearLayout ll_to_pay_mine_fragment;
+    private LinearLayout ll_to_receive_mine_fragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,6 +50,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         ll_all_guadan_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_all_guadan_mine_fragment);
         ll_yaoguadan_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_yaoguadan_mine_fragment);
         tv_setting_mine_fragment = (TextView) view.findViewById(R.id.tv_setting_mine_fragment);
+        ll_all_order_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_all_order_mine_fragment);
+        ll_to_pay_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_to_pay_mine_fragment);
+        ll_to_receive_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_to_receive_mine_fragment);
     }
 
     //点击事件
@@ -53,6 +62,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         ll_all_guadan_mine_fragment.setOnClickListener(this);
         ll_yaoguadan_mine_fragment.setOnClickListener(this);
         tv_setting_mine_fragment.setOnClickListener(this);
+        ll_all_order_mine_fragment.setOnClickListener(this);
+        ll_to_pay_mine_fragment.setOnClickListener(this);
+        ll_to_receive_mine_fragment.setOnClickListener(this);
     }
 
     @Override
@@ -65,7 +77,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.ll_all_guadan_mine_fragment:
-                intent.setClass(getActivity(), GuaDanDetailActivity.class);
+                intent.setClass(getActivity(), AllGuaDanActivity.class);
                 startActivity(intent);
                 break;
             case R.id.ll_yaoguadan_mine_fragment:
@@ -74,6 +86,18 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.tv_setting_mine_fragment:
                 intent.setClass(getActivity(), SettingActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.ll_all_order_mine_fragment:
+                intent.setClass(getActivity(), AllOrderActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.ll_to_pay_mine_fragment:
+                intent.setClass(getActivity(), ToPayActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.ll_to_receive_mine_fragment:
+                intent.setClass(getActivity(), ToReceiveActivity.class);
                 startActivity(intent);
                 break;
         }

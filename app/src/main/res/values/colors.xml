@@ -24,4 +24,6 @@
     <color name="gray_eeeeee">#eeeeee</color>
     <!--橙色eaa24d-->
     <color name="orange_eaa24d">#eaa24d</color>
+    <!--灰色e1e1e1-->
+    <color name="gray_e1e1e1">#e1e1e1</color>
 </resources>

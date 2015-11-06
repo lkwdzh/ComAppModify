@@ -92,4 +92,16 @@
     <string name="bang_card_bank">银行</string>
     <string name="bang_card_phone">预留手机号</string>
 
+    <!-- 筛选 -->
+    <string name="title_activity_screen">ScreenActivity</string>
+    <string name="screen_gridview_address">产地：</string>
+    <string name="screen_gridview_grade">等级：</string>
+    <string name="screen_gridview_weight">重量：</string>
+    <string name="screen_gridview_price">价格：￥</string>
+    <string name="title_activity_confirm_order">ConfirmOrderActivity</string>
+    <string name="title_activity_all_order">AllOrderActivity</string>
+    <string name="title_activity_all_gua_dan">AllGuaDanActivity</string>
+    <string name="title_activity_to_pay">ToPayActivity</string>
+    <string name="title_activity_to_receive">ToReceiveActivity</string>
+
 </resources>

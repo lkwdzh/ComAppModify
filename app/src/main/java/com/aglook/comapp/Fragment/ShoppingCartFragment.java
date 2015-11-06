@@ -21,6 +21,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.aglook.comapp.Activity.ConfirmOrderActivity;
 import com.aglook.comapp.Activity.LoginActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ShoppingCartAdapter;
@@ -57,6 +58,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
     private TextView tv_num_delete;
     private Button btn_cancel_delete;
     private Button btn_confirm_delete;
+    private LinearLayout ll_shopping_cart_jiesuan;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -110,6 +112,8 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
         tv_denglu_shopping_cart = (TextView) view.findViewById(R.id.tv_denglu_shopping_cart);
 
 //        unLogin();
+//        去结算
+        ll_shopping_cart_jiesuan = (LinearLayout) view.findViewById(R.id.ll_shopping_cart_jiesuan);
     }
 
     //    如果未登录
@@ -190,6 +194,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
         });
 
         tv_delete_shopping_cart.setOnClickListener(this);
+        ll_shopping_cart_jiesuan.setOnClickListener(this);
     }
 
     @Override
@@ -204,18 +209,14 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                 showWindow(v);
                 break;
             case R.id.btn_cancel_delete:
-                if (popupWindow != null) {
-                    popupWindow.dismiss();
-                }
-                backgroundAlpha(1f);
-                cb_top_right_shopping_cart.setClickable(true);
+                closeWindow();
                 break;
             case R.id.btn_confirm_delete:
-                if (popupWindow != null) {
-                    popupWindow.dismiss();
-                }
-                backgroundAlpha(1f);
-                cb_top_right_shopping_cart.setClickable(true);
+                closeWindow();
+                break;
+            case R.id.ll_shopping_cart_jiesuan:
+                intent.setClass(getActivity(), ConfirmOrderActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -232,11 +233,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
     @Override
     public void onPause() {
         super.onPause();
-        if (popupWindow != null) {
-            popupWindow.dismiss();
-        }
-        backgroundAlpha(1f);
-        cb_top_right_shopping_cart.setClickable(true);
+        closeWindow();
     }
 
     //    popupwindow
@@ -265,6 +262,14 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
 
         btn_cancel_delete.setOnClickListener(this);
         btn_confirm_delete.setOnClickListener(this);
+    }
+
+    public void closeWindow() {
+        if (popupWindow != null) {
+            popupWindow.dismiss();
+        }
+        backgroundAlpha(1f);
+        cb_top_right_shopping_cart.setClickable(true);
     }
 
     /**

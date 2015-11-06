@@ -73,6 +73,30 @@
             android:name=".Activity.BandCardActivity"
             android:label="@string/title_activity_band_card" >
         </activity>
+        <activity
+            android:name=".Activity.ScreenActivity"
+            android:label="@string/title_activity_screen" >
+        </activity>
+        <activity
+            android:name=".Activity.ConfirmOrderActivity"
+            android:label="@string/title_activity_confirm_order" >
+        </activity>
+        <activity
+            android:name=".Activity.AllOrderActivity"
+            android:label="@string/title_activity_all_order" >
+        </activity>
+        <activity
+            android:name=".Activity.AllGuaDanActivity"
+            android:label="@string/title_activity_all_gua_dan" >
+        </activity>
+        <activity
+            android:name=".Activity.ToPayActivity"
+            android:label="@string/title_activity_to_pay" >
+        </activity>
+        <activity
+            android:name=".Activity.ToReceiveActivity"
+            android:label="@string/title_activity_to_receive" >
+        </activity>
     </application>
 
 </manifest>

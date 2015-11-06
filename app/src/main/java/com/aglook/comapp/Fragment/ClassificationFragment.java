@@ -12,6 +12,7 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import com.aglook.comapp.Activity.ScreenActivity;
 import com.aglook.comapp.Activity.SearchActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ClassificationLeftAdapter;
@@ -71,8 +72,8 @@ public class ClassificationFragment extends Fragment implements View.OnClickList
         gv_right.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getActivity(), ScreenActivity.class);
+                startActivity(intent);
             }
         });
 

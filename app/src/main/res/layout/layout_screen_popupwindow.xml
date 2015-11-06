@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@drawable/popup_background"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_price_down_up_screen_popup"
+        style="@style/redTextView_c91014"
+        android:text="价格从低到高"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/tv_price_up_down_screen_popup"
+        style="@style/grayTextView_999999"
+        android:layout_marginTop="@dimen/px_5"
+        android:text="价格从高到低"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/tv_total_down_up_screen_popup"
+        style="@style/grayTextView_999999"
+        android:layout_marginTop="@dimen/px_5"
+        android:text="总价从低到高"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/tv_total_up_down_screen_popup"
+        style="@style/grayTextView_999999"
+        android:layout_marginTop="@dimen/px_5"
+        android:text="总价从高到低"
+        android:textSize="11sp" />
+
+
+</LinearLayout>

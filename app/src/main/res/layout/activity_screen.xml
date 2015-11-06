@@ -1,0 +1,95 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_eeeeee"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_base_title_bar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_70"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/tv_sale_screen"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/textcolor_666666"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:text="销量" />
+
+        <View
+            style="@style/line_2"
+            android:layout_marginBottom="@dimen/px_15"
+            android:layout_marginTop="@dimen/px_15" />
+
+        <LinearLayout
+            android:id="@+id/ll_price_screen"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_price_screen"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/textcolor_666666"
+                android:layout_marginRight="@dimen/px_5"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:text="价格" />
+            <ImageView
+                android:id="@+id/iv_price_screen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/jiage"/>
+        </LinearLayout>
+
+        <View
+            style="@style/line_2"
+            android:layout_marginBottom="@dimen/px_15"
+            android:layout_marginTop="@dimen/px_15" />
+
+        <LinearLayout
+            android:id="@+id/ll_screen_screen"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_screen_screen"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawablePadding="@dimen/px_5"
+                android:textColor="@color/textcolor_666666"
+                android:textSize="15sp"
+                android:drawableRight="@drawable/shaixuan"
+                android:gravity="center"
+                android:text="筛选" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+
+    <View
+        style="@style/line_1"
+        android:layout_marginTop="@dimen/px_14" />
+
+    <com.handmark.pulltorefresh.library.PullToRefreshGridView
+        android:id="@+id/gv_screen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:numColumns="2"></com.handmark.pulltorefresh.library.PullToRefreshGridView>
+
+</LinearLayout>

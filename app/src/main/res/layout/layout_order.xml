@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/ll_match_wrap_content_hor"
+        android:gravity="center"
+        android:background="@drawable/tianchukuang"
+        android:padding="@dimen/px_35">
+
+        <TextView
+            android:id="@+id/tv_delete_order"
+            style="@style/grayTextView_333333_15"
+            />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/ll_match_wrap_content_hor"
+        android:gravity="center"
+        android:background="@drawable/tianchukuang2"
+        android:padding="@dimen/px_20">
+
+        <Button
+            android:id="@+id/btn_cancel_delete"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/px_55"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/px_10"
+            android:background="@drawable/zhifuquxiao"
+            android:text="取消"
+            android:textColor="@color/textcolor_999999"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btn_confirm_delete"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/px_55"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/px_10"
+            android:background="@drawable/queren"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+    </LinearLayout>
+</LinearLayout>

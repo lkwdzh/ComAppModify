@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/px_10"
+        android:paddingLeft="@dimen/px_14"
+        android:paddingTop="@dimen/px_10">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_screen_gridview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/tongxun" />
+
+            <LinearLayout
+                style="@style/ll_wrap_content_ver"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/iv_screen_gridview">
+
+                <TextView
+                    android:id="@+id/tv_name_screen_gridview"
+                    style="@style/grayTextView_333333_13"
+                    android:layout_marginTop="@dimen/px_5"
+                    android:text="小米" />
+
+                <LinearLayout
+                    style="@style/ll_wrap_content_hor"
+                    android:layout_marginTop="@dimen/px_5">
+
+                    <TextView
+                        style="@style/grayTextView_666666"
+                        android:text="@string/screen_gridview_address"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tv_address_screen_gridview"
+                        style="@style/grayTextView_666666"
+                        android:text="山东"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ll_wrap_content_hor"
+                    android:layout_marginTop="@dimen/px_5">
+
+                    <TextView
+                        style="@style/grayTextView_666666"
+                        android:text="@string/screen_gridview_grade"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tv_grade_screen_gridview"
+                        style="@style/grayTextView_666666"
+                        android:text="一级"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ll_wrap_content_hor"
+                    android:layout_marginTop="@dimen/px_5">
+
+                    <TextView
+                        style="@style/grayTextView_666666"
+                        android:text="@string/screen_gridview_weight"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tv_weight_screen_gridview"
+                        style="@style/grayTextView_666666"
+                        android:text="30吨"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ll_wrap_content_hor"
+                    android:layout_marginTop="@dimen/px_5">
+
+                    <TextView
+                        style="@style/redTextView_c91014"
+                        android:text="@string/screen_gridview_price"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tv_price_screen_gridview"
+                        style="@style/redTextView_c91014"
+                        android:text="1999"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+           android:layout_width="0.5dp"
+            android:layout_height="@dimen/px_140"
+            android:background="@color/gray_line"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+    <View style="@style/line_1" />
+</LinearLayout>

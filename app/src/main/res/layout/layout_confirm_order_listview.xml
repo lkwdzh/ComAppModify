@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_14"
+        android:background="@color/gray_eeeeee" />
+
+    <View style="@style/line_1" />
+
+    <LinearLayout
+        style="@style/ll_match_wrap_content_hor"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:padding="@dimen/px_20">
+
+        <ImageView
+            android:id="@+id/iv_confirm_order_lv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tongxun" />
+
+        <LinearLayout
+            style="@style/ll_match_wrap_content_ver"
+            android:paddingTop="@dimen/px_5">
+
+            <TextView
+                android:id="@+id/tv_name_confirm_order_lv"
+                style="@style/grayTextView_333333_15"
+                android:text="小米大米小米大米小米大米小米大米小米大米" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_1"
+                    style="@style/redTextView_f47070"
+                    android:layout_marginTop="@dimen/px_14"
+                    android:text="￥"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_price_confirm_order_lv"
+                    style="@style/redTextView_f47070"
+                    android:layout_marginTop="@dimen/px_14"
+                    android:layout_toRightOf="@id/tv_1"
+                    android:text="1999.00"
+                    android:textSize="15sp" />
+
+                <RelativeLayout
+                    style="@style/ll_wrap_content_ver"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/tv_price_confirm_order_lv">
+
+                    <LinearLayout
+                        android:id="@+id/ll_1_confirm_order_lv"
+                        style="@style/ll_wrap_content_hor"
+                        android:layout_alignRight="@+id/ll_2_confirm_order_lv"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            style="@style/grayTextView_666666_13"
+                            android:text="x" />
+
+                        <TextView
+                            android:id="@+id/tv_num_confirm_order_lv"
+                            style="@style/grayTextView_666666_13"
+                            android:text="2" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_2_confirm_order_lv"
+                        style="@style/ll_wrap_content_hor"
+                        android:layout_below="@+id/ll_1_confirm_order_lv"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            style="@style/grayTextView_666666_13"
+                            android:text="手续费：￥" />
+
+                        <TextView
+                            android:id="@+id/tv_cost_confirm_order_lv"
+                            style="@style/grayTextView_666666_13"
+                            android:text="20" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_input_confirm_order_lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/px_20"
+        android:layout_marginLeft="@dimen/px_50"
+        android:layout_marginRight="@dimen/px_50"
+        android:background="@drawable/shuru"
+        android:gravity="center"
+        android:hint="选填，可填写您和卖家达成一致的要求"
+        android:paddingBottom="@dimen/px_10"
+        android:textColor="@color/textcolor_666666"
+        android:textColorHint="@color/textcolor_999999"
+        android:textSize="13sp" />
+
+    <View style="@style/line_1" />
+</LinearLayout>

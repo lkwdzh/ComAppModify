@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_14"
+        android:background="@color/gray_eeeeee" />
+
+    <View style="@style/line_1" />
+
+    <RelativeLayout
+        style="@style/rl_wrap_content"
+        android:padding="@dimen/px_20">
+
+        <TextView
+            android:id="@+id/tv_name_all_order_lv"
+            style="@style/grayTextView_333333_13"
+            android:layout_centerVertical="true"
+            android:text="精选小米" />
+
+        <ImageView
+            android:id="@+id/iv_delete_all_order_lv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/shanchuicon" />
+    </RelativeLayout>
+
+    <View style="@style/line_1" />
+
+    <com.aglook.comapp.view.MyGridView
+        android:id="@+id/gv_all_order_lv"
+        android:layout_width="match_parent"
+        android:numColumns="4"
+        android:layout_height="wrap_content"></com.aglook.comapp.view.MyGridView>
+
+    <View style="@style/line_1" />
+
+    <RelativeLayout
+        style="@style/rl_match_wrap_content"
+        android:padding="@dimen/px_20">
+
+        <LinearLayout
+            style="@style/ll_wrap_content_hor"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical">
+
+            <TextView
+                style="@style/grayTextView_666666_15"
+                android:text="实付款：" />
+
+            <TextView
+                style="@style/grayTextView_333333_15"
+                android:text="￥" />
+
+            <TextView
+                android:id="@+id/tv_money_all_order_lv"
+                style="@style/grayTextView_333333_15"
+                android:text="3333.33" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_click_all_order_lv"
+            style="@style/redTextView_c91014"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/shanchu"
+            android:gravity="center"
+            android:text="再次购买"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <View style="@style/line_1" />
+</LinearLayout>
