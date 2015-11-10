@@ -38,7 +38,7 @@ public class PersonInformationActivity extends BaseActivity {
                 startActivity(intent);
                 break;
             case R.id.tv_bang_card_person_info:
-                intent.setClass(PersonInformationActivity.this,BandCardActivity.class);
+                intent.setClass(PersonInformationActivity.this,CardListActivity.class);
                 startActivity(intent);
                 break;
         }

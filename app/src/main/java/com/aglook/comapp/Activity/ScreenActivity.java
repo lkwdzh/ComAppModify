@@ -1,9 +1,11 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -61,6 +63,13 @@ public class ScreenActivity extends BaseActivity {
         tv_sale_screen.setOnClickListener(this);
         ll_price_screen.setOnClickListener(this);
         ll_screen_screen.setOnClickListener(this);
+        gv_screen.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ScreenActivity.this, GoodsDetailActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

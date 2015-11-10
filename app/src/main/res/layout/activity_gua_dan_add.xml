@@ -141,7 +141,7 @@
                     android:text="@string/gua_dan_goods_ara" />
 
                 <EditText
-                    android:id="@+id/et_goods_ara_gua_dan"
+                    android:id="@+id/et_goods_area_gua_dan"
                     style="@style/guadan_edittext_weight"
                     android:hint="请输入货物产地" />
             </LinearLayout>

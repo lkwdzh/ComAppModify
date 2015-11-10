@@ -94,8 +94,20 @@
             android:label="@string/title_activity_to_pay" >
         </activity>
         <activity
-            android:name=".Activity.ToReceiveActivity"
+            android:name=".Activity.TransSucceedActivity"
             android:label="@string/title_activity_to_receive" >
+        </activity>
+        <activity
+            android:name=".Activity.CardListActivity"
+            android:label="@string/title_activity_card_list" >
+        </activity>
+        <activity
+            android:name=".Activity.MyCangDanActivity"
+            android:label="@string/title_activity_my_cang_dan" >
+        </activity>
+        <activity
+            android:name=".Activity.PlatformActivity"
+            android:label="@string/title_activity_platform" >
         </activity>
     </application>
 

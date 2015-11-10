@@ -90,7 +90,6 @@ public class ShoppingCartAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 int num1 = Integer.parseInt(AppUtils.toStringTrim_TV(holder.tv_count_shopping_cart_listview));
-                AppUtils.toastText(context, num1 + "");
                 if (num1 > 0) {
                     num1--;
                 } else {

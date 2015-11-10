@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.AllOrderAdapter;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 public class AllOrderActivity extends BaseActivity {
@@ -28,6 +29,7 @@ public class AllOrderActivity extends BaseActivity {
         lv_all_order.setAdapter(adapter);
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
         lv_all_order.setEmptyView(emptyView);
+        lv_all_order.setMode(PullToRefreshBase.Mode.BOTH);
     }
     public void click(){
 

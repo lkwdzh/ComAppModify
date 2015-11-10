@@ -92,7 +92,7 @@
 
         <TextView
             style="@style/redTextView_f47070"
-            android:text="小计："
+            android:text="小计：￥"
             android:textSize="15sp" />
 
         <TextView

@@ -15,12 +15,17 @@ public class GoodsDetailActivity extends BaseActivity {
         setContentView(R.layout.activity_goods_detail);
         setTitleBar("商品详情");
         init();
+        click();
     }
 
     public void init(){
         right_text = (TextView) findViewById(R.id.right_text);
         right_text.setVisibility(View.VISIBLE);
         right_text.setText("更多");
+    }
+
+    public void click(){
+
     }
 
     @Override

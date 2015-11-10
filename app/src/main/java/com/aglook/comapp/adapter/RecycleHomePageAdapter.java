@@ -1,17 +1,13 @@
 package com.aglook.comapp.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.aglook.comapp.R;
-import com.aglook.comapp.util.AppUtils;
 
 
 /**
@@ -20,7 +16,7 @@ import com.aglook.comapp.util.AppUtils;
 public class RecycleHomePageAdapter extends RecyclerView.Adapter<RecycleHomePageAdapter.MyViewHolder> {
     private int imageArray[] = {R.drawable.liangshi, R.drawable.siliao, R.drawable.tongxun,
             R.drawable.youlei, R.drawable.youliao};
-    private String nameArray[] = {"粮食", "饲料", "通讯", "油类", "油料"};
+    private String nameArray[] = {"专业分析", "行情资讯", "专题报告", "最新公告", "网站公告"};
     private MyViewHolder mViewHoder;
 
     @Override
@@ -32,7 +28,13 @@ public class RecycleHomePageAdapter extends RecyclerView.Adapter<RecycleHomePage
 
     @Override
     public void onBindViewHolder(MyViewHolder myViewHolder, int i) {
-        myViewHolder.iv_homepage_hor.setImageResource(imageArray[i]);
+        if (i==0){
+            myViewHolder.iv_homepage_hor.setVisibility(View.VISIBLE);
+            myViewHolder.iv_homepage_hor.setImageResource(R.drawable.fenxi);
+        }else {
+            myViewHolder.iv_homepage_hor.setVisibility(View.GONE);
+        }
+
         myViewHolder.tv_home_page_hor.setText(nameArray[i]);
         mViewHoder.setPosition(i);
     }
@@ -60,7 +62,6 @@ public class RecycleHomePageAdapter extends RecyclerView.Adapter<RecycleHomePage
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(itemView.getContext(), "click " + mPosition, Toast.LENGTH_SHORT).show();
         }
     }
 

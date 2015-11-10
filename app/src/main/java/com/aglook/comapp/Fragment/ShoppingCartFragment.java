@@ -26,7 +26,6 @@ import com.aglook.comapp.Activity.LoginActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ShoppingCartAdapter;
 import com.aglook.comapp.bean.ShoppingCart;
-import com.aglook.comapp.util.AppUtils;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
@@ -175,7 +174,6 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                         allMoney += mList.get(i).getTotal();
                     }
                     tv_shopping_cart_jiesuan.setText("(" + allNum + ")");
-                    AppUtils.toastText(getActivity(), allNum + "");
                     tv_total_shopping_cart_fragment.setText(allMoney + "");
 
                 } else {

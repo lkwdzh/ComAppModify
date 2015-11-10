@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:text="热门产品"
                 android:textColor="@color/red_c91014"
-                android:textSize="15sp" />
+                android:textSize="11sp" />
         </LinearLayout>
 
         <View style="@style/line_1" />

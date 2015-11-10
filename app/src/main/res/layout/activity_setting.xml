@@ -2,7 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ll_match_content_ver"
     android:background="@color/gray_eeeeee">
-<include layout="@layout/activity_base_title_bar"/>
+
+    <include layout="@layout/activity_base_title_bar" />
+
     <RelativeLayout
         style="@style/rl_match_wrap_content"
         android:background="@color/white"
@@ -88,14 +90,16 @@
         <TextView
             style="@style/grayTextView_999999_15"
             android:layout_alignParentRight="true"
-            android:text="0.06M"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:text="0.06M" />
     </RelativeLayout>
 
     <View style="@style/line_1" />
 
-    <View style="@style/line_1"
-        android:layout_marginTop="@dimen/px_14"/>
+    <View
+        style="@style/line_1"
+        android:layout_marginTop="@dimen/px_14" />
+
     <RelativeLayout
         style="@style/rl_match_wrap_content"
         android:background="@color/white"
@@ -109,9 +113,20 @@
         <TextView
             style="@style/grayTextView_999999_15"
             android:layout_alignParentRight="true"
-            android:text="V1.0.0"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:text="V1.0.0" />
     </RelativeLayout>
 
     <View style="@style/line_1" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/anjian"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/px_50"
+        android:text="退出登录"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:gravity="center" />
 </LinearLayout>

@@ -102,7 +102,7 @@
         android:layout_marginLeft="@dimen/px_50"
         android:layout_marginRight="@dimen/px_50"
         android:layout_marginTop="@dimen/px_20"
-        android:background="@drawable/btn_orange_corner"
+        android:background="@drawable/anjian"
         android:gravity="center"
         android:text="登录"
         android:textColor="@color/white"

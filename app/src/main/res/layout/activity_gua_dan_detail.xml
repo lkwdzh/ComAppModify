@@ -134,7 +134,7 @@
                     android:text="@string/gua_dan_goods_ara" />
 
                 <TextView
-                    android:id="@+id/tv_goods_ara_gua_dan"
+                    android:id="@+id/tv_goods_area_gua_dan"
                     style="@style/guadan_edittext_weight"
                     android:text="山东" />
             </LinearLayout>
