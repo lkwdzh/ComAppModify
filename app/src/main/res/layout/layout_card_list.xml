@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_14"
+        android:background="@color/gray_eeeeee" />
+    <View
+       style="@style/line_1"/>
+
+    <LinearLayout
+        style="@style/ll_match_wrap_content_hor"
+        android:paddingBottom="@dimen/px_20"
+        android:paddingTop="@dimen/px_15">
+
+        <ImageView
+            android:id="@+id/iv_card_lv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/px_30"
+            android:layout_marginRight="@dimen/px_20"
+            android:src="@drawable/yinhangtubiao" />
+
+        <LinearLayout
+            style="@style/ll_match_wrap_content_ver"
+            android:paddingRight="@dimen/px_20">
+
+            <RelativeLayout style="@style/rl_match_wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_bank_name_card_lv"
+                    style="@style/grayTextView_333333_15"
+                    android:text="中国建设银行" />
+
+                <TextView
+                    android:id="@+id/tv_success_card_lv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="绑定成功"
+                    android:textColor="@color/red_c91014"
+                    android:textSize="13sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_type_card_lv"
+                style="@style/grayTextView_666666_13"
+                android:layout_marginTop="@dimen/px_10"
+                android:text="储蓄卡" />
+
+            <TextView
+                android:id="@+id/tv_num_card_lv"
+                style="@style/grayTextView_333333_15"
+                android:layout_marginTop="@dimen/px_30"
+                android:text="123213223423423432" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+</LinearLayout>
