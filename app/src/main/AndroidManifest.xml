@@ -109,6 +109,42 @@
             android:name=".Activity.PlatformActivity"
             android:label="@string/title_activity_platform" >
         </activity>
+        <activity
+            android:name=".Activity.PickUpActivity"
+            android:label="@string/title_activity_pick_up" >
+        </activity>
+        <activity
+            android:name=".Activity.PickInfoActivity"
+            android:label="@string/title_activity_pick_info" >
+        </activity>
+        <activity
+            android:name=".Activity.DriverListActivity"
+            android:label="@string/title_activity_driver_list" >
+        </activity>
+        <activity
+            android:name=".Activity.DriverAddActivity"
+            android:label="@string/title_activity_driver_add" >
+        </activity>
+        <activity
+            android:name=".Activity.DriverInfoActivity"
+            android:label="@string/title_activity_driver_info" >
+        </activity>
+        <activity
+            android:name=".Activity.OrderDetailActivity"
+            android:label="@string/title_activity_order_detail" >
+        </activity>
+        <activity
+            android:name=".Activity.ModifyPasswordActivity"
+            android:label="@string/title_activity_modify_password" >
+        </activity>
+        <activity
+            android:name=".Activity.HangQingListActivity"
+            android:label="@string/title_activity_hang_qing_list" >
+        </activity>
+        <activity
+            android:name=".Activity.HangDetailActivity"
+            android:label="@string/title_activity_hang_detail" >
+        </activity>
     </application>
 
 </manifest>

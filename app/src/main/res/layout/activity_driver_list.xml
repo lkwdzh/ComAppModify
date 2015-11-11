@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_eeeeee"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/title_driver_list"
+        layout="@layout/activity_base_title_bar" />
+
+    <View
+        android:id="@+id/view1"
+        style="@style/line_1"
+        android:layout_below="@+id/title_driver_list"
+        android:layout_marginTop="@dimen/px_14" />
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/lv_driver_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rl_bottom"
+        android:layout_below="@+id/view1"
+        android:divider="@null"></com.handmark.pulltorefresh.library.PullToRefreshListView>
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_70"
+        android:layout_alignParentBottom="true"
+        android:background="@color/gray_eeeeee"
+        android:paddingLeft="@dimen/px_20"
+        android:paddingRight="@dimen/px_20"
+        android:gravity="center_vertical">
+
+        <CheckBox
+            android:id="@+id/cb_driver_list"
+            android:button="@null"
+            android:background="@drawable/ischecked"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/px_10"
+            android:layout_toRightOf="@id/cb_driver_list"
+            android:orientation="horizontal">
+            <TextView
+               style="@style/grayTextView_333333_15"
+                android:text="确定选中"/>
+            <TextView
+                android:id="@+id/tv_num_driver_list"
+                style="@style/grayTextView_333333_15"
+                android:text="2"/>
+            <TextView
+                style="@style/grayTextView_333333_15"
+                android:text="位司机"/>
+            </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_confirm_driver_list"
+            style="@style/redTextView_c91014"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/delete"
+            android:gravity="center"
+            android:text="确定"
+            />
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -17,6 +17,7 @@ import com.aglook.comapp.Activity.AllOrderActivity;
 import com.aglook.comapp.Activity.GuaDanAddActivity;
 import com.aglook.comapp.Activity.MyCangDanActivity;
 import com.aglook.comapp.Activity.PersonInformationActivity;
+import com.aglook.comapp.Activity.PickUpActivity;
 import com.aglook.comapp.Activity.PlatformActivity;
 import com.aglook.comapp.Activity.SettingActivity;
 import com.aglook.comapp.Activity.ToPayActivity;
@@ -38,6 +39,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private LinearLayout ll_to_receive_mine_fragment;
     private LinearLayout ll_my_cangdan_mine_fragment;
     private LinearLayout ll_pingtaicangdan_mine_fragment;
+    private LinearLayout ll_tihuo_mine_fragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         ll_to_receive_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_to_receive_mine_fragment);
         ll_my_cangdan_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_my_cangdan_mine_fragment);
         ll_pingtaicangdan_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_pingtaicangdan_mine_fragment);
+        ll_tihuo_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_tihuo_mine_fragment);
     }
 
     //点击事件
@@ -73,6 +76,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         ll_to_receive_mine_fragment.setOnClickListener(this);
         ll_my_cangdan_mine_fragment.setOnClickListener(this);
         ll_pingtaicangdan_mine_fragment.setOnClickListener(this);
+        ll_tihuo_mine_fragment.setOnClickListener(this);
     }
 
     @Override
@@ -114,6 +118,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.ll_pingtaicangdan_mine_fragment:
                 intent.setClass(getActivity(), PlatformActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.ll_tihuo_mine_fragment:
+                intent.setClass(getActivity(), PickUpActivity.class);
                 startActivity(intent);
                 break;
         }

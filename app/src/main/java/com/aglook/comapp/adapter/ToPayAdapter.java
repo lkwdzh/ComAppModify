@@ -2,17 +2,20 @@ package com.aglook.comapp.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.aglook.comapp.Activity.OrderDetailActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.view.MyListView;
 
@@ -52,7 +55,13 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
+        holder.lv_all_order_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(activity, OrderDetailActivity.class);
+                activity.startActivity(intent);
+            }
+        });
         holder.tv_click_all_order_lv.setText("确认付款");
         holder.tv_click_all_order_lv.setVisibility(View.VISIBLE);
         holder.tv_delete_all_order_lv.setVisibility(View.GONE);

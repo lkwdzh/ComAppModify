@@ -1,5 +1,7 @@
 package com.aglook.comapp.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.aglook.comapp.Activity.HangQingListActivity;
 import com.aglook.comapp.R;
+import com.aglook.comapp.util.AppUtils;
 
 
 /**
@@ -18,6 +22,11 @@ public class RecycleHomePageAdapter extends RecyclerView.Adapter<RecycleHomePage
             R.drawable.youlei, R.drawable.youliao};
     private String nameArray[] = {"专业分析", "行情资讯", "专题报告", "最新公告", "网站公告"};
     private MyViewHolder mViewHoder;
+    private Context context;
+
+    public RecycleHomePageAdapter(Context context) {
+        this.context = context;
+    }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
@@ -62,6 +71,10 @@ public class RecycleHomePageAdapter extends RecyclerView.Adapter<RecycleHomePage
 
         @Override
         public void onClick(View v) {
+            AppUtils.toastText(context,mPosition+"");
+            Intent intent = new Intent();
+            intent.setClass(context, HangQingListActivity.class);
+            context.startActivity(intent);
         }
     }
 

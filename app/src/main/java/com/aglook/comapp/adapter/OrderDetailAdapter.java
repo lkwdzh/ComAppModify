@@ -11,12 +11,12 @@ import android.widget.TextView;
 import com.aglook.comapp.R;
 
 /**
- * Created by aglook on 2015/11/6.
+ * Created by aglook on 2015/11/10.
  */
-public class AllOrderLVAdapter extends BaseAdapter {
+public class OrderDetailAdapter extends BaseAdapter {
     private Context context;
 
-    public AllOrderLVAdapter(Context context) {
+    public OrderDetailAdapter(Context context) {
         this.context = context;
     }
 
@@ -49,6 +49,10 @@ public class AllOrderLVAdapter extends BaseAdapter {
         return convertView;
     }
 
+    @Override
+    public boolean isEnabled(int position) {
+        return false;
+    }
 
     class ViewHolder{
         ImageView iv_lv_lv;

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:descendantFocusability="blocksDescendants"
     android:orientation="vertical">
 
     <View
@@ -38,20 +39,21 @@
             style="@style/redTextView_c91014"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:textSize="13sp"
-            android:text="交易成功" />
+            android:text="交易成功"
+            android:textSize="13sp" />
     </RelativeLayout>
 
     <View style="@style/line_1" />
 
     <com.aglook.comapp.view.MyListView
-    android:id="@+id/lv_all_order_lv"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-        android:divider="@null"
-    ></com.aglook.comapp.view.MyListView>
+        android:id="@+id/lv_all_order_lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:divider="@null"></com.aglook.comapp.view.MyListView>
 
     <View style="@style/line_1" />
+
 
     <LinearLayout
         style="@style/ll_match_wrap_content_ver"
@@ -110,15 +112,15 @@
         <LinearLayout
             style="@style/ll_wrap_content_hor"
             android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
-            android:layout_centerVertical="true">
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/tv_delete_all_order_lv"
                 style="@style/redTextView_c91014"
+                android:layout_marginBottom="@dimen/px_3"
                 android:layout_marginTop="@dimen/px_10"
                 android:background="@drawable/shanchu"
-                android:layout_marginBottom="@dimen/px_3"
                 android:gravity="center"
                 android:text="删除"
                 android:textSize="13sp" />
@@ -126,14 +128,14 @@
             <TextView
                 android:id="@+id/tv_click_all_order_lv"
                 style="@style/redTextView_c91014"
+                android:layout_marginBottom="@dimen/px_3"
+                android:layout_marginLeft="@dimen/px_20"
                 android:layout_marginTop="@dimen/px_10"
                 android:background="@drawable/red_back"
                 android:gravity="center"
-                android:visibility="gone"
                 android:textColor="@color/white"
-                android:layout_marginBottom="@dimen/px_3"
-                android:layout_marginLeft="@dimen/px_20"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>
 

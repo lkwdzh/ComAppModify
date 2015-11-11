@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.aglook.comapp.Activity.OrderDetailActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.view.MyListView;
 
@@ -47,7 +49,13 @@ public class TransSucceedAdapter extends BaseAdapter implements View.OnClickList
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
+        holder.lv_all_order_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(activity, OrderDetailActivity.class);
+                activity.startActivity(intent);
+            }
+        });
         holder.tv_click_all_order_lv.setText("提货");
         holder.tv_click_all_order_lv.setVisibility(View.VISIBLE);
         holder.tv_delete_all_order_lv.setVisibility(View.VISIBLE);

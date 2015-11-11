@@ -88,7 +88,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
 
     //初始化控件
     public void initView(View view) {
-        adapter = new RecycleHomePageAdapter( );
+        adapter = new RecycleHomePageAdapter( getActivity());
         mViewPagerList = new ArrayList<>();
         addImageView(POINT_LENGTH - 1);
         for (int i = 0; i < 4; i++) {
@@ -96,6 +96,8 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         }
         addImageView(0);
         sv_homepage = (PullToRefreshScrollView) view.findViewById(R.id.sv_homepage);
+//        令scrollview显示顶部
+        sv_homepage.getRefreshableView().smoothScrollBy(0,0);
 //        rv_homepage = (RecyclerView) view.findViewById(R.id.rv_homepage);
         List<String>list2=new ArrayList<>();
         for (int i = 0; i < 10; i++) {

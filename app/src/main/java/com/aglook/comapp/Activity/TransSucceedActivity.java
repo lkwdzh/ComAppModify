@@ -1,7 +1,9 @@
 package com.aglook.comapp.Activity;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.TransSucceedAdapter;
@@ -27,7 +29,13 @@ public class TransSucceedActivity extends BaseActivity {
         lv_all_order.setEmptyView(emptyView);
     }
     public void click(){
-
+        lv_all_order.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(TransSucceedActivity.this, OrderDetailActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     @Override
     public void widgetClick(View view) {

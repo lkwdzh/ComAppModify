@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_eeeeee"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_base_title_bar" />
+
+    <View style="@style/line_1"
+        android:layout_marginTop="@dimen/px_14"/>
+
+    <LinearLayout style="@style/guadan_ll_weight">
+
+        <TextView
+            style="@style/guadan_TextView_333333"
+            android:text="@string/driver_add_name" />
+
+        <TextView
+            android:id="@+id/tv_name_driver_info"
+            style="@style/guadan_edittext_weight"
+            android:text="王大锤" />
+    </LinearLayout>
+    <View style="@style/line_1" />
+
+    <LinearLayout style="@style/guadan_ll_weight">
+
+        <TextView
+            style="@style/guadan_TextView_333333"
+            android:text="@string/driver_add_phone" />
+
+        <TextView
+            android:id="@+id/tv_phone_driver_info"
+            style="@style/guadan_edittext_weight"
+            android:text="1236646548988" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+
+    <LinearLayout style="@style/guadan_ll_weight">
+
+        <TextView
+            style="@style/guadan_TextView_333333"
+            android:text="@string/driver_add_email" />
+
+        <TextView
+            android:id="@+id/tv_email_driver_info"
+            style="@style/guadan_edittext_weight"
+            android:text="12423@163.com" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+
+    <LinearLayout style="@style/guadan_ll_weight">
+
+        <TextView
+            style="@style/guadan_TextView_333333"
+            android:text="身份证号" />
+
+        <TextView
+            android:id="@+id/tv_num_driver_info"
+            style="@style/guadan_edittext_weight"
+            android:text="354746131654654654646" />
+    </LinearLayout>
+
+
+
+</LinearLayout>
