@@ -3,6 +3,7 @@ package com.aglook.comapp.Activity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.OrderDetailAdapter;
 import com.aglook.comapp.view.MyListView;
@@ -30,6 +31,7 @@ public class OrderDetailActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_order_detail);
         setTitleBar("订单详情");
+        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }

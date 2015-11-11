@@ -6,6 +6,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.PickInfoAdapter;
 import com.aglook.comapp.view.MyListView;
@@ -37,6 +38,7 @@ public class PickInfoActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_pick_info);
         setTitleBar("填写提货信息");
+        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }

@@ -51,7 +51,8 @@
         </activity>
         <activity
             android:name=".Activity.GuaDanAddActivity"
-            android:label="@string/title_activity_gua_dan_add" >
+            android:label="@string/title_activity_gua_dan_add"
+            android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
             android:name=".Activity.SettingActivity"
@@ -79,7 +80,8 @@
         </activity>
         <activity
             android:name=".Activity.ConfirmOrderActivity"
-            android:label="@string/title_activity_confirm_order" >
+            android:label="@string/title_activity_confirm_order"
+            android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
             android:name=".Activity.AllOrderActivity"
@@ -115,7 +117,8 @@
         </activity>
         <activity
             android:name=".Activity.PickInfoActivity"
-            android:label="@string/title_activity_pick_info" >
+            android:label="@string/title_activity_pick_info"
+            android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
             android:name=".Activity.DriverListActivity"
@@ -144,6 +147,14 @@
         <activity
             android:name=".Activity.HangDetailActivity"
             android:label="@string/title_activity_hang_detail" >
+        </activity>
+        <activity
+            android:name=".Activity.PlatformDetailActivity"
+            android:label="@string/title_activity_platform_detail" >
+        </activity>
+        <activity
+            android:name=".Activity.PickUpDtailActivity"
+            android:label="@string/title_activity_pick_up_dtail_activity2" >
         </activity>
     </application>
 

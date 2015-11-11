@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ToPayAdapter;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -18,6 +19,7 @@ public class ToPayActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_to_pay);
         setTitleBar("代付款");
+        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }

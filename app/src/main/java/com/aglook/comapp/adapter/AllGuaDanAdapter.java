@@ -1,17 +1,15 @@
 package com.aglook.comapp.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.aglook.comapp.Activity.GuaDanAddActivity;
@@ -68,13 +66,13 @@ public class AllGuaDanAdapter extends BaseAdapter implements View.OnClickListene
         Intent intent = new Intent();
         switch (v.getId()){
             case R.id.tv_delete_all_order_lv:
-                showWindow(v);
+                showDailog();
                 break;
             case R.id.btn_cancel_delete:
-                closeWindow();
+                dialog.dismiss();
                 break;
             case R.id.btn_confirm_delete:
-                closeWindow();
+               dialog.dismiss();
                 break;
             case R.id.tv_click_all_order_lv:
                 intent.setClass(activity, GuaDanAddActivity.class);
@@ -107,53 +105,24 @@ public class AllGuaDanAdapter extends BaseAdapter implements View.OnClickListene
         }
     }
 
-
-    //    popupwindow
-    private PopupWindow popupWindow;
-    private View popupView;
-    private Button btn_cancel_delete;
-    private Button btn_confirm_delete;
+    private Dialog dialog;
     private TextView tv_delete_order;
-    public void showWindow(View view) {
-        if (popupWindow == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            popupView = layoutInflater.inflate(R.layout.layout_order, null);
-            btn_cancel_delete= (Button) popupView.findViewById(R.id.btn_cancel_delete);
-            btn_confirm_delete = (Button) popupView.findViewById(R.id.btn_confirm_delete);
-            tv_delete_order = (TextView) popupView.findViewById(R.id.tv_delete_order);
-            tv_delete_order.setText("确认删除此挂单?");
-            popupWindow = new PopupWindow(popupView, 500, 300);
-        }
-        backgroundAlpha(0.5f);
-//        使其聚焦
-//        popupWindow.setFocusable(true);
-        //允许在外点击消失
-//        popupWindow.setOutsideTouchable(true);
-//        popupWindow.update();
-//        点击back 返回
-        popupWindow.setBackgroundDrawable(new BitmapDrawable());
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-
+    public void showDailog(){
+        LayoutInflater layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view= layoutInflater.inflate(R.layout.layout_order, null);
+        btn_cancel_delete= (Button) view.findViewById(R.id.btn_cancel_delete);
+        btn_confirm_delete = (Button) view.findViewById(R.id.btn_confirm_delete);
+        tv_delete_order = (TextView) view.findViewById(R.id.tv_delete_order);
+        tv_delete_order.setText("确认删除此挂单?");
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.create();
+        builder.setView(view);
+//        builder.setCancelable(false);
+        dialog = builder.show();
         btn_cancel_delete.setOnClickListener(this);
         btn_confirm_delete.setOnClickListener(this);
     }
-
-    public void closeWindow() {
-        if (popupWindow != null) {
-            popupWindow.dismiss();
-        }
-        backgroundAlpha(1f);
-    }
-
-    /**
-     * 设置添加屏幕的背景透明度
-     *
-     * @param bgAlpha
-     */
-    public void backgroundAlpha(float bgAlpha) {
-        WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
-        lp.alpha = bgAlpha; //0.0-1.0
-        activity.getWindow().setAttributes(lp);
-    }
+    private Button btn_cancel_delete;
+    private Button btn_confirm_delete;
 
 }

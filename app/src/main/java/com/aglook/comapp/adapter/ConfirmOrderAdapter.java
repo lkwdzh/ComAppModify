@@ -46,8 +46,10 @@ public class ConfirmOrderAdapter extends BaseAdapter{
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
+
         return convertView;
     }
+
 
     class ViewHolder{
         ImageView iv_confirm_order_lv;

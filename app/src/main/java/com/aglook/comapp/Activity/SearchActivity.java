@@ -6,6 +6,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.SearchGVAdapter;
 import com.aglook.comapp.adapter.SearchLVAdapter;
@@ -29,6 +30,7 @@ public class SearchActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_search);
+        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }

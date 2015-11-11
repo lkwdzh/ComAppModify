@@ -7,14 +7,13 @@
 
     <LinearLayout
         style="@style/ll_match_wrap_content_hor"
-        android:gravity="center"
         android:background="@drawable/tianchukuang"
+        android:gravity="center"
         android:padding="@dimen/px_35">
 
         <TextView
             android:id="@+id/tv_delete_order"
-            style="@style/grayTextView_333333_15"
-            />
+            style="@style/grayTextView_333333_15" />
 
 
     </LinearLayout>
@@ -22,16 +21,15 @@
 
     <LinearLayout
         style="@style/ll_match_wrap_content_hor"
-        android:gravity="center"
         android:background="@drawable/tianchukuang2"
+        android:gravity="center"
         android:padding="@dimen/px_20">
 
         <Button
             android:id="@+id/btn_cancel_delete"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/px_150"
             android:layout_height="@dimen/px_55"
-            android:layout_weight="1"
-            android:layout_marginRight="@dimen/px_10"
+            android:layout_marginRight="@dimen/px_40"
             android:background="@drawable/zhifuquxiao"
             android:text="取消"
             android:textColor="@color/textcolor_999999"
@@ -39,9 +37,8 @@
 
         <Button
             android:id="@+id/btn_confirm_delete"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/px_150"
             android:layout_height="@dimen/px_55"
-            android:layout_weight="1"
             android:layout_marginLeft="@dimen/px_10"
             android:background="@drawable/queren"
             android:text="确定"

@@ -2,8 +2,10 @@ package com.aglook.comapp.Activity;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.PickUpAdapter;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -19,6 +21,7 @@ public class PickUpActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_pick_up);
         setTitleBar("提货单");
+        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }
@@ -34,6 +37,13 @@ public class PickUpActivity extends BaseActivity {
 
     public void click(){
         right_text.setOnClickListener(this);
+        lv_pick_up.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(PickUpActivity.this, PickUpDtailActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

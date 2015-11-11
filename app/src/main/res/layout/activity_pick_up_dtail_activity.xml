@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_eeeeee"
+    android:orientation="vertical">
+<include layout="@layout/activity_base_title_bar"/>
+    <View
+        style="@style/line_1"
+        android:layout_marginTop="@dimen/px_14" />
+
+    <LinearLayout style="@style/guadan_ll_weight">
+
+        <TextView
+            style="@style/guadan_TextView_333333"
+            android:text="@string/platform_house_num" />
+
+        <TextView
+            android:id="@+id/tv_house_num_pickLv"
+            style="@style/guadan_edittext_weight"
+            android:text="22646463135" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+
+    <LinearLayout style="@style/guadan_ll_weight">
+
+        <TextView
+            style="@style/guadan_TextView_333333"
+            android:text="@string/platform_in_time" />
+
+        <TextView
+            android:id="@+id/tv_in_time_pickLv"
+            style="@style/guadan_edittext_weight"
+            android:text="22646463135" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+
+    <LinearLayout style="@style/guadan_ll_weight">
+
+        <TextView
+            style="@style/guadan_TextView_333333"
+            android:text="@string/platform_goods_name" />
+
+        <TextView
+            android:id="@+id/tv_goods_name_pickLv"
+            style="@style/guadan_edittext_weight"
+            android:text="22646463135" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+
+    <LinearLayout style="@style/guadan_ll_weight">
+
+        <TextView
+            style="@style/guadan_TextView_333333"
+            android:text="@string/platform_weight" />
+
+        <TextView
+            android:id="@+id/tv_weight_pickLv"
+            style="@style/guadan_edittext_weight"
+            android:text="22646463135" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+
+    <LinearLayout style="@style/guadan_ll_weight">
+
+        <TextView
+            style="@style/guadan_TextView_333333"
+            android:text="@string/platform_state" />
+
+        <TextView
+            android:id="@+id/tv_state_pickLv"
+            style="@style/guadan_edittext_weight"
+            android:text="22646463135" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+
+    <RelativeLayout
+        style="@style/rl_match_wrap_content">
+        <TextView
+            android:id="@+id/tv_cancel_pickLv"
+            style="@style/redTextView_c91014"
+            android:text="取消提货"
+            android:textSize="13sp"
+            android:background="@drawable/delete"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/px_14"
+            android:layout_marginTop="@dimen/px_14"/>
+    </RelativeLayout>
+</LinearLayout>

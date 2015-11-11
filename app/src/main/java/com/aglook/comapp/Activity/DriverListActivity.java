@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.DriverListAdapter;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -20,6 +21,7 @@ public class DriverListActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_driver_list);
         setTitleBar("司机列表");
+        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }

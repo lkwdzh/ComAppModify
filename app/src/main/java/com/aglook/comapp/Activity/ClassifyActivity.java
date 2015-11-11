@@ -1,14 +1,11 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
@@ -28,6 +25,7 @@ public class ClassifyActivity extends BaseActivity {
         for (int i = 0; i < 30; i++) {
             mList.add("分类"+i);
         }
+        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.CardListAdapter;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -20,6 +21,7 @@ public class CardListActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_card_list);
         setTitleBar("绑定银行卡");
+        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }

@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ScreenAdapter;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
@@ -41,6 +42,7 @@ public class ScreenActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_screen);
         setTitleBar("筛选");
+        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }

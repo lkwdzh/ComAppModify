@@ -7,6 +7,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 
 import java.text.SimpleDateFormat;
@@ -43,6 +44,7 @@ public class GuaDanAddActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_gua_dan_add);
         setTitleBar("我要挂单");
+        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }

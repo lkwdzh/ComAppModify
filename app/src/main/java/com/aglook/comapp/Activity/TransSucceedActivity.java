@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.TransSucceedAdapter;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -18,6 +19,7 @@ public class TransSucceedActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_to_receive);
         setTitleBar("交易成功");
+        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }

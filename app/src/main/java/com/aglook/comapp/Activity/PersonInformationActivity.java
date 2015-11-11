@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 
 public class PersonInformationActivity extends BaseActivity {
@@ -16,6 +17,7 @@ public class PersonInformationActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_person_information);
         setTitleBar("个人信息");
+        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }

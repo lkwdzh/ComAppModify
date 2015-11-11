@@ -3,6 +3,7 @@ package com.aglook.comapp.Activity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 
 public class DriverInfoActivity extends BaseActivity {
@@ -17,6 +18,7 @@ public class DriverInfoActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_driver_info);
         setTitleBar("司机资料");
+        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }

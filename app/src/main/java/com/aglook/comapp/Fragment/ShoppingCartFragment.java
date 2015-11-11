@@ -1,23 +1,21 @@
 package com.aglook.comapp.Fragment;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -55,8 +53,6 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
     private TextView tv_denglu_shopping_cart;
     private Intent intent;
     private TextView tv_num_delete;
-    private Button btn_cancel_delete;
-    private Button btn_confirm_delete;
     private LinearLayout ll_shopping_cart_jiesuan;
 
     @Override
@@ -204,13 +200,13 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                 startActivity(intent);
                 break;
             case R.id.tv_delete_shopping_cart:
-                showWindow(v);
+                showDailog();
                 break;
             case R.id.btn_cancel_delete:
-                closeWindow();
+                dialog.dismiss();
                 break;
             case R.id.btn_confirm_delete:
-                closeWindow();
+                dialog.dismiss();
                 break;
             case R.id.ll_shopping_cart_jiesuan:
                 intent.setClass(getActivity(), ConfirmOrderActivity.class);
@@ -228,57 +224,76 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
         transaction.commitAllowingStateLoss();
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        closeWindow();
-    }
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        closeWindow();
+//    }
 
-    //    popupwindow
-    private PopupWindow popupWindow;
-    private View popupView;
-
-    public void showWindow(View view) {
-        if (popupWindow == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            popupView = layoutInflater.inflate(R.layout.layout_cart_delete, null);
-            tv_num_delete = (TextView) popupView.findViewById(R.id.tv_num_delete);
-            btn_cancel_delete = (Button) popupView.findViewById(R.id.btn_cancel_delete);
-            btn_confirm_delete = (Button) popupView.findViewById(R.id.btn_confirm_delete);
-            popupWindow = new PopupWindow(popupView, 500, 300);
-        }
-        backgroundAlpha(0.5f);
-        cb_top_right_shopping_cart.setClickable(false);
-//        使其聚焦
-//        popupWindow.setFocusable(true);
-        //允许在外点击消失
-//        popupWindow.setOutsideTouchable(true);
-//        popupWindow.update();
-//        点击back 返回
-        popupWindow.setBackgroundDrawable(new BitmapDrawable());
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-
+    private Dialog dialog;
+    private TextView tv_delete_order;
+    public void showDailog(){
+        LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view= layoutInflater.inflate(R.layout.layout_cart_delete, null);
+        tv_num_delete = (TextView) view.findViewById(R.id.tv_num_delete);
+        btn_cancel_delete = (Button) view.findViewById(R.id.btn_cancel_delete);
+        btn_confirm_delete = (Button) view.findViewById(R.id.btn_confirm_delete);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.create();
+        builder.setView(view);
+//        builder.setCancelable(false);
+        dialog = builder.show();
         btn_cancel_delete.setOnClickListener(this);
         btn_confirm_delete.setOnClickListener(this);
     }
+    private Button btn_cancel_delete;
+    private Button btn_confirm_delete;
 
-    public void closeWindow() {
-        if (popupWindow != null) {
-            popupWindow.dismiss();
-        }
-        backgroundAlpha(1f);
-        cb_top_right_shopping_cart.setClickable(true);
-    }
-
-    /**
-     * 设置添加屏幕的背景透明度
-     *
-     * @param bgAlpha
-     */
-    public void backgroundAlpha(float bgAlpha) {
-        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
-        lp.alpha = bgAlpha; //0.0-1.0
-        getActivity().getWindow().setAttributes(lp);
-    }
+//    //    popupwindow
+//    private PopupWindow popupWindow;
+//    private View popupView;
+//
+//    public void showWindow(View view) {
+//        if (popupWindow == null) {
+//            LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//            popupView = layoutInflater.inflate(R.layout.layout_cart_delete, null);
+//            tv_num_delete = (TextView) popupView.findViewById(R.id.tv_num_delete);
+//            btn_cancel_delete = (Button) popupView.findViewById(R.id.btn_cancel_delete);
+//            btn_confirm_delete = (Button) popupView.findViewById(R.id.btn_confirm_delete);
+//            popupWindow = new PopupWindow(popupView, 500, 300);
+//        }
+//        backgroundAlpha(0.5f);
+//        cb_top_right_shopping_cart.setClickable(false);
+////        使其聚焦
+////        popupWindow.setFocusable(true);
+//        //允许在外点击消失
+////        popupWindow.setOutsideTouchable(true);
+////        popupWindow.update();
+////        点击back 返回
+//        popupWindow.setBackgroundDrawable(new BitmapDrawable());
+//        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+//
+//        btn_cancel_delete.setOnClickListener(this);
+//        btn_confirm_delete.setOnClickListener(this);
+//    }
+//
+//    public void closeWindow() {
+//        if (popupWindow != null) {
+//            popupWindow.dismiss();
+//        }
+//        backgroundAlpha(1f);
+//        cb_top_right_shopping_cart.setClickable(true);
+//    }
+//
+//    /**
+//     * 设置添加屏幕的背景透明度
+//     *
+//     * @param bgAlpha
+//     */
+//    public void backgroundAlpha(float bgAlpha) {
+//        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+//        lp.alpha = bgAlpha; //0.0-1.0
+//        getActivity().getWindow().setAttributes(lp);
+//    }
 
 }

@@ -15,8 +15,8 @@ import android.widget.TextView;
 import com.aglook.comapp.Activity.AllGuaDanActivity;
 import com.aglook.comapp.Activity.AllOrderActivity;
 import com.aglook.comapp.Activity.GuaDanAddActivity;
+import com.aglook.comapp.Activity.LoginActivity;
 import com.aglook.comapp.Activity.MyCangDanActivity;
-import com.aglook.comapp.Activity.PersonInformationActivity;
 import com.aglook.comapp.Activity.PickUpActivity;
 import com.aglook.comapp.Activity.PlatformActivity;
 import com.aglook.comapp.Activity.SettingActivity;
@@ -84,8 +84,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         Intent intent = new Intent();
         switch (view.getId()){
             case R.id.rl_background_mine_fragment:
-//                intent.setClass(getActivity(), LoginActivity.class);
-                intent.setClass(getActivity(), PersonInformationActivity.class);
+                intent.setClass(getActivity(), LoginActivity.class);
+//                intent.setClass(getActivity(), PersonInformationActivity.class);
                 startActivity(intent);
                 break;
             case R.id.ll_all_guadan_mine_fragment:

@@ -1,28 +1,22 @@
 package com.aglook.comapp.Activity;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.Fragment.ClassificationFragment;
 import com.aglook.comapp.Fragment.HomePageFragment;
 import com.aglook.comapp.Fragment.MineFragment;
 import com.aglook.comapp.Fragment.ShoppingCartFragment;
 import com.aglook.comapp.R;
 import com.aglook.comapp.util.AppUtils;
-import com.aglook.comapp.util.SharedPreferencesUtils;
 
 
 public class MainActivity extends FragmentActivity {
@@ -45,6 +39,7 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ExitApplication.getInstance().addActivity(this);
         initView();
     }
 

@@ -6,74 +6,11 @@
     android:orientation="vertical">
 
     <include layout="@layout/activity_base_title_bar" />
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/lv_my_platform"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"></com.handmark.pulltorefresh.library.PullToRefreshListView>
 
-    <View
-        style="@style/line_1"
-        android:layout_marginTop="@dimen/px_14" />
 
-    <LinearLayout style="@style/guadan_ll_weight">
-
-        <TextView
-            style="@style/guadan_TextView_333333"
-            android:text="@string/platform_house_num" />
-
-        <TextView
-            android:id="@+id/tv_house_num_platform"
-            style="@style/guadan_edittext_weight"
-            android:text="22646463135" />
-    </LinearLayout>
-
-    <View style="@style/line_1" />
-    <LinearLayout style="@style/guadan_ll_weight">
-
-        <TextView
-            style="@style/guadan_TextView_333333"
-            android:text="@string/platform_in_time" />
-
-        <TextView
-            android:id="@+id/tv_in_time_platform"
-            style="@style/guadan_edittext_weight"
-            android:text="22646463135" />
-    </LinearLayout>
-
-    <View style="@style/line_1" />
-    <LinearLayout style="@style/guadan_ll_weight">
-
-        <TextView
-            style="@style/guadan_TextView_333333"
-            android:text="@string/platform_goods_name" />
-
-        <TextView
-            android:id="@+id/tv_goods_name_platform"
-            style="@style/guadan_edittext_weight"
-            android:text="22646463135" />
-    </LinearLayout>
-
-    <View style="@style/line_1" />
-    <LinearLayout style="@style/guadan_ll_weight">
-
-        <TextView
-            style="@style/guadan_TextView_333333"
-            android:text="@string/platform_weight" />
-
-        <TextView
-            android:id="@+id/tv_weight_platform"
-            style="@style/guadan_edittext_weight"
-            android:text="22646463135" />
-    </LinearLayout>
-
-    <View style="@style/line_1" />
-    <LinearLayout style="@style/guadan_ll_weight">
-
-        <TextView
-            style="@style/guadan_TextView_333333"
-            android:text="@string/platform_state" />
-
-        <TextView
-            android:id="@+id/tv_state_platform"
-            style="@style/guadan_edittext_weight"
-            android:text="22646463135" />
-    </LinearLayout>
-
-    <View style="@style/line_1" />
 </LinearLayout>

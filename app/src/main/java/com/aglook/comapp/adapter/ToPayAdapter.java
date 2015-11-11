@@ -1,18 +1,16 @@
 package com.aglook.comapp.adapter;
 
 import android.app.Activity;
-import android.content.Context;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.PopupWindow;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.aglook.comapp.Activity.OrderDetailActivity;
@@ -74,13 +72,13 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_click_all_order_lv:
-                showWindow(v);
+                showDialog();
                 break;
-            case R.id.btn_cancel_delete:
-                closeWindow();
+            case R.id.btn_cancel_pay_popup:
+                dialog.dismiss();
                 break;
-            case R.id.btn_confirm_delete:
-                closeWindow();
+            case R.id.btn_confirm_pay_popup:
+                dialog.dismiss();
                 break;
         }
     }
@@ -109,52 +107,29 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
         }
     }
 
-
-
-    //    popupwindow
-    private PopupWindow popupWindow;
-    private View popupView;
-    private Button btn_cancel_delete;
-    private Button btn_confirm_delete;
-    public void showWindow(View view) {
-        if (popupWindow == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            popupView = layoutInflater.inflate(R.layout.layout_order, null);
-            btn_cancel_delete= (Button) popupView.findViewById(R.id.btn_cancel_delete);
-            btn_confirm_delete = (Button) popupView.findViewById(R.id.btn_confirm_delete);
-            tv_delete_order = (TextView) popupView.findViewById(R.id.tv_delete_order);
-            tv_delete_order.setText("确认删除此订单?");
-            popupWindow = new PopupWindow(popupView, 500, 300);
-        }
-        backgroundAlpha(0.5f);
-//        使其聚焦
-//        popupWindow.setFocusable(true);
-        //允许在外点击消失
-//        popupWindow.setOutsideTouchable(true);
-//        popupWindow.update();
-//        点击back 返回
-        popupWindow.setBackgroundDrawable(new BitmapDrawable());
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-
-        btn_cancel_delete.setOnClickListener(this);
-        btn_confirm_delete.setOnClickListener(this);
+    private Dialog dialog;
+    private Button btn_cancel_pay_popup;
+    private Button btn_confirm_pay_popup;
+    private TextView tv_money_pay_popup;
+    private TextView tv_card_pay_popup;
+    private EditText et_input_pay_popup;
+    private TextView tv_yanzheng_pay_popup;
+    public void showDialog() {
+        LayoutInflater inflater = LayoutInflater.from(activity);
+        View inView = inflater.inflate(R.layout.layout_pay_dialog, null);
+        btn_cancel_pay_popup = (Button) inView.findViewById(R.id.btn_cancel_pay_popup);
+        btn_confirm_pay_popup = (Button) inView.findViewById(R.id.btn_confirm_pay_popup);
+        tv_money_pay_popup = (TextView) inView.findViewById(R.id.tv_money_pay_popup);
+        tv_card_pay_popup = (TextView) inView.findViewById(R.id.tv_card_pay_popup);
+        et_input_pay_popup = (EditText) inView.findViewById(R.id.et_input_pay_popup);
+        tv_yanzheng_pay_popup = (TextView) inView.findViewById(R.id.tv_yanzheng_pay_popup);
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.create();
+        builder.setView(inView);
+//        builder.setCancelable(false);
+        dialog = builder.show();
+        btn_cancel_pay_popup.setOnClickListener(this);
+        btn_confirm_pay_popup.setOnClickListener(this);
     }
 
-    public void closeWindow() {
-        if (popupWindow != null) {
-            popupWindow.dismiss();
-        }
-        backgroundAlpha(1f);
-    }
-
-    /**
-     * 设置添加屏幕的背景透明度
-     *
-     * @param bgAlpha
-     */
-    public void backgroundAlpha(float bgAlpha) {
-        WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
-        lp.alpha = bgAlpha; //0.0-1.0
-        activity.getWindow().setAttributes(lp);
-    }
 }

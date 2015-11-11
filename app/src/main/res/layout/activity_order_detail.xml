@@ -124,7 +124,7 @@
                         android:background="@drawable/shanchu"
                         android:layout_marginBottom="@dimen/px_3"
                         android:gravity="center"
-                        android:text="删除"
+                        android:text="仓单交易"
                         android:textSize="13sp" />
 
                     <TextView
@@ -133,7 +133,7 @@
                         android:layout_marginTop="@dimen/px_10"
                         android:background="@drawable/red_back"
                         android:gravity="center"
-                        android:visibility="gone"
+                        android:text="提货"
                         android:textColor="@color/white"
                         android:layout_marginBottom="@dimen/px_3"
                         android:layout_marginLeft="@dimen/px_20"

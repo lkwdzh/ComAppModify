@@ -3,6 +3,7 @@ package com.aglook.comapp.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.AllGuaDanAdapter;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -16,6 +17,7 @@ public class AllGuaDanActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_all_gua_dan);
         setTitleBar("全部挂单");
+        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.AllOrderAdapter;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -21,6 +22,7 @@ public class AllOrderActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_all_order);
         setTitleBar("全部订单");
+        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }

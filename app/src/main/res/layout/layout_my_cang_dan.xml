@@ -34,20 +34,52 @@
                 android:text="12346549879879" />
         </LinearLayout>
 
-        <LinearLayout
-            style="@style/ll_match_wrap_content_hor"
-            android:layout_marginTop="@dimen/px_10"
-            android:gravity="center_vertical">
+        <RelativeLayout
+            style="@style/rl_match_wrap_content"
+            android:layout_marginTop="@dimen/px_10">
 
-            <TextView
-                style="@style/grayTextView_999999_13"
-                android:text="@string/in_time_my_cangdan" />
+            <LinearLayout
+                style="@style/ll_match_wrap_content_hor"
+                android:layout_toLeftOf="@+id/ll_right"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical">
 
-            <TextView
-                android:id="@+id/tv_in_time_my_cangdan"
-                style="@style/grayTextView_999999_13"
-                android:text="2015-01-01 16:24" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_in_time"
+                    style="@style/grayTextView_999999"
+                    android:text="@string/in_time_my_cangdan"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_in_time_my_cangdan"
+                    style="@style/grayTextView_999999"
+                    android:text="2015-01-01 16:24"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_right"
+                style="@style/ll_wrap_content_hor"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_tihuo"
+                    style="@style/grayTextView_999999"
+                    android:text="@string/in_time_my_cangdan"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_time_tihuo"
+                    style="@style/grayTextView_999999"
+                    android:text="2015-01-01 16:21"
+                    android:textSize="11sp" />
+            </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 
     <View style="@style/line_1" />

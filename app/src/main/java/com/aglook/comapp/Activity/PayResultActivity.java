@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 
 public class PayResultActivity extends BaseActivity {
@@ -16,6 +17,7 @@ public class PayResultActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_pay_result);
         setTitleBar("支付页面");
+        ExitApplication.getInstance().addActivity(this);
         right_text = (TextView) findViewById(R.id.right_text);
         right_text.setText("完成");
         iv_pay_result = (ImageView) findViewById(R.id.iv_pay_result);

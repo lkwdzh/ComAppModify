@@ -2,6 +2,7 @@ package com.aglook.comapp.Activity;
 
 import android.view.View;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.MyCangDanAdapter;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -17,6 +18,7 @@ public class MyCangDanActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_my_cang_dan);
         setTitleBar("仓单");
+        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }

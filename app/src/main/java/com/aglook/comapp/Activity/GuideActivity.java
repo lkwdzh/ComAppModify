@@ -2,14 +2,11 @@ package com.aglook.comapp.Activity;
 
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 
 public class GuideActivity extends BaseActivity {
@@ -20,6 +17,7 @@ public class GuideActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_guide);
+        ExitApplication.getInstance().addActivity(this);
         vp_guide = (ViewPager) findViewById(R.id.vp_guide);
         MyViewPagerAdapter adapter = new MyViewPagerAdapter();
         vp_guide.setAdapter(adapter);

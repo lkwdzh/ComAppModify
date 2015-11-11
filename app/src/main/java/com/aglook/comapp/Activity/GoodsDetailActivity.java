@@ -3,6 +3,7 @@ package com.aglook.comapp.Activity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 
 public class GoodsDetailActivity extends BaseActivity {
@@ -14,6 +15,7 @@ public class GoodsDetailActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_goods_detail);
         setTitleBar("商品详情");
+        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }

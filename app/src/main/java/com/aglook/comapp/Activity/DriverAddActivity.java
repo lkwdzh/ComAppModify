@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 
 public class DriverAddActivity extends BaseActivity {
@@ -19,6 +20,7 @@ public class DriverAddActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_driver_add);
         setTitleBar("添加司机");
+        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }

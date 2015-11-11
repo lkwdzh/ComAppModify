@@ -3,9 +3,130 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_eeeeee"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
- <include layout="@layout/activity_base_title_bar"/>
+    <include layout="@layout/activity_base_title_bar" />
 
+    <LinearLayout
+        android:id="@+id/ll_top_hang_detail"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_70"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <RelativeLayout
+            android:id="@+id/rl_jiben"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/grayTextView_333333_15"
+                android:layout_centerInParent="true"
+                android:text="基本分析" />
+
+            <View
+                android:id="@+id/view_jiben"
+                style="@style/line_1"
+                android:layout_alignParentBottom="true"
+                android:visibility="gone" />
+
+            <View
+                android:id="@+id/view_jiben_red"
+                style="@style/line_red_c91014"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
+
+        <View
+            style="@style/line_2"
+            android:layout_marginBottom="@dimen/px_14"
+            android:layout_marginTop="@dimen/px_14" />
+
+        <RelativeLayout
+            android:id="@+id/rl_jishu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/grayTextView_333333_15"
+                android:layout_centerInParent="true"
+                android:text="技术分析" />
+
+            <View
+                android:id="@+id/view_jishu"
+                style="@style/line_1"
+                android:layout_alignParentBottom="true" />
+
+            <View
+                android:id="@+id/view_jishu_red"
+                style="@style/line_red_c91014"
+                android:layout_alignParentBottom="true"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <View
+            style="@style/line_2"
+            android:layout_marginBottom="@dimen/px_14"
+            android:layout_marginTop="@dimen/px_14" />
+
+        <RelativeLayout
+            android:id="@+id/rl_redian"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/grayTextView_333333_15"
+                android:layout_centerInParent="true"
+                android:text="热点问题" />
+
+            <View
+                android:id="@+id/view_redian"
+                style="@style/line_1"
+                android:layout_alignParentBottom="true" />
+
+            <View
+                android:id="@+id/view_redian_red"
+                style="@style/line_red_c91014"
+                android:layout_alignParentBottom="true"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <View
+            style="@style/line_2"
+            android:layout_marginBottom="@dimen/px_14"
+            android:layout_marginTop="@dimen/px_14" />
+
+        <RelativeLayout
+            android:id="@+id/rl_yuliu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/grayTextView_333333_15"
+                android:layout_centerInParent="true"
+                android:text="预留问题" />
+
+            <View
+                android:id="@+id/view_yuliu"
+                style="@style/line_1"
+                android:layout_alignParentBottom="true" />
+
+            <View
+                android:id="@+id/view_yuliu_red"
+                style="@style/line_red_c91014"
+                android:layout_alignParentBottom="true"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <WebView
+        android:id="@+id/web_hangdetail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></WebView>
 </LinearLayout>
