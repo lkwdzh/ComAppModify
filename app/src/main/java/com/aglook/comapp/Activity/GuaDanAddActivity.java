@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
+import com.aglook.comapp.view.MyListView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -37,8 +38,9 @@ public class GuaDanAddActivity extends BaseActivity {
     private EditText et_cang_phone_gua_dan;
     private EditText et_cang_email_gua_dan;
     private EditText et_cang_address_gua_dan;
-    private EditText et_buyer_gua_dan;
     private EditText et_goods_detail_gua_dan;
+    private TextView tv_buyer_gua_dan;
+    private MyListView lv_gua_dan;
 
     @Override
     public void initView() {
@@ -71,14 +73,16 @@ public class GuaDanAddActivity extends BaseActivity {
         et_cang_phone_gua_dan = (EditText) findViewById(R.id.et_cang_phone_gua_dan);
         et_cang_email_gua_dan = (EditText) findViewById(R.id.et_cang_email_gua_dan);
         et_cang_address_gua_dan = (EditText) findViewById(R.id.et_cang_address_gua_dan);
-        et_buyer_gua_dan = (EditText) findViewById(R.id.et_buyer_gua_dan);
         et_goods_detail_gua_dan = (EditText) findViewById(R.id.et_goods_detail_gua_dan);
+        tv_buyer_gua_dan = (TextView) findViewById(R.id.tv_buyer_gua_dan);
+        lv_gua_dan = (MyListView) findViewById(R.id.lv_gua_dan);
     }
 
     public void click() {
         tv_in_time_gua_dan_add.setOnClickListener(this);
         tv_userful_time_gua_dan_add.setOnClickListener(this);
         right_text.setOnClickListener(this);
+        tv_buyer_gua_dan.setOnClickListener(this);
     }
 
     //    日期选择对话框的监听
@@ -124,6 +128,11 @@ public class GuaDanAddActivity extends BaseActivity {
                 break;
             case R.id.right_text:
                 intent.setClass(GuaDanAddActivity.this,GuaDanDetailActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.tv_buyer_gua_dan:
+                intent.setClass(GuaDanAddActivity.this,BuyerListActivity.class);
+                intent.putExtra("buyOrLink",true);
                 startActivity(intent);
                 break;
         }

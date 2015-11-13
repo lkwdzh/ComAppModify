@@ -12,9 +12,9 @@
 
         <CheckBox
             android:id="@+id/cb_driver_lv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ischecked"
+            android:layout_width="@dimen/px_27"
+            android:layout_height="@dimen/px_27"
+            android:background="@drawable/star_checked"
             android:layout_marginLeft="@dimen/px_14"
             android:button="@null" />
 

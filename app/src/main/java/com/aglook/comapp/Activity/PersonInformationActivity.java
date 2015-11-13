@@ -12,6 +12,9 @@ public class PersonInformationActivity extends BaseActivity {
 
     private TextView tv_basic_infor_peson_info;
     private TextView tv_bang_card_person_info;
+    private TextView tv_linkman_person_info;
+    private TextView tv_driver_person_info;
+    private TextView tv_friend_person_info;
 
     @Override
     public void initView() {
@@ -25,10 +28,16 @@ public class PersonInformationActivity extends BaseActivity {
     public void init(){
         tv_basic_infor_peson_info = (TextView) findViewById(R.id.tv_basic_infor_peson_info);
         tv_bang_card_person_info = (TextView) findViewById(R.id.tv_bang_card_person_info);
+        tv_linkman_person_info = (TextView) findViewById(R.id.tv_linkman_person_info);
+        tv_driver_person_info = (TextView) findViewById(R.id.tv_driver_person_info);
+        tv_friend_person_info = (TextView) findViewById(R.id.tv_friend_person_info);
     }
     public void click(){
         tv_basic_infor_peson_info.setOnClickListener(this);
         tv_bang_card_person_info.setOnClickListener(this);
+        tv_linkman_person_info.setOnClickListener(this);
+        tv_driver_person_info.setOnClickListener(this);
+        tv_friend_person_info.setOnClickListener(this);
     }
 
     @Override
@@ -43,6 +52,19 @@ public class PersonInformationActivity extends BaseActivity {
                 intent.setClass(PersonInformationActivity.this,CardListActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.tv_driver_person_info:
+                intent.setClass(PersonInformationActivity.this,DriverListActivity.class);
+                intent.putExtra("canCheck",false);
+                startActivity(intent);
+                break;
+            case R.id.tv_linkman_person_info:
+                intent.setClass(PersonInformationActivity.this,BuyerListActivity.class);
+                intent.putExtra("buyOrLink",false);
+                startActivity(intent);
+                break;
+            case R.id.tv_friend_person_info:
+                intent.setClass(PersonInformationActivity.this,FriendsActivity.class);
+                startActivity(intent);
         }
     }
 

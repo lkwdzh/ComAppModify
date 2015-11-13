@@ -85,7 +85,7 @@
     <string name="mine_fragment_yao_guadan">我要挂单</string>
     <string name="mine_fragment__all_guadan">全部挂单</string>
     <string name="mine_fragment_my_cang">我的仓单</string>
-    <string name="mine_fragment_my_cang_dan">我的仓单</string>
+    <string name="mine_fragment_my_cang_dan">仓单</string>
     <string name="title_activity_band_card">BandCardActivity</string>
     <string name="band_card_name">账号名</string>
     <string name="bang_card_num">卡号</string>
@@ -107,7 +107,7 @@
     <string name="title_activity_to_receive">ToReceiveActivity</string>
     <string name="title_activity_card_list">CardListActivity</string>
     <string name="basic_information_true_name">真实姓名</string>
-    //我的仓单                                            <string name="title_activity_my_cang_dan">MyCangDanActivity</string>
+    //我的仓单                                                                <string name="title_activity_my_cang_dan">MyCangDanActivity</string>
     <string name="house_num_my_cangdan">仓单编号</string>
     <string name="in_time_my_cangdan">入仓时间：</string>
     <string name="type_lv_lv">类型：</string>
@@ -116,7 +116,7 @@
     <string name="weight_lv_lv">重量：</string>
     <string name="trans_all_order_lv">仓单交易</string>
     <string name="tihuo_all_order_lv">提货</string>
-    //平台仓单                                            <string name="title_activity_platform">PlatformActivity</string>
+    //平台仓单                                                                <string name="title_activity_platform">PlatformActivity</string>
     <string name="platform_house_num">仓单号</string>
     <string name="platform_in_time">入仓时间</string>
     <string name="platform_goods_name">货物名称</string>
@@ -144,5 +144,14 @@
     <string name="title_activity_hang_detail">HangDetailActivity</string>
     <string name="title_activity_platform_detail">PlatformDetailActivity</string>
     <string name="title_activity_pick_up_dtail_activity2">PickUpDtailActivity2</string>
+    <string name="title_activity_buyer_list">BuyerListActivity</string>
+    <string name="person_info_linkman">常用联系人</string>
+    <string name="person_info_driver">常用司机</string>
+    <string name="person_info_friend">收藏好友</string>
+    <string name="title_activity_buyer_add">BuyerAddActivity</string>
+    <string name="buyer_add_name">姓名</string>
+    <string name="title_activity_friends">FriendsActivity</string>
+    <string name="title_activity_friends_detail">FriendsDetailActivity</string>
+    <string name="title_activity_tradeing">TradeingActivity</string>
 
 </resources>

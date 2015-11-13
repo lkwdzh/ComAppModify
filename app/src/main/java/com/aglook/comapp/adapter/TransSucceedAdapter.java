@@ -1,12 +1,16 @@
 package com.aglook.comapp.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.aglook.comapp.Activity.OrderDetailActivity;
@@ -18,7 +22,6 @@ import com.aglook.comapp.view.MyListView;
  */
 public class TransSucceedAdapter extends BaseAdapter implements View.OnClickListener {
     private Activity activity;
-    private TextView tv_delete_order;
 
     public TransSucceedAdapter(Activity activity) {
         this.activity = activity;
@@ -56,25 +59,33 @@ public class TransSucceedAdapter extends BaseAdapter implements View.OnClickList
                 activity.startActivity(intent);
             }
         });
-        holder.tv_click_all_order_lv.setText("提货");
-        holder.tv_click_all_order_lv.setVisibility(View.VISIBLE);
-        holder.tv_delete_all_order_lv.setVisibility(View.VISIBLE);
-        holder.tv_delete_all_order_lv.setText("转售");
-        holder.tv_click_all_order_lv.setOnClickListener(this);
-        holder.lv_all_order_lv.setAdapter(holder.adapter);
+        holder.tv_click_all_order_lv.setVisibility(View.GONE);
         holder.tv_delete_all_order_lv.setOnClickListener(this);
+        holder.lv_all_order_lv.setAdapter(holder.adapter);
+        holder.lv_all_order_lv.setFocusable(false);
+        holder.lv_all_order_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(activity, OrderDetailActivity.class);
+                activity.startActivity(intent);
+            }
+        });
+
+        holder.tv_success_all_order_lv.setVisibility(View.GONE);
         return convertView;
     }
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent();
         switch (v.getId()){
-            case R.id.tv_click_all_order_lv:
-                //跳转到提货页面
-                break;
             case R.id.tv_delete_all_order_lv:
-
+                showDailog();
+                break;
+            case R.id.btn_cancel_delete:
+                dialog.dismiss();
+                break;
+            case R.id.btn_confirm_delete:
+                dialog.dismiss();
                 break;
         }
     }
@@ -103,6 +114,24 @@ public class TransSucceedAdapter extends BaseAdapter implements View.OnClickList
             adapter=new AllOrderLVAdapter(activity);
         }
     }
-
+    private Dialog dialog;
+    private TextView tv_delete_order;
+    public void showDailog(){
+        LayoutInflater layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view= layoutInflater.inflate(R.layout.layout_order, null);
+        btn_cancel_delete= (Button) view.findViewById(R.id.btn_cancel_delete);
+        btn_confirm_delete = (Button) view.findViewById(R.id.btn_confirm_delete);
+        tv_delete_order = (TextView) view.findViewById(R.id.tv_delete_order);
+        tv_delete_order.setText("确认删除此订单?");
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.create();
+        builder.setView(view);
+//        builder.setCancelable(false);
+        dialog = builder.show();
+        btn_cancel_delete.setOnClickListener(this);
+        btn_confirm_delete.setOnClickListener(this);
+    }
+    private Button btn_cancel_delete;
+    private Button btn_confirm_delete;
 
 }

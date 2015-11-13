@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
+import com.aglook.comapp.view.MyListView;
 
 public class GuaDanDetailActivity extends BaseActivity {
     private String title="挂单-精选小米";
@@ -25,6 +26,7 @@ public class GuaDanDetailActivity extends BaseActivity {
     private TextView tv_cang_address_gua_dan;
     private TextView tv_buyer_gua_dan;
     private TextView tv_goods_detail_gua_dan;
+    private MyListView lv_gua_dan;
 
 
     @Override
@@ -54,6 +56,7 @@ public class GuaDanDetailActivity extends BaseActivity {
         tv_cang_address_gua_dan = (TextView) findViewById(R.id.tv_cang_address_gua_dan);
         tv_buyer_gua_dan = (TextView) findViewById(R.id.tv_buyer_gua_dan);
         tv_goods_detail_gua_dan = (TextView) findViewById(R.id.tv_goods_detail_gua_dan);
+        lv_gua_dan = (MyListView) findViewById(R.id.lv_gua_dan);
     }
 
     public void click(){

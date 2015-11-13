@@ -25,4 +25,10 @@ public class DefineUtil {
 
 
 
+
+
+
+
+    //TOKEN
+    public static String TOKEN;
 }

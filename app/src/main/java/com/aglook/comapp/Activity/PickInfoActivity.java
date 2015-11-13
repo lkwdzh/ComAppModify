@@ -86,6 +86,7 @@ public class PickInfoActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.tv_buyer_pick_info:
                 intent.setClass(PickInfoActivity.this, DriverListActivity.class);
+                intent.putExtra("canCheck",true);
                 startActivity(intent);
                 break;
         }

@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_eeeeee"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_base_title_bar" />
+
+    <View style="@style/line_1"
+        android:layout_marginTop="@dimen/px_14"/>
+
+    <LinearLayout style="@style/guadan_ll_weight">
+
+        <TextView
+            style="@style/guadan_TextView_333333"
+            android:text="@string/buyer_add_name" />
+
+        <EditText
+            android:id="@+id/et_name_buyer_add"
+            style="@style/guadan_edittext_weight"
+            android:hint="请输入联系人姓名" />
+    </LinearLayout>
+    <View style="@style/line_1" />
+
+    <LinearLayout style="@style/guadan_ll_weight">
+
+        <TextView
+            style="@style/guadan_TextView_333333"
+            android:text="@string/driver_add_phone" />
+
+        <EditText
+            android:id="@+id/et_phone_buyer_add"
+            style="@style/guadan_edittext_weight"
+            android:inputType="phone"
+            android:hint="请输入联系人电话" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+
+    <LinearLayout style="@style/guadan_ll_weight">
+
+        <TextView
+            style="@style/guadan_TextView_333333"
+            android:text="@string/driver_add_email" />
+
+        <EditText
+            android:id="@+id/et_email_buyer_add"
+            style="@style/guadan_edittext_weight"
+            android:inputType="textEmailAddress"
+            android:hint="请输入联系人邮箱" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+
+    <LinearLayout style="@style/guadan_ll_weight">
+
+        <TextView
+            style="@style/guadan_TextView_333333"
+            android:text="身份证号" />
+
+        <EditText
+            android:id="@+id/et_num_buyer_add"
+            style="@style/guadan_edittext_weight"
+            android:hint="请输入联系人身份证号" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

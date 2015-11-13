@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_eeeeee"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_base_title_bar" />
+
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/sv_friends_detail"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                style="@style/line_1"
+                android:layout_marginTop="@dimen/px_14" />
+
+
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="@string/driver_add_phone" />
+
+                <TextView
+                    android:id="@+id/tv_phone_friend_detail"
+                    style="@style/guadan_edittext_weight"
+                    android:text="1236646548988" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="@string/driver_add_email" />
+
+                <TextView
+                    android:id="@+id/tv_email_friend_detail"
+                    style="@style/guadan_edittext_weight"
+                    android:text="12423@163.com" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="身份证号" />
+
+                <TextView
+                    android:id="@+id/tv_num_friend_detail"
+                    style="@style/guadan_edittext_weight"
+                    android:text="354746131654654654646" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <com.aglook.comapp.view.MyListView
+                android:id="@+id/lv_friend_detail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"></com.aglook.comapp.view.MyListView>
+        </LinearLayout>
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+</LinearLayout>

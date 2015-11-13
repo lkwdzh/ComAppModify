@@ -19,9 +19,11 @@ import java.util.List;
 public class DriverListAdapter extends BaseAdapter {
     private Context context;
     private List<DriverList>list;
+    private boolean canCheck;
 
-    public DriverListAdapter(Context context) {
+    public DriverListAdapter(Context context, boolean canCheck) {
         this.context = context;
+        this.canCheck = canCheck;
     }
 
     @Override
@@ -48,6 +50,12 @@ public class DriverListAdapter extends BaseAdapter {
             convertView.setTag(holder);
         }else {
             holder= (ViewHolder) convertView.getTag();
+        }
+        if (canCheck){
+            holder.cb_driver_lv.setVisibility(View.VISIBLE);
+            holder.cb_driver_lv.setBackgroundResource(R.drawable.ischecked);
+        }else {
+            holder.cb_driver_lv.setVisibility(View.GONE);
         }
         return convertView;
     }

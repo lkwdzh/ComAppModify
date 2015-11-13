@@ -52,6 +52,7 @@
                     android:textSize="15sp" />
 
                 <TextView
+                    android:id="@+id/tv_buy_goods_detail"
                     style="@style/redTextView_c91014"
                     android:layout_alignParentRight="true"
                     android:background="@drawable/shanchu"

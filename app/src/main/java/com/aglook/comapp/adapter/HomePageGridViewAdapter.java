@@ -9,20 +9,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aglook.comapp.R;
+import com.aglook.comapp.bean.HomePage;
+
+import java.util.List;
 
 /**
  * Created by aglook on 2015/10/30.
  */
 public class HomePageGridViewAdapter extends BaseAdapter {
     private Context context;
+    private List<HomePage>list;
 
-    public HomePageGridViewAdapter(Context context) {
+    public HomePageGridViewAdapter(Context context, List<HomePage> list) {
         this.context = context;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return 20;
+//        return list!=null?list.size():list.size();
+        return 11;
     }
 
     @Override
@@ -45,6 +51,13 @@ public class HomePageGridViewAdapter extends BaseAdapter {
         }else {
             holder=(ViewHolder)convertView.getTag();
         }
+
+//        HomePage homePage = list.get(position);
+//        holder.tv_name_homepage.setText(homePage.getProductName());
+//        holder.tv_address_mygridview.setText(homePage.getGoodPlace());
+//        holder.tv_grade_mygridview.setText(homePage.getGoodType());
+//        holder.tv_weight_mygridview.setText(homePage.getProductSellNum());
+//        holder.tv_price_mygridview.setText(homePage.getProductMoney());
         return convertView;
     }
 

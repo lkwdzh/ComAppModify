@@ -14,14 +14,16 @@ import android.widget.TextView;
 
 import com.aglook.comapp.Activity.AllGuaDanActivity;
 import com.aglook.comapp.Activity.AllOrderActivity;
-import com.aglook.comapp.Activity.GuaDanAddActivity;
 import com.aglook.comapp.Activity.LoginActivity;
 import com.aglook.comapp.Activity.MyCangDanActivity;
+import com.aglook.comapp.Activity.PersonInformationActivity;
 import com.aglook.comapp.Activity.PickUpActivity;
 import com.aglook.comapp.Activity.PlatformActivity;
 import com.aglook.comapp.Activity.SettingActivity;
 import com.aglook.comapp.Activity.ToPayActivity;
+import com.aglook.comapp.Activity.TradeingActivity;
 import com.aglook.comapp.Activity.TransSucceedActivity;
+import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.R;
 
 /**
@@ -32,7 +34,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private ImageView iv_icon_mine_fragment;
     private RelativeLayout rl_background_mine_fragment;
     private LinearLayout ll_all_guadan_mine_fragment;
-    private LinearLayout ll_yaoguadan_mine_fragment;
     private TextView tv_setting_mine_fragment;
     private LinearLayout ll_all_order_mine_fragment;
     private LinearLayout ll_to_pay_mine_fragment;
@@ -40,6 +41,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private LinearLayout ll_my_cangdan_mine_fragment;
     private LinearLayout ll_pingtaicangdan_mine_fragment;
     private LinearLayout ll_tihuo_mine_fragment;
+    private ComAppApplication comAppApplication;
+    private LinearLayout ll_jiaoyizhong_mine_fragment;
+    private LinearLayout ll_jiaoyichenggong_mine_fragment;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,10 +56,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     //初始化控件
     public void initView(View view){
+        comAppApplication= (ComAppApplication) getActivity().getApplication();
         iv_icon_mine_fragment = ((ImageView) view.findViewById(R.id.iv_icon_mine_fragment));
         rl_background_mine_fragment = (RelativeLayout) view.findViewById(R.id.rl_background_mine_fragment);
         ll_all_guadan_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_all_guadan_mine_fragment);
-        ll_yaoguadan_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_yaoguadan_mine_fragment);
         tv_setting_mine_fragment = (TextView) view.findViewById(R.id.tv_setting_mine_fragment);
         ll_all_order_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_all_order_mine_fragment);
         ll_to_pay_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_to_pay_mine_fragment);
@@ -62,6 +67,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         ll_my_cangdan_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_my_cangdan_mine_fragment);
         ll_pingtaicangdan_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_pingtaicangdan_mine_fragment);
         ll_tihuo_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_tihuo_mine_fragment);
+        ll_jiaoyizhong_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_jiaoyizhong_mine_fragment);
+        ll_jiaoyichenggong_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_jiaoyichenggong_mine_fragment);
     }
 
     //点击事件
@@ -69,7 +76,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 //        iv_icon_mine_fragment.setOnClickListener(this);
         rl_background_mine_fragment.setOnClickListener(this);
         ll_all_guadan_mine_fragment.setOnClickListener(this);
-        ll_yaoguadan_mine_fragment.setOnClickListener(this);
         tv_setting_mine_fragment.setOnClickListener(this);
         ll_all_order_mine_fragment.setOnClickListener(this);
         ll_to_pay_mine_fragment.setOnClickListener(this);
@@ -77,6 +83,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         ll_my_cangdan_mine_fragment.setOnClickListener(this);
         ll_pingtaicangdan_mine_fragment.setOnClickListener(this);
         ll_tihuo_mine_fragment.setOnClickListener(this);
+        ll_jiaoyizhong_mine_fragment.setOnClickListener(this);
+        ll_jiaoyichenggong_mine_fragment.setOnClickListener(this);
     }
 
     @Override
@@ -84,16 +92,20 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         Intent intent = new Intent();
         switch (view.getId()){
             case R.id.rl_background_mine_fragment:
+                //判断是否已经登录，若已登录，则跳转到个人信息界面，若没有，则跳转到登录界面
+                if (comAppApplication.getLogin()!=null) {
                 intent.setClass(getActivity(), LoginActivity.class);
-//                intent.setClass(getActivity(), PersonInformationActivity.class);
+                }else {
+                    intent.setClass(getActivity(), PersonInformationActivity.class);
+                }
                 startActivity(intent);
                 break;
             case R.id.ll_all_guadan_mine_fragment:
                 intent.setClass(getActivity(), AllGuaDanActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.ll_yaoguadan_mine_fragment:
-                intent.setClass(getActivity(), GuaDanAddActivity.class);
+            case R.id.ll_jiaoyizhong_mine_fragment:
+                intent.setClass(getActivity(), TradeingActivity.class);
                 startActivity(intent);
                 break;
             case R.id.tv_setting_mine_fragment:
@@ -124,6 +136,12 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 intent.setClass(getActivity(), PickUpActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.ll_jiaoyichenggong_mine_fragment:
+                intent.setClass(getActivity(),TransSucceedActivity.class);
+                startActivity(intent);
+                break;
         }
     }
+
+
 }

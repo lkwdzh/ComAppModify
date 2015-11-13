@@ -1,6 +1,7 @@
 package com.aglook.comapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,12 +9,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.aglook.comapp.Activity.GuaDanAddActivity;
+import com.aglook.comapp.Activity.PickInfoActivity;
 import com.aglook.comapp.R;
 
 /**
  * Created by aglook on 2015/11/11.
  */
-public class PlatformAdapter extends BaseAdapter {
+public class PlatformAdapter extends BaseAdapter implements View.OnClickListener {
     private Context context;
 
     public PlatformAdapter(Context context) {
@@ -47,7 +50,24 @@ public class PlatformAdapter extends BaseAdapter {
         }
 
         holder.tv_in_time.setText("交易时间");
+        holder.tv_trans_all_order_lv.setOnClickListener(this);
+        holder.tv_tihuo_all_order_lv.setOnClickListener(this);
         return convertView;
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent();
+        switch (v.getId()){
+            case R.id.tv_trans_all_order_lv:
+                intent.setClass(context, GuaDanAddActivity.class);
+                context.startActivity(intent);
+                break;
+            case R.id.tv_tihuo_all_order_lv:
+                intent.setClass(context, PickInfoActivity.class);
+                context.startActivity(intent);
+                break;
+        }
     }
 
     class ViewHolder{

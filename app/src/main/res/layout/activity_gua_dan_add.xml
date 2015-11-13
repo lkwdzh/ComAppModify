@@ -235,19 +235,6 @@
 
             <View style="@style/line_1" />
 
-            <LinearLayout style="@style/guadan_ll_weight">
-
-                <TextView
-                    style="@style/guadan_TextView_333333"
-                    android:text="@string/gua_dan_buyer" />
-
-                <EditText
-                    android:id="@+id/et_buyer_gua_dan"
-                    style="@style/guadan_edittext_weight"
-                    android:hint="请输入指定买家" />
-            </LinearLayout>
-
-            <View style="@style/line_1" />
 
             <LinearLayout style="@style/guadan_ll_weight">
 
@@ -262,6 +249,39 @@
             </LinearLayout>
 
             <View style="@style/line_1" />
+            <!--<LinearLayout style="@style/guadan_ll_weight">-->
+
+                <!--<TextView-->
+                    <!--style="@style/guadan_TextView_333333"-->
+                    <!--android:text="@string/gua_dan_buyer" />-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/et_buyer_gua_dan"-->
+                    <!--style="@style/guadan_edittext_weight"-->
+                    <!--android:hint="请输入指定买家" />-->
+            <!--</LinearLayout>-->
+
+            <!--<View style="@style/line_1" />-->
+            <TextView
+                android:id="@+id/tv_buyer_gua_dan"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_70"
+                android:layout_marginLeft="@dimen/px_25"
+                android:layout_marginRight="@dimen/px_14"
+                android:background="@color/gray_eeeeee"
+                android:drawableRight="@drawable/tianjia"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/px_5"
+                android:paddingTop="@dimen/px_5"
+                android:text="指定买家"
+                android:textColor="@color/textcolor_333333" />
+
+            <View style="@style/line_1" />
+            <com.aglook.comapp.view.MyListView
+                android:id="@+id/lv_gua_dan"
+                android:layout_width="match_parent"
+                android:divider="@null"
+                android:layout_height="wrap_content"></com.aglook.comapp.view.MyListView>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

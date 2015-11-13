@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/pop_layout"
+        style="@style/ll_wrap_content_ver"
+        android:layout_above="@+id/tv_concal_select_popup"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/px_8">
+
+        <TextView
+            android:id="@+id/tv_moren_select_popup"
+            style="@style/redTextView_c91014"
+            android:background="@drawable/sheweimorenyinhangka"
+            android:gravity="center"
+            android:text="设为默认银行卡"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_delete_select_popup"
+            style="@style/grayTextView_999999_15"
+            android:background="@drawable/sheweimorenshanchu"
+            android:gravity="center"
+            android:text="删除" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_concal_select_popup"
+        style="@style/grayTextView_999999_15"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/sheweimorenquxiao"
+        android:gravity="center"
+        android:text="取消" />
+</RelativeLayout>

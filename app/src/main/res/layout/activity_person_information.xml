@@ -61,5 +61,59 @@
         android:textSize="15sp" />
 
     <View style="@style/line_1" />
+    <View
+        style="@style/line_1"
+        android:layout_marginTop="@dimen/px_14" />
+
+    <TextView
+        android:id="@+id/tv_linkman_person_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/zhangyonglianxiren"
+        android:drawableRight="@drawable/next"
+        android:gravity="center_vertical"
+        android:padding="@dimen/px_14"
+        android:text="@string/person_info_linkman"
+        android:textColor="@color/textcolor_333333"
+        android:textSize="15sp" />
+
+    <View style="@style/line_1" />
+    <View
+        style="@style/line_1"
+        android:layout_marginTop="@dimen/px_14" />
+
+    <TextView
+        android:id="@+id/tv_driver_person_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/changyongsiji"
+        android:drawableRight="@drawable/next"
+        android:gravity="center_vertical"
+        android:padding="@dimen/px_14"
+        android:text="@string/person_info_driver"
+        android:textColor="@color/textcolor_333333"
+        android:textSize="15sp" />
+
+    <View style="@style/line_1" />
+    <View
+        style="@style/line_1"
+        android:layout_marginTop="@dimen/px_14" />
+
+    <TextView
+        android:id="@+id/tv_friend_person_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/shoucanghaoyou"
+        android:drawableRight="@drawable/next"
+        android:gravity="center_vertical"
+        android:padding="@dimen/px_14"
+        android:text="@string/person_info_friend"
+        android:textColor="@color/textcolor_333333"
+        android:textSize="15sp" />
+
+    <View style="@style/line_1" />
 
 </LinearLayout>

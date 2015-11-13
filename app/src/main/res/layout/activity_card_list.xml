@@ -11,5 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@null"></com.handmark.pulltorefresh.library.PullToRefreshListView>
-
+    <FrameLayout
+        android:id="@+id/waww"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:alpha="0.1"
+        android:background="#000000"
+        android:visibility="gone" >
+    </FrameLayout>
 </LinearLayout>

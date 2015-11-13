@@ -16,16 +16,22 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 
 import com.aglook.comapp.Activity.GoodsDetailActivity;
 import com.aglook.comapp.Activity.SearchActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.HomePageGridViewAdapter;
 import com.aglook.comapp.adapter.RecycleHomePageAdapter;
+import com.aglook.comapp.bean.HomePage;
+import com.aglook.comapp.util.JsonUtils;
+import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.MyGridView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +44,8 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     private RecycleHomePageAdapter adapter;
     private PullToRefreshGridView exlv;
     private ViewPager vp_home_page_head;
-        private int imageArray[]={R.drawable.startup01,R.drawable.startup02,R.drawable.startup03,R.drawable.startup04};
-//    private int imageArray[] = {R.drawable.startup01, R.drawable.startup02, R.drawable.startup03};
+    private int imageArray[] = {R.drawable.startup01, R.drawable.startup02, R.drawable.startup03, R.drawable.startup04};
+    //    private int imageArray[] = {R.drawable.startup01, R.drawable.startup02, R.drawable.startup03};
     private List<View> mViewPagerList;
 
     private List<ImageView> listImage = new ArrayList<>();
@@ -72,8 +78,8 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         View view = View.inflate(getActivity(), R.layout.layout_homepage_fragment, null);
         initView(view);
         click();
-
-
+        getData();
+        fillData();
         return view;
     }
 
@@ -88,7 +94,8 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
 
     //初始化控件
     public void initView(View view) {
-        adapter = new RecycleHomePageAdapter( getActivity());
+        mList = new ArrayList<>();
+        adapter = new RecycleHomePageAdapter(getActivity());
         mViewPagerList = new ArrayList<>();
         addImageView(POINT_LENGTH - 1);
         for (int i = 0; i < 4; i++) {
@@ -97,13 +104,12 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         addImageView(0);
         sv_homepage = (PullToRefreshScrollView) view.findViewById(R.id.sv_homepage);
 //        令scrollview显示顶部
-        sv_homepage.getRefreshableView().smoothScrollBy(0,0);
+        sv_homepage.getRefreshableView().smoothScrollBy(0, 0);
 //        rv_homepage = (RecyclerView) view.findViewById(R.id.rv_homepage);
-        List<String>list2=new ArrayList<>();
+        List<String> list2 = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            list2.add("大分类"+i);
+            list2.add("大分类" + i);
         }
-
 
 
 //        MyViewPagerAdapter myViewPagerAdapter = new MyViewPagerAdapter(getChildFragmentManager());
@@ -113,14 +119,15 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
 //        vp_home_page_head.setOnPageChangeListener(this);
 //        vp_home_page_head.setCurrentItem(mCurrentPagePosition, false);
         sv_homepage.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
-        my_recycler_view=(RecyclerView)view.findViewById(R.id.my_recycler_view);
-        LinearLayoutManager layoutManager=new LinearLayoutManager(getActivity());
+
+        my_recycler_view = (RecyclerView) view.findViewById(R.id.my_recycler_view);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         my_recycler_view.setLayoutManager(layoutManager);
         my_recycler_view.setAdapter(adapter);
 
         gv_homepage = (MyGridView) view.findViewById(R.id.gv_homepage);
-        gridViewAdapter = new HomePageGridViewAdapter(getActivity());
+        gridViewAdapter = new HomePageGridViewAdapter(getActivity(), mList);
         gv_homepage.setAdapter(gridViewAdapter);
         gv_homepage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -133,8 +140,14 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
 
     }
 
-    public void click(){
+    public void click() {
         rl_search_homepage_fragment.setOnClickListener(this);
+        sv_homepage.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ScrollView>() {
+            @Override
+            public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
+                getData();
+            }
+        });
     }
 
     public void addImageView(int position) {
@@ -173,7 +186,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     @Override
     public void onClick(View v) {
         Intent intent = new Intent();
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.rl_search_homepage_fragment:
                 intent.setClass(getActivity(), SearchActivity.class);
                 startActivity(intent);
@@ -225,5 +238,33 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
             container.addView(mViewPagerList.get(position), 0);
             return mViewPagerList.get(position);
         }
+    }
+
+    private List<HomePage> mList;
+
+    public void getData() {
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
+                mList = JsonUtils.parseList(obj, HomePage.class);
+                if (status.equals("1")) {
+                    //假如成功
+
+                }
+                gridViewAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+
+            }
+        };
+    }
+
+    public void fillData() {
+
     }
 }

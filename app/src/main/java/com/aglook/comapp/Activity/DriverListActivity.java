@@ -3,6 +3,7 @@ package com.aglook.comapp.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ExitApplication;
@@ -16,6 +17,8 @@ public class DriverListActivity extends BaseActivity {
     private TextView right_text;
     private PullToRefreshListView lv_driver_list;
     private DriverListAdapter adapter;
+    private boolean canCheck;
+    private RelativeLayout rl_bottom;
 
     @Override
     public void initView() {
@@ -31,8 +34,15 @@ public class DriverListActivity extends BaseActivity {
         right_text.setText("添加");
         right_text.setVisibility(View.VISIBLE);
         lv_driver_list = (PullToRefreshListView) findViewById(R.id.lv_driver_list);
-        adapter = new DriverListAdapter(DriverListActivity.this);
+        rl_bottom = (RelativeLayout) findViewById(R.id.rl_bottom);
+        canCheck=getIntent().getBooleanExtra("canCheck",false);
+        adapter = new DriverListAdapter(DriverListActivity.this,canCheck);
         lv_driver_list.setAdapter(adapter);
+        if (canCheck){
+            rl_bottom.setVisibility(View.VISIBLE);
+        }else {
+            rl_bottom.setVisibility(View.GONE);
+        }
     }
 
     public void click() {
