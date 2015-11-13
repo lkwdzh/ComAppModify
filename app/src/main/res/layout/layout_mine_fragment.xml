@@ -66,6 +66,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_name_mine_fragment"
                     style="@style/whiteTextView"
                     android:layout_below="@+id/iv_icon_mine_fragment"
                     android:layout_centerHorizontal="true"

@@ -27,8 +27,8 @@ public class HomePageGridViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-//        return list!=null?list.size():list.size();
-        return 11;
+        return list!=null?list.size():list.size();
+//        return 11;
     }
 
     @Override
@@ -52,12 +52,12 @@ public class HomePageGridViewAdapter extends BaseAdapter {
             holder=(ViewHolder)convertView.getTag();
         }
 
-//        HomePage homePage = list.get(position);
-//        holder.tv_name_homepage.setText(homePage.getProductName());
-//        holder.tv_address_mygridview.setText(homePage.getGoodPlace());
-//        holder.tv_grade_mygridview.setText(homePage.getGoodType());
-//        holder.tv_weight_mygridview.setText(homePage.getProductSellNum());
-//        holder.tv_price_mygridview.setText(homePage.getProductMoney());
+        HomePage homePage = list.get(position);
+        holder.tv_name_homepage.setText(homePage.getProductName());
+        holder.tv_address_mygridview.setText(homePage.getGoodPlace());
+        holder.tv_grade_mygridview.setText(homePage.getGoodType());
+        holder.tv_weight_mygridview.setText(homePage.getProductSellNum());
+        holder.tv_price_mygridview.setText(homePage.getProductMoney());
         return convertView;
     }
 

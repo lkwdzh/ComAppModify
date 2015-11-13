@@ -21,54 +21,54 @@
 
             <TextView
                 android:id="@+id/tv_name_homepage"
-                style="@style/grayTextView_333333"
+                style="@style/grayTextView_333333_13"
                 android:text="小米" />
 
             <LinearLayout style="@style/ll_match_wrap_content_hor">
 
                 <TextView
-                    style="@style/grayTextView_666666"
+                    style="@style/grayTextView_666666_13"
                     android:text="产地：" />
 
                 <TextView
                     android:id="@+id/tv_address_mygridview"
-                    style="@style/grayTextView_666666"
+                    style="@style/grayTextView_666666_13"
                     android:text="山东" />
             </LinearLayout>
 
             <LinearLayout style="@style/ll_match_wrap_content_hor">
 
                 <TextView
-                    style="@style/grayTextView_666666"
+                    style="@style/grayTextView_666666_13"
                     android:text="等级：" />
 
                 <TextView
                     android:id="@+id/tv_grade_mygridview"
-                    style="@style/grayTextView_666666"
+                    style="@style/grayTextView_666666_13"
                     android:text="一级" />
             </LinearLayout>
 
             <LinearLayout style="@style/ll_match_wrap_content_hor">
 
                 <TextView
-                    style="@style/grayTextView_666666"
+                    style="@style/grayTextView_666666_13"
                     android:text="重量：" />
 
                 <TextView
                     android:id="@+id/tv_weight_mygridview"
-                    style="@style/grayTextView_666666"
+                    style="@style/grayTextView_666666_13"
                     android:text="30吨" />
             </LinearLayout>
 
             <LinearLayout style="@style/ll_match_wrap_content_hor">
 
                 <TextView
-                    style="@style/redTextView_c91014"
+                    style="@style/redTextView_c91014_13"
                     android:text="价格：" />
 
                 <TextView
                     android:id="@+id/tv_price_mygridview"
-                    style="@style/redTextView_c91014"
+                    style="@style/redTextView_c91014_13"
                     android:text="￥1999" />
             </LinearLayout>
         </LinearLayout>

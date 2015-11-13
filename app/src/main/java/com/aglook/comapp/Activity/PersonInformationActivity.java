@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
+import com.aglook.comapp.bean.Login;
 
 public class PersonInformationActivity extends BaseActivity {
 
@@ -15,6 +16,8 @@ public class PersonInformationActivity extends BaseActivity {
     private TextView tv_linkman_person_info;
     private TextView tv_driver_person_info;
     private TextView tv_friend_person_info;
+    private Login login;
+    private TextView tv_name_person_info;
 
     @Override
     public void initView() {
@@ -22,15 +25,18 @@ public class PersonInformationActivity extends BaseActivity {
         setTitleBar("个人信息");
         ExitApplication.getInstance().addActivity(this);
         init();
+        fillData();
         click();
     }
 
     public void init(){
+        login= (Login) getIntent().getSerializableExtra("login");
         tv_basic_infor_peson_info = (TextView) findViewById(R.id.tv_basic_infor_peson_info);
         tv_bang_card_person_info = (TextView) findViewById(R.id.tv_bang_card_person_info);
         tv_linkman_person_info = (TextView) findViewById(R.id.tv_linkman_person_info);
         tv_driver_person_info = (TextView) findViewById(R.id.tv_driver_person_info);
         tv_friend_person_info = (TextView) findViewById(R.id.tv_friend_person_info);
+        tv_name_person_info = (TextView) findViewById(R.id.tv_name_person_info);
     }
     public void click(){
         tv_basic_infor_peson_info.setOnClickListener(this);
@@ -38,6 +44,12 @@ public class PersonInformationActivity extends BaseActivity {
         tv_linkman_person_info.setOnClickListener(this);
         tv_driver_person_info.setOnClickListener(this);
         tv_friend_person_info.setOnClickListener(this);
+    }
+
+    public void fillData(){
+        if (login!=null){
+            tv_name_person_info.setText(login.getPshUser().getUsername());
+        }
     }
 
     @Override

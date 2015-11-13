@@ -11,7 +11,9 @@ import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.CardListAdapter;
 import com.aglook.comapp.bean.CardList;
+import com.aglook.comapp.url.CardListUrl;
 import com.aglook.comapp.util.AppUtils;
+import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.SelectPopupWindow;
@@ -30,25 +32,28 @@ public class CardListActivity extends BaseActivity {
     private PullToRefreshListView lv_card_list;
     private CardListAdapter adapter;
     private List<CardList> mList = new ArrayList<>();
+    private List<CardList> list;
     private SelectPopupWindow popupWindow;
+    private String bankCardId;
 
     @Override
     public void initView() {
         setContentView(R.layout.activity_card_list);
-        setTitleBar("银行卡详情");
+        setTitleBar("银行卡列表");
         ExitApplication.getInstance().addActivity(this);
         init();
-        getData();
+        getCardListData();
         click();
     }
 
     public void init() {
+
         right_text = (TextView) findViewById(R.id.right_text);
         right_text.setText("添加");
         right_text.setVisibility(View.VISIBLE);
         lv_card_list = (PullToRefreshListView) findViewById(R.id.lv_card_list);
         lv_card_list.setMode(PullToRefreshBase.Mode.BOTH);
-        adapter = new CardListAdapter(CardListActivity.this,mList);
+        adapter = new CardListAdapter(CardListActivity.this, mList);
         lv_card_list.setAdapter(adapter);
         lv_card_list.setMode(PullToRefreshBase.Mode.BOTH);
     }
@@ -60,18 +65,19 @@ public class CardListActivity extends BaseActivity {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
 
-                getData();
+//                getCardListData();
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-                getData();
+//                getCardListData();
             }
         });
 
         lv_card_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                bankCardId = mList.get(position - 1).getBankCardId();
                 popupWindow = new SelectPopupWindow(CardListActivity.this, itemsOnClick);
                 // 显示窗口
                 popupWindow.showAtLocation(CardListActivity.this.findViewById(R.id.waww),
@@ -86,26 +92,37 @@ public class CardListActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.right_text:
                 intent.setClass(CardListActivity.this, BandCardActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
                 break;
         }
     }
 
-    public void getData() {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==1&&resultCode==1){
+            AppUtils.toastText(this,"1111111");
+            getCardListData();
+        }
+    }
+
+    //获取银行卡列表
+    public void getCardListData() {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
-                mList = JsonUtils.parseList(obj, CardList.class);
+                list = JsonUtils.parseList(obj, CardList.class);
+                mList.addAll(list);
                 if (status.equals("1")) {
                     //假如成功
-
                 } else {
                     AppUtils.toastText(CardListActivity.this, message);
                 }
-                adapter.notifyDataSetChanged();
+                if (mList.size() != 0) {
+                    adapter.notifyDataSetChanged();
+                }
                 lv_card_list.onRefreshComplete();
             }
 
@@ -113,25 +130,62 @@ public class CardListActivity extends BaseActivity {
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        };
+        }.datePost(DefineUtil.BANKCARD_LIST, CardListUrl.postBankCardListUrl(DefineUtil.USERID, DefineUtil.TOKEN), CardListActivity.this);
     }
 
 
     //为弹出框实现监听
-    private View.OnClickListener itemsOnClick=new View.OnClickListener() {
+    private View.OnClickListener itemsOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.tv_moren_select_popup:
-                    AppUtils.toastText(CardListActivity.this,"默认");
                     popupWindow.dismiss();
+                    setDefault();
                     break;
                 case R.id.tv_delete_select_popup:
-                    AppUtils.toastText(CardListActivity.this,"删除");
                     popupWindow.dismiss();
+                    deleteCard();
                     break;
             }
         }
     };
+
+    // 设置默认银行卡
+    public void setDefault() {
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                AppUtils.toastText(CardListActivity.this, message);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+
+            }
+        }.datePost(DefineUtil.BINDING_DEFAULT, CardListUrl.postBindDefaultUrl(DefineUtil.USERID, DefineUtil.TOKEN, bankCardId), CardListActivity.this);
+    }
+
+    //删除银行卡
+    public void deleteCard() {
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+//                Log.d("result_delete", arg0.result);/
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                AppUtils.toastText(CardListActivity.this, message);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+
+            }
+        }.datePost(DefineUtil.DELETE_BANKCARD, CardListUrl.postDeleteUrl(DefineUtil.USERID, DefineUtil.TOKEN, bankCardId), CardListActivity.this);
+    }
 
 }

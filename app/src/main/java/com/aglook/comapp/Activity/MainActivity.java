@@ -1,5 +1,6 @@
 package com.aglook.comapp.Activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
@@ -10,13 +11,21 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.Fragment.ClassificationFragment;
 import com.aglook.comapp.Fragment.HomePageFragment;
 import com.aglook.comapp.Fragment.MineFragment;
 import com.aglook.comapp.Fragment.ShoppingCartFragment;
 import com.aglook.comapp.R;
+import com.aglook.comapp.bean.Login;
+import com.aglook.comapp.url.LoginUrl;
 import com.aglook.comapp.util.AppUtils;
+import com.aglook.comapp.util.DefineUtil;
+import com.aglook.comapp.util.JsonUtils;
+import com.aglook.comapp.util.XHttpuTools;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
 
 
 public class MainActivity extends FragmentActivity {
@@ -24,7 +33,13 @@ public class MainActivity extends FragmentActivity {
     private FragmentTabHost mTabHost;
     //是否是第一次启动
     private boolean isFirst;
-
+    private ComAppApplication comAppApplication;
+    private SharedPreferences mShare;
+    private SharedPreferences.Editor mEditor;
+    private Login login;
+    private String accountType;
+    private String userName;
+    private String password;
     //Fragment集合
     private Class fragmentArray[] = {
             HomePageFragment.class, ClassificationFragment.class, ShoppingCartFragment.class,
@@ -40,6 +55,7 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ExitApplication.getInstance().addActivity(this);
+        comAppApplication= (ComAppApplication) getApplication();
         initView();
     }
 
@@ -50,6 +66,16 @@ public class MainActivity extends FragmentActivity {
         mTabHost.setBackgroundColor(getResources().getColor(R.color.red_c91014));
         mTabHost.setOnTabChangedListener(new TabChangeListener());
         mTabHost.getCurrentTabView().setBackgroundColor(getResources().getColor(R.color.red_a50000));
+
+        mShare = getSharedPreferences("une_pwd", MainActivity.this.MODE_PRIVATE);
+        mEditor = mShare.edit();
+        accountType = mShare.getString("accountType", "");
+        userName = mShare.getString("userName", "");
+        password = mShare.getString("password", "");
+        //假如已经存在，则登录
+        if (!"".equals(accountType)&&!"".equals(userName)&&!"".equals(password)) {
+            login();
+        }
     }
 
     //    TabHost的改变
@@ -128,4 +154,36 @@ public class MainActivity extends FragmentActivity {
         }
         return true;
     }
+
+
+    //登录账户
+    public void login() {
+
+        new XHttpuTools() {
+
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                String str = JsonUtils.getJsonParam(arg0.result, "obj");
+                login = JsonUtils.parse(str, Login.class);
+                if (status.equals("1")) {//登录成功,跳转页面
+                    DefineUtil.TOKEN = login.getToken();
+                    DefineUtil.USERID = login.getPshUser().getUserId();
+                    comAppApplication.setLogin(login);
+//                    Intent intent = new Intent(MainActivity.this, MineFragment.class);
+//                    MainActivity.this.setResult(1);
+//                    MainActivity.this.finish();
+
+                }
+                AppUtils.toastText(MainActivity.this, message);
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+
+            }
+        }.datePost(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType), MainActivity.this);
+    }
+
 }

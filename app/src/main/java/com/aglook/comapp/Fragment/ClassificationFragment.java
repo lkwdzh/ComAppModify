@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,10 @@ import com.aglook.comapp.Activity.SearchActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ClassificationLeftAdapter;
 import com.aglook.comapp.adapter.ClassificationRightAdapter;
+import com.aglook.comapp.util.DefineUtil;
+import com.aglook.comapp.util.XHttpuTools;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +44,7 @@ public class ClassificationFragment extends Fragment implements View.OnClickList
         View view = View.inflate(getActivity(), R.layout.layout_classification_fragment, null);
         initView(view);
         click();
+        getData();
         return view;
     }
 
@@ -91,4 +97,21 @@ public class ClassificationFragment extends Fragment implements View.OnClickList
                 break;
         }
     }
+
+//    获取数据
+    public void getData(){
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                Log.d("result_Classify", arg0.result);
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+
+            }
+        }.datePost(DefineUtil.CATEGORY,getActivity());
+    }
+
+
 }

@@ -3,6 +3,7 @@ package com.aglook.comapp.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,7 +15,12 @@ import android.widget.TextView;
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ScreenAdapter;
+import com.aglook.comapp.url.ScreenUrl;
+import com.aglook.comapp.util.DefineUtil;
+import com.aglook.comapp.util.XHttpuTools;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +43,7 @@ public class ScreenActivity extends BaseActivity {
 
     private List<TextView> tvList = new ArrayList<>();
     private ImageView iv_price_screen;
+    private String categoryId;
 
     @Override
     public void initView() {
@@ -44,6 +51,7 @@ public class ScreenActivity extends BaseActivity {
         setTitleBar("筛选");
         ExitApplication.getInstance().addActivity(this);
         init();
+        getData();
         click();
     }
 
@@ -120,6 +128,20 @@ public class ScreenActivity extends BaseActivity {
                 iv_price_screen.setImageResource(R.drawable.jiage_down);
                 break;
         }
+    }
+
+    public void getData(){
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                Log.d("result_Screen",arg0.result);
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+
+            }
+        }.datePost(DefineUtil.CATEGORY_DETAIL, ScreenUrl.postClassificationUrl("5"),ScreenActivity.this);
     }
 
 

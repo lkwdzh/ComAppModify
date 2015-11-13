@@ -1,9 +1,11 @@
 package com.aglook.comapp.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by aglook on 2015/11/12.
  */
-public class LoginPshUser {
+public class LoginPshUser implements Serializable {
     private String userId;//用户id
     private String username;//用户姓名
     private String userMoney;//用户余额

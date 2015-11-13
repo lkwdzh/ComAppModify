@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class CardListAdapter extends BaseAdapter {
     private Context context;
-    private List<CardList>list;
+    private List<CardList> list;
 
     public CardListAdapter(Context context, List<CardList> list) {
         this.context = context;
@@ -27,40 +27,46 @@ public class CardListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-//        return  list!=null?list.size():0;
-        return 13;
+        return list != null ? list.size() : 0;
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return list.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        if (convertView==null){
-            convertView= LayoutInflater.from(context).inflate(R.layout.layout_card_list,null);
-            holder=new ViewHolder(convertView);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.layout_card_list, null);
+            holder = new ViewHolder(convertView);
             convertView.setTag(holder);
-        }else {
-            holder= (ViewHolder) convertView.getTag();
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
-
-//        CardList cardList = list.get(position);
-//        holder.tv_bank_name_card_lv.setText(cardList.getBankAlis());
-//        holder.tv_success_card_lv.setText(cardList.getDefaultType());
-//        holder.tv_num_card_lv.setText(cardList.getCardNo());
-//        holder.tv_type_card_lv.setText(cardList.getCardType());
+        CardList cardList = list.get(position);
+        holder.tv_bank_name_card_lv.setText(cardList.getBankAlis());
+        holder.tv_success_card_lv.setText(cardList.getDefaultType());
+        holder.tv_num_card_lv.setText(cardList.getCardNo());
+        holder.tv_type_card_lv.setText(cardList.getCardType());
+        if (cardList.getDefaultType().equals("1")) {
+            holder.tv_is_moren_card_list.setVisibility(View.VISIBLE);
+        }
+        if (cardList.getCardType().equals("0")) {
+            holder.tv_type_card_lv.setText("储蓄卡");
+        } else {
+            holder.tv_type_card_lv.setText("信用卡");
+        }
         return convertView;
     }
 
-    class ViewHolder{
+    class ViewHolder {
         ImageView iv_card_lv;
         TextView tv_bank_name_card_lv;
         TextView tv_success_card_lv;
@@ -69,12 +75,12 @@ public class CardListAdapter extends BaseAdapter {
         TextView tv_is_moren_card_list;
 
         ViewHolder(View view) {
-            iv_card_lv=(ImageView)view.findViewById(R.id.iv_card_lv);
+            iv_card_lv = (ImageView) view.findViewById(R.id.iv_card_lv);
             tv_bank_name_card_lv = (TextView) view.findViewById(R.id.tv_bank_name_card_lv);
-            tv_success_card_lv=(TextView)view.findViewById(R.id.tv_success_card_lv);
-            tv_type_card_lv=(TextView)view.findViewById(R.id.tv_type_card_lv);
-            tv_num_card_lv=(TextView)view.findViewById(R.id.tv_num_card_lv);
-            tv_is_moren_card_list=(TextView)view.findViewById(R.id.tv_is_moren_card_list);
+            tv_success_card_lv = (TextView) view.findViewById(R.id.tv_success_card_lv);
+            tv_type_card_lv = (TextView) view.findViewById(R.id.tv_type_card_lv);
+            tv_num_card_lv = (TextView) view.findViewById(R.id.tv_num_card_lv);
+            tv_is_moren_card_list = (TextView) view.findViewById(R.id.tv_is_moren_card_list);
         }
     }
 }

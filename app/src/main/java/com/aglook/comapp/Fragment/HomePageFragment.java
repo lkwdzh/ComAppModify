@@ -20,10 +20,13 @@ import android.widget.ScrollView;
 
 import com.aglook.comapp.Activity.GoodsDetailActivity;
 import com.aglook.comapp.Activity.SearchActivity;
+import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.HomePageGridViewAdapter;
 import com.aglook.comapp.adapter.RecycleHomePageAdapter;
 import com.aglook.comapp.bean.HomePage;
+import com.aglook.comapp.url.HomePageUrl;
+import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.MyGridView;
@@ -72,16 +75,27 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     private HomePageGridViewAdapter gridViewAdapter;
     private RelativeLayout rl_search_homepage_fragment;
 
+    private ComAppApplication comAppApplication;
+
+    private String userId;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = View.inflate(getActivity(), R.layout.layout_homepage_fragment, null);
+        comAppApplication = (ComAppApplication) getActivity().getApplication();
         initView(view);
         click();
         getData();
         fillData();
         return view;
     }
+
+//    @Override
+//    public void onResume() {
+//        comAppApplication = (ComAppApplication) getActivity().getApplication();
+//    }
 
     private void setCurrentDot(int position) {
         position = position - 1;
@@ -129,19 +143,20 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         gv_homepage = (MyGridView) view.findViewById(R.id.gv_homepage);
         gridViewAdapter = new HomePageGridViewAdapter(getActivity(), mList);
         gv_homepage.setAdapter(gridViewAdapter);
-        gv_homepage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
-                startActivity(intent);
-            }
-        });
         rl_search_homepage_fragment = (RelativeLayout) view.findViewById(R.id.rl_search_homepage_fragment);
 
     }
 
     public void click() {
         rl_search_homepage_fragment.setOnClickListener(this);
+        gv_homepage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                intent.putExtra("productId", mList.get(position).getProductId());
+                startActivity(intent);
+            }
+        });
         sv_homepage.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ScrollView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
@@ -246,13 +261,15 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+//                Log.d("result_HomePage", arg0.result);
+                List<HomePage>list=new ArrayList<HomePage>();
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
-                mList = JsonUtils.parseList(obj, HomePage.class);
+                list = JsonUtils.parseList(obj, HomePage.class);
                 if (status.equals("1")) {
                     //假如成功
-
+                    mList.addAll(list);
                 }
                 gridViewAdapter.notifyDataSetChanged();
             }
@@ -261,7 +278,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        };
+        }.datePost(DefineUtil.HOT_LIST, HomePageUrl.postHomePageCategoryUrl(userId), getActivity());
     }
 
     public void fillData() {

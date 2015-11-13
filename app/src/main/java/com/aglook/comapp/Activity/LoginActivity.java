@@ -11,6 +11,7 @@ import android.widget.Spinner;
 
 import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.Application.ExitApplication;
+import com.aglook.comapp.Fragment.MineFragment;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.url.LoginUrl;
@@ -59,10 +60,11 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
-                    accountType = "0";
-                } else {
                     accountType = "1";
+                } else {
+                    accountType = "0";
                 }
+                mEditor.putString("accountType", accountType);
                 fillData();
             }
 
@@ -73,6 +75,7 @@ public class LoginActivity extends BaseActivity {
         });
         et_username_login = (EditText) findViewById(R.id.et_username_login);
         et_password_login = (EditText) findViewById(R.id.et_password_login);
+
     }
 
     public void fillData(){
@@ -82,7 +85,6 @@ public class LoginActivity extends BaseActivity {
             et_username_login.setText(mShare.getString("setName", ""));
         }
         et_password_login.setText(mShare.getString("password",""));
-
     }
 
     public void click() {
@@ -122,7 +124,12 @@ public class LoginActivity extends BaseActivity {
                 login = JsonUtils.parse(str, Login.class);
                 if (status.equals("1")) {//登录成功,跳转页面
                     DefineUtil.TOKEN = login.getToken();
+                    DefineUtil.USERID=login.getPshUser().getUserId();
                     comAppApplication.setLogin(login);
+                    Intent intent = new Intent(LoginActivity.this, MineFragment.class);
+                    LoginActivity.this.setResult(1);
+                    LoginActivity.this.finish();
+
                 }
                 AppUtils.toastText(LoginActivity.this, message);
             }
@@ -131,7 +138,7 @@ public class LoginActivity extends BaseActivity {
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        }.datePost(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl("nnnnnn", "123456", "1"), LoginActivity.this);
+        }.datePost(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType), LoginActivity.this);
 
 
     }

@@ -25,6 +25,7 @@ import com.aglook.comapp.Activity.TradeingActivity;
 import com.aglook.comapp.Activity.TransSucceedActivity;
 import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.R;
+import com.aglook.comapp.bean.Login;
 
 /**
  * Created by aglook on 2015/10/26.
@@ -42,21 +43,25 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private LinearLayout ll_pingtaicangdan_mine_fragment;
     private LinearLayout ll_tihuo_mine_fragment;
     private ComAppApplication comAppApplication;
+    private Login login;
     private LinearLayout ll_jiaoyizhong_mine_fragment;
     private LinearLayout ll_jiaoyichenggong_mine_fragment;
+    private TextView tv_name_mine_fragment;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=View.inflate(getActivity(), R.layout.layout_mine_fragment,null);
-       initView(view);
+        View view = View.inflate(getActivity(), R.layout.layout_mine_fragment, null);
+        initView(view);
         click();
+        fillData();
         return view;
     }
 
     //初始化控件
-    public void initView(View view){
-        comAppApplication= (ComAppApplication) getActivity().getApplication();
+    public void initView(View view) {
+        comAppApplication = (ComAppApplication) getActivity().getApplication();
+        login=comAppApplication.getLogin();
         iv_icon_mine_fragment = ((ImageView) view.findViewById(R.id.iv_icon_mine_fragment));
         rl_background_mine_fragment = (RelativeLayout) view.findViewById(R.id.rl_background_mine_fragment);
         ll_all_guadan_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_all_guadan_mine_fragment);
@@ -69,10 +74,11 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         ll_tihuo_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_tihuo_mine_fragment);
         ll_jiaoyizhong_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_jiaoyizhong_mine_fragment);
         ll_jiaoyichenggong_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_jiaoyichenggong_mine_fragment);
+        tv_name_mine_fragment = (TextView) view.findViewById(R.id.tv_name_mine_fragment);
     }
 
     //点击事件
-    public void click(){
+    public void click() {
 //        iv_icon_mine_fragment.setOnClickListener(this);
         rl_background_mine_fragment.setOnClickListener(this);
         ll_all_guadan_mine_fragment.setOnClickListener(this);
@@ -87,18 +93,37 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         ll_jiaoyichenggong_mine_fragment.setOnClickListener(this);
     }
 
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1 && resultCode == 1) {
+            login = comAppApplication.getLogin();
+            fillData();
+        }
+    }
+
+    //填充数据
+    public void fillData() {
+        if (login != null) {
+            tv_name_mine_fragment.setText(login.getPshUser().getUsername());
+        }
+    }
+
     @Override
     public void onClick(View view) {
         Intent intent = new Intent();
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.rl_background_mine_fragment:
                 //判断是否已经登录，若已登录，则跳转到个人信息界面，若没有，则跳转到登录界面
-                if (comAppApplication.getLogin()!=null) {
-                intent.setClass(getActivity(), LoginActivity.class);
-                }else {
+                if (comAppApplication.getLogin() == null||"".equals(comAppApplication.getLogin())) {
+                    intent.setClass(getActivity(), LoginActivity.class);
+                    startActivityForResult(intent, 1);
+                } else {
+//                Log.d("result_login_mine",comAppApplication.getLogin().toString());
                     intent.setClass(getActivity(), PersonInformationActivity.class);
+                    intent.putExtra("login",login);
+                    startActivity(intent);
                 }
-                startActivity(intent);
                 break;
             case R.id.ll_all_guadan_mine_fragment:
                 intent.setClass(getActivity(), AllGuaDanActivity.class);
@@ -137,7 +162,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.ll_jiaoyichenggong_mine_fragment:
-                intent.setClass(getActivity(),TransSucceedActivity.class);
+                intent.setClass(getActivity(), TransSucceedActivity.class);
                 startActivity(intent);
                 break;
         }

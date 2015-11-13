@@ -32,6 +32,24 @@ public abstract class XHttpuTools {
         });
     }
 
+    public void datePost(String url,final Context context){
+        HttpUtils httpUtils=new HttpUtils();
+        httpUtils.configCurrentHttpCacheExpiry(1000*10);
+
+        httpUtils.send(HttpRequest.HttpMethod.POST,url,new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> objectResponseInfo) {
+                initViews(objectResponseInfo);
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                AppUtils.toastText(context,"服务器请求失败");
+                failureInitViews(e,s);
+            }
+        });
+    }
+
     public void dateGet(String url,final Context context){
         HttpUtils httpUtils=new HttpUtils();
         httpUtils.configCurrentHttpCacheExpiry(1000*10);

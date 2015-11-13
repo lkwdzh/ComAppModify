@@ -43,10 +43,10 @@
             style="@style/basic_infor_TextView_333333"
             android:text="@string/bang_card_bank" />
 
-        <EditText
-            android:id="@+id/et_bank_bang_card"
+        <TextView
+            android:id="@+id/tv_bank_bang_card"
             style="@style/basic_infor_edittext_weight"
-            android:hint="请输入银行" />
+            android:hint="请选择银行" />
     </LinearLayout>
 
     <View style="@style/line_1" />
