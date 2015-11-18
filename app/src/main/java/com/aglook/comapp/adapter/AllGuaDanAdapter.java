@@ -14,21 +14,29 @@ import android.widget.TextView;
 
 import com.aglook.comapp.Activity.GuaDanAddActivity;
 import com.aglook.comapp.R;
+import com.aglook.comapp.bean.AllOrder;
+import com.aglook.comapp.bean.AllOrderDataList;
 import com.aglook.comapp.view.MyListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by aglook on 2015/11/6.
  */
 public class AllGuaDanAdapter extends BaseAdapter implements View.OnClickListener {
     private Activity activity;
+    private List<AllOrder>list;
+    private List<AllOrderDataList>sonList;
 
-    public AllGuaDanAdapter(Activity activity) {
+    public AllGuaDanAdapter(Activity activity, List<AllOrder> list) {
         this.activity = activity;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return list!=null?list.size():0;
     }
 
     @Override
@@ -58,6 +66,15 @@ public class AllGuaDanAdapter extends BaseAdapter implements View.OnClickListene
         holder.lv_all_order_lv.setAdapter(holder.adapter);
         holder.tv_click_all_order_lv.setOnClickListener(this);
         holder.tv_success_all_order_lv.setVisibility(View.GONE);
+
+
+        AllOrder order = list.get(position);
+        List<AllOrderDataList>newList=new ArrayList<>();
+        newList = list.get(position).getOrderDateList();
+        sonList.addAll(newList);
+        holder.adapter.notifyDataSetChanged();
+        holder.tv_order_num_all_order_lv.setText(order.getOrderId());
+
         return convertView;
     }
 
@@ -101,7 +118,7 @@ public class AllGuaDanAdapter extends BaseAdapter implements View.OnClickListene
             tv_cost_all_order_lv = (TextView) view.findViewById(R.id.tv_cost_all_order_lv);
             tv_click_all_order_lv = (TextView) view.findViewById(R.id.tv_click_all_order_lv);
             tv_delete_all_order_lv=(TextView)view.findViewById(R.id.tv_delete_all_order_lv);
-            adapter=new AllOrderLVAdapter(activity);
+            adapter=new AllOrderLVAdapter(activity,sonList);
         }
     }
 

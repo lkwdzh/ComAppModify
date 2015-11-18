@@ -77,6 +77,8 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
     private String cartId;
     private String productNum;
     private String deleteFlag = "1";//删除
+    private boolean isConfirm;
+    private int page=1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -273,6 +275,8 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
             isDelete = false;
             customProgress = CustomProgress.show(getActivity(), "加载中···", true);
             getCartListData();
+        }else if (requestCode==3&&resultCode==1){
+            getCartListData();
         }
     }
 
@@ -297,7 +301,8 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
             case R.id.ll_shopping_cart_jiesuan:
                 intent.setClass(getActivity(), ConfirmOrderActivity.class);
                 intent.putExtra("CharList", (Serializable) mList);
-                startActivity(intent);
+                isConfirm=true;
+                startActivityForResult(intent,3);
                 break;
             case R.id.btn_login:
                 if (comAppApplication.getLogin() == null || comAppApplication.getLogin().equals("")) {
@@ -348,13 +353,14 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
 
     //    获取购物车列表
     public void getCartListData() {
+
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-//                Log.d("result_getCartList", arg0.result);
+                Log.d("result_getCartList", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -371,16 +377,28 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                             mList.clear();
                             isToGoodsDetail=false;
                         }
+
+                        if (isConfirm){
+                            mList.clear();
+                            isConfirm=false;
+                        }
                         mList.addAll(list);
+
+                    }else {
+                        if (isDelete){
+                            ll_empty_shopping_cart.setVisibility(View.VISIBLE);
+                            ll_full_content.setVisibility(View.GONE);
+                            ll_weidenglu_shopping_cart.setVisibility(View.GONE);
+                            cb_top_right_shopping_cart.setVisibility(View.GONE);
+                            isDelete=false;
+                        }
+//                        mList.clear();
+//                        if (mList.isEmpty()||mList.size()==0) {
+//                            AppUtils.toastText(getActivity(),"22222");
+//                        }
                     }
                 } else {
                     AppUtils.toastText(getActivity(), message);
-                }
-                if (mList.isEmpty()) {
-                    ll_empty_shopping_cart.setVisibility(View.VISIBLE);
-                    ll_full_content.setVisibility(View.GONE);
-                    ll_weidenglu_shopping_cart.setVisibility(View.GONE);
-                    cb_top_right_shopping_cart.setVisibility(View.GONE);
                 }
 
                 adapter.notifyDataSetChanged();

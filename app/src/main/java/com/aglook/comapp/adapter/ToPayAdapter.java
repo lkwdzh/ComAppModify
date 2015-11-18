@@ -3,34 +3,39 @@ package com.aglook.comapp.adapter;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Intent;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.aglook.comapp.Activity.OrderDetailActivity;
 import com.aglook.comapp.R;
+import com.aglook.comapp.bean.AllOrder;
+import com.aglook.comapp.bean.AllOrderDataList;
+import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.view.MyListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by aglook on 2015/11/6.
  */
 public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
     private Activity activity;
-    private TextView tv_delete_order;
+    private List<AllOrder> list;
+    private List<AllOrderDataList> sonList;
 
-    public ToPayAdapter(Activity activity) {
+    public ToPayAdapter(Activity activity, List<AllOrder> list) {
         this.activity = activity;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return list != null ? list.size() : 0;
     }
 
     @Override
@@ -53,31 +58,51 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.lv_all_order_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(activity, OrderDetailActivity.class);
-                activity.startActivity(intent);
-            }
-        });
-        holder.tv_click_all_order_lv.setText("确认付款");
+
         holder.tv_click_all_order_lv.setVisibility(View.VISIBLE);
-        holder.tv_delete_all_order_lv.setVisibility(View.GONE);
+        holder.tv_click_all_order_lv.setText("去支付");
+        holder.tv_delete_all_order_lv.setVisibility(View.VISIBLE);
+        holder.tv_delete_all_order_lv.setText("取消");
         holder.tv_click_all_order_lv.setOnClickListener(this);
         holder.lv_all_order_lv.setAdapter(holder.adapter);
+        holder.lv_all_order_lv.setFocusable(false);
+//        holder.lv_all_order_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(activity, OrderDetailActivity.class);
+//                activity.startActivity(intent);
+//            }
+//        });
+
+
+        AllOrder order = list.get(position);
+        List<AllOrderDataList> newList = new ArrayList<>();
+        newList = list.get(position).getOrderDateList();
+        sonList=new ArrayList<>();
+        sonList.addAll(newList);
+        holder.adapter.notifyDataSetChanged();
+        holder.tv_order_num_all_order_lv.setText(order.getOrderId());
+        if (order.getOrderStatus().equals("notpay")) {
+            holder.tv_success_all_order_lv.setText("待支付");
+            holder.tv_success_all_order_lv.setTextColor(activity.getResources().getColor(R.color.green_356600));
+        } else {
+            holder.tv_success_all_order_lv.setText("交易成功");
+            holder.tv_success_all_order_lv.setTextColor(activity.getResources().getColor(R.color.red_c91014));
+        }
         return convertView;
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.tv_click_all_order_lv:
-                showDialog();
+                AppUtils.toastText(activity,"去支付");
+//                showDailog();
                 break;
-            case R.id.btn_cancel_pay_popup:
+            case R.id.btn_cancel_delete:
                 dialog.dismiss();
                 break;
-            case R.id.btn_confirm_pay_popup:
+            case R.id.btn_confirm_delete:
                 dialog.dismiss();
                 break;
         }
@@ -102,34 +127,30 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
             tv_money_all_order_lv = (TextView) view.findViewById(R.id.tv_money_all_order_lv);
             tv_cost_all_order_lv = (TextView) view.findViewById(R.id.tv_cost_all_order_lv);
             tv_click_all_order_lv = (TextView) view.findViewById(R.id.tv_click_all_order_lv);
-            tv_delete_all_order_lv=(TextView)view.findViewById(R.id.tv_delete_all_order_lv);
-            adapter=new AllOrderLVAdapter(activity);
+            tv_delete_all_order_lv = (TextView) view.findViewById(R.id.tv_delete_all_order_lv);
+            adapter = new AllOrderLVAdapter(activity,sonList);
         }
     }
 
     private Dialog dialog;
-    private Button btn_cancel_pay_popup;
-    private Button btn_confirm_pay_popup;
-    private TextView tv_money_pay_popup;
-    private TextView tv_card_pay_popup;
-    private EditText et_input_pay_popup;
-    private TextView tv_yanzheng_pay_popup;
-    public void showDialog() {
-        LayoutInflater inflater = LayoutInflater.from(activity);
-        View inView = inflater.inflate(R.layout.layout_pay_dialog, null);
-        btn_cancel_pay_popup = (Button) inView.findViewById(R.id.btn_cancel_pay_popup);
-        btn_confirm_pay_popup = (Button) inView.findViewById(R.id.btn_confirm_pay_popup);
-        tv_money_pay_popup = (TextView) inView.findViewById(R.id.tv_money_pay_popup);
-        tv_card_pay_popup = (TextView) inView.findViewById(R.id.tv_card_pay_popup);
-        et_input_pay_popup = (EditText) inView.findViewById(R.id.et_input_pay_popup);
-        tv_yanzheng_pay_popup = (TextView) inView.findViewById(R.id.tv_yanzheng_pay_popup);
+    private TextView tv_delete_order;
+
+    public void showDailog() {
+        LayoutInflater layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = layoutInflater.inflate(R.layout.layout_order, null);
+        btn_cancel_delete = (Button) view.findViewById(R.id.btn_cancel_delete);
+        btn_confirm_delete = (Button) view.findViewById(R.id.btn_confirm_delete);
+        tv_delete_order = (TextView) view.findViewById(R.id.tv_delete_order);
+        tv_delete_order.setText("确认取消此仓单?");
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.create();
-        builder.setView(inView);
+        builder.setView(view);
 //        builder.setCancelable(false);
         dialog = builder.show();
-        btn_cancel_pay_popup.setOnClickListener(this);
-        btn_confirm_pay_popup.setOnClickListener(this);
+        btn_cancel_delete.setOnClickListener(this);
+        btn_confirm_delete.setOnClickListener(this);
     }
 
+    private Button btn_cancel_delete;
+    private Button btn_confirm_delete;
 }

@@ -12,22 +12,29 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.aglook.comapp.R;
+import com.aglook.comapp.bean.AllOrder;
+import com.aglook.comapp.bean.AllOrderDataList;
 import com.aglook.comapp.view.MyListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by aglook on 2015/11/12.
  */
 public class TradeingAdapter extends BaseAdapter implements View.OnClickListener {
     private Activity activity;
+    private List<AllOrder> list;
+    private List<AllOrderDataList> sonList;
 
-
-    public TradeingAdapter(Activity activity) {
+    public TradeingAdapter(Activity activity, List<AllOrder> list) {
         this.activity = activity;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return list != null ? list.size() : 0;
     }
 
     @Override
@@ -64,12 +71,27 @@ public class TradeingAdapter extends BaseAdapter implements View.OnClickListener
 //                activity.startActivity(intent);
 //            }
 //        });
+
+
+        AllOrder order = list.get(position);
+        List<AllOrderDataList> newList = new ArrayList<>();
+        newList = list.get(position).getOrderDateList();
+        sonList.addAll(newList);
+        holder.adapter.notifyDataSetChanged();
+        holder.tv_order_num_all_order_lv.setText(order.getOrderId());
+        if (order.getOrderStatus().equals("notpay")) {
+            holder.tv_success_all_order_lv.setText("待支付");
+            holder.tv_success_all_order_lv.setTextColor(activity.getResources().getColor(R.color.green_356600));
+        } else {
+            holder.tv_success_all_order_lv.setText("交易成功");
+            holder.tv_success_all_order_lv.setTextColor(activity.getResources().getColor(R.color.red_c91014));
+        }
         return convertView;
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.tv_click_all_order_lv:
                 showDailog();
                 break;
@@ -101,16 +123,18 @@ public class TradeingAdapter extends BaseAdapter implements View.OnClickListener
             tv_money_all_order_lv = (TextView) view.findViewById(R.id.tv_money_all_order_lv);
             tv_cost_all_order_lv = (TextView) view.findViewById(R.id.tv_cost_all_order_lv);
             tv_click_all_order_lv = (TextView) view.findViewById(R.id.tv_click_all_order_lv);
-            tv_delete_all_order_lv=(TextView)view.findViewById(R.id.tv_delete_all_order_lv);
-            adapter=new AllOrderLVAdapter(activity);
+            tv_delete_all_order_lv = (TextView) view.findViewById(R.id.tv_delete_all_order_lv);
+            adapter = new AllOrderLVAdapter(activity,sonList);
         }
     }
+
     private Dialog dialog;
     private TextView tv_delete_order;
-    public void showDailog(){
+
+    public void showDailog() {
         LayoutInflater layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view= layoutInflater.inflate(R.layout.layout_order, null);
-        btn_cancel_delete= (Button) view.findViewById(R.id.btn_cancel_delete);
+        View view = layoutInflater.inflate(R.layout.layout_order, null);
+        btn_cancel_delete = (Button) view.findViewById(R.id.btn_cancel_delete);
         btn_confirm_delete = (Button) view.findViewById(R.id.btn_confirm_delete);
         tv_delete_order = (TextView) view.findViewById(R.id.tv_delete_order);
         tv_delete_order.setText("确认取消此仓单?");
@@ -122,6 +146,7 @@ public class TradeingAdapter extends BaseAdapter implements View.OnClickListener
         btn_cancel_delete.setOnClickListener(this);
         btn_confirm_delete.setOnClickListener(this);
     }
+
     private Button btn_cancel_delete;
     private Button btn_confirm_delete;
 }

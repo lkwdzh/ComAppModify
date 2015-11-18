@@ -105,7 +105,7 @@ public class GoodsDetailActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-//                Log.d("result_GoodsDetail",productId+ "-------"+arg0.result);
+                Log.d("result_GoodsDetail",productId+ "-------"+arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -135,7 +135,7 @@ public class GoodsDetailActivity extends BaseActivity {
             tv_price_goods_detail.setText(goodsDetail.getProductMoney());
             tv_cangdanhao_goods_detail.setText(goodsDetail.getProductListId());
             tv_huowuzhonglei_goods_detail.setText(goodsDetail.getCategoryName());
-            tv_weight_goods_detail.setText(goodsDetail.getProductSellNum());
+            tv_weight_goods_detail.setText(goodsDetail.getProductSellNum()+"吨");
             tv_in_time_goods_detail.setText(Timestamp.getDateToString(goodsDetail.getInnerTime()));
             tv_producing_area_goods_detail.setText(goodsDetail.getGoodsPlace());
             tv_xuetou_goods_detail.setText(goodsDetail.getMark());
@@ -183,7 +183,6 @@ public class GoodsDetailActivity extends BaseActivity {
                 }
                 break;
             case R.id.left_icon:
-                AppUtils.toastText(this, "111111111");
                 intent.setClass(GoodsDetailActivity.this, ShoppingCartFragment.class);
                 GoodsDetailActivity.this.setResult(1, intent);
                 GoodsDetailActivity.this.finish();

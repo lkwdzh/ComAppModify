@@ -9,20 +9,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aglook.comapp.R;
+import com.aglook.comapp.bean.Screen;
+import com.aglook.comapp.util.XBitmap;
+
+import java.util.List;
 
 /**
  * Created by aglook on 2015/11/6.
  */
 public class ScreenAdapter extends BaseAdapter {
     private Context context;
+    private List<Screen>list;
 
-    public ScreenAdapter(Context context) {
+    public ScreenAdapter(Context context, List<Screen> list) {
         this.context = context;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return 20;
+        return list!=null?list.size():0;
     }
 
     @Override
@@ -45,6 +51,14 @@ public class ScreenAdapter extends BaseAdapter {
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
+
+        Screen screen = list.get(position);
+        XBitmap.displayImage(holder.iv_screen_gridview,screen.getProductLogo(),context);
+        holder.tv_address_screen_gridview.setText(screen.getGoodPlace());
+        holder.tv_grade_screen_gridview.setText(screen.getGoodType());
+        holder.tv_weight_screen_gridview.setText(screen.getProductSellNum());
+        holder.tv_price_screen_gridview.setText(screen.getProductMoney());
+        holder.tv_name_screen_gridview.setText(screen.getProductName());
         return convertView;
     }
 
@@ -55,13 +69,14 @@ public class ScreenAdapter extends BaseAdapter {
         TextView tv_grade_screen_gridview;
         TextView tv_weight_screen_gridview;
         TextView tv_price_screen_gridview;
-
+        TextView tv_name_screen_gridview;
         ViewHolder(View view) {
             iv_screen_gridview=(ImageView)view.findViewById(R.id.iv_screen_gridview);
             tv_address_screen_gridview=(TextView)view.findViewById(R.id.tv_address_screen_gridview);
             tv_grade_screen_gridview=(TextView)view.findViewById(R.id.tv_grade_screen_gridview);
             tv_weight_screen_gridview=(TextView)view.findViewById(R.id.tv_weight_screen_gridview);
             tv_price_screen_gridview=(TextView)view.findViewById(R.id.tv_price_screen_gridview);
+            tv_name_screen_gridview=(TextView)view.findViewById(R.id.tv_name_screen_gridview);
         }
     }
 }

@@ -15,13 +15,20 @@ import android.widget.TextView;
 
 import com.aglook.comapp.Activity.OrderDetailActivity;
 import com.aglook.comapp.R;
+import com.aglook.comapp.bean.AllOrder;
+import com.aglook.comapp.bean.AllOrderDataList;
 import com.aglook.comapp.view.MyListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by aglook on 2015/11/6.
  */
 public class TransSucceedAdapter extends BaseAdapter implements View.OnClickListener {
     private Activity activity;
+    private List<AllOrder> list;
+    private List<AllOrderDataList>sonList;
 
     public TransSucceedAdapter(Activity activity) {
         this.activity = activity;
@@ -29,7 +36,7 @@ public class TransSucceedAdapter extends BaseAdapter implements View.OnClickList
 
     @Override
     public int getCount() {
-        return 2;
+        return list!=null?list.size():0;
     }
 
     @Override
@@ -72,6 +79,13 @@ public class TransSucceedAdapter extends BaseAdapter implements View.OnClickList
         });
 
         holder.tv_success_all_order_lv.setVisibility(View.GONE);
+
+        AllOrder order = list.get(position);
+        List<AllOrderDataList>newList=new ArrayList<>();
+        newList = list.get(position).getOrderDateList();
+        sonList=new ArrayList<>();
+        sonList.addAll(newList);
+        holder.adapter.notifyDataSetChanged();
         return convertView;
     }
 
@@ -111,7 +125,7 @@ public class TransSucceedAdapter extends BaseAdapter implements View.OnClickList
             tv_cost_all_order_lv = (TextView) view.findViewById(R.id.tv_cost_all_order_lv);
             tv_click_all_order_lv = (TextView) view.findViewById(R.id.tv_click_all_order_lv);
             tv_delete_all_order_lv=(TextView)view.findViewById(R.id.tv_delete_all_order_lv);
-            adapter=new AllOrderLVAdapter(activity);
+            adapter=new AllOrderLVAdapter(activity,sonList);
         }
     }
     private Dialog dialog;

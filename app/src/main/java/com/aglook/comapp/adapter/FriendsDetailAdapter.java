@@ -9,13 +9,17 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.aglook.comapp.R;
+import com.aglook.comapp.bean.AllOrder;
 import com.aglook.comapp.view.MyListView;
+
+import java.util.List;
 
 /**
  * Created by aglook on 2015/11/12.
  */
 public class FriendsDetailAdapter extends BaseAdapter implements View.OnClickListener {
     private Activity activity;
+    private List<AllOrder>mList;
 
     public FriendsDetailAdapter(Activity activity) {
         this.activity = activity;
@@ -81,7 +85,7 @@ public class FriendsDetailAdapter extends BaseAdapter implements View.OnClickLis
             tv_cost_all_order_lv = (TextView) view.findViewById(R.id.tv_cost_all_order_lv);
             tv_click_all_order_lv = (TextView) view.findViewById(R.id.tv_click_all_order_lv);
             tv_delete_all_order_lv=(TextView)view.findViewById(R.id.tv_delete_all_order_lv);
-            adapter=new AllOrderLVAdapter(activity);
+//            adapter=new AllOrderLVAdapter(activity,mList);
         }
     }
 

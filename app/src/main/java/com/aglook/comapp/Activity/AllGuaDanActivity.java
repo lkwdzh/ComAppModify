@@ -6,12 +6,17 @@ import android.view.View;
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.AllGuaDanAdapter;
+import com.aglook.comapp.bean.AllOrder;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AllGuaDanActivity extends BaseActivity {
     private PullToRefreshListView lv_all_order;
     private AllGuaDanAdapter adapter;
     private View emptyView;
+    private List<AllOrder>mList=new ArrayList<>();
 
     @Override
     public void initView() {
@@ -23,7 +28,7 @@ public class AllGuaDanActivity extends BaseActivity {
     }
     public void init(){
         lv_all_order = (PullToRefreshListView) findViewById(R.id.lv_all_order);
-        adapter = new AllGuaDanAdapter(AllGuaDanActivity.this);
+        adapter = new AllGuaDanAdapter(AllGuaDanActivity.this,mList);
         lv_all_order.setAdapter(adapter);
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
         lv_all_order.setEmptyView(emptyView);

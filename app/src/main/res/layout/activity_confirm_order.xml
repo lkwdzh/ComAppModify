@@ -54,13 +54,14 @@
         android:layout_below="@+id/ll_info_confirm_order" />
 
 
-    <com.handmark.pulltorefresh.library.PullToRefreshListView
+    <ListView
         android:id="@+id/lv_confirm_order"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/view1"
+
         android:layout_above="@+id/ll_bottom_confirm_order"
-        android:background="@color/white"
+        android:background="@color/gray_eeeeee"
         android:divider="@null" />
 
 

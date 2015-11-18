@@ -11,9 +11,13 @@ import android.widget.TextView;
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ScreenAdapter;
+import com.aglook.comapp.bean.Screen;
 import com.aglook.comapp.url.ScreenUrl;
+import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
+import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -38,10 +42,12 @@ public class ScreenActivity extends BaseActivity {
     private TextView tv_total_down_up_screen_popup;
     private TextView tv_total_up_down_screen_popup;
 
-    private List<TextView> tvList = new ArrayList<>();
+    //    private List<TextView> tvList = new ArrayList<>();
     private String categoryId;
     private TextView tv_price_screen;
     private TextView tv_sale_screen;
+    private CustomProgress customProgress;
+    private List<Screen> mList = new ArrayList<>();
 
     @Override
     public void initView() {
@@ -55,9 +61,9 @@ public class ScreenActivity extends BaseActivity {
 
     public void init() {
         gv_screen = (PullToRefreshGridView) findViewById(R.id.gv_screen);
-        adapter = new ScreenAdapter(ScreenActivity.this);
+        adapter = new ScreenAdapter(ScreenActivity.this,mList);
         gv_screen.setAdapter(adapter);
-        categoryId=getIntent().getStringExtra("categoryId");
+        categoryId = getIntent().getStringExtra("categoryId");
         tv_all_screen = (TextView) findViewById(R.id.tv_all_screen);
         ll_price_screen = (LinearLayout) findViewById(R.id.ll_price_screen);
         cb_price_screen = (CheckBox) findViewById(R.id.cb_price_screen);
@@ -76,6 +82,7 @@ public class ScreenActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ScreenActivity.this, GoodsDetailActivity.class);
+                intent.putExtra("productId",mList.get(position).getProductId());
                 startActivity(intent);
             }
         });
@@ -89,7 +96,7 @@ public class ScreenActivity extends BaseActivity {
                 tv_price_screen.setTextColor(getResources().getColor(R.color.textcolor_666666));
                 tv_sale_screen.setTextColor(getResources().getColor(R.color.textcolor_666666));
                 isPriceFirst = true;
-                isSaleFirst=true;
+                isSaleFirst = true;
                 break;
             case R.id.ll_price_screen:
                 if (isPriceFirst) {
@@ -97,15 +104,15 @@ public class ScreenActivity extends BaseActivity {
                     tv_price_screen.setTextColor(getResources().getColor(R.color.red_c91014));
                     tv_sale_screen.setTextColor(getResources().getColor(R.color.textcolor_666666));
                     isPriceFirst = false;
-                    isSaleFirst=true;
+                    isSaleFirst = true;
                 } else {
-                    if (cb_price_screen.isChecked()){
+                    if (cb_price_screen.isChecked()) {
                         cb_price_screen.setChecked(false);
-                    }else {
+                    } else {
                         cb_price_screen.setChecked(true);
                     }
-                    isPriceFirst=false;
-                    isSaleFirst=true;
+                    isPriceFirst = false;
+                    isSaleFirst = true;
                 }
                 break;
             case R.id.ll_sale_screen:
@@ -115,14 +122,14 @@ public class ScreenActivity extends BaseActivity {
                     tv_sale_screen.setTextColor(getResources().getColor(R.color.red_c91014));
                     isPriceFirst = true;
                     isSaleFirst = false;
-                }else {
-                    if (cb_sale_screen.isChecked()){
+                } else {
+                    if (cb_sale_screen.isChecked()) {
                         cb_sale_screen.setChecked(false);
-                    }else {
+                    } else {
                         cb_sale_screen.setChecked(true);
                     }
-                    isSaleFirst=false;
-                    isPriceFirst=true;
+                    isSaleFirst = false;
+                    isPriceFirst = true;
                 }
                 break;
             //弹出popupwindow
@@ -150,18 +157,38 @@ public class ScreenActivity extends BaseActivity {
         }
     }
 
-    public void getData(){
+    public void getData() {
+        customProgress=CustomProgress.show(ScreenActivity.this,"加载中···",true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_Screen",categoryId+"------"+arg0.result);
+                if (customProgress!=null&&customProgress.isShowing()){
+                    customProgress.dismiss();
+                }
+                Log.d("result_Screen", categoryId + "------" + arg0.result);
+                List<Screen> sonList = new ArrayList<>();
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
+                String ProductList = JsonUtils.getJsonParam(obj, "ProductList");
+                sonList = JsonUtils.parseList(ProductList, Screen.class);
+                if (status.equals("1")){
+                    if (sonList!=null&&sonList.size()!=0){
+                        mList.addAll(sonList);
+                    }
+                }else {
+                    AppUtils.toastText(ScreenActivity.this,message);
+                }
+                adapter.notifyDataSetChanged();
             }
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress!=null&&customProgress.isShowing()){
+                    customProgress.dismiss();
+                }
             }
-        }.datePost(DefineUtil.CATEGORY_DETAIL, ScreenUrl.postClassificationUrl(categoryId),ScreenActivity.this);
+        }.datePost(DefineUtil.CATEGORY_DETAIL, ScreenUrl.postClassificationUrl(categoryId), ScreenActivity.this);
     }
 
 

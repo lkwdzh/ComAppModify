@@ -50,6 +50,8 @@ public class DefineUtil {
 
 /* 确认订单*/
     public static String CREATE_ORDER=URL_HOST+"order/create/order";
+    //订单列表
+    public static String ORDER_LIST=URL_HOST+"order/order/list";
 
 
     //TOKEN

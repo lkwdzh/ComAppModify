@@ -2,10 +2,15 @@ package com.aglook.comapp.Activity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
@@ -14,7 +19,13 @@ import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ConfirmOrderAdapter;
 import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.bean.ShoppingCart;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.aglook.comapp.url.ConfirmOrderUrl;
+import com.aglook.comapp.util.AppUtils;
+import com.aglook.comapp.util.DefineUtil;
+import com.aglook.comapp.util.JsonUtils;
+import com.aglook.comapp.util.XHttpuTools;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +34,7 @@ public class ConfirmOrderActivity extends BaseActivity {
 
     private TextView tv_name_confirm_order;
     private TextView tv_phone_confirm_order;
-    private PullToRefreshListView lv_confirm_order;
+    private ListView lv_confirm_order;
     private TextView tv_money_confirm_order;
     private TextView tv_confirm_confirm_order;
     private ConfirmOrderAdapter adapter;
@@ -35,6 +46,9 @@ public class ConfirmOrderActivity extends BaseActivity {
     private double allMoney;
     private TextView tv_zonge_confirm_order;
     private TextView tv_shouxufei_confirm_order;
+    private String text;
+    private String cartids;
+    private ImageView left_icon;
 
 
     @Override
@@ -52,13 +66,14 @@ public class ConfirmOrderActivity extends BaseActivity {
         mList = (List<ShoppingCart>) getIntent().getSerializableExtra("CharList");
         tv_name_confirm_order = (TextView) findViewById(R.id.tv_name_confirm_order);
         tv_phone_confirm_order = (TextView) findViewById(R.id.tv_phone_confirm_order);
-        lv_confirm_order = (PullToRefreshListView) findViewById(R.id.lv_confirm_order);
+        lv_confirm_order = (ListView) findViewById(R.id.lv_confirm_order);
         tv_money_confirm_order = (TextView) findViewById(R.id.tv_money_confirm_order);
         tv_confirm_confirm_order = (TextView) findViewById(R.id.tv_confirm_confirm_order);
         View view = LayoutInflater.from(ConfirmOrderActivity.this).inflate(R.layout.footview_confirm_order, null);
-        lv_confirm_order.getRefreshableView().addFooterView(view);
+        lv_confirm_order.addFooterView(view);
         tv_zonge_confirm_order = (TextView) view.findViewById(R.id.tv_zonge_confirm_order);
         tv_shouxufei_confirm_order = (TextView) view.findViewById(R.id.tv_shouxufei_confirm_order);
+        left_icon = (ImageView) findViewById(R.id.left_icon);
         addCostMoney();
     }
 
@@ -67,9 +82,9 @@ public class ConfirmOrderActivity extends BaseActivity {
         if (login != null) {
             tv_name_confirm_order.setText(login.getPshUser().getUsername());
             tv_phone_confirm_order.setText(login.getPshUser().getUserPhone());
-            tv_zonge_confirm_order.setText(goodsMoney+"");
-            tv_shouxufei_confirm_order.setText(costMoney+"");
-            tv_money_confirm_order.setText(allMoney+"");
+            tv_zonge_confirm_order.setText(goodsMoney + "");
+            tv_shouxufei_confirm_order.setText(costMoney + "");
+            tv_money_confirm_order.setText(allMoney + "");
         }
     }
 
@@ -96,11 +111,12 @@ public class ConfirmOrderActivity extends BaseActivity {
 
     public void click() {
         tv_confirm_confirm_order.setOnClickListener(this);
-
+        left_icon.setOnClickListener(this);
     }
 
     @Override
     public void widgetClick(View view) {
+        Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.btn_cancel_pay_popup:
                 dialog.dismiss();
@@ -109,11 +125,29 @@ public class ConfirmOrderActivity extends BaseActivity {
                 dialog.dismiss();
                 break;
             case R.id.tv_confirm_confirm_order:
-                showDialog();
+//                showDialog();
+                getData();
+                break;
+            case R.id.left_icon:
+//                intent.setClass(ConfirmOrderActivity.this, ShoppingCartFragment.class);
+                ConfirmOrderActivity.this.setResult(1);
+                ConfirmOrderActivity.this.finish();
                 break;
         }
     }
+    //监听返回键
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+//            Intent intent = new Intent(ConfirmOrderActivity.this, ShoppingCartFragment.class);
+            ConfirmOrderActivity.this.setResult(1);
+            ConfirmOrderActivity.this.finish();
+            return false;
+        } else {
+            return super.onKeyDown(keyCode, event);
+        }
 
+    }
     private Dialog dialog;
     private Button btn_cancel_pay_popup;
     private Button btn_confirm_pay_popup;
@@ -138,7 +172,36 @@ public class ConfirmOrderActivity extends BaseActivity {
         dialog = builder.show();
         btn_cancel_pay_popup.setOnClickListener(this);
         btn_confirm_pay_popup.setOnClickListener(this);
+        tv_card_pay_popup.setOnClickListener(this);
     }
 
+
+    //确认订单
+    public void getData() {
+        List<String> cartidList = new ArrayList<>();
+        for (int i = 0; i < mList.size(); i++) {
+            cartidList.add(mList.get(i).getCartId());
+        }
+        cartids = cartidList.toString().substring(1, cartidList.toString().length() - 1).replaceAll(" ", "");
+
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                Log.d("result_confirmOrder", arg0.result);
+                String message= JsonUtils.getJsonParam(arg0.result,"message");
+                String status=JsonUtils.getJsonParam(arg0.result,"status");
+                if (status.equals("1")){
+                    //TODO 成功后，会调用支付
+                }else {
+                    AppUtils.toastText(ConfirmOrderActivity.this,message);
+                }
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+
+            }
+        }.datePost(DefineUtil.CREATE_ORDER, ConfirmOrderUrl.postConfirmOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartids, allMoney + "", text), ConfirmOrderActivity.this);
+    }
 
 }
