@@ -57,6 +57,7 @@
                     android:layout_alignParentRight="true"
                     android:background="@drawable/shanchu"
                     android:gravity="center"
+                    android:visibility="gone"
                     android:text="立即购买"
                     android:textSize="13sp" />
             </RelativeLayout>

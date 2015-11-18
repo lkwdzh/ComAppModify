@@ -58,10 +58,11 @@
         android:id="@+id/lv_confirm_order"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ll_bottom_confirm_order"
         android:layout_below="@+id/view1"
+        android:layout_above="@+id/ll_bottom_confirm_order"
         android:background="@color/white"
-        android:divider="@null"></com.handmark.pulltorefresh.library.PullToRefreshListView>
+        android:divider="@null" />
+
 
     <LinearLayout
         android:id="@+id/ll_bottom_confirm_order"
@@ -71,38 +72,30 @@
         android:background="@color/gray_e1e1e1"
         android:gravity="center_vertical"
         android:orientation="horizontal">
-    <TextView
-        style="@style/grayTextView_666666_13"
-        android:layout_marginLeft="@dimen/px_100"
-        android:text="共"/>
+
         <TextView
-            android:id="@+id/tv_num_confirm_order"
-            android:textSize="13sp"
-            style="@style/redTextView_f47070"
-            android:text="2"/>
-        <TextView
-            style="@style/grayTextView_666666_13"
-            android:text="件商品"/>
-        <TextView
-           style="@style/grayTextView_333333_15"
+            style="@style/grayTextView_333333_15"
             android:layout_marginLeft="@dimen/px_30"
-            android:text="合计："/>
+            android:text="合计：" />
+
         <TextView
-            android:textSize="15sp"
             style="@style/redTextView_f47070"
-            android:text="￥"/>
+            android:text="￥"
+            android:textSize="15sp" />
+
         <TextView
             android:id="@+id/tv_money_confirm_order"
-            android:textSize="13sp"
             style="@style/redTextView_f47070"
-            android:text="7996.00"/>
+            android:text="7996.00"
+            android:textSize="13sp" />
+
         <TextView
             android:id="@+id/tv_confirm_confirm_order"
             style="@style/redTextView_c91014"
-            android:textSize="15sp"
-            android:text="确认"
-            android:gravity="center"
             android:layout_marginLeft="@dimen/px_30"
-            android:background="@drawable/shanchu"/>
-        </LinearLayout>
+            android:background="@drawable/shanchu"
+            android:gravity="center"
+            android:text="确认"
+            android:textSize="15sp" />
+    </LinearLayout>
 </RelativeLayout>

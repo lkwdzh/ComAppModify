@@ -1,6 +1,7 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,6 +36,12 @@ public class CardListActivity extends BaseActivity {
     private List<CardList> list;
     private SelectPopupWindow popupWindow;
     private String bankCardId;
+    //添加银行卡
+    private boolean isAdded=false;
+    //设置默认银行卡
+    private boolean isMoRen=false;
+    //删除
+    private boolean isDelete=false;
 
     @Override
     public void initView() {
@@ -92,15 +99,17 @@ public class CardListActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.right_text:
                 intent.setClass(CardListActivity.this, BandCardActivity.class);
+                isAdded = true;
                 startActivityForResult(intent, 1);
                 break;
         }
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode==1&&resultCode==1){
-            AppUtils.toastText(this,"1111111");
+        if (requestCode == 1 && resultCode == 1) {
+            AppUtils.toastText(this, "1111111");
             getCardListData();
         }
     }
@@ -110,11 +119,25 @@ public class CardListActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                Log.d("result_cardList", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
                 list = JsonUtils.parseList(obj, CardList.class);
-                mList.addAll(list);
+                if (list.size() != 0 && list != null) {
+                    if (isAdded) {
+                        mList.clear();
+                        isAdded = false;
+                    }else if (isMoRen){
+                        mList.clear();
+                        isMoRen=false;
+                    }else if (isDelete){
+                        mList.clear();
+                        isDelete=false;
+                    }
+
+                    mList.addAll(list);
+                }
                 if (status.equals("1")) {
                     //假如成功
                 } else {
@@ -158,8 +181,11 @@ public class CardListActivity extends BaseActivity {
             public void initViews(ResponseInfo<String> arg0) {
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
+                if (status.equals("1")) {
+                    isMoRen=true;
+                    getCardListData();
+                }
                 AppUtils.toastText(CardListActivity.this, message);
-                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -177,8 +203,11 @@ public class CardListActivity extends BaseActivity {
 //                Log.d("result_delete", arg0.result);/
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
+                if (status.equals("1")) {
+                    isDelete=true;
+                    getCardListData();
+                }
                 AppUtils.toastText(CardListActivity.this, message);
-                adapter.notifyDataSetChanged();
             }
 
             @Override

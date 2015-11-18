@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +17,13 @@ import com.aglook.comapp.Activity.SearchActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ClassificationLeftAdapter;
 import com.aglook.comapp.adapter.ClassificationRightAdapter;
+import com.aglook.comapp.bean.Classify;
+import com.aglook.comapp.bean.ClassifyGV;
+import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
+import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
@@ -30,13 +34,15 @@ import java.util.List;
  * Created by aglook on 2015/10/26.
  */
 public class ClassificationFragment extends Fragment implements View.OnClickListener {
-    private List<String> leftList = new ArrayList<>();
-    private List<String> rightList = new ArrayList<>();
     private ListView mLeftList;
     private GridView gv_right;
     private ClassificationLeftAdapter leftAdapter;
     private ClassificationRightAdapter rightAdapter;
     private RelativeLayout rl_search_classify;
+    private List<Classify> mList;
+    private List<Classify> sonList;
+    private List<ClassifyGV> rightList;
+    private CustomProgress customProgress;
 
     @Nullable
     @Override
@@ -51,16 +57,16 @@ public class ClassificationFragment extends Fragment implements View.OnClickList
 
     //初始化控件
     public void initView(View view) {
+        customProgress = CustomProgress.show(getActivity(), "加载中···", true);
+        mList = new ArrayList<>();
+        sonList = new ArrayList<>();
+        rightList = new ArrayList<>();
         mLeftList = ((ListView) view.findViewById(R.id.lv_left));
         gv_right = (GridView) view.findViewById(R.id.gv_right);
-        for (int i = 0; i < 20; i++) {
-            leftList.add("左边" + i);
-            rightList.add("右边" + i);
-        }
-        leftAdapter = new ClassificationLeftAdapter(leftList, getActivity());
+        leftAdapter = new ClassificationLeftAdapter(mList, getActivity());
         mLeftList.setAdapter(leftAdapter);
 //        mLeftList.setSelection(3);
-        rightAdapter = new ClassificationRightAdapter(getActivity());
+        rightAdapter = new ClassificationRightAdapter(getActivity(), rightList);
         gv_right.setAdapter(rightAdapter);
         rl_search_classify = (RelativeLayout) view.findViewById(R.id.rl_search_classify);
     }
@@ -70,15 +76,22 @@ public class ClassificationFragment extends Fragment implements View.OnClickList
         mLeftList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //listview选中项
                 leftAdapter.setSelectItem(i);
                 leftAdapter.notifyDataSetChanged();
+//                填充右边的list，并刷新
+                rightList.clear();
+                rightList.addAll(sonList.get(i).getContent());
+                rightAdapter.notifyDataSetChanged();
             }
         });
 
         gv_right.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                跳转到筛选界面
                 Intent intent = new Intent(getActivity(), ScreenActivity.class);
+                intent.putExtra("categoryId",rightList.get(i).getCategoryId());
                 startActivity(intent);
             }
         });
@@ -90,7 +103,7 @@ public class ClassificationFragment extends Fragment implements View.OnClickList
     @Override
     public void onClick(View v) {
         Intent intent = new Intent();
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.rl_search_classify:
                 intent.setClass(getActivity(), SearchActivity.class);
                 startActivity(intent);
@@ -98,19 +111,37 @@ public class ClassificationFragment extends Fragment implements View.OnClickList
         }
     }
 
-//    获取数据
-    public void getData(){
+    //    获取数据
+    public void getData() {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_Classify", arg0.result);
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
+//                Log.d("result_Classify", arg0.result);
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
+                sonList = JsonUtils.parseList(obj, Classify.class);
+                if (status.equals("1")) {
+//                    假如成功则分别添加到list中
+                    mList.addAll(sonList);
+                    rightList.addAll(sonList.get(0).getContent());
+                } else {
+                    AppUtils.toastText(getActivity(), message);
+                }
+                rightAdapter.notifyDataSetChanged();
+                leftAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
-        }.datePost(DefineUtil.CATEGORY,getActivity());
+        }.datePost(DefineUtil.CATEGORY, getActivity());
     }
 
 

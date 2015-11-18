@@ -89,12 +89,7 @@
                 style="@style/ll_match_wrap_content_ver"
                 android:background="@color/white">
 
-                <RelativeLayout
-                    style="@style/rl_match_wrap_content"
-                    android:gravity="center_vertical"
-                    android:paddingBottom="@dimen/px_10"
-                    android:paddingLeft="@dimen/px_10"
-                    android:paddingTop="@dimen/px_10">
+                <RelativeLayout style="@style/rl_match_wrap_content_padltb">
 
                     <TextView
                         style="@style/grayTextView_333333"
@@ -107,20 +102,11 @@
 
                 <View style="@style/line_1" />
 
-                <LinearLayout
-                    style="@style/ll_match_wrap_content_hor"
-                    android:background="@color/white"
-                    android:paddingBottom="@dimen/px_10"
-                    android:paddingTop="@dimen/px_10"
-                    android:weightSum="3">
+                <LinearLayout style="@style/ll_match_wrap_content_horWe3_mine_fragment">
 
                     <LinearLayout
                         android:id="@+id/ll_all_order_mine_fragment"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        style="@style/ll_match_wrap_content_horWe1_mine_fragment">
 
                         <RelativeLayout
                             android:id="@+id/rl_all_order_mine_fragment"
@@ -134,27 +120,15 @@
                                 android:src="@drawable/qubudd" />
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_alignParentRight="true"
-                                android:background="@drawable/red_round"
-                                android:gravity="center"
-                                android:paddingLeft="@dimen/px_5"
-                                android:paddingRight="@dimen/px_5"
-                                android:text="2"
-                                android:textColor="@color/white"
-                                android:textSize="8sp" />
+                                android:id="@+id/tv_all_order_point"
+                                style="@style/red_point_mine_fragment"
+                                android:text="2" />
                         </RelativeLayout>
 
                         <TextView
                             android:id="@+id/tv_all_order_mine_fragment"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:text="@string/mine_fragment_all_order"
-                            android:textSize="12sp" />
+                            style="@style/orderDetail_TextView_666666_12"
+                            android:text="@string/mine_fragment_all_order" />
 
 
                     </LinearLayout>
@@ -162,11 +136,7 @@
 
                     <LinearLayout
                         android:id="@+id/ll_to_pay_mine_fragment"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        style="@style/ll_match_wrap_content_horWe1_mine_fragment">
 
                         <RelativeLayout
                             android:id="@+id/rl_daifukuan_mine_fragment"
@@ -180,38 +150,22 @@
                                 android:src="@drawable/daifukuan" />
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_alignParentRight="true"
-                                android:background="@drawable/red_round"
-                                android:gravity="center"
-                                android:paddingLeft="@dimen/px_5"
-                                android:paddingRight="@dimen/px_5"
-                                android:text="2"
-                                android:textColor="@color/white"
-                                android:textSize="8sp" />
+                                android:id="@+id/tv_daifukuan_point"
+                                style="@style/red_point_mine_fragment"
+                                android:text="2" />
                         </RelativeLayout>
 
                         <TextView
                             android:id="@+id/tv_daifukuan_mine_fragment"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:text="@string/mine_fragment_will_pay"
-                            android:textSize="12sp" />
+                            style="@style/orderDetail_TextView_666666_12"
+                            android:text="@string/mine_fragment_will_pay" />
 
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/ll_to_receive_mine_fragment"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        style="@style/ll_match_wrap_content_horWe1_mine_fragment">
 
                         <RelativeLayout
                             android:id="@+id/rl_daishouhuo_mine_fragment"
@@ -225,27 +179,15 @@
                                 android:src="@drawable/shouhuo" />
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_alignParentRight="true"
-                                android:background="@drawable/red_round"
-                                android:gravity="center"
-                                android:paddingLeft="@dimen/px_5"
-                                android:paddingRight="@dimen/px_5"
-                                android:text="2"
-                                android:textColor="@color/white"
-                                android:textSize="8sp" />
+                                android:id="@+id/tv_daishouhuo_point"
+                                style="@style/red_point_mine_fragment"
+                                android:text="2" />
                         </RelativeLayout>
 
                         <TextView
                             android:id="@+id/tv_daishouhuo_mine_fragment"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:text="成功订单"
-                            android:textSize="12sp" />
+                            style="@style/orderDetail_TextView_666666_12"
+                            android:text="成功订单" />
 
 
                     </LinearLayout>
@@ -261,12 +203,7 @@
 
                 <View style="@style/line_1" />
 
-                <RelativeLayout
-                    style="@style/rl_match_wrap_content"
-                    android:gravity="center_vertical"
-                    android:paddingBottom="@dimen/px_10"
-                    android:paddingLeft="@dimen/px_10"
-                    android:paddingTop="@dimen/px_10">
+                <RelativeLayout style="@style/rl_match_wrap_content_padltb">
 
                     <TextView
                         style="@style/grayTextView_333333"
@@ -279,21 +216,12 @@
 
                 <View style="@style/line_1" />
 
-                <LinearLayout
-                    style="@style/ll_match_wrap_content_hor"
-                    android:background="@color/white"
-                    android:paddingBottom="@dimen/px_10"
-                    android:paddingTop="@dimen/px_10"
-                    android:weightSum="3">
+                <LinearLayout style="@style/ll_match_wrap_content_horWe3_mine_fragment">
 
 
                     <LinearLayout
                         android:id="@+id/ll_all_guadan_mine_fragment"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        style="@style/ll_match_wrap_content_horWe1_mine_fragment">
 
                         <RelativeLayout
                             android:id="@+id/rl_all_guadan_mine_fragment"
@@ -307,38 +235,22 @@
                                 android:src="@drawable/qubuguadan" />
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_alignParentRight="true"
-                                android:background="@drawable/red_round"
-                                android:gravity="center"
-                                android:paddingLeft="@dimen/px_5"
-                                android:paddingRight="@dimen/px_5"
-                                android:text="2"
-                                android:textColor="@color/white"
-                                android:textSize="8sp" />
+                                android:id="@+id/tv_all_guadan_point"
+                                style="@style/red_point_mine_fragment"
+                                android:text="2" />
                         </RelativeLayout>
 
                         <TextView
                             android:id="@+id/tv_all_guadan_mine_fragment"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:text="@string/mine_fragment__all_guadan"
-                            android:textSize="12sp" />
+                            style="@style/orderDetail_TextView_666666_12"
+                            android:text="@string/mine_fragment__all_guadan" />
 
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/ll_jiaoyizhong_mine_fragment"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        style="@style/ll_match_wrap_content_horWe1_mine_fragment">
 
                         <RelativeLayout
                             android:layout_width="@dimen/px_40"
@@ -351,37 +263,22 @@
                                 android:src="@drawable/jiaoyizhong" />
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_alignParentRight="true"
-                                android:background="@drawable/red_round"
-                                android:gravity="center"
-                                android:paddingLeft="@dimen/px_5"
-                                android:paddingRight="@dimen/px_5"
-                                android:text="2"
-                                android:textColor="@color/white"
-                                android:textSize="8sp" />
+                                android:id="@+id/tv_jiaoyizhong_point"
+                                style="@style/red_point_mine_fragment"
+                                android:text="2" />
                         </RelativeLayout>
 
                         <TextView
                             android:id="@+id/tv_jiaoyizhong_mine_fragment"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:text="交易中"
-                            android:textSize="12sp" />
+                            style="@style/orderDetail_TextView_666666_12"
+                            android:text="交易中" />
 
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/ll_jiaoyichenggong_mine_fragment"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        style="@style/ll_match_wrap_content_horWe1_mine_fragment">
 
                         <RelativeLayout
                             android:layout_width="@dimen/px_40"
@@ -394,27 +291,15 @@
                                 android:src="@drawable/jiaoyichenggong" />
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_alignParentRight="true"
-                                android:background="@drawable/red_round"
-                                android:gravity="center"
-                                android:paddingLeft="@dimen/px_5"
-                                android:paddingRight="@dimen/px_5"
-                                android:text="2"
-                                android:textColor="@color/white"
-                                android:textSize="8sp" />
+                                android:id="@+id/tv_jiaoyichenggong_point"
+                                style="@style/red_point_mine_fragment"
+                                android:text="2" />
                         </RelativeLayout>
 
                         <TextView
                             android:id="@+id/tv_jiaoyichenggong_mine_fragment"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:text="交易成功"
-                            android:textSize="12sp" />
+                            style="@style/orderDetail_TextView_666666_12"
+                            android:text="交易成功" />
 
 
                     </LinearLayout>
@@ -430,12 +315,7 @@
 
                 <View style="@style/line_1" />
 
-                <RelativeLayout
-                    style="@style/rl_match_wrap_content"
-                    android:gravity="center_vertical"
-                    android:paddingBottom="@dimen/px_10"
-                    android:paddingLeft="@dimen/px_10"
-                    android:paddingTop="@dimen/px_10">
+                <RelativeLayout style="@style/rl_match_wrap_content_padltb">
 
                     <TextView
                         style="@style/grayTextView_333333"
@@ -448,20 +328,11 @@
 
                 <View style="@style/line_1" />
 
-                <LinearLayout
-                    style="@style/ll_match_wrap_content_hor"
-                    android:background="@color/white"
-                    android:paddingBottom="@dimen/px_10"
-                    android:paddingTop="@dimen/px_10"
-                    android:weightSum="3">
+                <LinearLayout style="@style/ll_match_wrap_content_horWe3_mine_fragment">
 
                     <LinearLayout
                         android:id="@+id/ll_my_cangdan_mine_fragment"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        style="@style/ll_match_wrap_content_horWe1_mine_fragment">
 
                         <RelativeLayout
                             android:id="@+id/rl_cangdan_mine_fragment"
@@ -475,36 +346,20 @@
                                 android:src="@drawable/wodecangdan" />
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_alignParentRight="true"
-                                android:background="@drawable/red_round"
-                                android:gravity="center"
-                                android:paddingLeft="@dimen/px_5"
-                                android:paddingRight="@dimen/px_5"
-                                android:text="2"
-                                android:textColor="@color/white"
-                                android:textSize="8sp" />
+                                android:id="@+id/tv_cangdan_point"
+                                style="@style/red_point_mine_fragment"
+                                android:text="2" />
                         </RelativeLayout>
 
                         <TextView
                             android:id="@+id/tv_cangdan_mine_fragment"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:text="@string/mine_fragment_my_cang_dan"
-                            android:textSize="12sp" />
+                            style="@style/orderDetail_TextView_666666_12"
+                            android:text="@string/mine_fragment_my_cang_dan" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/ll_pingtaicangdan_mine_fragment"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        style="@style/ll_match_wrap_content_horWe1_mine_fragment">
 
                         <RelativeLayout
                             android:id="@+id/rl_pingtaicangdan_mine_fragment"
@@ -518,36 +373,20 @@
                                 android:src="@drawable/pingtaicangdan" />
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_alignParentRight="true"
-                                android:background="@drawable/red_round"
-                                android:gravity="center"
-                                android:paddingLeft="@dimen/px_5"
-                                android:paddingRight="@dimen/px_5"
-                                android:text="2"
-                                android:textColor="@color/white"
-                                android:textSize="8sp" />
+                                android:id="@+id/tv_pingtaicangdan_point"
+                                style="@style/red_point_mine_fragment"
+                                android:text="2" />
                         </RelativeLayout>
 
                         <TextView
                             android:id="@+id/tv_pingtaicangdan_mine_fragment"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:text="@string/mine_fagment_pingtaicangdan"
-                            android:textSize="12sp" />
+                            style="@style/orderDetail_TextView_666666_12"
+                            android:text="@string/mine_fagment_pingtaicangdan" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/ll_tihuo_mine_fragment"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        style="@style/ll_match_wrap_content_horWe1_mine_fragment">
 
                         <RelativeLayout
                             android:id="@+id/rl_tihuo_mine_fragment"
@@ -561,27 +400,15 @@
                                 android:src="@drawable/tihuodan" />
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_alignParentRight="true"
-                                android:background="@drawable/red_round"
-                                android:gravity="center"
-                                android:paddingLeft="@dimen/px_5"
-                                android:paddingRight="@dimen/px_5"
-                                android:text="2"
-                                android:textColor="@color/white"
-                                android:textSize="8sp" />
+                                android:id="@+id/tv_tihuo_point"
+                                style="@style/red_point_mine_fragment"
+                                android:text="2" />
                         </RelativeLayout>
 
                         <TextView
                             android:id="@+id/tv_tihuo_mine_fragment"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:text="@string/mine_fragment_tihuo"
-                            android:textSize="12sp" />
+                            style="@style/orderDetail_TextView_666666_12"
+                            android:text="@string/mine_fragment_tihuo" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

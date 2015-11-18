@@ -10,6 +10,15 @@ public class HomePage {
     private String goodType;//等级
     private String productSellNum;//重量
     private String productMoney;//价格
+    private boolean isAppoint;//是否是指定
+
+    public boolean isAppoint() {
+        return isAppoint;
+    }
+
+    public void setAppoint(boolean isAppoint) {
+        this.isAppoint = isAppoint;
+    }
 
     public String getProductId() {
         return productId;
@@ -57,5 +66,18 @@ public class HomePage {
 
     public void setProductMoney(String productMoney) {
         this.productMoney = productMoney;
+    }
+
+    @Override
+    public String toString() {
+        return "HomePage{" +
+                "productId='" + productId + '\'' +
+                ", productName='" + productName + '\'' +
+                ", goodPlace='" + goodPlace + '\'' +
+                ", goodType='" + goodType + '\'' +
+                ", productSellNum='" + productSellNum + '\'' +
+                ", productMoney='" + productMoney + '\'' +
+                ", isAppoint=" + isAppoint +
+                '}';
     }
 }

@@ -322,7 +322,15 @@
         <item name="android:paddingTop">@dimen/px_10</item>
         <item name="android:paddingBottom">@dimen/px_10</item>
     </style>
-
+    <!--黑色666666的textview_12sp_-->
+    <style name="orderDetail_TextView_666666_12" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/textcolor_666666</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
     <!--订单详情-->
     <style name="orderDetail_ll_weight">
         <item name="android:layout_width">match_parent</item>
@@ -335,5 +343,60 @@
         <item name="android:weightSum">3</item>
     </style>
 
+
+    <!-- 自定义Dialog -->
+    <style name="Custom_Progress" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!--我的界面的红色小点-->
+    <style name="red_point_mine_fragment" parent="android:Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:background">@drawable/red_round</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">@dimen/px_5</item>
+        <item name="android:paddingRight">@dimen/px_5</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">8sp</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <!--我的界面的weightsum=3的linearlayout-->
+    <style name="ll_match_wrap_content_horWe3_mine_fragment">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:paddingTop">@dimen/px_10</item>
+        <item name="android:paddingBottom">@dimen/px_10</item>
+        <item name="android:weightSum">3</item>
+    </style>
+
+    <!--我的界面RelativeLayout-->
+    <style name="rl_match_wrap_content_padltb">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingBottom">@dimen/px_10</item>
+        <item name="android:paddingLeft">@dimen/px_10</item>
+        <item name="android:paddingTop">@dimen/px_10</item>
+    </style>
+    <!--我的界面的weight=1的linearlayout-->
+    <style name="ll_match_wrap_content_horWe1_mine_fragment">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+    </style>
 </resources>
 

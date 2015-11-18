@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.R;
+import com.aglook.comapp.bean.Classify;
 
 import java.util.List;
 
@@ -17,22 +18,22 @@ import java.util.List;
  * Created by aglook on 2015/10/26.
  */
 public class ClassificationLeftAdapter extends BaseAdapter {
-    private List<String> list;
+    private List<Classify> list;
     private Context context;
     private int imageArray[] = {R.drawable.liangshi, R.drawable.siliao, R.drawable.tongxun,
             R.drawable.youlei, R.drawable.youliao};
-    private String nameArray[] = {"粮食", "饲料", "通讯", "油类", "油料"};
+//    private String nameArray[] = {"粮食", "饲料", "通讯", "油类", "油料"};
     private int position;
 
-    public ClassificationLeftAdapter(List<String> list, Context context) {
+    public ClassificationLeftAdapter(List<Classify> list, Context context) {
         this.list = list;
         this.context = context;
     }
 
     @Override
     public int getCount() {
-//        return list!=null?list.size():0;
-        return 5;
+        return list!=null?list.size():0;
+//        return 5;
     }
 
     @Override
@@ -62,7 +63,10 @@ public class ClassificationLeftAdapter extends BaseAdapter {
             holder.ll_classify_listview.setBackgroundColor(context.getResources().getColor(R.color.gray_eeeeee));
             holder.tv_classify_lisview.setTextColor(context.getResources().getColor(R.color.textcolor_333333));
         }
-        holder.tv_classify_lisview.setText(nameArray[i]);
+
+        Classify classify = list.get(i);
+        holder.tv_classify_lisview.setText(classify.getName());
+//        holder.tv_classify_lisview.setText(nameArray[i]);
         holder.iv_classify_lisview.setImageResource(imageArray[i]);
         return view;
     }

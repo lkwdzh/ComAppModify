@@ -150,7 +150,7 @@ public class BasicInformationActivity extends BaseActivity {
         userPhone = AppUtils.toStringTrim_ET(et_phone_basic_info);
         username = AppUtils.toStringTrim_ET(et_username_basic_info);
         userTName = AppUtils.toStringTrim_ET(et_truename_basic_info);
-        AppUtils.toastText(BasicInformationActivity.this,"11111");
+        AppUtils.toastText(BasicInformationActivity.this,userTName);
         updata();
     }
 }

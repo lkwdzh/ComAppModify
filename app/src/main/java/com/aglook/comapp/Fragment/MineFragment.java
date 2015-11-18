@@ -47,6 +47,15 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private LinearLayout ll_jiaoyizhong_mine_fragment;
     private LinearLayout ll_jiaoyichenggong_mine_fragment;
     private TextView tv_name_mine_fragment;
+    private TextView tv_all_order_point;
+    private TextView tv_daifukuan_point;
+    private TextView tv_daishouhuo_point;
+    private TextView tv_all_guadan_point;
+    private TextView tv_jiaoyizhong_point;
+    private TextView tv_jiaoyichenggong_point;
+    private TextView tv_cangdan_point;
+    private TextView tv_pingtaicangdan_point;
+    private TextView tv_tihuo_point;
 
 
     @Override
@@ -61,7 +70,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     //初始化控件
     public void initView(View view) {
         comAppApplication = (ComAppApplication) getActivity().getApplication();
-        login=comAppApplication.getLogin();
+        login = comAppApplication.getLogin();
         iv_icon_mine_fragment = ((ImageView) view.findViewById(R.id.iv_icon_mine_fragment));
         rl_background_mine_fragment = (RelativeLayout) view.findViewById(R.id.rl_background_mine_fragment);
         ll_all_guadan_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_all_guadan_mine_fragment);
@@ -75,6 +84,18 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         ll_jiaoyizhong_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_jiaoyizhong_mine_fragment);
         ll_jiaoyichenggong_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_jiaoyichenggong_mine_fragment);
         tv_name_mine_fragment = (TextView) view.findViewById(R.id.tv_name_mine_fragment);
+
+
+        //红点
+        tv_all_order_point = (TextView) view.findViewById(R.id.tv_all_order_point);
+        tv_daifukuan_point = (TextView) view.findViewById(R.id.tv_daifukuan_point);
+        tv_daishouhuo_point = (TextView) view.findViewById(R.id.tv_daishouhuo_point);
+        tv_all_guadan_point = (TextView) view.findViewById(R.id.tv_all_guadan_point);
+        tv_jiaoyizhong_point = (TextView) view.findViewById(R.id.tv_jiaoyizhong_point);
+        tv_jiaoyichenggong_point = (TextView) view.findViewById(R.id.tv_jiaoyichenggong_point);
+        tv_cangdan_point = (TextView) view.findViewById(R.id.tv_cangdan_point);
+        tv_pingtaicangdan_point = (TextView) view.findViewById(R.id.tv_pingtaicangdan_point);
+        tv_tihuo_point = (TextView) view.findViewById(R.id.tv_tihuo_point);
     }
 
     //点击事件
@@ -106,6 +127,16 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public void fillData() {
         if (login != null) {
             tv_name_mine_fragment.setText(login.getPshUser().getUsername());
+
+            tv_all_order_point.setVisibility(View.VISIBLE);
+            tv_daifukuan_point.setVisibility(View.VISIBLE);
+            tv_daishouhuo_point.setVisibility(View.VISIBLE);
+            tv_all_guadan_point.setVisibility(View.VISIBLE);
+            tv_jiaoyizhong_point.setVisibility(View.VISIBLE);
+            tv_jiaoyichenggong_point.setVisibility(View.VISIBLE);
+            tv_cangdan_point.setVisibility(View.VISIBLE);
+            tv_pingtaicangdan_point.setVisibility(View.VISIBLE);
+            tv_tihuo_point.setVisibility(View.VISIBLE);
         }
     }
 
@@ -115,55 +146,105 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.rl_background_mine_fragment:
                 //判断是否已经登录，若已登录，则跳转到个人信息界面，若没有，则跳转到登录界面
-                if (comAppApplication.getLogin() == null||"".equals(comAppApplication.getLogin())) {
+                if (login == null || "".equals(login)) {
                     intent.setClass(getActivity(), LoginActivity.class);
                     startActivityForResult(intent, 1);
                 } else {
 //                Log.d("result_login_mine",comAppApplication.getLogin().toString());
                     intent.setClass(getActivity(), PersonInformationActivity.class);
-                    intent.putExtra("login",login);
+                    intent.putExtra("login", login);
                     startActivity(intent);
                 }
                 break;
             case R.id.ll_all_guadan_mine_fragment:
-                intent.setClass(getActivity(), AllGuaDanActivity.class);
-                startActivity(intent);
+                if (login == null || "".equals(login)) {
+                    intent.setClass(getActivity(), LoginActivity.class);
+                    startActivityForResult(intent, 1);
+                } else {
+                    intent.setClass(getActivity(), AllGuaDanActivity.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.ll_jiaoyizhong_mine_fragment:
-                intent.setClass(getActivity(), TradeingActivity.class);
-                startActivity(intent);
+                if (login == null || "".equals(login)) {
+                    intent.setClass(getActivity(), LoginActivity.class);
+                    startActivityForResult(intent, 1);
+                } else {
+                    intent.setClass(getActivity(), TradeingActivity.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.tv_setting_mine_fragment:
-                intent.setClass(getActivity(), SettingActivity.class);
-                startActivity(intent);
+                if (login == null || "".equals(login)) {
+                    intent.setClass(getActivity(), LoginActivity.class);
+                    startActivityForResult(intent, 1);
+                } else {
+                    intent.setClass(getActivity(), SettingActivity.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.ll_all_order_mine_fragment:
-                intent.setClass(getActivity(), AllOrderActivity.class);
-                startActivity(intent);
+                if (login == null || "".equals(login)) {
+                    intent.setClass(getActivity(), LoginActivity.class);
+                    startActivityForResult(intent, 1);
+                } else {
+                    intent.setClass(getActivity(), AllOrderActivity.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.ll_to_pay_mine_fragment:
-                intent.setClass(getActivity(), ToPayActivity.class);
-                startActivity(intent);
+                if (login == null || "".equals(login)) {
+                    intent.setClass(getActivity(), LoginActivity.class);
+                    startActivityForResult(intent, 1);
+                } else {
+                    intent.setClass(getActivity(), ToPayActivity.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.ll_to_receive_mine_fragment:
-                intent.setClass(getActivity(), TransSucceedActivity.class);
-                startActivity(intent);
+                if (login == null || "".equals(login)) {
+                    intent.setClass(getActivity(), LoginActivity.class);
+                    startActivityForResult(intent, 1);
+                } else {
+                    intent.setClass(getActivity(), TransSucceedActivity.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.ll_my_cangdan_mine_fragment:
-                intent.setClass(getActivity(), MyCangDanActivity.class);
-                startActivity(intent);
+                if (login == null || "".equals(login)) {
+                    intent.setClass(getActivity(), LoginActivity.class);
+                    startActivityForResult(intent, 1);
+                } else {
+                    intent.setClass(getActivity(), MyCangDanActivity.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.ll_pingtaicangdan_mine_fragment:
-                intent.setClass(getActivity(), PlatformActivity.class);
-                startActivity(intent);
+                if (login == null || "".equals(login)) {
+                    intent.setClass(getActivity(), LoginActivity.class);
+                    startActivityForResult(intent, 1);
+                } else {
+                    intent.setClass(getActivity(), PlatformActivity.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.ll_tihuo_mine_fragment:
-                intent.setClass(getActivity(), PickUpActivity.class);
-                startActivity(intent);
+                if (login == null || "".equals(login)) {
+                    intent.setClass(getActivity(), LoginActivity.class);
+                    startActivityForResult(intent, 1);
+                } else {
+                    intent.setClass(getActivity(), PickUpActivity.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.ll_jiaoyichenggong_mine_fragment:
-                intent.setClass(getActivity(), TransSucceedActivity.class);
-                startActivity(intent);
+                if (login == null || "".equals(login)) {
+                    intent.setClass(getActivity(), LoginActivity.class);
+                    startActivityForResult(intent, 1);
+                } else {
+                    intent.setClass(getActivity(), TransSucceedActivity.class);
+                    startActivity(intent);
+                }
                 break;
         }
     }

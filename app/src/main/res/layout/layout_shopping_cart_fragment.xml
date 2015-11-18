@@ -95,6 +95,7 @@
             android:id="@+id/lv_shopping_cart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:divider="@null"
             android:layout_above="@+id/rl_bottom_shopping_cart"
             android:background="@color/white"></com.handmark.pulltorefresh.library.PullToRefreshListView>
 
@@ -158,6 +159,7 @@
                         android:layout_margin="@dimen/px_12"
                         android:button="@drawable/ischecked"
                         android:text="全选"
+                        android:visibility="invisible"
                         android:textColor="@color/white"
                         android:textSize="15sp" />
 
@@ -202,9 +204,9 @@
                     android:orientation="horizontal">
 
                     <TextView
-                    style="@style/whiteTextView"
-                    android:text="去结算"
-                    android:textSize="18sp" />
+                        style="@style/whiteTextView"
+                        android:text="去结算"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/tv_shopping_cart_jiesuan"

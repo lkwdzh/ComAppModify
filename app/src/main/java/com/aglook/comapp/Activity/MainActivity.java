@@ -28,7 +28,7 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity implements ShoppingCartFragment.onShoppingCartClick{
 
     private FragmentTabHost mTabHost;
     //是否是第一次启动
@@ -111,6 +111,11 @@ public class MainActivity extends FragmentActivity {
         textView.setText(titleArray[index]);
 
         return view;
+    }
+
+    @Override
+    public void onCartClick(int position) {
+        mTabHost.setCurrentTab(0);
     }
 
     class TabChangeListener implements TabHost.OnTabChangeListener {

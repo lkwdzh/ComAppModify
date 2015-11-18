@@ -10,6 +10,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,9 +30,9 @@ import com.aglook.comapp.url.HomePageUrl;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.aglook.comapp.view.MyGridView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -45,7 +46,6 @@ import java.util.List;
 public class HomePageFragment extends Fragment implements ViewPager.OnPageChangeListener, View.OnClickListener {
     private List<String> list = new ArrayList<>();
     private RecycleHomePageAdapter adapter;
-    private PullToRefreshGridView exlv;
     private ViewPager vp_home_page_head;
     private int imageArray[] = {R.drawable.startup01, R.drawable.startup02, R.drawable.startup03, R.drawable.startup04};
     //    private int imageArray[] = {R.drawable.startup01, R.drawable.startup02, R.drawable.startup03};
@@ -58,10 +58,12 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     private int mCurrentPagePosition = FIRST_ITEM_INDEX;
     private static final int FIRST_ITEM_INDEX = 1;
     private boolean mIsChanged = false;
+    private CustomProgress customProgress;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 1) {
+//                viewpager自动切换
                 vp_home_page_head.setCurrentItem(index % 3);
                 handler.sendEmptyMessageDelayed(1, 2000);
                 index++;
@@ -92,11 +94,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         return view;
     }
 
-//    @Override
-//    public void onResume() {
-//        comAppApplication = (ComAppApplication) getActivity().getApplication();
-//    }
-
+    //轮播图下面的小点
     private void setCurrentDot(int position) {
         position = position - 1;
         if (position < 0 || position > imageArray.length - 1 || mCurrentIndex == position) {
@@ -120,12 +118,8 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
 //        令scrollview显示顶部
         sv_homepage.getRefreshableView().smoothScrollBy(0, 0);
 //        rv_homepage = (RecyclerView) view.findViewById(R.id.rv_homepage);
-        List<String> list2 = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list2.add("大分类" + i);
-        }
 
-
+        customProgress = CustomProgress.show(getActivity(), "加载中···", true);
 //        MyViewPagerAdapter myViewPagerAdapter = new MyViewPagerAdapter(getChildFragmentManager());
 //        myViewPagerAdapter = new MyViewPagerAdapter();
 //        vp_home_page_head.setAdapter(myViewPagerAdapter);
@@ -160,7 +154,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         sv_homepage.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ScrollView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
-                getData();
+//                getData();
             }
         });
     }
@@ -209,24 +203,8 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         }
     }
 
-    //ViewPager的适配器
-//    class MyViewPagerAdapter extends FragmentPagerAdapter{
-//
-//        public MyViewPagerAdapter(FragmentManager fm) {
-//            super(fm);
-//        }
-//
-//        @Override
-//        public Fragment getItem(int position) {
-//            return new HomePageViewPagerFragment().myFragment(position);
-//        }
-//
-//        @Override
-//        public int getCount() {
-//            return 4;
-//        }
-//    }
 
+    //ViewPager自定义适配器
     class MyViewPagerAdapter extends PagerAdapter {
         MyViewPagerAdapter() {
         }
@@ -257,26 +235,56 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
 
     private List<HomePage> mList;
 
+    //    获取商品列表
     public void getData() {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-//                Log.d("result_HomePage", arg0.result);
-                List<HomePage>list=new ArrayList<HomePage>();
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
+                Log.d("result_HomePage", arg0.result);
+//                未指定买家
+                List<HomePage> list = new ArrayList<HomePage>();
+//                指定买家
+                List<HomePage> listAppoint = new ArrayList<HomePage>();
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
-                list = JsonUtils.parseList(obj, HomePage.class);
-                if (status.equals("1")) {
-                    //假如成功
-                    mList.addAll(list);
+                if (obj!=null&&!"".equals(obj)) {
+                    String pointProduct = JsonUtils.getJsonParam(obj, "pointProduct");
+                    String ProductList = JsonUtils.getJsonParam(obj, "ProductList");
+                    list = JsonUtils.parseList(ProductList, HomePage.class);
+                    listAppoint = JsonUtils.parseList(pointProduct, HomePage.class);
+                    if (status.equals("1")) {
+                        //假如成功,给每个实体加上标识，并且将指定的list放在首位
+
+                        //指定买家
+                        if (listAppoint != null && listAppoint.size() != 0) {
+                            for (int i = 0; i < listAppoint.size(); i++) {
+                                listAppoint.get(i).setAppoint(true);
+                            }
+                            mList.addAll(listAppoint);
+                        }
+
+                        //未指定买家
+                        if (list != null && list.size() != 0) {
+                            for (int i = 0; i < list.size(); i++) {
+                                list.get(i).setAppoint(false);
+                            }
+                            mList.addAll(list);
+                        }
+                    }
                 }
                 gridViewAdapter.notifyDataSetChanged();
+                sv_homepage.onRefreshComplete();
             }
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.HOT_LIST, HomePageUrl.postHomePageCategoryUrl(userId), getActivity());
     }

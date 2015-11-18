@@ -5,22 +5,22 @@ package com.aglook.comapp.bean;
  */
 public class GoodsDetail {
     private String productId;//产品id
-    private String productName;//
-    private String productMoney;//
-    private String productListId;//
-    private String productSellNum;//
+    private String productName;//产品名称
+    private String productMoney;//价格
+    private String productListId;//仓单号
+    private String productSellNum;//可用重量
     private String productAppDesc;//
-    private String productAvailable;//
-    private String productLogo;//
-    private String categoryName;//
-    private String innerTime;//
-    private String goodsPlace;//
-    private String goodsType;//
-    private String mark;//
-    private String depotResponsible;//
-    private String responsibleMobile;//
-    private String responsibleEmail;//
-    private String depotAddress;//
+    private String productAvailable;//挂单有效期
+    private String productLogo;//图片
+    private String categoryName;//货物种类
+    private String innerTime;//入库时间
+    private String goodsPlace;//货物产地
+    private String goodsType;//货物类型
+    private String mark;//噱头
+    private String depotResponsible;//仓库负责人
+    private String responsibleMobile;//电话
+    private String responsibleEmail;//邮箱
+    private String depotAddress;//仓库地址
 
     public String getProductId() {
         return productId;

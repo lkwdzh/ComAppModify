@@ -1,7 +1,6 @@
 package com.aglook.comapp.adapter;
 
-import android.content.Context;
-import android.util.Log;
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,15 @@ import android.widget.TextView;
 
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.ShoppingCart;
+import com.aglook.comapp.url.ShoppingCartUrl;
 import com.aglook.comapp.util.AppUtils;
+import com.aglook.comapp.util.DefineUtil;
+import com.aglook.comapp.util.JsonUtils;
+import com.aglook.comapp.util.XBitmap;
+import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
 
 import java.util.List;
 
@@ -20,24 +27,31 @@ import java.util.List;
  * Created by aglook on 2015/11/2.
  */
 public class ShoppingCartAdapter extends BaseAdapter {
-    private Context context;
+    private Activity context;
     private List<ShoppingCart> list;
     private CallBackData callBackData;
     private int num = 0;
     private double total = 0;
+    private String cartId;
+    private String productNum;
+    private CustomProgress customProgress;
 
-    public ShoppingCartAdapter(Context context, List<ShoppingCart> list, CallBackData callBackData) {
+    private String deleteFlag;
+    private boolean isEditting;
+
+    public ShoppingCartAdapter(Activity context, List<ShoppingCart> list, CallBackData callBackData) {
         this.context = context;
         this.list = list;
 //        if (context instanceof CallBackData){
 //            callBackData=(CallBackData)context;
 //        }
         this.callBackData = callBackData;
+
     }
 
     @Override
     public int getCount() {
-        return 15;
+        return list != null ? list.size() : 0;
     }
 
     @Override
@@ -52,7 +66,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
 
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         final ViewHolder holder;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.layout_shoppring_cart_listview, null);
@@ -64,44 +78,69 @@ public class ShoppingCartAdapter extends BaseAdapter {
 
         final ShoppingCart shoppingCart = list.get(position);
 
-        holder.tv_count_shopping_cart_listview.setText(shoppingCart.getNum() + "");
+        holder.tv_count_shopping_cart_listview.setText(shoppingCart.getProductNum() + "");
         holder.cb_shopping_cart_listview.setChecked(shoppingCart.isChecked());
-        holder.tv_price_shopping_cart_listview.setText("￥" + shoppingCart.getPrice());
+        XBitmap.displayImage(holder.iv_shopping_cart_listview, shoppingCart.getProductLogo(), context);
+        holder.tv_price_shopping_cart_listview.setText("￥" + shoppingCart.getProductMoney());
+        holder.tv_name_shopping_cast_listview.setText(shoppingCart.getProductName());
+        //将小计添加到实体类中
+        for (int i = 0; i < list.size(); i++) {
+            list.get(i).setTotal(list.get(i).getProductNum() * list.get(i).getProductMoney());
 
+        }
+        holder.tv_total_shopping_cart_listview.setText(shoppingCart.getTotal() + "");
+
+
+        //假如是是编辑状态，则可以选择，若不是。则不可选择
+        if (isEditting) {
+            holder.cb_shopping_cart_listview.setVisibility(View.VISIBLE);
+        } else {
+            holder.cb_shopping_cart_listview.setVisibility(View.INVISIBLE);
+        }
+
+
+        dataChange();
         //点击增加按钮
         holder.iv_add_shopping_cart_listview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int num2 = Integer.parseInt(AppUtils.toStringTrim_TV(holder.tv_count_shopping_cart_listview));
-                num2++;
-                shoppingCart.setNum(num2);
-                holder.tv_count_shopping_cart_listview.setText(num2 + "");
+//                int numAdd = Integer.parseInt(AppUtils.toStringTrim_TV(holder.tv_count_shopping_cart_listview));
+                int numAdd = list.get(position).getProductNum();
+                //给产品id赋值
+                cartId = list.get(position).getCartId();
+                numAdd++;
+                shoppingCart.setProductNum(numAdd);
+                holder.tv_count_shopping_cart_listview.setText(numAdd + "");
 
-                double total = num2 * shoppingCart.getPrice();
+                double total = numAdd * shoppingCart.getProductMoney();
                 holder.tv_total_shopping_cart_listview.setText(total + "");
                 shoppingCart.setTotal(total);
-
-                dataChange();
+                productNum = numAdd + "";
+                addCart();
             }
         });
+
 
 //        点击减少按钮
         holder.iv_cut_shopping_cart_listview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int num1 = Integer.parseInt(AppUtils.toStringTrim_TV(holder.tv_count_shopping_cart_listview));
-                if (num1 > 0) {
-                    num1--;
+//                int numCut = Integer.parseInt(AppUtils.toStringTrim_TV(holder.tv_count_shopping_cart_listview));
+                int numCut = list.get(position).getProductNum();
+                //给产品id赋值
+                cartId = list.get(position).getCartId();
+                if (numCut > 0) {
+                    numCut--;
                 } else {
-                    num1 = 0;
+                    numCut = 0;
                 }
-                shoppingCart.setNum(num1);
-                holder.tv_count_shopping_cart_listview.setText(num1 + "");
-                double total = num1 * shoppingCart.getPrice();
+                shoppingCart.setProductNum(numCut);
+                holder.tv_count_shopping_cart_listview.setText(numCut + "");
+                double total = numCut * shoppingCart.getProductMoney();
                 holder.tv_total_shopping_cart_listview.setText(total + "");
                 shoppingCart.setTotal(total);
-
-                dataChange();
+                productNum = numCut + "";
+                addCart();
             }
         });
 
@@ -113,25 +152,39 @@ public class ShoppingCartAdapter extends BaseAdapter {
             }
         });
 
-        for (int i = 0; i <list.size() ; i++) {
-            Log.d("isCheck",i+"----"+list.get(i).isChecked());
-        }
         return convertView;
     }
 
+//    //编辑的方法
+//    public void editDetlete(){
+//        int ednum=0;
+//        int edtotal=0;
+//        for (int i = 0; i < list.size(); i++) {
+//            if (list.get(i).isChecked()){
+//                ednum++;
+//            }
+//        }
+//        callBackData.callBack(ednum,edtotal);
+//    }
 
+
+    //记得把datachange与addcart交换
     public void dataChange() {
         num = 0;
         total = 0;
         for (int i = 0; i < list.size(); i++) {
-
-            if (list.get(i).isChecked()) {
-                num += list.get(i).getNum();
-                total += list.get(i).getTotal();
-            }
+//            if (list.get(i).isChecked()) {
+            num += list.get(i).getProductNum();
+            total += list.get(i).getTotal();
+//            }
         }
-        notifyDataSetChanged();
         callBackData.callBack(num, total);
+    }
+
+
+    //定义是否是编辑状态
+    public void isEditting(boolean isEditting) {
+        this.isEditting = isEditting;
     }
 
     class ViewHolder {
@@ -159,4 +212,33 @@ public class ShoppingCartAdapter extends BaseAdapter {
     public interface CallBackData {
         public void callBack(int num, double total);
     }
+
+
+    //编辑 商品
+    public void addCart() {
+        customProgress = CustomProgress.show(context, "", true);
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                if (status.equals("1")) {
+                    dataChange();
+                } else {
+                    AppUtils.toastText(context, message);
+                }
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
+            }
+        }.datePost(DefineUtil.EDIT_CART, ShoppingCartUrl.postDeleteUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartId, productNum, "0"), context);
+    }
+
 }

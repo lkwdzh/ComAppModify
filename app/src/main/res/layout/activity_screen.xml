@@ -16,14 +16,14 @@
         android:weightSum="3">
 
         <TextView
-            android:id="@+id/tv_sale_screen"
+            android:id="@+id/tv_all_screen"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textColor="@color/textcolor_666666"
-            android:textSize="15sp"
             android:gravity="center"
-            android:text="销量" />
+            android:text="综合"
+            android:textColor="@color/textcolor_666666"
+            android:textSize="15sp" />
 
         <View
             style="@style/line_2"
@@ -40,17 +40,25 @@
             <TextView
                 android:id="@+id/tv_price_screen"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textColor="@color/textcolor_666666"
-                android:layout_marginRight="@dimen/px_5"
-                android:textSize="15sp"
-                android:gravity="center"
-                android:text="价格" />
-            <ImageView
-                android:id="@+id/iv_price_screen"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/jiage"/>
+                android:text="价格"
+                android:layout_marginRight="@dimen/px_5"
+                android:textColor="@color/textcolor_666666"
+                android:textSize="15sp" />
+
+            <CheckBox
+                android:id="@+id/cb_price_screen"
+                android:layout_width="@dimen/px_10"
+                android:layout_height="@dimen/px_10"
+                android:layout_marginRight="@dimen/px_5"
+                android:background="@drawable/cb_screen"
+                android:button="@null" />
+
+            <!--<ImageView-->
+            <!--android:id="@+id/iv_price_screen"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/jiage" />-->
         </LinearLayout>
 
         <View
@@ -59,22 +67,28 @@
             android:layout_marginTop="@dimen/px_15" />
 
         <LinearLayout
-            android:id="@+id/ll_screen_screen"
+            android:id="@+id/ll_sale_screen"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center">
 
             <TextView
-                android:id="@+id/tv_screen_screen"
+                android:id="@+id/tv_sale_screen"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:drawablePadding="@dimen/px_5"
+                android:layout_height="wrap_content"
+                android:text="销量"
+                android:layout_marginRight="@dimen/px_5"
                 android:textColor="@color/textcolor_666666"
-                android:textSize="15sp"
-                android:drawableRight="@drawable/shaixuan"
-                android:gravity="center"
-                android:text="筛选" />
+                android:textSize="15sp" />
+
+            <CheckBox
+                android:id="@+id/cb_sale_screen"
+                android:layout_width="@dimen/px_10"
+                android:layout_height="@dimen/px_10"
+                android:layout_marginRight="@dimen/px_5"
+                android:background="@drawable/cb_screen"
+                android:button="@null" />
         </LinearLayout>
 
     </LinearLayout>

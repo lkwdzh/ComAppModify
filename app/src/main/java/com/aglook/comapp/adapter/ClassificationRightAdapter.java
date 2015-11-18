@@ -9,20 +9,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aglook.comapp.R;
+import com.aglook.comapp.bean.ClassifyGV;
+
+import java.util.List;
 
 /**
  * Created by aglook on 2015/11/2.
  */
 public class ClassificationRightAdapter extends BaseAdapter {
     private Context context;
+    private List<ClassifyGV> list;
 
-    public ClassificationRightAdapter(Context context) {
+    public ClassificationRightAdapter(Context context, List<ClassifyGV> list) {
         this.context = context;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return 20;
+        return list!=null?list.size():0;
     }
 
     @Override
@@ -38,24 +43,26 @@ public class ClassificationRightAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        if (convertView==null){
-            convertView= LayoutInflater.from(context).inflate(R.layout.layout_classify_gridview,null);
-            holder=new ViewHolder(convertView);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.layout_classify_gridview, null);
+            holder = new ViewHolder(convertView);
             convertView.setTag(holder);
-        }else {
-            holder= (ViewHolder) convertView.getTag();
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
-
+        ClassifyGV classifyGV = list.get(position);
+        holder.tv_classify_gridvew.setText(classifyGV.getCategoryName());
 
         return convertView;
     }
-    class ViewHolder{
+
+    class ViewHolder {
         TextView tv_classify_gridvew;
         ImageView iv_classify_gridview;
 
         ViewHolder(View view) {
-            iv_classify_gridview=(ImageView)view.findViewById(R.id.iv_classify_gridview);
-            tv_classify_gridvew=(TextView)view.findViewById(R.id.tv_classify_gridvew);
+            iv_classify_gridview = (ImageView) view.findViewById(R.id.iv_classify_gridview);
+            tv_classify_gridvew = (TextView) view.findViewById(R.id.tv_classify_gridvew);
         }
     }
 }
