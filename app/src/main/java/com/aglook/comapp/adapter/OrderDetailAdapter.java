@@ -9,20 +9,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aglook.comapp.R;
+import com.aglook.comapp.bean.AllOrderDataList;
+import com.aglook.comapp.util.XBitmap;
+
+import java.util.List;
 
 /**
  * Created by aglook on 2015/11/10.
  */
 public class OrderDetailAdapter extends BaseAdapter {
     private Context context;
+    private List<AllOrderDataList>list;
 
-    public OrderDetailAdapter(Context context) {
+    public OrderDetailAdapter(Context context, List<AllOrderDataList> list) {
         this.context = context;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return list!=null?list.size():0;
     }
 
     @Override
@@ -46,13 +52,18 @@ public class OrderDetailAdapter extends BaseAdapter {
             holder= (ViewHolder) convertView.getTag();
         }
 
+        AllOrderDataList dataList = list.get(position);
+        XBitmap.displayImage(holder.iv_lv_lv,dataList.getProductLogo(),context);
+        holder.tv_name_lv_lv.setText(dataList.getProductName());
+        holder.tv_price_lv_lv.setText(dataList.getProductMoney()+"");
+//        holder.tv_num_lv_lv.setText(dataList.getProductNum());
         return convertView;
     }
 
-    @Override
-    public boolean isEnabled(int position) {
-        return false;
-    }
+//    @Override
+//    public boolean isEnabled(int position) {
+//        return false;
+//    }
 
     class ViewHolder{
         ImageView iv_lv_lv;

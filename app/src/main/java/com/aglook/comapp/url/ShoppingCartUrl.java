@@ -18,13 +18,13 @@ public class ShoppingCartUrl {
      * @param productNum
      * @return
      */
-    public static RequestParams postAddCartUrl(String userId, String token, String productId, String productNum) {
+    public static RequestParams postAddCartUrl(String userId, String token, String productId, String productNum,String pointUser) {
         params = new RequestParams();
         params.addBodyParameter("userId", userId);
         params.addBodyParameter("token", token);
         params.addBodyParameter("productId", productId);
         params.addBodyParameter("productNum", productNum);
-
+        params.addBodyParameter("pointUser", pointUser);
         return params;
     }
 

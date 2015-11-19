@@ -2,6 +2,7 @@ package com.aglook.comapp.Activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -118,6 +119,7 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                Log.d("result_login",arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String str = JsonUtils.getJsonParam(arg0.result, "obj");

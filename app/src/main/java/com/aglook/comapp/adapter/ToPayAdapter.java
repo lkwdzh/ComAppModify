@@ -4,20 +4,31 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.aglook.comapp.Activity.OrderDetailActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.AllOrder;
 import com.aglook.comapp.bean.AllOrderDataList;
+import com.aglook.comapp.url.AllOrderUrl;
 import com.aglook.comapp.util.AppUtils;
+import com.aglook.comapp.util.DefineUtil;
+import com.aglook.comapp.util.JsonUtils;
+import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.aglook.comapp.view.MyListView;
+import com.aglook.comapp.view.Utility;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,6 +38,9 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
     private Activity activity;
     private List<AllOrder> list;
     private List<AllOrderDataList> sonList;
+    private String orderId;
+    private int index;
+    private CustomProgress customProgress;
 
     public ToPayAdapter(Activity activity, List<AllOrder> list) {
         this.activity = activity;
@@ -48,12 +62,15 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
         return 0;
     }
 
+    private ViewHolder holder;
+
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+    public View getView(final int position, View convertView, ViewGroup parent) {
+
         if (convertView == null) {
             convertView = LayoutInflater.from(activity).inflate(R.layout.layout_all_order_lv, null);
             holder = new ViewHolder(convertView);
+            holder.tv_delete_all_order_lv.setTag(position);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -64,22 +81,20 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
         holder.tv_delete_all_order_lv.setVisibility(View.VISIBLE);
         holder.tv_delete_all_order_lv.setText("取消");
         holder.tv_click_all_order_lv.setOnClickListener(this);
-        holder.lv_all_order_lv.setAdapter(holder.adapter);
+        holder.tv_delete_all_order_lv.setOnClickListener(this);
         holder.lv_all_order_lv.setFocusable(false);
-//        holder.lv_all_order_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(activity, OrderDetailActivity.class);
-//                activity.startActivity(intent);
-//            }
-//        });
-
+        //设置标签
+//        for (int i = 0; i < list.size(); i++) {
+//            holder.tv_delete_all_order_lv.setTag(i);
+//        }
 
         AllOrder order = list.get(position);
-        List<AllOrderDataList> newList = new ArrayList<>();
-        newList = list.get(position).getOrderDateList();
-        sonList=new ArrayList<>();
-        sonList.addAll(newList);
+
+        orderId = order.getOrderId();
+        sonList = list.get(position).getOrderDateList();
+        holder.adapter = new AllOrderLVAdapter(activity, sonList);
+        holder.lv_all_order_lv.setAdapter(holder.adapter);
+        Utility.setListViewHeightBasedOnChildren(holder.lv_all_order_lv);
         holder.adapter.notifyDataSetChanged();
         holder.tv_order_num_all_order_lv.setText(order.getOrderId());
         if (order.getOrderStatus().equals("notpay")) {
@@ -89,6 +104,26 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
             holder.tv_success_all_order_lv.setText("交易成功");
             holder.tv_success_all_order_lv.setTextColor(activity.getResources().getColor(R.color.red_c91014));
         }
+
+        holder.lv_all_order_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position1, long id) {
+                Intent intent = new Intent(activity, OrderDetailActivity.class);
+                intent.putExtra("AllOrder", list.get(position));
+                activity.startActivity(intent);
+            }
+        });
+
+        holder.tv_order_num_all_order_lv.setText(order.getOrderId());
+        if (order.getOrderStatus().equals("notpay")) {
+            holder.tv_success_all_order_lv.setText("待支付");
+            holder.tv_success_all_order_lv.setTextColor(activity.getResources().getColor(R.color.green_356600));
+        } else {
+            holder.tv_success_all_order_lv.setText("交易成功");
+            holder.tv_success_all_order_lv.setTextColor(activity.getResources().getColor(R.color.red_c91014));
+        }
+        holder.tv_money_all_order_lv.setText(order.getMoney() + "");
+        holder.tv_order_total_all_order_lv.setText(order.getOrderDateList().size() + "");
         return convertView;
     }
 
@@ -96,13 +131,22 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_click_all_order_lv:
-                AppUtils.toastText(activity,"去支付");
+                AppUtils.toastText(activity, "去支付");
 //                showDailog();
+                break;
+            case R.id.tv_delete_all_order_lv:
+                 index = (int) v.getTag();
+                AppUtils.toastText(activity,index+"");
+                orderId=list.get(index).getOrderId();
+                showDailog();
                 break;
             case R.id.btn_cancel_delete:
                 dialog.dismiss();
                 break;
             case R.id.btn_confirm_delete:
+                //取消订单
+
+                cancelOrder();
                 dialog.dismiss();
                 break;
         }
@@ -128,7 +172,7 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
             tv_cost_all_order_lv = (TextView) view.findViewById(R.id.tv_cost_all_order_lv);
             tv_click_all_order_lv = (TextView) view.findViewById(R.id.tv_click_all_order_lv);
             tv_delete_all_order_lv = (TextView) view.findViewById(R.id.tv_delete_all_order_lv);
-            adapter = new AllOrderLVAdapter(activity,sonList);
+            adapter = new AllOrderLVAdapter(activity, sonList);
         }
     }
 
@@ -141,7 +185,7 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
         btn_cancel_delete = (Button) view.findViewById(R.id.btn_cancel_delete);
         btn_confirm_delete = (Button) view.findViewById(R.id.btn_confirm_delete);
         tv_delete_order = (TextView) view.findViewById(R.id.tv_delete_order);
-        tv_delete_order.setText("确认取消此仓单?");
+        tv_delete_order.setText("确认取消此定单?");
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.create();
         builder.setView(view);
@@ -149,8 +193,41 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
         dialog = builder.show();
         btn_cancel_delete.setOnClickListener(this);
         btn_confirm_delete.setOnClickListener(this);
+
     }
 
     private Button btn_cancel_delete;
     private Button btn_confirm_delete;
+
+
+    public void cancelOrder() {
+        customProgress=CustomProgress.show(activity,"",true);
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress!=null&&customProgress.isShowing()){
+                    customProgress.dismiss();
+                }
+                Log.d("result_cancel", arg0.result);
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                if (status.equals("1")) {
+                    //若成功，则刷新列表
+                    list.remove(index);
+                    notifyDataSetChanged();
+                } else {
+                    AppUtils.toastText(activity, message);
+                }
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+                if (customProgress!=null&&customProgress.isShowing()){
+                    customProgress.dismiss();
+                }
+            }
+        }.datePost(DefineUtil.CANCEL_ORDER, AllOrderUrl.postCancelOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, orderId), activity);
+    }
+
+
 }

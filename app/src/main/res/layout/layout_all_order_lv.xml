@@ -51,7 +51,12 @@
         android:layout_height="wrap_content"
         android:focusable="false"
         android:divider="@null"></com.aglook.comapp.view.MyListView>
-
+<!--<ListView-->
+    <!--android:id="@+id/lv_all_order_lv"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:focusable="false"-->
+    <!--android:divider="@null"></ListView>-->
     <View style="@style/line_1" />
 
 

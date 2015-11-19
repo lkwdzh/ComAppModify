@@ -56,6 +56,7 @@ public class AllOrderActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(AllOrderActivity.this, OrderDetailActivity.class);
+               intent.putExtra("AllOrder",  mList.get(position-1));
                 startActivity(intent);
             }
         });
@@ -85,6 +86,9 @@ public class AllOrderActivity extends BaseActivity {
                     AppUtils.toastText(AllOrderActivity.this,message);
                 }
                 adapter.notifyDataSetChanged();
+                for (int i = 0; i <mList.size() ; i++) {
+                    Log.d("result_list",mList.get(i).toString());
+                }
             }
 
             @Override

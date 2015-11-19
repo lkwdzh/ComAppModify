@@ -353,7 +353,6 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
 
     //    获取购物车列表
     public void getCartListData() {
-
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {

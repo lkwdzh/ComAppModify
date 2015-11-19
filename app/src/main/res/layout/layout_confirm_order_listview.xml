@@ -88,7 +88,7 @@
                         <TextView
                             android:id="@+id/tv_cost_confirm_order_lv"
                             style="@style/grayTextView_666666_13"
-                            android:text="20" />
+                            android:text="0" />
                     </LinearLayout>
                 </RelativeLayout>
             </RelativeLayout>

@@ -53,6 +53,7 @@ public class AllOrderLVAdapter extends BaseAdapter {
         }
 
         AllOrderDataList dataList = list.get(position);
+//        Log.d("result_list_adad",position+"_______+"+list.size()+"_____"+list);
         XBitmap.displayImage(holder.iv_lv_lv, dataList.getProductLogo(), context);
         holder.tv_name_lv_lv.setText(dataList.getProductName());
         holder.tv_price_lv_lv.setText(dataList.getProductMoney()+"");

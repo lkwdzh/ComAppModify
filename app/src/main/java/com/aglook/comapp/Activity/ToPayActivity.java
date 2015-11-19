@@ -32,7 +32,7 @@ public class ToPayActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_to_pay);
-        setTitleBar("代付款");
+        setTitleBar("待付款");
         ExitApplication.getInstance().addActivity(this);
         init();
         click();
@@ -50,6 +50,7 @@ public class ToPayActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ToPayActivity.this, OrderDetailActivity.class);
+                intent.putExtra("AllOrder",mList.get(position-1));
                 startActivity(intent);
             }
         });
@@ -86,4 +87,8 @@ public class ToPayActivity extends BaseActivity {
             }
         }.datePost(DefineUtil.ORDER_LIST, AllOrderUrl.postAllOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, orderStatus), ToPayActivity.this);
     }
+
+
+
+
 }

@@ -1,11 +1,12 @@
 package com.aglook.comapp.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by aglook on 2015/11/18.
  */
-public class AllOrder {
+public class AllOrder implements Serializable {
     private String  orderId;//订单号
     private String orderTime;//单独时间
     private double money;//钱

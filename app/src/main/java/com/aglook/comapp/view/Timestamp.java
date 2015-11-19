@@ -13,16 +13,16 @@ public class Timestamp {
 	
 	
 
-	/**
-	 * 获取系统时间 ，格式为：yyyyMMddHHmmss
-	 * 
-	 * @return
-	 */
-	public static String getCurrentDate() {
-		Date date = new Date();
-		sf = new SimpleDateFormat("yyyyMMddHHmmss");
-		return sf.format(date);
-	}
+//	/**
+//	 * 获取系统时间 ，格式为：yyyyMMddHHmmss
+//	 *
+//	 * @return
+//	 */
+//	public static String getCurrentDate() {
+//		Date date = new Date();
+//		sf = new SimpleDateFormat("yyyyMMddHHmmss");
+//		return sf.format(date);
+//	}
 
 	/**
 	 * 时间戳转换成日期yyyy-MM-dd
@@ -40,53 +40,53 @@ public class Timestamp {
 		return times;
 	}
 	
-	/**
-	 * 时间戳转换成日期yyyy.MM.dd
-	 * 
-	 * @param time
-	 *            时间戳
-	 * @return
-	 */
-	public static String getDateToDate(String time) {
-		long lcc = Long.valueOf(time);
-
-		sf = new SimpleDateFormat("yyyy.MM.dd");
-
-		String times = sf.format(new Date(lcc));
-		return times;
-	}
+//	/**
+//	 * 时间戳转换成日期yyyy.MM.dd
+//	 *
+//	 * @param time
+//	 *            时间戳
+//	 * @return
+//	 */
+//	public static String getDateToDate(String time) {
+//		long lcc = Long.valueOf(time);
+//
+//		sf = new SimpleDateFormat("yyyy.MM.dd");
+//
+//		String times = sf.format(new Date(lcc));
+//		return times;
+//	}
+//
 	
-	
-	/**
-	 * 时间戳转换成日期MM.dd
-	 * 
-	 * @param time
-	 *            时间戳
-	 * @return
-	 */
-	public static String getDateToMD(String time) {
-		long lcc = Long.parseLong(time);
-
-		sf = new SimpleDateFormat("MM.dd");
-
-		String times = sf.format(new Date(lcc));
-		return times;
-	}
-	/**
-	 * 时间戳转换成日期MM-dd
-	 * 
-	 * @param time
-	 *            时间戳
-	 * @return
-	 */
-	public static String getDateToLine(String time) {
-		long lcc = Long.parseLong(time);
-
-		sf = new SimpleDateFormat("MM-dd");
-
-		String times = sf.format(new Date(lcc));
-		return times;
-	}
+//	/**
+//	 * 时间戳转换成日期MM.dd
+//	 *
+//	 * @param time
+//	 *            时间戳
+//	 * @return
+//	 */
+//	public static String getDateToMD(String time) {
+//		long lcc = Long.parseLong(time);
+//
+//		sf = new SimpleDateFormat("MM.dd");
+//
+//		String times = sf.format(new Date(lcc));
+//		return times;
+//	}
+//	/**
+//	 * 时间戳转换成日期MM-dd
+//	 *
+//	 * @param time
+//	 *            时间戳
+//	 * @return
+//	 */
+//	public static String getDateToLine(String time) {
+//		long lcc = Long.parseLong(time);
+//
+//		sf = new SimpleDateFormat("MM-dd");
+//
+//		String times = sf.format(new Date(lcc));
+//		return times;
+//	}
 
 	/**
 	 * 时间戳转换成日期yyyy-MM-dd HH:mm

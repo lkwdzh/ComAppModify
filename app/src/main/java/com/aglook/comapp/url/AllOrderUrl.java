@@ -23,4 +23,19 @@ public class AllOrderUrl {
         params.addBodyParameter("orderStatus",orderStatus);
         return params;
     }
+
+    /**
+     * 取消订单
+     * @param userId
+     * @param token
+     * @param orderId
+     * @return
+     */
+    public static RequestParams postCancelOrderUrl(String userId, String token,String orderId){
+        params=new RequestParams();
+        params.addBodyParameter("userId",userId);
+        params.addBodyParameter("token",token);
+        params.addBodyParameter("orderId",orderId);
+        return params;
+    }
 }

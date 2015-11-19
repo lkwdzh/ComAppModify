@@ -17,6 +17,16 @@ public class ShoppingCart implements Serializable{
     //手续费
     private double costMoney;
 
+    private String pointUser;
+
+    public String getPointUser() {
+        return pointUser;
+    }
+
+    public void setPointUser(String pointUser) {
+        this.pointUser = pointUser;
+    }
+
     public double getCostMoney() {
         return costMoney;
     }
@@ -101,6 +111,7 @@ public class ShoppingCart implements Serializable{
                 ", productLogo='" + productLogo + '\'' +
                 ", total=" + total +
                 ", costMoney=" + costMoney +
+                ", pointUser='" + pointUser + '\'' +
                 '}';
     }
 }

@@ -7,14 +7,24 @@ import java.io.Serializable;
  */
 public class Login  implements Serializable{
     private String token;
+    private String isNeedFee;
     private LoginPshUser pshUser;
 
     @Override
     public String toString() {
         return "Login{" +
                 "token='" + token + '\'' +
+                ", isNeedFee='" + isNeedFee + '\'' +
                 ", pshUser=" + pshUser +
                 '}';
+    }
+
+    public String getIsNeedFee() {
+        return isNeedFee;
+    }
+
+    public void setIsNeedFee(String isNeedFee) {
+        this.isNeedFee = isNeedFee;
     }
 
     public String getToken() {

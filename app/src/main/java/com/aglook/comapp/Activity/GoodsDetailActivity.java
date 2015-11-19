@@ -52,6 +52,7 @@ public class GoodsDetailActivity extends BaseActivity {
     private TextView tv_add_to_car_goods_detail;
     private CustomProgress customProgress;
     private ImageView left_icon;
+    private String pointUser;
 
     @Override
     public void initView() {
@@ -71,6 +72,7 @@ public class GoodsDetailActivity extends BaseActivity {
         left_icon = (ImageView) findViewById(R.id.left_icon);
         customProgress = CustomProgress.show(GoodsDetailActivity.this, "加载中···", true);
         productId = getIntent().getStringExtra("productId");
+        pointUser=getIntent().getStringExtra("pointUser");
         vp_goods_detail = (ViewPager) findViewById(R.id.vp_goods_detail);
         tv_detail_goods_detail = (TextView) findViewById(R.id.tv_detail_goods_detail);
         tv_price_goods_detail = (TextView) findViewById(R.id.tv_price_goods_detail);
@@ -230,6 +232,6 @@ public class GoodsDetailActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.ADDCART, ShoppingCartUrl.postAddCartUrl(DefineUtil.USERID, DefineUtil.TOKEN, productId, productNum), GoodsDetailActivity.this);
+        }.datePost(DefineUtil.ADDCART, ShoppingCartUrl.postAddCartUrl(DefineUtil.USERID, DefineUtil.TOKEN, productId, productNum,pointUser), GoodsDetailActivity.this);
     }
 }

@@ -148,6 +148,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
                 intent.putExtra("productId", mList.get(position).getProductId());
+                intent.putExtra("pointUser",mList.get(position).getIsAppoint());
                 startActivity(intent);
             }
         });
@@ -262,7 +263,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                         //指定买家
                         if (listAppoint != null && listAppoint.size() != 0) {
                             for (int i = 0; i < listAppoint.size(); i++) {
-                                listAppoint.get(i).setAppoint(true);
+                                listAppoint.get(i).setIsAppoint("1");
                             }
                             mList.addAll(listAppoint);
                         }
@@ -270,7 +271,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                         //未指定买家
                         if (list != null && list.size() != 0) {
                             for (int i = 0; i < list.size(); i++) {
-                                list.get(i).setAppoint(false);
+                                list.get(i).setIsAppoint("0");
                             }
                             mList.addAll(list);
                         }

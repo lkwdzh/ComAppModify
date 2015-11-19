@@ -10,13 +10,13 @@ public class HomePage {
     private String goodType;//等级
     private String productSellNum;//重量
     private String productMoney;//价格
-    private boolean isAppoint;//是否是指定
+    private String  isAppoint;//是否是指定
 
-    public boolean isAppoint() {
+    public String getIsAppoint() {
         return isAppoint;
     }
 
-    public void setAppoint(boolean isAppoint) {
+    public void setIsAppoint(String isAppoint) {
         this.isAppoint = isAppoint;
     }
 
@@ -77,7 +77,7 @@ public class HomePage {
                 ", goodType='" + goodType + '\'' +
                 ", productSellNum='" + productSellNum + '\'' +
                 ", productMoney='" + productMoney + '\'' +
-                ", isAppoint=" + isAppoint +
+                ", isAppoint='" + isAppoint + '\'' +
                 '}';
     }
 }

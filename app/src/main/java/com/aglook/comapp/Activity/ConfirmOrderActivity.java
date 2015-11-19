@@ -27,6 +27,10 @@ import com.aglook.comapp.util.XHttpuTools;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,11 +92,34 @@ public class ConfirmOrderActivity extends BaseActivity {
         }
     }
 
+    private DecimalFormat df;
+
+    /**
+     * 先判断是否要计算手续费，若需要，则再判断是否是指定买家，
+     * 若不是，则计算手续费
+     */
     //计算手续费并且添加到实体类中
     public void addCostMoney() {
+        df = new DecimalFormat("#.00");
         for (int i = 0; i < mList.size(); i++) {
             ShoppingCart cart = mList.get(i);
-            cart.setCostMoney(cart.getProductMoney() * cart.getProductNum() / 1000);
+            double d1 = cart.getProductMoney() * cart.getProductNum() * login.getPshUser().getRate();
+
+            String format = df.format(d1);
+//            判断是否要计算手续费
+//            if (login.getIsNeedFee() != null && !"".equals(login.getIsNeedFee())) {
+            if (login.getIsNeedFee().equals("1")) {
+                //需要计算手续费
+//                    判断是否指定买家
+                if (cart.getPointUser() != null && !"".equals(cart.getPointUser())) {
+                    if (cart.getPointUser().equals("0")) {
+                        //不是指定买家，需要手续费
+                        cart.setCostMoney(Double.parseDouble(format));
+                    }
+                }
+            }
+//            }
+
         }
         adapter = new ConfirmOrderAdapter(ConfirmOrderActivity.this, mList);
         lv_confirm_order.setAdapter(adapter);
@@ -102,11 +129,33 @@ public class ConfirmOrderActivity extends BaseActivity {
             ShoppingCart cart = mList.get(i);
             goodsMoney += cart.getProductMoney() * cart.getProductNum();
             costMoney += cart.getCostMoney();
-
+            String format = df.format(costMoney);
+            costMoney = Double.parseDouble(format);
         }
         allMoney = goodsMoney + costMoney;
 
         fillData();
+    }
+
+
+    /**
+     * 拼接json字符串
+     */
+    public void putJSON() {
+        JSONObject jsonObject;
+        JSONArray jsonArray = new JSONArray();
+        //取出所有的未指定买家的list
+        List<ShoppingCart> list = new ArrayList<>();
+        for (int i = 0; i < mList.size(); i++) {
+            if (mList.get(i).getPointUser().equals("0")) {
+                list.add(mList.get(i));
+            }
+        }
+//TODO 拼接字符串
+        for (int i = 0; i < list.size(); i++) {
+            jsonObject = new JSONObject();
+//            jsonObject.put("")
+        }
     }
 
     public void click() {
@@ -135,6 +184,7 @@ public class ConfirmOrderActivity extends BaseActivity {
                 break;
         }
     }
+
     //监听返回键
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -148,6 +198,8 @@ public class ConfirmOrderActivity extends BaseActivity {
         }
 
     }
+
+
     private Dialog dialog;
     private Button btn_cancel_pay_popup;
     private Button btn_confirm_pay_popup;
@@ -188,12 +240,12 @@ public class ConfirmOrderActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 Log.d("result_confirmOrder", arg0.result);
-                String message= JsonUtils.getJsonParam(arg0.result,"message");
-                String status=JsonUtils.getJsonParam(arg0.result,"status");
-                if (status.equals("1")){
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                if (status.equals("1")) {
                     //TODO 成功后，会调用支付
-                }else {
-                    AppUtils.toastText(ConfirmOrderActivity.this,message);
+                } else {
+                    AppUtils.toastText(ConfirmOrderActivity.this, message);
                 }
             }
 

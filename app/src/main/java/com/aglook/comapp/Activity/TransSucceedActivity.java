@@ -50,6 +50,7 @@ public class TransSucceedActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(TransSucceedActivity.this, OrderDetailActivity.class);
+                intent.putExtra("AllOrder",mList.get(position-1));
                 startActivity(intent);
             }
         });

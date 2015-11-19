@@ -32,6 +32,7 @@
                     style="@style/grayTextView_333333_13"
                     android:layout_marginRight="@dimen/px_14"
                     android:layout_toLeftOf="@+id/ll_1"
+                    android:layout_alignParentLeft="true"
                     android:text="小米小米小米小米小米小米小米小米小米小米小米小米小米小米" />
 
                 <LinearLayout

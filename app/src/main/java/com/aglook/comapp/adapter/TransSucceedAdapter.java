@@ -18,8 +18,8 @@ import com.aglook.comapp.R;
 import com.aglook.comapp.bean.AllOrder;
 import com.aglook.comapp.bean.AllOrderDataList;
 import com.aglook.comapp.view.MyListView;
+import com.aglook.comapp.view.Utility;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class TransSucceedAdapter extends BaseAdapter implements View.OnClickList
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
             convertView = LayoutInflater.from(activity).inflate(R.layout.layout_all_order_lv, null);
@@ -59,21 +59,15 @@ public class TransSucceedAdapter extends BaseAdapter implements View.OnClickList
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.lv_all_order_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(activity, OrderDetailActivity.class);
-                activity.startActivity(intent);
-            }
-        });
         holder.tv_click_all_order_lv.setVisibility(View.GONE);
         holder.tv_delete_all_order_lv.setOnClickListener(this);
-        holder.lv_all_order_lv.setAdapter(holder.adapter);
+
         holder.lv_all_order_lv.setFocusable(false);
         holder.lv_all_order_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position1, long id) {
                 Intent intent = new Intent(activity, OrderDetailActivity.class);
+                intent.putExtra("AllOrder",list.get(position));
                 activity.startActivity(intent);
             }
         });
@@ -81,11 +75,28 @@ public class TransSucceedAdapter extends BaseAdapter implements View.OnClickList
         holder.tv_success_all_order_lv.setVisibility(View.GONE);
 
         AllOrder order = list.get(position);
-        List<AllOrderDataList>newList=new ArrayList<>();
-        newList = list.get(position).getOrderDateList();
-        sonList=new ArrayList<>();
-        sonList.addAll(newList);
+//        List<AllOrderDataList>newList=new ArrayList<>();
+//        newList = list.get(position).getOrderDateList();
+//        sonList=new ArrayList<>();
+//        sonList.addAll(newList);
+        sonList=list.get(position).getOrderDateList();
+        holder.adapter=new AllOrderLVAdapter(activity,sonList);
+        holder.lv_all_order_lv.setAdapter(holder.adapter);
+        Utility.setListViewHeightBasedOnChildren(holder.lv_all_order_lv);
         holder.adapter.notifyDataSetChanged();
+
+
+        holder.tv_order_num_all_order_lv.setText(order.getOrderId());
+        if (order.getOrderStatus().equals("notpay")) {
+            holder.tv_success_all_order_lv.setText("待支付");
+            holder.tv_success_all_order_lv.setTextColor(activity.getResources().getColor(R.color.green_356600));
+        } else {
+            holder.tv_success_all_order_lv.setText("交易成功");
+            holder.tv_success_all_order_lv.setTextColor(activity.getResources().getColor(R.color.red_c91014));
+        }
+        holder.tv_money_all_order_lv.setText(order.getMoney() + "");
+        holder.tv_order_total_all_order_lv.setText(order.getOrderDateList().size() + "");
+
         return convertView;
     }
 

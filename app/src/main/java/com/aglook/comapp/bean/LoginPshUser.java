@@ -19,6 +19,15 @@ public class LoginPshUser implements Serializable {
     private String userQq;//QQ
     private String userAddress;//地址
     private String userSeat;//席位号
+    private double rate;
+
+    public double getRate() {
+        return rate;
+    }
+
+    public void setRate(double rate) {
+        this.rate = rate;
+    }
 
     public String getUserId() {
         return userId;
@@ -140,6 +149,7 @@ public class LoginPshUser implements Serializable {
                 ", userQq='" + userQq + '\'' +
                 ", userAddress='" + userAddress + '\'' +
                 ", userSeat='" + userSeat + '\'' +
+                ", rate=" + rate +
                 '}';
     }
 }
