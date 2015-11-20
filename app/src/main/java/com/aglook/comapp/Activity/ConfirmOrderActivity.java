@@ -115,8 +115,12 @@ public class ConfirmOrderActivity extends BaseActivity {
                     if (cart.getPointUser().equals("0")) {
                         //不是指定买家，需要手续费
                         cart.setCostMoney(Double.parseDouble(format));
+                    }else {
+                        cart.setCostMoney(0.0);
                     }
                 }
+            }else {
+                cart.setCostMoney(0.0);
             }
 //            }
 
