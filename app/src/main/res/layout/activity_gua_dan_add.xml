@@ -16,36 +16,80 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <View
-                style="@style/line_1"
-                android:layout_marginTop="@dimen/px_14" />
 
-            <LinearLayout style="@style/guadan_ll_weight">
+            <!--<LinearLayout style="@style/guadan_ll_weight">-->
 
-                <TextView
-                    style="@style/guadan_TextView_333333"
-                    android:text="@string/gua_dan_goods_image" />
+            <!--<TextView-->
+            <!--style="@style/guadan_TextView_333333"-->
+            <!--android:text="@string/gua_dan_goods_image" />-->
 
-                <TextView
-                    android:id="@+id/tv_goods_image_gua_dan_add"
-                    style="@style/guadan_edittext_weight"
-                    android:drawableRight="@drawable/next"
-                    android:hint="请上传货物图片" />
-            </LinearLayout>
+            <!--<TextView-->
+            <!--android:id="@+id/tv_goods_image_gua_dan_add"-->
+            <!--style="@style/guadan_edittext_weight"-->
+            <!--android:drawableRight="@drawable/next"-->
+            <!--android:hint="请上传货物图片" />-->
+            <!--</LinearLayout>-->
 
-            <View style="@style/line_1" />
+            <!--<View style="@style/line_1" />-->
 
-            <LinearLayout style="@style/guadan_ll_weight">
+            <!--<LinearLayout style="@style/guadan_ll_weight">-->
 
-                <TextView
-                    style="@style/guadan_TextView_333333"
-                    android:text="@string/gua_dan_huo_quan" />
+            <!--<TextView-->
+            <!--style="@style/guadan_TextView_333333"-->
+            <!--android:text="@string/gua_dan_huo_quan" />-->
 
-                <TextView
-                    android:id="@+id/tv_huo_quan_image_gua_dan_add"
-                    style="@style/guadan_edittext_weight"
-                    android:drawableRight="@drawable/next"
-                    android:hint="请上传货权图片" />
+            <!--<TextView-->
+            <!--android:id="@+id/tv_huo_quan_image_gua_dan_add"-->
+            <!--style="@style/guadan_edittext_weight"-->
+            <!--android:drawableRight="@drawable/next"-->
+            <!--android:hint="请上传货权图片" />-->
+            <!--</LinearLayout>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        style="@style/imageview_px120"
+                        android:src="@drawable/tongxun" />
+
+                    <TextView
+                        style="@style/grayTextView_333333_15"
+                        android:layout_marginBottom="@dimen/px_10"
+                        android:text="货物图片" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"></LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        style="@style/imageview_px120"
+                        android:src="@drawable/tongxun" />
+
+                    <TextView
+                        style="@style/grayTextView_333333_15"
+                        android:layout_marginBottom="@dimen/px_10"
+                        android:text="货权图片" />
+                </LinearLayout>
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -171,8 +215,7 @@
                 <TextView
                     android:id="@+id/tv_userful_time_gua_dan_add"
                     style="@style/guadan_edittext_weight"
-                    android:hint="请选择挂单有效期"
-                    />
+                    android:hint="请选择挂单有效期" />
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -249,39 +292,80 @@
             </LinearLayout>
 
             <View style="@style/line_1" />
-            <!--<LinearLayout style="@style/guadan_ll_weight">-->
 
-                <!--<TextView-->
-                    <!--style="@style/guadan_TextView_333333"-->
-                    <!--android:text="@string/gua_dan_buyer" />-->
+            <LinearLayout
+                android:id="@+id/ll_buyer_gua_dan"
+                style="@style/guadan_ll_weight">
 
-                <!--<EditText-->
-                    <!--android:id="@+id/et_buyer_gua_dan"-->
-                    <!--style="@style/guadan_edittext_weight"-->
-                    <!--android:hint="请输入指定买家" />-->
-            <!--</LinearLayout>-->
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="指定买家" />
 
-            <!--<View style="@style/line_1" />-->
-            <TextView
-                android:id="@+id/tv_buyer_gua_dan"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/px_70"
-                android:layout_marginLeft="@dimen/px_25"
-                android:layout_marginRight="@dimen/px_14"
-                android:background="@color/gray_eeeeee"
-                android:drawableRight="@drawable/tianjia"
-                android:gravity="center_vertical"
-                android:paddingBottom="@dimen/px_5"
-                android:paddingTop="@dimen/px_5"
-                android:text="指定买家"
-                android:textColor="@color/textcolor_333333" />
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:weightSum="2"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_1_gua_dan_add"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/textcolor_666666"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tv_2_gua_dan_add"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/textcolor_666666"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/px_14"
+                        android:src="@drawable/tianjia" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!--<TextView-->
+            <!--android:id="@+id/tv_buyer_gua_dan"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/px_70"-->
+            <!--android:layout_marginLeft="@dimen/px_25"-->
+            <!--android:layout_marginRight="@dimen/px_14"-->
+            <!--android:background="@color/gray_eeeeee"-->
+            <!--android:drawableRight="@drawable/tianjia"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:paddingBottom="@dimen/px_5"-->
+            <!--android:paddingTop="@dimen/px_5"-->
+            <!--android:text="指定买家"-->
+            <!--android:textColor="@color/textcolor_333333" />-->
 
             <View style="@style/line_1" />
-            <com.aglook.comapp.view.MyListView
-                android:id="@+id/lv_gua_dan"
-                android:layout_width="match_parent"
-                android:divider="@null"
-                android:layout_height="wrap_content"></com.aglook.comapp.view.MyListView>
+
+            <!--<com.aglook.comapp.view.MyGridView-->
+            <!--android:id="@+id/gv_gua_dan_add"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:numColumns="3"-->
+            <!--android:divider="@null"></com.aglook.comapp.view.MyGridView>-->
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

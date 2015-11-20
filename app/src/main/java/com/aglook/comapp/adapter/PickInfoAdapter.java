@@ -1,27 +1,35 @@
 package com.aglook.comapp.adapter;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.aglook.comapp.R;
+import com.aglook.comapp.bean.DriverList;
+
+import java.util.List;
 
 /**
  * Created by aglook on 2015/11/10.
  */
 public class PickInfoAdapter extends BaseAdapter {
     private Context context;
+    private List<DriverList>list;
 
-    public PickInfoAdapter(Context context) {
+    public PickInfoAdapter(Context context, List<DriverList> list) {
         this.context = context;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return list!=null?list.size():0;
     }
 
     @Override
@@ -36,22 +44,46 @@ public class PickInfoAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-        if (convertView==null){
-            convertView= LayoutInflater.from(context).inflate(R.layout.layout_pick_info,null);
-            holder=new ViewHolder(convertView);
+        final ViewHolder holder;
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.layout_pick_info, null);
+            holder = new ViewHolder(convertView);
             convertView.setTag(holder);
-        }else {
-            holder= (ViewHolder) convertView.getTag();
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
+
+
+        final DriverList driverList = list.get(position);
+        holder.tv_pick_info.setText(driverList.getName());
+        //获取填写的信息
+        holder.et_weighr_pick_info.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String s1 = s.toString();
+                driverList.setWeitht(s1);
+            }
+        });
         return convertView;
     }
 
-    class ViewHolder{
+    class ViewHolder {
         TextView tv_pick_info;
+        EditText et_weighr_pick_info;
 
         ViewHolder(View view) {
-            tv_pick_info=(TextView)view.findViewById(R.id.tv_pick_info);
+            tv_pick_info = (TextView) view.findViewById(R.id.tv_pick_info);
+            et_weighr_pick_info = (EditText) view.findViewById(R.id.et_weighr_pick_info);
         }
     }
 }

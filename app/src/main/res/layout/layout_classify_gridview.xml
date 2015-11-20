@@ -1,28 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@color/white"
     android:gravity="center"
-    android:paddingBottom="@dimen/px_8"
-    android:paddingTop="@dimen/px_10"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <LinearLayout
-        style="@style/ll_match_content_ver"
-        android:gravity="center">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/px_8"
+        android:layout_marginTop="@dimen/px_10">
 
-        <ImageView
-            android:id="@+id/iv_classify_gridview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/tongxun" />
 
-        <TextView
-            android:id="@+id/tv_classify_gridvew"
-            style="@style/grayTextView_333333"
-            android:text="小米" />
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_left"
+            style="@style/ll_wrap_content_ver"
+            android:layout_centerInParent="true"
+            android:gravity="center">
 
-    <View style="@style/line_2" />
+            <ImageView
+                android:id="@+id/iv_classify_gridview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tongxun" />
+
+            <TextView
+                android:id="@+id/tv_classify_gridvew"
+                style="@style/grayTextView_333333"
+                android:text="小米" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_alignTop="@+id/ll_left"
+            android:layout_alignBottom="@+id/ll_left"
+            android:background="@color/gray_eeeeee"
+         android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/px_34"/>
+    </RelativeLayout>
+
+    <View style="@style/line_1" />
 </LinearLayout>

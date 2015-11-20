@@ -37,13 +37,19 @@ public class DriverAddActivity extends BaseActivity {
     }
 
     public void click() {
-
+        right_text.setOnClickListener(this);
     }
 
 
     @Override
     public void widgetClick(View view) {
-
+        switch (view.getId()) {
+            case R.id.right_text:
+                //调用增加接口，若成功，则返回
+                DriverAddActivity.this.setResult(1);
+                DriverAddActivity.this.finish();
+                break;
+        }
     }
 
 

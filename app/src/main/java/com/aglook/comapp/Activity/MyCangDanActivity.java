@@ -13,6 +13,9 @@ public class MyCangDanActivity extends BaseActivity {
 
     private PullToRefreshListView lv_my_cang_dan;
     private MyCangDanAdapter adapter;
+    private int pageSize;
+    private int pageNum;
+    private String _sort;
 
     @Override
     public void initView() {

@@ -36,12 +36,18 @@ public class BuyerAddActivity extends BaseActivity {
     }
 
     public void click(){
-
+        right_text.setOnClickListener(this);
     }
 
     @Override
     public void widgetClick(View view) {
-
+        switch (view.getId()){
+            case R.id.right_text:
+                //假如成功，则返回
+                BuyerAddActivity.this.setResult(1);
+                BuyerAddActivity.this.finish();
+                break;
+        }
     }
 
 

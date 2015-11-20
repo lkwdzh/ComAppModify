@@ -14,6 +14,7 @@
         android:paddingTop="@dimen/px_10">
 
         <LinearLayout
+            android:id="@+id/ll_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -22,9 +23,9 @@
 
             <ImageView
                 android:id="@+id/iv_screen_gridview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/imageview_px120"
                 android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/px_14"
                 android:src="@drawable/tongxun" />
 
             <LinearLayout
@@ -107,11 +108,13 @@
         </LinearLayout>
 
         <View
-           android:layout_width="0.5dp"
+            android:layout_width="0.5dp"
             android:layout_height="@dimen/px_140"
-            android:background="@color/gray_line"
+            android:layout_alignBottom="@+id/ll_left"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/ll_left"
             android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"/>
+            android:background="@color/gray_line" />
     </RelativeLayout>
 
     <View style="@style/line_1" />

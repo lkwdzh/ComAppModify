@@ -43,6 +43,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:text="绑定成功"
+                    android:visibility="gone"
                     android:textColor="@color/red_c91014"
                     android:textSize="13sp" />
             </RelativeLayout>

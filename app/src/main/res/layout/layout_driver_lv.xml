@@ -2,20 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:descendantFocusability="blocksDescendants"
     android:background="@color/white"
+    android:descendantFocusability="blocksDescendants"
     android:gravity="center_vertical"
 
     android:orientation="vertical">
+
     <LinearLayout
-        style="@style/ll_match_wrap_content_hor">
+        style="@style/ll_match_wrap_content_hor"
+        android:gravity="center_vertical">
 
         <CheckBox
             android:id="@+id/cb_driver_lv"
             android:layout_width="@dimen/px_27"
             android:layout_height="@dimen/px_27"
-            android:background="@drawable/star_checked"
             android:layout_marginLeft="@dimen/px_14"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/star_checked"
             android:button="@null" />
 
         <TextView
@@ -25,6 +28,7 @@
             android:drawableRight="@drawable/next"
             android:gravity="center_vertical"
             android:paddingBottom="@dimen/px_14"
+            android:layout_gravity="center_vertical"
             android:paddingLeft="@dimen/px_14"
             android:paddingRight="@dimen/px_14"
             android:paddingTop="@dimen/px_14"

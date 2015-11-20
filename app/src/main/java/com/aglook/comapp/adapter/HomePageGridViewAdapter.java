@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.HomePage;
+import com.aglook.comapp.util.XBitmap;
 
 import java.util.List;
 
@@ -58,6 +59,7 @@ public class HomePageGridViewAdapter extends BaseAdapter {
         holder.tv_grade_mygridview.setText(homePage.getGoodType());
         holder.tv_weight_mygridview.setText(homePage.getProductSellNum());
         holder.tv_price_mygridview.setText(homePage.getProductMoney());
+        XBitmap.displayImage(holder.iv_myGridView_homepage,homePage.getProductLogo(),context);
         return convertView;
     }
 

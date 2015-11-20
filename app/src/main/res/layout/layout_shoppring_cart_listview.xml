@@ -28,10 +28,9 @@
 
         <ImageView
             android:id="@+id/iv_shopping_cart_listview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+           style="@style/imageview_px134"
             android:layout_marginLeft="@dimen/px_10"
-            android:layout_marginRight="@dimen/px_10"
+            android:layout_marginRight="@dimen/px_14"
             android:layout_toRightOf="@+id/cb_shopping_cart_listview"
             android:src="@drawable/tongxun" />
 

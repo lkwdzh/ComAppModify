@@ -14,10 +14,9 @@
 
             <ImageView
                 android:id="@+id/iv_myGridView_homepage"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+               style="@style/imageview_px134"
                 android:scaleType="centerInside"
-                android:src="@drawable/tongxun" />
+                 />
 
             <TextView
                 android:id="@+id/tv_name_homepage"

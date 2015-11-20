@@ -6,7 +6,7 @@ package com.aglook.comapp.util;
 public class DefineUtil {
 
     //    测试环境端口
-    public static String URL_HOST = "http://192.168.1.118:8080/payment/";
+    public static String URL_HOST = "http://192.168.1.104:8080/payment/";
 
     //    登录
     public static String LOGIN_IN = URL_HOST + "login-in";
@@ -54,6 +54,12 @@ public class DefineUtil {
     public static String ORDER_LIST=URL_HOST+"order/order/list";
     //取消订单
     public static String CANCEL_ORDER=URL_HOST+"order/cancel/order";
+
+    /**
+     * 仓单
+     */
+    //用户仓单列表
+//    public static String
 
     //TOKEN
     public static String TOKEN;

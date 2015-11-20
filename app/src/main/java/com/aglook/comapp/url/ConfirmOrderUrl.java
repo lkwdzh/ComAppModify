@@ -8,13 +8,14 @@ import com.lidroid.xutils.http.RequestParams;
 public class ConfirmOrderUrl {
     private static RequestParams params;
 
-    public static RequestParams postConfirmOrderUrl(String userId,String token,String cartIds,String money,String text){
+    public static RequestParams postConfirmOrderUrl(String userId,String token,String cartIds,String money,String text,String totalFee){
         params=new RequestParams();
         params.addBodyParameter("userId",userId);
         params.addBodyParameter("token",token);
         params.addBodyParameter("cartIds",cartIds);
         params.addBodyParameter("money",money);
         params.addBodyParameter("text",text);
+        params.addBodyParameter("totalFee",totalFee);
         return params;
     }
 }

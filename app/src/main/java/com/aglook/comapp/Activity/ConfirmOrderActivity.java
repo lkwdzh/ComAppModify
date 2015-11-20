@@ -27,8 +27,9 @@ import com.aglook.comapp.util.XHttpuTools;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONException;
+import net.sf.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -107,22 +108,22 @@ public class ConfirmOrderActivity extends BaseActivity {
 
             String format = df.format(d1);
 //            判断是否要计算手续费
-//            if (login.getIsNeedFee() != null && !"".equals(login.getIsNeedFee())) {
-            if (login.getIsNeedFee().equals("1")) {
-                //需要计算手续费
+            if (login.getIsNeedFee() != null && !"".equals(login.getIsNeedFee())) {
+                if (login.getIsNeedFee().equals("1")) {
+                    //需要计算手续费
 //                    判断是否指定买家
-                if (cart.getPointUser() != null && !"".equals(cart.getPointUser())) {
-                    if (cart.getPointUser().equals("0")) {
-                        //不是指定买家，需要手续费
-                        cart.setCostMoney(Double.parseDouble(format));
-                    }else {
-                        cart.setCostMoney(0.0);
+                    if (cart.getPointUser() != null && !"".equals(cart.getPointUser())) {
+                        if (cart.getPointUser().equals("0")) {
+                            //不是指定买家，需要手续费
+                            cart.setCostMoney(Double.parseDouble(format));
+                        } else {
+                            cart.setCostMoney(0.0);
+                        }
                     }
+                } else {
+                    cart.setCostMoney(0.0);
                 }
-            }else {
-                cart.setCostMoney(0.0);
             }
-//            }
 
         }
         adapter = new ConfirmOrderAdapter(ConfirmOrderActivity.this, mList);
@@ -139,6 +140,7 @@ public class ConfirmOrderActivity extends BaseActivity {
         allMoney = goodsMoney + costMoney;
 
         fillData();
+        putJSON();
     }
 
 
@@ -148,17 +150,17 @@ public class ConfirmOrderActivity extends BaseActivity {
     public void putJSON() {
         JSONObject jsonObject;
         JSONArray jsonArray = new JSONArray();
-        //取出所有的未指定买家的list
-        List<ShoppingCart> list = new ArrayList<>();
+        //TODO 拼接字符串
         for (int i = 0; i < mList.size(); i++) {
-            if (mList.get(i).getPointUser().equals("0")) {
-                list.add(mList.get(i));
-            }
-        }
-//TODO 拼接字符串
-        for (int i = 0; i < list.size(); i++) {
             jsonObject = new JSONObject();
-//            jsonObject.put("")
+            try {
+                jsonObject.put("cartId", mList.get(i).getCartId());
+                jsonObject.put("fee", mList.get(i).getCostMoney());
+                jsonArray.add(i, jsonObject);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            cartids = jsonArray.toString();
         }
     }
 
@@ -234,16 +236,11 @@ public class ConfirmOrderActivity extends BaseActivity {
 
     //确认订单
     public void getData() {
-        List<String> cartidList = new ArrayList<>();
-        for (int i = 0; i < mList.size(); i++) {
-            cartidList.add(mList.get(i).getCartId());
-        }
-        cartids = cartidList.toString().substring(1, cartidList.toString().length() - 1).replaceAll(" ", "");
 
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_confirmOrder", arg0.result);
+                Log.d("result_confirmOrder", cartids + "--------" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
@@ -257,7 +254,7 @@ public class ConfirmOrderActivity extends BaseActivity {
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        }.datePost(DefineUtil.CREATE_ORDER, ConfirmOrderUrl.postConfirmOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartids, allMoney + "", text), ConfirmOrderActivity.this);
+        }.datePost(DefineUtil.CREATE_ORDER, ConfirmOrderUrl.postConfirmOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartids, String.valueOf(allMoney), text, String.valueOf(costMoney)), ConfirmOrderActivity.this);
     }
 
 }

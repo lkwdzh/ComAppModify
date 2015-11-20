@@ -20,15 +20,18 @@ public class DriverListAdapter extends BaseAdapter {
     private Context context;
     private List<DriverList>list;
     private boolean canCheck;
-
-    public DriverListAdapter(Context context, boolean canCheck) {
+    private CallBackData  callBackData;
+    private int num;
+    public DriverListAdapter(Context context, List<DriverList> list, boolean canCheck, CallBackData  callBackData) {
         this.context = context;
+        this.list = list;
         this.canCheck = canCheck;
+        this.callBackData=callBackData;
     }
 
     @Override
     public int getCount() {
-        return 5;
+        return list!=null?list.size():0;
     }
 
     @Override
@@ -42,8 +45,8 @@ public class DriverListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        final ViewHolder holder;
         if (convertView==null){
             convertView= LayoutInflater.from(context).inflate(R.layout.layout_driver_lv,null);
             holder=new ViewHolder(convertView);
@@ -57,6 +60,25 @@ public class DriverListAdapter extends BaseAdapter {
         }else {
             holder.cb_driver_lv.setVisibility(View.GONE);
         }
+
+        final DriverList driverList = list.get(position);
+
+        holder.cb_driver_lv.setChecked(driverList.isChecked());
+        holder.tv_driver_lv.setText(driverList.getName());
+        holder.cb_driver_lv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               driverList.setChecked(!driverList.isChecked());
+                num=0;
+                for (int i = 0; i < list.size(); i++) {
+                    if (list.get(i).isChecked()){
+                        num++;
+                    }
+                }
+                callBackData.callBack(num);
+            }
+        });
+
         return convertView;
     }
 
@@ -68,5 +90,9 @@ public class DriverListAdapter extends BaseAdapter {
             tv_driver_lv=(TextView)view.findViewById(R.id.tv_driver_lv);
             cb_driver_lv=(CheckBox)view.findViewById(R.id.cb_driver_lv);
         }
+    }
+
+    public interface CallBackData{
+        public void callBack(int num);
     }
 }

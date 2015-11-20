@@ -11,6 +11,15 @@ public class HomePage {
     private String productSellNum;//重量
     private String productMoney;//价格
     private String  isAppoint;//是否是指定
+    private String productLogo;//图像
+
+    public String getProductLogo() {
+        return productLogo;
+    }
+
+    public void setProductLogo(String productLogo) {
+        this.productLogo = productLogo;
+    }
 
     public String getIsAppoint() {
         return isAppoint;
@@ -78,6 +87,7 @@ public class HomePage {
                 ", productSellNum='" + productSellNum + '\'' +
                 ", productMoney='" + productMoney + '\'' +
                 ", isAppoint='" + isAppoint + '\'' +
+                ", productLogo='" + productLogo + '\'' +
                 '}';
     }
 }
