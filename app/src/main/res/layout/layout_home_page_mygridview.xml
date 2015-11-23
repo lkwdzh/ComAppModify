@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+android:gravity="center"
     android:orientation="vertical">
 
     <RelativeLayout style="@style/rl_wrap_content">
@@ -10,6 +10,7 @@
         <LinearLayout
             android:id="@+id/ll_left"
             style="@style/ll_wrap_content_ver"
+            android:layout_centerInParent="true"
             android:layout_margin="@dimen/px_12">
 
             <ImageView
@@ -73,10 +74,12 @@
         </LinearLayout>
 
         <View
-            style="@style/line_2"
+           android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray_eeeeee"
             android:layout_alignBottom="@id/ll_left"
             android:layout_alignTop="@id/ll_left"
-            android:layout_toRightOf="@id/ll_left" />
+           android:layout_alignParentRight="true" />
     </RelativeLayout>
 
     <View style="@style/line_1" />

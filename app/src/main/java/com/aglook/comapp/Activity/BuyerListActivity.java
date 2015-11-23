@@ -12,7 +12,13 @@ import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.BuyerListAdapter;
 import com.aglook.comapp.bean.LinkMan;
+import com.aglook.comapp.url.BuyerListUrl;
+import com.aglook.comapp.util.DefineUtil;
+import com.aglook.comapp.util.JsonUtils;
+import com.aglook.comapp.util.XHttpuTools;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -135,7 +141,7 @@ public class BuyerListActivity extends BaseActivity {
 
     //获取数据
     public void getData(){
-        List<LinkMan>llList=new ArrayList<>();
+        final List<LinkMan>llList=new ArrayList<>();
         LinkMan linkMan=null;
         for (int i = 0; i < 30; i++) {
             linkMan=new LinkMan();
@@ -144,6 +150,23 @@ public class BuyerListActivity extends BaseActivity {
             llList.add(linkMan);
         }
         mList.addAll(llList);
+
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                Log.d("result_BuyerList",arg0.result);
+                String message= JsonUtils.getJsonParam(arg0.result,"message");
+                String status=JsonUtils.getJsonParam(arg0.result,"status");
+                String obj=JsonUtils.getJsonParam(arg0.result,"obj");
+//                llList=JsonUtils.parseList(obj,LinkMan.class);
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+
+            }
+        }.datePost(DefineUtil.CONTACT_USER, BuyerListUrl.postBuyerListUrl(DefineUtil.USERID,DefineUtil.TOKEN),BuyerListActivity.this);
+
         compareList();
         adapter.notifyDataSetChanged();
     }

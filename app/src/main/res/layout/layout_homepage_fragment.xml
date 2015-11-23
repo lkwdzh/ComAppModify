@@ -26,11 +26,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/et_white_corner"
+                    android:gravity="center_vertical"
                     android:hint="输入关键字"
                     android:paddingBottom="@dimen/px_6"
-                    android:paddingTop="@dimen/px_7"
-                    android:gravity="center_vertical"
                     android:paddingLeft="@dimen/px_13"
+                    android:paddingTop="@dimen/px_7"
                     android:textColorHint="@color/textcolor_999999"
                     android:textSize="13sp" />
 
@@ -43,11 +43,43 @@
             </RelativeLayout>
         </LinearLayout>
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/vp_home_page_head"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_166"
-            android:background="@drawable/startup01" />
+            android:layout_height="@dimen/px_200">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_home_page_head"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_200" />
+
+            <LinearLayout
+                android:id="@+id/ll_11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="@dimen/px_10"
+                    android:layout_height="@dimen/px_10"
+                    android:layout_margin="@dimen/px_14"
+                    android:background="@drawable/home_viewpager"/>
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="@dimen/px_10"
+                    android:layout_height="@dimen/px_10"
+                    android:layout_margin="@dimen/px_14"
+                    android:background="@drawable/home_viewpager"/>
+                <View
+                    android:id="@+id/view3"
+                    android:layout_width="@dimen/px_10"
+                    android:layout_height="@dimen/px_10"
+                    android:layout_margin="@dimen/px_14"
+                    android:background="@drawable/home_viewpager"/>
+                </LinearLayout>
+        </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/my_recycler_view"

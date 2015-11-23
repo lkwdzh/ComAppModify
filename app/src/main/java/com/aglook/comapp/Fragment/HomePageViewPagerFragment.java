@@ -8,13 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.aglook.comapp.R;
+import com.aglook.comapp.bean.HomePageScroll;
+import com.aglook.comapp.util.XBitmap;
+
+import java.util.List;
 
 /**
  * Created by aglook on 2015/10/27.
  */
 public class HomePageViewPagerFragment extends Fragment {
-    public int imageArray[]={R.drawable.startup01,R.drawable.startup02,R.drawable.startup03,R.drawable.startup04};
+    private List<HomePageScroll> list=HomePageFragment.scrollList;
+//    public int imageArray[]={R.drawable.startup01,R.drawable.startup02,R.drawable.startup03,R.drawable.startup04};
     public static HomePageViewPagerFragment myFragment(int position){
         HomePageViewPagerFragment fragment=new HomePageViewPagerFragment();
         Bundle bundle=new Bundle();
@@ -29,7 +33,9 @@ public class HomePageViewPagerFragment extends Fragment {
         ImageView imageView=new ImageView(getActivity());
         Bundle bundle=getArguments();
         int position = bundle.getInt("position");
-        imageView.setImageResource(imageArray[position]);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        XBitmap.displayImage(imageView, list.get(position).getAdLogo(), getActivity());
+
         return imageView;
     }
 }

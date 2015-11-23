@@ -7,9 +7,17 @@ import com.lidroid.xutils.http.RequestParams;
  */
 public class HomePageUrl {
     private static RequestParams params;
+
+    /**
+     * 首页商品列表
+     * @param userId
+     * @return
+     */
     public static RequestParams postHomePageCategoryUrl(String userId){
         params=new RequestParams();
         params.addBodyParameter("userId",userId);
         return params;
     }
+
+
 }

@@ -32,11 +32,15 @@ public class DefineUtil {
     //根据分类获取想要的商品列表，筛选
     public static String CATEGORY_DETAIL = URL_HOST + "category-detail";
 
+    /**
+     * 首页
+     */
     //首页商品信息列表
     public static String HOT_LIST = URL_HOST + "hot-list";
-
     //首页商品信息详情
     public static String PRODUCT_DETAIL = URL_HOST + "product-detail";
+    //首页轮播图
+    public static String INDEX_SCROLLPIC=URL_HOST+"index/scrollPic";
 
 
 
@@ -54,6 +58,13 @@ public class DefineUtil {
     public static String ORDER_LIST=URL_HOST+"order/order/list";
     //取消订单
     public static String CANCEL_ORDER=URL_HOST+"order/cancel/order";
+
+
+    /**
+     * 常用联系人
+     */
+    //获取常用联系人
+    public static String CONTACT_USER=URL_HOST+"userInfo/contact/user";
 
     /**
      * 仓单

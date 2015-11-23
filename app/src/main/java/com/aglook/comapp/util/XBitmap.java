@@ -20,4 +20,25 @@ public class XBitmap {
 
         bitmapUtils.display(imageView, url);
     }
+//    public static BitmapUtils display(View imageView,String url,Context context){
+//        Log.d("图片url",url);
+//        BitmapUtils bitmapUtils=new BitmapUtils(context);
+////        bitmapUtils.configDefaultLoadingImage(context.getResources().getDrawable(
+////                R.drawable.tanluicon));// 默认背景图片
+////        bitmapUtils.configDefaultLoadFailedImage(context.getResources().getDrawable(
+////                R.drawable.tanluicon));// 加载失败图片
+//        bitmapUtils.display(imageView,url,new BitmapLoadCallBack<View>() {
+//            @Override
+//            public void onLoadCompleted(View view, String s, Bitmap bitmap, BitmapDisplayConfig bitmapDisplayConfig, BitmapLoadFrom bitmapLoadFrom) {
+//
+//            }
+//
+//            @Override
+//            public void onLoadFailed(View view, String s, Drawable drawable) {
+//
+//            }
+//        });
+//        bitmapUtils.display(imageView, url);
+//        return bitmapUtils;
+//    }
 }
