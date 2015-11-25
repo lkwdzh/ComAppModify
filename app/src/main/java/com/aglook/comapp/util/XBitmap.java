@@ -1,7 +1,6 @@
 package com.aglook.comapp.util;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 
 import com.lidroid.xutils.BitmapUtils;
@@ -11,7 +10,7 @@ import com.lidroid.xutils.BitmapUtils;
  */
 public class XBitmap {
     public static void displayImage(View imageView,String url,Context context){
-        Log.d("图片url",url);
+//        Log.d("图片url",url);
         BitmapUtils bitmapUtils=new BitmapUtils(context);
 //        bitmapUtils.configDefaultLoadingImage(context.getResources().getDrawable(
 //                R.drawable.tanluicon));// 默认背景图片

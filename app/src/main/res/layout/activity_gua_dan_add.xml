@@ -100,7 +100,7 @@
                     style="@style/guadan_TextView_333333"
                     android:text="@string/gua_dan_goods_name" />
 
-                <EditText
+                <TextView
                     android:id="@+id/et_goods_name_gua_dan"
                     style="@style/guadan_edittext_weight"
                     android:hint="请输入商品名称" />
@@ -128,7 +128,7 @@
                     style="@style/guadan_TextView_333333"
                     android:text="@string/gua_dan_goods_kind" />
 
-                <EditText
+                <TextView
                     android:id="@+id/tv_goods_kind_gua_dan"
                     style="@style/guadan_edittext_weight"
                     android:hint="请输入货物种类" />
@@ -142,7 +142,7 @@
                     style="@style/guadan_TextView_333333"
                     android:text="@string/gua_dan_stock_weight" />
 
-                <EditText
+                <TextView
                     android:id="@+id/tv_stock_weight_gua_dan"
                     style="@style/guadan_edittext_weight"
                     android:hint="请输入库存重量" />
@@ -156,7 +156,7 @@
                     style="@style/guadan_TextView_333333"
                     android:text="@string/gua_dan_use_weight" />
 
-                <EditText
+                <TextView
                     android:id="@+id/tv_use_weight_gua_dan"
                     style="@style/guadan_edittext_weight"
                     android:hint="请输入可用重量" />
@@ -184,7 +184,7 @@
                     style="@style/guadan_TextView_333333"
                     android:text="@string/gua_dan_goods_ara" />
 
-                <EditText
+                <TextView
                     android:id="@+id/et_goods_area_gua_dan"
                     style="@style/guadan_edittext_weight"
                     android:hint="请输入货物产地" />
@@ -226,7 +226,7 @@
                     style="@style/guadan_TextView_333333"
                     android:text="@string/gua_dan_cang_name" />
 
-                <EditText
+                <TextView
                     android:id="@+id/et_cang_name_gua_dan"
                     style="@style/guadan_edittext_weight"
                     android:hint="请输入仓管名称" />
@@ -240,7 +240,7 @@
                     style="@style/guadan_TextView_333333"
                     android:text="@string/gua_dan_cang_phone" />
 
-                <EditText
+                <TextView
                     android:id="@+id/et_cang_phone_gua_dan"
                     style="@style/guadan_edittext_weight"
                     android:hint="请输入仓管电话"
@@ -255,7 +255,7 @@
                     style="@style/guadan_TextView_333333"
                     android:text="@string/gua_dan_cang_email" />
 
-                <EditText
+                <TextView
                     android:id="@+id/et_cang_email_gua_dan"
                     style="@style/guadan_edittext_weight"
                     android:hint="请输入仓管邮箱"
@@ -270,7 +270,7 @@
                     style="@style/guadan_TextView_333333"
                     android:text="@string/gua_dan_cang_address" />
 
-                <EditText
+                <TextView
                     android:id="@+id/et_cang_address_gua_dan"
                     style="@style/guadan_edittext_weight"
                     android:hint="请输入仓管地址" />
@@ -285,7 +285,7 @@
                     style="@style/guadan_TextView_333333"
                     android:text="@string/gua_dan_goods_detail" />
 
-                <EditText
+                <TextView
                     android:id="@+id/et_goods_detail_gua_dan"
                     style="@style/guadan_edittext_weight"
                     android:hint="请输入商品详情" />

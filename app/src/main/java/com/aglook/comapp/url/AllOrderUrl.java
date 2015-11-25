@@ -1,5 +1,8 @@
 package com.aglook.comapp.url;
 
+import android.util.Log;
+
+import com.google.gson.Gson;
 import com.lidroid.xutils.http.RequestParams;
 
 /**
@@ -21,6 +24,7 @@ public class AllOrderUrl {
         params.addBodyParameter("userId",userId);
         params.addBodyParameter("token",token);
         params.addBodyParameter("orderStatus",orderStatus);
+        Log.d("result_url",new Gson().toJson(params));
         return params;
     }
 
