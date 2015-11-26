@@ -96,8 +96,7 @@
 
         <ImageView
             android:id="@+id/iv_lv_lv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+          style="@style/imageview_px120"
             android:layout_marginRight="@dimen/px_14"
             android:scaleType="centerInside"
             android:src="@drawable/tongxun" />
@@ -111,6 +110,7 @@
                     style="@style/grayTextView_333333_13"
                     android:layout_marginRight="@dimen/px_14"
                     android:layout_toLeftOf="@+id/ll_1"
+                    android:layout_alignParentLeft="true"
                     android:text="小米小米小米小米小米小米小米小米小米小米小米小米小米小米" />
 
                 <LinearLayout

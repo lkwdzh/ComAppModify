@@ -99,7 +99,7 @@
 
                     <TextView
                         style="@style/grayTextView_333333_13"
-                        android:text="（含运费：￥" />
+                        android:text="（含手续费：￥" />
 
                     <TextView
                         android:id="@+id/tv_cost_order_detail"

@@ -21,6 +21,15 @@ public class GoodsDetail {
     private String responsibleMobile;//电话
     private String responsibleEmail;//邮箱
     private String depotAddress;//仓库地址
+    private String isCollect;//0:未收藏，1：已收藏
+
+    public String getIsCollect() {
+        return isCollect;
+    }
+
+    public void setIsCollect(String isCollect) {
+        this.isCollect = isCollect;
+    }
 
     public String getProductId() {
         return productId;
@@ -178,6 +187,7 @@ public class GoodsDetail {
                 ", responsibleMobile='" + responsibleMobile + '\'' +
                 ", responsibleEmail='" + responsibleEmail + '\'' +
                 ", depotAddress='" + depotAddress + '\'' +
+                ", isCollect='" + isCollect + '\'' +
                 '}';
     }
 }

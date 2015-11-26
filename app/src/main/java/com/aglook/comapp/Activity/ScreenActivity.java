@@ -61,7 +61,7 @@ public class ScreenActivity extends BaseActivity {
 
     public void init() {
         gv_screen = (PullToRefreshGridView) findViewById(R.id.gv_screen);
-        adapter = new ScreenAdapter(ScreenActivity.this,mList);
+        adapter = new ScreenAdapter(ScreenActivity.this, mList);
         gv_screen.setAdapter(adapter);
         categoryId = getIntent().getStringExtra("categoryId");
         tv_all_screen = (TextView) findViewById(R.id.tv_all_screen);
@@ -72,6 +72,7 @@ public class ScreenActivity extends BaseActivity {
         cb_sale_screen = (CheckBox) findViewById(R.id.cb_sale_screen);
         tv_sale_screen = (TextView) findViewById(R.id.tv_sale_screen);
         tv_all_screen.setTextColor(getResources().getColor(R.color.red_c91014));
+        customProgress = CustomProgress.show(ScreenActivity.this, "加载中···", true);
     }
 
     public void click() {
@@ -82,7 +83,7 @@ public class ScreenActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ScreenActivity.this, GoodsDetailActivity.class);
-                intent.putExtra("productId",mList.get(position).getProductId());
+                intent.putExtra("productId", mList.get(position).getProductId());
                 startActivity(intent);
             }
         });
@@ -158,33 +159,51 @@ public class ScreenActivity extends BaseActivity {
     }
 
     public void getData() {
-        customProgress=CustomProgress.show(ScreenActivity.this,"加载中···",true);
+
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                if (customProgress!=null&&customProgress.isShowing()){
+                if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
                 Log.d("result_Screen", categoryId + "------" + arg0.result);
                 List<Screen> sonList = new ArrayList<>();
+                List<Screen> sonListAppoint = new ArrayList<Screen>();
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
-                String ProductList = JsonUtils.getJsonParam(obj, "ProductList");
-                sonList = JsonUtils.parseList(ProductList, Screen.class);
-                if (status.equals("1")){
-                    if (sonList!=null&&sonList.size()!=0){
-                        mList.addAll(sonList);
+                if (obj != null && !"".equals(obj)) {
+                    String pointProduct = JsonUtils.getJsonParam(obj, "pointProduct");
+                    String ProductList = JsonUtils.getJsonParam(obj, "ProductList");
+                    sonList = JsonUtils.parseList(ProductList, Screen.class);
+                    sonListAppoint = JsonUtils.parseList(pointProduct, Screen.class);
+                    if (status.equals("1")) {
+                        //指定买家
+                        if (sonListAppoint!=null&&sonListAppoint.size()!=0){
+                            for (int i = 0; i < sonListAppoint.size(); i++) {
+                                sonListAppoint.get(i).setIsAppoint("1");
+                            }
+                            mList.addAll(sonListAppoint);
+                        }
+                        //未指定买家
+                        if (sonList != null && sonList.size() != 0) {
+                            for (int i = 0; i < sonList.size(); i++) {
+                                sonList.get(i).setIsAppoint("0");
+                            }
+                            mList.addAll(sonList);
+                        }
+                    } else {
+                        AppUtils.toastText(ScreenActivity.this, message);
                     }
-                }else {
-                    AppUtils.toastText(ScreenActivity.this,message);
+
                 }
                 adapter.notifyDataSetChanged();
+                gv_screen.onRefreshComplete();
             }
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-                if (customProgress!=null&&customProgress.isShowing()){
+                if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
             }

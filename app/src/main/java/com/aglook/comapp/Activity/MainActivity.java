@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,9 @@ import com.aglook.comapp.Fragment.MineFragment;
 import com.aglook.comapp.Fragment.ShoppingCartFragment;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.Login;
+import com.aglook.comapp.bean.ShoppingCart;
 import com.aglook.comapp.url.LoginUrl;
+import com.aglook.comapp.url.ShoppingCartUrl;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
@@ -27,8 +30,11 @@ import com.aglook.comapp.util.XHttpuTools;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends FragmentActivity implements ShoppingCartFragment.onShoppingCartClick{
+
+public class MainActivity extends FragmentActivity implements ShoppingCartFragment.onShoppingCartClick {
 
     private FragmentTabHost mTabHost;
     //是否是第一次启动
@@ -50,12 +56,14 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
     private String titleArray[] = {"首页", "分类", "购物车", "我的"};
     private TextView textView;
 
+    private boolean isGoods = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ExitApplication.getInstance().addActivity(this);
-        comAppApplication= (ComAppApplication) getApplication();
+        comAppApplication = (ComAppApplication) getApplication();
         initView();
     }
 
@@ -66,14 +74,17 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         mTabHost.setBackgroundColor(getResources().getColor(R.color.red_c91014));
         mTabHost.setOnTabChangedListener(new TabChangeListener());
         mTabHost.getCurrentTabView().setBackgroundColor(getResources().getColor(R.color.red_a50000));
-
+        isGoods = getIntent().getBooleanExtra("isGoods", false);
+        if (isGoods){
+            mTabHost.setCurrentTab(2);
+        }
         mShare = getSharedPreferences("une_pwd", MainActivity.this.MODE_PRIVATE);
         mEditor = mShare.edit();
         accountType = mShare.getString("accountType", "");
         userName = mShare.getString("userName", "");
         password = mShare.getString("password", "");
         //假如已经存在，则登录
-        if (!"".equals(accountType)&&!"".equals(userName)&&!"".equals(password)) {
+        if (!"".equals(accountType) && !"".equals(userName) && !"".equals(password)) {
             login();
         }
     }
@@ -179,7 +190,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
 //                    Intent intent = new Intent(MainActivity.this, MineFragment.class);
 //                    MainActivity.this.setResult(1);
 //                    MainActivity.this.finish();
-
+                    getCartListData();
                 }
                 AppUtils.toastText(MainActivity.this, message);
             }
@@ -191,4 +202,29 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         }.datePost(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType), MainActivity.this);
     }
 
+    //    获取购物车列表
+    public void getCartListData() {
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                Log.d("result_getCartList", arg0.result);
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
+                List<ShoppingCart> list = new ArrayList<ShoppingCart>();
+                list = JsonUtils.parseList(obj, ShoppingCart.class);
+                if (status.equals("1")) {
+                    if (list != null && list.size() != 0) {
+                        for (int i = 0; i < list.size(); i++) {
+                            DefineUtil.NUM += list.get(i).getProductNum();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+            }
+        }.datePost(DefineUtil.CARTLIST, ShoppingCartUrl.postCartListUrl(DefineUtil.USERID, DefineUtil.TOKEN), MainActivity.this);
+    }
 }

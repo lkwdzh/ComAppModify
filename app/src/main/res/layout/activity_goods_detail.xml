@@ -311,18 +311,21 @@
 
 
                 <ImageView
+                    android:id="@+id/iv_shoucang_goods_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
+                    android:button="@null"
                     android:src="@drawable/guanzhu" />
 
 
                 <TextView
+                    android:id="@+id/tv_shoucang_goods_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:gravity="center"
-                    android:text="@string/goods_detail_guanzhu"
+                    android:text="收藏"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
 
@@ -347,6 +350,7 @@
                         android:src="@drawable/main_bottom_tab_cart_focus" />
 
                     <TextView
+                        android:id="@+id/tv_num_goods_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"

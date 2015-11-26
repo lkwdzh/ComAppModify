@@ -6,8 +6,8 @@ package com.aglook.comapp.util;
 public class DefineUtil {
 
     //    测试环境端口
-    public static String URL_HOST = "http://192.168.1.118:8080/payment/";
-
+//    public static String URL_HOST = "http://192.168.1.118:8080/payment/";
+    public static String URL_HOST = "http://192.168.1.104:8080/payment/";
 //    public static String URL_HOST = "http://192.168.1.103:8080/payment/";
     //    登录
     public static String LOGIN_IN = URL_HOST + "login-in";
@@ -42,6 +42,12 @@ public class DefineUtil {
     public static String PRODUCT_DETAIL = URL_HOST + "product-detail";
     //首页轮播图
     public static String INDEX_SCROLLPIC=URL_HOST+"index/scrollPic";
+    //收藏
+    public static String COLLECT=URL_HOST+"goods/add/collect";
+    //删除
+    public static String DELETE_COLLECT=URL_HOST+"goods/delete/collect";
+    //商品收藏列表
+    public static String COLLECT_LIST=URL_HOST+"goods/collect/list";
 
 
 
@@ -77,6 +83,17 @@ public class DefineUtil {
     public static String TOKEN;
     public static String USERID;
 
+    //购物车个数
+    public static int NUM=0;
+
+    //支付
+    public static String PAY=URL_HOST+"payment/v2/order/pay";
     //verson
     public static String VERSON="1.0";
+//    商户号
+    public static String MERCHANTNO="Q0000157";
+    //协议适用范围
+    public static String SERVICESCOPE="www";
+    //签名类型
+    public static String SIGNTYPE="MD5";
 }

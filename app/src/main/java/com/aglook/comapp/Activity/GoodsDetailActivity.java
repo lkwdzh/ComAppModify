@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
@@ -53,6 +54,12 @@ public class GoodsDetailActivity extends BaseActivity {
     private CustomProgress customProgress;
     private ImageView left_icon;
     private String pointUser;
+    private LinearLayout ll_shopping_cart_goods_detail;
+    private TextView tv_num_goods_detail;
+    private TextView tv_shoucang_goods_detail;
+    private ImageView iv_shoucang_goods_detail;
+    private LinearLayout ll_attention_goods_detail;
+
 
     @Override
     public void initView() {
@@ -90,6 +97,11 @@ public class GoodsDetailActivity extends BaseActivity {
         tv_address_goods_detail = (TextView) findViewById(R.id.tv_address_goods_detail);
         tv_goods_detail_goods_detail = (TextView) findViewById(R.id.tv_goods_detail_goods_detail);
         tv_add_to_car_goods_detail = (TextView) findViewById(R.id.tv_add_to_car_goods_detail);
+        ll_shopping_cart_goods_detail = (LinearLayout) findViewById(R.id.ll_shopping_cart_goods_detail);
+        tv_num_goods_detail = (TextView) findViewById(R.id.tv_num_goods_detail);
+        tv_shoucang_goods_detail = (TextView) findViewById(R.id.tv_shoucang_goods_detail);
+        iv_shoucang_goods_detail = (ImageView) findViewById(R.id.iv_shoucang_goods_detail);
+        ll_attention_goods_detail = (LinearLayout) findViewById(R.id.ll_attention_goods_detail);
 
     }
 
@@ -97,6 +109,8 @@ public class GoodsDetailActivity extends BaseActivity {
         tv_buy_goods_detail.setOnClickListener(this);
         tv_add_to_car_goods_detail.setOnClickListener(this);
         left_icon.setOnClickListener(this);
+        ll_shopping_cart_goods_detail.setOnClickListener(this);
+        ll_attention_goods_detail.setOnClickListener(this);
     }
 
     //    获取数据
@@ -127,7 +141,7 @@ public class GoodsDetailActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.PRODUCT_DETAIL, GoodsDetailUrl.postGoodsDetailUrl(productId), GoodsDetailActivity.this);
+        }.datePost(DefineUtil.PRODUCT_DETAIL, GoodsDetailUrl.postGoodsDetailUrl(DefineUtil.USERID,productId), GoodsDetailActivity.this);
     }
 
     //    填充数据
@@ -138,16 +152,45 @@ public class GoodsDetailActivity extends BaseActivity {
             tv_cangdanhao_goods_detail.setText(goodsDetail.getProductListId());
             tv_huowuzhonglei_goods_detail.setText(goodsDetail.getCategoryName());
             tv_weight_goods_detail.setText(goodsDetail.getProductSellNum()+"吨");
-            tv_in_time_goods_detail.setText(Timestamp.getDateToString(goodsDetail.getInnerTime()));
+            if (goodsDetail.getInnerTime()!=null) {
+                tv_in_time_goods_detail.setText(Timestamp.getDateToString(goodsDetail.getInnerTime()));
+            }
             tv_producing_area_goods_detail.setText(goodsDetail.getGoodsPlace());
             tv_xuetou_goods_detail.setText(goodsDetail.getMark());
-            tv_userful_life_goods_detail.setText(Timestamp.getDateToString(goodsDetail.getProductAvailable()));
+            if (goodsDetail.getProductAvailable()!=null) {
+                tv_userful_life_goods_detail.setText(Timestamp.getDateToString(goodsDetail.getProductAvailable()));
+            }
             tv_name_goods_detail.setText(goodsDetail.getDepotResponsible());
             tv_phone_goods_detail.setText(goodsDetail.getResponsibleMobile());
             tv_emailgoods_detail.setText(goodsDetail.getResponsibleEmail());
             tv_address_goods_detail.setText(goodsDetail.getDepotAddress());
             tv_goods_detail_goods_detail.setText(goodsDetail.getProductAppDesc());
+            if (goodsDetail.getIsCollect().equals("1")){
+                tv_shoucang_goods_detail.setText("已收藏");
+                iv_shoucang_goods_detail.setImageResource(R.drawable.guanzhu_checked);
+            }else {
+                tv_shoucang_goods_detail.setText("收藏");
+                iv_shoucang_goods_detail.setImageResource(R.drawable.guanzhu);
+            }
         }
+        //判断是否已经登录，若登录则显示购物车个数，否则不显示
+        if (comAppApplication.getLogin()!=null&&!"".equals(comAppApplication.getLogin())){
+            //假如已登录
+            tv_num_goods_detail.setVisibility(View.VISIBLE);
+            tv_num_goods_detail.setText(DefineUtil.NUM+"");
+        }else {
+            tv_num_goods_detail.setVisibility(View.INVISIBLE);
+        }
+
+        //假如已收藏，就显示收藏，若未收藏，就显示为收藏
+//        if (已收藏){
+//            tv_shoucang_goods_detail.setText("已收藏");
+//            cb_shoucang_goods_detail.setChecked(true);
+//        }else {
+//            tv_shoucang_goods_detail.setText("收藏");
+//            cb_shoucang_goods_detail.setChecked(false);
+//        }
+
     }
 
     @Override
@@ -157,8 +200,13 @@ public class GoodsDetailActivity extends BaseActivity {
         }else if (requestCode==2&&resultCode==1){
             Intent intent = new Intent(GoodsDetailActivity.this, ConfirmOrderActivity.class);
             startActivity(intent);
+        }else if (requestCode==3&&resultCode==1){
+            getData();
         }
     }
+
+
+
 
     @Override
     public void widgetClick(View view) {
@@ -189,8 +237,38 @@ public class GoodsDetailActivity extends BaseActivity {
                 GoodsDetailActivity.this.setResult(1, intent);
                 GoodsDetailActivity.this.finish();
                 break;
+            case R.id.ll_shopping_cart_goods_detail:
+                if (comAppApplication.getLogin() == null || comAppApplication.getLogin().equals("")){
+                    intent.setClass(GoodsDetailActivity.this, LoginActivity.class);
+                    startActivityForResult(intent, 1);
+                }else {
+                    intent.setClass(GoodsDetailActivity.this, MainActivity.class);
+                    intent.putExtra("isGoods", true);
+                    startActivity(intent);
+                }
+                break;
+            case R.id.ll_attention_goods_detail:
+                //先判断是否已经登录，未登录则调到登录，已登录则判断是否收藏
+                if (comAppApplication.getLogin() == null || comAppApplication.getLogin().equals("")){
+                    intent.setClass(GoodsDetailActivity.this, LoginActivity.class);
+                    startActivityForResult(intent, 3);
+                }else {
+                    if (goodsDetail.getIsCollect()!=null&&!"".equals(goodsDetail.getIsCollect())){
+                        if (goodsDetail.getIsCollect().equals("0")){
+                            //未收藏则收藏
+                            ShouCang();
+                        }else {
+                            //已收藏则删除
+                            deleteSC();
+                        }
+                    }
+                }
         }
     }
+
+
+
+
 
     //监听返回键
     @Override
@@ -221,6 +299,7 @@ public class GoodsDetailActivity extends BaseActivity {
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
                     AppUtils.toastText(GoodsDetailActivity.this, message);
+                    DefineUtil.NUM++;
                 } else {
                     AppUtils.toastText(GoodsDetailActivity.this, message);
                 }
@@ -234,4 +313,54 @@ public class GoodsDetailActivity extends BaseActivity {
             }
         }.datePost(DefineUtil.ADDCART, ShoppingCartUrl.postAddCartUrl(DefineUtil.USERID, DefineUtil.TOKEN, productId, productNum,pointUser), GoodsDetailActivity.this);
     }
+
+
+    //收藏
+    public void ShouCang(){
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                Log.d("result_shoucang",arg0.result);
+                String message=JsonUtils.getJsonParam(arg0.result,"message");
+                String status=JsonUtils.getJsonParam(arg0.result,"status");
+                if (status.equals("1")) {
+                    tv_shoucang_goods_detail.setText("已收藏");
+                    iv_shoucang_goods_detail.setImageResource(R.drawable.guanzhu_checked);
+                    goodsDetail.setIsCollect("1");
+                }else {
+                    AppUtils.toastText(GoodsDetailActivity.this,message);
+                }
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+
+            }
+        }.datePost(DefineUtil.COLLECT,GoodsDetailUrl.postShouUrl(DefineUtil.TOKEN,DefineUtil.USERID,productId),GoodsDetailActivity.this);
+    }
+
+    //取消收藏
+    public void deleteSC(){
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                Log.d("result_delete",arg0.result);
+                String message=JsonUtils.getJsonParam(arg0.result,"message");
+                String status=JsonUtils.getJsonParam(arg0.result,"status");
+                if (status.equals("1")) {
+                    tv_shoucang_goods_detail.setText("收藏");
+                    iv_shoucang_goods_detail.setImageResource(R.drawable.guanzhu);
+                    goodsDetail.setIsCollect("0");
+                }else {
+                    AppUtils.toastText(GoodsDetailActivity.this,message);
+                }
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+
+            }
+        }.datePost(DefineUtil.DELETE_COLLECT,GoodsDetailUrl.postDeleteUrl(DefineUtil.TOKEN,DefineUtil.USERID,productId),GoodsDetailActivity.this);
+    }
+
 }

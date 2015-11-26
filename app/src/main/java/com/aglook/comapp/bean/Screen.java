@@ -11,6 +11,15 @@ public class Screen {
     private String productSellNum;
     private String productMoney;
     private String productLogo;
+    private String isAppoint;
+
+    public String getIsAppoint() {
+        return isAppoint;
+    }
+
+    public void setIsAppoint(String isAppoint) {
+        this.isAppoint = isAppoint;
+    }
 
     public String getProductId() {
         return productId;
@@ -78,6 +87,7 @@ public class Screen {
                 ", productSellNum='" + productSellNum + '\'' +
                 ", productMoney='" + productMoney + '\'' +
                 ", productLogo='" + productLogo + '\'' +
+                ", isAppoint='" + isAppoint + '\'' +
                 '}';
     }
 }

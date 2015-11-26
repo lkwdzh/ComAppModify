@@ -166,7 +166,7 @@
             android:label="@string/title_activity_buyer_add" >
         </activity>
         <activity
-            android:name=".Activity.FriendsActivity"
+            android:name=".Activity.GoodsCollectActivity"
             android:label="@string/title_activity_friends" >
         </activity>
         <activity

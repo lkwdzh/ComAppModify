@@ -60,6 +60,7 @@ public class BuyerListAdapter extends BaseAdapter {
             holder.cb_driver_lv.setBackgroundResource(R.drawable.ischecked);
         }else {
             holder.cb_driver_lv.setBackgroundResource(R.drawable.star_checked);
+            holder.cb_driver_lv.setVisibility(View.INVISIBLE);
         }
 
         final LinkMan linkMan = list.get(position);

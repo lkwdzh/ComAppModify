@@ -12,20 +12,26 @@ import android.widget.TextView;
 import com.aglook.comapp.Activity.GuaDanAddActivity;
 import com.aglook.comapp.Activity.PickInfoActivity;
 import com.aglook.comapp.R;
+import com.aglook.comapp.bean.PlatformCangDanList;
+import com.aglook.comapp.util.XBitmap;
+
+import java.util.List;
 
 /**
  * Created by aglook on 2015/11/11.
  */
 public class PlatformAdapter extends BaseAdapter implements View.OnClickListener {
     private Context context;
+    private List<PlatformCangDanList>list;
 
-    public PlatformAdapter(Context context) {
+    public PlatformAdapter(Context context, List<PlatformCangDanList> list) {
         this.context = context;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return list!=null?list.size():0;
     }
 
     @Override
@@ -44,6 +50,8 @@ public class PlatformAdapter extends BaseAdapter implements View.OnClickListener
         if (convertView==null){
             convertView= LayoutInflater.from(context).inflate(R.layout.layout_my_cang_dan,null);
             holder=new ViewHolder(convertView);
+            holder.tv_trans_all_order_lv.setTag(position);
+            holder.tv_tihuo_all_order_lv.setTag(position);
             convertView.setTag(holder);
         }else {
             holder= (ViewHolder) convertView.getTag();
@@ -52,6 +60,16 @@ public class PlatformAdapter extends BaseAdapter implements View.OnClickListener
         holder.tv_in_time.setText("交易时间");
         holder.tv_trans_all_order_lv.setOnClickListener(this);
         holder.tv_tihuo_all_order_lv.setOnClickListener(this);
+
+        PlatformCangDanList danList = list.get(position);
+        holder.tv_house_num_my_cangdan.setText(danList.getOrderId());
+        //入仓时间
+
+        XBitmap.displayImage(holder.iv_lv_lv,danList.getProductLogo(),context);
+        holder.tv_name_lv_lv.setText(danList.getProductName());
+        holder.tv_price_lv_lv.setText(danList.getProductMoney());
+        holder.tv_num_lv_lv.setText(danList.getProductNum());
+
         return convertView;
     }
 

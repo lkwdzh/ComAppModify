@@ -80,6 +80,7 @@ public class OrderDetailActivity extends BaseActivity {
             tv_order_total_order_detail.setText(allOrder.getOrderDateList().size()+"");
             tv_money_order_detail.setText(allOrder.getMoney()+"");
             tv_xia_order_detail.setText(Timestamp.getDateTo(allOrder.getOrderTime()));
+            tv_cost_order_detail.setText(allOrder.getTotalFee());
         }
     }
 

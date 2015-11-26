@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.aglook.comapp.R;
 import com.aglook.comapp.bean.AllOrder;
 import com.aglook.comapp.bean.AllOrderDataList;
 import com.aglook.comapp.url.AllOrderUrl;
+import com.aglook.comapp.url.PayUrl;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
@@ -41,6 +43,7 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
     private String orderId;
     private int index;
     private CustomProgress customProgress;
+    private String money;
 
     public ToPayAdapter(Activity activity, List<AllOrder> list) {
         this.activity = activity;
@@ -71,6 +74,7 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
             convertView = LayoutInflater.from(activity).inflate(R.layout.layout_all_order_lv, null);
             holder = new ViewHolder(convertView);
             holder.tv_delete_all_order_lv.setTag(position);
+            holder.tv_click_all_order_lv.setTag(position);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -83,10 +87,6 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
         holder.tv_click_all_order_lv.setOnClickListener(this);
         holder.tv_delete_all_order_lv.setOnClickListener(this);
         holder.lv_all_order_lv.setFocusable(false);
-        //设置标签
-//        for (int i = 0; i < list.size(); i++) {
-//            holder.tv_delete_all_order_lv.setTag(i);
-//        }
 
         AllOrder order = list.get(position);
 
@@ -97,6 +97,7 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
         Utility.setListViewHeightBasedOnChildren(holder.lv_all_order_lv);
         holder.adapter.notifyDataSetChanged();
         holder.tv_order_num_all_order_lv.setText(order.getOrderId());
+        holder.tv_cost_all_order_lv.setText(order.getTotalFee());
         if (order.getOrderStatus().equals("notpay")) {
             holder.tv_success_all_order_lv.setText("待支付");
             holder.tv_success_all_order_lv.setTextColor(activity.getResources().getColor(R.color.green_356600));
@@ -124,15 +125,24 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
         }
         holder.tv_money_all_order_lv.setText(order.getMoney() + "");
         holder.tv_order_total_all_order_lv.setText(order.getOrderDateList().size() + "");
+
         return convertView;
     }
 
     @Override
     public void onClick(View v) {
+        Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.tv_click_all_order_lv:
                 AppUtils.toastText(activity, "去支付");
-//                showDailog();
+                index=(int)v.getTag();
+                money=String.valueOf(list.get(index).getMoney());
+                orderId=list.get(index).getOrderId();
+                intent.setAction("android.intent.action.VIEW");
+                Uri uri=Uri.parse(PayUrl.postPay(orderId,DefineUtil.USERID,money,money));
+//                Uri uri=Uri.parse("http://javacrazyer.iteye.com/blog/1840093");
+                intent.setData(uri);
+                activity.startActivity(intent);
                 break;
             case R.id.tv_delete_all_order_lv:
                  index = (int) v.getTag();
@@ -151,7 +161,25 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
                 break;
         }
     }
+    //zhifu
+    public void pay(){
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                Log.d("result-pay",arg0.result);
+//                Intent intent = new Intent();
+//                intent.setAction("android.intent.action.VIEW");
+//                Uri uri=Uri.parse(payUrl);
+//                intent.setData(uri);
+//                activity.startActivity(intent);
+            }
 
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+
+            }
+        }.datePost(DefineUtil.PAY, PayUrl.postPayWGUrl(orderId, DefineUtil.USERID, money, money),activity);
+    }
     class ViewHolder {
         TextView tv_order_num_all_order_lv;
         TextView tv_success_all_order_lv;

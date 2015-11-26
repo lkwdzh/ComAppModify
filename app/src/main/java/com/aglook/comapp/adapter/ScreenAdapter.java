@@ -51,7 +51,6 @@ public class ScreenAdapter extends BaseAdapter {
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
-
         Screen screen = list.get(position);
         XBitmap.displayImage(holder.iv_screen_gridview,screen.getProductLogo(),context);
         holder.tv_address_screen_gridview.setText(screen.getGoodPlace());

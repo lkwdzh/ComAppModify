@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/gray_eeeeee">
 
     <include layout="@layout/activity_base_title_bar" />
@@ -10,10 +11,11 @@
         style="@style/line_1"
         android:layout_marginTop="@dimen/px_14" />
 
-    <com.handmark.pulltorefresh.library.PullToRefreshListView
-        android:id="@+id/lv_friends"
+    <com.handmark.pulltorefresh.library.PullToRefreshGridView
+        android:id="@+id/gv_goods"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@null"></com.handmark.pulltorefresh.library.PullToRefreshListView>
+        android:background="@color/white"
+        android:numColumns="2"></com.handmark.pulltorefresh.library.PullToRefreshGridView>
 
 </LinearLayout>

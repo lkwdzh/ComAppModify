@@ -15,37 +15,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <!--<View-->
-                <!--style="@style/line_1"-->
-                <!--android:layout_marginTop="@dimen/px_14" />-->
-
-            <!--<LinearLayout style="@style/guadan_ll_weight">-->
-
-                <!--<TextView-->
-                    <!--style="@style/guadan_TextView_333333"-->
-                    <!--android:text="@string/gua_dan_goods_image" />-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/tv_goods_image_pick_info"-->
-                    <!--style="@style/guadan_edittext_weight"-->
-                    <!--android:drawableRight="@drawable/next"-->
-                    <!--android:hint="已上传货物图片" />-->
-            <!--</LinearLayout>-->
-
-            <!--<View style="@style/line_1" />-->
-
-            <!--<LinearLayout style="@style/guadan_ll_weight">-->
-
-                <!--<TextView-->
-                    <!--style="@style/guadan_TextView_333333"-->
-                    <!--android:text="@string/gua_dan_huo_quan" />-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/tv_huo_quan_image_pick_info"-->
-                    <!--style="@style/guadan_edittext_weight"-->
-                    <!--android:drawableRight="@drawable/next"-->
-                    <!--android:hint="已上传货权图片" />-->
-            <!--</LinearLayout>-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,6 +30,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/iv_huowu"
                         style="@style/imageview_px120"
                         android:src="@drawable/tongxun" />
 
@@ -81,6 +51,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/iv_huoquan"
                         style="@style/imageview_px120"
                         android:src="@drawable/tongxun" />
 

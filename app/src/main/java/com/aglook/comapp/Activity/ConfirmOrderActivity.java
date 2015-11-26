@@ -20,6 +20,7 @@ import com.aglook.comapp.adapter.ConfirmOrderAdapter;
 import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.bean.ShoppingCart;
 import com.aglook.comapp.url.ConfirmOrderUrl;
+import com.aglook.comapp.url.PayUrl;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
@@ -233,6 +234,9 @@ public class ConfirmOrderActivity extends BaseActivity {
         tv_card_pay_popup.setOnClickListener(this);
     }
 
+    private String orderId;
+    private String money;
+    private String totalFee;
 
     //确认订单
     public void getData() {
@@ -243,8 +247,13 @@ public class ConfirmOrderActivity extends BaseActivity {
                 Log.d("result_confirmOrder", cartids + "--------" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
+                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
                 if (status.equals("1")) {
-                    //TODO 成功后，会调用支付
+                    //TODO 成功后，会调用支付,获取订单号
+                    orderId = JsonUtils.getJsonParam(obj, "orderId");
+                    money = JsonUtils.getJsonParam(obj, "money");
+                    totalFee = String.valueOf(Double.parseDouble(money)-Double.parseDouble(JsonUtils.getJsonParam(obj, "totalFee")));
+                    pay();
                 } else {
                     AppUtils.toastText(ConfirmOrderActivity.this, message);
                 }
@@ -257,4 +266,18 @@ public class ConfirmOrderActivity extends BaseActivity {
         }.datePost(DefineUtil.CREATE_ORDER, ConfirmOrderUrl.postConfirmOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartids, String.valueOf(allMoney), text, String.valueOf(costMoney)), ConfirmOrderActivity.this);
     }
 
+    //zhifu
+    public void pay(){
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+            Log.d("result-pay",arg0.result);
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+
+            }
+        }.datePost(DefineUtil.PAY, PayUrl.postPayWGUrl(orderId,DefineUtil.USERID,money,money),ConfirmOrderActivity.this);
+    }
 }

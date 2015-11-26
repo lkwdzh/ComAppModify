@@ -75,7 +75,7 @@ public class PersonInformationActivity extends BaseActivity {
                 startActivity(intent);
                 break;
             case R.id.tv_friend_person_info:
-                intent.setClass(PersonInformationActivity.this,FriendsActivity.class);
+                intent.setClass(PersonInformationActivity.this,GoodsCollectActivity.class);
                 startActivity(intent);
         }
     }

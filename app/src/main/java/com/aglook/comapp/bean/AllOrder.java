@@ -11,6 +11,16 @@ public class AllOrder implements Serializable {
     private String orderTime;//单独时间
     private double money;//钱
     private String orderStatus;//支付状态
+    private String totalFee;
+
+    public String getTotalFee() {
+        return totalFee;
+    }
+
+    public void setTotalFee(String totalFee) {
+        this.totalFee = totalFee;
+    }
+
     private List<AllOrderDataList>orderDateList;
 
     public String getOrderId() {
@@ -60,6 +70,7 @@ public class AllOrder implements Serializable {
                 ", orderTime='" + orderTime + '\'' +
                 ", money=" + money +
                 ", orderStatus='" + orderStatus + '\'' +
+                ", totalFee='" + totalFee + '\'' +
                 ", orderDateList=" + orderDateList +
                 '}';
     }

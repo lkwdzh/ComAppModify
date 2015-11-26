@@ -60,6 +60,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/iv_huowu"
                         style="@style/imageview_px120"
                         android:src="@drawable/tongxun" />
 
@@ -82,6 +83,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/iv_huoquan"
                         style="@style/imageview_px120"
                         android:src="@drawable/tongxun" />
 
@@ -156,14 +158,26 @@
                     style="@style/guadan_TextView_333333"
                     android:text="@string/gua_dan_use_weight" />
 
-                <TextView
+                <EditText
                     android:id="@+id/tv_use_weight_gua_dan"
                     style="@style/guadan_edittext_weight"
                     android:hint="请输入可用重量" />
             </LinearLayout>
 
             <View style="@style/line_1" />
+            <LinearLayout style="@style/guadan_ll_weight">
 
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="货物价格" />
+
+                <EditText
+                    android:id="@+id/et_price_gua_dan"
+                    style="@style/guadan_edittext_weight"
+                    android:hint="请输入价格" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
             <LinearLayout style="@style/guadan_ll_weight">
 
                 <TextView

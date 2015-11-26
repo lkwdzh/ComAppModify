@@ -2,7 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ll_match_content_ver"
     android:background="@color/gray_eeeeee">
-<include layout="@layout/activity_base_title_bar"/>
+
+    <include layout="@layout/activity_base_title_bar" />
+<LinearLayout
+    android:id="@+id/ll_top"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,6 +26,7 @@
         android:text="账号登录"
         android:textColor="@color/textcolor_999999"
         android:textSize="18sp" />
+    </LinearLayout>
 
     <View style="@style/line_1" />
 

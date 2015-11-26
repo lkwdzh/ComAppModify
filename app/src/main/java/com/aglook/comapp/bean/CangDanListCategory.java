@@ -1,14 +1,34 @@
 package com.aglook.comapp.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by aglook on 2015/11/24.
  */
-public class CangDanListCategory {
+public class CangDanListCategory implements Serializable{
     private int categoryId;//id
     private String  categoryPid;//种类父类id
     private String categoryName;//种类名称
     private String categoryTitle;//种类标题
     private String  categoryKeys;//
+    private String categoryDesc;
+    private String categoryOrder;
+
+    public String getCategoryDesc() {
+        return categoryDesc;
+    }
+
+    public void setCategoryDesc(String categoryDesc) {
+        this.categoryDesc = categoryDesc;
+    }
+
+    public String getCategoryOrder() {
+        return categoryOrder;
+    }
+
+    public void setCategoryOrder(String categoryOrder) {
+        this.categoryOrder = categoryOrder;
+    }
 
     public int getCategoryId() {
         return categoryId;
@@ -58,6 +78,8 @@ public class CangDanListCategory {
                 ", categoryName='" + categoryName + '\'' +
                 ", categoryTitle='" + categoryTitle + '\'' +
                 ", categoryKeys='" + categoryKeys + '\'' +
+                ", categoryDesc='" + categoryDesc + '\'' +
+                ", categoryOrder='" + categoryOrder + '\'' +
                 '}';
     }
 }

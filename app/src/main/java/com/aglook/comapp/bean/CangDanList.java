@@ -1,20 +1,26 @@
 package com.aglook.comapp.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by aglook on 2015/11/24.
  */
-public class CangDanList {
+public class CangDanList implements Serializable{
     private int id;//id
     private String listId;//原始仓单号
+    private String getlistId;
+    private String getlistPic;//图片
     private String mark;//唛头
-    private String innerTime;//入仓时间
-    private CangDanListCategory pshCategory;//种类
-    private String goodsOwner;//货权人电话
+    private String goodsOwner;//货权人
     private String goodsOwnerMobile;//货权人电话
+    private String goodsOwnerPhone;//手机
+    private String goodsOwnerEmail;//货权人邮箱
     private String goodsOwnerProve;//货权证明图片
+    private String getlistWeight;
     private String innerWeight;//入库重量
     private long weightUse;//正在出售数量
     private long weightUseable;//未出售数量
+    private String innerTime;//入仓时间
     private String goodsPlace;//产地
     private String goodsType;//货物种类
     private String depotQuality;//货物级别描述
@@ -23,6 +29,7 @@ public class CangDanList {
     private String responsiblePhone;//负责人手机号
     private String responsibleEmail;//负责人邮箱
     private String depotAddr;//仓库地址
+    private CangDanListCategory pshCategory;//种类
 
     public int getId() {
         return id;
@@ -176,20 +183,64 @@ public class CangDanList {
         this.depotAddr = depotAddr;
     }
 
+    public String getGetlistId() {
+        return getlistId;
+    }
+
+    public void setGetlistId(String getlistId) {
+        this.getlistId = getlistId;
+    }
+
+    public String getGetlistPic() {
+        return getlistPic;
+    }
+
+    public void setGetlistPic(String getlistPic) {
+        this.getlistPic = getlistPic;
+    }
+
+    public String getGoodsOwnerPhone() {
+        return goodsOwnerPhone;
+    }
+
+    public void setGoodsOwnerPhone(String goodsOwnerPhone) {
+        this.goodsOwnerPhone = goodsOwnerPhone;
+    }
+
+    public String getGoodsOwnerEmail() {
+        return goodsOwnerEmail;
+    }
+
+    public void setGoodsOwnerEmail(String goodsOwnerEmail) {
+        this.goodsOwnerEmail = goodsOwnerEmail;
+    }
+
+    public String getGetlistWeight() {
+        return getlistWeight;
+    }
+
+    public void setGetlistWeight(String getlistWeight) {
+        this.getlistWeight = getlistWeight;
+    }
+
     @Override
     public String toString() {
         return "CangDanList{" +
                 "id=" + id +
                 ", listId='" + listId + '\'' +
+                ", getlistId='" + getlistId + '\'' +
+                ", getlistPic='" + getlistPic + '\'' +
                 ", mark='" + mark + '\'' +
-                ", innerTime='" + innerTime + '\'' +
-                ", pshCategory=" + pshCategory +
                 ", goodsOwner='" + goodsOwner + '\'' +
                 ", goodsOwnerMobile='" + goodsOwnerMobile + '\'' +
+                ", goodsOwnerPhone='" + goodsOwnerPhone + '\'' +
+                ", goodsOwnerEmail='" + goodsOwnerEmail + '\'' +
                 ", goodsOwnerProve='" + goodsOwnerProve + '\'' +
+                ", getlistWeight='" + getlistWeight + '\'' +
                 ", innerWeight='" + innerWeight + '\'' +
                 ", weightUse=" + weightUse +
                 ", weightUseable=" + weightUseable +
+                ", innerTime='" + innerTime + '\'' +
                 ", goodsPlace='" + goodsPlace + '\'' +
                 ", goodsType='" + goodsType + '\'' +
                 ", depotQuality='" + depotQuality + '\'' +
@@ -198,6 +249,7 @@ public class CangDanList {
                 ", responsiblePhone='" + responsiblePhone + '\'' +
                 ", responsibleEmail='" + responsibleEmail + '\'' +
                 ", depotAddr='" + depotAddr + '\'' +
+                ", pshCategory=" + pshCategory +
                 '}';
     }
 }

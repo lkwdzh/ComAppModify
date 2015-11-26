@@ -5,13 +5,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.PickInfoAdapter;
+import com.aglook.comapp.bean.CangDanList;
 import com.aglook.comapp.bean.DriverList;
+import com.aglook.comapp.util.XBitmap;
 import com.aglook.comapp.view.MyListView;
+import com.aglook.comapp.view.Timestamp;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -41,6 +45,10 @@ public class PickInfoActivity extends BaseActivity {
     private PickInfoAdapter adapter;
     private List<DriverList>mList=new ArrayList<>();
 
+    private CangDanList cangDan;
+    private ImageView iv_huoquan;
+    private ImageView iv_huowu;
+
     @Override
     public void initView() {
         setContentView(R.layout.activity_pick_info);
@@ -54,6 +62,7 @@ public class PickInfoActivity extends BaseActivity {
         right_text = (TextView) findViewById(R.id.right_text);
         right_text.setText("提交");
         right_text.setVisibility(View.VISIBLE);
+        cangDan= (CangDanList) getIntent().getSerializableExtra("tihuo");
 //        tv_goods_image_pick_info = (TextView) findViewById(R.id.tv_goods_image_pick_info);
 //        tv_huo_quan_image_pick_info = (TextView) findViewById(R.id.tv_huo_quan_image_pick_info);
         et_goods_name_pick_info = (TextView) findViewById(R.id.et_goods_name_pick_info);
@@ -70,9 +79,31 @@ public class PickInfoActivity extends BaseActivity {
         tv_cang_email_pick_info = (TextView) findViewById(R.id.tv_cang_email_pick_info);
         tv_cang_address_pick_info = (TextView) findViewById(R.id.tv_cang_address_pick_info);
         tv_buyer_pick_info = (TextView) findViewById(R.id.tv_buyer_pick_info);
+        iv_huowu = (ImageView) findViewById(R.id.iv_huowu);
+        iv_huoquan = (ImageView) findViewById(R.id.iv_huoquan);
         lv_pick_info = (MyListView) findViewById(R.id.lv_pick_info);
         adapter = new PickInfoAdapter(PickInfoActivity.this,mList);
         lv_pick_info.setAdapter(adapter);
+        fillData();
+    }
+
+    //填充数据
+    public void fillData(){
+        if (cangDan!=null){
+            XBitmap.displayImage(iv_huowu, cangDan.getGetlistPic(), PickInfoActivity.this);
+            XBitmap.displayImage(iv_huoquan,cangDan.getGoodsOwnerProve(),PickInfoActivity.this);
+            et_goods_name_pick_info.setText(cangDan.getPshCategory().getCategoryName());
+            tv_cangdanhao_pick_infod.setText(cangDan.getListId());
+            tv_goods_kind_pick_info.setText(cangDan.getGoodsType());
+            tv_use_weight_pick_info.setText(cangDan.getWeightUseable()+"吨");
+            tv_in_time_gua_pick_info.setText(Timestamp.getDateToString(cangDan.getInnerTime()));
+            tv_goods_area_pick_info.setText(cangDan.getGoodsPlace());
+            tv_xue_tou_pick_info.setText(cangDan.getMark());
+            tv_cang_name_pick_info.setText(cangDan.getDepotResponsible());
+            tv_cang_phone_pick_info.setText(cangDan.getResponsiblePhone());
+            tv_cang_email_pick_info.setText(cangDan.getResponsibleEmail());
+            tv_cang_address_pick_info.setText(cangDan.getDepotAddr());
+        }
     }
 
     public void click() {
