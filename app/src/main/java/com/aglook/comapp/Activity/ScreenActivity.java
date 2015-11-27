@@ -61,7 +61,7 @@ public class ScreenActivity extends BaseActivity {
 
     public void init() {
         gv_screen = (PullToRefreshGridView) findViewById(R.id.gv_screen);
-        adapter = new ScreenAdapter(ScreenActivity.this, mList);
+        adapter = new ScreenAdapter(ScreenActivity.this, mList,gv_screen);
         gv_screen.setAdapter(adapter);
         categoryId = getIntent().getStringExtra("categoryId");
         tv_all_screen = (TextView) findViewById(R.id.tv_all_screen);

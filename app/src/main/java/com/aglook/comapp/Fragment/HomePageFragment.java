@@ -48,11 +48,6 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     private List<String> list = new ArrayList<>();
     private RecycleHomePageAdapter adapter;
     private ViewPager vp_home_page_head;
-//    private int imageArray[] = {R.drawable.startup01, R.drawable.startup02, R.drawable.startup03, R.drawable.startup04};
-    //    private int imageArray[] = {R.drawable.startup01, R.drawable.startup02, R.drawable.startup03};
-//    private List<View> mViewPagerList;
-
-    //    private List<ImageView> listImage = new ArrayList<>();
     private int index = 0;
     //    private static final int POINT_LENGTH = 4;
     private int mCurrentIndex;

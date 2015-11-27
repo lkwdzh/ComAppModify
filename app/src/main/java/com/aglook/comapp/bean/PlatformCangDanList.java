@@ -1,14 +1,12 @@
 package com.aglook.comapp.bean;
 
-import java.util.Arrays;
-
 /**
  * Created by aglook on 2015/11/24.
  */
 public class PlatformCangDanList {
     private String orderId;//交易订单id
     private String orderState;//交易订单状态
-    private String[]  orderdataId;//平台仓单id
+    private String  orderdataId;//平台仓单id
     private String productId;//购买产品id
     private String productName;//名称
     private String productLogo;//图片
@@ -36,11 +34,11 @@ public class PlatformCangDanList {
         this.orderState = orderState;
     }
 
-    public String[] getOrderdataId() {
+    public String getOrderdataId() {
         return orderdataId;
     }
 
-    public void setOrderdataId(String[] orderdataId) {
+    public void setOrderdataId(String orderdataId) {
         this.orderdataId = orderdataId;
     }
 
@@ -129,7 +127,7 @@ public class PlatformCangDanList {
         return "PlatformCangDanList{" +
                 "orderId='" + orderId + '\'' +
                 ", orderState='" + orderState + '\'' +
-                ", orderdataId=" + Arrays.toString(orderdataId) +
+                ", orderdataId='" + orderdataId + '\'' +
                 ", productId='" + productId + '\'' +
                 ", productName='" + productName + '\'' +
                 ", productLogo='" + productLogo + '\'' +

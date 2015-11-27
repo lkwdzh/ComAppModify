@@ -16,36 +16,54 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <View
-                style="@style/line_1"
-                android:layout_marginTop="@dimen/px_14" />
 
-            <LinearLayout style="@style/guadan_ll_weight">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="4">
 
-                <TextView
-                    style="@style/guadan_TextView_333333"
-                    android:text="@string/gua_dan_goods_image" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_goods_image_gua_dan"
-                    style="@style/guadan_edittext_weight"
-                    android:drawableRight="@drawable/next"
-                    android:hint="已上传货物图片" />
-            </LinearLayout>
+                    <ImageView
+                        android:id="@+id/iv_huowu"
+                        style="@style/imageview_px120"
+                        android:src="@drawable/tongxun" />
 
-            <View style="@style/line_1" />
+                    <TextView
+                        style="@style/grayTextView_333333_15"
+                        android:layout_marginBottom="@dimen/px_10"
+                        android:text="货物图片" />
+                </LinearLayout>
 
-            <LinearLayout style="@style/guadan_ll_weight">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"></LinearLayout>
 
-                <TextView
-                    style="@style/guadan_TextView_333333"
-                    android:text="@string/gua_dan_huo_quan" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_huo_quan_image_gua_dan"
-                    style="@style/guadan_edittext_weight"
-                    android:drawableRight="@drawable/next"
-                    android:hint="已上传货权图片" />
+                    <ImageView
+                        android:id="@+id/iv_huoquan"
+                        style="@style/imageview_px120"
+                        android:src="@drawable/tongxun" />
+
+                    <TextView
+                        style="@style/grayTextView_333333_15"
+                        android:layout_marginBottom="@dimen/px_10"
+                        android:text="货权图片" />
+                </LinearLayout>
             </LinearLayout>
 
             <View style="@style/line_1" />

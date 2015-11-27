@@ -1,5 +1,9 @@
 package com.aglook.comapp.Activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -57,6 +61,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
     private TextView textView;
 
     private boolean isGoods = false;
+    private TextView tv_shopping_point;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +80,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         mTabHost.setOnTabChangedListener(new TabChangeListener());
         mTabHost.getCurrentTabView().setBackgroundColor(getResources().getColor(R.color.red_a50000));
         isGoods = getIntent().getBooleanExtra("isGoods", false);
-        if (isGoods){
+        if (isGoods) {
             mTabHost.setCurrentTab(2);
         }
         mShare = getSharedPreferences("une_pwd", MainActivity.this.MODE_PRIVATE);
@@ -87,7 +92,52 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         if (!"".equals(accountType) && !"".equals(userName) && !"".equals(password)) {
             login();
         }
+
+        tv_shopping_point = (TextView) findViewById(R.id.tv_shopping_point);
+
+        if (comAppApplication.getLogin() == null || "".equals(comAppApplication.getLogin())) {
+            tv_shopping_point.setVisibility(View.INVISIBLE);
+        } else {
+            if (DefineUtil.NUM != 0) {
+                tv_shopping_point.setVisibility(View.VISIBLE);
+                tv_shopping_point.setText(DefineUtil.NUM + "");
+            }
+        }
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("MainActivity");
+        registerReceiver(myReceiver, filter);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(myReceiver);
+    }
+
+    private BroadcastReceiver myReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (DefineUtil.NUM != 0) {
+                tv_shopping_point.setVisibility(View.VISIBLE);
+                tv_shopping_point.setText(DefineUtil.NUM + "");
+            }
+        }
+    };
+
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        if (comAppApplication.getLogin() == null || "".equals(comAppApplication.getLogin())) {
+//            tv_shopping_point.setVisibility(View.INVISIBLE);
+//        } else {
+//            if (DefineUtil.NUM!=0) {
+//                tv_shopping_point.setVisibility(View.VISIBLE);
+//                tv_shopping_point.setText(DefineUtil.NUM + "");
+//            }
+//        }
+//    }
 
     //    TabHost的改变
     private void setupTabView() {

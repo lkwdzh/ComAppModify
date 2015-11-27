@@ -17,6 +17,7 @@ import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.aglook.comapp.view.SelectPopupWindow;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -37,12 +38,12 @@ public class CardListActivity extends BaseActivity {
     private SelectPopupWindow popupWindow;
     private String bankCardId;
     //添加银行卡
-    private boolean isAdded=false;
+    private boolean isAdded = false;
     //设置默认银行卡
-    private boolean isMoRen=false;
+    private boolean isMoRen = false;
     //删除
-    private boolean isDelete=false;
-
+    private boolean isDelete = false;
+    private CustomProgress customProgress;
     @Override
     public void initView() {
         setContentView(R.layout.activity_card_list);
@@ -58,6 +59,7 @@ public class CardListActivity extends BaseActivity {
         right_text = (TextView) findViewById(R.id.right_text);
         right_text.setText("添加");
         right_text.setVisibility(View.VISIBLE);
+        customProgress = CustomProgress.show(this, "加载中···", true);
         lv_card_list = (PullToRefreshListView) findViewById(R.id.lv_card_list);
         lv_card_list.setMode(PullToRefreshBase.Mode.BOTH);
         adapter = new CardListAdapter(CardListActivity.this, mList);
@@ -119,6 +121,9 @@ public class CardListActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
                 Log.d("result_cardList", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
@@ -128,12 +133,12 @@ public class CardListActivity extends BaseActivity {
                     if (isAdded) {
                         mList.clear();
                         isAdded = false;
-                    }else if (isMoRen){
+                    } else if (isMoRen) {
                         mList.clear();
-                        isMoRen=false;
-                    }else if (isDelete){
+                        isMoRen = false;
+                    } else if (isDelete) {
                         mList.clear();
-                        isDelete=false;
+                        isDelete = false;
                     }
 
                     mList.addAll(list);
@@ -151,7 +156,9 @@ public class CardListActivity extends BaseActivity {
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.BANKCARD_LIST, CardListUrl.postBankCardListUrl(DefineUtil.USERID, DefineUtil.TOKEN), CardListActivity.this);
     }
@@ -182,7 +189,7 @@ public class CardListActivity extends BaseActivity {
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
-                    isMoRen=true;
+                    isMoRen = true;
                     getCardListData();
                 }
                 AppUtils.toastText(CardListActivity.this, message);
@@ -204,7 +211,7 @@ public class CardListActivity extends BaseActivity {
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
-                    isDelete=true;
+                    isDelete = true;
                     getCardListData();
                 }
                 AppUtils.toastText(CardListActivity.this, message);

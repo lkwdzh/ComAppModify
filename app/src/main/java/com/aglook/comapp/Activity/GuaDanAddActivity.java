@@ -43,7 +43,7 @@ public class GuaDanAddActivity extends BaseActivity {
     private TextView tv_userful_time_gua_dan_add;
     //    private TextView tv_goods_image_gua_dan_add;
 //    private TextView tv_huo_quan_image_gua_dan_add;
-    private TextView et_goods_name_gua_dan;
+    private EditText et_goods_name_gua_dan;
     private TextView tv_cangdanhao_gua_dan_add;
     private TextView tv_goods_kind_gua_dan;
     private TextView tv_stock_weight_gua_dan;
@@ -54,7 +54,7 @@ public class GuaDanAddActivity extends BaseActivity {
     private TextView et_cang_phone_gua_dan;
     private TextView et_cang_email_gua_dan;
     private TextView et_cang_address_gua_dan;
-    private TextView et_goods_detail_gua_dan;
+    private EditText et_goods_detail_gua_dan;
 //    private TextView tv_buyer_gua_dan;
 //    private MyGridView gv_gua_dan_add;
 
@@ -78,6 +78,7 @@ public class GuaDanAddActivity extends BaseActivity {
     private String code = "1003";
     private String productText;
 
+
     @Override
     public void initView() {
         setContentView(R.layout.activity_gua_dan_add);
@@ -98,7 +99,7 @@ public class GuaDanAddActivity extends BaseActivity {
 
 //        tv_goods_image_gua_dan_add = (TextView) findViewById(R.id.tv_goods_image_gua_dan_add);
 //        tv_huo_quan_image_gua_dan_add = (TextView) findViewById(R.id.tv_huo_quan_image_gua_dan_add);
-        et_goods_name_gua_dan = (TextView) findViewById(R.id.et_goods_name_gua_dan);
+        et_goods_name_gua_dan = (EditText) findViewById(R.id.et_goods_name_gua_dan);
         tv_cangdanhao_gua_dan_add = (TextView) findViewById(R.id.tv_cangdanhao_gua_dan_add);
         tv_goods_kind_gua_dan = (TextView) findViewById(R.id.tv_goods_kind_gua_dan);
         tv_stock_weight_gua_dan = (TextView) findViewById(R.id.tv_stock_weight_gua_dan);
@@ -109,7 +110,7 @@ public class GuaDanAddActivity extends BaseActivity {
         et_cang_phone_gua_dan = (TextView) findViewById(R.id.et_cang_phone_gua_dan);
         et_cang_email_gua_dan = (TextView) findViewById(R.id.et_cang_email_gua_dan);
         et_cang_address_gua_dan = (TextView) findViewById(R.id.et_cang_address_gua_dan);
-        et_goods_detail_gua_dan = (TextView) findViewById(R.id.et_goods_detail_gua_dan);
+        et_goods_detail_gua_dan = (EditText) findViewById(R.id.et_goods_detail_gua_dan);
         et_price_gua_dan = (EditText) findViewById(R.id.et_price_gua_dan);
 //        tv_buyer_gua_dan = (TextView) findViewById(R.id.tv_buyer_gua_dan);
 //        gv_gua_dan_add = (MyGridView) findViewById(R.id.gv_gua_dan_add);
@@ -147,11 +148,21 @@ public class GuaDanAddActivity extends BaseActivity {
 
         tradeNum = AppUtils.toStringTrim_ET(tv_use_weight_gua_dan);
         tradePrice = AppUtils.toStringTrim_ET(et_price_gua_dan);
-        productName = cangDan.getPshCategory().getCategoryName();
+//        productName = cangDan.getPshCategory().getCategoryName();
+        productName=AppUtils.toStringTrim_ET(et_goods_name_gua_dan);
+        productText=AppUtils.toStringTrim_ET(et_goods_detail_gua_dan);
         limitDate=limitDate.replaceAll("-", "");
         designatedUserid = null;
-        Log.d("result",originalListid+"____"+tradeNum+"____"+tradePrice+"_____"+productName+"____"
-        +limitDate);
+        if (mList.size()!=0) {
+            List<String>list=new ArrayList<>();
+            for (int i = 0; i < mList.size(); i++) {
+            list.add(String.valueOf(mList.get(i).getUserId()));
+            }
+            String string = list.toString();
+            designatedUserid=string.substring(1,string.length()-1).replaceAll(" ","");
+            Log.d("designatedUserid",designatedUserid);
+        }
+
         getData();
     }
 
@@ -208,7 +219,7 @@ public class GuaDanAddActivity extends BaseActivity {
                 getInput();
                 break;
             case R.id.ll_buyer_gua_dan:
-                intent.setClass(GuaDanAddActivity.this, BuyerListActivity.class);
+                intent.setClass(GuaDanAddActivity.this, FriendsListActivity.class);
                 intent.putExtra("buyOrLink", true);
                 if (mList != null && mList.size() != 0) {
                     intent.putExtra("ToSelect", (Serializable) mList);
@@ -228,11 +239,11 @@ public class GuaDanAddActivity extends BaseActivity {
             //根据list长度填充
             if (mList != null && mList.size() != 0) {
                 if (mList.size() == 1) {
-                    tv_1_gua_dan_add.setText(mList.get(0).getName());
+                    tv_1_gua_dan_add.setText(mList.get(0).getUserName());
                     tv_2_gua_dan_add.setText("");
                 } else if (mList.size() >= 2) {
-                    tv_1_gua_dan_add.setText(mList.get(0).getName());
-                    tv_2_gua_dan_add.setText(mList.get(1).getName());
+                    tv_1_gua_dan_add.setText(mList.get(0).getUserName());
+                    tv_2_gua_dan_add.setText(mList.get(1).getUserName());
                 }
             } else {
                 tv_1_gua_dan_add.setText("");
@@ -252,9 +263,10 @@ public class GuaDanAddActivity extends BaseActivity {
                 String obj=JsonUtils.getJsonParam(arg0.result,"obj");
                 if (status.equals("1")){
                     //成功则跳转
-                  Intent intent=  new Intent(GuaDanAddActivity.this, GuaDanDetailActivity.class);
-                    startActivity(intent);
-
+//                  Intent intent=  new Intent(GuaDanAddActivity.this, GuaDanDetailActivity.class);
+//                     startActivity(intent);
+                GuaDanAddActivity.this.setResult(1);
+                    GuaDanAddActivity.this.finish();
                 }else {
                     AppUtils.toastText(GuaDanAddActivity.this,message);
                 }

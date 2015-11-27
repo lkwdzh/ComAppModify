@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:gravity="center"
+    android:gravity="center"
     android:orientation="vertical">
 
     <RelativeLayout style="@style/rl_wrap_content">
@@ -15,9 +15,8 @@ android:gravity="center"
 
             <ImageView
                 android:id="@+id/iv_myGridView_homepage"
-               style="@style/imageview_px134"
-                android:scaleType="centerInside"
-                 />
+              style="@style/imageview_px134"
+                android:scaleType="centerInside" />
 
             <TextView
                 android:id="@+id/tv_name_homepage"
@@ -74,12 +73,12 @@ android:gravity="center"
         </LinearLayout>
 
         <View
-           android:layout_width="1dp"
+            android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@color/gray_eeeeee"
             android:layout_alignBottom="@id/ll_left"
             android:layout_alignTop="@id/ll_left"
-           android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true" />
     </RelativeLayout>
 
     <View style="@style/line_1" />

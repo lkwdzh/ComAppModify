@@ -276,6 +276,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
             customProgress = CustomProgress.show(getActivity(), "加载中···", true);
             getCartListData();
         }else if (requestCode==3&&resultCode==1){
+            isConfirm=true;
             getCartListData();
         }
     }
@@ -301,7 +302,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
             case R.id.ll_shopping_cart_jiesuan:
                 intent.setClass(getActivity(), ConfirmOrderActivity.class);
                 intent.putExtra("CharList", (Serializable) mList);
-                isConfirm=true;
+
                 startActivityForResult(intent,3);
                 break;
             case R.id.btn_login:
@@ -385,6 +386,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
 
                     }else {
                         if (isDelete){
+
                             ll_empty_shopping_cart.setVisibility(View.VISIBLE);
                             ll_full_content.setVisibility(View.GONE);
                             ll_weidenglu_shopping_cart.setVisibility(View.GONE);
@@ -399,7 +401,13 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                 } else {
                     AppUtils.toastText(getActivity(), message);
                 }
-
+                if (mList==null||mList.size()==0){
+                    ll_empty_shopping_cart.setVisibility(View.VISIBLE);
+                    ll_full_content.setVisibility(View.GONE);
+                    ll_weidenglu_shopping_cart.setVisibility(View.GONE);
+                    cb_top_right_shopping_cart.setVisibility(View.GONE);
+                    AppUtils.toastText(getActivity(),"22222");
+                }
                 adapter.notifyDataSetChanged();
             }
 
@@ -410,6 +418,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                 }
             }
         }.datePost(DefineUtil.CARTLIST, ShoppingCartUrl.postCartListUrl(DefineUtil.USERID, DefineUtil.TOKEN), getActivity());
+
     }
 
     //    写一个回调接口，当点击时跳转到首页

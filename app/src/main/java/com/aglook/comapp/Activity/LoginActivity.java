@@ -16,7 +16,6 @@ import android.widget.Spinner;
 
 import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.Application.ExitApplication;
-import com.aglook.comapp.Fragment.MineFragment;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.bean.ShoppingCart;
@@ -153,7 +152,10 @@ public class LoginActivity extends BaseActivity {
                     DefineUtil.TOKEN = login.getToken();
                     DefineUtil.USERID=login.getPshUser().getUserId();
                     comAppApplication.setLogin(login);
-                    Intent intent = new Intent(LoginActivity.this, MineFragment.class);
+                    // 发送广播给MainActivity
+
+
+
                     LoginActivity.this.setResult(1);
                     LoginActivity.this.finish();
                     getCartListData();
@@ -182,6 +184,9 @@ public class LoginActivity extends BaseActivity {
                             DefineUtil.NUM+=list.get(i).getProductNum();
                         }
                     }
+                    Intent intent = new Intent();
+                    intent.setAction("MainActivity");
+                    sendBroadcast(intent);
                 }
             }
 

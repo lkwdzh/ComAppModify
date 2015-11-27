@@ -44,7 +44,9 @@
             android:label="@string/title_activity_find_password" />
         <activity
             android:name=".Activity.BasicInformationActivity"
-            android:label="@string/title_activity_basic_information" >
+            android:label="@string/title_activity_basic_information"
+            android:windowSoftInputMode="adjustPan" >
+            wi
         </activity>
         <activity
             android:name=".Activity.GuaDanDetailActivity"
@@ -158,11 +160,11 @@
             android:label="@string/title_activity_pick_up_dtail_activity2" >
         </activity>
         <activity
-            android:name=".Activity.BuyerListActivity"
+            android:name=".Activity.FriendsListActivity"
             android:label="@string/title_activity_buyer_list" >
         </activity>
         <activity
-            android:name=".Activity.BuyerAddActivity"
+            android:name=".Activity.FriendsAddActivity"
             android:label="@string/title_activity_buyer_add" >
         </activity>
         <activity
@@ -176,6 +178,10 @@
         <activity
             android:name=".Activity.TradeingActivity"
             android:label="@string/title_activity_tradeing" >
+        </activity>
+        <activity
+            android:name=".Activity.PayActivity"
+            android:label="@string/title_activity_pay" >
         </activity>
     </application>
 

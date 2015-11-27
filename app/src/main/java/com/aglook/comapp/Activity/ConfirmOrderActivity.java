@@ -20,7 +20,6 @@ import com.aglook.comapp.adapter.ConfirmOrderAdapter;
 import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.bean.ShoppingCart;
 import com.aglook.comapp.url.ConfirmOrderUrl;
-import com.aglook.comapp.url.PayUrl;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
@@ -253,7 +252,12 @@ public class ConfirmOrderActivity extends BaseActivity {
                     orderId = JsonUtils.getJsonParam(obj, "orderId");
                     money = JsonUtils.getJsonParam(obj, "money");
                     totalFee = String.valueOf(Double.parseDouble(money)-Double.parseDouble(JsonUtils.getJsonParam(obj, "totalFee")));
-                    pay();
+                    Intent intent = new Intent(ConfirmOrderActivity.this,PayActivity.class);
+                    intent.putExtra("orderId",orderId);
+                    intent.putExtra("money",money);
+                    startActivity(intent);
+                    ConfirmOrderActivity.this.setResult(1);
+                    ConfirmOrderActivity.this.finish();
                 } else {
                     AppUtils.toastText(ConfirmOrderActivity.this, message);
                 }
@@ -266,18 +270,18 @@ public class ConfirmOrderActivity extends BaseActivity {
         }.datePost(DefineUtil.CREATE_ORDER, ConfirmOrderUrl.postConfirmOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartids, String.valueOf(allMoney), text, String.valueOf(costMoney)), ConfirmOrderActivity.this);
     }
 
-    //zhifu
-    public void pay(){
-        new XHttpuTools() {
-            @Override
-            public void initViews(ResponseInfo<String> arg0) {
-            Log.d("result-pay",arg0.result);
-            }
-
-            @Override
-            public void failureInitViews(HttpException arg0, String arg1) {
-
-            }
-        }.datePost(DefineUtil.PAY, PayUrl.postPayWGUrl(orderId,DefineUtil.USERID,money,money),ConfirmOrderActivity.this);
-    }
+//    //zhifu
+//    public void pay(){
+//        new XHttpuTools() {
+//            @Override
+//            public void initViews(ResponseInfo<String> arg0) {
+//            Log.d("result-pay",arg0.result);
+//            }
+//
+//            @Override
+//            public void failureInitViews(HttpException arg0, String arg1) {
+//
+//            }
+//        }.datePost(DefineUtil.PAY, PayUrl.postPayWGUrl(orderId,DefineUtil.USERID,money,money),ConfirmOrderActivity.this);
+//    }
 }

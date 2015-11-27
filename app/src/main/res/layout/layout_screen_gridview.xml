@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="@dimen/px_10"
-        android:paddingLeft="@dimen/px_14"
+        android:paddingLeft="@dimen/px_10"
         android:paddingTop="@dimen/px_10">
 
         <LinearLayout
@@ -25,7 +25,7 @@
                 android:id="@+id/iv_screen_gridview"
                 style="@style/imageview_px120"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/px_14"
+                android:layout_marginRight="@dimen/px_10"
                 android:src="@drawable/tongxun" />
 
             <LinearLayout

@@ -29,6 +29,7 @@ public class ToPayActivity extends BaseActivity {
     private View emptyView;
     private List<AllOrder> mList=new ArrayList<>();
     private String orderStatus="1";
+    private boolean isBrower;
     @Override
     public void initView() {
         setContentView(R.layout.activity_to_pay);
@@ -60,6 +61,15 @@ public class ToPayActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==1&&resultCode==2){
+           isBrower=true;
+            getData();
+        }
+    }
+
+
     //获取数据
     public void getData() {
         new XHttpuTools() {
@@ -73,6 +83,11 @@ public class ToPayActivity extends BaseActivity {
                 sonList=JsonUtils.parseList(obj,AllOrder.class);
                 if (status.equals("1")){
                     if (sonList!=null&&sonList.size()!=0){
+                        if (isBrower){
+                            mList.clear();
+                            isBrower=false;
+                        }
+
                         mList.addAll(sonList);
                     }
                 }else {

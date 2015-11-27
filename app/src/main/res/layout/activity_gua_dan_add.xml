@@ -17,33 +17,6 @@
             android:orientation="vertical">
 
 
-            <!--<LinearLayout style="@style/guadan_ll_weight">-->
-
-            <!--<TextView-->
-            <!--style="@style/guadan_TextView_333333"-->
-            <!--android:text="@string/gua_dan_goods_image" />-->
-
-            <!--<TextView-->
-            <!--android:id="@+id/tv_goods_image_gua_dan_add"-->
-            <!--style="@style/guadan_edittext_weight"-->
-            <!--android:drawableRight="@drawable/next"-->
-            <!--android:hint="请上传货物图片" />-->
-            <!--</LinearLayout>-->
-
-            <!--<View style="@style/line_1" />-->
-
-            <!--<LinearLayout style="@style/guadan_ll_weight">-->
-
-            <!--<TextView-->
-            <!--style="@style/guadan_TextView_333333"-->
-            <!--android:text="@string/gua_dan_huo_quan" />-->
-
-            <!--<TextView-->
-            <!--android:id="@+id/tv_huo_quan_image_gua_dan_add"-->
-            <!--style="@style/guadan_edittext_weight"-->
-            <!--android:drawableRight="@drawable/next"-->
-            <!--android:hint="请上传货权图片" />-->
-            <!--</LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -102,7 +75,7 @@
                     style="@style/guadan_TextView_333333"
                     android:text="@string/gua_dan_goods_name" />
 
-                <TextView
+                <EditText
                     android:id="@+id/et_goods_name_gua_dan"
                     style="@style/guadan_edittext_weight"
                     android:hint="请输入商品名称" />
@@ -299,7 +272,7 @@
                     style="@style/guadan_TextView_333333"
                     android:text="@string/gua_dan_goods_detail" />
 
-                <TextView
+                <EditText
                     android:id="@+id/et_goods_detail_gua_dan"
                     style="@style/guadan_edittext_weight"
                     android:hint="请输入商品详情" />

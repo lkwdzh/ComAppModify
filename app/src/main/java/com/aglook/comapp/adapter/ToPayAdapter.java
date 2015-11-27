@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.aglook.comapp.Activity.OrderDetailActivity;
+import com.aglook.comapp.Activity.PayActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.AllOrder;
 import com.aglook.comapp.bean.AllOrderDataList;
@@ -138,11 +138,17 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
                 index=(int)v.getTag();
                 money=String.valueOf(list.get(index).getMoney());
                 orderId=list.get(index).getOrderId();
-                intent.setAction("android.intent.action.VIEW");
-                Uri uri=Uri.parse(PayUrl.postPay(orderId,DefineUtil.USERID,money,money));
-//                Uri uri=Uri.parse("http://javacrazyer.iteye.com/blog/1840093");
-                intent.setData(uri);
-                activity.startActivity(intent);
+                intent.setClass(activity, PayActivity.class);
+                intent.putExtra("orderId",orderId);
+                intent.putExtra("money",money);
+                Log.d("result_OrderId", orderId);
+                activity.startActivityForResult(intent, 1);
+
+//                intent.setAction("android.intent.action.VIEW");
+//                Uri uri=Uri.parse(PayUrl.postPay(orderId,DefineUtil.USERID,money,money));
+////                Uri uri=Uri.parse("http://javacrazyer.iteye.com/blog/1840093");
+//                intent.setData(uri);
+//                activity.startActivity(intent);
                 break;
             case R.id.tv_delete_all_order_lv:
                  index = (int) v.getTag();
@@ -161,6 +167,9 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
                 break;
         }
     }
+
+
+
     //zhifu
     public void pay(){
         new XHttpuTools() {

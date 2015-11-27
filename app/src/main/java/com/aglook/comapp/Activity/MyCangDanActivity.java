@@ -1,5 +1,6 @@
 package com.aglook.comapp.Activity;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -14,6 +15,7 @@ import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lidroid.xutils.exception.HttpException;
@@ -33,7 +35,7 @@ public class MyCangDanActivity extends BaseActivity {
     private List<CangDanList> mList = new ArrayList<>();
     private CangDan cangDan = new CangDan();
     private String code="1001";
-
+    private CustomProgress customProgress;
     @Override
     public void initView() {
         setContentView(R.layout.activity_my_cang_dan);
@@ -49,6 +51,16 @@ public class MyCangDanActivity extends BaseActivity {
         lv_my_cang_dan.setMode(PullToRefreshBase.Mode.BOTH);
         adapter = new MyCangDanAdapter(MyCangDanActivity.this,mList);
         lv_my_cang_dan.setAdapter(adapter);
+        customProgress = CustomProgress.show(this, "加载中···", true);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==1&&resultCode==1){
+            customProgress = CustomProgress.show(this, "加载中···", true);
+            mList.clear();
+            getData();
+        }
     }
 
     public void click() {
@@ -78,6 +90,9 @@ public class MyCangDanActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
                 Log.d("result_myCangdan", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
@@ -101,7 +116,9 @@ public class MyCangDanActivity extends BaseActivity {
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.CANG_DAN, CangDanUrl.postCangDanUrl(code,DefineUtil.TOKEN, DefineUtil.USERID, String.valueOf(pageSize), String.valueOf(pageNum), _sort), this);
 

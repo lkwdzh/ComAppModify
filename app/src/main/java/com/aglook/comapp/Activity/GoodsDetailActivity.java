@@ -287,7 +287,6 @@ public class GoodsDetailActivity extends BaseActivity {
     //添加到购物车
     public void addCart() {
         customProgress = CustomProgress.show(GoodsDetailActivity.this, "", true);
-        AppUtils.toastText(GoodsDetailActivity.this, productId + "______" + productNum);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -300,6 +299,10 @@ public class GoodsDetailActivity extends BaseActivity {
                 if (status.equals("1")) {
                     AppUtils.toastText(GoodsDetailActivity.this, message);
                     DefineUtil.NUM++;
+                    tv_num_goods_detail.setText(DefineUtil.NUM+"");
+                    Intent intent = new Intent();
+                    intent.setAction("MainActivity");
+                    sendBroadcast(intent);
                 } else {
                     AppUtils.toastText(GoodsDetailActivity.this, message);
                 }

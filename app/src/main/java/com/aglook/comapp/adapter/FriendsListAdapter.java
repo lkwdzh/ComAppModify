@@ -13,17 +13,14 @@ import com.aglook.comapp.bean.LinkMan;
 
 import java.util.List;
 
-/**
- * Created by aglook on 2015/11/12.
- */
-public class BuyerListAdapter extends BaseAdapter {
+public class FriendsListAdapter extends BaseAdapter{
     private Context context;
     private boolean isBuyer;
-    private List<LinkMan>list;
+    private List<LinkMan> list;
     private CallBackData  callBackData;
     private int num;
 
-    public BuyerListAdapter(Context context, boolean isBuyer,List<LinkMan>list, CallBackData  callBackData) {
+    public FriendsListAdapter(Context context, boolean isBuyer,List<LinkMan>list, CallBackData  callBackData) {
         this.context = context;
         this.isBuyer = isBuyer;
         this.list=list;
@@ -32,7 +29,7 @@ public class BuyerListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 11;
+        return list!=null?list.size():0;
     }
 
     @Override
@@ -64,7 +61,7 @@ public class BuyerListAdapter extends BaseAdapter {
         }
 
         final LinkMan linkMan = list.get(position);
-        holder.tv_driver_lv.setText(linkMan.getName());
+        holder.tv_driver_lv.setText(linkMan.getUserName());
         holder.cb_driver_lv.setChecked(linkMan.isChecked());
 
         holder.cb_driver_lv.setOnClickListener(new View.OnClickListener() {
@@ -97,5 +94,4 @@ public class BuyerListAdapter extends BaseAdapter {
     public interface CallBackData{
         public void callBack(int num);
     }
-
 }

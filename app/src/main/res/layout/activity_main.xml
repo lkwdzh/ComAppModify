@@ -8,12 +8,45 @@
         android:id="@+id/fra_tabcontent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/tabhost"></FrameLayout>
+        android:layout_above="@+id/tl_bot"></FrameLayout>
 
-    <android.support.v4.app.FragmentTabHost
-        android:id="@+id/tabhost"
+    <RelativeLayout
+        android:id="@+id/tl_bot"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/black"></android.support.v4.app.FragmentTabHost>
+        android:layout_height="@dimen/px_85"
+        android:layout_alignParentBottom="true">
+
+        <android.support.v4.app.FragmentTabHost
+            android:id="@+id/tabhost"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:background="@color/black"></android.support.v4.app.FragmentTabHost>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="12">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_shopping_point"
+                    android:layout_marginTop="@dimen/px_5"
+                    android:layout_marginRight="@dimen/px_5"
+                    style="@style/red_point_mine_fragment"
+                    android:text="2" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </RelativeLayout>
 </RelativeLayout>

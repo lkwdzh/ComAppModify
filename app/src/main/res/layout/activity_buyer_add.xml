@@ -7,64 +7,65 @@
 
     <include layout="@layout/activity_base_title_bar" />
 
-    <View style="@style/line_1"
-        android:layout_marginTop="@dimen/px_14"/>
+    <View
+        style="@style/line_1"
+        android:layout_marginTop="@dimen/px_14" />
 
     <LinearLayout style="@style/guadan_ll_weight">
 
         <TextView
             style="@style/guadan_TextView_333333"
-            android:text="@string/buyer_add_name" />
+            android:text="席位号" />
 
         <EditText
-            android:id="@+id/et_name_buyer_add"
+            android:id="@+id/et_seatNO_Friends_add"
             style="@style/guadan_edittext_weight"
-            android:hint="请输入联系人姓名" />
-    </LinearLayout>
-    <View style="@style/line_1" />
-
-    <LinearLayout style="@style/guadan_ll_weight">
-
-        <TextView
-            style="@style/guadan_TextView_333333"
-            android:text="@string/driver_add_phone" />
-
-        <EditText
-            android:id="@+id/et_phone_buyer_add"
-            style="@style/guadan_edittext_weight"
-            android:inputType="phone"
-            android:hint="请输入联系人电话" />
+            android:hint="请输入联系人席位号" />
     </LinearLayout>
 
     <View style="@style/line_1" />
 
-    <LinearLayout style="@style/guadan_ll_weight">
+    <!--<LinearLayout style="@style/guadan_ll_weight">-->
 
-        <TextView
-            style="@style/guadan_TextView_333333"
-            android:text="@string/driver_add_email" />
+        <!--<TextView-->
+            <!--style="@style/guadan_TextView_333333"-->
+            <!--android:text="@string/driver_add_phone" />-->
 
-        <EditText
-            android:id="@+id/et_email_buyer_add"
-            style="@style/guadan_edittext_weight"
-            android:inputType="textEmailAddress"
-            android:hint="请输入联系人邮箱" />
-    </LinearLayout>
+        <!--<EditText-->
+            <!--android:id="@+id/et_phone_buyer_add"-->
+            <!--style="@style/guadan_edittext_weight"-->
+            <!--android:inputType="phone"-->
+            <!--android:hint="请输入联系人电话" />-->
+    <!--</LinearLayout>-->
 
-    <View style="@style/line_1" />
+    <!--<View style="@style/line_1" />-->
 
-    <LinearLayout style="@style/guadan_ll_weight">
+    <!--<LinearLayout style="@style/guadan_ll_weight">-->
 
-        <TextView
-            style="@style/guadan_TextView_333333"
-            android:text="身份证号" />
+        <!--<TextView-->
+            <!--style="@style/guadan_TextView_333333"-->
+            <!--android:text="@string/driver_add_email" />-->
 
-        <EditText
-            android:id="@+id/et_num_buyer_add"
-            style="@style/guadan_edittext_weight"
-            android:hint="请输入联系人身份证号" />
-    </LinearLayout>
+        <!--<EditText-->
+            <!--android:id="@+id/et_email_buyer_add"-->
+            <!--style="@style/guadan_edittext_weight"-->
+            <!--android:inputType="textEmailAddress"-->
+            <!--android:hint="请输入联系人邮箱" />-->
+    <!--</LinearLayout>-->
 
+    <!--<View style="@style/line_1" />-->
+
+    <!--<LinearLayout style="@style/guadan_ll_weight">-->
+
+        <!--<TextView-->
+            <!--style="@style/guadan_TextView_333333"-->
+            <!--android:text="身份证号" />-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/et_num_buyer_add"-->
+            <!--style="@style/guadan_edittext_weight"-->
+            <!--android:hint="请输入联系人身份证号" />-->
+    <!--</LinearLayout>-->
 
 
 </LinearLayout>

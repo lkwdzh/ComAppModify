@@ -70,7 +70,7 @@ public class PersonInformationActivity extends BaseActivity {
                 startActivity(intent);
                 break;
             case R.id.tv_linkman_person_info:
-                intent.setClass(PersonInformationActivity.this,BuyerListActivity.class);
+                intent.setClass(PersonInformationActivity.this,FriendsListActivity.class);
                 intent.putExtra("buyOrLink",false);
                 startActivity(intent);
                 break;
