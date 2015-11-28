@@ -12,6 +12,15 @@ public class AllOrder implements Serializable {
     private double money;//钱
     private String orderStatus;//支付状态
     private String totalFee;
+    private String prderPayTime;
+    private List<AllOrderDataList>orderDateList;
+    public String getPrderPayTime() {
+        return prderPayTime;
+    }
+
+    public void setPrderPayTime(String prderPayTime) {
+        this.prderPayTime = prderPayTime;
+    }
 
     public String getTotalFee() {
         return totalFee;
@@ -21,7 +30,7 @@ public class AllOrder implements Serializable {
         this.totalFee = totalFee;
     }
 
-    private List<AllOrderDataList>orderDateList;
+
 
     public String getOrderId() {
         return orderId;
@@ -71,6 +80,7 @@ public class AllOrder implements Serializable {
                 ", money=" + money +
                 ", orderStatus='" + orderStatus + '\'' +
                 ", totalFee='" + totalFee + '\'' +
+                ", prderPayTime='" + prderPayTime + '\'' +
                 ", orderDateList=" + orderDateList +
                 '}';
     }

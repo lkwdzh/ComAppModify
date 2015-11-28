@@ -135,12 +135,12 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.tv_click_all_order_lv:
                 AppUtils.toastText(activity, "去支付");
-                index=(int)v.getTag();
-                money=String.valueOf(list.get(index).getMoney());
-                orderId=list.get(index).getOrderId();
+                index = (int) v.getTag();
+                money = String.valueOf(list.get(index).getMoney());
+                orderId = list.get(index).getOrderId();
                 intent.setClass(activity, PayActivity.class);
-                intent.putExtra("orderId",orderId);
-                intent.putExtra("money",money);
+                intent.putExtra("orderId", orderId);
+                intent.putExtra("money", money);
                 Log.d("result_OrderId", orderId);
                 activity.startActivityForResult(intent, 1);
 
@@ -151,9 +151,9 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
 //                activity.startActivity(intent);
                 break;
             case R.id.tv_delete_all_order_lv:
-                 index = (int) v.getTag();
-                AppUtils.toastText(activity,index+"");
-                orderId=list.get(index).getOrderId();
+                index = (int) v.getTag();
+                AppUtils.toastText(activity, index + "");
+                orderId = list.get(index).getOrderId();
                 showDailog();
                 break;
             case R.id.btn_cancel_delete:
@@ -169,13 +169,12 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
     }
 
 
-
     //zhifu
-    public void pay(){
+    public void pay() {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result-pay",arg0.result);
+                Log.d("result-pay", arg0.result);
 //                Intent intent = new Intent();
 //                intent.setAction("android.intent.action.VIEW");
 //                Uri uri=Uri.parse(payUrl);
@@ -187,8 +186,9 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        }.datePost(DefineUtil.PAY, PayUrl.postPayWGUrl(orderId, DefineUtil.USERID, money, money),activity);
+        }.datePost(DefineUtil.PAY, PayUrl.postPayWGUrl(orderId, DefineUtil.USERID, money, money), activity);
     }
+
     class ViewHolder {
         TextView tv_order_num_all_order_lv;
         TextView tv_success_all_order_lv;
@@ -238,11 +238,11 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
 
 
     public void cancelOrder() {
-        customProgress=CustomProgress.show(activity,"",true);
+        customProgress = CustomProgress.show(activity, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                if (customProgress!=null&&customProgress.isShowing()){
+                if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
                 Log.d("result_cancel", arg0.result);
@@ -259,7 +259,7 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-                if (customProgress!=null&&customProgress.isShowing()){
+                if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
             }

@@ -21,6 +21,7 @@
             <TextView
                 android:id="@+id/tv_name_homepage"
                 style="@style/grayTextView_333333_13"
+                android:singleLine="true"
                 android:text="小米" />
 
             <LinearLayout style="@style/ll_match_wrap_content_hor">
@@ -32,6 +33,7 @@
                 <TextView
                     android:id="@+id/tv_address_mygridview"
                     style="@style/grayTextView_666666_13"
+                    android:singleLine="true"
                     android:text="山东" />
             </LinearLayout>
 
@@ -44,6 +46,7 @@
                 <TextView
                     android:id="@+id/tv_grade_mygridview"
                     style="@style/grayTextView_666666_13"
+                    android:singleLine="true"
                     android:text="一级" />
             </LinearLayout>
 
@@ -56,6 +59,7 @@
                 <TextView
                     android:id="@+id/tv_weight_mygridview"
                     style="@style/grayTextView_666666_13"
+                    android:singleLine="true"
                     android:text="30吨" />
             </LinearLayout>
 
@@ -68,6 +72,7 @@
                 <TextView
                     android:id="@+id/tv_price_mygridview"
                     style="@style/redTextView_c91014_13"
+                    android:singleLine="true"
                     android:text="￥1999" />
             </LinearLayout>
         </LinearLayout>

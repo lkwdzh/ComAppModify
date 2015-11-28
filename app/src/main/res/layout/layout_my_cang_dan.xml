@@ -20,19 +20,29 @@
         android:paddingRight="@dimen/px_20"
         android:paddingTop="@dimen/px_14">
 
-        <LinearLayout
+        <RelativeLayout
             style="@style/ll_match_wrap_content_hor"
             android:gravity="center_vertical">
 
             <TextView
+                android:id="@+id/tv_cangdan"
                 style="@style/grayTextView_333333_15"
+                android:layout_alignParentLeft="true"
                 android:text="@string/house_num_my_cangdan" />
 
             <TextView
                 android:id="@+id/tv_house_num_my_cangdan"
                 style="@style/grayTextView_333333_15"
+                android:layout_toRightOf="@+id/tv_cangdan"
                 android:text="12346549879879" />
-        </LinearLayout>
+            <TextView
+                android:id="@+id/tv_success_all_order_lv"
+                style="@style/redTextView_c91014"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="已售完"
+                android:textSize="13sp" />
+        </RelativeLayout>
 
         <RelativeLayout
             style="@style/rl_match_wrap_content"

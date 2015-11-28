@@ -10,6 +10,7 @@ import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.DriverListAdapter;
 import com.aglook.comapp.bean.DriverList;
+import com.aglook.comapp.util.AppUtils;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import java.io.Serializable;
@@ -29,6 +30,7 @@ public class DriverListActivity extends BaseActivity {
     private List<DriverList> getList = new ArrayList<>();
     private TextView tv_num_driver_list;
     private int total=0;
+    private boolean isModify;
 
     @Override
     public void initView() {
@@ -48,6 +50,7 @@ public class DriverListActivity extends BaseActivity {
         rl_bottom = (RelativeLayout) findViewById(R.id.rl_bottom);
         tv_num_driver_list = (TextView) findViewById(R.id.tv_num_driver_list);
         canCheck = getIntent().getBooleanExtra("canCheck", false);
+        isModify=getIntent().getBooleanExtra("isModify",false);
         adapter = new DriverListAdapter(DriverListActivity.this, mList, canCheck,new DriverListAdapter.CallBackData() {
             @Override
             public void callBack(int num) {
@@ -89,8 +92,18 @@ public class DriverListActivity extends BaseActivity {
         lv_driver_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(DriverListActivity.this, DriverInfoActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent();
+                //如果是从修改页面跳转的，点击则返回并带回数据，否则，跳转到详情
+                if (isModify){
+                    intent.setClass(DriverListActivity.this,ModifyPickUpActivity.class);
+                    intent.putExtra("driver",mList.get(position-1));
+                    AppUtils.toastText(DriverListActivity.this,position-1+"");
+                    DriverListActivity.this.setResult(RESULT_OK,intent);
+                    DriverListActivity.this.finish();
+                }else {
+                   intent.setClass(DriverListActivity.this, DriverInfoActivity.class);
+                    startActivity(intent);
+                }
             }
         });
         tv_confirm_driver_list.setOnClickListener(this);

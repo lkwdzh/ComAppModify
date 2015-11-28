@@ -37,6 +37,7 @@
                     android:id="@+id/tv_name_screen_gridview"
                     style="@style/grayTextView_333333_13"
                     android:layout_marginTop="@dimen/px_5"
+                    android:singleLine="true"
                     android:text="小米" />
 
                 <LinearLayout
@@ -52,6 +53,7 @@
                         android:id="@+id/tv_address_screen_gridview"
                         style="@style/grayTextView_666666"
                         android:text="山东"
+                        android:singleLine="true"
                         android:textSize="11sp" />
                 </LinearLayout>
 
@@ -68,6 +70,7 @@
                         android:id="@+id/tv_grade_screen_gridview"
                         style="@style/grayTextView_666666"
                         android:text="一级"
+                        android:singleLine="true"
                         android:textSize="11sp" />
                 </LinearLayout>
 
@@ -84,6 +87,7 @@
                         android:id="@+id/tv_weight_screen_gridview"
                         style="@style/grayTextView_666666"
                         android:text="30吨"
+                        android:singleLine="true"
                         android:textSize="11sp" />
                 </LinearLayout>
 
@@ -100,6 +104,7 @@
                         android:id="@+id/tv_price_screen_gridview"
                         style="@style/redTextView_c91014"
                         android:text="1999"
+                        android:singleLine="true"
                         android:textSize="11sp" />
                 </LinearLayout>
 

@@ -1,0 +1,100 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_base_title_bar" />
+
+    <View style="@style/line_1" />
+
+    <LinearLayout
+        style="@style/ll_match_wrap_content_ver"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/px_14"
+        android:paddingLeft="@dimen/px_20"
+        android:paddingRight="@dimen/px_20"
+        android:paddingTop="@dimen/px_14">
+
+        <RelativeLayout
+            style="@style/ll_match_wrap_content_hor"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_cangdan"
+                style="@style/grayTextView_333333_15"
+                android:layout_alignParentLeft="true"
+                android:text="提货编号" />
+
+            <TextView
+                android:id="@+id/tv_house_num_my_cangdan"
+                style="@style/grayTextView_333333_15"
+                android:layout_toRightOf="@+id/tv_cangdan"
+                android:text="12346549879879" />
+
+            <TextView
+                android:id="@+id/tv_success_all_order_lv"
+                style="@style/redTextView_c91014"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="已售完"
+                android:textSize="13sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/rl_match_wrap_content"
+            android:layout_marginTop="@dimen/px_10">
+
+            <LinearLayout
+                style="@style/ll_match_wrap_content_hor"
+                android:layout_toLeftOf="@+id/ll_right"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_in_time"
+                    style="@style/grayTextView_999999"
+                    android:text="@string/in_time_my_cangdan"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_in_time_my_cangdan"
+                    style="@style/grayTextView_999999"
+                    android:text="2015-01-01 16:24"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_right"
+                style="@style/ll_wrap_content_hor"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:visibility="visible"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_tihuo"
+                    style="@style/grayTextView_999999"
+                    android:text="申请时间"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_time_tihuo"
+                    style="@style/grayTextView_999999"
+                    android:text="2015-01-01 16:21"
+                    android:textSize="11sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+
+    <ListView
+        android:id="@+id/lv_modify_pick_up"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"></ListView>
+
+</LinearLayout>

@@ -106,6 +106,10 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
             public void callBack(int num, double total) {
                 allMoney = total;
                 allNum = num;
+                DefineUtil.NUM=num;
+                Intent intent1 = new Intent();
+                intent1.setAction("MainActivity");
+                getActivity().sendBroadcast(intent1);
                 tv_shopping_cart_jiesuan.setText("(" + num + ")");
                 tv_total_shopping_cart_fragment.setText(total + "");
             }

@@ -4,7 +4,7 @@ package com.aglook.comapp.bean;
  * Created by aglook on 2015/11/24.
  */
 public class PlatformCangDanList {
-    private String orderId;//交易订单id
+    private String orderId;//平台仓单号
     private String orderState;//交易订单状态
     private String  orderdataId;//平台仓单id
     private String productId;//购买产品id
@@ -17,6 +17,33 @@ public class PlatformCangDanList {
     private String weightUseable;//未出售数量
     private String storage;//仓储费
     private String counter;//手续费
+    private String originalListId;//原始仓单号
+    private String orderAtime;//创建时间
+    private String orderPtime;//交易时间
+
+    public String getOriginalListId() {
+        return originalListId;
+    }
+
+    public void setOriginalListId(String originalListId) {
+        this.originalListId = originalListId;
+    }
+
+    public String getOrderAtime() {
+        return orderAtime;
+    }
+
+    public void setOrderAtime(String orderAtime) {
+        this.orderAtime = orderAtime;
+    }
+
+    public String getOrderPtime() {
+        return orderPtime;
+    }
+
+    public void setOrderPtime(String orderPtime) {
+        this.orderPtime = orderPtime;
+    }
 
     public String getOrderId() {
         return orderId;
@@ -138,6 +165,9 @@ public class PlatformCangDanList {
                 ", weightUseable='" + weightUseable + '\'' +
                 ", storage='" + storage + '\'' +
                 ", counter='" + counter + '\'' +
+                ", originalListId='" + originalListId + '\'' +
+                ", orderAtime='" + orderAtime + '\'' +
+                ", orderPtime='" + orderPtime + '\'' +
                 '}';
     }
 }

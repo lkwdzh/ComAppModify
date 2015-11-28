@@ -40,7 +40,7 @@ public class TransSucceedActivity extends BaseActivity {
     }
     public void init(){
         lv_all_order = (PullToRefreshListView) findViewById(R.id.lv_all_order);
-        adapter = new TransSucceedAdapter(TransSucceedActivity.this);
+        adapter = new TransSucceedAdapter(TransSucceedActivity.this,mList);
         lv_all_order.setAdapter(adapter);
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
         lv_all_order.setEmptyView(emptyView);
@@ -73,6 +73,7 @@ public class TransSucceedActivity extends BaseActivity {
                 if (status.equals("1")){
                     if (sonList!=null&&sonList.size()!=0){
                         mList.addAll(sonList);
+                        Log.d("result_succeed_mlist", mList.toString());
                     }
                 }else {
                     AppUtils.toastText(TransSucceedActivity.this, message);

@@ -183,6 +183,10 @@
             android:name=".Activity.PayActivity"
             android:label="@string/title_activity_pay" >
         </activity>
+        <activity
+            android:name=".Activity.ModifyPickUpActivity"
+            android:label="@string/title_activity_modify_pick_up_activity2" >
+        </activity>
     </application>
 
 </manifest>

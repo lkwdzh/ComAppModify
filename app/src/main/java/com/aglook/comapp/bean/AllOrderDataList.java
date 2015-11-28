@@ -22,6 +22,24 @@ public class AllOrderDataList implements Serializable{
     private String weightUseable;
     private String storage;
     private String counter;
+    private String orderState;
+    private String productListId;
+
+    public String getOrderState() {
+        return orderState;
+    }
+
+    public void setOrderState(String orderState) {
+        this.orderState = orderState;
+    }
+
+    public String getProductListId() {
+        return productListId;
+    }
+
+    public void setProductListId(String productListId) {
+        this.productListId = productListId;
+    }
 
     public String getOrderdataId() {
         return orderdataId;
@@ -170,6 +188,8 @@ public class AllOrderDataList implements Serializable{
                 ", weightUseable='" + weightUseable + '\'' +
                 ", storage='" + storage + '\'' +
                 ", counter='" + counter + '\'' +
+                ", orderState='" + orderState + '\'' +
+                ", productListId='" + productListId + '\'' +
                 '}';
     }
 }

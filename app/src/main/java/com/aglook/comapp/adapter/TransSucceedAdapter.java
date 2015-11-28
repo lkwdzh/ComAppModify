@@ -17,6 +17,7 @@ import com.aglook.comapp.Activity.OrderDetailActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.AllOrder;
 import com.aglook.comapp.bean.AllOrderDataList;
+import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.view.MyListView;
 import com.aglook.comapp.view.Utility;
 
@@ -30,8 +31,9 @@ public class TransSucceedAdapter extends BaseAdapter implements View.OnClickList
     private List<AllOrder> list;
     private List<AllOrderDataList>sonList;
 
-    public TransSucceedAdapter(Activity activity) {
+    public TransSucceedAdapter(Activity activity, List<AllOrder> list) {
         this.activity = activity;
+        this.list = list;
     }
 
     @Override
@@ -75,17 +77,13 @@ public class TransSucceedAdapter extends BaseAdapter implements View.OnClickList
         holder.tv_success_all_order_lv.setVisibility(View.GONE);
 
         AllOrder order = list.get(position);
-//        List<AllOrderDataList>newList=new ArrayList<>();
-//        newList = list.get(position).getOrderDateList();
-//        sonList=new ArrayList<>();
-//        sonList.addAll(newList);
         sonList=list.get(position).getOrderDateList();
         holder.adapter=new AllOrderLVAdapter(activity,sonList);
         holder.lv_all_order_lv.setAdapter(holder.adapter);
         Utility.setListViewHeightBasedOnChildren(holder.lv_all_order_lv);
         holder.adapter.notifyDataSetChanged();
 
-
+        AppUtils.toastText(activity,list.size()+"");
         holder.tv_order_num_all_order_lv.setText(order.getOrderId());
         if (order.getOrderStatus().equals("notpay")) {
             holder.tv_success_all_order_lv.setText("待支付");

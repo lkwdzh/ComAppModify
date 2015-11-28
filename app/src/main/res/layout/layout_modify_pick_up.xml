@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View style="@style/line_1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="4"
+        android:paddingBottom="@dimen/px_10"
+        android:paddingTop="@dimen/px_10"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_name_modify_pick_up"
+            style="@style/orderDetail_TextView_666666_13_center"
+            android:text="李坤" />
+
+        <TextView
+            android:id="@+id/tv_weight_modify_pick_up"
+            style="@style/orderDetail_TextView_666666_13_center"
+            android:text="100吨" />
+
+        <TextView
+            android:id="@+id/tv_type_modify_pick_up"
+            style="@style/orderDetail_TextView_666666_13_center"
+            android:text="未提货" />
+
+        <LinearLayout
+            android:id="@+id/ll_modify_pick_up"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_modify_modify_pick_up"
+                android:layout_width="@dimen/px_70"
+                android:layout_height="@dimen/px_40"
+                android:textSize="13sp"
+                android:textColor="@color/textcolor_666666"
+                android:background="@drawable/delete"
+                android:gravity="center"
+                android:text="修改" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+</LinearLayout>

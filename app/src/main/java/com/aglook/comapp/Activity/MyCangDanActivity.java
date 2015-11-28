@@ -56,7 +56,7 @@ public class MyCangDanActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode==1&&resultCode==1){
+        if (requestCode==1&&resultCode==RESULT_OK){
             customProgress = CustomProgress.show(this, "加载中···", true);
             mList.clear();
             getData();

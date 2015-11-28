@@ -41,7 +41,7 @@ public class GoodsCollectActivity extends BaseActivity {
 
     public void init() {
         gv_goods = (PullToRefreshGridView) findViewById(R.id.gv_goods);
-        adapter = new ScreenAdapter(GoodsCollectActivity.this, mList,gv_goods);
+        adapter = new ScreenAdapter(GoodsCollectActivity.this, mList);
         gv_goods.setAdapter(adapter);
         customProgress = CustomProgress.show(GoodsCollectActivity.this, "加载中···", true);
     }
