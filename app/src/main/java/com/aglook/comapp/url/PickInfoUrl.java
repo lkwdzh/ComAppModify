@@ -14,7 +14,7 @@ import net.sf.json.JSONObject;
 public class PickInfoUrl {
     private static RequestParams params;
 
-    public static RequestParams postPickInfoUrl(String code,String token,String userId, String originalListId, String orderdataId, String deliveryNum, JSONArray dirverList){
+    public static RequestParams postPickInfoUrl(String code,String token,String userId, String originalListId, String orderdataId, String deliveryNum){
         params=new RequestParams();
         JSONObject jsonObject = new JSONObject();
         try {

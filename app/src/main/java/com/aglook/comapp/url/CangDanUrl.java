@@ -60,11 +60,57 @@ public class CangDanUrl {
     }
 
 
-    public static RequestParams postCangDanDetailUrl(String token, String userId, String originalid) {
-        params = new RequestParams();
-        params.addBodyParameter("token", token);
-        params.addBodyParameter("userId", userId);
-        params.addBodyParameter("originalid", originalid);
+    /**
+     * 平台仓单详情
+     * @param token
+     * @param userId
+     * @param orderdataId
+     * @return
+     */
+
+    public static RequestParams postPlatCangDanDetailUrl(String code,String token, String userId, String orderdataId) {
+        params=new RequestParams();
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("token", token);
+            jsonObject.put("userId", userId);
+            jsonObject.put("orderdataId", orderdataId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String content=jsonObject.toString();
+        String sign = null;
+        params.addBodyParameter("code", code);
+        params.addBodyParameter("version", DefineUtil.VERSON);
+        params.addBodyParameter("content", content);
+        params.addBodyParameter("sign", sign);
         return params;
     }
+
+    /**
+     * 仓单详情
+     * @param code
+     * @param token
+     * @param userId
+     * @return
+     */
+    public static RequestParams postCangDanDetailUrl(String code,String token, String userId, String originalId) {
+        params=new RequestParams();
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("token", token);
+            jsonObject.put("userId", userId);
+            jsonObject.put("originalId", originalId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String content=jsonObject.toString();
+        String sign = null;
+        params.addBodyParameter("code", code);
+        params.addBodyParameter("version", DefineUtil.VERSON);
+        params.addBodyParameter("content", content);
+        params.addBodyParameter("sign", sign);
+        return params;
+    }
+
 }

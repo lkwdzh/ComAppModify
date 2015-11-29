@@ -12,13 +12,13 @@ import android.widget.TextView;
 
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
-import com.aglook.comapp.bean.CangDanDetail;
+import com.aglook.comapp.bean.CangDanList;
 import com.aglook.comapp.bean.LinkMan;
-import com.aglook.comapp.url.CangDanUrl;
-import com.aglook.comapp.url.GuaDanUrl;
+import com.aglook.comapp.url.AllGuaDanUrl;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
+import com.aglook.comapp.util.XBitmap;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.Timestamp;
 import com.lidroid.xutils.exception.HttpException;
@@ -30,8 +30,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class GuaDanAddActivity extends BaseActivity {
-
+public class ModifyGuaDanActivity extends BaseActivity {
 
     private TextView right_text;
     private TextView tv_in_time_gua_dan_add;
@@ -41,6 +40,8 @@ public class GuaDanAddActivity extends BaseActivity {
     private String dateIn;
     private String dateUseful;
     private TextView tv_userful_time_gua_dan_add;
+    //    private TextView tv_goods_image_gua_dan_add;
+//    private TextView tv_huo_quan_image_gua_dan_add;
     private EditText et_goods_name_gua_dan;
     private TextView tv_cangdanhao_gua_dan_add;
     private TextView tv_goods_kind_gua_dan;
@@ -61,6 +62,7 @@ public class GuaDanAddActivity extends BaseActivity {
     private TextView tv_1_gua_dan_add;
     private TextView tv_2_gua_dan_add;
 
+    private CangDanList cangDan;
     private ImageView iv_huowu;
     private ImageView iv_huoquan;
     private EditText et_price_gua_dan;
@@ -72,41 +74,35 @@ public class GuaDanAddActivity extends BaseActivity {
     private String tradePrice;
     private String productName;
     private String designatedUserid;
-    private String code;
-    private String codeGua;
+    private String code = "4005";
     private String productText;
 
-    private String orderdataId;
-    private String originalId;
-    private boolean isPlate;
+    private String productId;
+    private String productMoney;
+    private String validTime;
+    private String productDesc;
+
 
     @Override
     public void initView() {
         setContentView(R.layout.activity_gua_dan_add);
-        setTitleBar("我要挂单");
+        setTitleBar("修改挂单");
         ExitApplication.getInstance().addActivity(this);
         init();
         click();
-        if (isPlate){
-            getPlatData();
-        }else {
-            getData();
-        }
     }
 
     public void init() {
         right_text = (TextView) findViewById(R.id.right_text);
         right_text.setVisibility(View.VISIBLE);
         right_text.setText("完成");
-        orderdataId = getIntent().getStringExtra("orderdataId");
-        originalId=getIntent().getStringExtra("originalId");
-        code=getIntent().getStringExtra("code");
-        codeGua=getIntent().getStringExtra("codeGua");
-        isPlate=getIntent().getBooleanExtra("isPlate",false);
+        cangDan = (CangDanList) getIntent().getSerializableExtra("guadan");
         tv_in_time_gua_dan_add = (TextView) findViewById(R.id.tv_in_time_gua_dan_add);
         calendar = Calendar.getInstance();
         tv_userful_time_gua_dan_add = (TextView) findViewById(R.id.tv_userful_time_gua_dan_add);
 
+//        tv_goods_image_gua_dan_add = (TextView) findViewById(R.id.tv_goods_image_gua_dan_add);
+//        tv_huo_quan_image_gua_dan_add = (TextView) findViewById(R.id.tv_huo_quan_image_gua_dan_add);
         et_goods_name_gua_dan = (EditText) findViewById(R.id.et_goods_name_gua_dan);
         tv_cangdanhao_gua_dan_add = (TextView) findViewById(R.id.tv_cangdanhao_gua_dan_add);
         tv_goods_kind_gua_dan = (TextView) findViewById(R.id.tv_goods_kind_gua_dan);
@@ -127,32 +123,33 @@ public class GuaDanAddActivity extends BaseActivity {
         tv_2_gua_dan_add = (TextView) findViewById(R.id.tv_2_gua_dan_add);
         iv_huowu = (ImageView) findViewById(R.id.iv_huowu);
         iv_huoquan = (ImageView) findViewById(R.id.iv_huoquan);
+        fillData();
     }
 
     //填充数据
     public void fillData() {
-//            XBitmap.displayImage(iv_huowu, cangDan.getGetlistPic(), GuaDanAddActivity.this);
-//            XBitmap.displayImage(iv_huoquan, cangDan.getGoodsOwnerProve(), GuaDanAddActivity.this);
-            et_goods_name_gua_dan.setText(cangDanDetail.getProductName());
-            tv_cangdanhao_gua_dan_add.setText(cangDanDetail.getOriginalListId());
-            tv_goods_kind_gua_dan.setText(cangDanDetail.getCategoryName());
-            tv_stock_weight_gua_dan.setText(cangDanDetail.getWeightUseable()+"吨");
-        if (cangDanDetail.getInnerTime()!=null&&!"".equals(cangDanDetail.getInnerTime())) {
-            tv_in_time_gua_dan_add.setText(Timestamp.getDateToString(cangDanDetail.getInnerTime()));
+        if (cangDan != null) {
+            XBitmap.displayImage(iv_huowu, cangDan.getGetlistPic(), ModifyGuaDanActivity.this);
+            XBitmap.displayImage(iv_huoquan, cangDan.getGoodsOwnerProve(), ModifyGuaDanActivity.this);
+            et_goods_name_gua_dan.setText(cangDan.getPshCategory().getCategoryName());
+            tv_cangdanhao_gua_dan_add.setText(cangDan.getListId());
+            tv_goods_kind_gua_dan.setText(cangDan.getGoodsType());
+            tv_stock_weight_gua_dan.setText(cangDan.getInnerWeight());
+            tv_in_time_gua_dan_add.setText(Timestamp.getDateToString(cangDan.getInnerTime()));
+            et_goods_area_gua_dan.setText(cangDan.getGoodsPlace());
+            tv_xue_tou_gua_dan_add.setText(cangDan.getMark());
+            et_cang_name_gua_dan.setText(cangDan.getDepotResponsible());
+            et_cang_phone_gua_dan.setText(cangDan.getResponsiblePhone());
+            et_cang_email_gua_dan.setText(cangDan.getResponsibleEmail());
+            et_cang_address_gua_dan.setText(cangDan.getDepotAddr());
+            et_goods_detail_gua_dan.setText(cangDan.getPshCategory().getCategoryDesc());
         }
-            et_goods_area_gua_dan.setText(cangDanDetail.getGoodsPlace());
-            tv_xue_tou_gua_dan_add.setText(cangDanDetail.getMark());
-            et_cang_name_gua_dan.setText(cangDanDetail.getDepotResponsible());
-            et_cang_phone_gua_dan.setText(cangDanDetail.getResponsibleMobile());
-            et_cang_email_gua_dan.setText(cangDanDetail.getResponsibleEmail());
-            et_cang_address_gua_dan.setText(cangDanDetail.getDepotAddress());
-
     }
 
     //获取输入的值
     public void getInput() {
-        originalListid = cangDanDetail.getOriginalListId();
-        orderdataId=cangDanDetail.getOrderdataId();
+//       productId=cangDan.get
+
         tradeNum = AppUtils.toStringTrim_ET(tv_use_weight_gua_dan);
         tradePrice = AppUtils.toStringTrim_ET(et_price_gua_dan);
 //        productName = cangDan.getPshCategory().getCategoryName();
@@ -169,10 +166,10 @@ public class GuaDanAddActivity extends BaseActivity {
             }
             String string = list.toString();
             designatedUserid = string.substring(1, string.length() - 1).replaceAll(" ", "");
-
+            Log.d("designatedUserid", designatedUserid);
         }
 
-
+        getData();
     }
 
     public void click() {
@@ -214,24 +211,21 @@ public class GuaDanAddActivity extends BaseActivity {
         Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.tv_in_time_gua_dan_add:
-                DatePickerDialog datePickerDialogIn = new DatePickerDialog(GuaDanAddActivity.this, listenerIn, calendar.get(Calendar.YEAR),
+                DatePickerDialog datePickerDialogIn = new DatePickerDialog(ModifyGuaDanActivity.this, listenerIn, calendar.get(Calendar.YEAR),
                         calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
                 datePickerDialogIn.show();
                 break;
             case R.id.tv_userful_time_gua_dan_add:
-                DatePickerDialog datePickerDialogUseful = new DatePickerDialog(GuaDanAddActivity.this, listenerUseful, calendar.get(Calendar.YEAR),
+                DatePickerDialog datePickerDialogUseful = new DatePickerDialog(ModifyGuaDanActivity.this, listenerUseful, calendar.get(Calendar.YEAR),
                         calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
                 datePickerDialogUseful.show();
                 break;
             case R.id.right_text:
-                if (isPlate){
-                    upPlatData();
-                }else {
-                    upData();
-                }
+
+                getInput();
                 break;
             case R.id.ll_buyer_gua_dan:
-                intent.setClass(GuaDanAddActivity.this, FriendsListActivity.class);
+                intent.setClass(ModifyGuaDanActivity.this, FriendsListActivity.class);
                 intent.putExtra("buyOrLink", true);
                 if (mList != null && mList.size() != 0) {
                     intent.putExtra("ToSelect", (Serializable) mList);
@@ -265,21 +259,22 @@ public class GuaDanAddActivity extends BaseActivity {
     }
 
     //提交
-    public void upData() {
-        getInput();
+    public void getData() {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_add",orderdataId+"___"+originalListid+"__"+ arg0.result);
+                Log.d("result_add", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
                 if (status.equals("1")) {
                     //成功则跳转
-                    GuaDanAddActivity.this.setResult(1);
-                    GuaDanAddActivity.this.finish();
+//                  Intent intent=  new Intent(GuaDanAddActivity.this, GuaDanDetailActivity.class);
+//                     startActivity(intent);
+                    ModifyGuaDanActivity.this.setResult(1);
+                    ModifyGuaDanActivity.this.finish();
                 } else {
-                    AppUtils.toastText(GuaDanAddActivity.this, message);
+                    AppUtils.toastText(ModifyGuaDanActivity.this, message);
                 }
             }
 
@@ -287,87 +282,9 @@ public class GuaDanAddActivity extends BaseActivity {
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        }.datePost(DefineUtil.CANG_DAN, GuaDanUrl.postGuaDanAddUrl(codeGua, DefineUtil.TOKEN, DefineUtil.USERID, originalListid, tradeNum, limitDate, tradePrice, productName, designatedUserid, productText), GuaDanAddActivity.this);
-    }
-
-    //提交
-    public void upPlatData() {
-        getInput();
-        new XHttpuTools() {
-            @Override
-            public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_add_plate", orderdataId+"___"+originalListid+"__"+ arg0.result);
-                String message = JsonUtils.getJsonParam(arg0.result, "message");
-                String status = JsonUtils.getJsonParam(arg0.result, "status");
-                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
-                if (status.equals("1")) {
-                    //成功则跳转
-                    GuaDanAddActivity.this.setResult(1);
-                    GuaDanAddActivity.this.finish();
-                } else {
-                    AppUtils.toastText(GuaDanAddActivity.this, message);
-                }
-            }
-
-            @Override
-            public void failureInitViews(HttpException arg0, String arg1) {
-
-            }
-        }.datePost(DefineUtil.CANG_DAN, GuaDanUrl.postGuaDanPlateAddUrl(codeGua, DefineUtil.TOKEN, DefineUtil.USERID, originalListid, tradeNum, limitDate, tradePrice, productName, designatedUserid, productText, orderdataId), GuaDanAddActivity.this);
-    }
+        }.datePost(DefineUtil.CANG_DAN, AllGuaDanUrl.postModifyUrl(code, DefineUtil.TOKEN, DefineUtil.USERID,productName,productMoney,validTime,productId,productDesc), ModifyGuaDanActivity.this);
+//
 
 
-    private CangDanDetail cangDanDetail;
-    //获取详情
-    public void getData(){
-        new XHttpuTools() {
-            @Override
-            public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_detail",originalId+"____"+arg0.result);
-                String message=JsonUtils.getJsonParam(arg0.result,"message");
-                String status=JsonUtils.getJsonParam(arg0.result,"status");
-                String obj=JsonUtils.getJsonParam(arg0.result,"obj");
-                cangDanDetail=JsonUtils.parse(obj,CangDanDetail.class);
-                if (status.equals("1")){
-                    if (cangDanDetail!=null){
-                        fillData();
-                    }
-                }else {
-                    AppUtils.toastText(GuaDanAddActivity.this,message);
-                }
-            }
-
-            @Override
-            public void failureInitViews(HttpException arg0, String arg1) {
-
-            }
-        }.datePost(DefineUtil.CANG_DAN, CangDanUrl.postCangDanDetailUrl(code,DefineUtil.TOKEN,DefineUtil.USERID,originalId),GuaDanAddActivity.this);
-    }
-
-
-    //获取平台详情
-    public void getPlatData(){
-        new XHttpuTools() {
-            @Override
-            public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_Platdetail",arg0.result);
-                String message=JsonUtils.getJsonParam(arg0.result,"message");
-                String status=JsonUtils.getJsonParam(arg0.result,"status");
-                String obj=JsonUtils.getJsonParam(arg0.result,"obj");
-                cangDanDetail=JsonUtils.parse(obj,CangDanDetail.class);
-                if (status.equals("1")){
-                    if (cangDanDetail!=null){
-                        fillData();
-                    }
-                }else {
-                    AppUtils.toastText(GuaDanAddActivity.this,message);
-                }
-            }
-
-            @Override
-            public void failureInitViews(HttpException arg0, String arg1) {
-
-            }
-        }.datePost(DefineUtil.CANG_DAN, CangDanUrl.postPlatCangDanDetailUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, orderdataId),GuaDanAddActivity.this);
     }
 }

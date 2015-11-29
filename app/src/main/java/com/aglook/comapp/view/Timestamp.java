@@ -40,22 +40,22 @@ public class Timestamp {
 		return times;
 	}
 	
-//	/**
-//	 * 时间戳转换成日期yyyy.MM.dd
-//	 *
-//	 * @param time
-//	 *            时间戳
-//	 * @return
-//	 */
-//	public static String getDateToDate(String time) {
-//		long lcc = Long.valueOf(time);
-//
-//		sf = new SimpleDateFormat("yyyy.MM.dd");
-//
-//		String times = sf.format(new Date(lcc));
-//		return times;
-//	}
-//
+	/**
+	 * 时间戳转换成日期yyyy-MM-dd HH:mm:ss
+	 *
+	 * @param time
+	 *            时间戳
+	 * @return
+	 */
+	public static String getDateToDate(String time) {
+		long lcc = Long.valueOf(time);
+
+		sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		String times = sf.format(new Date(lcc));
+		return times;
+	}
+
 	
 //	/**
 //	 * 时间戳转换成日期MM.dd
@@ -138,7 +138,6 @@ public class Timestamp {
 	/**
 	 * 将时间戳转换为星期
 	 * 
-	 * @param date
 	 *            传入的日期
 	 * @return
 	 */
@@ -196,7 +195,7 @@ public class Timestamp {
 			long l = date.getTime();
 			String stf = String.valueOf(l);
 			times = stf.substring(0, 10);
-			Log.d("--444444---", times);
+
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -217,7 +216,8 @@ public class Timestamp {
 			date = sf.parse(time);
 			long l = date.getTime();
 			String stf = String.valueOf(l);
-			times = stf.substring(0, 10);
+			times = stf.substring(0, 11);
+            Log.d("--444444---", times);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

@@ -333,6 +333,7 @@
         <item name="android:paddingTop">@dimen/px_10</item>
         <item name="android:paddingBottom">@dimen/px_10</item>
     </style>
+
     <!--黑色666666的textview_12sp_-->
     <style name="orderDetail_TextView_666666_12" parent="android:Widget.TextView">
         <item name="android:textColor">@color/textcolor_666666</item>
@@ -409,7 +410,16 @@
         <item name="android:gravity">center</item>
         <item name="android:layout_weight">1</item>
     </style>
-
+    <!--我的界面的weight=1的linearlayout-->
+    <style name="ll_match_wrap_content_hor_mine_fragment">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingTop">@dimen/px_10</item>
+        <item name="android:paddingBottom">@dimen/px_10</item>
+    </style>
     <style name="imageview_px120">
         <item name="android:layout_width">@dimen/px_120</item>
         <item name="android:layout_height">@dimen/px_120</item>

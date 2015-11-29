@@ -23,6 +23,7 @@ import java.util.List;
 public class PlatformAdapter extends BaseAdapter implements View.OnClickListener {
     private Context context;
     private List<PlatformCangDanList> list;
+    private int index;
 
     public PlatformAdapter(Context context, List<PlatformCangDanList> list) {
         this.context = context;
@@ -69,7 +70,7 @@ public class PlatformAdapter extends BaseAdapter implements View.OnClickListener
         holder.tv_name_lv_lv.setText(danList.getProductName());
         holder.tv_price_lv_lv.setText(danList.getProductMoney());
         holder.tv_num_lv_lv.setText(danList.getProductNum());
-
+holder.tv_trans_all_order_lv.setTag(position);
         return convertView;
     }
 
@@ -79,10 +80,18 @@ public class PlatformAdapter extends BaseAdapter implements View.OnClickListener
         switch (v.getId()) {
             case R.id.tv_trans_all_order_lv:
                 intent.setClass(context, GuaDanAddActivity.class);
+                index=(int)v.getTag();
+                intent.putExtra("orderdataId",list.get(index).getOrderdataId());
+                intent.putExtra("code","2002");
+                intent.putExtra("codeGua","2003");
+                intent.putExtra("isPlate",true);
                 context.startActivity(intent);
                 break;
             case R.id.tv_tihuo_all_order_lv:
                 intent.setClass(context, PickInfoActivity.class);
+                intent.putExtra("orderdataId",list.get(index).getOrderdataId());
+                intent.putExtra("code","2002");
+                intent.putExtra("isPlate",true);
                 context.startActivity(intent);
                 break;
         }

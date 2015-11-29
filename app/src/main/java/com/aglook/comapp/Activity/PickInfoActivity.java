@@ -11,13 +11,13 @@ import android.widget.TextView;
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.PickInfoAdapter;
-import com.aglook.comapp.bean.CangDanList;
+import com.aglook.comapp.bean.CangDanDetail;
 import com.aglook.comapp.bean.DriverList;
+import com.aglook.comapp.url.CangDanUrl;
 import com.aglook.comapp.url.PickInfoUrl;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
-import com.aglook.comapp.util.XBitmap;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.CustomProgress;
 import com.aglook.comapp.view.MyListView;
@@ -55,16 +55,18 @@ public class PickInfoActivity extends BaseActivity {
     private PickInfoAdapter adapter;
     private List<DriverList> mList = new ArrayList<>();
 
-    private CangDanList cangDan;
     private ImageView iv_huoquan;
     private ImageView iv_huowu;
 
-    private String code = "3002";
+    private String codePick = "3002";
     private String originalListId;
-    private String orderdataId;
     private String deliveryNum;
     private JSONArray dirverList;
     private CustomProgress customProgress;
+    private boolean isPlate;
+    private String code;
+    private String orderdataId;
+    private String originalId;
     @Override
     public void initView() {
         setContentView(R.layout.activity_pick_info);
@@ -72,13 +74,21 @@ public class PickInfoActivity extends BaseActivity {
         ExitApplication.getInstance().addActivity(this);
         init();
         click();
+        if (isPlate){
+            getPlatData();
+        }else {
+            getData();
+        }
     }
 
     public void init() {
         right_text = (TextView) findViewById(R.id.right_text);
         right_text.setText("提交");
         right_text.setVisibility(View.VISIBLE);
-        cangDan = (CangDanList) getIntent().getSerializableExtra("tihuo");
+        orderdataId = getIntent().getStringExtra("orderdataId");
+        originalId=getIntent().getStringExtra("originalId");
+        code=getIntent().getStringExtra("code");
+        isPlate=getIntent().getBooleanExtra("isPlate",false);
 //        tv_goods_image_pick_info = (TextView) findViewById(R.id.tv_goods_image_pick_info);
 //        tv_huo_quan_image_pick_info = (TextView) findViewById(R.id.tv_huo_quan_image_pick_info);
         et_goods_name_pick_info = (TextView) findViewById(R.id.et_goods_name_pick_info);
@@ -100,44 +110,33 @@ public class PickInfoActivity extends BaseActivity {
         lv_pick_info = (MyListView) findViewById(R.id.lv_pick_info);
         adapter = new PickInfoAdapter(PickInfoActivity.this, mList);
         lv_pick_info.setAdapter(adapter);
-        fillData();
     }
 
     //填充数据
     public void fillData() {
-        if (cangDan != null) {
-            XBitmap.displayImage(iv_huowu, cangDan.getGetlistPic(), PickInfoActivity.this);
-            XBitmap.displayImage(iv_huoquan, cangDan.getGoodsOwnerProve(), PickInfoActivity.this);
-            et_goods_name_pick_info.setText(cangDan.getPshCategory().getCategoryName());
-            tv_cangdanhao_pick_infod.setText(cangDan.getListId());
-            tv_goods_kind_pick_info.setText(cangDan.getGoodsType());
-            tv_use_weight_pick_info.setText(cangDan.getWeightUseable() + "吨");
-            tv_in_time_gua_pick_info.setText(Timestamp.getDateToString(cangDan.getInnerTime()));
-            tv_goods_area_pick_info.setText(cangDan.getGoodsPlace());
-            tv_xue_tou_pick_info.setText(cangDan.getMark());
-            tv_cang_name_pick_info.setText(cangDan.getDepotResponsible());
-            tv_cang_phone_pick_info.setText(cangDan.getResponsiblePhone());
-            tv_cang_email_pick_info.setText(cangDan.getResponsibleEmail());
-            tv_cang_address_pick_info.setText(cangDan.getDepotAddr());
+//            XBitmap.displayImage(iv_huowu, cangDan.getGetlistPic(), PickInfoActivity.this);
+//            XBitmap.displayImage(iv_huoquan, cangDan.getGoodsOwnerProve(), PickInfoActivity.this);
+            et_goods_name_pick_info.setText(cangDanDetail.getProductName());
+            tv_cangdanhao_pick_infod.setText(cangDanDetail.getOriginalListId());
+            tv_goods_kind_pick_info.setText(cangDanDetail.getCategoryName());
+            tv_use_weight_pick_info.setText(cangDanDetail.getWeightUseable()+"吨");
+        if (cangDanDetail.getInnerTime()!=null&&!"".equals(cangDanDetail.getInnerTime())) {
+            tv_in_time_gua_pick_info.setText(Timestamp.getDateToString(cangDanDetail.getInnerTime()));
         }
+            tv_goods_area_pick_info.setText(cangDanDetail.getGoodsPlace());
+            tv_xue_tou_pick_info.setText(cangDanDetail.getMark());
+            tv_cang_name_pick_info.setText(cangDanDetail.getDepotResponsible());
+            tv_cang_phone_pick_info.setText(cangDanDetail.getResponsibleMobile());
+            tv_cang_email_pick_info.setText(cangDanDetail.getResponsibleEmail());
+            tv_cang_address_pick_info.setText(cangDanDetail.getDepotAddress());
+
     }
 
     //获取参数值
     public void getInput() {
-        originalListId = cangDan.getListId();
-//        originalListId="201511045639c51f390fc";
-//        orderdataId = "63";
+        originalListId = cangDanDetail.getOriginalListId();
+        orderdataId=cangDanDetail.getOrderdataId();
         deliveryNum = AppUtils.toStringTrim_ET(et_pick_weight_pick_info);
-//        JSONObject jsonObject = new JSONObject();
-//        JSONArray jsonArray = new JSONArray();
-//        jsonObject.put("id","1");
-//        jsonObject.put("getWeight",2);
-//        jsonArray.add(jsonObject);
-
-
-//        dirverList=jsonArray;
-
-        Log.d("aaaaa", originalListId + "___" + orderdataId + "____" + deliveryNum + "____" + dirverList);
     }
 
 
@@ -212,8 +211,60 @@ public class PickInfoActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.CANG_DAN, PickInfoUrl.postPickInfoUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, originalListId, orderdataId, deliveryNum, dirverList), PickInfoActivity.this);
+        }.datePost(DefineUtil.CANG_DAN, PickInfoUrl.postPickInfoUrl(codePick, DefineUtil.TOKEN, DefineUtil.USERID, originalListId, orderdataId, deliveryNum), PickInfoActivity.this);
+    }
+
+    private CangDanDetail cangDanDetail;
+    //获取详情
+    public void getData(){
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                Log.d("result_detail",originalId+"____"+arg0.result);
+                String message=JsonUtils.getJsonParam(arg0.result,"message");
+                String status=JsonUtils.getJsonParam(arg0.result,"status");
+                String obj=JsonUtils.getJsonParam(arg0.result,"obj");
+                cangDanDetail=JsonUtils.parse(obj,CangDanDetail.class);
+                if (status.equals("1")){
+                    if (cangDanDetail!=null){
+                        fillData();
+                    }
+                }else {
+                    AppUtils.toastText(PickInfoActivity.this,message);
+                }
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+
+            }
+        }.datePost(DefineUtil.CANG_DAN, CangDanUrl.postCangDanDetailUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, originalId),PickInfoActivity.this);
     }
 
 
+    //获取平台详情
+    public void getPlatData(){
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                Log.d("result_Platdetail",arg0.result);
+                String message=JsonUtils.getJsonParam(arg0.result,"message");
+                String status=JsonUtils.getJsonParam(arg0.result,"status");
+                String obj=JsonUtils.getJsonParam(arg0.result,"obj");
+                cangDanDetail=JsonUtils.parse(obj,CangDanDetail.class);
+                if (status.equals("1")){
+                    if (cangDanDetail!=null){
+                        fillData();
+                    }
+                }else {
+                    AppUtils.toastText(PickInfoActivity.this,message);
+                }
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+
+            }
+        }.datePost(DefineUtil.CANG_DAN, CangDanUrl.postPlatCangDanDetailUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, orderdataId),PickInfoActivity.this);
+    }
 }

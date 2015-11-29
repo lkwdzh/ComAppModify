@@ -1,8 +1,10 @@
 package com.aglook.comapp.Activity;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.aglook.comapp.Application.ExitApplication;
@@ -53,9 +55,21 @@ public class AllGuaDanActivity extends BaseActivity {
         lv_all_order.setAdapter(adapter);
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
         lv_all_order.setEmptyView(emptyView);
+        lv_all_order.setMode(PullToRefreshBase.Mode.BOTH);
     }
 
     public void click() {
+        final Intent intent = new Intent();
+        lv_all_order.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                intent.setClass(AllGuaDanActivity.this, GoodsDetailActivity.class);
+                intent.putExtra("isSelf", true);
+                intent.putExtra("productId",mList.get(position-1).getProductId());
+                AppUtils.toastText(AllGuaDanActivity.this,position-1+"");
+                startActivity(intent);
+            }
+        });
         lv_all_order.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
@@ -90,7 +104,7 @@ public class AllGuaDanActivity extends BaseActivity {
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
                 if (status.equals("1")) {
                     if (obj != null && !"".equals(obj)) {
-                        guaDan=JsonUtils.parse(obj,GuaDan.class);
+                        guaDan = JsonUtils.parse(obj, GuaDan.class);
                         if (guaDan.getList() != null && guaDan.getList().size() != 0) {
                             if (pageNum == 1) {
                                 mList.clear();

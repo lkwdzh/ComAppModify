@@ -1,6 +1,7 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,11 @@ import android.widget.TextView;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ModifyPickUpAdapter;
 import com.aglook.comapp.bean.DriverList;
+import com.aglook.comapp.url.PickUpUrl;
+import com.aglook.comapp.util.DefineUtil;
+import com.aglook.comapp.util.XHttpuTools;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +36,8 @@ public class ModifyPickUpActivity extends BaseActivity {
     private int position;
     private List<DriverList> mList = new ArrayList<>();
     private ImageView left_icon;
+    private String getId;
+    private String code="3004";
 
     @Override
     public void initView() {
@@ -37,9 +45,11 @@ public class ModifyPickUpActivity extends BaseActivity {
         setTitleBar("修改");
         init();
         click();
+        getDetailData();
     }
 
     public void init() {
+        getId=getIntent().getStringExtra("getId");
         DriverList driverList;
         for (int i = 0; i < 10; i++) {
             driverList=new DriverList();
@@ -109,6 +119,21 @@ public class ModifyPickUpActivity extends BaseActivity {
             return super.onKeyDown(keyCode, event);
         }
 
+    }
+
+    //提货详情
+    public void getDetailData(){
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                Log.d("result_detail",arg0.result);
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+
+            }
+        }.datePost(DefineUtil.CANG_DAN, PickUpUrl.postDetailUrl(code,DefineUtil.TOKEN,DefineUtil.USERID,getId),ModifyPickUpActivity.this);
     }
 
 }

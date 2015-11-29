@@ -17,6 +17,20 @@ import java.net.URLEncoder;
 public class GuaDanUrl {
     private static RequestParams params;
 
+    /**
+     * 我要挂单
+     * @param code
+     * @param token
+     * @param userId
+     * @param originalListid
+     * @param tradeNum
+     * @param limitDate
+     * @param tradePrice
+     * @param productName
+     * @param designatedUserid
+     * @param productText
+     * @return
+     */
     public static RequestParams postGuaDanAddUrl(String code,String token, String userId, String originalListid,
                                                  String tradeNum, String limitDate, String tradePrice,
                                                  String productName, String designatedUserid,String productText) {
@@ -46,7 +60,36 @@ public class GuaDanUrl {
         return params;
     }
 
-    public static String  postGua(String code,String token, String userId, String originalListid,
+    public static RequestParams postGuaDanPlateAddUrl(String code,String token, String userId, String originalListId,
+                                                 String tradeNum, String limitDate, String tradePrice,
+                                                 String productName, String designatedUserid,String productText,String orderdataId) {
+
+        params=new RequestParams();
+        String sign=null;
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("token", token);
+            jsonObject.put("userId", userId);
+            jsonObject.put("originalListId", originalListId);
+            jsonObject.put("tradeNum", tradeNum);
+            jsonObject.put("limitDate", limitDate);
+            jsonObject.put("tradePrice", tradePrice);
+            jsonObject.put("productName", productName);
+            jsonObject.put("designatedUserid", designatedUserid);
+            jsonObject.put("productText",productText);
+            jsonObject.put("orderdataId",orderdataId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String content=jsonObject.toString();
+        params.addBodyParameter("code", code);
+        params.addBodyParameter("version", DefineUtil.VERSON);
+        params.addBodyParameter("content", content);
+        params.addBodyParameter("sign", sign);
+        Log.d("result_json",new Gson().toJson(params));
+        return params;
+    }
+    public static String  postGua(String code,String token, String userId, String originalListId,
                                                  String tradeNum, String limitDate, String tradePrice,
                                                  String productName, String designatedUserid) {
 
@@ -55,7 +98,7 @@ public class GuaDanUrl {
         try {
             jsonObject.put("token", token);
             jsonObject.put("userId", userId);
-            jsonObject.put("originalListid", originalListid);
+            jsonObject.put("originalListId", originalListId);
             jsonObject.put("tradeNum", tradeNum);
             jsonObject.put("limitDate", limitDate);
             jsonObject.put("tradePrice", tradePrice);

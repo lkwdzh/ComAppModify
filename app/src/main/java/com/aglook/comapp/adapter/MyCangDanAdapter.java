@@ -83,13 +83,19 @@ public class MyCangDanAdapter extends BaseAdapter implements View.OnClickListene
             case R.id.tv_trans_all_order_lv:
                 intent.setClass(context, GuaDanAddActivity.class);
                 int index = (int) v.getTag();
-                intent.putExtra("guadan", list.get(index));
+                intent.putExtra("originalId", String.valueOf(list.get(index).getId()));
+                intent.putExtra("code","1002");
+                intent.putExtra("codeGua","1003");
+                intent.putExtra("isPlate",false);
                 context.startActivityForResult(intent, 1);
                 break;
             case R.id.tv_tihuo_all_order_lv:
                 intent.setClass(context, PickInfoActivity.class);
                 int index1 = (int) v.getTag();
                 intent.putExtra("tihuo", list.get(index1));
+                intent.putExtra("originalId", String.valueOf(list.get(index1).getId()));
+                intent.putExtra("code","1002");
+                intent.putExtra("isPlate",false);
                 context.startActivity(intent);
                 break;
         }

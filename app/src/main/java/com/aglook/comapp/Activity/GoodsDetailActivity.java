@@ -60,6 +60,8 @@ public class GoodsDetailActivity extends BaseActivity {
     private ImageView iv_shoucang_goods_detail;
     private LinearLayout ll_attention_goods_detail;
 
+    private boolean isSelf;
+
 
     @Override
     public void initView() {
@@ -78,6 +80,7 @@ public class GoodsDetailActivity extends BaseActivity {
         right_text.setText("更多");
         left_icon = (ImageView) findViewById(R.id.left_icon);
         customProgress = CustomProgress.show(GoodsDetailActivity.this, "加载中···", true);
+        isSelf=getIntent().getBooleanExtra("isSelf",false);
         productId = getIntent().getStringExtra("productId");
         pointUser=getIntent().getStringExtra("pointUser");
         vp_goods_detail = (ViewPager) findViewById(R.id.vp_goods_detail);
@@ -229,7 +232,12 @@ public class GoodsDetailActivity extends BaseActivity {
                     intent.setClass(GoodsDetailActivity.this, LoginActivity.class);
                     startActivityForResult(intent, 1);
                 } else {
-                    addCart();
+                    //判断是否是从挂单进去，若从挂单进入则无法购买自己的
+                    if (isSelf){
+                        AppUtils.toastText(GoodsDetailActivity.this,"无法购买自己的产品");
+                    }else {
+                        addCart();
+                    }
                 }
                 break;
             case R.id.left_icon:

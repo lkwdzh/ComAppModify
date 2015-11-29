@@ -51,6 +51,7 @@ public class PlatformActivity extends BaseActivity {
         lv_my_platform = (PullToRefreshListView) findViewById(R.id.lv_my_platform);
         adapter = new PlatformAdapter(PlatformActivity.this,mList);
         lv_my_platform.setAdapter(adapter);
+        lv_my_platform.setMode(PullToRefreshBase.Mode.BOTH);
     }
 
     public void click() {

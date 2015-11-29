@@ -68,7 +68,7 @@ public class PickUpAdapter extends BaseAdapter implements View.OnClickListener {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
+holder.tv_trans_all_order_lv.setTag(position);
         holder.ll_right.setVisibility(View.VISIBLE);
         holder.tv_tihuo_all_order_lv.setVisibility(View.VISIBLE);
         holder.tv_trans_all_order_lv.setText("修改");
@@ -121,6 +121,9 @@ public class PickUpAdapter extends BaseAdapter implements View.OnClickListener {
                 break;
             case R.id.tv_trans_all_order_lv:
                 intent.setClass(activity, ModifyPickUpActivity.class);
+                index = (int) v.getTag();
+                getId = list.get(index).getGetId();
+                intent.putExtra("getId",getId);
                 activity.startActivityForResult(intent, 1);
                 break;
         }

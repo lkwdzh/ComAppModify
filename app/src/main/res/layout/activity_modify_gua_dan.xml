@@ -115,12 +115,11 @@
 
                 <TextView
                     style="@style/guadan_TextView_333333"
-                    android:text="可用数量" />
+                    android:text="@string/gua_dan_stock_weight" />
 
                 <TextView
                     android:id="@+id/tv_stock_weight_gua_dan"
                     style="@style/guadan_edittext_weight"
-                    android:inputType="number"
                     android:hint="请输入库存重量" />
             </LinearLayout>
 
@@ -130,12 +129,11 @@
 
                 <TextView
                     style="@style/guadan_TextView_333333"
-                    android:text="交易数量" />
+                    android:text="@string/gua_dan_use_weight" />
 
                 <EditText
                     android:id="@+id/tv_use_weight_gua_dan"
                     style="@style/guadan_edittext_weight"
-                    android:inputType="number"
                     android:hint="请输入可用重量" />
             </LinearLayout>
 
@@ -149,7 +147,6 @@
                 <EditText
                     android:id="@+id/et_price_gua_dan"
                     style="@style/guadan_edittext_weight"
-                    android:inputType="number"
                     android:hint="请输入价格" />
             </LinearLayout>
 

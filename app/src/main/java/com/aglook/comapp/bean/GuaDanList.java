@@ -20,8 +20,8 @@ public class GuaDanList {
     private String productState;//": true,
     private String productAtime;//": 1447415086,创建时间
     private String productCtime;//": null,
-    private String productNum;//": 23, 总量
-    private String productSellnum;//": 10,余量
+    private String productNum;//": 23, 剩余量
+    private String productSellnum;//": 10,没用
     private String productClicknum;//": 363,点击次数
     private String productCollectnum;//": 0,
     private String productAsknum;//": 0,

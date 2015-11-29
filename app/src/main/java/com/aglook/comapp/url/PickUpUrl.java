@@ -70,5 +70,32 @@ public class PickUpUrl {
         return params;
     }
 
+    /**
+     * 提货详情
+     * @param code
+     * @param token
+     * @param userId
+     * @param getId
+     * @return
+     */
+    public static RequestParams postDetailUrl(String code,String token, String userId,String getId ){
+        params=new RequestParams();
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("token", token);
+            jsonObject.put("userId", userId);
+            jsonObject.put("getId", getId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String  content=jsonObject.toString();
+        String sign=null;
+        params.addBodyParameter("code", code);
+        params.addBodyParameter("version", DefineUtil.VERSON);
+        params.addBodyParameter("content", content);
+        params.addBodyParameter("sign", sign);
+        return params;
+    }
+
 
 }

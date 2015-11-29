@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/gray_eeeeee">
-    <include layout="@layout/activity_base_title_bar"/>
+   android:background="@color/gray_eeeeee">
+
+   <include layout="@layout/activity_base_title_bar"/>
     <com.handmark.pulltorefresh.library.PullToRefreshListView
-        android:id="@+id/lv_tradeing"
+        android:id="@+id/lv_order_state"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/px_20"
         android:divider="@null"></com.handmark.pulltorefresh.library.PullToRefreshListView>
 
 </LinearLayout>

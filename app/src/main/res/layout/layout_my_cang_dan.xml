@@ -35,6 +35,7 @@
                 style="@style/grayTextView_333333_15"
                 android:layout_toRightOf="@+id/tv_cangdan"
                 android:text="12346549879879" />
+
             <TextView
                 android:id="@+id/tv_success_all_order_lv"
                 style="@style/redTextView_c91014"
@@ -106,7 +107,7 @@
 
         <ImageView
             android:id="@+id/iv_lv_lv"
-          style="@style/imageview_px120"
+            style="@style/imageview_px120"
             android:layout_marginRight="@dimen/px_14"
             android:scaleType="centerInside"
             android:src="@drawable/tongxun" />
@@ -265,6 +266,20 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/px_20"
             android:gravity="center_vertical">
+
+
+            <TextView
+                android:id="@+id/tv_state_all_order_lv"
+                style="@style/redTextView_c91014"
+                android:layout_marginBottom="@dimen/px_3"
+                android:layout_marginTop="@dimen/px_10"
+                android:background="@drawable/shanchu"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/px_20"
+                android:text="交易记录"
+                android:visibility="gone"
+                android:textSize="13sp" />
+
 
             <TextView
                 android:id="@+id/tv_trans_all_order_lv"
