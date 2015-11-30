@@ -9,23 +9,27 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.aglook.comapp.Activity.HangQingListActivity;
+import com.aglook.comapp.Activity.ZiXunListActivity;
 import com.aglook.comapp.R;
-import com.aglook.comapp.util.AppUtils;
+import com.aglook.comapp.bean.Information;
+
+import java.util.List;
 
 
 /**
  * Created by aglook on 2015/10/27.
  */
 public class RecycleHomePageAdapter extends RecyclerView.Adapter<RecycleHomePageAdapter.MyViewHolder> {
-    private int imageArray[] = {R.drawable.liangshi, R.drawable.siliao, R.drawable.tongxun,
-            R.drawable.youlei, R.drawable.youliao};
-    private String nameArray[] = {"专业分析", "行情资讯", "专题报告", "最新公告", "网站公告"};
+//    private int imageArray[] = {R.drawable.liangshi, R.drawable.siliao, R.drawable.tongxun,
+//            R.drawable.youlei, R.drawable.youliao};
+//    private String nameArray[] = {"专业分析", "行情资讯", "专题报告", "最新公告", "网站公告"};
     private MyViewHolder mViewHoder;
     private Context context;
+    private List<Information>list;
 
-    public RecycleHomePageAdapter(Context context) {
+    public RecycleHomePageAdapter(Context context, List<Information> list) {
         this.context = context;
+        this.list = list;
     }
 
     @Override
@@ -43,14 +47,14 @@ public class RecycleHomePageAdapter extends RecyclerView.Adapter<RecycleHomePage
         }else {
             myViewHolder.iv_homepage_hor.setVisibility(View.GONE);
         }
-
-        myViewHolder.tv_home_page_hor.setText(nameArray[i]);
+        Information information = list.get(i);
+        myViewHolder.tv_home_page_hor.setText(information.getClassName());
         mViewHoder.setPosition(i);
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return list!=null?list.size():0;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -71,9 +75,11 @@ public class RecycleHomePageAdapter extends RecyclerView.Adapter<RecycleHomePage
 
         @Override
         public void onClick(View v) {
-            AppUtils.toastText(context,mPosition+"");
+//            AppUtils.toastText(context,mPosition+"");
             Intent intent = new Intent();
-            intent.setClass(context, HangQingListActivity.class);
+            intent.setClass(context, ZiXunListActivity.class);
+            intent.putExtra("classId",list.get(mPosition).getClassId());
+            intent.putExtra("className",list.get(mPosition).getClassName());
             context.startActivity(intent);
         }
     }

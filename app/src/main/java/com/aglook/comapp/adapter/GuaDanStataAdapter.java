@@ -65,7 +65,7 @@ public class GuaDanStataAdapter extends BaseAdapter {
         } else if (stataLiL.getOrderState().equals("close")) {
             holder.tv_state_state.setText("交易关闭");
         }
-
+        holder.tv_seat_state.setText(stataLiL.getBuyUserSeat());
         holder.tv_shouxu_state.setText(stataLiL.getCounter());
         holder.tv_store_state.setText(stataLiL.getStorage());
         return convertView;

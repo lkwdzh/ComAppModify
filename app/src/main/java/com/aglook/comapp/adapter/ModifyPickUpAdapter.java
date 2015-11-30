@@ -10,7 +10,10 @@ import android.widget.TextView;
 
 import com.aglook.comapp.Activity.DriverListActivity;
 import com.aglook.comapp.R;
+import com.aglook.comapp.bean.ModfyDriverList;
 import com.aglook.comapp.util.AppUtils;
+
+import java.util.List;
 
 /**
  * Created by aglook on 2015/11/28.
@@ -19,15 +22,17 @@ public class ModifyPickUpAdapter extends BaseAdapter implements View.OnClickList
     private Activity context;
     private int index;
     private CallBackData callBackData;
+    private List<ModfyDriverList>list;
 
-    public ModifyPickUpAdapter(Activity context, CallBackData callBackData) {
+    public ModifyPickUpAdapter(Activity context, CallBackData callBackData, List<ModfyDriverList> list) {
         this.context = context;
-        this.callBackData=callBackData;
+        this.callBackData = callBackData;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return 5;
+        return list!=null?list.size():0;
     }
 
     @Override
@@ -52,6 +57,20 @@ public class ModifyPickUpAdapter extends BaseAdapter implements View.OnClickList
         }
         holder.tv_modify_modify_pick_up.setTag(position);
         holder.tv_modify_modify_pick_up.setOnClickListener(this);
+
+        ModfyDriverList driver = list.get(position);
+        holder.tv_name_modify_pick_up.setText(driver.getName());
+        holder.tv_weight_modify_pick_up.setText(driver.getGetWeight()+"吨");
+        if (driver.getGetAble()!=null&&!"".equals(driver.getGetAble())){
+            if (driver.getGetAble().equals("0")){
+                holder.tv_type_modify_pick_up.setText("未提货");
+            }else if (driver.getGetAble().equals("1")){
+                holder.tv_type_modify_pick_up.setText("已提货");
+            }else if (driver.getGetAble().equals("2")){
+                holder.tv_type_modify_pick_up.setText("取消提货");
+            }
+        }
+
         return convertView;
     }
 

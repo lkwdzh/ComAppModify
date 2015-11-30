@@ -1,5 +1,7 @@
 package com.aglook.comapp.bean;
 
+import java.util.List;
+
 /**
  * Created by aglook on 2015/11/29.
  */
@@ -20,6 +22,33 @@ public class CangDanDetail {
     private String responsibleMobile;//仓库负责人座机
     private String responsibleEmail;//仓库负责人邮箱
     private String depotAddress;//仓库地址
+    private String productDesc;//商品描述
+    private String validTime;//有效时间
+    private List<Buyer> customerList;
+
+    public String getProductDesc() {
+        return productDesc;
+    }
+
+    public void setProductDesc(String productDesc) {
+        this.productDesc = productDesc;
+    }
+
+    public String getValidTime() {
+        return validTime;
+    }
+
+    public void setValidTime(String validTime) {
+        this.validTime = validTime;
+    }
+
+    public List<Buyer> getCustomerList() {
+        return customerList;
+    }
+
+    public void setCustomerList(List<Buyer> customerList) {
+        this.customerList = customerList;
+    }
 
     public String getProductName() {
         return productName;
@@ -168,6 +197,9 @@ public class CangDanDetail {
                 ", responsibleMobile='" + responsibleMobile + '\'' +
                 ", responsibleEmail='" + responsibleEmail + '\'' +
                 ", depotAddress='" + depotAddress + '\'' +
+                ", productDesc='" + productDesc + '\'' +
+                ", validTime='" + validTime + '\'' +
+                ", customerList=" + customerList +
                 '}';
     }
 }

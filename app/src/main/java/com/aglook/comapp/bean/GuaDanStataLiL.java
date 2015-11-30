@@ -27,6 +27,24 @@ public class GuaDanStataLiL {
     private String  orderAtime;//": 1447816462,创建时间
     private String  orderPtime;//": 0,支付时间
     private String  orderFtime;//": 0完成时间
+    private String buyUsername;
+    private String buyUserSeat;
+
+    public String getBuyUsername() {
+        return buyUsername;
+    }
+
+    public void setBuyUsername(String buyUsername) {
+        this.buyUsername = buyUsername;
+    }
+
+    public String getBuyUserSeat() {
+        return buyUserSeat;
+    }
+
+    public void setBuyUserSeat(String buyUserSeat) {
+        this.buyUserSeat = buyUserSeat;
+    }
 
     public String getOrderdataId() {
         return orderdataId;
@@ -220,6 +238,8 @@ public class GuaDanStataLiL {
                 ", orderAtime='" + orderAtime + '\'' +
                 ", orderPtime='" + orderPtime + '\'' +
                 ", orderFtime='" + orderFtime + '\'' +
+                ", buyUsername='" + buyUsername + '\'' +
+                ", buyUserSeat='" + buyUserSeat + '\'' +
                 '}';
     }
 }

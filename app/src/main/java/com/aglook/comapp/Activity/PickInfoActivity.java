@@ -177,7 +177,7 @@ public class PickInfoActivity extends BaseActivity {
                 break;
             case R.id.right_text:
                 for (int i = 0; i < mList.size(); i++) {
-                    Log.d("result_mList_display", mList.get(i).getWeitht() + "");
+//                    Log.d("result_mList_display", mList.get(i).getWeitht() + "");
                 }
                 customProgress = CustomProgress.show(this, "提交中···", true);
                 getInput();

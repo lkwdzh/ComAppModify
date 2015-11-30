@@ -99,6 +99,7 @@ public class AllGuaDanActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
                 Log.d("result_All_guadan", arg0.result);
+                AppUtils.toastText(AllGuaDanActivity.this,DefineUtil.USERID);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");

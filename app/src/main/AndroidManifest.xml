@@ -144,7 +144,7 @@
             android:label="@string/title_activity_modify_password" >
         </activity>
         <activity
-            android:name=".Activity.HangQingListActivity"
+            android:name=".Activity.ZiXunListActivity"
             android:label="@string/title_activity_hang_qing_list" >
         </activity>
         <activity
@@ -193,7 +193,12 @@
         </activity>
         <activity
             android:name=".Activity.ModifyGuaDanActivity"
-            android:label="@string/title_activity_modify_gua_dan" >
+            android:label="@string/title_activity_modify_gua_dan"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity
+            android:name=".Activity.BuyerListActivity"
+            android:label="@string/title_activity_buyer_list" >
         </activity>
     </application>
 

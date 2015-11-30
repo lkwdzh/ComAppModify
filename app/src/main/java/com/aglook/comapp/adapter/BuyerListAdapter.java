@@ -5,24 +5,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.aglook.comapp.R;
+import com.aglook.comapp.bean.Buyer;
+
+import java.util.List;
 
 /**
- * Created by aglook on 2015/11/10.
+ * Created by aglook on 2015/11/30.
  */
-public class HangQingListAdapter extends BaseAdapter {
+public class BuyerListAdapter extends BaseAdapter {
+    private List<Buyer>list;
     private Context context;
 
-    public HangQingListAdapter(Context context) {
+    public BuyerListAdapter(List<Buyer> list, Context context) {
+        this.list = list;
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return 11;
+        return list!=null?list.size():0;
     }
 
     @Override
@@ -39,22 +44,26 @@ public class HangQingListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView==null){
-            convertView= LayoutInflater.from(context).inflate(R.layout.layout_hang_qing_list,null);
+            convertView= LayoutInflater.from(context).inflate(R.layout.layout_driver_lv,null);
             holder=new ViewHolder(convertView);
             convertView.setTag(holder);
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
+
+        Buyer buyer = list.get(position);
+        holder.tv_driver_lv.setText(buyer.getUserName());
         return convertView;
     }
 
     class ViewHolder{
-        ImageView iv_hang_qing_list;
-        TextView tv_hang_qing_list;
+        TextView tv_driver_lv;
+        CheckBox cb_driver_lv;
 
         ViewHolder(View view) {
-            tv_hang_qing_list=(TextView)view.findViewById(R.id.tv_hang_qing_list);
-            iv_hang_qing_list=(ImageView)view.findViewById(R.id.iv_hang_qing_list);
+            tv_driver_lv=(TextView)view.findViewById(R.id.tv_driver_lv);
+            cb_driver_lv=(CheckBox)view.findViewById(R.id.cb_driver_lv);
         }
     }
+
 }

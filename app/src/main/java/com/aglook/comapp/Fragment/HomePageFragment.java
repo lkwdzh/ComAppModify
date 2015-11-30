@@ -15,24 +15,25 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.ExpandableListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
-import com.aglook.comapp.Activity.GoodsDetailActivity;
 import com.aglook.comapp.Activity.SearchActivity;
 import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.R;
-import com.aglook.comapp.adapter.HomePageGridViewAdapter;
+import com.aglook.comapp.adapter.HomePageEXGridView;
 import com.aglook.comapp.adapter.RecycleHomePageAdapter;
 import com.aglook.comapp.bean.HomePage;
 import com.aglook.comapp.bean.HomePageScroll;
+import com.aglook.comapp.bean.Information;
 import com.aglook.comapp.url.HomePageUrl;
+import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.CustomProgress;
-import com.aglook.comapp.view.MyGridView;
+import com.aglook.comapp.view.MyExpandableListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.lidroid.xutils.exception.HttpException;
@@ -45,6 +46,7 @@ import java.util.List;
  * Created by aglook on 2015/10/26.
  */
 public class HomePageFragment extends Fragment implements ViewPager.OnPageChangeListener, View.OnClickListener {
+    private List<Information>inList;
     private List<String> list = new ArrayList<>();
     private RecycleHomePageAdapter adapter;
     private ViewPager vp_home_page_head;
@@ -69,8 +71,8 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     };
     private PullToRefreshScrollView sv_homepage;
     private RecyclerView my_recycler_view;
-    private MyGridView gv_homepage;
-    private HomePageGridViewAdapter gridViewAdapter;
+//    private MyGridView gv_homepage;
+//    private HomePageGridViewAdapter gridViewAdapter;
     private RelativeLayout rl_search_homepage_fragment;
 
     private ComAppApplication comAppApplication;
@@ -80,6 +82,8 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     private View view2;
     private View view3;
     private ArrayList<View> viewArrayList;
+    private MyExpandableListView melv_homePage;
+    private HomePageEXGridView homePageEXGridViewAdapter;
 
 
     @Nullable
@@ -90,6 +94,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         initView(view);
         getData();
         getScroll();
+        getInfo();
         click();
         fillData();
         return view;
@@ -98,9 +103,9 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     //轮播图下面的小点
     private void setCurrentDot(int position) {
         for (int i = 0; i < viewArrayList.size(); i++) {
-            if (position==i){
+            if (position == i) {
                 viewArrayList.get(i).setSelected(true);
-            }else {
+            } else {
                 viewArrayList.get(i).setSelected(false);
             }
         }
@@ -111,10 +116,22 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     //初始化控件
     public void initView(View view) {
         mList = new ArrayList<>();
+        inList=new ArrayList<>();
         scrollList = new ArrayList<>();
-        adapter = new RecycleHomePageAdapter(getActivity());
+        adapter = new RecycleHomePageAdapter(getActivity(),inList);
 
         sv_homepage = (PullToRefreshScrollView) view.findViewById(R.id.sv_homepage);
+        melv_homePage = (MyExpandableListView) view.findViewById(R.id.melv_homePage);
+        homePageEXGridViewAdapter = new HomePageEXGridView(mList, getActivity());
+        melv_homePage.setAdapter(homePageEXGridViewAdapter);
+
+        //不能点击收缩
+        melv_homePage.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                return true;
+            }
+        });
 //        令scrollview显示顶部
         sv_homepage.getRefreshableView().smoothScrollBy(0, 0);
 //        rv_homepage = (RecyclerView) view.findViewById(R.id.rv_homepage);
@@ -127,7 +144,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         vp_home_page_head.setCurrentItem(mCurrentPagePosition, false);
 
 
-        sv_homepage.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
+        sv_homepage.setMode(PullToRefreshBase.Mode.DISABLED);
 
         my_recycler_view = (RecyclerView) view.findViewById(R.id.my_recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -135,9 +152,9 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         my_recycler_view.setLayoutManager(layoutManager);
         my_recycler_view.setAdapter(adapter);
 
-        gv_homepage = (MyGridView) view.findViewById(R.id.gv_homepage);
-        gridViewAdapter = new HomePageGridViewAdapter(getActivity(), mList);
-        gv_homepage.setAdapter(gridViewAdapter);
+//        gv_homepage = (MyGridView) view.findViewById(R.id.gv_homepage);
+//        gridViewAdapter = new HomePageGridViewAdapter(getActivity(), mList);
+//        gv_homepage.setAdapter(gridViewAdapter);
         rl_search_homepage_fragment = (RelativeLayout) view.findViewById(R.id.rl_search_homepage_fragment);
 
 
@@ -154,21 +171,26 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
 
     public void click() {
         rl_search_homepage_fragment.setOnClickListener(this);
-        gv_homepage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
-                intent.putExtra("productId", mList.get(position).getProductId());
-                intent.putExtra("pointUser", mList.get(position).getIsAppoint());
-                startActivity(intent);
-            }
-        });
+//        gv_homepage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+//                intent.putExtra("productId", mList.get(position).getProductId());
+//                intent.putExtra("pointUser", mList.get(position).getIsAppoint());
+//                startActivity(intent);
+//            }
+//        });
         sv_homepage.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ScrollView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
 //                getData();
+                sv_homepage.onRefreshComplete();
             }
         });
+
+
+
+
     }
 
     @Override
@@ -239,7 +261,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
                 if (obj != null && !"".equals(obj)) {
                     String pointProduct = JsonUtils.getJsonParam(obj, "pointProduct");
-                    String ProductList = JsonUtils.getJsonParam(obj, "ProductList");
+                    String ProductList = JsonUtils.getJsonParam(obj, "productList");
                     list = JsonUtils.parseList(ProductList, HomePage.class);
                     listAppoint = JsonUtils.parseList(pointProduct, HomePage.class);
                     if (status.equals("1")) {
@@ -247,22 +269,38 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
 
                         //指定买家
                         if (listAppoint != null && listAppoint.size() != 0) {
-                            for (int i = 0; i < listAppoint.size(); i++) {
-                                listAppoint.get(i).setIsAppoint("1");
+
+                            for (int j = 0; j < listAppoint.size(); j++) {
+                                if (listAppoint.get(j).getList() != null && listAppoint.get(j).getList().size() != 0) {
+                                    for (int i = 0; i < listAppoint.get(j).getList().size(); i++) {
+                                        listAppoint.get(j).getList().get(i).setIsAppoint("1");
+                                    }
+                                }
                             }
                             mList.addAll(listAppoint);
                         }
 
                         //未指定买家
                         if (list != null && list.size() != 0) {
-                            for (int i = 0; i < list.size(); i++) {
-                                list.get(i).setIsAppoint("0");
+                            for (int j = 0; j < list.size(); j++) {
+                                if (list.get(j).getList() != null && list.get(j).getList().size() != 0) {
+                                    for (int i = 0; i < list.get(j).getList().size(); i++) {
+                                        list.get(j).getList().get(i).setIsAppoint("0");
+                                    }
+
+                                }
                             }
                             mList.addAll(list);
                         }
                     }
                 }
-                gridViewAdapter.notifyDataSetChanged();
+                //expandableListview默认展开
+                if (mList!=null&&mList.size()!=0){
+                    for (int i = 0; i < mList.size(); i++) {
+                        melv_homePage.expandGroup(i);
+                    }
+                }
+                homePageEXGridViewAdapter.notifyDataSetChanged();
                 sv_homepage.onRefreshComplete();
             }
 
@@ -312,4 +350,33 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
             }
         }.datePost(DefineUtil.INDEX_SCROLLPIC, getActivity());
     }
+
+    //获取首页资讯条
+    public void getInfo(){
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                Log.d("result_infrmation",arg0.result);
+                String message=JsonUtils.getJsonParam(arg0.result,"message");
+                String status=JsonUtils.getJsonParam(arg0.result,"status");
+                String obj=JsonUtils.getJsonParam(arg0.result,"obj");
+                List<Information>sonList=new ArrayList<Information>();
+                if (status.equals("1")){
+                    sonList=JsonUtils.parseList(obj,Information.class);
+                    if (sonList!=null&&sonList.size()!=0){
+                        inList.addAll(sonList);
+                    }
+                }else {
+                    AppUtils.toastText(getActivity(),message);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+
+            }
+        }.datePost(DefineUtil.INFORMATION,getActivity());
+    }
+
 }

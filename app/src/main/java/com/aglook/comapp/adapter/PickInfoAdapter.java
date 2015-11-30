@@ -55,7 +55,7 @@ public class PickInfoAdapter extends BaseAdapter {
 
 
         final DriverList driverList = list.get(position);
-        holder.tv_pick_info.setText(driverList.getName());
+        holder.tv_pick_info.setText(driverList.getUserName());
         //获取填写的信息
         holder.et_weighr_pick_info.addTextChangedListener(new TextWatcher() {
             @Override
@@ -71,7 +71,7 @@ public class PickInfoAdapter extends BaseAdapter {
             @Override
             public void afterTextChanged(Editable s) {
                 String s1 = s.toString();
-                driverList.setWeitht(s1);
+//                driverList.setWeitht(s1);
             }
         });
         return convertView;

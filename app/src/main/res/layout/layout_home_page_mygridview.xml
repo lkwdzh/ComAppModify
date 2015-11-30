@@ -12,11 +12,21 @@
             style="@style/ll_wrap_content_ver"
             android:layout_centerInParent="true"
             android:layout_margin="@dimen/px_12">
-
+            <RelativeLayout
+                android:layout_width="@dimen/px_134"
+                android:layout_height="@dimen/px_134">
             <ImageView
                 android:id="@+id/iv_myGridView_homepage"
-              style="@style/imageview_px134"
+                style="@style/imageview_px134"
                 android:scaleType="centerInside" />
+                <ImageView
+                    android:id="@+id/iv_home_gv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/dx"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"/>
+                </RelativeLayout>
 
             <TextView
                 android:id="@+id/tv_name_homepage"

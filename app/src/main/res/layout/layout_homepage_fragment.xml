@@ -112,12 +112,19 @@
 
         <View style="@style/line_1" />
 
-        <com.aglook.comapp.view.MyGridView
-            android:id="@+id/gv_homepage"
+        <!--<com.aglook.comapp.view.MyGridView-->
+            <!--android:id="@+id/gv_homepage"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/white"-->
+            <!--android:numColumns="3"></com.aglook.comapp.view.MyGridView>-->
+        <com.aglook.comapp.view.MyExpandableListView
+            android:id="@+id/melv_homePage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
-            android:numColumns="3"></com.aglook.comapp.view.MyGridView>
+        android:groupIndicator="@null"
+            android:divider="@null"
+            ></com.aglook.comapp.view.MyExpandableListView>
     </LinearLayout>
 
 

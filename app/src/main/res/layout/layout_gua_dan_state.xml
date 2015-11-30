@@ -5,40 +5,73 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_14"
+        android:background="@color/gray_eeeeee" />
+
     <View style="@style/line_1" />
 
-    <RelativeLayout
-        style="@style/rl_match_wrap_content"
-        android:padding="@dimen/px_10">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
-            style="@style/ll_wrap_content_ver"
-            android:layout_alignParentLeft="true">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/px_10"
+            android:orientation="horizontal">
 
             <TextView
-                style="@style/grayTextView_333333_13"
-                android:text="下单时间：" />
+                android:id="@+id/tv_cangdan"
+                style="@style/grayTextView_333333_15"
+                android:layout_alignParentLeft="true"
+                android:text="席位号" />
 
             <TextView
-                android:id="@+id/tv_xia_state"
-                style="@style/grayTextView_333333_13"
-                android:text="2015-11-14 14:40:21" />
+                android:id="@+id/tv_seat_state"
+                style="@style/grayTextView_333333_15"
+                android:layout_toRightOf="@+id/tv_cangdan" />
         </LinearLayout>
 
-        <LinearLayout
-            style="@style/ll_wrap_content_ver"
-            android:layout_alignParentRight="true">
+        <RelativeLayout
+            style="@style/rl_match_wrap_content"
+            android:padding="@dimen/px_10">
 
-            <TextView
-                style="@style/grayTextView_333333_13"
-                android:text="完成时间：" />
+            <LinearLayout
+                style="@style/ll_wrap_content_hor"
+                android:layout_alignParentLeft="true">
 
-            <TextView
-                android:id="@+id/tv_over_state"
-                style="@style/grayTextView_333333_13"
-                android:text="2015-11-14 14:40:21" />
-        </LinearLayout>
-    </RelativeLayout>
+                <TextView
+                    style="@style/grayTextView_999999"
+                    android:textSize="11sp"
+                    android:text="下单时间：" />
+
+                <TextView
+                    android:id="@+id/tv_xia_state"
+                    style="@style/grayTextView_999999"
+                    android:textSize="11sp"
+                    android:text="2015-11-14 14:40:21" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ll_wrap_content_hor"
+                android:layout_alignParentRight="true">
+
+                <TextView
+                    style="@style/grayTextView_999999"
+                    android:textSize="11sp"
+                    android:text="完成时间：" />
+
+                <TextView
+                    android:id="@+id/tv_over_state"
+                    style="@style/grayTextView_999999"
+                    android:textSize="11sp"
+                    android:text="2015-11-14 14:40:21" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
 
     <View style="@style/line_1" />
 
@@ -48,17 +81,6 @@
         android:orientation="horizontal"
         android:weightSum="3">
 
-        <LinearLayout style="@style/ll_match_wrap_content_hor_mine_fragment">
-
-            <TextView
-                style="@style/grayTextView_333333_13"
-                android:text="席位号：" />
-
-            <TextView
-                android:id="@+id/tv_seat_state"
-                style="@style/grayTextView_333333_13"
-                android:text="0311" />
-        </LinearLayout>
 
         <LinearLayout style="@style/ll_match_wrap_content_hor_mine_fragment">
 
@@ -83,15 +105,6 @@
                 style="@style/grayTextView_333333_13"
                 android:text="交易完成" />
         </LinearLayout>
-    </LinearLayout>
-
-    <View style="@style/line_1" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
 
         <LinearLayout style="@style/ll_match_wrap_content_hor_mine_fragment">
 
@@ -105,6 +118,17 @@
                 android:text="15000" />
         </LinearLayout>
 
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+
         <LinearLayout style="@style/ll_match_wrap_content_hor_mine_fragment">
 
             <TextView
@@ -117,6 +141,6 @@
                 android:text="0.00" />
         </LinearLayout>
     </LinearLayout>
-    <View style="@style/line_1"
-        android:layout_marginBottom="@dimen/px_14"/>
+
+    <View style="@style/line_1" />
 </LinearLayout>

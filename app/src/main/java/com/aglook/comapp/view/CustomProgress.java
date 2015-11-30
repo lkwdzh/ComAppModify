@@ -3,9 +3,11 @@ package com.aglook.comapp.view;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aglook.comapp.R;
@@ -21,31 +23,31 @@ public class CustomProgress extends Dialog {
 		super(context, theme);
 	}
 
-//	/**
-//	 * 当窗口焦点改变时调用
-//	 */
-//	public void onWindowFocusChanged(boolean hasFocus) {
-//		ImageView imageView = (ImageView) findViewById(R.id.spinnerImageView);
-//		// 获取ImageView上的动画背景
-//		AnimationDrawable spinner = (AnimationDrawable) imageView
-//				.getBackground();
-//		// 开始动画
-//		spinner.start();
-//	}
+	/**
+	 * 当窗口焦点改变时调用
+	 */
+	public void onWindowFocusChanged(boolean hasFocus) {
+		ImageView imageView = (ImageView) findViewById(R.id.spinnerImageView);
+		// 获取ImageView上的动画背景
+		AnimationDrawable spinner = (AnimationDrawable) imageView
+				.getBackground();
+		// 开始动画
+		spinner.start();
+	}
 
-//	/**
-//	 * 给Dialog设置提示信息
-//	 *
-//	 * @param message
-//	 */
-//	public void setMessage(CharSequence message) {
-//		if (message != null && message.length() > 0) {
-//			findViewById(R.id.message).setVisibility(View.VISIBLE);
-//			TextView txt = (TextView) findViewById(R.id.message);
-//			txt.setText(message);
-//			txt.invalidate();
-//		}
-//	}
+	/**
+	 * 给Dialog设置提示信息
+	 *
+	 * @param message
+	 */
+	public void setMessage(CharSequence message) {
+		if (message != null && message.length() > 0) {
+			findViewById(R.id.message).setVisibility(View.VISIBLE);
+			TextView txt = (TextView) findViewById(R.id.message);
+			txt.setText(message);
+			txt.invalidate();
+		}
+	}
 
 	/**
 	 * 弹出自定义ProgressDialog

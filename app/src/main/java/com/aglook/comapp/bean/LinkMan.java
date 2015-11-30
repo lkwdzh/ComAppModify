@@ -6,9 +6,9 @@ import java.io.Serializable;
  * Created by aglook on 2015/11/20.
  */
 public class LinkMan implements Serializable{
-    private int userId;
+    private int userId;//用户ID
     private boolean isChecked;
-    private String userName;
+    private String userName;//用户姓名
     private String userPw;
     private String userMoney;
     private String userPoint;
@@ -23,7 +23,7 @@ public class LinkMan implements Serializable{
     private String userAddress;
     private String userIp;
     private String tokenNo;
-    private String userSeat;
+    private String userSeat;//席位号
     private String userNumber;
     private String rate;
 

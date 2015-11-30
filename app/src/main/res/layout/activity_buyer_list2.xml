@@ -2,13 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+   android:orientation="vertical"
     android:background="@color/gray_eeeeee">
     <include layout="@layout/activity_base_title_bar"/>
+
     <com.handmark.pulltorefresh.library.PullToRefreshListView
-        android:id="@+id/lv_all_order"
+        android:id="@+id/lv_buyer_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/rl_bottom"
+        android:layout_below="@+id/view1"
         android:divider="@null"></com.handmark.pulltorefresh.library.PullToRefreshListView>
 
 </LinearLayout>

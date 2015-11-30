@@ -14,7 +14,7 @@
 
         <TextView
             style="@style/guadan_TextView_333333"
-            android:text="@string/driver_add_name" />
+            android:text="姓名" />
 
         <EditText
             android:id="@+id/et_name_driver_add"
@@ -32,22 +32,11 @@
         <EditText
             android:id="@+id/et_phone_driver_add"
             style="@style/guadan_edittext_weight"
+            android:inputType="number"
             android:hint="请输入司机电话" />
     </LinearLayout>
 
-    <View style="@style/line_1" />
 
-    <LinearLayout style="@style/guadan_ll_weight">
-
-        <TextView
-            style="@style/guadan_TextView_333333"
-            android:text="@string/driver_add_email" />
-
-        <EditText
-            android:id="@+id/et_email_driver_add"
-            style="@style/guadan_edittext_weight"
-            android:hint="请输入司机邮箱" />
-    </LinearLayout>
 
     <View style="@style/line_1" />
 
@@ -62,7 +51,19 @@
             style="@style/guadan_edittext_weight"
             android:hint="请输入司机身份证号" />
     </LinearLayout>
+    <View style="@style/line_1" />
 
+    <LinearLayout style="@style/guadan_ll_weight">
 
+        <TextView
+            style="@style/guadan_TextView_333333"
+            android:text="车牌号" />
+
+        <EditText
+            android:id="@+id/et_email_driver_add"
+            style="@style/guadan_edittext_weight"
+            android:hint="请输入司机车牌号" />
+    </LinearLayout>
+    <View style="@style/line_1" />
 
 </LinearLayout>

@@ -21,7 +21,7 @@
        style="@style/grayTextView_333333_13"
         android:singleLine="true"
         android:ellipsize="end"
-        android:text="111111111111111111111111111111111111111111111111111111111111111111111"/>
+        />
     </LinearLayout>
     <View
         style="@style/line_1"/>

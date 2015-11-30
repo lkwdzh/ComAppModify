@@ -1,11 +1,19 @@
 package com.aglook.comapp.Activity;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
+import com.aglook.comapp.url.DriverUrl;
+import com.aglook.comapp.util.AppUtils;
+import com.aglook.comapp.util.DefineUtil;
+import com.aglook.comapp.util.JsonUtils;
+import com.aglook.comapp.util.XHttpuTools;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
 
 public class DriverAddActivity extends BaseActivity {
 
@@ -15,6 +23,12 @@ public class DriverAddActivity extends BaseActivity {
     private EditText et_phone_driver_add;
     private EditText et_email_driver_add;
     private EditText et_num_driver_add;
+
+    private String driverName;
+    private String driverTel;
+    private String driverPhone;
+    private String carCode;
+    private String cardNo;
 
     @Override
     public void initView() {
@@ -40,16 +54,47 @@ public class DriverAddActivity extends BaseActivity {
         right_text.setOnClickListener(this);
     }
 
+    public void getInput(){
+        driverName=AppUtils.toStringTrim_ET(et_name_driver_add);
+        driverPhone=AppUtils.toStringTrim_ET(et_phone_driver_add);
+        carCode=AppUtils.toStringTrim_ET(et_email_driver_add);
+        cardNo=AppUtils.toStringTrim_ET(et_num_driver_add);
+    }
 
     @Override
     public void widgetClick(View view) {
         switch (view.getId()) {
             case R.id.right_text:
                 //调用增加接口，若成功，则返回
-                DriverAddActivity.this.setResult(1);
-                DriverAddActivity.this.finish();
+                addDriver();
+
                 break;
         }
+    }
+
+    //添加司机
+    public void addDriver(){
+        getInput();
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                Log.d("result_add",arg0.result);
+                String message= JsonUtils.getJsonParam(arg0.result,"message");
+                String status=JsonUtils.getJsonParam(arg0.result,"status");
+                if (status.equals("1")){
+                    //成功
+                    DriverAddActivity.this.setResult(1);
+                    DriverAddActivity.this.finish();
+                }else {
+                    AppUtils.toastText(DriverAddActivity.this,message);
+                }
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+
+            }
+        }.datePost(DefineUtil.DRIVER_ADD, DriverUrl.postDriverAddUrl(DefineUtil.TOKEN,DefineUtil.USERID,driverName,driverTel,driverPhone,carCode,cardNo),DriverAddActivity.this);
     }
 
 

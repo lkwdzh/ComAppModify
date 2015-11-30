@@ -176,24 +176,11 @@ public class GuaDanAddActivity extends BaseActivity {
     }
 
     public void click() {
-//        tv_in_time_gua_dan_add.setOnClickListener(this);
         tv_userful_time_gua_dan_add.setOnClickListener(this);
         right_text.setOnClickListener(this);
         ll_buyer_gua_dan.setOnClickListener(this);
     }
 
-    //    日期选择对话框的监听
-    private DatePickerDialog.OnDateSetListener listenerIn = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            calendar.set(Calendar.YEAR, year);
-            calendar.set(Calendar.MONTH, monthOfYear);
-            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            df = new SimpleDateFormat("yyyy-MM-dd");
-            dateIn = df.format(calendar.getTime());
-            tv_in_time_gua_dan_add.setText(dateIn);
-        }
-    };
 
     //    日期选择对话框的监听
     private DatePickerDialog.OnDateSetListener listenerUseful = new DatePickerDialog.OnDateSetListener() {
@@ -213,11 +200,6 @@ public class GuaDanAddActivity extends BaseActivity {
     public void widgetClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
-            case R.id.tv_in_time_gua_dan_add:
-                DatePickerDialog datePickerDialogIn = new DatePickerDialog(GuaDanAddActivity.this, listenerIn, calendar.get(Calendar.YEAR),
-                        calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-                datePickerDialogIn.show();
-                break;
             case R.id.tv_userful_time_gua_dan_add:
                 DatePickerDialog datePickerDialogUseful = new DatePickerDialog(GuaDanAddActivity.this, listenerUseful, calendar.get(Calendar.YEAR),
                         calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));

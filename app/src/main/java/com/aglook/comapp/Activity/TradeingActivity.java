@@ -1,8 +1,10 @@
 package com.aglook.comapp.Activity;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.aglook.comapp.R;
@@ -57,6 +59,17 @@ public class TradeingActivity extends BaseActivity {
     }
 
     public void click() {
+        final Intent intent = new Intent();
+        lv_tradeing.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                intent.setClass(TradeingActivity.this, GoodsDetailActivity.class);
+                intent.putExtra("isSelf", true);
+                intent.putExtra("productId",mList.get(position-1).getProductId());
+                AppUtils.toastText(TradeingActivity.this,position-1+"");
+                startActivity(intent);
+            }
+        });
         lv_tradeing.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {

@@ -1,93 +1,35 @@
 package com.aglook.comapp.bean;
 
+import java.util.List;
+
 /**
- * Created by aglook on 2015/11/12.
+ * Created by aglook on 2015/11/30.
  */
 public class HomePage {
-    private String productId;//产品id
-    private String productName;//产品名称
-    private String goodPlace;//产地
-    private String goodType;//等级
-    private String productSellNum;//重量
-    private String productMoney;//价格
-    private String  isAppoint;//是否是指定
-    private String productLogo;//图像
+    private String categoryName;
+    private List<HomePageList>list;
 
-    public String getProductLogo() {
-        return productLogo;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setProductLogo(String productLogo) {
-        this.productLogo = productLogo;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
-    public String getIsAppoint() {
-        return isAppoint;
+    public List<HomePageList> getList() {
+        return list;
     }
 
-    public void setIsAppoint(String isAppoint) {
-        this.isAppoint = isAppoint;
-    }
-
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public String getGoodPlace() {
-        return goodPlace;
-    }
-
-    public void setGoodPlace(String goodPlace) {
-        this.goodPlace = goodPlace;
-    }
-
-    public String getGoodType() {
-        return goodType;
-    }
-
-    public void setGoodType(String goodType) {
-        this.goodType = goodType;
-    }
-
-    public String getProductSellNum() {
-        return productSellNum;
-    }
-
-    public void setProductSellNum(String productSellNum) {
-        this.productSellNum = productSellNum;
-    }
-
-    public String getProductMoney() {
-        return productMoney;
-    }
-
-    public void setProductMoney(String productMoney) {
-        this.productMoney = productMoney;
+    public void setList(List<HomePageList> list) {
+        this.list = list;
     }
 
     @Override
     public String toString() {
         return "HomePage{" +
-                "productId='" + productId + '\'' +
-                ", productName='" + productName + '\'' +
-                ", goodPlace='" + goodPlace + '\'' +
-                ", goodType='" + goodType + '\'' +
-                ", productSellNum='" + productSellNum + '\'' +
-                ", productMoney='" + productMoney + '\'' +
-                ", isAppoint='" + isAppoint + '\'' +
-                ", productLogo='" + productLogo + '\'' +
+                "categoryName='" + categoryName + '\'' +
+                ", list=" + list +
                 '}';
     }
 }

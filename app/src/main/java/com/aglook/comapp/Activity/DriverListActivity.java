@@ -1,6 +1,7 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.RelativeLayout;
@@ -10,8 +11,14 @@ import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.DriverListAdapter;
 import com.aglook.comapp.bean.DriverList;
+import com.aglook.comapp.url.DriverUrl;
 import com.aglook.comapp.util.AppUtils;
+import com.aglook.comapp.util.DefineUtil;
+import com.aglook.comapp.util.JsonUtils;
+import com.aglook.comapp.util.XHttpuTools;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -29,8 +36,9 @@ public class DriverListActivity extends BaseActivity {
     private List<DriverList> mList = new ArrayList<>();
     private List<DriverList> getList = new ArrayList<>();
     private TextView tv_num_driver_list;
-    private int total=0;
+    private int total = 0;
     private boolean isModify;
+    private boolean isAdd;
 
     @Override
     public void initView() {
@@ -50,11 +58,11 @@ public class DriverListActivity extends BaseActivity {
         rl_bottom = (RelativeLayout) findViewById(R.id.rl_bottom);
         tv_num_driver_list = (TextView) findViewById(R.id.tv_num_driver_list);
         canCheck = getIntent().getBooleanExtra("canCheck", false);
-        isModify=getIntent().getBooleanExtra("isModify",false);
-        adapter = new DriverListAdapter(DriverListActivity.this, mList, canCheck,new DriverListAdapter.CallBackData() {
+        isModify = getIntent().getBooleanExtra("isModify", false);
+        adapter = new DriverListAdapter(DriverListActivity.this, mList, canCheck, new DriverListAdapter.CallBackData() {
             @Override
             public void callBack(int num) {
-                tv_num_driver_list.setText(num+"");
+                tv_num_driver_list.setText(num + "");
             }
         });
         lv_driver_list.setAdapter(adapter);
@@ -84,7 +92,7 @@ public class DriverListActivity extends BaseActivity {
                 }
             }
         }
-        tv_num_driver_list.setText(total+"");
+        tv_num_driver_list.setText(total + "");
     }
 
     public void click() {
@@ -94,14 +102,14 @@ public class DriverListActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent();
                 //如果是从修改页面跳转的，点击则返回并带回数据，否则，跳转到详情
-                if (isModify){
-                    intent.setClass(DriverListActivity.this,ModifyPickUpActivity.class);
-                    intent.putExtra("driver",mList.get(position-1));
-                    AppUtils.toastText(DriverListActivity.this,position-1+"");
-                    DriverListActivity.this.setResult(RESULT_OK,intent);
+                if (isModify) {
+                    intent.setClass(DriverListActivity.this, ModifyPickUpActivity.class);
+                    intent.putExtra("driver", mList.get(position - 1));
+                    AppUtils.toastText(DriverListActivity.this, position - 1 + "");
+                    DriverListActivity.this.setResult(RESULT_OK, intent);
                     DriverListActivity.this.finish();
-                }else {
-                   intent.setClass(DriverListActivity.this, DriverInfoActivity.class);
+                } else {
+                    intent.setClass(DriverListActivity.this, DriverInfoActivity.class);
                     startActivity(intent);
                 }
             }
@@ -136,22 +144,52 @@ public class DriverListActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == 1) {
+            isAdd=true;
             getData();
         }
     }
 
     //获取数据
     public void getData() {
-        List<DriverList> sonList = new ArrayList<>();
-        DriverList driver = null;
-        for (int i = 0; i < 30; i++) {
-            driver = new DriverList();
-            driver.setName("王大锤" + i + "号");
-            driver.setId(i);
-            sonList.add(driver);
-        }
+//        List<DriverList> sonList = new ArrayList<>();
+//        DriverList driver = null;
+//        for (int i = 0; i < 30; i++) {
+//            driver = new DriverList();
+//            driver.setName("王大锤" + i + "号");
+////            driver.setId(i);
+//            sonList.add(driver);
+//        }
+//
+//        mList.addAll(sonList);
 
-        mList.addAll(sonList);
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                Log.d("result_driver", arg0.result);
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
+                List<DriverList> sonListt = new ArrayList<DriverList>();
+                if (status.equals("1")) {
+                    sonListt = JsonUtils.parseList(obj, DriverList.class);
+                    if (sonListt != null && sonListt.size() != 0) {
+                        if (isAdd){
+                            isAdd=false;
+                            mList.clear();
+                        }
+                        mList.addAll(sonListt);
+                    }
+                } else {
+                    AppUtils.toastText(DriverListActivity.this, message);
+                }
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+
+            }
+        }.datePost(DefineUtil.DRIVER_LIST, DriverUrl.postDriverListUrl(DefineUtil.TOKEN, DefineUtil.USERID), DriverListActivity.this);
+
         compareList();
         adapter.notifyDataSetChanged();
     }

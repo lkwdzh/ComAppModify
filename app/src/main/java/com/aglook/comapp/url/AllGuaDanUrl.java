@@ -14,6 +14,7 @@ public class AllGuaDanUrl {
 
     /**
      * 挂单列表
+     *
      * @param code
      * @param token
      * @param userId
@@ -22,8 +23,8 @@ public class AllGuaDanUrl {
      * @param _sort
      * @return
      */
-    public static RequestParams postGuaDanListUrl(String code,String token, String userId, String pageSize, String pageNum, String _sort) {
-       params=new RequestParams();
+    public static RequestParams postGuaDanListUrl(String code, String token, String userId, String pageSize, String pageNum, String _sort) {
+        params = new RequestParams();
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("token", token);
@@ -34,7 +35,7 @@ public class AllGuaDanUrl {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-       String content=jsonObject.toString();
+        String content = jsonObject.toString();
         String sign = null;
         params.addBodyParameter("code", code);
         params.addBodyParameter("version", DefineUtil.VERSON);
@@ -46,6 +47,7 @@ public class AllGuaDanUrl {
 
     /**
      * 交易记录
+     *
      * @param code
      * @param token
      * @param userId
@@ -56,8 +58,8 @@ public class AllGuaDanUrl {
      * @param orderState
      * @return
      */
-    public static RequestParams postLogUrl(String code,String token, String userId, String pageSize, String pageNum, String _sort,String productId,String orderState) {
-        params=new RequestParams();
+    public static RequestParams postLogUrl(String code, String token, String userId, String pageSize, String pageNum, String _sort, String productId, String orderState) {
+        params = new RequestParams();
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("token", token);
@@ -70,7 +72,7 @@ public class AllGuaDanUrl {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        String content=jsonObject.toString();
+        String content = jsonObject.toString();
         String sign = null;
         params.addBodyParameter("code", code);
         params.addBodyParameter("version", DefineUtil.VERSON);
@@ -82,14 +84,15 @@ public class AllGuaDanUrl {
 
     /**
      * 取消挂单
+     *
      * @param code
      * @param token
      * @param userId
      * @param productId
      * @return
      */
-    public static RequestParams postDeleteUrl(String code,String token, String userId,String productId ) {
-        params=new RequestParams();
+    public static RequestParams postDeleteUrl(String code, String token, String userId, String productId) {
+        params = new RequestParams();
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("token", token);
@@ -98,7 +101,7 @@ public class AllGuaDanUrl {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        String content=jsonObject.toString();
+        String content = jsonObject.toString();
         String sign = null;
         params.addBodyParameter("code", code);
         params.addBodyParameter("version", DefineUtil.VERSON);
@@ -109,6 +112,7 @@ public class AllGuaDanUrl {
 
     /**
      * 交易中与交易成功
+     *
      * @param code
      * @param token
      * @param userId
@@ -118,8 +122,8 @@ public class AllGuaDanUrl {
      * @param orderState
      * @return
      */
-    public static RequestParams postTranUrl(String code,String token, String userId, String pageSize, String pageNum, String _sort,String orderState) {
-        params=new RequestParams();
+    public static RequestParams postTranUrl(String code, String token, String userId, String pageSize, String pageNum, String _sort, String orderState) {
+        params = new RequestParams();
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("token", token);
@@ -131,7 +135,7 @@ public class AllGuaDanUrl {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        String content=jsonObject.toString();
+        String content = jsonObject.toString();
         String sign = null;
         params.addBodyParameter("code", code);
         params.addBodyParameter("version", DefineUtil.VERSON);
@@ -141,9 +145,21 @@ public class AllGuaDanUrl {
     }
 
 
-
-    public static RequestParams postModifyUrl(String code,String token, String userId, String productName, String productMoney, String validTime,String productId,String productDesc) {
-        params=new RequestParams();
+    /**
+     * 修改挂单信息
+     *
+     * @param code
+     * @param token
+     * @param userId
+     * @param productName
+     * @param productMoney
+     * @param validTime
+     * @param productId
+     * @param productDesc
+     * @return
+     */
+    public static RequestParams postModifyUrl(String code, String token, String userId, String productName, String productMoney, String validTime, String productId, String productDesc) {
+        params = new RequestParams();
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("token", token);
@@ -156,7 +172,7 @@ public class AllGuaDanUrl {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        String content=jsonObject.toString();
+        String content = jsonObject.toString();
         String sign = null;
         params.addBodyParameter("code", code);
         params.addBodyParameter("version", DefineUtil.VERSON);
@@ -164,5 +180,34 @@ public class AllGuaDanUrl {
         params.addBodyParameter("sign", sign);
         return params;
     }
+
+    /**
+     * 获取挂单信息详情
+     *
+     * @param code
+     * @param token
+     * @param userId
+     * @param productId
+     * @return
+     */
+    public static RequestParams postgetDetailUrl(String code, String token, String userId, String productId) {
+        params = new RequestParams();
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("token", token);
+            jsonObject.put("userId", userId);
+            jsonObject.put("productId", productId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String content = jsonObject.toString();
+        String sign = null;
+        params.addBodyParameter("code", code);
+        params.addBodyParameter("version", DefineUtil.VERSON);
+        params.addBodyParameter("content", content);
+        params.addBodyParameter("sign", sign);
+        return params;
+    }
+
 
 }

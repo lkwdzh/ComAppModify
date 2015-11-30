@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:layout_width="match_parent"
+    android:background="@color/gray_eeeeee"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/px_10"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/px_10"
+            android:layout_marginLeft="@dimen/px_10"
+            android:src="@drawable/xbt" />
+
+        <TextView
+            android:id="@+id/tv_name_group"
+            style="@style/redTextView_c91014"
+            android:textSize="13sp"
+            android:text="粮食" />
+    </LinearLayout>
+</LinearLayout>

@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.aglook.comapp.Activity.GuaDanAddActivity;
+import com.aglook.comapp.Activity.GuaDanStateActivity;
 import com.aglook.comapp.Activity.ModifyGuaDanActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.GuaDanList;
@@ -110,6 +110,7 @@ public class AllGuaDanAdapter extends BaseAdapter implements View.OnClickListene
         holder.tv_state_all_order_lv.setTag(position);
         holder.tv_state_all_order_lv.setOnClickListener(this);
         holder.tv_tihuo_all_order_lv.setTag(position);
+        holder.tv_trans_all_order_lv.setTag(position);
         return convertView;
     }
 
@@ -130,12 +131,14 @@ public class AllGuaDanAdapter extends BaseAdapter implements View.OnClickListene
                 deleteGua();
                 break;
             case R.id.tv_trans_all_order_lv:
-                intent.setClass(activity, GuaDanAddActivity.class);
+                intent.setClass(activity, ModifyGuaDanActivity.class);
+                index = (int) v.getTag();
+                intent.putExtra("productId", list.get(index).getProductId());
                 activity.startActivity(intent);
                 break;
             case R.id.tv_state_all_order_lv:
                 index = (int) v.getTag();
-                intent.setClass(activity, ModifyGuaDanActivity.class);
+                intent.setClass(activity, GuaDanStateActivity.class);
                 intent.putExtra("productId", list.get(index).getProductId());
                 activity.startActivity(intent);
                 break;

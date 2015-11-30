@@ -64,7 +64,7 @@ public class DriverListAdapter extends BaseAdapter {
         final DriverList driverList = list.get(position);
 
         holder.cb_driver_lv.setChecked(driverList.isChecked());
-        holder.tv_driver_lv.setText(driverList.getName());
+        holder.tv_driver_lv.setText(driverList.getUserName());
         holder.cb_driver_lv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
