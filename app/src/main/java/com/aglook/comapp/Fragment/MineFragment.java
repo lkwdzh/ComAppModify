@@ -206,7 +206,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     intent.setClass(getActivity(), LoginActivity.class);
                     startActivityForResult(intent, 1);
                 } else {
-                    intent.setClass(getActivity(), TransSucceedActivity.class);
+                    intent.setClass(getActivity(), ToPayActivity.class);
+                    intent.putExtra("isSuccess",true);
                     startActivity(intent);
                 }
                 break;

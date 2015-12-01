@@ -6,8 +6,8 @@ package com.aglook.comapp.util;
 public class DefineUtil {
 
     //    测试环境端口
-//    public static String URL_HOST = "http://192.168.1.118:8080/payment/";
-    public static String URL_HOST = "http://192.168.1.104:8080/payment/";
+    public static String URL_HOST = "http://192.168.1.118:8080/payment/";
+//    public static String URL_HOST = "http://192.168.1.104:8080/payment/";
 //    public static String URL_HOST = "http://192.168.1.103:8080/payment/";
     //    登录
     public static String LOGIN_IN = URL_HOST + "login-in";
@@ -53,6 +53,11 @@ public class DefineUtil {
     //资讯列表
     public static String INFOR_LIST=URL_HOST+"information/list";
 
+    /**
+     * 商品搜索
+     */
+    public static String SEARCH=URL_HOST+"search";
+
 
 
 
@@ -90,6 +95,8 @@ public class DefineUtil {
     public static String DRIVER_LIST=URL_HOST+"driver/list";
     //添加司机
     public static String DRIVER_ADD=URL_HOST+"driver/add";
+    //更新司机信息
+    public static String DRIVER_UPDATE=URL_HOST+"driver/update";
 
     /**
      * 仓单

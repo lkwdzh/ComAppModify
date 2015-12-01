@@ -45,4 +45,17 @@ public class DriverUrl {
         params.addBodyParameter("cardNo",cardNo);
         return params;
     }
+
+    public static RequestParams postDriverUpdateUrl(String token, String userId, String driverId,String driverName, String driverTel, String driverPhone, String carCode, String cardNo) {
+        params = new RequestParams();
+        params.addBodyParameter("token", token);
+        params.addBodyParameter("userId", userId);
+        params.addBodyParameter("driverId", driverId);
+        params.addBodyParameter("driverName", driverName);
+        params.addBodyParameter("driverTel",driverTel);
+        params.addBodyParameter("driverPhone",driverPhone);
+        params.addBodyParameter("carCode",carCode);
+        params.addBodyParameter("cardNo",cardNo);
+        return params;
+    }
 }

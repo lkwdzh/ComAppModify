@@ -28,18 +28,29 @@ public class ToPayActivity extends BaseActivity {
     private ToPayAdapter adapter;
     private View emptyView;
     private List<AllOrder> mList=new ArrayList<>();
-    private String orderStatus="1";
+    private String orderStatus;
     private boolean isBrower;
+    private boolean isSuccess;
     @Override
     public void initView() {
         setContentView(R.layout.activity_to_pay);
+        if (isSuccess){
         setTitleBar("待付款");
+        }else {
+            setTitleBar("成功订单");
+        }
         ExitApplication.getInstance().addActivity(this);
         init();
         click();
         getData();
     }
     public void init(){
+        isSuccess=getIntent().getBooleanExtra("isSuccess",false);
+        if (isSuccess){
+            orderStatus="0";
+        }else {
+            orderStatus="1";
+        }
         lv_all_order = (PullToRefreshListView) findViewById(R.id.lv_all_order);
         adapter = new ToPayAdapter(ToPayActivity.this,mList);
         lv_all_order.setAdapter(adapter);

@@ -146,108 +146,39 @@
             <RelativeLayout
                 style="@style/rl_match_wrap_content"
                 android:layout_marginTop="@dimen/px_20">
-
                 <LinearLayout
                     android:id="@+id/ll_2"
                     style="@style/ll_wrap_content_hor"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginRight="@dimen/px_30"
-                    android:layout_marginTop="@dimen/px_5"
-                    android:layout_toLeftOf="@+id/ll_3">
+                    android:layout_marginTop="@dimen/px_5">
 
                     <TextView
-                        style="@style/grayTextView_999999"
-                        android:text="@string/type_lv_lv"
-                        android:textSize="10sp" />
-
-                    <TextView
-                        android:id="@+id/tv_type_lv_lv"
-                        style="@style/grayTextView_999999"
-                        android:text="小米"
-                        android:textSize="10sp" />
-
-                    <TextView
-                        style="@style/grayTextView_999999"
-                        android:text="；"
-                        android:textSize="10sp" />
-
-                    <TextView
-                        style="@style/grayTextView_999999"
-                        android:text="@string/grade_lv_lv"
-                        android:textSize="10sp" />
-
-                    <TextView
-                        android:id="@+id/tv_grade_lv_lv"
-                        style="@style/grayTextView_999999"
-                        android:text="二级"
-                        android:textSize="10sp" />
-
-                    <TextView
-                        style="@style/grayTextView_999999"
-                        android:text="；"
-                        android:textSize="10sp" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_4"
-                    style="@style/ll_wrap_content_hor"
-                    android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/ll_2"
-                    android:layout_marginRight="@dimen/px_30"
-                    android:layout_marginTop="@dimen/px_5"
-                    android:layout_toLeftOf="@+id/ll_3">
-
-                    <TextView
-                        style="@style/grayTextView_999999"
-                        android:text="@string/address_lv_lv"
-                        android:textSize="10sp" />
-
-                    <TextView
-                        android:id="@+id/tv_address_lv_lv"
-                        style="@style/grayTextView_999999"
-                        android:text="山东"
-                        android:textSize="10sp" />
-
-                    <TextView
-                        style="@style/grayTextView_999999"
-                        android:text="；"
-                        android:textSize="10sp" />
-
-                    <TextView
-                        style="@style/grayTextView_999999"
-                        android:text="@string/weight_lv_lv"
+                        style="@style/grayTextView_333333"
+                        android:text="剩余数量："
                         android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/tv_weight_lv_lv"
-                        style="@style/grayTextView_999999"
-                        android:text="1吨"
-                        android:textSize="10sp" />
-
-                    <TextView
-                        style="@style/grayTextView_999999"
-                        android:text="；"
+                        style="@style/grayTextView_333333"
+                        android:text="10吨"
                         android:textSize="10sp" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:id="@+id/ll_3"
+                    android:visibility="gone"
                     style="@style/ll_wrap_content_hor"
-                    android:layout_alignBottom="@+id/ll_4"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="@dimen/px_5">
 
                     <TextView
                         style="@style/grayTextView_333333"
-                        android:text="x"
+                        android:text="总计：￥"
                         android:textSize="10sp" />
 
                     <TextView
-                        android:id="@+id/tv_num_lv_lv"
+                        android:id="@+id/tv_money_lv_lv"
                         style="@style/grayTextView_333333"
-                        android:text="1"
+                        android:text="222.22"
                         android:textSize="10sp" />
                 </LinearLayout>
             </RelativeLayout>

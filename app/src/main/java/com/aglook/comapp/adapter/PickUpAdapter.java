@@ -68,9 +68,11 @@ public class PickUpAdapter extends BaseAdapter implements View.OnClickListener {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-holder.tv_trans_all_order_lv.setTag(position);
+        holder.tv_trans_all_order_lv.setTag(position);
         holder.ll_right.setVisibility(View.VISIBLE);
         holder.tv_tihuo_all_order_lv.setVisibility(View.VISIBLE);
+        holder.ll_1.setVisibility(View.INVISIBLE);
+        holder.ll_3.setVisibility(View.INVISIBLE);
         holder.tv_trans_all_order_lv.setText("修改");
         holder.tv_tihuo_all_order_lv.setText("取消");
         holder.tv_tihuo_all_order_lv.setTag(position);
@@ -83,23 +85,24 @@ holder.tv_trans_all_order_lv.setTag(position);
         holder.tv_tihuo.setText("申请时间");
         holder.tv_success_all_order_lv.setText("待提货");
         holder.tv_name_lv_lv.setText(pickUp.getProductName());
+        holder.tv_weight_lv_lv.setText(pickUp.getGetWeight() + "吨");
 //0：取消；1：等待提货；2，成功
-            if (pickUp.getIsget().equals("1")) {
-                //等待提货
-                holder.tv_success_all_order_lv.setText("等待提货");
-                holder.tv_tihuo_all_order_lv.setVisibility(View.VISIBLE);
-                holder.tv_trans_all_order_lv.setVisibility(View.VISIBLE);
-            } else if (pickUp.getIsget().equals("0")) {
-                //已取消
-                holder.tv_success_all_order_lv.setText("已取消");
-                holder.tv_tihuo_all_order_lv.setVisibility(View.GONE);
-                holder.tv_trans_all_order_lv.setVisibility(View.GONE);
-            } else if (pickUp.getIsget().equals("2")) {
-                //已取消
-                holder.tv_success_all_order_lv.setText("已完成");
-                holder.tv_tihuo_all_order_lv.setVisibility(View.GONE);
-                holder.tv_trans_all_order_lv.setVisibility(View.GONE);
-            }
+        if (pickUp.getIsget().equals("1")) {
+            //等待提货
+            holder.tv_success_all_order_lv.setText("等待提货");
+            holder.tv_tihuo_all_order_lv.setVisibility(View.VISIBLE);
+            holder.tv_trans_all_order_lv.setVisibility(View.VISIBLE);
+        } else if (pickUp.getIsget().equals("0")) {
+            //已取消
+            holder.tv_success_all_order_lv.setText("已取消");
+            holder.tv_tihuo_all_order_lv.setVisibility(View.GONE);
+            holder.tv_trans_all_order_lv.setVisibility(View.GONE);
+        } else if (pickUp.getIsget().equals("2")) {
+            //已取消
+            holder.tv_success_all_order_lv.setText("已完成");
+            holder.tv_tihuo_all_order_lv.setVisibility(View.GONE);
+            holder.tv_trans_all_order_lv.setVisibility(View.GONE);
+        }
         return convertView;
     }
 
@@ -123,7 +126,7 @@ holder.tv_trans_all_order_lv.setTag(position);
                 intent.setClass(activity, ModifyPickUpActivity.class);
                 index = (int) v.getTag();
                 getId = list.get(index).getGetId();
-                intent.putExtra("getId",getId);
+                intent.putExtra("getId", getId);
                 activity.startActivityForResult(intent, 1);
                 break;
         }
@@ -133,9 +136,6 @@ holder.tv_trans_all_order_lv.setTag(position);
         ImageView iv_lv_lv;
         TextView tv_name_lv_lv;
         TextView tv_price_lv_lv;
-        TextView tv_type_lv_lv;
-        TextView tv_grade_lv_lv;
-        TextView tv_address_lv_lv;
         TextView tv_weight_lv_lv;
         TextView tv_num_lv_lv;
         TextView tv_house_num_my_cangdan;
@@ -147,7 +147,8 @@ holder.tv_trans_all_order_lv.setTag(position);
         LinearLayout ll_right;
         TextView tv_cangdan;
         TextView tv_success_all_order_lv;
-
+        LinearLayout ll_1;
+        LinearLayout ll_3;
         ViewHolder(View view) {
             tv_success_all_order_lv = (TextView) view.findViewById(R.id.tv_success_all_order_lv);
             tv_tihuo = (TextView) view.findViewById(R.id.tv_tihuo);
@@ -155,9 +156,6 @@ holder.tv_trans_all_order_lv.setTag(position);
             iv_lv_lv = (ImageView) view.findViewById(R.id.iv_lv_lv);
             tv_name_lv_lv = (TextView) view.findViewById(R.id.tv_name_lv_lv);
             tv_price_lv_lv = (TextView) view.findViewById(R.id.tv_price_lv_lv);
-            tv_type_lv_lv = (TextView) view.findViewById(R.id.tv_type_lv_lv);
-            tv_grade_lv_lv = (TextView) view.findViewById(R.id.tv_grade_lv_lv);
-            tv_address_lv_lv = (TextView) view.findViewById(R.id.tv_address_lv_lv);
             tv_weight_lv_lv = (TextView) view.findViewById(R.id.tv_weight_lv_lv);
             tv_num_lv_lv = (TextView) view.findViewById(R.id.tv_num_lv_lv);
             tv_house_num_my_cangdan = (TextView) view.findViewById(R.id.tv_house_num_my_cangdan);
@@ -166,6 +164,8 @@ holder.tv_trans_all_order_lv.setTag(position);
             tv_tihuo_all_order_lv = (TextView) view.findViewById(R.id.tv_tihuo_all_order_lv);
             ll_right = (LinearLayout) view.findViewById(R.id.ll_right);
             tv_in_time = (TextView) view.findViewById(R.id.tv_in_time);
+            ll_1 = (LinearLayout) view.findViewById(R.id.ll_1);
+            ll_3 = (LinearLayout) view.findViewById(R.id.ll_3);
         }
     }
 

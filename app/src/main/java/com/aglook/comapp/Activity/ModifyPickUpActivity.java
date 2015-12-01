@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ModifyPickUpAdapter;
-import com.aglook.comapp.bean.DriverList;
 import com.aglook.comapp.bean.ModfyDriverList;
 import com.aglook.comapp.bean.PickUpDetail;
 import com.aglook.comapp.url.PickUpUrl;
@@ -121,8 +120,8 @@ public class ModifyPickUpActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == RESULT_OK) {
-            DriverList driverList = (DriverList) data.getSerializableExtra("driver");
-            mList.remove(position);
+            String  name =  data.getStringExtra("name");
+            mList.get(position).setName(name);
 //            mList.add(position, driverList);
             adapter.notifyDataSetChanged();
         }

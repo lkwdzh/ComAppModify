@@ -5,22 +5,57 @@
     android:background="@color/gray_eeeeee"
     android:orientation="vertical">
 
-    <include layout="@layout/activity_base_title_bar" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_60"
+        android:background="@color/red_c91014">
 
-    <View style="@style/line_1"
-        android:layout_marginTop="@dimen/px_14"/>
+        <ImageView
+            android:id="@+id/left_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/px_14"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white" />
+
+        <CheckBox
+            android:id="@+id/cb_driver_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:button="@null"
+            android:text="修改"
+            android:clickable="true"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:layout_marginRight="@dimen/px_10" />
+    </RelativeLayout>
+
+    <View
+        style="@style/line_1"
+        android:layout_marginTop="@dimen/px_14" />
 
     <LinearLayout style="@style/guadan_ll_weight">
 
         <TextView
             style="@style/guadan_TextView_333333"
-            android:text="@string/driver_add_name" />
+            android:text="姓名" />
 
-        <TextView
+        <EditText
             android:id="@+id/tv_name_driver_info"
             style="@style/guadan_edittext_weight"
-            android:text="王大锤" />
+            android:hint="请输入姓名" />
     </LinearLayout>
+
     <View style="@style/line_1" />
 
     <LinearLayout style="@style/guadan_ll_weight">
@@ -29,25 +64,13 @@
             style="@style/guadan_TextView_333333"
             android:text="@string/driver_add_phone" />
 
-        <TextView
+        <EditText
             android:id="@+id/tv_phone_driver_info"
             style="@style/guadan_edittext_weight"
-            android:text="1236646548988" />
+            android:inputType="number"
+            android:hint="请输入手机号" />
     </LinearLayout>
 
-    <View style="@style/line_1" />
-
-    <LinearLayout style="@style/guadan_ll_weight">
-
-        <TextView
-            style="@style/guadan_TextView_333333"
-            android:text="@string/driver_add_email" />
-
-        <TextView
-            android:id="@+id/tv_email_driver_info"
-            style="@style/guadan_edittext_weight"
-            android:text="12423@163.com" />
-    </LinearLayout>
 
     <View style="@style/line_1" />
 
@@ -57,12 +80,24 @@
             style="@style/guadan_TextView_333333"
             android:text="身份证号" />
 
-        <TextView
+        <EditText
             android:id="@+id/tv_num_driver_info"
             style="@style/guadan_edittext_weight"
-            android:text="354746131654654654646" />
+            android:hint="请输入身份证号" />
     </LinearLayout>
+    <View style="@style/line_1" />
 
+    <LinearLayout style="@style/guadan_ll_weight">
+
+        <TextView
+            style="@style/guadan_TextView_333333"
+            android:text="车牌号" />
+
+        <EditText
+            android:id="@+id/tv_email_driver_info"
+            style="@style/guadan_edittext_weight"
+            android:hint="请输入车牌号"/>
+    </LinearLayout>
 
 
 </LinearLayout>

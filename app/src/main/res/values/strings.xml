@@ -80,7 +80,7 @@
     <string name="mine_fragment_my_order">我的订单</string>
     <string name="mine_fragment_all_order">全部订单</string>
     <string name="mine_fragment_will_shouhuo">交易成功</string>
-    <string name="mine_fragment_will_pay">代付款</string>
+    <string name="mine_fragment_will_pay">待付款</string>
     <string name="mine_fragment_my_guadan">我的挂单</string>
     <string name="mine_fragment_yao_guadan">我要挂单</string>
     <string name="mine_fragment__all_guadan">全部挂单</string>

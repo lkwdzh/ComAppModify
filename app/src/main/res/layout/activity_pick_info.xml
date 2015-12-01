@@ -173,6 +173,7 @@
                 <EditText
                     android:id="@+id/et_pick_weight_pick_info"
                     style="@style/guadan_edittext_weight"
+                    android:inputType="number"
                     android:hint="请输入提货数量" />
             </LinearLayout>
 

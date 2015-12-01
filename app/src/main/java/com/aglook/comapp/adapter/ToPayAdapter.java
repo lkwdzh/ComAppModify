@@ -101,11 +101,19 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
         if (order.getOrderStatus().equals("notpay")) {
             holder.tv_success_all_order_lv.setText("待支付");
             holder.tv_success_all_order_lv.setTextColor(activity.getResources().getColor(R.color.green_356600));
-        } else {
+            holder.tv_click_all_order_lv.setVisibility(View.VISIBLE);
+            holder.tv_delete_all_order_lv.setVisibility(View.VISIBLE);
+        } else if (order.getOrderStatus().equals("success")){
             holder.tv_success_all_order_lv.setText("交易成功");
             holder.tv_success_all_order_lv.setTextColor(activity.getResources().getColor(R.color.red_c91014));
+            holder.tv_click_all_order_lv.setVisibility(View.GONE);
+            holder.tv_delete_all_order_lv.setVisibility(View.GONE);
+        }else if (order.getOrderStatus().equals("close")){
+            holder.tv_success_all_order_lv.setText("交易关闭");
+            holder.tv_success_all_order_lv.setTextColor(activity.getResources().getColor(R.color.red_c91014));
+            holder.tv_click_all_order_lv.setVisibility(View.GONE);
+            holder.tv_delete_all_order_lv.setVisibility(View.GONE);
         }
-
         holder.lv_all_order_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position1, long id) {

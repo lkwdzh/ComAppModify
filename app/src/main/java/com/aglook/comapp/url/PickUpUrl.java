@@ -98,4 +98,25 @@ public class PickUpUrl {
     }
 
 
+    public static RequestParams postModifyDriverUrl(String code,String token, String userId,String getId ,String driverId,String getListDriverId){
+        params=new RequestParams();
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("token", token);
+            jsonObject.put("userId", userId);
+            jsonObject.put("getId", getId);
+            jsonObject.put("driverId", driverId);
+            jsonObject.put("getListDriverId", getListDriverId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String  content=jsonObject.toString();
+        String sign=null;
+        params.addBodyParameter("code", code);
+        params.addBodyParameter("version", DefineUtil.VERSON);
+        params.addBodyParameter("content", content);
+        params.addBodyParameter("sign", sign);
+        return params;
+    }
+
 }

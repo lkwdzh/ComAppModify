@@ -2,6 +2,8 @@ package com.aglook.comapp.Activity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
@@ -123,8 +125,43 @@ public class ModifyGuaDanActivity extends BaseActivity {
         tv_2_gua_dan_add = (TextView) findViewById(R.id.tv_2_gua_dan_add);
         iv_huowu = (ImageView) findViewById(R.id.iv_huowu);
         iv_huoquan = (ImageView) findViewById(R.id.iv_huoquan);
+        et_price_gua_dan.addTextChangedListener(new MyTextWatcher());
     }
+    class MyTextWatcher implements TextWatcher {
 
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count,
+                                      int after) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before,
+                                  int count) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            String temp = s.toString();
+            int d = temp.indexOf(".");
+            if (d < 0) {
+//                if (temp.length() > 3) {
+//
+//                    s.delete(3, 4);
+//                }
+                return;
+            }
+            if (temp.length() - d - 1 > 1) {
+                s.delete(d + 2, d + 3);
+            } else if (d == 0) {
+                s.delete(d, d + 1);
+            }
+
+        }
+    }
     //填充数据
     public void fillData() {
 //        XBitmap.displayImage(iv_huowu, cangDan.getGetlistPic(), GuaDanAddActivity.this);

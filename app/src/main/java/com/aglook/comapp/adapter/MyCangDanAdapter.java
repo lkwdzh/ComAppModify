@@ -63,14 +63,12 @@ public class MyCangDanAdapter extends BaseAdapter implements View.OnClickListene
         holder.tv_tihuo_all_order_lv.setOnClickListener(this);
         holder.ll_1.setVisibility(View.INVISIBLE);
         holder.ll_3.setVisibility(View.INVISIBLE);
+        holder.tv_success_all_order_lv.setVisibility(View.INVISIBLE);
         CangDanList cangDanList = list.get(position);
         holder.tv_house_num_my_cangdan.setText(cangDanList.getListId());
         holder.tv_in_time_my_cangdan.setText(Timestamp.getDateTo(cangDanList.getInnerTime()));
         XBitmap.displayImage(holder.iv_lv_lv, cangDanList.getGetlistPic(), context);
         holder.tv_name_lv_lv.setText(cangDanList.getPshCategory().getCategoryName());
-        holder.tv_type_lv_lv.setText(cangDanList.getGoodsType());
-        holder.tv_grade_lv_lv.setText(cangDanList.getDepotQuality());
-        holder.tv_address_lv_lv.setText(cangDanList.getGoodsPlace());
         holder.tv_weight_lv_lv.setText(cangDanList.getInnerWeight() + "吨");
 
         return convertView;
@@ -84,9 +82,9 @@ public class MyCangDanAdapter extends BaseAdapter implements View.OnClickListene
                 intent.setClass(context, GuaDanAddActivity.class);
                 int index = (int) v.getTag();
                 intent.putExtra("originalId", String.valueOf(list.get(index).getId()));
-                intent.putExtra("code","1002");
-                intent.putExtra("codeGua","1003");
-                intent.putExtra("isPlate",false);
+                intent.putExtra("code", "1002");
+                intent.putExtra("codeGua", "1003");
+                intent.putExtra("isPlate", false);
                 context.startActivityForResult(intent, 1);
                 break;
             case R.id.tv_tihuo_all_order_lv:
@@ -94,8 +92,8 @@ public class MyCangDanAdapter extends BaseAdapter implements View.OnClickListene
                 int index1 = (int) v.getTag();
                 intent.putExtra("tihuo", list.get(index1));
                 intent.putExtra("originalId", String.valueOf(list.get(index1).getId()));
-                intent.putExtra("code","1002");
-                intent.putExtra("isPlate",false);
+                intent.putExtra("code", "1002");
+                intent.putExtra("isPlate", false);
                 context.startActivity(intent);
                 break;
         }
@@ -105,9 +103,6 @@ public class MyCangDanAdapter extends BaseAdapter implements View.OnClickListene
         ImageView iv_lv_lv;
         TextView tv_name_lv_lv;
         TextView tv_price_lv_lv;
-        TextView tv_type_lv_lv;
-        TextView tv_grade_lv_lv;
-        TextView tv_address_lv_lv;
         TextView tv_weight_lv_lv;
         TextView tv_num_lv_lv;
         TextView tv_house_num_my_cangdan;
@@ -116,14 +111,12 @@ public class MyCangDanAdapter extends BaseAdapter implements View.OnClickListene
         TextView tv_tihuo_all_order_lv;
         LinearLayout ll_1;
         LinearLayout ll_3;
+        TextView tv_success_all_order_lv;
 
         ViewHolder(View view) {
             iv_lv_lv = (ImageView) view.findViewById(R.id.iv_lv_lv);
             tv_name_lv_lv = (TextView) view.findViewById(R.id.tv_name_lv_lv);
             tv_price_lv_lv = (TextView) view.findViewById(R.id.tv_price_lv_lv);
-            tv_type_lv_lv = (TextView) view.findViewById(R.id.tv_type_lv_lv);
-            tv_grade_lv_lv = (TextView) view.findViewById(R.id.tv_grade_lv_lv);
-            tv_address_lv_lv = (TextView) view.findViewById(R.id.tv_address_lv_lv);
             tv_weight_lv_lv = (TextView) view.findViewById(R.id.tv_weight_lv_lv);
             tv_num_lv_lv = (TextView) view.findViewById(R.id.tv_num_lv_lv);
             tv_house_num_my_cangdan = (TextView) view.findViewById(R.id.tv_house_num_my_cangdan);
@@ -132,6 +125,7 @@ public class MyCangDanAdapter extends BaseAdapter implements View.OnClickListene
             tv_tihuo_all_order_lv = (TextView) view.findViewById(R.id.tv_tihuo_all_order_lv);
             ll_1 = (LinearLayout) view.findViewById(R.id.ll_1);
             ll_3 = (LinearLayout) view.findViewById(R.id.ll_3);
+            tv_success_all_order_lv=(TextView)view.findViewById(R.id.tv_success_all_order_lv);
         }
     }
 }

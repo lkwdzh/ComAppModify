@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class DriverList implements Serializable{
     private boolean isChecked;
     private String  id;//id
-    private String userName;//提货单id
+    private String userName;
     private String phone;
     private String tel;
     private String carCode;
@@ -17,6 +17,15 @@ public class DriverList implements Serializable{
     private String createTime;
     private String delFlag;
     private String updateTime;
+    private String weight;
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
 
     public boolean isChecked() {
         return isChecked;
@@ -120,6 +129,7 @@ public class DriverList implements Serializable{
                 ", createTime='" + createTime + '\'' +
                 ", delFlag='" + delFlag + '\'' +
                 ", updateTime='" + updateTime + '\'' +
+                ", weight='" + weight + '\'' +
                 '}';
     }
 }

@@ -137,6 +137,7 @@ public class PickInfoActivity extends BaseActivity {
         originalListId = cangDanDetail.getOriginalListId();
         orderdataId=cangDanDetail.getOrderdataId();
         deliveryNum = AppUtils.toStringTrim_ET(et_pick_weight_pick_info);
+
     }
 
 
@@ -211,7 +212,7 @@ public class PickInfoActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.CANG_DAN, PickInfoUrl.postPickInfoUrl(codePick, DefineUtil.TOKEN, DefineUtil.USERID, originalListId, orderdataId, deliveryNum), PickInfoActivity.this);
+        }.datePost(DefineUtil.CANG_DAN, PickInfoUrl.postPickInfoUrl(codePick, DefineUtil.TOKEN, DefineUtil.USERID, originalListId, orderdataId, deliveryNum,mList), PickInfoActivity.this);
     }
 
     private CangDanDetail cangDanDetail;

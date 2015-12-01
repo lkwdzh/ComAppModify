@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.Activity.GuaDanAddActivity;
@@ -59,18 +60,27 @@ public class PlatformAdapter extends BaseAdapter implements View.OnClickListener
         }
 
 //        holder.tv_in_time.setText("交易时间");
+        holder.ll_1.setVisibility(View.INVISIBLE);
+        holder.ll_3.setVisibility(View.INVISIBLE);
         holder.tv_trans_all_order_lv.setOnClickListener(this);
         holder.tv_tihuo_all_order_lv.setOnClickListener(this);
         holder.tv_cangdan.setText("平台仓单编号");
         PlatformCangDanList danList = list.get(position);
         holder.tv_house_num_my_cangdan.setText(danList.getOrderId());
-        //入仓时间
+
+        if (danList.getOrderState().equals("success")){
+            holder.tv_success_all_order_lv.setText("交易成功");
+        }else  if (danList.getOrderState().equals("notpay")){
+            holder.tv_success_all_order_lv.setText("交易中");
+        }else  if (danList.getOrderState().equals("close")){
+            holder.tv_success_all_order_lv.setText("交易关闭");
+        }
 
         XBitmap.displayImage(holder.iv_lv_lv, danList.getProductLogo(), context);
         holder.tv_name_lv_lv.setText(danList.getProductName());
         holder.tv_price_lv_lv.setText(danList.getProductMoney());
-        holder.tv_num_lv_lv.setText(danList.getProductNum());
-holder.tv_trans_all_order_lv.setTag(position);
+        holder.tv_weight_lv_lv.setText(danList.getInnerWeight() + "吨");
+        holder.tv_trans_all_order_lv.setTag(position);
         return convertView;
     }
 
@@ -80,18 +90,18 @@ holder.tv_trans_all_order_lv.setTag(position);
         switch (v.getId()) {
             case R.id.tv_trans_all_order_lv:
                 intent.setClass(context, GuaDanAddActivity.class);
-                index=(int)v.getTag();
-                intent.putExtra("orderdataId",list.get(index).getOrderdataId());
-                intent.putExtra("code","2002");
-                intent.putExtra("codeGua","2003");
-                intent.putExtra("isPlate",true);
+                index = (int) v.getTag();
+                intent.putExtra("orderdataId", list.get(index).getOrderdataId());
+                intent.putExtra("code", "2002");
+                intent.putExtra("codeGua", "2003");
+                intent.putExtra("isPlate", true);
                 context.startActivity(intent);
                 break;
             case R.id.tv_tihuo_all_order_lv:
                 intent.setClass(context, PickInfoActivity.class);
-                intent.putExtra("orderdataId",list.get(index).getOrderdataId());
-                intent.putExtra("code","2002");
-                intent.putExtra("isPlate",true);
+                intent.putExtra("orderdataId", list.get(index).getOrderdataId());
+                intent.putExtra("code", "2002");
+                intent.putExtra("isPlate", true);
                 context.startActivity(intent);
                 break;
         }
@@ -101,9 +111,6 @@ holder.tv_trans_all_order_lv.setTag(position);
         ImageView iv_lv_lv;
         TextView tv_name_lv_lv;
         TextView tv_price_lv_lv;
-        TextView tv_type_lv_lv;
-        TextView tv_grade_lv_lv;
-        TextView tv_address_lv_lv;
         TextView tv_weight_lv_lv;
         TextView tv_num_lv_lv;
         TextView tv_house_num_my_cangdan;
@@ -112,14 +119,15 @@ holder.tv_trans_all_order_lv.setTag(position);
         TextView tv_tihuo_all_order_lv;
         TextView tv_in_time;
         TextView tv_cangdan;
+        LinearLayout ll_1;
+        LinearLayout ll_3;
+        TextView tv_success_all_order_lv;
 
         ViewHolder(View view) {
+            tv_success_all_order_lv=(TextView)view.findViewById(R.id.tv_success_all_order_lv);
             iv_lv_lv = (ImageView) view.findViewById(R.id.iv_lv_lv);
             tv_name_lv_lv = (TextView) view.findViewById(R.id.tv_name_lv_lv);
             tv_price_lv_lv = (TextView) view.findViewById(R.id.tv_price_lv_lv);
-            tv_type_lv_lv = (TextView) view.findViewById(R.id.tv_type_lv_lv);
-            tv_grade_lv_lv = (TextView) view.findViewById(R.id.tv_grade_lv_lv);
-            tv_address_lv_lv = (TextView) view.findViewById(R.id.tv_address_lv_lv);
             tv_weight_lv_lv = (TextView) view.findViewById(R.id.tv_weight_lv_lv);
             tv_num_lv_lv = (TextView) view.findViewById(R.id.tv_num_lv_lv);
             tv_house_num_my_cangdan = (TextView) view.findViewById(R.id.tv_house_num_my_cangdan);
@@ -128,6 +136,8 @@ holder.tv_trans_all_order_lv.setTag(position);
             tv_tihuo_all_order_lv = (TextView) view.findViewById(R.id.tv_tihuo_all_order_lv);
             tv_in_time = (TextView) view.findViewById(R.id.tv_in_time);
             tv_cangdan = (TextView) view.findViewById(R.id.tv_cangdan);
+            ll_1 = (LinearLayout) view.findViewById(R.id.ll_1);
+            ll_3 = (LinearLayout) view.findViewById(R.id.ll_3);
         }
     }
 }

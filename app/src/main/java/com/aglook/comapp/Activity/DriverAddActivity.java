@@ -12,6 +12,7 @@ import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
@@ -29,7 +30,7 @@ public class DriverAddActivity extends BaseActivity {
     private String driverPhone;
     private String carCode;
     private String cardNo;
-
+    private CustomProgress customProgress;
     @Override
     public void initView() {
         setContentView(R.layout.activity_driver_add);
@@ -74,10 +75,14 @@ public class DriverAddActivity extends BaseActivity {
 
     //添加司机
     public void addDriver(){
+        customProgress = CustomProgress.show(this, "提交中···", true);
         getInput();
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
                 Log.d("result_add",arg0.result);
                 String message= JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
@@ -92,7 +97,9 @@ public class DriverAddActivity extends BaseActivity {
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.DRIVER_ADD, DriverUrl.postDriverAddUrl(DefineUtil.TOKEN,DefineUtil.USERID,driverName,driverTel,driverPhone,carCode,cardNo),DriverAddActivity.this);
     }

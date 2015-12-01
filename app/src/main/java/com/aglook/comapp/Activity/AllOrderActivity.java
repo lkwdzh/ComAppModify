@@ -31,7 +31,7 @@ public class AllOrderActivity extends BaseActivity {
     private View emptyView;
     private String orderStatus;
     private List<AllOrder> mList = new ArrayList<>();
-
+    private boolean isBrower;
     @Override
     public void initView() {
         setContentView(R.layout.activity_all_order);
@@ -66,7 +66,13 @@ public class AllOrderActivity extends BaseActivity {
     public void widgetClick(View view) {
 
     }
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==1&&resultCode==2){
+            isBrower=true;
+            getData();
+        }
+    }
     //获取数据
     public void getData() {
         new XHttpuTools() {
@@ -80,6 +86,10 @@ public class AllOrderActivity extends BaseActivity {
                 sonList=JsonUtils.parseList(obj,AllOrder.class);
                 if (status.equals("1")){
                     if (sonList!=null&&sonList.size()!=0){
+                        if (isBrower){
+                            mList.clear();
+                            isBrower=false;
+                        }
                         mList.addAll(sonList);
                     }
                 }else {

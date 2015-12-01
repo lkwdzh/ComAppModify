@@ -71,7 +71,7 @@
         <LinearLayout
             style="@style/ll_match_wrap_content_hor"
             android:layout_centerVertical="true"
-            android:gravity="right|center_vertical">
+            android:gravity="center">
 
             <TextView
                 style="@style/grayTextView_333333_13"
@@ -102,16 +102,13 @@
 
             <TextView
                 style="@style/grayTextView_333333_13"
-                android:text="（含手续费：￥" />
+                android:text="  手续费：￥" />
 
             <TextView
                 android:id="@+id/tv_cost_all_order_lv"
                 style="@style/grayTextView_333333_13"
                 android:text="0.00" />
 
-            <TextView
-                style="@style/grayTextView_333333_13"
-                android:text="）" />
         </LinearLayout>
 
         <LinearLayout

@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class PickInfoAdapter extends BaseAdapter {
     private Context context;
-    private List<DriverList>list;
+    private List<DriverList> list;
 
     public PickInfoAdapter(Context context, List<DriverList> list) {
         this.context = context;
@@ -29,7 +29,7 @@ public class PickInfoAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return list!=null?list.size():0;
+        return list != null ? list.size() : 0;
     }
 
     @Override
@@ -71,7 +71,7 @@ public class PickInfoAdapter extends BaseAdapter {
             @Override
             public void afterTextChanged(Editable s) {
                 String s1 = s.toString();
-//                driverList.setWeitht(s1);
+                driverList.setWeight(s1);
             }
         });
         return convertView;

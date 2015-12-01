@@ -37,7 +37,7 @@ public class TransSucceedActivity extends BaseActivity {
     private int pageSize = 10;
     private int pageNum = 1;
     private String _sort;
-    private String orderState = "notpay";
+    private String orderState = "success";
     private CustomProgress customProgress;
 
     @Override
@@ -101,7 +101,7 @@ public class TransSucceedActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_trading", DefineUtil.TOKEN + "____" + DefineUtil.USERID + "___" + arg0.result);
+                Log.d("result_success", DefineUtil.TOKEN + "____" + DefineUtil.USERID + "___" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");

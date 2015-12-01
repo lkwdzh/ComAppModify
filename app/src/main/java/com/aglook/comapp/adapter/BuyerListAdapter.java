@@ -52,6 +52,7 @@ public class BuyerListAdapter extends BaseAdapter {
         }
 
         Buyer buyer = list.get(position);
+        holder.cb_driver_lv.setVisibility(View.INVISIBLE);
         holder.tv_driver_lv.setText(buyer.getUserName());
         return convertView;
     }

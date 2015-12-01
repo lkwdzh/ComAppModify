@@ -57,7 +57,8 @@ public class AllOrderLVAdapter extends BaseAdapter {
         XBitmap.displayImage(holder.iv_lv_lv, dataList.getProductLogo(), context);
         holder.tv_name_lv_lv.setText(dataList.getProductName());
         holder.tv_price_lv_lv.setText(dataList.getProductMoney()+"");
-//        holder.tv_num_lv_lv.setText(dataList.getProductNum());
+        holder.tv_weight_lv_lv.setText(dataList.getWeightUseable()+"吨");
+        holder.tv_num_lv_lv.setText(dataList.getProductMoneyYh()+"");
         return convertView;
     }
 
@@ -66,9 +67,6 @@ public class AllOrderLVAdapter extends BaseAdapter {
         ImageView iv_lv_lv;
         TextView tv_name_lv_lv;
         TextView tv_price_lv_lv;
-        TextView tv_type_lv_lv;
-        TextView tv_grade_lv_lv;
-        TextView tv_address_lv_lv;
         TextView tv_weight_lv_lv;
         TextView tv_num_lv_lv;
 
@@ -76,9 +74,6 @@ public class AllOrderLVAdapter extends BaseAdapter {
             iv_lv_lv = (ImageView) view.findViewById(R.id.iv_lv_lv);
             tv_name_lv_lv = (TextView) view.findViewById(R.id.tv_name_lv_lv);
             tv_price_lv_lv = (TextView) view.findViewById(R.id.tv_price_lv_lv);
-            tv_type_lv_lv = (TextView) view.findViewById(R.id.tv_type_lv_lv);
-            tv_grade_lv_lv = (TextView) view.findViewById(R.id.tv_grade_lv_lv);
-            tv_address_lv_lv = (TextView) view.findViewById(R.id.tv_address_lv_lv);
             tv_weight_lv_lv = (TextView) view.findViewById(R.id.tv_weight_lv_lv);
             tv_num_lv_lv = (TextView) view.findViewById(R.id.tv_num_lv_lv);
         }

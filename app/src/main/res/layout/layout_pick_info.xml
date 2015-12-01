@@ -17,6 +17,7 @@
             android:id="@+id/et_weighr_pick_info"
             style="@style/guadan_edittext_weight"
             android:hint="请输入数量/吨"
+            android:inputType="number"
             android:drawableRight="@drawable/next"/>
     </LinearLayout>
     <View style="@style/line_1" />

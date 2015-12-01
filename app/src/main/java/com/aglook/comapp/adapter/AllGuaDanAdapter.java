@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.Activity.GuaDanStateActivity;
@@ -85,7 +86,7 @@ public class AllGuaDanAdapter extends BaseAdapter implements View.OnClickListene
         XBitmap.displayImage(holder.iv_lv_lv, guaDanList.getProductLogo(), activity);
         holder.tv_name_lv_lv.setText(guaDanList.getProductName());
         holder.tv_price_lv_lv.setText(guaDanList.getProductMoney());
-        holder.tv_num_lv_lv.setText(guaDanList.getProductNum());
+        holder.tv_weight_lv_lv.setText(guaDanList.getProductNum() + "吨");
         if (guaDanList.getProductStatus() != null && !"".equals(guaDanList.getProductStatus())) {
             if (guaDanList.getProductStatus().equals("close")) {
                 holder.tv_success_all_order_lv.setText("已关闭");
@@ -99,8 +100,10 @@ public class AllGuaDanAdapter extends BaseAdapter implements View.OnClickListene
                 if (guaDanList.getProductNum() != null && !"".equals(guaDanList.getProductNum())) {
                     if (guaDanList.getProductNum().equals("0")) {
                         holder.tv_success_all_order_lv.setText("已售完");
+                        holder.tv_trans_all_order_lv.setVisibility(View.GONE);
                     } else {
                         holder.tv_success_all_order_lv.setText("销售中");
+                        holder.tv_trans_all_order_lv.setVisibility(View.VISIBLE);
                     }
                 }
             }
@@ -149,16 +152,8 @@ public class AllGuaDanAdapter extends BaseAdapter implements View.OnClickListene
         ImageView iv_lv_lv;
         TextView tv_name_lv_lv;
         TextView tv_price_lv_lv;
-        TextView tv_type_lv_lv;
-        TextView tv_grade_lv_lv;
-        TextView tv_address_lv_lv;
         TextView tv_weight_lv_lv;
-        TextView tv_num_lv_lv;
-        TextView tv_order_num_all_order_lv;
         TextView tv_success_all_order_lv;
-        TextView tv_order_total_all_order_lv;
-        TextView tv_money_all_order_lv;
-        TextView tv_cost_all_order_lv;
         TextView tv_cangdan;
         TextView tv_house_num_my_cangdan;
         TextView tv_in_time_my_cangdan;
@@ -166,8 +161,10 @@ public class AllGuaDanAdapter extends BaseAdapter implements View.OnClickListene
         TextView tv_trans_all_order_lv;
         TextView tv_tihuo_all_order_lv;
         TextView tv_state_all_order_lv;
+        LinearLayout ll_1;
 
         ViewHolder(View view) {
+            ll_1 = (LinearLayout) view.findViewById(R.id.ll_1);
             tv_state_all_order_lv = (TextView) view.findViewById(R.id.tv_state_all_order_lv);
             tv_in_time_my_cangdan = (TextView) view.findViewById(R.id.tv_in_time_my_cangdan);
             tv_in_time = (TextView) view.findViewById(R.id.tv_in_time);
@@ -176,16 +173,8 @@ public class AllGuaDanAdapter extends BaseAdapter implements View.OnClickListene
             iv_lv_lv = (ImageView) view.findViewById(R.id.iv_lv_lv);
             tv_name_lv_lv = (TextView) view.findViewById(R.id.tv_name_lv_lv);
             tv_price_lv_lv = (TextView) view.findViewById(R.id.tv_price_lv_lv);
-            tv_type_lv_lv = (TextView) view.findViewById(R.id.tv_type_lv_lv);
-            tv_grade_lv_lv = (TextView) view.findViewById(R.id.tv_grade_lv_lv);
-            tv_address_lv_lv = (TextView) view.findViewById(R.id.tv_address_lv_lv);
             tv_weight_lv_lv = (TextView) view.findViewById(R.id.tv_weight_lv_lv);
-            tv_num_lv_lv = (TextView) view.findViewById(R.id.tv_num_lv_lv);
-            tv_order_num_all_order_lv = (TextView) view.findViewById(R.id.tv_order_num_all_order_lv);
             tv_success_all_order_lv = (TextView) view.findViewById(R.id.tv_success_all_order_lv);
-            tv_order_total_all_order_lv = (TextView) view.findViewById(R.id.tv_order_total_all_order_lv);
-            tv_money_all_order_lv = (TextView) view.findViewById(R.id.tv_money_all_order_lv);
-            tv_cost_all_order_lv = (TextView) view.findViewById(R.id.tv_cost_all_order_lv);
             tv_trans_all_order_lv = (TextView) view.findViewById(R.id.tv_trans_all_order_lv);
             tv_tihuo_all_order_lv = (TextView) view.findViewById(R.id.tv_tihuo_all_order_lv);
         }
@@ -223,7 +212,7 @@ public class AllGuaDanAdapter extends BaseAdapter implements View.OnClickListene
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
-                list.get(index).setProductStatus("close");
+                    list.get(index).setProductStatus("close");
                 } else {
                     AppUtils.toastText(activity, message);
                 }

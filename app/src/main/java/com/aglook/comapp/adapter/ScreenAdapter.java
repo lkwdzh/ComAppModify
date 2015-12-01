@@ -58,6 +58,11 @@ public class ScreenAdapter extends BaseAdapter {
         holder.tv_weight_screen_gridview.setText(screen.getProductSellNum());
         holder.tv_price_screen_gridview.setText(screen.getProductMoney());
         holder.tv_name_screen_gridview.setText(screen.getProductName());
+        if (screen.getIsAppoint().equals("1")){
+            holder.iv_dx.setVisibility(View.VISIBLE);
+        }else {
+            holder.iv_dx.setVisibility(View.INVISIBLE);
+        }
         return convertView;
     }
 
@@ -68,9 +73,11 @@ public class ScreenAdapter extends BaseAdapter {
         TextView tv_grade_screen_gridview;
         TextView tv_weight_screen_gridview;
         TextView tv_price_screen_gridview;
+        ImageView iv_dx;
         TextView tv_name_screen_gridview;
 
         ViewHolder(View view) {
+            iv_dx=(ImageView)view.findViewById(R.id.iv_dx);
             iv_screen_gridview = (ImageView) view.findViewById(R.id.iv_screen_gridview);
             tv_address_screen_gridview = (TextView) view.findViewById(R.id.tv_address_screen_gridview);
             tv_grade_screen_gridview = (TextView) view.findViewById(R.id.tv_grade_screen_gridview);

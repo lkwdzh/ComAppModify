@@ -12,10 +12,12 @@ import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.DriverListAdapter;
 import com.aglook.comapp.bean.DriverList;
 import com.aglook.comapp.url.DriverUrl;
+import com.aglook.comapp.url.PickUpUrl;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -39,6 +41,14 @@ public class DriverListActivity extends BaseActivity {
     private int total = 0;
     private boolean isModify;
     private boolean isAdd;
+    private boolean isUpDate;
+    private CustomProgress customProgress;
+
+    private String code="3005";
+    private String getListDriverId;
+    private String getId;
+    private String driverId;
+    private String name;
 
     @Override
     public void initView() {
@@ -51,6 +61,9 @@ public class DriverListActivity extends BaseActivity {
     }
 
     public void init() {
+        customProgress = CustomProgress.show(this, "加载中···", true);
+        getListDriverId=getIntent().getStringExtra("getListDriverId");
+        getId=getIntent().getStringExtra("getId");
         right_text = (TextView) findViewById(R.id.right_text);
         right_text.setText("添加");
         right_text.setVisibility(View.VISIBLE);
@@ -93,6 +106,7 @@ public class DriverListActivity extends BaseActivity {
             }
         }
         tv_num_driver_list.setText(total + "");
+        adapter.notifyDataSetChanged();
     }
 
     public void click() {
@@ -103,19 +117,22 @@ public class DriverListActivity extends BaseActivity {
                 Intent intent = new Intent();
                 //如果是从修改页面跳转的，点击则返回并带回数据，否则，跳转到详情
                 if (isModify) {
-                    intent.setClass(DriverListActivity.this, ModifyPickUpActivity.class);
-                    intent.putExtra("driver", mList.get(position - 1));
-                    AppUtils.toastText(DriverListActivity.this, position - 1 + "");
-                    DriverListActivity.this.setResult(RESULT_OK, intent);
-                    DriverListActivity.this.finish();
+                    driverId=mList.get(position-1).getId();
+                    name=mList.get(position-1).getUserName();
+                    modifyDriver();
+
                 } else {
+
                     intent.setClass(DriverListActivity.this, DriverInfoActivity.class);
-                    startActivity(intent);
+                    intent.putExtra("driver",mList.get(position-1));
+                    startActivityForResult(intent, 2);
                 }
             }
         });
         tv_confirm_driver_list.setOnClickListener(this);
     }
+
+
 
     @Override
     public void widgetClick(View view) {
@@ -146,25 +163,21 @@ public class DriverListActivity extends BaseActivity {
         if (requestCode == 1 && resultCode == 1) {
             isAdd=true;
             getData();
+        }else if (requestCode==2&&resultCode==RESULT_OK){
+            isUpDate=true;
+            getData();
         }
     }
 
     //获取数据
     public void getData() {
-//        List<DriverList> sonList = new ArrayList<>();
-//        DriverList driver = null;
-//        for (int i = 0; i < 30; i++) {
-//            driver = new DriverList();
-//            driver.setName("王大锤" + i + "号");
-////            driver.setId(i);
-//            sonList.add(driver);
-//        }
-//
-//        mList.addAll(sonList);
 
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
                 Log.d("result_driver", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
@@ -177,21 +190,62 @@ public class DriverListActivity extends BaseActivity {
                             isAdd=false;
                             mList.clear();
                         }
+
+                        if (isUpDate){
+                            isUpDate=false;
+                            mList.clear();
+                        }
                         mList.addAll(sonListt);
                     }
                 } else {
                     AppUtils.toastText(DriverListActivity.this, message);
                 }
+                adapter.notifyDataSetChanged();
             }
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.DRIVER_LIST, DriverUrl.postDriverListUrl(DefineUtil.TOKEN, DefineUtil.USERID), DriverListActivity.this);
 
         compareList();
-        adapter.notifyDataSetChanged();
+
+    }
+
+
+    //修改司机信息
+    public void modifyDriver(){
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
+                Log.d("result_modify",arg0.result);
+                String message=JsonUtils.getJsonParam(arg0.result,"message");
+                String status=JsonUtils.getJsonParam(arg0.result,"status");
+                if (status.equals("1")){
+                    Intent intent = new Intent();
+                    intent.setClass(DriverListActivity.this, ModifyPickUpActivity.class);
+                    intent.putExtra("name", name);
+                    DriverListActivity.this.setResult(RESULT_OK, intent);
+                    DriverListActivity.this.finish();
+                    AppUtils.toastText(DriverListActivity.this,"修改成功");
+                }else {
+                    AppUtils.toastText(DriverListActivity.this,message);
+                }
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
+            }
+        }.datePost(DefineUtil.CANG_DAN, PickUpUrl.postModifyDriverUrl(code,DefineUtil.TOKEN,DefineUtil.USERID,getId,driverId,getListDriverId),DriverListActivity.this);
     }
 
 }

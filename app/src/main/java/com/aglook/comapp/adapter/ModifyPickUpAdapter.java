@@ -64,10 +64,13 @@ public class ModifyPickUpAdapter extends BaseAdapter implements View.OnClickList
         if (driver.getGetAble()!=null&&!"".equals(driver.getGetAble())){
             if (driver.getGetAble().equals("0")){
                 holder.tv_type_modify_pick_up.setText("未提货");
+                holder.tv_modify_modify_pick_up.setVisibility(View.VISIBLE);
             }else if (driver.getGetAble().equals("1")){
                 holder.tv_type_modify_pick_up.setText("已提货");
+                holder.tv_modify_modify_pick_up.setVisibility(View.INVISIBLE);
             }else if (driver.getGetAble().equals("2")){
                 holder.tv_type_modify_pick_up.setText("取消提货");
+                holder.tv_modify_modify_pick_up.setVisibility(View.INVISIBLE);
             }
         }
 
@@ -83,6 +86,8 @@ public class ModifyPickUpAdapter extends BaseAdapter implements View.OnClickList
                 AppUtils.toastText(context,index+"");
                 intent.setClass(context, DriverListActivity.class);
                 intent.putExtra("isModify", true);
+                intent.putExtra("getListDriverId",list.get(index).getId());
+                intent.putExtra("getId",list.get(index).getGetlistId());
                 callBackData.callBackIndex(index);
                 context.startActivityForResult(intent, 1);
                 break;

@@ -7,12 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.Activity.GuaDanAddActivity;
 import com.aglook.comapp.Activity.GuaDanStateActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.GuaDanStataLiL;
+import com.aglook.comapp.util.XBitmap;
 import com.aglook.comapp.view.Timestamp;
 
 import java.util.List;
@@ -70,10 +72,10 @@ public class TransSucceedAdapter extends BaseAdapter implements View.OnClickList
         if (stataLiL.getOrderAtime() != null && !"".equals(stataLiL.getOrderAtime())) {
             holder.tv_in_time_my_cangdan.setText(Timestamp.getDateTo(stataLiL.getOrderAtime()));
         }
-//        XBitmap.displayImage(holder.iv_lv_lv, guaDanList.getProductLogo(), activity);
+        XBitmap.displayImage(holder.iv_lv_lv, stataLiL.getProductLogo(), activity);
         holder.tv_name_lv_lv.setText(stataLiL.getProductName());
         holder.tv_price_lv_lv.setText(stataLiL.getProductMoney());
-        holder.tv_num_lv_lv.setText(stataLiL.getProductNum());
+        holder.tv_weight_lv_lv.setText(stataLiL.getWeightUseable() + "吨");
         if (stataLiL.getOrderState().equals("close")) {
             holder.tv_success_all_order_lv.setText("已关闭");
         } else if (stataLiL.getOrderState().equals("success")) {
@@ -116,16 +118,8 @@ public class TransSucceedAdapter extends BaseAdapter implements View.OnClickList
         ImageView iv_lv_lv;
         TextView tv_name_lv_lv;
         TextView tv_price_lv_lv;
-        TextView tv_type_lv_lv;
-        TextView tv_grade_lv_lv;
-        TextView tv_address_lv_lv;
         TextView tv_weight_lv_lv;
-        TextView tv_num_lv_lv;
-        TextView tv_order_num_all_order_lv;
         TextView tv_success_all_order_lv;
-        TextView tv_order_total_all_order_lv;
-        TextView tv_money_all_order_lv;
-        TextView tv_cost_all_order_lv;
         TextView tv_cangdan;
         TextView tv_house_num_my_cangdan;
         TextView tv_in_time_my_cangdan;
@@ -133,8 +127,10 @@ public class TransSucceedAdapter extends BaseAdapter implements View.OnClickList
         TextView tv_trans_all_order_lv;
         TextView tv_tihuo_all_order_lv;
         TextView tv_state_all_order_lv;
+        LinearLayout ll_1;
 
         ViewHolder(View view) {
+            ll_1 = (LinearLayout) view.findViewById(R.id.ll_1);
             tv_state_all_order_lv = (TextView) view.findViewById(R.id.tv_state_all_order_lv);
             tv_in_time_my_cangdan = (TextView) view.findViewById(R.id.tv_in_time_my_cangdan);
             tv_in_time = (TextView) view.findViewById(R.id.tv_in_time);
@@ -143,21 +139,12 @@ public class TransSucceedAdapter extends BaseAdapter implements View.OnClickList
             iv_lv_lv = (ImageView) view.findViewById(R.id.iv_lv_lv);
             tv_name_lv_lv = (TextView) view.findViewById(R.id.tv_name_lv_lv);
             tv_price_lv_lv = (TextView) view.findViewById(R.id.tv_price_lv_lv);
-            tv_type_lv_lv = (TextView) view.findViewById(R.id.tv_type_lv_lv);
-            tv_grade_lv_lv = (TextView) view.findViewById(R.id.tv_grade_lv_lv);
-            tv_address_lv_lv = (TextView) view.findViewById(R.id.tv_address_lv_lv);
             tv_weight_lv_lv = (TextView) view.findViewById(R.id.tv_weight_lv_lv);
-            tv_num_lv_lv = (TextView) view.findViewById(R.id.tv_num_lv_lv);
-            tv_order_num_all_order_lv = (TextView) view.findViewById(R.id.tv_order_num_all_order_lv);
             tv_success_all_order_lv = (TextView) view.findViewById(R.id.tv_success_all_order_lv);
-            tv_order_total_all_order_lv = (TextView) view.findViewById(R.id.tv_order_total_all_order_lv);
-            tv_money_all_order_lv = (TextView) view.findViewById(R.id.tv_money_all_order_lv);
-            tv_cost_all_order_lv = (TextView) view.findViewById(R.id.tv_cost_all_order_lv);
             tv_trans_all_order_lv = (TextView) view.findViewById(R.id.tv_trans_all_order_lv);
             tv_tihuo_all_order_lv = (TextView) view.findViewById(R.id.tv_tihuo_all_order_lv);
         }
     }
-
 //    private Dialog dialog;
 //    private TextView tv_delete_order;
 //
