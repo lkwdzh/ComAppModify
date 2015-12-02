@@ -27,19 +27,17 @@
 
             <TextView
                 android:id="@+id/tv_classify_gridvew"
-                style="@style/grayTextView_333333"
-                android:text="小米" />
+                style="@style/grayTextView_333333" />
 
         </LinearLayout>
 
         <View
-            android:layout_width="1dp"
+            android:layout_width="0.5dp"
             android:layout_height="match_parent"
             android:layout_alignTop="@+id/ll_left"
             android:layout_alignBottom="@+id/ll_left"
-            android:background="@color/gray_eeeeee"
-         android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/px_34"/>
+            android:background="@color/gray_line"
+            android:layout_alignParentRight="true" />
     </RelativeLayout>
 
     <View style="@style/line_1" />

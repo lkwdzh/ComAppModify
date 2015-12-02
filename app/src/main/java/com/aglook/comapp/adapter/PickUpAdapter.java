@@ -24,6 +24,7 @@ import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.CustomProgress;
+import com.aglook.comapp.view.Timestamp;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
@@ -80,10 +81,20 @@ public class PickUpAdapter extends BaseAdapter implements View.OnClickListener {
         holder.tv_trans_all_order_lv.setOnClickListener(this);
         holder.tv_tihuo_all_order_lv.setOnClickListener(this);
         PickUpList pickUp = list.get(position);
+        if (pickUp.getInnerTime()!=null&&!"".equals(pickUp.getInnerTime())){
+
+        holder.tv_in_time_my_cangdan.setText(Timestamp.getDateTo(pickUp.getInnerTime()));
+        }
         holder.tv_cangdan.setText("提货编号");
+        if (pickUp.getGetAtime()!=null&&!"".equals(pickUp.getGetAtime())){
+            holder.tv_time_tihuo.setText(Timestamp.getDateTo(pickUp.getGetAtime()));
+        }
         holder.tv_house_num_my_cangdan.setText(pickUp.getGetId());
         holder.tv_tihuo.setText("申请时间");
         holder.tv_success_all_order_lv.setText("待提货");
+        if (pickUp.getGetAtime()!=null&&!"".equals(pickUp.getGetAtime())) {
+            holder.tv_time_tihuo.setText(Timestamp.getDateTo(pickUp.getGetAtime()));
+        }
         holder.tv_name_lv_lv.setText(pickUp.getProductName());
         holder.tv_weight_lv_lv.setText(pickUp.getGetWeight() + "吨");
 //0：取消；1：等待提货；2，成功
@@ -147,9 +158,11 @@ public class PickUpAdapter extends BaseAdapter implements View.OnClickListener {
         LinearLayout ll_right;
         TextView tv_cangdan;
         TextView tv_success_all_order_lv;
+        TextView tv_time_tihuo;
         LinearLayout ll_1;
         LinearLayout ll_3;
         ViewHolder(View view) {
+            tv_time_tihuo=(TextView)view.findViewById(R.id.tv_time_tihuo);
             tv_success_all_order_lv = (TextView) view.findViewById(R.id.tv_success_all_order_lv);
             tv_tihuo = (TextView) view.findViewById(R.id.tv_tihuo);
             tv_cangdan = (TextView) view.findViewById(R.id.tv_cangdan);

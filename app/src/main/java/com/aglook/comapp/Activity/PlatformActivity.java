@@ -1,9 +1,8 @@
 package com.aglook.comapp.Activity;
 
-import android.content.Intent;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.aglook.comapp.Application.ExitApplication;
@@ -16,6 +15,7 @@ import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lidroid.xutils.exception.HttpException;
@@ -36,7 +36,8 @@ public class PlatformActivity extends BaseActivity {
 
     private PlatformCangDan platformCangDan;
     private List<PlatformCangDanList>mList=new ArrayList<>();
-
+    private CustomProgress customProgress;
+    private View emptyView;
     @Override
     public void initView() {
         setContentView(R.layout.activity_platform);
@@ -52,16 +53,18 @@ public class PlatformActivity extends BaseActivity {
         adapter = new PlatformAdapter(PlatformActivity.this,mList);
         lv_my_platform.setAdapter(adapter);
         lv_my_platform.setMode(PullToRefreshBase.Mode.BOTH);
+        emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
+        customProgress = CustomProgress.show(this, "加载中···", true);
     }
 
     public void click() {
-        lv_my_platform.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(PlatformActivity.this, PlatformDetailActivity.class);
-                startActivity(intent);
-            }
-        });
+//        lv_my_platform.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(PlatformActivity.this, PlatformDetailActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         lv_my_platform.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
@@ -88,6 +91,9 @@ public class PlatformActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
                 Log.d("result_plateform",arg0.result);
                 String message= JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
@@ -107,11 +113,14 @@ public class PlatformActivity extends BaseActivity {
                 }
                 adapter.notifyDataSetChanged();
                 lv_my_platform.onRefreshComplete();
+                lv_my_platform.setEmptyView(emptyView);
             }
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.CANG_DAN, PlateFormUrl.postPlateformUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, String.valueOf(pageSize), String.valueOf(pageNum), _sort), PlatformActivity.this);
     }

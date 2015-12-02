@@ -24,6 +24,6 @@
             android:id="@+id/tv_name_group"
             style="@style/redTextView_c91014"
             android:textSize="13sp"
-            android:text="粮食" />
+           />
     </LinearLayout>
 </LinearLayout>

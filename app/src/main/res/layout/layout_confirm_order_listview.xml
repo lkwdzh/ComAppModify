@@ -33,7 +33,7 @@
             <TextView
                 android:id="@+id/tv_name_confirm_order_lv"
                 style="@style/grayTextView_333333_15"
-                android:text="小米大米小米大米小米大米小米大米小米大米" />
+                 />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -51,7 +51,7 @@
                     style="@style/redTextView_f47070"
                     android:layout_marginTop="@dimen/px_14"
                     android:layout_toRightOf="@id/tv_1"
-                    android:text="1999.00"
+                    android:text="0.0"
                     android:textSize="15sp" />
 
                 <RelativeLayout
@@ -72,7 +72,7 @@
                         <TextView
                             android:id="@+id/tv_num_confirm_order_lv"
                             style="@style/grayTextView_666666_13"
-                            android:text="2" />
+                             />
                     </LinearLayout>
 
                     <LinearLayout

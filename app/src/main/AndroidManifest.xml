@@ -200,6 +200,10 @@
             android:name=".Activity.BuyerListActivity"
             android:label="@string/title_activity_buyer_list" >
         </activity>
+        <activity
+            android:name=".Activity.ShoppingCartActivity"
+            android:label="@string/title_activity_shopping_cart" >
+        </activity>
     </application>
 
 </manifest>

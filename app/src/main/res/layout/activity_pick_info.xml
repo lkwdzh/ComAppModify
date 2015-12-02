@@ -72,7 +72,7 @@
                 <TextView
                     android:id="@+id/et_goods_name_pick_info"
                     style="@style/guadan_edittext_weight"
-                    android:text="精选小米" />
+                     />
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -86,7 +86,7 @@
                 <TextView
                     android:id="@+id/tv_cangdanhao_pick_infod"
                     style="@style/guadan_edittext_weight"
-                    android:text="16558764734" />
+                     />
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -100,12 +100,21 @@
                 <TextView
                     android:id="@+id/tv_goods_kind_pick_info"
                     style="@style/guadan_edittext_weight"
-                    android:text="粮食-小米" />
+                     />
             </LinearLayout>
-
             <View style="@style/line_1" />
 
+            <LinearLayout style="@style/guadan_ll_weight">
 
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="货物质量" />
+
+                <TextView
+                    android:id="@+id/tv_goods_zhiliang_gua_dan"
+                    style="@style/guadan_edittext_weight"
+                    />
+            </LinearLayout>
             <View style="@style/line_1" />
 
             <LinearLayout style="@style/guadan_ll_weight">
@@ -117,7 +126,7 @@
                 <TextView
                     android:id="@+id/tv_use_weight_pick_info"
                     style="@style/guadan_edittext_weight"
-                    android:text="50吨" />
+                     />
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -131,7 +140,7 @@
                 <TextView
                     android:id="@+id/tv_in_time_gua_pick_info"
                     style="@style/guadan_edittext_weight"
-                    android:text="2015-11-11" />
+                     />
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -145,22 +154,22 @@
                 <TextView
                     android:id="@+id/tv_goods_area_pick_info"
                     style="@style/guadan_edittext_weight"
-                    android:text="山东" />
+                   />
             </LinearLayout>
 
-            <View style="@style/line_1" />
+            <!--<View style="@style/line_1" />-->
 
-            <LinearLayout style="@style/guadan_ll_weight">
+            <!--<LinearLayout style="@style/guadan_ll_weight">-->
 
-                <TextView
-                    style="@style/guadan_TextView_333333"
-                    android:text="货物质量" />
+                <!--<TextView-->
+                    <!--style="@style/guadan_TextView_333333"-->
+                    <!--android:text="货物质量" />-->
 
-                <TextView
-                    android:id="@+id/tv_quality_pick_info"
-                    style="@style/guadan_edittext_weight"
-                    android:text="一般" />
-            </LinearLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_quality_pick_info"-->
+                    <!--style="@style/guadan_edittext_weight"-->
+                    <!--/>-->
+            <!--</LinearLayout>-->
 
             <View style="@style/line_1" />
 
@@ -188,7 +197,7 @@
                 <TextView
                     android:id="@+id/tv_xue_tou_pick_info"
                     style="@style/guadan_edittext_weight"
-                    android:text="mark" />
+                    />
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -203,7 +212,7 @@
                 <TextView
                     android:id="@+id/tv_cang_name_pick_info"
                     style="@style/guadan_edittext_weight"
-                    android:text="仓管名称" />
+                    />
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -218,7 +227,7 @@
                     android:id="@+id/tv_cang_phone_pick_info"
                     style="@style/guadan_edittext_weight"
                     android:inputType="phone"
-                    android:text="仓管电话" />
+                    />
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -233,7 +242,7 @@
                     android:id="@+id/tv_cang_email_pick_info"
                     style="@style/guadan_edittext_weight"
                     android:inputType="textEmailAddress"
-                    android:text="仓管邮箱" />
+                    />
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -247,7 +256,7 @@
                 <TextView
                     android:id="@+id/tv_cang_address_pick_info"
                     style="@style/guadan_edittext_weight"
-                    android:text="仓管地址" />
+                    />
             </LinearLayout>
 
             <View style="@style/line_1" />

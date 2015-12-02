@@ -2,10 +2,9 @@ package com.aglook.comapp.Activity;
 
 import android.content.Intent;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
@@ -29,7 +28,6 @@ import java.util.List;
 public class PickUpActivity extends BaseActivity {
 
 
-    private TextView right_text;
     private PullToRefreshListView lv_pick_up;
     private PickUpAdapter adapter;
     private String code = "3001";
@@ -40,6 +38,7 @@ public class PickUpActivity extends BaseActivity {
     private List<PickUpList> mList = new ArrayList<>();
     private PickUp pickUp;
     private boolean isModify;
+    private View emptyView;
 
     @Override
     public void initView() {
@@ -52,24 +51,22 @@ public class PickUpActivity extends BaseActivity {
     }
 
     public void init() {
-        right_text = (TextView) findViewById(R.id.right_text);
-        right_text.setText("添加");
-        right_text.setVisibility(View.VISIBLE);
         customProgress = CustomProgress.show(this, "加载中···", true);
         lv_pick_up = (PullToRefreshListView) findViewById(R.id.lv_pick_up);
         adapter = new PickUpAdapter(PickUpActivity.this, mList);
+        emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
         lv_pick_up.setAdapter(adapter);
     }
 
     public void click() {
-        right_text.setOnClickListener(this);
-        lv_pick_up.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(PickUpActivity.this, PickUpDtailActivity.class);
-                startActivity(intent);
-            }
-        });
+//        lv_pick_up.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(PickUpActivity.this, PickUpDtailActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+        lv_pick_up.setMode(PullToRefreshBase.Mode.BOTH);
         lv_pick_up.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
@@ -87,12 +84,6 @@ public class PickUpActivity extends BaseActivity {
 
     @Override
     public void widgetClick(View view) {
-        switch (view.getId()) {
-            case R.id.right_text:
-                Intent intent = new Intent(PickUpActivity.this, PickInfoActivity.class);
-                startActivity(intent);
-                break;
-        }
     }
 
     @Override
@@ -133,6 +124,7 @@ public class PickUpActivity extends BaseActivity {
 
                 adapter.notifyDataSetChanged();
                 lv_pick_up.onRefreshComplete();
+                lv_pick_up.setEmptyView(emptyView);
             }
 
             @Override

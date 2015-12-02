@@ -150,6 +150,7 @@ public class ConfirmOrderActivity extends BaseActivity {
     public void putJSON() {
         JSONObject jsonObject;
         JSONArray jsonArray = new JSONArray();
+//        List<String >list=new ArrayList<>();
         //TODO 拼接字符串
         for (int i = 0; i < mList.size(); i++) {
             jsonObject = new JSONObject();
@@ -160,8 +161,10 @@ public class ConfirmOrderActivity extends BaseActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+//            list.add(mList.get(i).getCartId());
             cartids = jsonArray.toString();
         }
+//        cartids=list.toString().substring(1,list.size()-1);
     }
 
     public void click() {
@@ -270,18 +273,4 @@ public class ConfirmOrderActivity extends BaseActivity {
         }.datePost(DefineUtil.CREATE_ORDER, ConfirmOrderUrl.postConfirmOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartids, String.valueOf(allMoney), text, String.valueOf(costMoney)), ConfirmOrderActivity.this);
     }
 
-//    //zhifu
-//    public void pay(){
-//        new XHttpuTools() {
-//            @Override
-//            public void initViews(ResponseInfo<String> arg0) {
-//            Log.d("result-pay",arg0.result);
-//            }
-//
-//            @Override
-//            public void failureInitViews(HttpException arg0, String arg1) {
-//
-//            }
-//        }.datePost(DefineUtil.PAY, PayUrl.postPayWGUrl(orderId,DefineUtil.USERID,money,money),ConfirmOrderActivity.this);
-//    }
 }

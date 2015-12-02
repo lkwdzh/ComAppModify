@@ -81,36 +81,43 @@
                 </LinearLayout>
         </RelativeLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/my_recycler_view"
+        <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/my_recycler_view"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/px_71"-->
+            <!--android:background="@color/white"-->
+            <!--android:scrollbars="none" />-->
+
+        <com.aglook.comapp.view.MyGridView
+            android:id="@+id/mgv_homePage"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_71"
+            android:layout_height="wrap_content"
             android:background="@color/white"
-            android:scrollbars="none" />
+            android:numColumns="4"></com.aglook.comapp.view.MyGridView>
 
-        <View style="@style/line_1" />
+        <!--<View style="@style/line_1" />-->
 
-        <LinearLayout
-            style="@style/ll_match_wrap_content_hor"
-            android:gravity="center_vertical"
-            android:paddingBottom="@dimen/px_13"
-            android:paddingLeft="@dimen/px_19"
-            android:paddingTop="@dimen/px_13">
+        <!--<LinearLayout-->
+            <!--style="@style/ll_match_wrap_content_hor"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:paddingBottom="@dimen/px_13"-->
+            <!--android:paddingLeft="@dimen/px_19"-->
+            <!--android:paddingTop="@dimen/px_13">-->
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/hot" />
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/hot" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="热门产品"
-                android:textColor="@color/red_c91014"
-                android:textSize="11sp" />
-        </LinearLayout>
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="热门产品"-->
+                <!--android:textColor="@color/red_c91014"-->
+                <!--android:textSize="11sp" />-->
+        <!--</LinearLayout>-->
 
-        <View style="@style/line_1" />
+        <!--<View style="@style/line_1" />-->
 
         <!--<com.aglook.comapp.view.MyGridView-->
             <!--android:id="@+id/gv_homepage"-->

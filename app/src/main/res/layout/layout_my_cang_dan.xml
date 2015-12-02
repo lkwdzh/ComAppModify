@@ -34,14 +34,14 @@
                 android:id="@+id/tv_house_num_my_cangdan"
                 style="@style/grayTextView_333333_15"
                 android:layout_toRightOf="@+id/tv_cangdan"
-                android:text="12346549879879" />
+                 />
 
             <TextView
                 android:id="@+id/tv_success_all_order_lv"
                 style="@style/redTextView_c91014"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:text="已售完"
+
                 android:textSize="13sp" />
         </RelativeLayout>
 
@@ -65,7 +65,7 @@
                 <TextView
                     android:id="@+id/tv_in_time_my_cangdan"
                     style="@style/grayTextView_999999"
-                    android:text="2015-01-01 16:24"
+
                     android:textSize="11sp" />
 
             </LinearLayout>
@@ -87,7 +87,7 @@
                 <TextView
                     android:id="@+id/tv_time_tihuo"
                     style="@style/grayTextView_999999"
-                    android:text="2015-01-01 16:21"
+
                     android:textSize="11sp" />
             </LinearLayout>
         </RelativeLayout>
@@ -110,7 +110,7 @@
             style="@style/imageview_px120"
             android:layout_marginRight="@dimen/px_14"
             android:scaleType="centerInside"
-            android:src="@drawable/tongxun" />
+           />
 
         <LinearLayout style="@style/ll_match_wrap_content_ver">
 
@@ -122,7 +122,7 @@
                     android:layout_marginRight="@dimen/px_14"
                     android:layout_toLeftOf="@+id/ll_1"
                     android:layout_alignParentLeft="true"
-                    android:text="小米小米小米小米小米小米小米小米小米小米小米小米小米小米" />
+                    />
 
                 <LinearLayout
                     android:id="@+id/ll_1"
@@ -138,7 +138,7 @@
                     <TextView
                         android:id="@+id/tv_price_lv_lv"
                         style="@style/grayTextView_333333"
-                        android:text="1999.0"
+
                         android:textSize="10sp" />
                 </LinearLayout>
             </RelativeLayout>
@@ -160,7 +160,7 @@
                     <TextView
                         android:id="@+id/tv_weight_lv_lv"
                         style="@style/grayTextView_333333"
-                        android:text="10吨"
+
                         android:textSize="10sp" />
                 </LinearLayout>
                 <LinearLayout
@@ -178,7 +178,7 @@
                     <TextView
                         android:id="@+id/tv_money_lv_lv"
                         style="@style/grayTextView_333333"
-                        android:text="222.22"
+
                         android:textSize="10sp" />
                 </LinearLayout>
             </RelativeLayout>

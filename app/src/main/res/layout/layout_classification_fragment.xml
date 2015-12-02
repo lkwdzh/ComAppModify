@@ -13,10 +13,10 @@
             android:id="@+id/rl_search_classify"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_40"
-            android:layout_marginBottom="@dimen/px_14"
-            android:layout_marginLeft="@dimen/px_31"
-            android:layout_marginRight="@dimen/px_31"
-            android:layout_marginTop="@dimen/px_14"
+            android:layout_marginBottom="@dimen/px_13"
+            android:layout_marginLeft="@dimen/px_33"
+            android:layout_marginRight="@dimen/px_33"
+            android:layout_marginTop="@dimen/px_13"
             android:gravity="center_vertical">
 
             <TextView
@@ -24,8 +24,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_white_corner"
                 android:hint="输入关键字"
-                android:paddingBottom="@dimen/px_6"
-                android:paddingTop="@dimen/px_7"
+                android:paddingBottom="@dimen/px_8"
+                android:paddingTop="@dimen/px_8"
                 android:paddingLeft="@dimen/px_14"
                 android:gravity="center_vertical"
                 android:textColorHint="@color/textcolor_999999"

@@ -3,6 +3,7 @@ package com.aglook.comapp.Activity;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -44,6 +45,7 @@ public class CardListActivity extends BaseActivity {
     //删除
     private boolean isDelete = false;
     private CustomProgress customProgress;
+    private View emptyView;
     @Override
     public void initView() {
         setContentView(R.layout.activity_card_list);
@@ -60,6 +62,7 @@ public class CardListActivity extends BaseActivity {
         right_text.setText("添加");
         right_text.setVisibility(View.VISIBLE);
         customProgress = CustomProgress.show(this, "加载中···", true);
+        emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
         lv_card_list = (PullToRefreshListView) findViewById(R.id.lv_card_list);
         lv_card_list.setMode(PullToRefreshBase.Mode.BOTH);
         adapter = new CardListAdapter(CardListActivity.this, mList);
@@ -148,9 +151,9 @@ public class CardListActivity extends BaseActivity {
                 } else {
                     AppUtils.toastText(CardListActivity.this, message);
                 }
-                if (mList.size() != 0) {
+
                     adapter.notifyDataSetChanged();
-                }
+                lv_card_list.setEmptyView(emptyView);
                 lv_card_list.onRefreshComplete();
             }
 

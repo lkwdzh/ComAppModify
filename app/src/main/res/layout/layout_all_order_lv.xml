@@ -30,7 +30,7 @@
                 android:id="@+id/tv_order_num_all_order_lv"
                 style="@style/grayTextView_333333_13"
 
-                android:text="123213325434534" />
+                />
 
         </LinearLayout>
 
@@ -39,7 +39,7 @@
             style="@style/redTextView_c91014"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:text="交易成功"
+
             android:textSize="13sp" />
     </RelativeLayout>
 
@@ -80,7 +80,7 @@
             <TextView
                 android:id="@+id/tv_order_total_all_order_lv"
                 style="@style/grayTextView_333333_13"
-                android:text="2" />
+                />
 
             <TextView
                 style="@style/grayTextView_333333_13"
@@ -98,7 +98,7 @@
             <TextView
                 android:id="@+id/tv_money_all_order_lv"
                 style="@style/grayTextView_333333_13"
-                android:text="3333.33" />
+                android:text="0.0" />
 
             <TextView
                 style="@style/grayTextView_333333_13"
@@ -107,7 +107,7 @@
             <TextView
                 android:id="@+id/tv_cost_all_order_lv"
                 style="@style/grayTextView_333333_13"
-                android:text="0.00" />
+                android:text="0.0" />
 
         </LinearLayout>
 

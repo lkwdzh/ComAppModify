@@ -56,7 +56,7 @@ public class TransSucceedActivity extends BaseActivity {
         adapter = new TransSucceedAdapter(TransSucceedActivity.this, mList);
         lv_all_order.setAdapter(adapter);
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
-        lv_all_order.setEmptyView(emptyView);
+
         lv_all_order.setMode(PullToRefreshBase.Mode.BOTH);
     }
 
@@ -119,6 +119,7 @@ public class TransSucceedActivity extends BaseActivity {
                 }
                 adapter.notifyDataSetChanged();
                 lv_all_order.onRefreshComplete();
+                lv_all_order.setEmptyView(emptyView);
             }
 
             @Override

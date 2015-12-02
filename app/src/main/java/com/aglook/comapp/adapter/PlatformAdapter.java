@@ -15,6 +15,7 @@ import com.aglook.comapp.Activity.PickInfoActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.PlatformCangDanList;
 import com.aglook.comapp.util.XBitmap;
+import com.aglook.comapp.view.Timestamp;
 
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class PlatformAdapter extends BaseAdapter implements View.OnClickListener
             holder = (ViewHolder) convertView.getTag();
         }
 
-//        holder.tv_in_time.setText("交易时间");
+        holder.tv_in_time.setText("交易时间");
         holder.ll_1.setVisibility(View.INVISIBLE);
         holder.ll_3.setVisibility(View.INVISIBLE);
         holder.tv_trans_all_order_lv.setOnClickListener(this);
@@ -81,6 +82,9 @@ public class PlatformAdapter extends BaseAdapter implements View.OnClickListener
         holder.tv_price_lv_lv.setText(danList.getProductMoney());
         holder.tv_weight_lv_lv.setText(danList.getInnerWeight() + "吨");
         holder.tv_trans_all_order_lv.setTag(position);
+        if (danList.getOrderPtime()!=null&&!"".equals(danList.getOrderPtime())){
+            holder.tv_in_time_my_cangdan.setText(Timestamp.getDateTo(danList.getOrderPtime()));
+        }
         return convertView;
     }
 

@@ -58,10 +58,13 @@ public class ScreenAdapter extends BaseAdapter {
         holder.tv_weight_screen_gridview.setText(screen.getProductSellNum());
         holder.tv_price_screen_gridview.setText(screen.getProductMoney());
         holder.tv_name_screen_gridview.setText(screen.getProductName());
+        if (screen.getIsAppoint()!=null&&!"".equals(screen.getIsAppoint())){
+
         if (screen.getIsAppoint().equals("1")){
             holder.iv_dx.setVisibility(View.VISIBLE);
         }else {
             holder.iv_dx.setVisibility(View.INVISIBLE);
+        }
         }
         return convertView;
     }

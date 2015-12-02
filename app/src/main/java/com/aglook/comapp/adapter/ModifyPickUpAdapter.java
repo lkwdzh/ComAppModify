@@ -23,6 +23,7 @@ public class ModifyPickUpAdapter extends BaseAdapter implements View.OnClickList
     private int index;
     private CallBackData callBackData;
     private List<ModfyDriverList>list;
+    private String getId;
 
     public ModifyPickUpAdapter(Activity context, CallBackData callBackData, List<ModfyDriverList> list) {
         this.context = context;
@@ -87,11 +88,16 @@ public class ModifyPickUpAdapter extends BaseAdapter implements View.OnClickList
                 intent.setClass(context, DriverListActivity.class);
                 intent.putExtra("isModify", true);
                 intent.putExtra("getListDriverId",list.get(index).getId());
-                intent.putExtra("getId",list.get(index).getGetlistId());
+                intent.putExtra("getId",getID(getId));
                 callBackData.callBackIndex(index);
                 context.startActivityForResult(intent, 1);
                 break;
         }
+    }
+
+    public String getID(String getId){
+        this.getId=getId;
+        return getId;
     }
 
     public interface CallBackData{

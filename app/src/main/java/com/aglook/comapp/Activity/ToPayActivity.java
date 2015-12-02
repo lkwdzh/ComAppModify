@@ -15,6 +15,7 @@ import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -31,9 +32,11 @@ public class ToPayActivity extends BaseActivity {
     private String orderStatus;
     private boolean isBrower;
     private boolean isSuccess;
+    private CustomProgress customProgress;
     @Override
     public void initView() {
         setContentView(R.layout.activity_to_pay);
+        isSuccess=getIntent().getBooleanExtra("isSuccess",false);
         if (isSuccess){
         setTitleBar("待付款");
         }else {
@@ -45,7 +48,8 @@ public class ToPayActivity extends BaseActivity {
         getData();
     }
     public void init(){
-        isSuccess=getIntent().getBooleanExtra("isSuccess",false);
+        customProgress = CustomProgress.show(this, "加载中···", true);
+
         if (isSuccess){
             orderStatus="0";
         }else {
@@ -55,7 +59,7 @@ public class ToPayActivity extends BaseActivity {
         adapter = new ToPayAdapter(ToPayActivity.this,mList);
         lv_all_order.setAdapter(adapter);
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
-        lv_all_order.setEmptyView(emptyView);
+
     }
     public void click(){
         lv_all_order.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -86,6 +90,9 @@ public class ToPayActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
                 Log.d("result_trading", arg0.result);
                 String message= JsonUtils.getJsonParam(arg0.result, "message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
@@ -105,11 +112,14 @@ public class ToPayActivity extends BaseActivity {
                     AppUtils.toastText(ToPayActivity.this, message);
                 }
                 adapter.notifyDataSetChanged();
+                lv_all_order.setEmptyView(emptyView);
             }
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.ORDER_LIST, AllOrderUrl.postAllOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, orderStatus), ToPayActivity.this);
     }

@@ -66,7 +66,9 @@ public class MyCangDanAdapter extends BaseAdapter implements View.OnClickListene
         holder.tv_success_all_order_lv.setVisibility(View.INVISIBLE);
         CangDanList cangDanList = list.get(position);
         holder.tv_house_num_my_cangdan.setText(cangDanList.getListId());
-        holder.tv_in_time_my_cangdan.setText(Timestamp.getDateTo(cangDanList.getInnerTime()));
+        if (cangDanList.getInnerTime()!=null&&!"".equals(cangDanList.getInnerTime())) {
+            holder.tv_in_time_my_cangdan.setText(Timestamp.getDateTo(cangDanList.getInnerTime()));
+        }
         XBitmap.displayImage(holder.iv_lv_lv, cangDanList.getGetlistPic(), context);
         holder.tv_name_lv_lv.setText(cangDanList.getPshCategory().getCategoryName());
         holder.tv_weight_lv_lv.setText(cangDanList.getInnerWeight() + "吨");

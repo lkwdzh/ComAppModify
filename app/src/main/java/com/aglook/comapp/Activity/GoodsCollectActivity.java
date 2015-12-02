@@ -2,6 +2,7 @@ package com.aglook.comapp.Activity;
 
 import android.content.Intent;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -29,7 +30,7 @@ public class GoodsCollectActivity extends BaseActivity {
     private List<Screen> mList = new ArrayList<>();
     private CustomProgress customProgress;
     private boolean isToDetail;
-
+    private View emptyView;
     @Override
     public void initView() {
         setContentView(R.layout.activity_friends);
@@ -44,6 +45,7 @@ public class GoodsCollectActivity extends BaseActivity {
         adapter = new ScreenAdapter(GoodsCollectActivity.this, mList);
         gv_goods.setAdapter(adapter);
         customProgress = CustomProgress.show(GoodsCollectActivity.this, "加载中···", true);
+        emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
     }
 
     public void click() {
@@ -130,6 +132,7 @@ public class GoodsCollectActivity extends BaseActivity {
                 }
                 adapter.notifyDataSetChanged();
                 gv_goods.onRefreshComplete();
+                gv_goods.setEmptyView(emptyView);
             }
 
             @Override

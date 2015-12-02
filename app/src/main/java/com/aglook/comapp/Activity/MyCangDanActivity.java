@@ -2,6 +2,7 @@ package com.aglook.comapp.Activity;
 
 import android.content.Intent;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
 
@@ -36,6 +37,7 @@ public class MyCangDanActivity extends BaseActivity {
     private CangDan cangDan = new CangDan();
     private String code="1001";
     private CustomProgress customProgress;
+    private View emptyView;
     @Override
     public void initView() {
         setContentView(R.layout.activity_my_cang_dan);
@@ -51,6 +53,7 @@ public class MyCangDanActivity extends BaseActivity {
         lv_my_cang_dan.setMode(PullToRefreshBase.Mode.BOTH);
         adapter = new MyCangDanAdapter(MyCangDanActivity.this,mList);
         lv_my_cang_dan.setAdapter(adapter);
+        emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
         customProgress = CustomProgress.show(this, "加载中···", true);
     }
 
@@ -112,6 +115,7 @@ public class MyCangDanActivity extends BaseActivity {
                 }
                 adapter.notifyDataSetChanged();
                 lv_my_cang_dan.onRefreshComplete();
+                lv_my_cang_dan.setEmptyView(emptyView);
             }
 
             @Override

@@ -38,7 +38,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends FragmentActivity implements ShoppingCartFragment.onShoppingCartClick {
+public class MainActivity extends FragmentActivity implements ShoppingCartFragment.onShoppingCartClick,HomePageFragment.HomePageCallBack {
 
     private FragmentTabHost mTabHost;
     //是否是第一次启动
@@ -121,6 +121,8 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
             if (DefineUtil.NUM != 0) {
                 tv_shopping_point.setVisibility(View.VISIBLE);
                 tv_shopping_point.setText(DefineUtil.NUM + "");
+            }else {
+                tv_shopping_point.setVisibility(View.INVISIBLE);
             }
         }
     };
@@ -177,6 +179,11 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
     @Override
     public void onCartClick(int position) {
         mTabHost.setCurrentTab(0);
+    }
+
+    @Override
+    public void callBack(int position) {
+        mTabHost.setCurrentTab(position);
     }
 
     class TabChangeListener implements TabHost.OnTabChangeListener {

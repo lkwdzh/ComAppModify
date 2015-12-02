@@ -2,6 +2,7 @@ package com.aglook.comapp.Activity;
 
 import android.content.Intent;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.RelativeLayout;
@@ -43,7 +44,7 @@ public class DriverListActivity extends BaseActivity {
     private boolean isAdd;
     private boolean isUpDate;
     private CustomProgress customProgress;
-
+    private View emptyView;
     private String code="3005";
     private String getListDriverId;
     private String getId;
@@ -62,6 +63,7 @@ public class DriverListActivity extends BaseActivity {
 
     public void init() {
         customProgress = CustomProgress.show(this, "加载中···", true);
+        emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
         getListDriverId=getIntent().getStringExtra("getListDriverId");
         getId=getIntent().getStringExtra("getId");
         right_text = (TextView) findViewById(R.id.right_text);
@@ -201,6 +203,7 @@ public class DriverListActivity extends BaseActivity {
                     AppUtils.toastText(DriverListActivity.this, message);
                 }
                 adapter.notifyDataSetChanged();
+                lv_driver_list.setEmptyView(emptyView);
             }
 
             @Override
@@ -224,7 +227,7 @@ public class DriverListActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_modify",arg0.result);
+                Log.d("result_modify——getId,driverId,getListDriverId",getId+"_____"+driverId+"_____"+getListDriverId+"_____"+arg0.result);
                 String message=JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
                 if (status.equals("1")){

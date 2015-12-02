@@ -54,7 +54,7 @@ public class TradeingActivity extends BaseActivity {
         adapter = new TradeingAdapter(TradeingActivity.this, mList);
         lv_tradeing.setAdapter(adapter);
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
-//        lv_tradeing.setEmptyView(emptyView);
+
         lv_tradeing.setMode(PullToRefreshBase.Mode.BOTH);
     }
 
@@ -116,6 +116,7 @@ public class TradeingActivity extends BaseActivity {
                 }
                adapter.notifyDataSetChanged();
                 lv_tradeing.onRefreshComplete();
+                        lv_tradeing.setEmptyView(emptyView);
             }
 
             @Override

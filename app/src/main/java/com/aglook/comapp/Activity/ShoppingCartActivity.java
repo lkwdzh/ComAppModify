@@ -1,19 +1,12 @@
-package com.aglook.comapp.Fragment;
+package com.aglook.comapp.Activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -22,9 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.aglook.comapp.Activity.ConfirmOrderActivity;
-import com.aglook.comapp.Activity.GoodsDetailActivity;
-import com.aglook.comapp.Activity.LoginActivity;
 import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ShoppingCartAdapter;
@@ -44,10 +34,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by aglook on 2015/10/26.
- */
-public class ShoppingCartFragment extends Fragment implements View.OnClickListener {
+public class ShoppingCartActivity extends BaseActivity {
     private PullToRefreshListView lv_shopping_cart;
     private ShoppingCartAdapter adapter;
     private CheckBox cb_top_right_shopping_cart;
@@ -64,53 +51,41 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
     private double allMoney = 0;
     private LinearLayout ll_empty_shopping_cart;
     private RelativeLayout ll_full_content;
-    private TextView tv_denglu_shopping_cart;
     private Intent intent;
     private TextView tv_num_delete;
     private LinearLayout ll_shopping_cart_jiesuan;
     private CustomProgress customProgress;
     private ComAppApplication comAppApplication;
-    private Button btn_login;
     private boolean isEditting = false;
-    private onShoppingCartClick shoppingCartClick;
     private LinearLayout ll_weidenglu_shopping_cart;
     private String cartId;
     private String productNum;
     private String deleteFlag = "1";//删除
     private boolean isConfirm;
-    private int page = 1;
+    private boolean isToGoodsDetail;
     private TextView tv_zonge_shop_cart;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = View.inflate(getActivity(), R.layout.layout_shopping_cart_fragment, null);
-        comAppApplication = (ComAppApplication) getActivity().getApplication();
-        initView(view);
+    public void initView() {
+        setContentView(R.layout.activity_shopping_cart);
+        setTitleBar("购物车");
+        init();
         click();
-        return view;
+        getCartListData();
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (getActivity() instanceof onShoppingCartClick) {
-            shoppingCartClick = (onShoppingCartClick) getActivity();
-        }
-    }
-
-    public void initView(View view) {
-
-        lv_shopping_cart = (PullToRefreshListView) view.findViewById(R.id.lv_shopping_cart);
+    public void init(){
+        lv_shopping_cart = (PullToRefreshListView) findViewById(R.id.lv_shopping_cart);
         mList = new ArrayList<>();
-        adapter = new ShoppingCartAdapter(getActivity(), mList, new ShoppingCartAdapter.CallBackData() {
+        adapter = new ShoppingCartAdapter(ShoppingCartActivity.this, mList, new ShoppingCartAdapter.CallBackData() {
             @Override
             public void callBack(int num, double total) {
                 allMoney = total;
                 allNum = num;
                 DefineUtil.NUM = num;
-                Intent intent1 = new Intent();
-                intent1.setAction("MainActivity");
-                getActivity().sendBroadcast(intent1);
+//                Intent intent1 = new Intent();
+//                intent1.setAction("MainActivity");
+//                ShoppingCartActivity.this.sendBroadcast(intent1);
                 tv_shopping_cart_jiesuan.setText("(" + num + ")");
                 tv_total_shopping_cart_fragment.setText(total + "");
                 tv_zonge_shop_cart.setText(total+"");
@@ -120,70 +95,31 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
         adapter.notifyDataSetChanged();
         lv_shopping_cart.setMode(PullToRefreshBase.Mode.BOTH);
 
-        cb_top_right_shopping_cart = (CheckBox) view.findViewById(R.id.cb_top_right_shopping_cart);
-        ll_buy_bottom_shopping_cart = (LinearLayout) view.findViewById(R.id.ll_buy_bottom_shopping_cart);
-        rl_edit_bottom_shopping_cart = (RelativeLayout) view.findViewById(R.id.rl_edit_bottom_shopping_cart);
+        cb_top_right_shopping_cart = (CheckBox) findViewById(R.id.cb_top_right_shopping_cart);
+        ll_buy_bottom_shopping_cart = (LinearLayout) findViewById(R.id.ll_buy_bottom_shopping_cart);
+        rl_edit_bottom_shopping_cart = (RelativeLayout) findViewById(R.id.rl_edit_bottom_shopping_cart);
 //        编辑的全选
-        cb_edit_shopping_cart = (CheckBox) view.findViewById(R.id.cb_edit_shopping_cart);
+        cb_edit_shopping_cart = (CheckBox) findViewById(R.id.cb_edit_shopping_cart);
 //        编辑的删除
-        tv_delete_shopping_cart = (TextView) view.findViewById(R.id.tv_delete_shopping_cart);
+        tv_delete_shopping_cart = (TextView) findViewById(R.id.tv_delete_shopping_cart);
 
         //购买
-        cb_buy_shopping_cart = (CheckBox) view.findViewById(R.id.cb_buy_shopping_cart);
-        tv_shopping_cart_jiesuan = (TextView) view.findViewById(R.id.tv_shopping_cart_jiesuan);
-        tv_total_shopping_cart_fragment = (TextView) view.findViewById(R.id.tv_total_shopping_cart_fragment);
-        tv_zonge_shop_cart = (TextView) view.findViewById(R.id.tv_zonge_shop_cart);
+        cb_buy_shopping_cart = (CheckBox) findViewById(R.id.cb_buy_shopping_cart);
+        tv_shopping_cart_jiesuan = (TextView) findViewById(R.id.tv_shopping_cart_jiesuan);
+        tv_total_shopping_cart_fragment = (TextView) findViewById(R.id.tv_total_shopping_cart_fragment);
+        tv_zonge_shop_cart = (TextView) findViewById(R.id.tv_zonge_shop_cart);
         //空购物车
-        ll_empty_shopping_cart = (LinearLayout) view.findViewById(R.id.ll_empty_shopping_cart);
+        ll_empty_shopping_cart = (LinearLayout) findViewById(R.id.ll_empty_shopping_cart);
 //        有数据购物车
-        ll_full_content = (RelativeLayout) view.findViewById(R.id.ll_full_content);
-//        登录按钮
-        tv_denglu_shopping_cart = (TextView) view.findViewById(R.id.tv_denglu_shopping_cart);
-        btn_login = (Button) view.findViewById(R.id.btn_login);
+        ll_full_content = (RelativeLayout) findViewById(R.id.ll_full_content);
 
-        //如果未登录
-        if (comAppApplication.getLogin() == null || "".equals(comAppApplication.getLogin())) {
-            unLogin();
-        } else {
-            customProgress = CustomProgress.show(getActivity(), "加载中···", true);
-            isLogined();
-        }
 //        去结算
-        ll_shopping_cart_jiesuan = (LinearLayout) view.findViewById(R.id.ll_shopping_cart_jiesuan);
+        ll_shopping_cart_jiesuan = (LinearLayout) findViewById(R.id.ll_shopping_cart_jiesuan);
 
-        ll_weidenglu_shopping_cart = (LinearLayout) view.findViewById(R.id.ll_weidenglu_shopping_cart);
+        ll_weidenglu_shopping_cart = (LinearLayout) findViewById(R.id.ll_weidenglu_shopping_cart);
     }
 
-    //    如果未登录
-    public void unLogin() {
-        ll_empty_shopping_cart.setVisibility(View.VISIBLE);
-        ll_full_content.setVisibility(View.GONE);
-        cb_top_right_shopping_cart.setVisibility(View.GONE);
-        tv_denglu_shopping_cart.setOnClickListener(this);
-
-    }
-
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        //如果未登录
-//        if (comAppApplication.getLogin() == null || "".equals(comAppApplication.getLogin())) {
-//            unLogin();
-//        } else {
-//            isLogined();
-//        }
-//    }
-
-    //    如果已登录
-    public void isLogined() {
-        ll_empty_shopping_cart.setVisibility(View.GONE);
-        ll_full_content.setVisibility(View.VISIBLE);
-        cb_top_right_shopping_cart.setVisibility(View.VISIBLE);
-        //判断是否有数据，如果有数据
-        getCartListData();
-    }
-
-    public void click() {
+    public void click(){
         cb_top_right_shopping_cart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -224,36 +160,6 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
             }
         });
 
-//        //购买的全选
-//        cb_buy_shopping_cart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if (isChecked) {
-//                    allMoney = 0;
-//                    allNum = 0;
-//                    for (int i = 0; i < mList.size(); i++) {
-//                        mList.get(i).setChecked(true);
-//                        allNum += mList.get(i).getProductNum();
-//                        allMoney += mList.get(i).getTotal();
-//                    }
-//                    tv_shopping_cart_jiesuan.setText("(" + allNum + ")");
-//                    tv_total_shopping_cart_fragment.setText(allMoney + "");
-//
-//                } else {
-//                    for (int i = 0; i < mList.size(); i++) {
-//                        mList.get(i).setChecked(false);
-//                    }
-//                    allMoney = 0;
-//                    allNum = 0;
-//                    tv_shopping_cart_jiesuan.setText("(" + 0 + ")");
-//                    tv_total_shopping_cart_fragment.setText(0 + "");
-//                }
-////                tv_shopping_cart_jiesuan.setText("(" + allNum + ")");
-////                tv_total_shopping_cart_fragment.setText(allMoney + "");
-//                adapter.notifyDataSetChanged();
-//            }
-//        });
-
         tv_delete_shopping_cart.setOnClickListener(this);
         ll_shopping_cart_jiesuan.setOnClickListener(this);
 
@@ -261,40 +167,19 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
         lv_shopping_cart.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent1 = new Intent(getActivity(), GoodsDetailActivity.class);
+                Intent intent1 = new Intent(ShoppingCartActivity.this, GoodsDetailActivity.class);
                 intent1.putExtra("productId", mList.get(position - 1).getProductId());
                 isToGoodsDetail = true;
                 startActivityForResult(intent1, 2);
             }
         });
 
-        btn_login.setOnClickListener(this);
-    }
-
-    private boolean isToGoodsDetail;
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1 && resultCode == 1) {
-            isLogined();
-        } else if (requestCode == 2 && resultCode == 1) {
-            isDelete = false;
-            customProgress = CustomProgress.show(getActivity(), "加载中···", true);
-            getCartListData();
-        } else if (requestCode == 3 && resultCode == 1) {
-            isConfirm = true;
-            getCartListData();
-        }
     }
 
     @Override
-    public void onClick(View v) {
+    public void widgetClick(View view) {
         intent = new Intent();
-        switch (v.getId()) {
-            case R.id.tv_denglu_shopping_cart:
-                intent.setClass(getActivity(), LoginActivity.class);
-                startActivityForResult(intent, 1);
-                break;
+        switch (view.getId()) {
             case R.id.tv_delete_shopping_cart:
                 showDailog();
                 break;
@@ -306,45 +191,35 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                 dialog.dismiss();
                 break;
             case R.id.ll_shopping_cart_jiesuan:
-                intent.setClass(getActivity(), ConfirmOrderActivity.class);
+                intent.setClass(ShoppingCartActivity.this, ConfirmOrderActivity.class);
                 intent.putExtra("CharList", (Serializable) mList);
 
                 startActivityForResult(intent, 3);
                 break;
             case R.id.btn_login:
                 if (comAppApplication.getLogin() == null || comAppApplication.getLogin().equals("")) {
-                    intent.setClass(getActivity(), LoginActivity.class);
+                    intent.setClass(ShoppingCartActivity.this, LoginActivity.class);
                     startActivityForResult(intent, 1);
                 } else {
                     //跳转到首页
-                    shoppingCartClick.onCartClick(0);
+                    intent.setClass(ShoppingCartActivity.this,MainActivity.class);
+                    startActivity(intent);
                 }
                 break;
         }
     }
-
-    // fragment的替换
-    public void replaceFragment(Fragment fragment) {
-        FragmentManager manager = getChildFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-//        transaction.replace(R.id.ll_frag_pre_container, fragment);
-
-        transaction.commitAllowingStateLoss();
-    }
-
-
     private Dialog dialog;
     private TextView tv_delete_order;
     //选中个数
     private int deleteSeleteNum = 0;
 
     public void showDailog() {
-        LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater layoutInflater = (LayoutInflater) ShoppingCartActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.layout_cart_delete, null);
         tv_num_delete = (TextView) view.findViewById(R.id.tv_num_delete);
         btn_cancel_delete = (Button) view.findViewById(R.id.btn_cancel_delete);
         btn_confirm_delete = (Button) view.findViewById(R.id.btn_confirm_delete);
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(ShoppingCartActivity.this);
         builder.create();
         builder.setView(view);
 //        builder.setCancelable(false);
@@ -357,7 +232,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
 
     private Button btn_cancel_delete;
     private Button btn_confirm_delete;
-
+private int totalMoney;
     //    获取购物车列表
     public void getCartListData() {
         new XHttpuTools() {
@@ -414,6 +289,16 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                         cb_top_right_shopping_cart.setVisibility(View.GONE);
 
                     }
+
+                    for (int i = 0; i < mList.size(); i++) {
+                        mList.get(i).setTotal(mList.get(i).getProductNum() * mList.get(i).getProductMoney());
+
+                    }
+                    for (int i = 0; i < mList.size(); i++) {
+                       totalMoney+= mList.get(i).getTotal();
+                    }
+                    tv_total_shopping_cart_fragment.setText(totalMoney+"");
+                    tv_zonge_shop_cart.setText(totalMoney+"");
                 } else {
 //                    if (mList == null || mList.size() == 0) {
 //                        ll_empty_shopping_cart.setVisibility(View.VISIBLE);
@@ -422,11 +307,11 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
 //                        cb_top_right_shopping_cart.setVisibility(View.GONE);
 //
 //                    }
-                    AppUtils.toastText(getActivity(), message);
+                    AppUtils.toastText(ShoppingCartActivity.this, message);
                 }
-                Intent intent1 = new Intent();
-                intent1.setAction("MainActivity");
-                getActivity().sendBroadcast(intent1);
+//                Intent intent1 = new Intent();
+//                intent1.setAction("MainActivity");
+//                getActivity().sendBroadcast(intent1);
                 adapter.notifyDataSetChanged();
             }
 
@@ -436,14 +321,10 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.CARTLIST, ShoppingCartUrl.postCartListUrl(DefineUtil.USERID, DefineUtil.TOKEN), getActivity());
+        }.datePost(DefineUtil.CARTLIST, ShoppingCartUrl.postCartListUrl(DefineUtil.USERID, DefineUtil.TOKEN), ShoppingCartActivity.this);
 
     }
 
-    //    写一个回调接口，当点击时跳转到首页
-    public interface onShoppingCartClick {
-        public void onCartClick(int position);
-    }
 
     private List<Integer> selectItem;
 
@@ -468,7 +349,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
 
     //    // 删除商品
     public void deleteCart() {
-        customProgress = CustomProgress.show(getActivity(), "", true);
+        customProgress = CustomProgress.show(ShoppingCartActivity.this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -490,7 +371,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                     getCartListData();
                     adapter.notifyDataSetChanged();
                 } else {
-                    AppUtils.toastText(getActivity(), message);
+                    AppUtils.toastText(ShoppingCartActivity.this, message);
                 }
             }
 
@@ -500,6 +381,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.EDIT_CART, ShoppingCartUrl.postDeleteUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartId, productNum, deleteFlag), getActivity());
+        }.datePost(DefineUtil.EDIT_CART, ShoppingCartUrl.postDeleteUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartId, productNum, deleteFlag), ShoppingCartActivity.this);
     }
+
 }

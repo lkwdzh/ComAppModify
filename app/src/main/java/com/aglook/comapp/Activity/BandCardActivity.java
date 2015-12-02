@@ -2,6 +2,7 @@ package com.aglook.comapp.Activity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +19,7 @@ import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
@@ -38,6 +40,7 @@ public class BandCardActivity extends BaseActivity {
     private String cardType = "0";//0:储蓄卡1:信用卡
     private BandCardDialogAdapter adapter;
 
+    private CustomProgress customProgress;
     @Override
     public void initView() {
         setContentView(R.layout.activity_band_card);
@@ -48,6 +51,7 @@ public class BandCardActivity extends BaseActivity {
     }
 
     public void init() {
+
         right_text = (TextView) findViewById(R.id.right_text);
         right_text.setText("完成");
         right_text.setVisibility(View.VISIBLE);
@@ -110,10 +114,14 @@ public class BandCardActivity extends BaseActivity {
 
     //获取银行卡列表
     public void getDialogData() {
+        customProgress = CustomProgress.show(this, "加载中···", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-//                Log.d("result_bandCard", arg0.result);
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
+                Log.d("result_bandCard", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -128,17 +136,23 @@ public class BandCardActivity extends BaseActivity {
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.CODE_LIST, BandCardActivity.this);
     }
 
     //绑定银行卡
     public void bandCard() {
+        customProgress = CustomProgress.show(this, "绑定中···", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-//                Log.d("result_bandCard_res", arg0.result);
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
+                Log.d("result_bandCard_res", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")){
@@ -151,7 +165,9 @@ public class BandCardActivity extends BaseActivity {
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.BANKCARD, CardListUrl.postBandUrl(DefineUtil.USERID, DefineUtil.TOKEN, cardNo, userName, cardType, bankCode, bankAlis, cardPhone), BandCardActivity.this);
     }

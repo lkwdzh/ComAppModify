@@ -47,6 +47,7 @@ public class FriendsListActivity extends BaseActivity {
     private String contactId;
     private boolean isDelete;
     private CustomProgress customProgress;
+    private View emptyView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +68,7 @@ public class FriendsListActivity extends BaseActivity {
         right_text.setText("添加");
         right_text.setVisibility(View.VISIBLE);
         customProgress = CustomProgress.show(this, "加载中···", true);
+        emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
         lv_buyer_list = (PullToRefreshListView) findViewById(R.id.lv_buyer_list);
         tv_num_buyer_list = (TextView) findViewById(R.id.tv_num_buyer_list);
         tv_confirm_buyer_list = (TextView) findViewById(R.id.tv_confirm_buyer_list);
@@ -203,6 +205,7 @@ public class FriendsListActivity extends BaseActivity {
 
                 adapter.notifyDataSetChanged();
                 compareList();
+                lv_buyer_list.setEmptyView(emptyView);
             }
 
             @Override

@@ -23,13 +23,13 @@
             <TextView
                 style="@style/grayTextView_666666_13"
                 android:layout_toLeftOf="@+id/tv_zonge_confirm_order"
-                android:text="总额" />
+                android:text="总额:" />
 
             <TextView
                 android:id="@+id/tv_zonge_confirm_order"
                 style="@style/grayTextView_666666_13"
                 android:layout_alignParentRight="true"
-                android:text="1111" />
+                 />
         </RelativeLayout>
 
         <RelativeLayout
@@ -41,13 +41,13 @@
             <TextView
                 style="@style/grayTextView_666666_13"
                 android:layout_toLeftOf="@+id/tv_shouxufei_confirm_order"
-                android:text="手续费" />
+                android:text="手续费:" />
 
             <TextView
                 android:id="@+id/tv_shouxufei_confirm_order"
                 style="@style/grayTextView_666666_13"
                 android:layout_alignParentRight="true"
-                android:text="1111" />
+                 />
         </RelativeLayout>
 
     </LinearLayout>

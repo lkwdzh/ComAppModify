@@ -32,7 +32,7 @@
             android:layout_marginLeft="@dimen/px_10"
             android:layout_marginRight="@dimen/px_14"
             android:layout_toRightOf="@+id/cb_shopping_cart_listview"
-            android:src="@drawable/tongxun" />
+             />
 
         <LinearLayout
             style="@style/ll_match_wrap_content_ver"
@@ -44,14 +44,14 @@
             <TextView
                 android:id="@+id/tv_name_shopping_cast_listview"
                 style="@style/grayTextView_333333"
-                android:text="精选小米1T精选小米1T精选小米1T精选小米1T精选小米1T精选小米1T"
+
                 android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/tv_price_shopping_cart_listview"
                 style="@style/redTextView_f47070"
                 android:layout_marginTop="@dimen/px_18"
-                android:text="￥10" />
+                android:text="￥0.0" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -77,7 +77,7 @@
             android:layout_toRightOf="@+id/iv_cut_shopping_cart_listview"
             android:background="@drawable/shuzhimiddle"
             android:gravity="center"
-            android:text="11" />
+            android:text="0" />
 
         <ImageView
             android:id="@+id/iv_add_shopping_cart_listview"
@@ -101,7 +101,7 @@
         <TextView
             android:id="@+id/tv_total_shopping_cart_listview"
             style="@style/redTextView_f47070"
-            android:text="10"
+            android:text="0.0"
             android:textSize="15sp" />
     </LinearLayout>
     <View

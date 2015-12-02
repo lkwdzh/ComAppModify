@@ -20,7 +20,6 @@ import com.aglook.comapp.R;
 import com.aglook.comapp.bean.AllOrder;
 import com.aglook.comapp.bean.AllOrderDataList;
 import com.aglook.comapp.url.AllOrderUrl;
-import com.aglook.comapp.url.PayUrl;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
@@ -177,25 +176,6 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
     }
 
 
-    //zhifu
-    public void pay() {
-        new XHttpuTools() {
-            @Override
-            public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result-pay", arg0.result);
-//                Intent intent = new Intent();
-//                intent.setAction("android.intent.action.VIEW");
-//                Uri uri=Uri.parse(payUrl);
-//                intent.setData(uri);
-//                activity.startActivity(intent);
-            }
-
-            @Override
-            public void failureInitViews(HttpException arg0, String arg1) {
-
-            }
-        }.datePost(DefineUtil.PAY, PayUrl.postPayWGUrl(orderId, DefineUtil.USERID, money, money), activity);
-    }
 
     class ViewHolder {
         TextView tv_order_num_all_order_lv;

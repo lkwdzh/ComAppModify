@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/ll_empty_shopping_cart"
+        style="@style/ll_match_content_ver"
+        android:layout_below="@+id/rl_shopping_cart_top"
+        android:background="@color/gray_eeeeee"
+        >
+
+        <LinearLayout
+            android:id="@+id/ll_weidenglu_shopping_cart"
+            style="@style/ll_match_wrap_content_hor"
+            android:background="@color/white"
+            android:padding="@dimen/px_14">
+
+            <TextView
+                android:id="@+id/tv_denglu_shopping_cart"
+                style="@style/redTextView_f47070"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/px_16"
+                android:background="@drawable/shanchu"
+                android:gravity="center"
+                android:text="登录" />
+
+            <TextView
+                style="@style/grayTextView_333333"
+                android:text="您的账号未登录，登录后可浏览内容"
+
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/px_88"
+            android:src="@drawable/gouwu" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/px_22"
+            android:layout_marginRight="@dimen/px_22"
+            android:layout_marginTop="@dimen/px_24"
+            android:background="@drawable/btn_orange_corner"
+            android:gravity="center"
+            android:text="快来填满吧"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+</LinearLayout>

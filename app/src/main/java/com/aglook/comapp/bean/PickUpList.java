@@ -25,6 +25,15 @@ public class PickUpList {
     private String depotAddr;//": "地址",仓库地址
     private String categoryName;//": "早稻",种类名称
     private String categoryTitle;//": "早稻" 种类标题
+    private String innerTime;//入仓时间
+
+    public String getInnerTime() {
+        return innerTime;
+    }
+
+    public void setInnerTime(String innerTime) {
+        this.innerTime = innerTime;
+    }
 
     public String getId() {
         return id;

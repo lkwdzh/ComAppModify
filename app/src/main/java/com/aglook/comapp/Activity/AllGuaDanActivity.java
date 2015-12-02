@@ -54,7 +54,7 @@ public class AllGuaDanActivity extends BaseActivity {
         adapter = new AllGuaDanAdapter(AllGuaDanActivity.this, mList);
         lv_all_order.setAdapter(adapter);
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
-        lv_all_order.setEmptyView(emptyView);
+
         lv_all_order.setMode(PullToRefreshBase.Mode.BOTH);
     }
 
@@ -120,6 +120,7 @@ public class AllGuaDanActivity extends BaseActivity {
 
                 adapter.notifyDataSetChanged();
                 lv_all_order.onRefreshComplete();
+                lv_all_order.setEmptyView(emptyView);
             }
 
             @Override

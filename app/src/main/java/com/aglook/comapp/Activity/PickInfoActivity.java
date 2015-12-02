@@ -43,7 +43,6 @@ public class PickInfoActivity extends BaseActivity {
     private TextView tv_use_weight_pick_info;
     private TextView tv_in_time_gua_pick_info;
     private TextView tv_goods_area_pick_info;
-    private TextView tv_quality_pick_info;
     private EditText et_pick_weight_pick_info;
     private TextView tv_xue_tou_pick_info;
     private TextView tv_cang_name_pick_info;
@@ -67,6 +66,8 @@ public class PickInfoActivity extends BaseActivity {
     private String code;
     private String orderdataId;
     private String originalId;
+    private TextView tv_goods_zhiliang_gua_dan;
+
     @Override
     public void initView() {
         setContentView(R.layout.activity_pick_info);
@@ -97,7 +98,6 @@ public class PickInfoActivity extends BaseActivity {
         tv_use_weight_pick_info = (TextView) findViewById(R.id.tv_use_weight_pick_info);
         tv_in_time_gua_pick_info = (TextView) findViewById(R.id.tv_in_time_gua_pick_info);
         tv_goods_area_pick_info = (TextView) findViewById(R.id.tv_goods_area_pick_info);
-        tv_quality_pick_info = (TextView) findViewById(R.id.tv_quality_pick_info);
         et_pick_weight_pick_info = (EditText) findViewById(R.id.et_pick_weight_pick_info);
         tv_xue_tou_pick_info = (TextView) findViewById(R.id.tv_xue_tou_pick_info);
         tv_cang_name_pick_info = (TextView) findViewById(R.id.tv_cang_name_pick_info);
@@ -105,6 +105,7 @@ public class PickInfoActivity extends BaseActivity {
         tv_cang_email_pick_info = (TextView) findViewById(R.id.tv_cang_email_pick_info);
         tv_cang_address_pick_info = (TextView) findViewById(R.id.tv_cang_address_pick_info);
         tv_buyer_pick_info = (TextView) findViewById(R.id.tv_buyer_pick_info);
+        tv_goods_zhiliang_gua_dan = (TextView) findViewById(R.id.tv_goods_zhiliang_gua_dan);
         iv_huowu = (ImageView) findViewById(R.id.iv_huowu);
         iv_huoquan = (ImageView) findViewById(R.id.iv_huoquan);
         lv_pick_info = (MyListView) findViewById(R.id.lv_pick_info);
@@ -129,7 +130,7 @@ public class PickInfoActivity extends BaseActivity {
             tv_cang_phone_pick_info.setText(cangDanDetail.getResponsibleMobile());
             tv_cang_email_pick_info.setText(cangDanDetail.getResponsibleEmail());
             tv_cang_address_pick_info.setText(cangDanDetail.getDepotAddress());
-
+        tv_goods_zhiliang_gua_dan.setText(cangDanDetail.getDepotQuality());
     }
 
     //获取参数值

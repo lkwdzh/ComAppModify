@@ -3,11 +3,13 @@ package com.aglook.comapp.Activity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.OrderDetailAdapter;
 import com.aglook.comapp.bean.AllOrder;
 import com.aglook.comapp.bean.AllOrderDataList;
+import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.view.MyListView;
 import com.aglook.comapp.view.Timestamp;
 
@@ -34,11 +36,15 @@ public class OrderDetailActivity extends BaseActivity {
     private TextView tv_over_order_detail;
     private AllOrder allOrder;
     private List<AllOrderDataList>mList=new ArrayList<>();
+    private Login login;
+    private ComAppApplication comAppApplication;
 
     @Override
     public void initView() {
         setContentView(R.layout.activity_order_detail);
         setTitleBar("订单详情");
+        comAppApplication= (ComAppApplication) getApplication();
+        login=comAppApplication.getLogin();
         ExitApplication.getInstance().addActivity(this);
         init();
         click();
@@ -81,6 +87,13 @@ public class OrderDetailActivity extends BaseActivity {
             tv_money_order_detail.setText(allOrder.getMoney()+"");
             tv_xia_order_detail.setText(Timestamp.getDateTo(allOrder.getOrderTime()));
             tv_cost_order_detail.setText(allOrder.getTotalFee());
+        }
+
+        if (login!=null&&!"".equals(login)){
+            tv_phone_order_detail.setText(login.getPshUser().getUserPhone());
+            tv_username_order_detail.setText(login.getPshUser().getUsername());
+            tv_name_order_detail.setText(login.getPshUser().getUserTName());
+            tv_address_order_detail.setText(login.getPshUser().getUserAddress());
         }
     }
 

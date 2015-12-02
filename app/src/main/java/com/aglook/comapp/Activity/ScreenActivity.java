@@ -2,6 +2,7 @@ package com.aglook.comapp.Activity;
 
 import android.content.Intent;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
@@ -61,6 +62,7 @@ public class ScreenActivity extends BaseActivity {
     private String categoryId;//分类ID
     private int pageSize = 10;//每页数量
     private int pageNumber = 1;//第几页
+    private View emptyView;
 
 
     @Override
@@ -78,6 +80,7 @@ public class ScreenActivity extends BaseActivity {
     }
 
     public void init() {
+        emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
         productName = getIntent().getStringExtra("productName");
         isSearch = getIntent().getBooleanExtra("isSearch", false);
         categoryId = getIntent().getStringExtra("categoryId");
@@ -285,6 +288,7 @@ public class ScreenActivity extends BaseActivity {
                 }
                 adapter.notifyDataSetChanged();
                 gv_screen.onRefreshComplete();
+                gv_screen.setEmptyView(emptyView);
             }
 
             @Override
@@ -361,6 +365,7 @@ public class ScreenActivity extends BaseActivity {
                 }
                 adapter.notifyDataSetChanged();
                 gv_screen.onRefreshComplete();
+                gv_screen.setEmptyView(emptyView);
             }
 
             @Override

@@ -431,5 +431,18 @@
         <item name="android:layout_height">@dimen/px_134</item>
         <item name="android:scaleType">centerInside</item>
     </style>
+
+
+    <!--设置黑色333333的textview_15sp_-->
+    <style name="basic_infor_TextView_333333_set" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/textcolor_333333</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">@dimen/px_14</item>
+        <item name="android:background">@color/white</item>
+
+    </style>
 </resources>
 

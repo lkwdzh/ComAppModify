@@ -15,6 +15,7 @@ import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lidroid.xutils.exception.HttpException;
@@ -32,6 +33,7 @@ public class AllOrderActivity extends BaseActivity {
     private String orderStatus;
     private List<AllOrder> mList = new ArrayList<>();
     private boolean isBrower;
+    private CustomProgress customProgress;
     @Override
     public void initView() {
         setContentView(R.layout.activity_all_order);
@@ -43,11 +45,12 @@ public class AllOrderActivity extends BaseActivity {
     }
 
     public void init() {
+        customProgress = CustomProgress.show(this, "加载中···", true);
         lv_all_order = (PullToRefreshListView) findViewById(R.id.lv_all_order);
         adapter = new AllOrderAdapter(AllOrderActivity.this,mList);
         lv_all_order.setAdapter(adapter);
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
-        lv_all_order.setEmptyView(emptyView);
+
         lv_all_order.setMode(PullToRefreshBase.Mode.BOTH);
     }
 
@@ -78,6 +81,9 @@ public class AllOrderActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
                 Log.d("result_all_order",arg0.result);
                 String message= JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
@@ -96,14 +102,14 @@ public class AllOrderActivity extends BaseActivity {
                     AppUtils.toastText(AllOrderActivity.this,message);
                 }
                 adapter.notifyDataSetChanged();
-                for (int i = 0; i <mList.size() ; i++) {
-                    Log.d("result_list",mList.get(i).toString());
-                }
+                lv_all_order.setEmptyView(emptyView);
             }
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.ORDER_LIST, AllOrderUrl.postAllOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, orderStatus), AllOrderActivity.this);
     }

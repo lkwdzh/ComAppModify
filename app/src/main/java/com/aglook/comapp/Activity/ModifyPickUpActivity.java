@@ -162,6 +162,7 @@ public class ModifyPickUpActivity extends BaseActivity {
                 String obj=JsonUtils.getJsonParam(arg0.result,"obj");
                 if (status.equals("1")){
                     pickUpDetail=JsonUtils.parse(obj,PickUpDetail.class);
+                    adapter.getID(pickUpDetail.getGetId());
                     if (pickUpDetail.getDriverList()!=null&&pickUpDetail.getDriverList().size()!=0){
                         mList.addAll(pickUpDetail.getDriverList());
                     }
