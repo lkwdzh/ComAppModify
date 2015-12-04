@@ -2,15 +2,19 @@ package com.aglook.comapp.Activity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -57,13 +61,14 @@ public class ShoppingCartActivity extends BaseActivity {
     private CustomProgress customProgress;
     private ComAppApplication comAppApplication;
     private boolean isEditting = false;
-    private LinearLayout ll_weidenglu_shopping_cart;
     private String cartId;
     private String productNum;
     private String deleteFlag = "1";//删除
     private boolean isConfirm;
     private boolean isToGoodsDetail;
     private TextView tv_zonge_shop_cart;
+    private Button btn_login;
+    private ImageView left_icon;
 
     @Override
     public void initView() {
@@ -74,7 +79,7 @@ public class ShoppingCartActivity extends BaseActivity {
         getCartListData();
     }
 
-    public void init(){
+    public void init() {
         lv_shopping_cart = (PullToRefreshListView) findViewById(R.id.lv_shopping_cart);
         mList = new ArrayList<>();
         adapter = new ShoppingCartAdapter(ShoppingCartActivity.this, mList, new ShoppingCartAdapter.CallBackData() {
@@ -88,12 +93,12 @@ public class ShoppingCartActivity extends BaseActivity {
 //                ShoppingCartActivity.this.sendBroadcast(intent1);
                 tv_shopping_cart_jiesuan.setText("(" + num + ")");
                 tv_total_shopping_cart_fragment.setText(total + "");
-                tv_zonge_shop_cart.setText(total+"");
+                tv_zonge_shop_cart.setText(total + "");
             }
         });
         lv_shopping_cart.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        lv_shopping_cart.setMode(PullToRefreshBase.Mode.BOTH);
+        lv_shopping_cart.setMode(PullToRefreshBase.Mode.DISABLED);
 
         cb_top_right_shopping_cart = (CheckBox) findViewById(R.id.cb_top_right_shopping_cart);
         ll_buy_bottom_shopping_cart = (LinearLayout) findViewById(R.id.ll_buy_bottom_shopping_cart);
@@ -102,6 +107,10 @@ public class ShoppingCartActivity extends BaseActivity {
         cb_edit_shopping_cart = (CheckBox) findViewById(R.id.cb_edit_shopping_cart);
 //        编辑的删除
         tv_delete_shopping_cart = (TextView) findViewById(R.id.tv_delete_shopping_cart);
+        //点击购买
+        btn_login = (Button) findViewById(R.id.btn_login);
+
+        left_icon = (ImageView) findViewById(R.id.left_icon);
 
         //购买
         cb_buy_shopping_cart = (CheckBox) findViewById(R.id.cb_buy_shopping_cart);
@@ -116,10 +125,32 @@ public class ShoppingCartActivity extends BaseActivity {
 //        去结算
         ll_shopping_cart_jiesuan = (LinearLayout) findViewById(R.id.ll_shopping_cart_jiesuan);
 
-        ll_weidenglu_shopping_cart = (LinearLayout) findViewById(R.id.ll_weidenglu_shopping_cart);
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("Shopping");
+        registerReceiver(myReceiver, filter);
     }
 
-    public void click(){
+    //接收广播
+    private BroadcastReceiver myReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //刷新
+            isConfirm = true;
+            getCartListData();
+        }
+    };
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //销毁
+        unregisterReceiver(myReceiver);
+    }
+
+    public void click() {
+        btn_login.setOnClickListener(this);
+        left_icon.setOnClickListener(this);
         cb_top_right_shopping_cart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -197,17 +228,29 @@ public class ShoppingCartActivity extends BaseActivity {
                 startActivityForResult(intent, 3);
                 break;
             case R.id.btn_login:
-                if (comAppApplication.getLogin() == null || comAppApplication.getLogin().equals("")) {
-                    intent.setClass(ShoppingCartActivity.this, LoginActivity.class);
-                    startActivityForResult(intent, 1);
-                } else {
-                    //跳转到首页
-                    intent.setClass(ShoppingCartActivity.this,MainActivity.class);
-                    startActivity(intent);
-                }
+                //跳转到首页
+                intent.setClass(ShoppingCartActivity.this, MainActivity.class);
+                startActivity(intent);
                 break;
+            case R.id.left_icon:
+                ShoppingCartActivity.this.setResult(1);
+                ShoppingCartActivity.this.finish();
         }
     }
+
+    //监听返回键
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            ShoppingCartActivity.this.setResult(1);
+            ShoppingCartActivity.this.finish();
+            return false;
+        } else {
+            return super.onKeyDown(keyCode, event);
+        }
+
+    }
+
     private Dialog dialog;
     private TextView tv_delete_order;
     //选中个数
@@ -232,7 +275,8 @@ public class ShoppingCartActivity extends BaseActivity {
 
     private Button btn_cancel_delete;
     private Button btn_confirm_delete;
-private int totalMoney;
+    private int totalMoney;
+
     //    获取购物车列表
     public void getCartListData() {
         new XHttpuTools() {
@@ -267,25 +311,27 @@ private int totalMoney;
                         mList.addAll(list);
 
                         for (int i = 0; i < mList.size(); i++) {
-                            num+=mList.get(i).getProductNum();
-                            DefineUtil.NUM=num;
+                            num += mList.get(i).getProductNum();
+                            DefineUtil.NUM = num;
                         }
 
                     } else {
+                        if (isConfirm) {
+                            mList.clear();
+                            isConfirm = false;
+                        }
                         if (isDelete) {
 
                             ll_empty_shopping_cart.setVisibility(View.VISIBLE);
                             ll_full_content.setVisibility(View.GONE);
-                            ll_weidenglu_shopping_cart.setVisibility(View.GONE);
                             cb_top_right_shopping_cart.setVisibility(View.GONE);
                             isDelete = false;
                         }
-                        DefineUtil.NUM=0;
+                        DefineUtil.NUM = 0;
                     }
                     if (mList == null || mList.size() == 0) {
                         ll_empty_shopping_cart.setVisibility(View.VISIBLE);
                         ll_full_content.setVisibility(View.GONE);
-                        ll_weidenglu_shopping_cart.setVisibility(View.GONE);
                         cb_top_right_shopping_cart.setVisibility(View.GONE);
 
                     }
@@ -295,23 +341,22 @@ private int totalMoney;
 
                     }
                     for (int i = 0; i < mList.size(); i++) {
-                       totalMoney+= mList.get(i).getTotal();
+                        totalMoney += mList.get(i).getTotal();
                     }
-                    tv_total_shopping_cart_fragment.setText(totalMoney+"");
-                    tv_zonge_shop_cart.setText(totalMoney+"");
+                    tv_total_shopping_cart_fragment.setText(totalMoney + "");
+                    tv_zonge_shop_cart.setText(totalMoney + "");
                 } else {
-//                    if (mList == null || mList.size() == 0) {
-//                        ll_empty_shopping_cart.setVisibility(View.VISIBLE);
-//                        ll_full_content.setVisibility(View.GONE);
-//                        ll_weidenglu_shopping_cart.setVisibility(View.GONE);
-//                        cb_top_right_shopping_cart.setVisibility(View.GONE);
-//
-//                    }
+                    if (mList == null || mList.size() == 0) {
+                        ll_empty_shopping_cart.setVisibility(View.VISIBLE);
+                        ll_full_content.setVisibility(View.GONE);
+                        cb_top_right_shopping_cart.setVisibility(View.GONE);
+
+                    }
                     AppUtils.toastText(ShoppingCartActivity.this, message);
                 }
-//                Intent intent1 = new Intent();
-//                intent1.setAction("MainActivity");
-//                getActivity().sendBroadcast(intent1);
+                Intent intent1 = new Intent();
+                intent1.setAction("MainActivity");
+                sendBroadcast(intent1);
                 adapter.notifyDataSetChanged();
             }
 

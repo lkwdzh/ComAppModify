@@ -27,6 +27,7 @@ import com.aglook.comapp.Activity.LoginActivity;
 import com.aglook.comapp.Activity.MyCangDanActivity;
 import com.aglook.comapp.Activity.PlatformActivity;
 import com.aglook.comapp.Activity.SearchActivity;
+import com.aglook.comapp.Activity.ZiXunListActivity;
 import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.HomePageEXGridView;
@@ -97,6 +98,9 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     private HomePageCallBack homePageCallBack;
     private TextView tv_cangdan_home;
     private TextView tv_plat_home;
+
+    private String classId;
+    private String className;
 
 
     @Nullable
@@ -205,11 +209,48 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //点击我要买跳转到分类
                 //点击我要卖，弹出选择框，并跳转
-                if (position==7){
-                    homePageCallBack.callBack(1);
-                }else if (position==6){
-                    showDailog();
+                Intent intent = new Intent(getActivity(), ZiXunListActivity.class);
+//                if (position==7){
+//                    homePageCallBack.callBack(1);
+//                }else if (position==6){
+//                    showDailog();
+//                }
+                switch (position){
+                    case 0:
+                        classId="9";
+                        className="每日看点";
+                        break;
+                    case 1:
+                        classId="10";
+                        className="行情报告";
+                        break;
+                    case 2:
+                        classId="";
+                        className="品种走势";
+                        break;
+                    case 3:
+                        classId="11";
+                        className="品种公告";
+                        break;
+                    case 4:
+                        classId="1";
+                        className="网站公告";
+                        break;
+                    case 5:
+                        classId="2";
+                        className="知识学堂";
+                        break;
+                    case 6:
+                        showDailog();
+                        break;
+                    case 7:
+                        homePageCallBack.callBack(1);
+                        break;
                 }
+                intent.putExtra("classId",classId);
+                intent.putExtra("className",className);
+                startActivity(intent);
+
             }
         });
 

@@ -50,7 +50,7 @@ public class PayActivity extends BaseActivity {
     }
 
     public void click() {
-//        left_icon.setOnClickListener(this);
+        left_icon.setOnClickListener(this);
     }
 
     @Override

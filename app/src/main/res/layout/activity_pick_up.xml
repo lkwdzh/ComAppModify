@@ -11,5 +11,6 @@
         android:id="@+id/lv_pick_up"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/px_20"
         android:divider="@null"></com.handmark.pulltorefresh.library.PullToRefreshListView>
 </LinearLayout>

@@ -12,6 +12,17 @@ import org.json.JSONObject;
 public class PlateFormUrl {
     private static RequestParams params;
 
+    /**
+     * 平台仓单列表
+     * @param code
+     * @param token
+     * @param userId
+     * @param pageSize
+     * @param pageNum
+     * @param _sort
+     * @return
+     */
+
     public static RequestParams postPlateformUrl(String code,String token, String userId, String pageSize, String pageNum, String _sort) {
         params=new RequestParams();
         JSONObject jsonObject = new JSONObject();

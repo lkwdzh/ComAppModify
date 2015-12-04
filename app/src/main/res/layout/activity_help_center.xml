@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ll_match_content_ver"
+    android:background="@color/gray_eeeeee">
+
+    <include layout="@layout/activity_base_title_bar" />
+
+    <View style="@style/line_1" />
+
+    <TextView
+        android:id="@+id/tv_xh_help"
+        style="@style/basic_infor_TextView_333333_set"
+        android:drawableRight="@drawable/next"
+        android:text="仓库现货" />
+
+    <View style="@style/line_1" />
+
+    <TextView
+        android:id="@+id/tv_ht_help"
+        style="@style/basic_infor_TextView_333333_set"
+        android:layout_centerVertical="true"
+        android:drawableRight="@drawable/next"
+        android:text="远期合同" />
+
+    <View style="@style/line_1" />
+
+    <TextView
+        android:id="@+id/tv_mm_help"
+        style="@style/basic_infor_TextView_333333_set"
+        android:drawableRight="@drawable/next"
+        android:text="买卖规则" />
+
+    <View style="@style/line_1" />
+
+
+    <TextView
+        android:id="@+id/tv_gy_help"
+        style="@style/basic_infor_TextView_333333_set"
+        android:drawableRight="@drawable/next"
+        android:text="关于我们" />
+
+    <View style="@style/line_1" />
+
+
+
+
+</LinearLayout>

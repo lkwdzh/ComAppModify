@@ -43,10 +43,12 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
     private int index;
     private CustomProgress customProgress;
     private String money;
+      private boolean isSuccess;
 
-    public ToPayAdapter(Activity activity, List<AllOrder> list) {
+    public ToPayAdapter(Activity activity, List<AllOrder> list,boolean isSuccess) {
         this.activity = activity;
         this.list = list;
+        this.isSuccess=isSuccess;
     }
 
     @Override
@@ -91,7 +93,7 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
 
         orderId = order.getOrderId();
         sonList = list.get(position).getOrderDateList();
-        holder.adapter = new AllOrderLVAdapter(activity, sonList);
+        holder.adapter = new AllOrderLVAdapter(activity, sonList,isSuccess);
         holder.lv_all_order_lv.setAdapter(holder.adapter);
         Utility.setListViewHeightBasedOnChildren(holder.lv_all_order_lv);
         holder.adapter.notifyDataSetChanged();
@@ -105,8 +107,10 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
         } else if (order.getOrderStatus().equals("success")){
             holder.tv_success_all_order_lv.setText("交易成功");
             holder.tv_success_all_order_lv.setTextColor(activity.getResources().getColor(R.color.red_c91014));
-            holder.tv_click_all_order_lv.setVisibility(View.GONE);
-            holder.tv_delete_all_order_lv.setVisibility(View.GONE);
+            holder.tv_click_all_order_lv.setVisibility(View.VISIBLE);
+            holder.tv_click_all_order_lv.setText("提货");
+            holder.tv_delete_all_order_lv.setVisibility(View.VISIBLE);
+            holder.tv_delete_all_order_lv.setText("转售");
         }else if (order.getOrderStatus().equals("close")){
             holder.tv_success_all_order_lv.setText("交易关闭");
             holder.tv_success_all_order_lv.setTextColor(activity.getResources().getColor(R.color.red_c91014));
@@ -141,21 +145,20 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
         Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.tv_click_all_order_lv:
-                AppUtils.toastText(activity, "去支付");
-                index = (int) v.getTag();
-                money = String.valueOf(list.get(index).getMoney());
-                orderId = list.get(index).getOrderId();
-                intent.setClass(activity, PayActivity.class);
-                intent.putExtra("orderId", orderId);
-                intent.putExtra("money", money);
-                Log.d("result_OrderId", orderId);
-                activity.startActivityForResult(intent, 1);
+                   index = (int) v.getTag();
+               if (isSuccess){//转去提货
 
-//                intent.setAction("android.intent.action.VIEW");
-//                Uri uri=Uri.parse(PayUrl.postPay(orderId,DefineUtil.USERID,money,money));
-////                Uri uri=Uri.parse("http://javacrazyer.iteye.com/blog/1840093");
-//                intent.setData(uri);
-//                activity.startActivity(intent);
+
+               }else {
+                   money = String.valueOf(list.get(index).getMoney());
+                   orderId = list.get(index).getOrderId();
+                   intent.setClass(activity, PayActivity.class);
+                   intent.putExtra("orderId", orderId);
+                   intent.putExtra("money", money);
+                   Log.d("result_OrderId", orderId);
+                   activity.startActivityForResult(intent, 1);
+               }
+
                 break;
             case R.id.tv_delete_all_order_lv:
                 index = (int) v.getTag();
@@ -197,7 +200,7 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
             tv_cost_all_order_lv = (TextView) view.findViewById(R.id.tv_cost_all_order_lv);
             tv_click_all_order_lv = (TextView) view.findViewById(R.id.tv_click_all_order_lv);
             tv_delete_all_order_lv = (TextView) view.findViewById(R.id.tv_delete_all_order_lv);
-            adapter = new AllOrderLVAdapter(activity, sonList);
+            adapter = new AllOrderLVAdapter(activity, sonList,isSuccess);
         }
     }
 

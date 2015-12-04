@@ -252,11 +252,11 @@ public class GoodsDetailActivity extends BaseActivity {
             case R.id.ll_shopping_cart_goods_detail:
                 if (comAppApplication.getLogin() == null || comAppApplication.getLogin().equals("")){
                     intent.setClass(GoodsDetailActivity.this, LoginActivity.class);
-                    startActivityForResult(intent, 1);
+                    startActivityForResult(intent, 3);
                 }else {
                     intent.setClass(GoodsDetailActivity.this, ShoppingCartActivity.class);
 //                    intent.putExtra("isGoods", true);
-                    startActivity(intent);
+                    startActivityForResult(intent,3);
                 }
                 break;
             case R.id.ll_attention_goods_detail:

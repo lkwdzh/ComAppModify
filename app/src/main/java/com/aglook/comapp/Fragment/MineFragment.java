@@ -15,12 +15,12 @@ import android.widget.TextView;
 import com.aglook.comapp.Activity.AllGuaDanActivity;
 import com.aglook.comapp.Activity.AllOrderActivity;
 import com.aglook.comapp.Activity.LoginActivity;
+import com.aglook.comapp.Activity.MessageActivity;
 import com.aglook.comapp.Activity.MyCangDanActivity;
 import com.aglook.comapp.Activity.PersonInformationActivity;
 import com.aglook.comapp.Activity.PickUpActivity;
 import com.aglook.comapp.Activity.PlatformActivity;
 import com.aglook.comapp.Activity.SettingActivity;
-import com.aglook.comapp.Activity.ToPayActivity;
 import com.aglook.comapp.Activity.TradeingActivity;
 import com.aglook.comapp.Activity.TransSucceedActivity;
 import com.aglook.comapp.Application.ComAppApplication;
@@ -56,6 +56,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private TextView tv_cangdan_point;
     private TextView tv_pingtaicangdan_point;
     private TextView tv_tihuo_point;
+    private TextView tv_message_mine_fragment;
 
 
     @Override
@@ -84,7 +85,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         ll_jiaoyizhong_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_jiaoyizhong_mine_fragment);
         ll_jiaoyichenggong_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_jiaoyichenggong_mine_fragment);
         tv_name_mine_fragment = (TextView) view.findViewById(R.id.tv_name_mine_fragment);
-
+        tv_message_mine_fragment = (TextView) view.findViewById(R.id.tv_message_mine_fragment);
 
         //红点
         tv_all_order_point = (TextView) view.findViewById(R.id.tv_all_order_point);
@@ -112,6 +113,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         ll_tihuo_mine_fragment.setOnClickListener(this);
         ll_jiaoyizhong_mine_fragment.setOnClickListener(this);
         ll_jiaoyichenggong_mine_fragment.setOnClickListener(this);
+        tv_message_mine_fragment.setOnClickListener(this);
     }
 
 
@@ -189,6 +191,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     startActivityForResult(intent, 1);
                 } else {
                     intent.setClass(getActivity(), AllOrderActivity.class);
+                    intent.putExtra("status",1);
                     startActivity(intent);
                 }
                 break;
@@ -197,7 +200,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     intent.setClass(getActivity(), LoginActivity.class);
                     startActivityForResult(intent, 1);
                 } else {
-                    intent.setClass(getActivity(), ToPayActivity.class);
+                    intent.setClass(getActivity(), AllOrderActivity.class);
+                    intent.putExtra("status",2);
                     startActivity(intent);
                 }
                 break;
@@ -206,8 +210,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     intent.setClass(getActivity(), LoginActivity.class);
                     startActivityForResult(intent, 1);
                 } else {
-                    intent.setClass(getActivity(), ToPayActivity.class);
+                    intent.setClass(getActivity(), AllOrderActivity.class);
                     intent.putExtra("isSuccess",true);
+                    intent.putExtra("status",3);
                     startActivity(intent);
                 }
                 break;
@@ -244,6 +249,15 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     startActivityForResult(intent, 1);
                 } else {
                     intent.setClass(getActivity(), TransSucceedActivity.class);
+                    startActivity(intent);
+                }
+                break;
+            case R.id.tv_message_mine_fragment:
+                if (login == null || "".equals(login)) {
+                    intent.setClass(getActivity(), LoginActivity.class);
+                    startActivityForResult(intent, 1);
+                } else {
+                    intent.setClass(getActivity(), MessageActivity.class);
                     startActivity(intent);
                 }
                 break;

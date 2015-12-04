@@ -23,7 +23,7 @@ public class AllOrderDataList implements Serializable{
     private String storage;
     private String counter;
     private String orderState;
-    private String productListId;
+    private String productListId;//原始仓单号
 
     public String getOrderState() {
         return orderState;

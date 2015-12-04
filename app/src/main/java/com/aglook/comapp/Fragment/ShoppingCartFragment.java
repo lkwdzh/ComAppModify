@@ -3,8 +3,10 @@ package com.aglook.comapp.Fragment;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -80,14 +82,15 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
     private boolean isConfirm;
     private int page = 1;
     private TextView tv_zonge_shop_cart;
-
+    private View emptyView;
+    private View viewAll;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = View.inflate(getActivity(), R.layout.layout_shopping_cart_fragment, null);
+         viewAll = View.inflate(getActivity(), R.layout.layout_shopping_cart_fragment, null);
         comAppApplication = (ComAppApplication) getActivity().getApplication();
-        initView(view);
+        initView(viewAll);
         click();
-        return view;
+        return viewAll;
     }
 
     @Override
@@ -99,7 +102,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
     }
 
     public void initView(View view) {
-
+        emptyView = LayoutInflater.from(getActivity()).inflate(R.layout.empty_shop_cart, null);
         lv_shopping_cart = (PullToRefreshListView) view.findViewById(R.id.lv_shopping_cart);
         mList = new ArrayList<>();
         adapter = new ShoppingCartAdapter(getActivity(), mList, new ShoppingCartAdapter.CallBackData() {
@@ -118,7 +121,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
         });
         lv_shopping_cart.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        lv_shopping_cart.setMode(PullToRefreshBase.Mode.BOTH);
+        lv_shopping_cart.setMode(PullToRefreshBase.Mode.DISABLED);
 
         cb_top_right_shopping_cart = (CheckBox) view.findViewById(R.id.cb_top_right_shopping_cart);
         ll_buy_bottom_shopping_cart = (LinearLayout) view.findViewById(R.id.ll_buy_bottom_shopping_cart);
@@ -152,6 +155,39 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
         ll_shopping_cart_jiesuan = (LinearLayout) view.findViewById(R.id.ll_shopping_cart_jiesuan);
 
         ll_weidenglu_shopping_cart = (LinearLayout) view.findViewById(R.id.ll_weidenglu_shopping_cart);
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("Shopping");
+        getActivity().registerReceiver(myReceiver,filter);
+    }
+
+
+    //接收广播
+    private BroadcastReceiver myReceiver=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            AppUtils.toastText(getActivity(),"22222222");
+            //刷新
+            isConfirm = true;
+
+        }
+    };
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        cb_top_right_shopping_cart.setChecked(false);
+        if (isConfirm){
+//            initView(viewAll);
+            getCartListData();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //销毁
+        getActivity().unregisterReceiver(myReceiver);
     }
 
     //    如果未登录
@@ -281,11 +317,14 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
             isDelete = false;
             customProgress = CustomProgress.show(getActivity(), "加载中···", true);
             getCartListData();
-        } else if (requestCode == 3 && resultCode == 1) {
-            isConfirm = true;
-            getCartListData();
         }
+//        else if (requestCode == 3 && resultCode == 1) {
+//            isConfirm = true;
+//            getCartListData();
+//        }
     }
+
+
 
     @Override
     public void onClick(View v) {
@@ -308,8 +347,8 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
             case R.id.ll_shopping_cart_jiesuan:
                 intent.setClass(getActivity(), ConfirmOrderActivity.class);
                 intent.putExtra("CharList", (Serializable) mList);
-
-                startActivityForResult(intent, 3);
+                startActivity(intent);
+//                startActivityForResult(intent, 3);
                 break;
             case R.id.btn_login:
                 if (comAppApplication.getLogin() == null || comAppApplication.getLogin().equals("")) {
@@ -397,6 +436,10 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                         }
 
                     } else {
+                        if (isConfirm) {
+                            mList.clear();
+                            isConfirm = false;
+                        }
                         if (isDelete) {
 
                             ll_empty_shopping_cart.setVisibility(View.VISIBLE);
@@ -415,19 +458,20 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
 
                     }
                 } else {
-//                    if (mList == null || mList.size() == 0) {
-//                        ll_empty_shopping_cart.setVisibility(View.VISIBLE);
-//                        ll_full_content.setVisibility(View.GONE);
-//                        ll_weidenglu_shopping_cart.setVisibility(View.GONE);
-//                        cb_top_right_shopping_cart.setVisibility(View.GONE);
-//
-//                    }
+                    if (mList == null || mList.size() == 0) {
+                        ll_empty_shopping_cart.setVisibility(View.VISIBLE);
+                        ll_full_content.setVisibility(View.GONE);
+                        ll_weidenglu_shopping_cart.setVisibility(View.GONE);
+                        cb_top_right_shopping_cart.setVisibility(View.GONE);
+
+                    }
                     AppUtils.toastText(getActivity(), message);
                 }
                 Intent intent1 = new Intent();
                 intent1.setAction("MainActivity");
                 getActivity().sendBroadcast(intent1);
                 adapter.notifyDataSetChanged();
+//                lv_shopping_cart.setEmptyView(emptyView);
             }
 
             @Override

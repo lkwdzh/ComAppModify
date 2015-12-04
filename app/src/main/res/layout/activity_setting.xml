@@ -7,29 +7,17 @@
 
     <View style="@style/line_1" />
 
+
     <TextView
+        android:id="@+id/tv_help_setting"
         style="@style/basic_infor_TextView_333333_set"
         android:drawableRight="@drawable/next"
-        android:text="仓库现货" />
+        android:text="帮助中心" />
 
     <View style="@style/line_1" />
 
     <TextView
-        style="@style/basic_infor_TextView_333333_set"
-        android:layout_centerVertical="true"
-        android:drawableRight="@drawable/next"
-        android:text="远期合同" />
-
-    <View style="@style/line_1" />
-
-    <TextView
-        style="@style/basic_infor_TextView_333333_set"
-        android:drawableRight="@drawable/next"
-        android:text="买卖规则" />
-
-    <View style="@style/line_1" />
-
-    <TextView
+        android:id="@+id/tv_sell_setting"
         style="@style/basic_infor_TextView_333333_set"
         android:drawableRight="@drawable/next"
         android:text="售后服务" />
@@ -37,9 +25,10 @@
     <View style="@style/line_1" />
 
     <TextView
+        android:id="@+id/tv_modify_pwd"
         style="@style/basic_infor_TextView_333333_set"
         android:drawableRight="@drawable/next"
-        android:text="关于我们" />
+        android:text="修改密码" />
 
     <View style="@style/line_1" />
 
@@ -51,6 +40,7 @@
         android:layout_marginTop="@dimen/px_14" />
 
     <RelativeLayout
+        android:id="@+id/tv_update_setting"
         style="@style/rl_match_wrap_content"
         android:background="@color/white"
         android:paddingLeft="@dimen/px_14"
@@ -64,6 +54,7 @@
             android:text="版本更新" />
 
         <TextView
+            android:id="@+id/tv_versionName_setting"
             style="@style/grayTextView_999999_15"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
@@ -73,6 +64,7 @@
     <View style="@style/line_1" />
 
     <Button
+        android:id="@+id/btn_tuichu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/anjian"

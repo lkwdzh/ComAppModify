@@ -255,11 +255,17 @@ public class ConfirmOrderActivity extends BaseActivity {
                     orderId = JsonUtils.getJsonParam(obj, "orderId");
                     money = JsonUtils.getJsonParam(obj, "money");
                     totalFee = String.valueOf(Double.parseDouble(money)-Double.parseDouble(JsonUtils.getJsonParam(obj, "totalFee")));
+                   //发送广播
+                    Intent intentBroad = new Intent();
+                    intentBroad.setAction("Shopping");
+                    sendBroadcast(intentBroad);
+
+
                     Intent intent = new Intent(ConfirmOrderActivity.this,PayActivity.class);
                     intent.putExtra("orderId",orderId);
                     intent.putExtra("money",money);
                     startActivity(intent);
-                    ConfirmOrderActivity.this.setResult(1);
+//                    ConfirmOrderActivity.this.setResult(1);
                     ConfirmOrderActivity.this.finish();
                 } else {
                     AppUtils.toastText(ConfirmOrderActivity.this, message);

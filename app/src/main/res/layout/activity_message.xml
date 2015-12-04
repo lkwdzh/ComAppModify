@@ -2,16 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_eeeeee"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/gray_eeeeee">
 
     <include layout="@layout/activity_base_title_bar" />
+
     <com.handmark.pulltorefresh.library.PullToRefreshListView
-        android:id="@+id/lv_my_platform"
+        android:id="@+id/lv_message"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/px_20"
         android:divider="@null"></com.handmark.pulltorefresh.library.PullToRefreshListView>
-
 
 </LinearLayout>

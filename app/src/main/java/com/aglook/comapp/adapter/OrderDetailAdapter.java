@@ -1,6 +1,7 @@
 package com.aglook.comapp.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import java.util.List;
 public class OrderDetailAdapter extends BaseAdapter {
     private Context context;
     private List<AllOrderDataList>list;
+    private boolean isSuccess;
 
     public OrderDetailAdapter(Context context, List<AllOrderDataList> list) {
         this.context = context;
@@ -41,6 +43,10 @@ public class OrderDetailAdapter extends BaseAdapter {
         return 0;
     }
 
+    public void isSuccess(boolean isSuccess){
+        this.isSuccess=isSuccess;
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
@@ -59,6 +65,15 @@ public class OrderDetailAdapter extends BaseAdapter {
         holder.tv_weight_lv_lv.setText(dataList.getWeightUseable()+"吨");
         holder.tv_num_lv_lv.setText(dataList.getProductMoneyYh()+"");
 //        holder.tv_num_lv_lv.setText(dataList.getProductNum());
+
+        if (!isSuccess){
+            holder.tv_sell_all_order_lv.setVisibility(View.GONE);
+            holder.tv_pick_all_order_lv.setVisibility(View.GONE);
+        }else {
+            holder.tv_sell_all_order_lv.setVisibility(View.VISIBLE);
+            holder.tv_pick_all_order_lv.setVisibility(View.VISIBLE);
+        }
+        Log.d("isSuccess",isSuccess+"");
         return convertView;
     }
 
@@ -73,8 +88,11 @@ public class OrderDetailAdapter extends BaseAdapter {
         TextView tv_price_lv_lv;
         TextView tv_weight_lv_lv;
         TextView tv_num_lv_lv;
-
+        TextView tv_sell_all_order_lv;
+        TextView tv_pick_all_order_lv;
         ViewHolder(View view) {
+            tv_pick_all_order_lv=(TextView)view.findViewById(R.id.tv_pick_all_order_lv);
+            tv_sell_all_order_lv=(TextView)view.findViewById(R.id.tv_sell_all_order_lv);
             iv_lv_lv=(ImageView)view.findViewById(R.id.iv_lv_lv);
             tv_name_lv_lv=(TextView)view.findViewById(R.id.tv_name_lv_lv);
             tv_price_lv_lv=(TextView)view.findViewById(R.id.tv_price_lv_lv);

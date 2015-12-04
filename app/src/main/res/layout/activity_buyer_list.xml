@@ -21,6 +21,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/rl_bottom"
         android:layout_below="@+id/view1"
+        android:layout_marginBottom="@dimen/px_20"
         android:divider="@null"></com.handmark.pulltorefresh.library.PullToRefreshListView>
 
     <RelativeLayout

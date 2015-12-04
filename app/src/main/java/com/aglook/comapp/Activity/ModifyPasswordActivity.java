@@ -29,6 +29,8 @@ public class ModifyPasswordActivity extends BaseActivity {
     private EditText et_phone_modify_password;
     private String pwd;
     private String newPwd;
+    private String secPwd;
+    private EditText et_email_modify_password;
 
     @Override
     public void initView() {
@@ -46,6 +48,7 @@ public class ModifyPasswordActivity extends BaseActivity {
         btn_tijiao = (Button) findViewById(R.id.btn_tijiao);
         et_name_modify_password = (EditText) findViewById(R.id.et_name_modify_password);
         et_phone_modify_password = (EditText) findViewById(R.id.et_phone_modify_password);
+        et_email_modify_password = (EditText) findViewById(R.id.et_email_modify_password);
     }
 
     public void click() {
@@ -58,6 +61,11 @@ public class ModifyPasswordActivity extends BaseActivity {
             case R.id.btn_tijiao:
                 pwd = AppUtils.toStringTrim_ET(et_name_modify_password);
                 newPwd = AppUtils.toStringTrim_ET(et_phone_modify_password);
+                secPwd=AppUtils.toStringTrim_ET(et_email_modify_password);
+                if (!newPwd.equals(secPwd)){
+                    AppUtils.toastText(ModifyPasswordActivity.this,"两次输入密码不一致");
+                    return;
+                }
                 modifyPwd();
                 break;
         }
@@ -71,10 +79,10 @@ public class ModifyPasswordActivity extends BaseActivity {
             public void initViews(ResponseInfo<String> arg0) {
                 Log.d("result_modypwd", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
-                String success = JsonUtils.getJsonParam(arg0.result, "success");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
                     ll_modify.setVisibility(View.GONE);
                     iv_modify_pwd.setVisibility(View.VISIBLE);
-                if (success.equals("1")){
+                if (status.equals("1")){
                     iv_modify_pwd.setBackgroundResource(R.drawable.mimaxiugaichenggong);
                 }else {
                     iv_modify_pwd.setBackgroundResource(R.drawable.mimaxiugaishibai);

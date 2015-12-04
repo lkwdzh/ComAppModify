@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.aglook.comapp" >
+    package="com.aglook.comapp"
+    android:versionName="1.0" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -203,6 +204,14 @@
         <activity
             android:name=".Activity.ShoppingCartActivity"
             android:label="@string/title_activity_shopping_cart" >
+        </activity>
+        <activity
+            android:name=".Activity.MessageActivity"
+            android:label="@string/title_activity_message" >
+        </activity>
+        <activity
+            android:name=".Activity.HelpCenterActivity"
+            android:label="@string/title_activity_help_center" >
         </activity>
     </application>
 

@@ -14,6 +14,16 @@ public class AllOrder implements Serializable {
     private String totalFee;
     private String prderPayTime;
     private List<AllOrderDataList>orderDateList;
+    private List<AllOrderDataList>orderDetailList;
+
+    public List<AllOrderDataList> getOrderDetailList() {
+        return orderDetailList;
+    }
+
+    public void setOrderDetailList(List<AllOrderDataList> orderDetailList) {
+        this.orderDetailList = orderDetailList;
+    }
+
     public String getPrderPayTime() {
         return prderPayTime;
     }
@@ -82,6 +92,7 @@ public class AllOrder implements Serializable {
                 ", totalFee='" + totalFee + '\'' +
                 ", prderPayTime='" + prderPayTime + '\'' +
                 ", orderDateList=" + orderDateList +
+                ", orderDetailList=" + orderDetailList +
                 '}';
     }
 }

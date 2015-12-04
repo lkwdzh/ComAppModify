@@ -75,6 +75,8 @@ public class DefineUtil {
     public static String ORDER_LIST=URL_HOST+"order/order/list";
     //取消订单
     public static String CANCEL_ORDER=URL_HOST+"order/cancel/order";
+    //订单详情
+    public static String ORDER_DETAIL=URL_HOST+"order/details";
 
 
     /**

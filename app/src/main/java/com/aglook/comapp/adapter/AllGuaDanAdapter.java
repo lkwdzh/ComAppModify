@@ -73,7 +73,7 @@ public class AllGuaDanAdapter extends BaseAdapter implements View.OnClickListene
         }
 
         holder.tv_trans_all_order_lv.setText("修改");
-        holder.tv_tihuo_all_order_lv.setText("删除");
+        holder.tv_tihuo_all_order_lv.setText("取消");
         holder.tv_state_all_order_lv.setVisibility(View.VISIBLE);
         holder.tv_tihuo_all_order_lv.setOnClickListener(this);
         holder.tv_trans_all_order_lv.setOnClickListener(this);
@@ -102,7 +102,7 @@ public class AllGuaDanAdapter extends BaseAdapter implements View.OnClickListene
                         holder.tv_success_all_order_lv.setText("已售完");
                         holder.tv_trans_all_order_lv.setVisibility(View.GONE);
                     } else {
-                        holder.tv_success_all_order_lv.setText("销售中");
+                        holder.tv_success_all_order_lv.setText("交易中");
                         holder.tv_trans_all_order_lv.setVisibility(View.VISIBLE);
                     }
                 }

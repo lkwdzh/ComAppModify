@@ -94,6 +94,40 @@
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <View style="@style/line_1" />
+    <LinearLayout
+        style="@style/ll_wrap_content_hor"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_sell_all_order_lv"
+            style="@style/redTextView_c91014"
+            android:layout_marginBottom="@dimen/px_3"
+            android:background="@drawable/shanchu"
+            android:gravity="center"
+            android:text="转售"
+            android:layout_marginRight="@dimen/px_14"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_pick_all_order_lv"
+            style="@style/redTextView_c91014"
+            android:layout_marginBottom="@dimen/px_3"
+            android:layout_marginLeft="@dimen/px_20"
+            android:background="@drawable/red_back"
+            android:gravity="center"
+            android:layout_marginRight="@dimen/px_14"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:text="提货"
+             />
+    </LinearLayout>
+        </RelativeLayout>
+    <View style="@style/line_1"
+        android:layout_marginTop="@dimen/px_10"/>
 </LinearLayout>

@@ -43,9 +43,13 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
     private int index;
     private CustomProgress customProgress;
     private String money;
+    private boolean isSuccess;
+    private final int LIST_DETAIL=2;
+
     public AllOrderAdapter(Activity activity, List<AllOrder> list) {
         this.activity = activity;
         this.list = list;
+
     }
 
     @Override
@@ -75,10 +79,10 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
         }
         holder.tv_click_all_order_lv.setTag(position);
         holder.tv_delete_all_order_lv.setTag(position);
-        holder.tv_click_all_order_lv.setText("去支付");
-        holder.tv_click_all_order_lv.setVisibility(View.VISIBLE);
-        holder.tv_delete_all_order_lv.setVisibility(View.VISIBLE);
-        holder.tv_delete_all_order_lv.setText("取消");
+//        holder.tv_click_all_order_lv.setText("去支付");
+//        holder.tv_click_all_order_lv.setVisibility(View.VISIBLE);
+//        holder.tv_delete_all_order_lv.setVisibility(View.VISIBLE);
+//        holder.tv_delete_all_order_lv.setText("取消");
         holder.tv_click_all_order_lv.setOnClickListener(this);
         holder.tv_delete_all_order_lv.setOnClickListener(this);
 //        holder.tv_click_all_order_lv.setVisibility(View.VISIBLE);
@@ -90,20 +94,13 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
         final AllOrder order = list.get(position);
 
 
-        sonList=list.get(position).getOrderDateList();
-        holder.adapter = new AllOrderLVAdapter(activity, sonList);
-        holder.lv_all_order_lv.setAdapter(holder.adapter);
-        Utility.setListViewHeightBasedOnChildren(holder.lv_all_order_lv);
-        holder.adapter.notifyDataSetChanged();
-
-
 //        Log.d("result_list_adapter", position + "_______" + sonList.size() + "____" + sonList.toString());
         holder.lv_all_order_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position1, long id) {
                 Intent intent = new Intent(activity, OrderDetailActivity.class);
-                intent.putExtra("AllOrder", list.get(position));
-                activity.startActivity(intent);
+                intent.putExtra("orderId", list.get(position).getOrderId());
+                activity.startActivityForResult(intent,LIST_DETAIL);
             }
         });
 
@@ -111,21 +108,38 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
         if (order.getOrderStatus().equals("notpay")) {
             holder.tv_success_all_order_lv.setText("待支付");
             holder.tv_success_all_order_lv.setTextColor(activity.getResources().getColor(R.color.green_356600));
+            holder.tv_click_all_order_lv.setText("去支付");
             holder.tv_click_all_order_lv.setVisibility(View.VISIBLE);
             holder.tv_delete_all_order_lv.setVisibility(View.VISIBLE);
-        } else if (order.getOrderStatus().equals("success")){
+            holder.tv_delete_all_order_lv.setText("取消");
+            isSuccess = true;
+        } else if (order.getOrderStatus().equals("success")) {
             holder.tv_success_all_order_lv.setText("交易成功");
             holder.tv_success_all_order_lv.setTextColor(activity.getResources().getColor(R.color.red_c91014));
+//            holder.tv_click_all_order_lv.setVisibility(View.VISIBLE);
+//            holder.tv_click_all_order_lv.setText("提货");
+//            holder.tv_delete_all_order_lv.setVisibility(View.VISIBLE);
+//            holder.tv_delete_all_order_lv.setText("转售");
             holder.tv_click_all_order_lv.setVisibility(View.GONE);
             holder.tv_delete_all_order_lv.setVisibility(View.GONE);
-        }else if (order.getOrderStatus().equals("close")){
+            isSuccess = false;
+        } else if (order.getOrderStatus().equals("close")) {
             holder.tv_success_all_order_lv.setText("交易关闭");
             holder.tv_success_all_order_lv.setTextColor(activity.getResources().getColor(R.color.red_c91014));
             holder.tv_click_all_order_lv.setVisibility(View.GONE);
             holder.tv_delete_all_order_lv.setVisibility(View.GONE);
+            isSuccess = true;
         }
         holder.tv_money_all_order_lv.setText(order.getMoney() + "");
         holder.tv_order_total_all_order_lv.setText(order.getOrderDateList().size() + "");
+
+
+        sonList = list.get(position).getOrderDateList();
+        holder.adapter = new AllOrderLVAdapter(activity, sonList, isSuccess);
+        holder.lv_all_order_lv.setAdapter(holder.adapter);
+        Utility.setListViewHeightBasedOnChildren(holder.lv_all_order_lv);
+        holder.adapter.notifyDataSetChanged();
+
         return convertView;
     }
 
@@ -134,7 +148,6 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
         Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.tv_click_all_order_lv:
-                AppUtils.toastText(activity, "去支付");
                 index = (int) v.getTag();
                 money = String.valueOf(list.get(index).getMoney());
                 orderId = list.get(index).getOrderId();
@@ -144,11 +157,6 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
                 Log.d("result_OrderId", orderId);
                 activity.startActivityForResult(intent, 1);
 
-//                intent.setAction("android.intent.action.VIEW");
-//                Uri uri=Uri.parse(PayUrl.postPay(orderId,DefineUtil.USERID,money,money));
-////                Uri uri=Uri.parse("http://javacrazyer.iteye.com/blog/1840093");
-//                intent.setData(uri);
-//                activity.startActivity(intent);
                 break;
             case R.id.tv_delete_all_order_lv:
 
@@ -166,6 +174,7 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
                 break;
         }
     }
+
     class ViewHolder {
         TextView tv_order_num_all_order_lv;
         TextView tv_success_all_order_lv;
@@ -186,7 +195,7 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
             tv_cost_all_order_lv = (TextView) view.findViewById(R.id.tv_cost_all_order_lv);
             tv_click_all_order_lv = (TextView) view.findViewById(R.id.tv_click_all_order_lv);
             tv_delete_all_order_lv = (TextView) view.findViewById(R.id.tv_delete_all_order_lv);
-            adapter = new AllOrderLVAdapter(activity, sonList);
+            adapter = new AllOrderLVAdapter(activity, sonList, isSuccess);
         }
     }
 
@@ -211,6 +220,7 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
 
     private Button btn_cancel_delete;
     private Button btn_confirm_delete;
+
     public void cancelOrder() {
         customProgress = CustomProgress.show(activity, "", true);
         new XHttpuTools() {
@@ -224,7 +234,7 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
                     //若成功，则刷新列表
-                    list.remove(index);
+                   list.get(index).setOrderStatus("close");
                     notifyDataSetChanged();
                 } else {
                     AppUtils.toastText(activity, message);

@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -40,6 +40,35 @@
             android:textColor="@color/white"
             android:textSize="15sp" />
     </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/ll_empty_shopping_cart"
+        style="@style/ll_match_content_ver"
+        android:layout_below="@+id/rl_shopping_cart_top"
+        android:background="@color/gray_eeeeee"
+        android:visibility="gone">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/px_88"
+            android:src="@drawable/gouwu" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/px_22"
+            android:layout_marginRight="@dimen/px_22"
+            android:layout_marginTop="@dimen/px_24"
+            android:background="@drawable/btn_orange_corner"
+            android:gravity="center"
+            android:text="快来填满吧"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+    </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/ll_full_content"
         style="@style/ll_match_content_ver"
@@ -52,6 +81,7 @@
             android:layout_height="match_parent"
             android:divider="@null"
             android:layout_above="@+id/rl_bottom_shopping_cart"
+            android:layout_marginBottom="@dimen/px_20"
             android:background="@color/white"></com.handmark.pulltorefresh.library.PullToRefreshListView>
 
         <RelativeLayout
@@ -176,4 +206,4 @@
     </RelativeLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

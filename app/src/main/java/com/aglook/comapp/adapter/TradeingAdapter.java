@@ -92,10 +92,10 @@ public class TradeingAdapter extends BaseAdapter implements View.OnClickListener
         if (stataLiL.getOrderState().equals("close")) {
             holder.tv_success_all_order_lv.setText("已关闭");
         } else if (stataLiL.getOrderState().equals("success")) {
-            holder.tv_success_all_order_lv.setText("支付成功");
+            holder.tv_success_all_order_lv.setText("交易成功");
 
         } else if (stataLiL.getOrderState().equals("notpay")) {
-            holder.tv_success_all_order_lv.setText("待支付");
+            holder.tv_success_all_order_lv.setText("交易中");
         }
 //        holder.tv_order_num_all_order_lv.setText(order.getOrderId());
 
