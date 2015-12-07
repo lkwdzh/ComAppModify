@@ -75,9 +75,9 @@ public class GoodsDetailActivity extends BaseActivity {
     }
 
     public void init() {
-        right_text = (TextView) findViewById(R.id.right_text);
-        right_text.setVisibility(View.VISIBLE);
-        right_text.setText("更多");
+//        right_text = (TextView) findViewById(R.id.right_text);
+//        right_text.setVisibility(View.VISIBLE);
+//        right_text.setText("更多");
         left_icon = (ImageView) findViewById(R.id.left_icon);
         customProgress = CustomProgress.show(GoodsDetailActivity.this, "加载中···", true);
         isSelf=getIntent().getBooleanExtra("isSelf",false);

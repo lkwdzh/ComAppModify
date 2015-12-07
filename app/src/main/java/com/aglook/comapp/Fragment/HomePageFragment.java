@@ -217,28 +217,52 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
 //                }
                 switch (position){
                     case 0:
-                        classId="9";
+//                        classId="9";
                         className="每日看点";
+                        getId(className);
+                        intent.putExtra("classId",classId);
+                        intent.putExtra("className",className);
+                        startActivity(intent);
                         break;
                     case 1:
-                        classId="10";
+//                        classId="10";
                         className="行情报告";
+                        getId(className);
+                        intent.putExtra("classId",classId);
+                        intent.putExtra("className",className);
+                        startActivity(intent);
                         break;
                     case 2:
-                        classId="";
+//                        classId="";
                         className="品种走势";
+                        getId(className);
+                        intent.putExtra("classId",classId);
+                        intent.putExtra("className",className);
+                        startActivity(intent);
                         break;
                     case 3:
-                        classId="11";
+//                        classId="11";
                         className="品种公告";
+                        getId(className);
+                        intent.putExtra("classId",classId);
+                        intent.putExtra("className",className);
+                        startActivity(intent);
                         break;
                     case 4:
-                        classId="1";
+//                        classId="1";
                         className="网站公告";
+                        getId(className);
+                        intent.putExtra("classId",classId);
+                        intent.putExtra("className",className);
+                        startActivity(intent);
                         break;
                     case 5:
-                        classId="2";
+//                        classId="2";
                         className="知识学堂";
+                        getId(className);
+                        intent.putExtra("classId",classId);
+                        intent.putExtra("className",className);
+                        startActivity(intent);
                         break;
                     case 6:
                         showDailog();
@@ -247,15 +271,25 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                         homePageCallBack.callBack(1);
                         break;
                 }
-                intent.putExtra("classId",classId);
-                intent.putExtra("className",className);
-                startActivity(intent);
+
 
             }
         });
+    }
 
-
-
+    //根据className获取classId;
+    public void getId(String name) {
+        Information information = null;
+        for (int i = 0; i < inList.size(); i++) {
+            information = inList.get(i);
+            if (information.getClassName().equals(name)) {
+                classId = information.getClassId();
+                Log.d("result_classId", classId);
+                return;
+            } else {
+                classId=null;
+            }
+        }
     }
 
     //回调接口，向MainActivity传递数据

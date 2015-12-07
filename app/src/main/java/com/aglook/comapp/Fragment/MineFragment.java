@@ -139,7 +139,26 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             tv_cangdan_point.setVisibility(View.VISIBLE);
             tv_pingtaicangdan_point.setVisibility(View.VISIBLE);
             tv_tihuo_point.setVisibility(View.VISIBLE);
+        }else {
+            tv_name_mine_fragment.setText("");
+
+            tv_all_order_point.setVisibility(View.GONE);
+            tv_daifukuan_point.setVisibility(View.GONE);
+            tv_daishouhuo_point.setVisibility(View.GONE);
+            tv_all_guadan_point.setVisibility(View.GONE);
+            tv_jiaoyizhong_point.setVisibility(View.GONE);
+            tv_jiaoyichenggong_point.setVisibility(View.GONE);
+            tv_cangdan_point.setVisibility(View.GONE);
+            tv_pingtaicangdan_point.setVisibility(View.GONE);
+            tv_tihuo_point.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        login = comAppApplication.getLogin();
+        fillData();
     }
 
     @Override
@@ -191,7 +210,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     startActivityForResult(intent, 1);
                 } else {
                     intent.setClass(getActivity(), AllOrderActivity.class);
-                    intent.putExtra("status",1);
+                    intent.putExtra("status", 1);
                     startActivity(intent);
                 }
                 break;
@@ -201,7 +220,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     startActivityForResult(intent, 1);
                 } else {
                     intent.setClass(getActivity(), AllOrderActivity.class);
-                    intent.putExtra("status",2);
+                    intent.putExtra("status", 2);
                     startActivity(intent);
                 }
                 break;
@@ -211,8 +230,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     startActivityForResult(intent, 1);
                 } else {
                     intent.setClass(getActivity(), AllOrderActivity.class);
-                    intent.putExtra("isSuccess",true);
-                    intent.putExtra("status",3);
+                    intent.putExtra("isSuccess", true);
+                    intent.putExtra("status", 3);
                     startActivity(intent);
                 }
                 break;

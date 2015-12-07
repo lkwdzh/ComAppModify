@@ -7,8 +7,8 @@ public class DefineUtil {
 
     //    测试环境端口
     public static String URL_HOST = "http://192.168.1.118:8080/payment/";
-//    public static String URL_HOST = "http://192.168.1.104:8080/payment/";
-//    public static String URL_HOST = "http://192.168.1.103:8080/payment/";
+//    public static String URL_HOST = "http://192.168.1.105:8080/payment/";
+    //    public static String URL_HOST = "http://192.168.1.103:8080/payment/";
     //    登录
     public static String LOGIN_IN = URL_HOST + "login-in";
 
@@ -41,86 +41,93 @@ public class DefineUtil {
     //首页商品信息详情
     public static String PRODUCT_DETAIL = URL_HOST + "product-detail";
     //首页轮播图
-    public static String INDEX_SCROLLPIC=URL_HOST+"index/scrollPic";
+    public static String INDEX_SCROLLPIC = URL_HOST + "index/scrollPic";
     //收藏
-    public static String COLLECT=URL_HOST+"goods/add/collect";
+    public static String COLLECT = URL_HOST + "goods/add/collect";
     //删除
-    public static String DELETE_COLLECT=URL_HOST+"goods/delete/collect";
+    public static String DELETE_COLLECT = URL_HOST + "goods/delete/collect";
     //商品收藏列表
-    public static String COLLECT_LIST=URL_HOST+"goods/collect/list";
+    public static String COLLECT_LIST = URL_HOST + "goods/collect/list";
     //首页资讯条
-    public static String INFORMATION=URL_HOST+"index/information";
+    public static String INFORMATION = URL_HOST + "index/information";
     //资讯列表
-    public static String INFOR_LIST=URL_HOST+"information/list";
+    public static String INFOR_LIST = URL_HOST + "information/list";
 
     /**
      * 商品搜索
      */
-    public static String SEARCH=URL_HOST+"search";
+    public static String SEARCH = URL_HOST + "search";
 
 
-
-
-//    购物车
-   // 加入购物车
-    public static String ADDCART=URL_HOST+"shopping/addCart";
+    //    购物车
+    // 加入购物车
+    public static String ADDCART = URL_HOST + "shopping/addCart";
     //购物车编辑
-    public static String EDIT_CART=URL_HOST+"shopping/edit/cart";
-//    购物车列表
-    public static String CARTLIST=URL_HOST+"shopping/cartList";
+    public static String EDIT_CART = URL_HOST + "shopping/edit/cart";
+    //    购物车列表
+    public static String CARTLIST = URL_HOST + "shopping/cartList";
 
-/* 确认订单*/
-    public static String CREATE_ORDER=URL_HOST+"order/create/order";
+    /* 确认订单*/
+    public static String CREATE_ORDER = URL_HOST + "order/create/order";
     //订单列表
-    public static String ORDER_LIST=URL_HOST+"order/order/list";
+    public static String ORDER_LIST = URL_HOST + "order/order/list";
     //取消订单
-    public static String CANCEL_ORDER=URL_HOST+"order/cancel/order";
+    public static String CANCEL_ORDER = URL_HOST + "order/cancel/order";
     //订单详情
-    public static String ORDER_DETAIL=URL_HOST+"order/details";
+    public static String ORDER_DETAIL = URL_HOST + "order/details";
 
 
     /**
      * 常用联系人
      */
     //获取常用联系人
-    public static String CONTACT_USER=URL_HOST+"userInfo/contact/user";
+    public static String CONTACT_USER = URL_HOST + "userInfo/contact/user";
     //添加常用联系人
-    public static String ADD_CONTACT=URL_HOST+"userInfo/add/contactUser";
+    public static String ADD_CONTACT = URL_HOST + "userInfo/add/contactUser";
     //删除常用联系人
-    public static String DELETE_CONTACT=URL_HOST+"userInfo/delete/contactUser";
+    public static String DELETE_CONTACT = URL_HOST + "userInfo/delete/contactUser";
 
 
     /**
      * 司机
      */
     //司机列表
-    public static String DRIVER_LIST=URL_HOST+"driver/list";
+    public static String DRIVER_LIST = URL_HOST + "driver/list";
     //添加司机
-    public static String DRIVER_ADD=URL_HOST+"driver/add";
+    public static String DRIVER_ADD = URL_HOST + "driver/add";
     //更新司机信息
-    public static String DRIVER_UPDATE=URL_HOST+"driver/update";
+    public static String DRIVER_UPDATE = URL_HOST + "driver/update";
 
     /**
      * 仓单
      */
     //用户仓单列表
-    public static String CANG_DAN=URL_HOST+"app/api";
+    public static String CANG_DAN = URL_HOST + "app/api";
+
+
+    /**
+     * 设置
+     */
+    //退出程序
+    public static String LOGIN_OUT = URL_HOST + "login-out";
+    //帮助中心
+    public static String SETTING_HELP=URL_HOST+"index/help";
 
     //TOKEN
     public static String TOKEN;
     public static String USERID;
 
     //购物车个数
-    public static int NUM=0;
+    public static int NUM = 0;
 
     //支付
-    public static String PAY=URL_HOST+"payment/v2/order/pay";
+    public static String PAY = URL_HOST + "payment/v2/order/pay";
     //verson
-    public static String VERSON="1.0";
-//    商户号
-    public static String MERCHANTNO="Q0000157";
+    public static String VERSON = "1.0";
+    //    商户号
+    public static String MERCHANTNO = "Q0000157";
     //协议适用范围
-    public static String SERVICESCOPE="www";
+    public static String SERVICESCOPE = "www";
     //签名类型
-    public static String SIGNTYPE="MD5";
+    public static String SIGNTYPE = "MD5";
 }

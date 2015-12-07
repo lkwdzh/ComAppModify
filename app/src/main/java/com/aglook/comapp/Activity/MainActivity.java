@@ -62,7 +62,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
 
     private boolean isGoods = false;
     private TextView tv_shopping_point;
-
+//private DbUtils db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +74,8 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
 
     //初始化控件
     public void initView() {
+//        db=DbUtils.create(this,"MESSAGE");
+//        comAppApplication.setDb(db);
         mTabHost = (FragmentTabHost) findViewById(R.id.tabhost);
         setupTabView();
         mTabHost.setBackgroundColor(getResources().getColor(R.color.red_c91014));
