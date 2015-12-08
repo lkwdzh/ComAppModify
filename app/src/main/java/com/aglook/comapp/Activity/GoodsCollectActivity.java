@@ -63,6 +63,7 @@ public class GoodsCollectActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode==1&&resultCode==1){
+            customProgress = CustomProgress.show(GoodsCollectActivity.this, "加载中···", true);
             isToDetail=true;
             getData();
         }

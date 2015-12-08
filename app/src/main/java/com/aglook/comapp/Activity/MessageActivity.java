@@ -96,12 +96,12 @@ public class MessageActivity extends BaseActivity {
                 strList.add(all.get(i).getTitle());
             }
         }
-        adapter.notifyDataSetChanged();
         lv_message.postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 lv_message.onRefreshComplete();
+        adapter.notifyDataSetChanged();
+
             }
         }, 1000);
     }

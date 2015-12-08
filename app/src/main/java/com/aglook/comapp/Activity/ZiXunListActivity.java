@@ -14,6 +14,7 @@ import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -29,12 +30,14 @@ public class ZiXunListActivity extends BaseActivity {
     private String classId;
     private List<ZiXunList>mList=new ArrayList<>();
     private String className;
+    private CustomProgress customProgress;
 
     @Override
     public void initView() {
         setContentView(R.layout.activity_hang_qing_list);
         className=getIntent().getStringExtra("className");
         setTitleBar(className);
+        customProgress = CustomProgress.show(ZiXunListActivity.this, "加载中···", true);
         ExitApplication.getInstance().addActivity(this);
         init();
         click();
@@ -71,6 +74,9 @@ public class ZiXunListActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
                 Log.d("result_zixunList",classId+"___"+arg0.result);
                 String message= JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
@@ -89,7 +95,9 @@ public class ZiXunListActivity extends BaseActivity {
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.INFOR_LIST, ZiXunUrl.postZiXunListUrl(classId),ZiXunListActivity.this);
     }

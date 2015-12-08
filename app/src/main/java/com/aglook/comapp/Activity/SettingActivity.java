@@ -26,7 +26,7 @@ public class SettingActivity extends BaseActivity {
     private TextView tv_versionName_setting;
     private TextView tv_help_setting;
     private TextView tv_modify_pwd;
-    private TextView tv_sell_setting;
+//    private TextView tv_sell_setting;
     private RelativeLayout tv_update_setting;
     private Button btn_tuichu;
     private ComAppApplication comAppApplication;
@@ -47,7 +47,7 @@ public class SettingActivity extends BaseActivity {
         tv_versionName_setting.setText(getAppInfo());
 
         tv_help_setting = (TextView) findViewById(R.id.tv_help_setting);
-        tv_sell_setting = (TextView) findViewById(R.id.tv_sell_setting);
+//        tv_sell_setting = (TextView) findViewById(R.id.tv_sell_setting);
         tv_modify_pwd = (TextView) findViewById(R.id.tv_modify_pwd);
         tv_update_setting = (RelativeLayout) findViewById(R.id.tv_update_setting);
         btn_tuichu = (Button) findViewById(R.id.btn_tuichu);
@@ -55,7 +55,7 @@ public class SettingActivity extends BaseActivity {
 
     public void click(){
         tv_help_setting.setOnClickListener(this);
-        tv_sell_setting.setOnClickListener(this);
+//        tv_sell_setting.setOnClickListener(this);
         tv_modify_pwd.setOnClickListener(this);
         tv_update_setting.setOnClickListener(this);
         btn_tuichu.setOnClickListener(this);
@@ -69,12 +69,12 @@ public class SettingActivity extends BaseActivity {
                 intent.setClass(SettingActivity.this,HelpCenterActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.tv_sell_setting:
-                intent.setClass(SettingActivity.this,ZiXunListActivity.class);
-
-                intent.putExtra("className", "售后服务");
-                startActivity(intent);
-                break;
+//            case R.id.tv_sell_setting:
+//                intent.setClass(SettingActivity.this,ZiXunListActivity.class);
+//
+//                intent.putExtra("className", "售后服务");
+//                startActivity(intent);
+//                break;
             case R.id.tv_modify_pwd:
                 intent.setClass(SettingActivity.this,ModifyPasswordActivity.class);
                 startActivity(intent);

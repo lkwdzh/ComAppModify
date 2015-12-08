@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aglook.comapp.R;
+import com.umeng.analytics.MobclickAgent;
 
 public abstract class BaseActivity extends Activity implements View.OnClickListener {
     private ImageView mLeftIcon;
@@ -76,11 +77,13 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override

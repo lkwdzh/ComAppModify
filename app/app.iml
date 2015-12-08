@@ -95,6 +95,7 @@
     <orderEntry type="library" exported="" name="commons-beanutils-1.8.3-connections" level="project" />
     <orderEntry type="library" exported="" name="xUtils-2.6.14" level="project" />
     <orderEntry type="library" exported="" name="ezmorph-1.0.3" level="project" />
+    <orderEntry type="library" exported="" name="umeng-analytics-v5.6.3" level="project" />
     <orderEntry type="library" exported="" name="commons-lang-2.3" level="project" />
     <orderEntry type="module" module-name="pullToRefreshLibrary" exported="" />
   </component>

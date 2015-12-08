@@ -4,28 +4,29 @@
     android:background="@color/gray_eeeeee">
 
     <include layout="@layout/activity_base_title_bar" />
-<LinearLayout
-    android:id="@+id/ll_top"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/px_100"
-        android:src="@drawable/denglu" />
-
-    <TextView
+    <LinearLayout
+        android:id="@+id/ll_top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/px_15"
-        android:layout_marginLeft="@dimen/px_30"
-        android:layout_marginTop="@dimen/px_60"
-        android:text="账号登录"
-        android:textColor="@color/textcolor_999999"
-        android:textSize="18sp" />
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/px_100"
+            android:src="@drawable/denglu" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/px_15"
+            android:layout_marginLeft="@dimen/px_30"
+            android:layout_marginTop="@dimen/px_60"
+            android:text="账号登录"
+            android:textColor="@color/textcolor_999999"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <View style="@style/line_1" />
@@ -41,19 +42,27 @@
             android:padding="@dimen/px_15"
             android:weightSum="4">
 
-            <Spinner
-                android:id="@+id/spinner"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/px_10"
                 android:layout_weight="1"
-                android:background="@drawable/spinner"></Spinner>
-            <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="账 号："-->
-            <!--android:layout_marginLeft="@dimen/px_25"-->
-            <!--android:textSize="15sp" />-->
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textcolor_333333"
+                    android:textSize="15sp"
+                    android:drawablePadding="@dimen/px_3" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:src="@drawable/jiage_down" />
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/et_username_login"
@@ -81,9 +90,9 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/px_22"
+                android:layout_marginLeft="@dimen/px_5"
                 android:layout_weight="1"
-                android:text="密     码："
+                android:text="密   码："
                 android:textColor="@color/textcolor_333333"
                 android:textSize="15sp" />
 
@@ -94,7 +103,7 @@
                 android:layout_weight="3"
                 android:background="@null"
                 android:hint="密码"
-
+                android:layout_marginLeft="@dimen/px_10"
                 android:inputType="textPassword"
                 android:textColorHint="@color/textcolor_999999"
                 android:textSize="15sp" />

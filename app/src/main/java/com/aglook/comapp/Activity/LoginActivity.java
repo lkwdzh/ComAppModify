@@ -3,20 +3,25 @@ package com.aglook.comapp.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
+import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
+import com.aglook.comapp.adapter.SpinnerAdapter;
 import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.bean.ShoppingCart;
 import com.aglook.comapp.url.LoginUrl;
@@ -34,11 +39,11 @@ import java.util.List;
 public class LoginActivity extends BaseActivity {
 
 
-    private String str[] = {"账    号：", "席位号："};
-    private Spinner spinner;
-    private ArrayAdapter<String> adapter;
+    private String str[] = {"用户名：", "席位号："};
+    //    private Spinner spinner;
+//    private ArrayAdapter<String> adapter;
     private Button btn_login;
-    private String accountType = "0";
+    private String accountType;
     private String userName;
     private String password;
     private EditText et_username_login;
@@ -49,6 +54,9 @@ public class LoginActivity extends BaseActivity {
     private SharedPreferences.Editor mEditor;
     private LinearLayout ll_top;
     private int totalNum;
+    private int index;
+    private SpinnerAdapter adapter;
+    private TextView tv_name;
 
     @Override
     public void initView() {
@@ -60,47 +68,41 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void init() {
-        comAppApplication= (ComAppApplication) getApplication();
-        mShare=getSharedPreferences("une_pwd", LoginActivity.this.MODE_PRIVATE);
-        mEditor=mShare.edit();
-        spinner = (Spinner) findViewById(R.id.spinner);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, str);
-        spinner.setAdapter(adapter);
+        comAppApplication = (ComAppApplication) getApplication();
+        mShare = getSharedPreferences("une_pwd", LoginActivity.this.MODE_PRIVATE);
+        mEditor = mShare.edit();
+        adapter = new SpinnerAdapter(this, str);
         btn_login = (Button) findViewById(R.id.btn_login);
+        tv_name = (TextView) findViewById(R.id.tv_name);
         ll_top = (LinearLayout) findViewById(R.id.ll_top);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) {
-                    accountType = "1";
-                } else {
-                    accountType = "0";
-                }
-                mEditor.putString("accountType", accountType);
-                fillData();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
         et_username_login = (EditText) findViewById(R.id.et_username_login);
         et_password_login = (EditText) findViewById(R.id.et_password_login);
-
+        accountType=mShare.getString("accountType","");
+        if (accountType==null||"".equals(accountType)){
+            accountType="1";
+        }
+        tv_name.setText("用户名：");
+        fillData();
     }
 
-    public void fillData(){
+    public void fillData() {
+//        accountType=mShare.getString("accountType","");
         if (accountType.equals("0")) {
             et_username_login.setText(mShare.getString("userName", ""));
-        }else {
+            tv_name.setText("席位号：");
+            index = 1;
+        } else {
+            tv_name.setText("用户名：");
             et_username_login.setText(mShare.getString("setName", ""));
+            index = 0;
         }
-        et_password_login.setText(mShare.getString("password",""));
+        adapter.setSelectItem(index);
+        et_password_login.setText(mShare.getString("password", ""));
     }
 
     public void click() {
         btn_login.setOnClickListener(this);
+        tv_name.setOnClickListener(this);
         ll_top.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -127,12 +129,16 @@ public class LoginActivity extends BaseActivity {
                 password = AppUtils.toStringTrim_ET(et_password_login);
                 if (accountType.equals("0")) {
                     mEditor.putString("userName", userName);
-                }else {
+                } else {
                     mEditor.putString("setName", userName);
                 }
-                mEditor.putString("password",password);
+                mEditor.putString("accountType",accountType);
+                mEditor.putString("password", password);
                 mEditor.commit();
                 login();
+                break;
+            case R.id.tv_name:
+                showWindow(view);
                 break;
         }
     }
@@ -143,17 +149,16 @@ public class LoginActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_login",arg0.result);
+                Log.d("result_login", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String str = JsonUtils.getJsonParam(arg0.result, "obj");
                 login = JsonUtils.parse(str, Login.class);
                 if (status.equals("1")) {//登录成功,跳转页面
                     DefineUtil.TOKEN = login.getToken();
-                    DefineUtil.USERID=login.getPshUser().getUserId();
+                    DefineUtil.USERID = login.getPshUser().getUserId();
                     comAppApplication.setLogin(login);
                     // 发送广播给MainActivity
-
 
 
                     LoginActivity.this.setResult(1);
@@ -162,11 +167,13 @@ public class LoginActivity extends BaseActivity {
                 }
                 AppUtils.toastText(LoginActivity.this, message);
             }
+
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
             }
         }.datePost(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType), LoginActivity.this);
     }
+
     //    获取购物车列表
     public void getCartListData() {
         new XHttpuTools() {
@@ -179,9 +186,9 @@ public class LoginActivity extends BaseActivity {
                 List<ShoppingCart> list = new ArrayList<ShoppingCart>();
                 list = JsonUtils.parseList(obj, ShoppingCart.class);
                 if (status.equals("1")) {
-                    if (list!=null&&list.size()!=0){
+                    if (list != null && list.size() != 0) {
                         for (int i = 0; i < list.size(); i++) {
-                            DefineUtil.NUM+=list.get(i).getProductNum();
+                            DefineUtil.NUM += list.get(i).getProductNum();
                         }
                     }
                     Intent intent = new Intent();
@@ -196,4 +203,51 @@ public class LoginActivity extends BaseActivity {
         }.datePost(DefineUtil.CARTLIST, ShoppingCartUrl.postCartListUrl(DefineUtil.USERID, DefineUtil.TOKEN), LoginActivity.this);
     }
 
+
+    private PopupWindow popupWindow;
+    private View view;
+    private ListView listView;
+
+    public void showWindow(View v) {
+        if (popupWindow == null) {
+            LayoutInflater layoutInflater = (LayoutInflater) LoginActivity.this
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = layoutInflater.inflate(R.layout.layout_spinner, null);
+            listView = (ListView) view.findViewById(R.id.listView);
+            popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        }
+
+        // 使其聚焦
+        popupWindow.setFocusable(true);
+        // 设置允许在外点击消失
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.update();
+        // 点击back也会返回
+        popupWindow.setBackgroundDrawable(new BitmapDrawable());
+        popupWindow.showAsDropDown(v, 0, 0);
+        listView.setAdapter(adapter);
+        // 当开始时间选中后，获取选中的position，并且使结束时间的list只能从当前position开始选择
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                index = position;
+
+                if (position == 0) {
+                    accountType = "1";
+                } else {
+                    accountType = "0";
+                }
+                mEditor.putString("accountType", accountType);
+                fillData();
+                adapter.notifyDataSetChanged();
+                if (popupWindow != null) {
+                    popupWindow.dismiss();
+                }
+
+            }
+        });
+
+    }
 }

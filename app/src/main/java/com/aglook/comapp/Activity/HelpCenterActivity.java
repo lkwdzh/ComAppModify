@@ -32,6 +32,8 @@ public class HelpCenterActivity extends BaseActivity {
     private int pageSize = 10;
     private int pageNumber = 1;
     private List<Information> mList = new ArrayList<>();
+    private TextView tv_sell_setting;
+    private TextView tv_lc_help;
 
 
     @Override
@@ -48,6 +50,8 @@ public class HelpCenterActivity extends BaseActivity {
         tv_ht_help = (TextView) findViewById(R.id.tv_ht_help);
         tv_mm_help = (TextView) findViewById(R.id.tv_mm_help);
         tv_gy_help = (TextView) findViewById(R.id.tv_gy_help);
+        tv_sell_setting = (TextView) findViewById(R.id.tv_sell_setting);
+        tv_lc_help = (TextView) findViewById(R.id.tv_lc_help);
     }
 
     public void click() {
@@ -55,6 +59,8 @@ public class HelpCenterActivity extends BaseActivity {
         tv_ht_help.setOnClickListener(this);
         tv_mm_help.setOnClickListener(this);
         tv_gy_help.setOnClickListener(this);
+        tv_sell_setting.setOnClickListener(this);
+        tv_lc_help.setOnClickListener(this);
     }
 
     @Override
@@ -72,6 +78,12 @@ public class HelpCenterActivity extends BaseActivity {
                 break;
             case R.id.tv_gy_help:
                 className = "关于我们";
+                break;
+            case R.id.tv_sell_setting:
+                className="售后服务";
+                break;
+            case R.id.tv_lc_help:
+                className="买卖流程";
                 break;
         }
         getId(className);

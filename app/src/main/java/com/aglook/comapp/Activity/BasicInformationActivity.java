@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
@@ -24,8 +23,8 @@ import com.lidroid.xutils.http.ResponseInfo;
 public class BasicInformationActivity extends BaseActivity {
 
     private TextView right_text;
-    private RelativeLayout rl_right;
-    private EditText et_username_basic_info;
+//    private RelativeLayout rl_right;
+    private TextView et_username_basic_info;
     private EditText et_truename_basic_info;
     private TextView tv_seat_basic_info;
     private EditText et_num_basic_info;
@@ -40,6 +39,7 @@ public class BasicInformationActivity extends BaseActivity {
 
     private SelectPopupWindow popupWindow;
     private EditText et_qq_basic_info;
+
 
     @Override
     public void initView() {
@@ -61,8 +61,8 @@ public class BasicInformationActivity extends BaseActivity {
         right_text.setVisibility(View.VISIBLE);
         right_text.setText("完成");
         login = comAppApplication.getLogin();
-        rl_right = (RelativeLayout) findViewById(R.id.rl_right);
-        et_username_basic_info = (EditText) findViewById(R.id.et_username_basic_info);
+//        rl_right = (RelativeLayout) findViewById(R.id.rl_right);
+        et_username_basic_info = (TextView) findViewById(R.id.et_username_basic_info);
         et_truename_basic_info = (EditText) findViewById(R.id.et_truename_basic_info);
         tv_seat_basic_info = (TextView) findViewById(R.id.tv_seat_basic_info);
         et_num_basic_info = (EditText) findViewById(R.id.et_num_basic_info);
@@ -129,8 +129,34 @@ public class BasicInformationActivity extends BaseActivity {
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
                 if (status.equals("1")){
                     finish();
-                }
+                    LoginPshUser pshUser = login.getPshUser();
+                    if (userQq!=null&&!"".equals(userQq)){
+                        pshUser.setUserQq(userQq);
+                    }
+                    if (userTel!=null&&!"".equals(userTel)){
+                        pshUser.setUserTel(userTel);
+                    }
+                    if (userEmail!=null&&!"".equals(userEmail)){
+                        pshUser.setUserEmail(userEmail);
+                    }
+                    if (userNumber!=null&&!"".equals(userNumber)){
+                        pshUser.setUserNumber(userNumber);
+                    }
+                    if (userPhone!=null&&!"".equals(userPhone)){
+                        pshUser.setUserPhone(userPhone);
+                    }
+                    if (username!=null&&!"".equals(username)){
+                        pshUser.setUsername(username);
+                    }
+                    if (userTName!=null&&!"".equals(userTName)){
+                        pshUser.setUserTName(userTName);
+                    }
+
+
+                }else {
                 AppUtils.toastText(BasicInformationActivity.this,message);
+
+                }
             }
 
             @Override
@@ -148,7 +174,7 @@ public class BasicInformationActivity extends BaseActivity {
         userEmail = AppUtils.toStringTrim_ET(et_email_basic_info);
         userNumber = AppUtils.toStringTrim_ET(et_num_basic_info);
         userPhone = AppUtils.toStringTrim_ET(et_phone_basic_info);
-        username = AppUtils.toStringTrim_ET(et_username_basic_info);
+        username = AppUtils.toStringTrim_TV(et_username_basic_info);
         userTName = AppUtils.toStringTrim_ET(et_truename_basic_info);
         AppUtils.toastText(BasicInformationActivity.this,userTName);
         updata();

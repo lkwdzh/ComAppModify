@@ -8,7 +8,7 @@ public class DefineUtil {
     //    测试环境端口
     public static String URL_HOST = "http://192.168.1.118:8080/payment/";
 //    public static String URL_HOST = "http://192.168.1.105:8080/payment/";
-    //    public static String URL_HOST = "http://192.168.1.103:8080/payment/";
+//        public static String URL_HOST = "http://192.168.1.103:8080/payment/";
     //    登录
     public static String LOGIN_IN = URL_HOST + "login-in";
 

@@ -32,12 +32,26 @@
 
     <View style="@style/line_1" />
 
+    <TextView
+        android:id="@+id/tv_lc_help"
+        style="@style/basic_infor_TextView_333333_set"
+        android:drawableRight="@drawable/next"
+        android:text="买卖流程" />
 
+    <View style="@style/line_1" />
     <TextView
         android:id="@+id/tv_gy_help"
         style="@style/basic_infor_TextView_333333_set"
         android:drawableRight="@drawable/next"
         android:text="关于我们" />
+
+    <View style="@style/line_1" />
+
+    <TextView
+        android:id="@+id/tv_sell_setting"
+        style="@style/basic_infor_TextView_333333_set"
+        android:drawableRight="@drawable/next"
+        android:text="售后服务" />
 
     <View style="@style/line_1" />
 

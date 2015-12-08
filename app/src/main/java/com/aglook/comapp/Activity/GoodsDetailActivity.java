@@ -268,9 +268,11 @@ public class GoodsDetailActivity extends BaseActivity {
                     if (goodsDetail.getIsCollect()!=null&&!"".equals(goodsDetail.getIsCollect())){
                         if (goodsDetail.getIsCollect().equals("0")){
                             //未收藏则收藏
+                            customProgress = CustomProgress.show(GoodsDetailActivity.this, "", true);
                             ShouCang();
                         }else {
                             //已收藏则删除
+                            customProgress = CustomProgress.show(GoodsDetailActivity.this, "", true);
                             deleteSC();
                         }
                     }
@@ -336,6 +338,9 @@ public class GoodsDetailActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
                 Log.d("result_shoucang",arg0.result);
                 String message=JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
@@ -350,7 +355,9 @@ public class GoodsDetailActivity extends BaseActivity {
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.COLLECT,GoodsDetailUrl.postShouUrl(DefineUtil.TOKEN,DefineUtil.USERID,productId),GoodsDetailActivity.this);
     }
@@ -360,6 +367,9 @@ public class GoodsDetailActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
                 Log.d("result_delete",arg0.result);
                 String message=JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
@@ -374,7 +384,9 @@ public class GoodsDetailActivity extends BaseActivity {
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.DELETE_COLLECT,GoodsDetailUrl.postDeleteUrl(DefineUtil.TOKEN,DefineUtil.USERID,productId),GoodsDetailActivity.this);
     }

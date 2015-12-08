@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.Login;
@@ -18,11 +19,13 @@ public class PersonInformationActivity extends BaseActivity {
     private TextView tv_friend_person_info;
     private Login login;
     private TextView tv_name_person_info;
+    private ComAppApplication comAppApplication;
 
     @Override
     public void initView() {
         setContentView(R.layout.activity_person_information);
         setTitleBar("个人信息");
+        comAppApplication= (ComAppApplication) getApplication();
         ExitApplication.getInstance().addActivity(this);
         init();
         fillData();
@@ -30,7 +33,7 @@ public class PersonInformationActivity extends BaseActivity {
     }
 
     public void init(){
-        login= (Login) getIntent().getSerializableExtra("login");
+        login= comAppApplication.getLogin();
         tv_basic_infor_peson_info = (TextView) findViewById(R.id.tv_basic_infor_peson_info);
         tv_bang_card_person_info = (TextView) findViewById(R.id.tv_bang_card_person_info);
         tv_linkman_person_info = (TextView) findViewById(R.id.tv_linkman_person_info);
@@ -50,6 +53,13 @@ public class PersonInformationActivity extends BaseActivity {
         if (login!=null){
             tv_name_person_info.setText(login.getPshUser().getUsername());
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        login=comAppApplication.getLogin();
+        fillData();
     }
 
     @Override

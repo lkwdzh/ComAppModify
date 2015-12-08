@@ -1,26 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aglook.comapp"
-    android:versionName="1.0" >
+    android:versionName="1.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <!--友盟分享-->
+    <!--<uses-sdk android:minSdkVersion="8"-->
+        <!--android:targetSdkVersion="18" />-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+
+
     <application
         android:name=".Application.ComAppApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/tubiao"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
+
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5666add8e0f55a3b0c0023ad"></meta-data>
+
+        <!--将<meta-data android:value="Channel ID" android:name="UMENG_CHANNEL"/> 中的Channel ID 替换为您应用的推广渠道名称，channel id自定义。-->
+        <!--例如在豌豆荚渠道推广此包，代码示例：-->
+        <!--<meta-data android:value="Wandoujia" android:name="UMENG_CHANNEL"/>-->
+        <!--注意：一个包中只能添加一个渠道；-->
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Umeng"></meta-data>
+
+
         <activity
             android:name=".Activity.MainActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="adjustPan" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:windowSoftInputMode="adjustPan">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity
             android:name=".Activity.BaseActivity"
@@ -46,172 +69,141 @@
         <activity
             android:name=".Activity.BasicInformationActivity"
             android:label="@string/title_activity_basic_information"
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="adjustPan">
             wi
         </activity>
         <activity
             android:name=".Activity.GuaDanDetailActivity"
-            android:label="@string/title_activity_gua_dan_detail" >
-        </activity>
+            android:label="@string/title_activity_gua_dan_detail"></activity>
         <activity
             android:name=".Activity.GuaDanAddActivity"
             android:label="@string/title_activity_gua_dan_add"
-            android:windowSoftInputMode="adjustPan" >
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".Activity.SettingActivity"
-            android:label="@string/title_activity_setting" >
-        </activity>
+            android:label="@string/title_activity_setting"></activity>
         <activity
             android:name=".Activity.SearchActivity"
-            android:label="@string/title_activity_search" >
-        </activity>
+            android:label="@string/title_activity_search"></activity>
         <activity
             android:name=".Activity.PayResultActivity"
-            android:label="@string/title_activity_pay_succeed" >
-        </activity>
+            android:label="@string/title_activity_pay_succeed"></activity>
         <activity
             android:name=".Activity.PersonInformationActivity"
-            android:label="@string/title_activity_person_information" >
-        </activity>
+            android:label="@string/title_activity_person_information"></activity>
         <activity
             android:name=".Activity.BandCardActivity"
-            android:label="@string/title_activity_band_card" >
-        </activity>
+            android:label="@string/title_activity_band_card"></activity>
         <activity
             android:name=".Activity.ScreenActivity"
-            android:label="@string/title_activity_screen" >
-        </activity>
+            android:label="@string/title_activity_screen"></activity>
         <activity
             android:name=".Activity.ConfirmOrderActivity"
             android:label="@string/title_activity_confirm_order"
-            android:windowSoftInputMode="adjustPan" >
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".Activity.AllOrderActivity"
-            android:label="@string/title_activity_all_order" >
-        </activity>
+            android:label="@string/title_activity_all_order"></activity>
         <activity
             android:name=".Activity.AllGuaDanActivity"
-            android:label="@string/title_activity_all_gua_dan" >
-        </activity>
+            android:label="@string/title_activity_all_gua_dan"></activity>
         <activity
             android:name=".Activity.ToPayActivity"
-            android:label="@string/title_activity_to_pay" >
-        </activity>
+            android:label="@string/title_activity_to_pay"></activity>
         <activity
             android:name=".Activity.TransSucceedActivity"
-            android:label="@string/title_activity_to_receive" >
-        </activity>
+            android:label="@string/title_activity_to_receive"></activity>
         <activity
             android:name=".Activity.CardListActivity"
-            android:label="@string/title_activity_card_list" >
-        </activity>
+            android:label="@string/title_activity_card_list"></activity>
         <activity
             android:name=".Activity.MyCangDanActivity"
-            android:label="@string/title_activity_my_cang_dan" >
-        </activity>
+            android:label="@string/title_activity_my_cang_dan"></activity>
         <activity
             android:name=".Activity.PlatformActivity"
-            android:label="@string/title_activity_platform" >
-        </activity>
+            android:label="@string/title_activity_platform"></activity>
         <activity
             android:name=".Activity.PickUpActivity"
-            android:label="@string/title_activity_pick_up" >
-        </activity>
+            android:label="@string/title_activity_pick_up"></activity>
         <activity
             android:name=".Activity.PickInfoActivity"
             android:label="@string/title_activity_pick_info"
-            android:windowSoftInputMode="adjustPan" >
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".Activity.DriverListActivity"
-            android:label="@string/title_activity_driver_list" >
-        </activity>
+            android:label="@string/title_activity_driver_list"></activity>
         <activity
             android:name=".Activity.DriverAddActivity"
-            android:label="@string/title_activity_driver_add" >
-        </activity>
+            android:label="@string/title_activity_driver_add"></activity>
         <activity
             android:name=".Activity.DriverInfoActivity"
-            android:label="@string/title_activity_driver_info" >
-        </activity>
+            android:label="@string/title_activity_driver_info"></activity>
         <activity
             android:name=".Activity.OrderDetailActivity"
-            android:label="@string/title_activity_order_detail" >
-        </activity>
+            android:label="@string/title_activity_order_detail"></activity>
         <activity
             android:name=".Activity.ModifyPasswordActivity"
-            android:label="@string/title_activity_modify_password" >
-        </activity>
+            android:label="@string/title_activity_modify_password"></activity>
         <activity
             android:name=".Activity.ZiXunListActivity"
-            android:label="@string/title_activity_hang_qing_list" >
-        </activity>
+            android:label="@string/title_activity_hang_qing_list"></activity>
         <activity
             android:name=".Activity.HangDetailActivity"
-            android:label="@string/title_activity_hang_detail" >
-        </activity>
+            android:label="@string/title_activity_hang_detail"></activity>
         <activity
             android:name=".Activity.PlatformDetailActivity"
-            android:label="@string/title_activity_platform_detail" >
-        </activity>
+            android:label="@string/title_activity_platform_detail"></activity>
         <activity
             android:name=".Activity.PickUpDtailActivity"
-            android:label="@string/title_activity_pick_up_dtail_activity2" >
-        </activity>
+            android:label="@string/title_activity_pick_up_dtail_activity2"></activity>
         <activity
             android:name=".Activity.FriendsListActivity"
-            android:label="@string/title_activity_buyer_list" >
-        </activity>
+            android:label="@string/title_activity_buyer_list"></activity>
         <activity
             android:name=".Activity.FriendsAddActivity"
-            android:label="@string/title_activity_buyer_add" >
-        </activity>
+            android:label="@string/title_activity_buyer_add"></activity>
         <activity
             android:name=".Activity.GoodsCollectActivity"
-            android:label="@string/title_activity_friends" >
-        </activity>
+            android:label="@string/title_activity_friends"></activity>
         <activity
             android:name=".Activity.FriendsDetailActivity"
-            android:label="@string/title_activity_friends_detail" >
-        </activity>
+            android:label="@string/title_activity_friends_detail"></activity>
         <activity
             android:name=".Activity.TradeingActivity"
-            android:label="@string/title_activity_tradeing" >
-        </activity>
+            android:label="@string/title_activity_tradeing"></activity>
         <activity
             android:name=".Activity.PayActivity"
-            android:label="@string/title_activity_pay" >
-        </activity>
+            android:label="@string/title_activity_pay"></activity>
         <activity
             android:name=".Activity.ModifyPickUpActivity"
-            android:label="@string/title_activity_modify_pick_up_activity2" >
-        </activity>
+            android:label="@string/title_activity_modify_pick_up_activity2"></activity>
         <activity
             android:name=".Activity.GuaDanStateActivity"
-            android:label="@string/title_activity_order_state" >
-        </activity>
+            android:label="@string/title_activity_order_state"></activity>
         <activity
             android:name=".Activity.ModifyGuaDanActivity"
             android:label="@string/title_activity_modify_gua_dan"
-            android:windowSoftInputMode="adjustPan" >
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".Activity.BuyerListActivity"
-            android:label="@string/title_activity_buyer_list" >
-        </activity>
+            android:label="@string/title_activity_buyer_list"></activity>
         <activity
             android:name=".Activity.ShoppingCartActivity"
-            android:label="@string/title_activity_shopping_cart" >
-        </activity>
+            android:label="@string/title_activity_shopping_cart"></activity>
         <activity
             android:name=".Activity.MessageActivity"
-            android:label="@string/title_activity_message" >
-        </activity>
+            android:label="@string/title_activity_message"></activity>
         <activity
             android:name=".Activity.HelpCenterActivity"
-            android:label="@string/title_activity_help_center" >
+            android:label="@string/title_activity_help_center"></activity>
+        <activity
+            android:name=".Activity.LaunchActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

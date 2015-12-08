@@ -14,13 +14,13 @@
         android:drawableRight="@drawable/next"
         android:text="帮助中心" />
 
-    <View style="@style/line_1" />
+    <!--<View style="@style/line_1" />-->
 
-    <TextView
-        android:id="@+id/tv_sell_setting"
-        style="@style/basic_infor_TextView_333333_set"
-        android:drawableRight="@drawable/next"
-        android:text="售后服务" />
+    <!--<TextView-->
+        <!--android:id="@+id/tv_sell_setting"-->
+        <!--style="@style/basic_infor_TextView_333333_set"-->
+        <!--android:drawableRight="@drawable/next"-->
+        <!--android:text="售后服务" />-->
 
     <View style="@style/line_1" />
 
