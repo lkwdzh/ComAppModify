@@ -88,12 +88,12 @@ public class LoginActivity extends BaseActivity {
     public void fillData() {
 //        accountType=mShare.getString("accountType","");
         if (accountType.equals("0")) {
-            et_username_login.setText(mShare.getString("userName", ""));
+            et_username_login.setText(mShare.getString("setName", ""));
             tv_name.setText("席位号：");
             index = 1;
         } else {
             tv_name.setText("用户名：");
-            et_username_login.setText(mShare.getString("setName", ""));
+            et_username_login.setText(mShare.getString("userName", ""));
             index = 0;
         }
         adapter.setSelectItem(index);
@@ -127,7 +127,7 @@ public class LoginActivity extends BaseActivity {
             case R.id.btn_login:
                 userName = AppUtils.toStringTrim_ET(et_username_login);
                 password = AppUtils.toStringTrim_ET(et_password_login);
-                if (accountType.equals("0")) {
+                if (accountType.equals("1")) {
                     mEditor.putString("userName", userName);
                 } else {
                     mEditor.putString("setName", userName);
@@ -149,7 +149,7 @@ public class LoginActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_login", arg0.result);
+                Log.d("result_login",accountType+"_______"+ arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String str = JsonUtils.getJsonParam(arg0.result, "obj");

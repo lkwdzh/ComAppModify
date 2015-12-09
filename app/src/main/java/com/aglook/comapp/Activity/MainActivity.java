@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends FragmentActivity implements ShoppingCartFragment.onShoppingCartClick,HomePageFragment.HomePageCallBack {
+public class MainActivity extends FragmentActivity implements ShoppingCartFragment.onShoppingCartClick, HomePageFragment.HomePageCallBack {
 
     private FragmentTabHost mTabHost;
     //是否是第一次启动
@@ -50,6 +50,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
     private Login login;
     private String accountType;
     private String userName;
+
     private String password;
     //Fragment集合
     private Class fragmentArray[] = {
@@ -63,7 +64,8 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
 
     private boolean isGoods = false;
     private TextView tv_shopping_point;
-//private DbUtils db;
+
+    //private DbUtils db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,12 +91,31 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         mShare = getSharedPreferences("une_pwd", MainActivity.this.MODE_PRIVATE);
         mEditor = mShare.edit();
         accountType = mShare.getString("accountType", "");
-        userName = mShare.getString("userName", "");
         password = mShare.getString("password", "");
-        //假如已经存在，则登录
-        if (!"".equals(accountType) && !"".equals(userName) && !"".equals(password)) {
-            login();
+        Log.d("result----",accountType+"----"+ mShare.getString("userName", "")+"-----"+ mShare.getString("setName", ""));
+        if (!"".equals(accountType)) {
+            if (accountType.equals("1")) {
+                //用户名登录
+                userName = mShare.getString("userName", "");
+                if (!"".equals(userName) && !"".equals(password)){
+                    Log.d("result_acc", accountType + "____" + userName + "____" + password);
+                    login();
+                }
+
+            }else if (accountType.equals("0")){
+                //席位号登录
+                userName = mShare.getString("setName", "");
+                if (!"".equals(userName) && !"".equals(password)){
+                    Log.d("result_acc", accountType + "____" + userName + "____" + password);
+                    login();
+                }
+            }
         }
+//        //假如已经存在，则登录
+//        if (!"".equals(accountType) && !"".equals(userName) && !"".equals(password)) {
+//            Log.d("result_acc", accountType + "____" + userName + "____" + password);
+//            login();
+//        }
 
         tv_shopping_point = (TextView) findViewById(R.id.tv_shopping_point);
 
@@ -124,25 +145,12 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
             if (DefineUtil.NUM != 0) {
                 tv_shopping_point.setVisibility(View.VISIBLE);
                 tv_shopping_point.setText(DefineUtil.NUM + "");
-            }else {
+            } else {
                 tv_shopping_point.setVisibility(View.INVISIBLE);
             }
         }
     };
 
-
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        if (comAppApplication.getLogin() == null || "".equals(comAppApplication.getLogin())) {
-//            tv_shopping_point.setVisibility(View.INVISIBLE);
-//        } else {
-//            if (DefineUtil.NUM!=0) {
-//                tv_shopping_point.setVisibility(View.VISIBLE);
-//                tv_shopping_point.setText(DefineUtil.NUM + "");
-//            }
-//        }
-//    }
 
     //    TabHost的改变
     private void setupTabView() {
@@ -252,6 +260,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
 
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                Log.d("result_login", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String str = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -264,8 +273,10 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
 //                    MainActivity.this.setResult(1);
 //                    MainActivity.this.finish();
                     getCartListData();
+                } else {
+
+                    AppUtils.toastText(MainActivity.this, message);
                 }
-                AppUtils.toastText(MainActivity.this, message);
             }
 
             @Override

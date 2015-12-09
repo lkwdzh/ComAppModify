@@ -97,7 +97,6 @@
     <orderEntry type="library" exported="" name="ezmorph-1.0.3" level="project" />
     <orderEntry type="library" exported="" name="umeng-analytics-v5.6.3" level="project" />
     <orderEntry type="library" exported="" name="commons-lang-2.3" level="project" />
-    <orderEntry type="library" exported="" name="analytics-5.6.1" level="project" />
     <orderEntry type="module" module-name="pullToRefreshLibrary" exported="" />
   </component>
 </module>
