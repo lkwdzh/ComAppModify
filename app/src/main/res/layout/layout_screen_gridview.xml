@@ -30,7 +30,6 @@
                     android:id="@+id/iv_screen_gridview"
                     style="@style/imageview_px120"
                     android:layout_centerVertical="true"
-                    android:scaleType="centerInside"
                      />
 
                 <ImageView

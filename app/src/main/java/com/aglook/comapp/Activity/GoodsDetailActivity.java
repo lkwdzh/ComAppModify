@@ -1,7 +1,6 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -19,6 +18,7 @@ import com.aglook.comapp.url.ShoppingCartUrl;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
+import com.aglook.comapp.util.XBitmap;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.CustomProgress;
 import com.aglook.comapp.view.Timestamp;
@@ -29,7 +29,6 @@ public class GoodsDetailActivity extends BaseActivity {
 
 
     private TextView right_text;
-    private ViewPager vp_goods_detail;
     private TextView tv_detail_goods_detail;
     private TextView tv_price_goods_detail;
     private TextView tv_buy_goods_detail;
@@ -61,6 +60,7 @@ public class GoodsDetailActivity extends BaseActivity {
     private LinearLayout ll_attention_goods_detail;
 
     private boolean isSelf;
+    private ImageView iv_detail;
 
 
     @Override
@@ -80,10 +80,10 @@ public class GoodsDetailActivity extends BaseActivity {
 //        right_text.setText("更多");
         left_icon = (ImageView) findViewById(R.id.left_icon);
         customProgress = CustomProgress.show(GoodsDetailActivity.this, "加载中···", true);
-        isSelf=getIntent().getBooleanExtra("isSelf",false);
+        isSelf = getIntent().getBooleanExtra("isSelf", false);
         productId = getIntent().getStringExtra("productId");
-        pointUser=getIntent().getStringExtra("pointUser");
-        vp_goods_detail = (ViewPager) findViewById(R.id.vp_goods_detail);
+        pointUser = getIntent().getStringExtra("pointUser");
+        iv_detail = (ImageView) findViewById(R.id.iv_detail);
         tv_detail_goods_detail = (TextView) findViewById(R.id.tv_detail_goods_detail);
         tv_price_goods_detail = (TextView) findViewById(R.id.tv_price_goods_detail);
         tv_buy_goods_detail = (TextView) findViewById(R.id.tv_buy_goods_detail);
@@ -105,7 +105,12 @@ public class GoodsDetailActivity extends BaseActivity {
         tv_shoucang_goods_detail = (TextView) findViewById(R.id.tv_shoucang_goods_detail);
         iv_shoucang_goods_detail = (ImageView) findViewById(R.id.iv_shoucang_goods_detail);
         ll_attention_goods_detail = (LinearLayout) findViewById(R.id.ll_attention_goods_detail);
+        //获取屏幕宽度
 
+        int widgh = this.getWindowManager().getDefaultDisplay().getWidth();
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, widgh);
+        iv_detail.setLayoutParams(params);
+        iv_detail.setScaleType(ImageView.ScaleType.FIT_XY);
     }
 
     public void click() {
@@ -124,7 +129,7 @@ public class GoodsDetailActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_GoodsDetail",productId+ "-------"+arg0.result);
+                Log.d("result_GoodsDetail", productId + "-------" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -144,7 +149,7 @@ public class GoodsDetailActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.PRODUCT_DETAIL, GoodsDetailUrl.postGoodsDetailUrl(DefineUtil.USERID,productId), GoodsDetailActivity.this);
+        }.datePost(DefineUtil.PRODUCT_DETAIL, GoodsDetailUrl.postGoodsDetailUrl(DefineUtil.USERID, productId), GoodsDetailActivity.this);
     }
 
     //    填充数据
@@ -154,13 +159,13 @@ public class GoodsDetailActivity extends BaseActivity {
             tv_price_goods_detail.setText(goodsDetail.getProductMoney());
             tv_cangdanhao_goods_detail.setText(goodsDetail.getProductListId());
             tv_huowuzhonglei_goods_detail.setText(goodsDetail.getCategoryName());
-            tv_weight_goods_detail.setText(goodsDetail.getProductSellNum()+"吨");
-            if (goodsDetail.getInnerTime()!=null) {
+            tv_weight_goods_detail.setText(goodsDetail.getProductSellNum() + "吨");
+            if (goodsDetail.getInnerTime() != null) {
                 tv_in_time_goods_detail.setText(Timestamp.getDateToString(goodsDetail.getInnerTime()));
             }
             tv_producing_area_goods_detail.setText(goodsDetail.getGoodsPlace());
             tv_xuetou_goods_detail.setText(goodsDetail.getMark());
-            if (goodsDetail.getProductAvailable()!=null) {
+            if (goodsDetail.getProductAvailable() != null) {
                 tv_userful_life_goods_detail.setText(Timestamp.getDateToString(goodsDetail.getProductAvailable()));
             }
             tv_name_goods_detail.setText(goodsDetail.getDepotResponsible());
@@ -168,24 +173,28 @@ public class GoodsDetailActivity extends BaseActivity {
             tv_emailgoods_detail.setText(goodsDetail.getResponsibleEmail());
             tv_address_goods_detail.setText(goodsDetail.getDepotAddress());
             tv_goods_detail_goods_detail.setText(goodsDetail.getProductAppDesc());
-            if (goodsDetail.getIsCollect().equals("1")){
+            if (goodsDetail.getIsCollect().equals("1")) {
                 tv_shoucang_goods_detail.setText("已收藏");
                 iv_shoucang_goods_detail.setImageResource(R.drawable.guanzhu_checked);
-            }else {
+            } else {
                 tv_shoucang_goods_detail.setText("收藏");
                 iv_shoucang_goods_detail.setImageResource(R.drawable.guanzhu);
             }
+
+            if (goodsDetail.getProductLogo() != null && !"".equals(goodsDetail.getProductLogo())) {
+                XBitmap.displayImage(iv_detail, goodsDetail.getProductLogo(), GoodsDetailActivity.this);
+            }
         }
         //判断是否已经登录，若登录则显示购物车个数，否则不显示
-        if (comAppApplication.getLogin()!=null&&!"".equals(comAppApplication.getLogin())){
-            if (DefineUtil.NUM!=0) {
+        if (comAppApplication.getLogin() != null && !"".equals(comAppApplication.getLogin())) {
+            if (DefineUtil.NUM != 0) {
                 //假如已登录
                 tv_num_goods_detail.setVisibility(View.VISIBLE);
                 tv_num_goods_detail.setText(DefineUtil.NUM + "");
-            }else {
+            } else {
                 tv_num_goods_detail.setVisibility(View.INVISIBLE);
             }
-        }else {
+        } else {
             tv_num_goods_detail.setVisibility(View.INVISIBLE);
         }
 
@@ -204,15 +213,13 @@ public class GoodsDetailActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == 1) {
             addCart();
-        }else if (requestCode==2&&resultCode==1){
+        } else if (requestCode == 2 && resultCode == 1) {
             Intent intent = new Intent(GoodsDetailActivity.this, ConfirmOrderActivity.class);
             startActivity(intent);
-        }else if (requestCode==3&&resultCode==1){
+        } else if (requestCode == 3 && resultCode == 1) {
             getData();
         }
     }
-
-
 
 
     @Override
@@ -237,9 +244,9 @@ public class GoodsDetailActivity extends BaseActivity {
                     startActivityForResult(intent, 1);
                 } else {
                     //判断是否是从挂单进去，若从挂单进入则无法购买自己的
-                    if (isSelf){
-                        AppUtils.toastText(GoodsDetailActivity.this,"无法购买自己的产品");
-                    }else {
+                    if (isSelf) {
+                        AppUtils.toastText(GoodsDetailActivity.this, "无法购买自己的产品");
+                    } else {
                         addCart();
                     }
                 }
@@ -250,27 +257,27 @@ public class GoodsDetailActivity extends BaseActivity {
                 GoodsDetailActivity.this.finish();
                 break;
             case R.id.ll_shopping_cart_goods_detail:
-                if (comAppApplication.getLogin() == null || comAppApplication.getLogin().equals("")){
+                if (comAppApplication.getLogin() == null || comAppApplication.getLogin().equals("")) {
                     intent.setClass(GoodsDetailActivity.this, LoginActivity.class);
                     startActivityForResult(intent, 3);
-                }else {
+                } else {
                     intent.setClass(GoodsDetailActivity.this, ShoppingCartActivity.class);
 //                    intent.putExtra("isGoods", true);
-                    startActivityForResult(intent,3);
+                    startActivityForResult(intent, 3);
                 }
                 break;
             case R.id.ll_attention_goods_detail:
                 //先判断是否已经登录，未登录则调到登录，已登录则判断是否收藏
-                if (comAppApplication.getLogin() == null || comAppApplication.getLogin().equals("")){
+                if (comAppApplication.getLogin() == null || comAppApplication.getLogin().equals("")) {
                     intent.setClass(GoodsDetailActivity.this, LoginActivity.class);
                     startActivityForResult(intent, 3);
-                }else {
-                    if (goodsDetail.getIsCollect()!=null&&!"".equals(goodsDetail.getIsCollect())){
-                        if (goodsDetail.getIsCollect().equals("0")){
+                } else {
+                    if (goodsDetail.getIsCollect() != null && !"".equals(goodsDetail.getIsCollect())) {
+                        if (goodsDetail.getIsCollect().equals("0")) {
                             //未收藏则收藏
                             customProgress = CustomProgress.show(GoodsDetailActivity.this, "", true);
                             ShouCang();
-                        }else {
+                        } else {
                             //已收藏则删除
                             customProgress = CustomProgress.show(GoodsDetailActivity.this, "", true);
                             deleteSC();
@@ -279,9 +286,6 @@ public class GoodsDetailActivity extends BaseActivity {
                 }
         }
     }
-
-
-
 
 
     //监听返回键
@@ -314,7 +318,7 @@ public class GoodsDetailActivity extends BaseActivity {
                     AppUtils.toastText(GoodsDetailActivity.this, message);
                     DefineUtil.NUM++;
                     tv_num_goods_detail.setVisibility(View.VISIBLE);
-                    tv_num_goods_detail.setText(DefineUtil.NUM+"");
+                    tv_num_goods_detail.setText(DefineUtil.NUM + "");
                     Intent intent = new Intent();
                     intent.setAction("MainActivity");
                     sendBroadcast(intent);
@@ -329,27 +333,27 @@ public class GoodsDetailActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.ADDCART, ShoppingCartUrl.postAddCartUrl(DefineUtil.USERID, DefineUtil.TOKEN, productId, productNum,pointUser), GoodsDetailActivity.this);
+        }.datePost(DefineUtil.ADDCART, ShoppingCartUrl.postAddCartUrl(DefineUtil.USERID, DefineUtil.TOKEN, productId, productNum, pointUser), GoodsDetailActivity.this);
     }
 
 
     //收藏
-    public void ShouCang(){
+    public void ShouCang() {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_shoucang",arg0.result);
-                String message=JsonUtils.getJsonParam(arg0.result,"message");
-                String status=JsonUtils.getJsonParam(arg0.result,"status");
+                Log.d("result_shoucang", arg0.result);
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
                     tv_shoucang_goods_detail.setText("已收藏");
                     iv_shoucang_goods_detail.setImageResource(R.drawable.guanzhu_checked);
                     goodsDetail.setIsCollect("1");
-                }else {
-                    AppUtils.toastText(GoodsDetailActivity.this,message);
+                } else {
+                    AppUtils.toastText(GoodsDetailActivity.this, message);
                 }
             }
 
@@ -359,26 +363,26 @@ public class GoodsDetailActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.COLLECT,GoodsDetailUrl.postShouUrl(DefineUtil.TOKEN,DefineUtil.USERID,productId),GoodsDetailActivity.this);
+        }.datePost(DefineUtil.COLLECT, GoodsDetailUrl.postShouUrl(DefineUtil.TOKEN, DefineUtil.USERID, productId), GoodsDetailActivity.this);
     }
 
     //取消收藏
-    public void deleteSC(){
+    public void deleteSC() {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_delete",arg0.result);
-                String message=JsonUtils.getJsonParam(arg0.result,"message");
-                String status=JsonUtils.getJsonParam(arg0.result,"status");
+                Log.d("result_delete", arg0.result);
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
                     tv_shoucang_goods_detail.setText("收藏");
                     iv_shoucang_goods_detail.setImageResource(R.drawable.guanzhu);
                     goodsDetail.setIsCollect("0");
-                }else {
-                    AppUtils.toastText(GoodsDetailActivity.this,message);
+                } else {
+                    AppUtils.toastText(GoodsDetailActivity.this, message);
                 }
             }
 
@@ -388,7 +392,7 @@ public class GoodsDetailActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.DELETE_COLLECT,GoodsDetailUrl.postDeleteUrl(DefineUtil.TOKEN,DefineUtil.USERID,productId),GoodsDetailActivity.this);
+        }.datePost(DefineUtil.DELETE_COLLECT, GoodsDetailUrl.postDeleteUrl(DefineUtil.TOKEN, DefineUtil.USERID, productId), GoodsDetailActivity.this);
     }
 
 }

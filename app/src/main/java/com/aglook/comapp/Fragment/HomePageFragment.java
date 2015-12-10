@@ -19,6 +19,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -87,10 +89,10 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     private ComAppApplication comAppApplication;
 
     private String userId;
-    private View view1;
-    private View view2;
-    private View view3;
-    private ArrayList<View> viewArrayList;
+//    private View view1;
+//    private View view2;
+//    private View view3;
+//    private ArrayList<View> viewArrayList;
     private MyExpandableListView melv_homePage;
     private HomePageEXGridView homePageEXGridViewAdapter;
     private MyGridView mgv_homePage;
@@ -102,6 +104,10 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     private String classId;
     private String className;
 
+    private int scrollLength;
+    // 点点资源数组
+    private ImageView[] tips;
+    private ViewGroup viewGroup;
 
     @Nullable
     @Override
@@ -119,13 +125,20 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
 
     //轮播图下面的小点
     private void setCurrentDot(int position) {
-        for (int i = 0; i < viewArrayList.size(); i++) {
-            if (position == i) {
-                viewArrayList.get(i).setSelected(true);
+        for (int i = 0; i < scrollLength; i++) {
+            if (i == position) {
+                tips[i].setBackgroundResource(R.drawable.checked);
             } else {
-                viewArrayList.get(i).setSelected(false);
+                tips[i].setBackgroundResource(R.drawable.checked_no);
             }
         }
+//        for (int i = 0; i < viewArrayList.size(); i++) {
+//            if (position == i) {
+//                viewArrayList.get(i).setSelected(true);
+//            } else {
+//                viewArrayList.get(i).setSelected(false);
+//            }
+//        }
 
     }
 
@@ -158,7 +171,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         customProgress = CustomProgress.show(getActivity(), "加载中···", true);
         vp_home_page_head = (ViewPager) view.findViewById(R.id.vp_home_page_head);
 
-
+        viewGroup = (ViewGroup) view.findViewById(R.id.viewGroup);
         vp_home_page_head.setOnPageChangeListener(this);
         vp_home_page_head.setCurrentItem(mCurrentPagePosition, false);
 
@@ -174,15 +187,15 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         rl_search_homepage_fragment = (RelativeLayout) view.findViewById(R.id.rl_search_homepage_fragment);
 
 
-        //View 小点
-        view1 = (View) view.findViewById(R.id.view1);
-        view2 = (View) view.findViewById(R.id.view2);
-        view3 = (View) view.findViewById(R.id.view3);
-        view1.setSelected(true);
-        viewArrayList = new ArrayList<>();
-        viewArrayList.add(view1);
-        viewArrayList.add(view2);
-        viewArrayList.add(view3);
+//        //View 小点
+//        view1 = (View) view.findViewById(R.id.view1);
+//        view2 = (View) view.findViewById(R.id.view2);
+//        view3 = (View) view.findViewById(R.id.view3);
+//        view1.setSelected(true);
+//        viewArrayList = new ArrayList<>();
+//        viewArrayList.add(view1);
+//        viewArrayList.add(view2);
+//        viewArrayList.add(view3);
     }
 
     public void click() {
@@ -385,6 +398,32 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     }
 
 
+    //设置点数
+    public void setTips() {
+        if (scrollLength > 0) {
+
+            // 将小点点装入ViewGroup
+            tips = new ImageView[scrollLength];
+            for (int i = 0; i < tips.length; i++) {
+                ImageView imageTip = new ImageView(getActivity());
+                imageTip.setLayoutParams(new ViewGroup.LayoutParams(200, 200));
+                tips[i] = imageTip;
+                if (i == 0) {
+                    tips[i].setBackgroundResource(R.drawable.checked);
+                } else {
+                    tips[i].setBackgroundResource(R.drawable.checked_no);
+                }
+
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                        new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT));
+                layoutParams.leftMargin = 20;
+                layoutParams.rightMargin = 20;
+                viewGroup.addView(imageTip, layoutParams);
+            }
+        }
+    }
+
     private List<HomePage> mList;
 
     //    获取商品列表
@@ -483,6 +522,8 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                     if (scrollList != null && scrollList.size() != 0) {
                         MyFramentPageAdapter myViewPagerAdapter = new MyFramentPageAdapter(getChildFragmentManager());
                         vp_home_page_head.setAdapter(myViewPagerAdapter);
+                        scrollLength=scrollList.size();
+                        setTips();
 //                        handler.sendEmptyMessageDelayed(1, 3000);
                     }
                 }

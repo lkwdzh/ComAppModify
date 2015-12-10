@@ -51,34 +51,42 @@
                 android:id="@+id/vp_home_page_head"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px_200" />
-
             <LinearLayout
-                android:id="@+id/ll_11"
-                android:layout_width="wrap_content"
+                android:id="@+id/viewGroup"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:orientation="horizontal"
-                android:gravity="center">
-                <View
-                    android:id="@+id/view1"
-                    android:layout_width="@dimen/px_10"
-                    android:layout_height="@dimen/px_10"
-                    android:layout_margin="@dimen/px_14"
-                    android:background="@drawable/home_viewpager"/>
-                <View
-                    android:id="@+id/view2"
-                    android:layout_width="@dimen/px_10"
-                    android:layout_height="@dimen/px_10"
-                    android:layout_margin="@dimen/px_14"
-                    android:background="@drawable/home_viewpager"/>
-                <View
-                    android:id="@+id/view3"
-                    android:layout_width="@dimen/px_10"
-                    android:layout_height="@dimen/px_10"
-                    android:layout_margin="@dimen/px_14"
-                    android:background="@drawable/home_viewpager"/>
-                </LinearLayout>
+                android:layout_marginBottom="10dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+            </LinearLayout>
+            <!--<LinearLayout-->
+                <!--android:id="@+id/ll_11"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:gravity="center">-->
+                <!--<View-->
+                    <!--android:id="@+id/view1"-->
+                    <!--android:layout_width="@dimen/px_10"-->
+                    <!--android:layout_height="@dimen/px_10"-->
+                    <!--android:layout_margin="@dimen/px_14"-->
+                    <!--android:background="@drawable/home_viewpager"/>-->
+                <!--<View-->
+                    <!--android:id="@+id/view2"-->
+                    <!--android:layout_width="@dimen/px_10"-->
+                    <!--android:layout_height="@dimen/px_10"-->
+                    <!--android:layout_margin="@dimen/px_14"-->
+                    <!--android:background="@drawable/home_viewpager"/>-->
+                <!--<View-->
+                    <!--android:id="@+id/view3"-->
+                    <!--android:layout_width="@dimen/px_10"-->
+                    <!--android:layout_height="@dimen/px_10"-->
+                    <!--android:layout_margin="@dimen/px_14"-->
+                    <!--android:background="@drawable/home_viewpager"/>-->
+                <!--</LinearLayout>-->
         </RelativeLayout>
 
         <!--<android.support.v7.widget.RecyclerView-->

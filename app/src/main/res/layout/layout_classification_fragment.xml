@@ -54,14 +54,22 @@
             android:listSelector="@drawable/lv_classification_selector"
             android:divider="@null"
             android:scrollbars="none"></ListView>
-
-        <GridView
+        <ListView
             android:id="@+id/gv_right"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
-            android:numColumns="3"
-            android:scrollbars="none"></GridView>
+            android:background="@color/gray_eeeeee"
+            android:listSelector="@drawable/lv_classification_selector"
+            android:divider="@null"
+            android:scrollbars="none"></ListView>
+        <!--<GridView-->
+            <!--android:id="@+id/gv_right"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="5"-->
+            <!--android:numColumns="3"-->
+            <!--android:scrollbars="none"></GridView>-->
     </LinearLayout>
 
 </LinearLayout>

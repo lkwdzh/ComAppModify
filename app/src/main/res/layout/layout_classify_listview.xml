@@ -14,9 +14,12 @@
 
     <TextView
         android:id="@+id/tv_classify_lisview"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:paddingTop="@dimen/px_10"
+        android:paddingBottom="@dimen/px_10"
+        android:gravity="center_horizontal"
         android:layout_toRightOf="@+id/iv_classify_lisview"
         android:textColor="@color/textcolor_333333" />
 
@@ -25,4 +28,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/px_5" />
+    <View
+        android:layout_alignParentBottom="true"
+       style="@style/line_1"/>
 </RelativeLayout>

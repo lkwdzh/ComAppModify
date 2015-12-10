@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:gravity="center"
     android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/px_8"
         android:layout_marginTop="@dimen/px_10">
@@ -15,29 +15,35 @@
 
         <LinearLayout
             android:id="@+id/ll_left"
-            style="@style/ll_wrap_content_ver"
+            style="@style/ll_match_wrap_content_ver"
             android:layout_centerInParent="true"
             android:gravity="center">
 
             <ImageView
                 android:id="@+id/iv_classify_gridview"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/tongxun" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/tv_classify_gridvew"
-                style="@style/grayTextView_333333" />
+                android:paddingTop="@dimen/px_10"
+                android:paddingBottom="@dimen/px_10"
+                android:paddingLeft="@dimen/px_20"
+                android:layout_width="match_parent"
+                android:text="11111"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textcolor_333333"
+                android:textSize="13sp" />
 
         </LinearLayout>
 
-        <View
-            android:layout_width="0.5dp"
-            android:layout_height="match_parent"
-            android:layout_alignTop="@+id/ll_left"
-            android:layout_alignBottom="@+id/ll_left"
-            android:background="@color/gray_line"
-            android:layout_alignParentRight="true" />
+        <!--<View-->
+        <!--android:layout_width="0.5dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_alignTop="@+id/ll_left"-->
+        <!--android:layout_alignBottom="@+id/ll_left"-->
+        <!--android:background="@color/gray_line"-->
+        <!--android:layout_alignParentRight="true" />-->
     </RelativeLayout>
 
     <View style="@style/line_1" />

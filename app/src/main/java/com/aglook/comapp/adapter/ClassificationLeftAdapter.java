@@ -67,7 +67,7 @@ public class ClassificationLeftAdapter extends BaseAdapter {
         Classify classify = list.get(i);
         holder.tv_classify_lisview.setText(classify.getName());
 //        holder.tv_classify_lisview.setText(nameArray[i]);
-        holder.iv_classify_lisview.setImageResource(imageArray[i]);
+//        holder.iv_classify_lisview.setImageResource(imageArray[i]);
         return view;
     }
 

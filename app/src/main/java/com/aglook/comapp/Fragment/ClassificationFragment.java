@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
@@ -36,7 +35,7 @@ import java.util.List;
  */
 public class ClassificationFragment extends Fragment implements View.OnClickListener {
     private ListView mLeftList;
-    private GridView gv_right;
+    private ListView gv_right;
     private ClassificationLeftAdapter leftAdapter;
     private ClassificationRightAdapter rightAdapter;
     private RelativeLayout rl_search_classify;
@@ -63,7 +62,7 @@ public class ClassificationFragment extends Fragment implements View.OnClickList
         sonList = new ArrayList<>();
         rightList = new ArrayList<>();
         mLeftList = ((ListView) view.findViewById(R.id.lv_left));
-        gv_right = (GridView) view.findViewById(R.id.gv_right);
+        gv_right = (ListView) view.findViewById(R.id.gv_right);
         leftAdapter = new ClassificationLeftAdapter(mList, getActivity());
         mLeftList.setAdapter(leftAdapter);
 //        mLeftList.setSelection(3);

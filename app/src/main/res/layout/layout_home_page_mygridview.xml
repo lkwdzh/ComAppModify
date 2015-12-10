@@ -18,7 +18,7 @@
             <ImageView
                 android:id="@+id/iv_myGridView_homepage"
                 style="@style/imageview_px134"
-                android:scaleType="centerInside" />
+                android:scaleType="fitXY" />
                 <ImageView
                     android:id="@+id/iv_home_gv"
                     android:layout_width="wrap_content"

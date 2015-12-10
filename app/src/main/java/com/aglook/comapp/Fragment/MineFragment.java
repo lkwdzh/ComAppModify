@@ -130,27 +130,27 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         if (login != null) {
             tv_name_mine_fragment.setText(login.getPshUser().getUsername());
 
-            tv_all_order_point.setVisibility(View.VISIBLE);
-            tv_daifukuan_point.setVisibility(View.VISIBLE);
-            tv_daishouhuo_point.setVisibility(View.VISIBLE);
-            tv_all_guadan_point.setVisibility(View.VISIBLE);
-            tv_jiaoyizhong_point.setVisibility(View.VISIBLE);
-            tv_jiaoyichenggong_point.setVisibility(View.VISIBLE);
-            tv_cangdan_point.setVisibility(View.VISIBLE);
-            tv_pingtaicangdan_point.setVisibility(View.VISIBLE);
-            tv_tihuo_point.setVisibility(View.VISIBLE);
+//            tv_all_order_point.setVisibility(View.VISIBLE);
+//            tv_daifukuan_point.setVisibility(View.VISIBLE);
+//            tv_daishouhuo_point.setVisibility(View.VISIBLE);
+//            tv_all_guadan_point.setVisibility(View.VISIBLE);
+//            tv_jiaoyizhong_point.setVisibility(View.VISIBLE);
+//            tv_jiaoyichenggong_point.setVisibility(View.VISIBLE);
+//            tv_cangdan_point.setVisibility(View.VISIBLE);
+//            tv_pingtaicangdan_point.setVisibility(View.VISIBLE);
+//            tv_tihuo_point.setVisibility(View.VISIBLE);
         }else {
             tv_name_mine_fragment.setText("");
 
-            tv_all_order_point.setVisibility(View.GONE);
-            tv_daifukuan_point.setVisibility(View.GONE);
-            tv_daishouhuo_point.setVisibility(View.GONE);
-            tv_all_guadan_point.setVisibility(View.GONE);
-            tv_jiaoyizhong_point.setVisibility(View.GONE);
-            tv_jiaoyichenggong_point.setVisibility(View.GONE);
-            tv_cangdan_point.setVisibility(View.GONE);
-            tv_pingtaicangdan_point.setVisibility(View.GONE);
-            tv_tihuo_point.setVisibility(View.GONE);
+//            tv_all_order_point.setVisibility(View.GONE);
+//            tv_daifukuan_point.setVisibility(View.GONE);
+//            tv_daishouhuo_point.setVisibility(View.GONE);
+//            tv_all_guadan_point.setVisibility(View.GONE);
+//            tv_jiaoyizhong_point.setVisibility(View.GONE);
+//            tv_jiaoyichenggong_point.setVisibility(View.GONE);
+//            tv_cangdan_point.setVisibility(View.GONE);
+//            tv_pingtaicangdan_point.setVisibility(View.GONE);
+//            tv_tihuo_point.setVisibility(View.GONE);
         }
     }
 
