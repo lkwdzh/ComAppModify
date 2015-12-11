@@ -17,6 +17,13 @@
         <item name="android:orientation">horizontal</item>
     </style>
 
+    <style name="ll_match_wrap_content_hor_sum4">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:weightSum">4</item>
+    </style>
+
     <style name="ll_match_wrap_content_hor_white">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -136,6 +143,16 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">13sp</item>
     </style>
+
+    <!--333333色的textview_13sp-->
+    <style name="grayTextView_333333_13_we3" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/textcolor_333333</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:layout_weight">3</item>
+    </style>
+
     <!--333333色的textview_15sp-->
     <style name="grayTextView_333333_15" parent="android:Widget.TextView">
         <item name="android:textColor">@color/textcolor_333333</item>
@@ -185,6 +202,16 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">13sp</item>
     </style>
+
+    <!--999999色的textview_13sp-->
+    <style name="grayTextView_999999_13_we1" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/textcolor_999999</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
     <!--999999色的textview_15sp-->
     <style name="grayTextView_999999_15" parent="android:Widget.TextView">
         <item name="android:textColor">@color/textcolor_999999</item>

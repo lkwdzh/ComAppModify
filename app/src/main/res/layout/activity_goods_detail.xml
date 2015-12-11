@@ -75,157 +75,157 @@
                 android:padding="@dimen/px_14">
 
                 <LinearLayout
-                    style="@style/ll_match_wrap_content_hor"
+                    style="@style/ll_match_wrap_content_hor_sum4"
 
                     android:layout_gravity="center_vertical">
 
                     <TextView
-                        style="@style/grayTextView_999999_13"
+                        style="@style/grayTextView_999999_13_we1"
                         android:text="@string/goods_detail_cangdanhao" />
 
                     <TextView
                         android:id="@+id/tv_cangdanhao_goods_detail"
-                        style="@style/grayTextView_333333_13" />
+                        style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
 
                 <LinearLayout
-                    style="@style/ll_match_wrap_content_hor"
+                    style="@style/ll_match_wrap_content_hor_sum4"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="@dimen/px_14">
 
                     <TextView
-                        style="@style/grayTextView_999999_13"
+                        style="@style/grayTextView_999999_13_we1"
                         android:text="@string/goods_detail_huowuzhonglei" />
 
                     <TextView
                         android:id="@+id/tv_huowuzhonglei_goods_detail"
-                        style="@style/grayTextView_333333_13" />
+                        style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
 
                 <LinearLayout
-                    style="@style/ll_match_wrap_content_hor"
+                    style="@style/ll_match_wrap_content_hor_sum4"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="@dimen/px_14">
 
                     <TextView
-                        style="@style/grayTextView_999999_13"
+                        style="@style/grayTextView_999999_13_we1"
                         android:text="可用重量：" />
 
                     <TextView
                         android:id="@+id/tv_weight_goods_detail"
-                        style="@style/grayTextView_333333_13" />
+                        style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
 
                 <LinearLayout
-                    style="@style/ll_match_wrap_content_hor"
+                    style="@style/ll_match_wrap_content_hor_sum4"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="@dimen/px_14">
 
                     <TextView
-                        style="@style/grayTextView_999999_13"
+                        style="@style/grayTextView_999999_13_we1"
                         android:text="@string/goods_detail_in_time" />
 
                     <TextView
                         android:id="@+id/tv_in_time_goods_detail"
-                        style="@style/grayTextView_333333_13" />
+                        style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
 
                 <LinearLayout
-                    style="@style/ll_match_wrap_content_hor"
+                    style="@style/ll_match_wrap_content_hor_sum4"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="@dimen/px_14">
 
                     <TextView
-                        style="@style/grayTextView_999999_13"
+                        style="@style/grayTextView_999999_13_we1"
                         android:text="@string/goods_detail_producing_area" />
 
                     <TextView
                         android:id="@+id/tv_producing_area_goods_detail"
-                        style="@style/grayTextView_333333_13" />
+                        style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
 
                 <LinearLayout
-                    style="@style/ll_match_wrap_content_hor"
+                    style="@style/ll_match_wrap_content_hor_sum4"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="@dimen/px_14">
 
                     <TextView
-                        style="@style/grayTextView_999999_13"
+                        style="@style/grayTextView_999999_13_we1"
                         android:text="@string/goods_detail_xuetou" />
 
                     <TextView
                         android:id="@+id/tv_xuetou_goods_detail"
-                        style="@style/grayTextView_333333_13" />
+                        style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
 
                 <LinearLayout
-                    style="@style/ll_match_wrap_content_hor"
+                    style="@style/ll_match_wrap_content_hor_sum4"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="@dimen/px_14">
 
                     <TextView
-                        style="@style/grayTextView_999999_13"
+                        style="@style/grayTextView_999999_13_we1"
                         android:text="@string/goods_detail_userful_life" />
 
                     <TextView
                         android:id="@+id/tv_userful_life_goods_detail"
-                        style="@style/grayTextView_333333_13" />
+                        style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
 
                 <LinearLayout
-                    style="@style/ll_match_wrap_content_hor"
+                    style="@style/ll_match_wrap_content_hor_sum4"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="@dimen/px_14">
 
                     <TextView
-                        style="@style/grayTextView_999999_13"
+                        style="@style/grayTextView_999999_13_we1"
                         android:text="@string/goods_detail_name" />
 
                     <TextView
                         android:id="@+id/tv_name_goods_detail"
-                        style="@style/grayTextView_333333_13" />
+                        style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
 
                 <LinearLayout
-                    style="@style/ll_match_wrap_content_hor"
+                    style="@style/ll_match_wrap_content_hor_sum4"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="@dimen/px_14">
 
                     <TextView
-                        style="@style/grayTextView_999999_13"
+                        style="@style/grayTextView_999999_13_we1"
                         android:text="@string/goods_detail_phone" />
 
                     <TextView
                         android:id="@+id/tv_phone_goods_detail"
-                        style="@style/grayTextView_333333_13" />
+                        style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
 
                 <LinearLayout
-                    style="@style/ll_match_wrap_content_hor"
+                    style="@style/ll_match_wrap_content_hor_sum4"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="@dimen/px_14">
 
                     <TextView
-                        style="@style/grayTextView_999999_13"
+                        style="@style/grayTextView_999999_13_we1"
                         android:text="@string/goods_detail_email" />
 
                     <TextView
                         android:id="@+id/tv_emailgoods_detail"
-                        style="@style/grayTextView_333333_13" />
+                        style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
 
                 <LinearLayout
-                    style="@style/ll_match_wrap_content_hor"
+                    style="@style/ll_match_wrap_content_hor_sum4"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="@dimen/px_14">
 
                     <TextView
-                        style="@style/grayTextView_999999_13"
+                        style="@style/grayTextView_999999_13_we1"
                         android:text="@string/goods_detail_address" />
 
                     <TextView
                         android:id="@+id/tv_address_goods_detail"
-                        style="@style/grayTextView_333333_13" />
+                        style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -235,12 +235,12 @@
                     android:layout_marginTop="@dimen/px_14">
 
                     <TextView
-                        style="@style/grayTextView_999999_13"
+                        style="@style/grayTextView_999999_13_we1"
                         android:text="@string/goods_detail_goods_detail" />
 
                     <TextView
                         android:id="@+id/tv_goods_detail_goods_detail"
-                        style="@style/grayTextView_333333_13" />
+                        style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
 
             </LinearLayout>

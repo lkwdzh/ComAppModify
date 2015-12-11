@@ -30,13 +30,13 @@
         android:drawableRight="@drawable/next"
         android:text="买卖规则" />
 
-    <View style="@style/line_1" />
+    <!--<View style="@style/line_1" />-->
 
-    <TextView
-        android:id="@+id/tv_lc_help"
-        style="@style/basic_infor_TextView_333333_set"
-        android:drawableRight="@drawable/next"
-        android:text="买卖流程" />
+    <!--<TextView-->
+        <!--android:id="@+id/tv_lc_help"-->
+        <!--style="@style/basic_infor_TextView_333333_set"-->
+        <!--android:drawableRight="@drawable/next"-->
+        <!--android:text="买卖流程" />-->
 
     <View style="@style/line_1" />
     <TextView

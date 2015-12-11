@@ -5,24 +5,33 @@
     android:background="@color/white"
     android:gravity="center"
     android:orientation="vertical">
-<LinearLayout
-   style="@style/ll_match_wrap_content_hor"
-    android:gravity="center_vertical"
-    android:padding="@dimen/px_14">
-    <ImageView
-        android:id="@+id/iv_hang_qing_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/hangqing"
-        android:layout_marginRight="@dimen/px_10"
-       />
-    <TextView
-        android:id="@+id/tv_hang_qing_list"
-       style="@style/grayTextView_333333_13"
-        android:singleLine="true"
-        android:ellipsize="end"
-        />
-    </LinearLayout>
-    <View
-        style="@style/line_1"/>
+
+    <RelativeLayout
+        style="@style/ll_match_wrap_content_hor"
+        android:gravity="center_vertical"
+        android:padding="@dimen/px_14">
+
+        <ImageView
+            android:id="@+id/iv_hang_qing_list"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:src="@drawable/hangqing"
+            android:layout_marginRight="@dimen/px_10" />
+
+        <TextView
+            android:id="@+id/tv_hang_qing_list"
+            style="@style/grayTextView_333333_13"
+            android:singleLine="true"
+            android:layout_toRightOf="@+id/iv_hang_qing_list"
+            android:ellipsize="end" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/next"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+    <View style="@style/line_1" />
 </LinearLayout>

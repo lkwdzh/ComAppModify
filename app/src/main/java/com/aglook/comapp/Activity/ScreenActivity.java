@@ -2,11 +2,13 @@ package com.aglook.comapp.Activity;
 
 import android.content.Intent;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -63,6 +65,7 @@ public class ScreenActivity extends BaseActivity {
     private int pageSize = 10;//每页数量
     private int pageNumber = 1;//第几页
     private View emptyView;
+    private ImageView left_icon;
 
 
     @Override
@@ -85,6 +88,7 @@ public class ScreenActivity extends BaseActivity {
         isSearch = getIntent().getBooleanExtra("isSearch", false);
         categoryId = getIntent().getStringExtra("categoryId");
         gv_screen = (PullToRefreshGridView) findViewById(R.id.gv_screen);
+        left_icon = (ImageView) findViewById(R.id.left_icon);
         adapter = new ScreenAdapter(ScreenActivity.this, mList);
         gv_screen.setAdapter(adapter);
         tv_all_screen = (TextView) findViewById(R.id.tv_all_screen);
@@ -99,6 +103,7 @@ public class ScreenActivity extends BaseActivity {
     }
 
     public void click() {
+        left_icon.setOnClickListener(this);
         tv_all_screen.setOnClickListener(this);
         ll_price_screen.setOnClickListener(this);
         ll_sale_screen.setOnClickListener(this);
@@ -222,9 +227,24 @@ public class ScreenActivity extends BaseActivity {
                     getScreenData();
                 }
                 break;
+            case R.id.left_icon:
+                ScreenActivity.this.setResult(RESULT_OK);
+                ScreenActivity.this.finish();
+                break;
         }
     }
+    //监听返回键
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            ScreenActivity.this.setResult(RESULT_OK);
+            ScreenActivity.this.finish();
+            return false;
+        } else {
+            return super.onKeyDown(keyCode, event);
+        }
 
+    }
     //获取搜索信息
     public void getSearchData() {
 
