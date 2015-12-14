@@ -23,6 +23,7 @@
             android:id="@+id/tv_hang_qing_list"
             style="@style/grayTextView_333333_13"
             android:singleLine="true"
+            android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/iv_hang_qing_list"
             android:ellipsize="end" />
         <ImageView

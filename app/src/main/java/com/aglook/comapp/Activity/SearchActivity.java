@@ -21,7 +21,8 @@ import com.lidroid.xutils.exception.DbException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchActivity extends BaseActivity {
+public class
+        SearchActivity extends BaseActivity {
 
 
     private EditText et_search;
@@ -109,6 +110,7 @@ public class SearchActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 et_search.setText(gvList.get(position));
                 saveContent();
+                save();
                 Intent intent = new Intent(SearchActivity.this, ScreenActivity.class);
                 intent.putExtra("productName", productName);
                 intent.putExtra("isSearch", true);
@@ -120,6 +122,8 @@ public class SearchActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 et_search.setText(lvList.get(position));
+                saveContent();
+                save();
                 Intent intent = new Intent(SearchActivity.this, ScreenActivity.class);
                 intent.putExtra("productName", productName);
                 intent.putExtra("isSearch", true);
@@ -130,6 +134,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     private boolean isEquals;
+    private int searchId;
 
     //将输入的内容存到数据库中
     public void saveContent() {
@@ -140,9 +145,12 @@ public class SearchActivity extends BaseActivity {
 
             for (int i = 0; i < sonList.size(); i++) {
                 if (productName.equals(sonList.get(i).getContent())) {
+                    searchId = sonList.get(i).getId();
                     isEquals = true;
+//                    Log.d("result___isEquals", isEquals + "##############");
                     return;
                 } else {
+//                    Log.d("result___isEquals", isEquals + "$$$$$$$$$$$$$$$");
                     isEquals = false;
 //                    Log.d("result_equal", productName + "_____" + sonList.get(i).getContent());
                 }
@@ -150,8 +158,23 @@ public class SearchActivity extends BaseActivity {
 
             }
         }
+
+    }
+
+    public void save() {
         if (!isEquals) {
+//            Log.d("result___isEquals", isEquals + "@@@@@@");
             try {
+                search = new Search();
+                search.setContent(productName);
+                db.save(search);
+            } catch (DbException e) {
+                e.printStackTrace();
+            }
+        } else {
+//            Log.d("result___isEquals", isEquals + "!!!!!!!!");
+            try {
+                db.deleteById(Search.class, searchId);
                 search = new Search();
                 search.setContent(productName);
                 db.save(search);
@@ -175,6 +198,7 @@ public class SearchActivity extends BaseActivity {
             case R.id.iv_search:
 //                productName = AppUtils.toStringTrim_ET(et_search);
                 saveContent();
+                save();
                 Intent intent = new Intent(SearchActivity.this, ScreenActivity.class);
                 intent.putExtra("productName", productName);
                 intent.putExtra("isSearch", true);

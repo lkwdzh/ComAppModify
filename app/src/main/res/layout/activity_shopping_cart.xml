@@ -81,13 +81,12 @@
             android:layout_height="match_parent"
             android:divider="@null"
             android:layout_above="@+id/rl_bottom_shopping_cart"
-            android:layout_marginBottom="@dimen/px_20"
             android:background="@color/white"></com.handmark.pulltorefresh.library.PullToRefreshListView>
 
         <RelativeLayout
             android:id="@+id/rl_bottom_shopping_cart"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_62"
+            android:layout_height="@dimen/px_70"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"
             android:visibility="visible">
@@ -95,7 +94,7 @@
             <RelativeLayout
                 android:id="@+id/rl_edit_bottom_shopping_cart"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_62"
+                android:layout_height="match_parent"
                 android:background="@color/gray_eeeeee"
                 android:gravity="center_vertical"
                 android:visibility="gone">
@@ -108,6 +107,7 @@
                     android:layout_margin="@dimen/px_13"
                     android:button="@drawable/ischecked"
                     android:text="全选"
+                    android:layout_centerVertical="true"
                     android:textColor="@color/textcolor_333333"
                     android:textSize="15sp" />
 
@@ -125,7 +125,7 @@
             <LinearLayout
                 android:id="@+id/ll_buy_bottom_shopping_cart"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_70"
+                android:layout_height="match_parent"
                 android:layout_alignParentBottom="true"
                 android:orientation="horizontal"
                 android:weightSum="4">

@@ -184,7 +184,11 @@ public class ConfirmOrderActivity extends BaseActivity {
                 break;
             case R.id.tv_confirm_confirm_order:
 //                showDialog();
-                getData();
+                if (DefineUtil.BANKBAND) {
+                    getData();
+                } else {
+                    AppUtils.toastText(ConfirmOrderActivity.this, "尚未绑定银行卡");
+                }
                 break;
             case R.id.left_icon:
 //                intent.setClass(ConfirmOrderActivity.this, ShoppingCartFragment.class);
@@ -254,16 +258,16 @@ public class ConfirmOrderActivity extends BaseActivity {
                     //TODO 成功后，会调用支付,获取订单号
                     orderId = JsonUtils.getJsonParam(obj, "orderId");
                     money = JsonUtils.getJsonParam(obj, "money");
-                    totalFee = String.valueOf(Double.parseDouble(money)-Double.parseDouble(JsonUtils.getJsonParam(obj, "totalFee")));
-                   //发送广播
+                    totalFee = String.valueOf(Double.parseDouble(money) - Double.parseDouble(JsonUtils.getJsonParam(obj, "totalFee")));
+                    //发送广播
                     Intent intentBroad = new Intent();
                     intentBroad.setAction("Shopping");
                     sendBroadcast(intentBroad);
 
 
-                    Intent intent = new Intent(ConfirmOrderActivity.this,PayActivity.class);
-                    intent.putExtra("orderId",orderId);
-                    intent.putExtra("money",money);
+                    Intent intent = new Intent(ConfirmOrderActivity.this, PayActivity.class);
+                    intent.putExtra("orderId", orderId);
+                    intent.putExtra("money", money);
                     startActivity(intent);
 //                    ConfirmOrderActivity.this.setResult(1);
                     ConfirmOrderActivity.this.finish();

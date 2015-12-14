@@ -136,4 +136,8 @@ public class DefineUtil {
     public static String SERVICESCOPE = "www";
     //签名类型
     public static String SIGNTYPE = "MD5";
+
+    //是否绑定银行卡
+    public static boolean BANKBAND;
+
 }

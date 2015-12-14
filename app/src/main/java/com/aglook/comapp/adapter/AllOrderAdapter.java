@@ -44,7 +44,7 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
     private CustomProgress customProgress;
     private String money;
     private boolean isSuccess;
-    private final int LIST_DETAIL=2;
+    private final int LIST_DETAIL = 2;
 
     public AllOrderAdapter(Activity activity, List<AllOrder> list) {
         this.activity = activity;
@@ -100,7 +100,7 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
             public void onItemClick(AdapterView<?> parent, View view, int position1, long id) {
                 Intent intent = new Intent(activity, OrderDetailActivity.class);
                 intent.putExtra("orderId", list.get(position).getOrderId());
-                activity.startActivityForResult(intent,LIST_DETAIL);
+                activity.startActivityForResult(intent, LIST_DETAIL);
             }
         });
 
@@ -148,14 +148,19 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
         Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.tv_click_all_order_lv:
-                index = (int) v.getTag();
-                money = String.valueOf(list.get(index).getMoney());
-                orderId = list.get(index).getOrderId();
-                intent.setClass(activity, PayActivity.class);
-                intent.putExtra("orderId", orderId);
-                intent.putExtra("money", money);
-                Log.d("result_OrderId", orderId);
-                activity.startActivityForResult(intent, 1);
+                if (DefineUtil.BANKBAND) {
+                    //若已绑定
+                    index = (int) v.getTag();
+                    money = String.valueOf(list.get(index).getMoney());
+                    orderId = list.get(index).getOrderId();
+                    intent.setClass(activity, PayActivity.class);
+                    intent.putExtra("orderId", orderId);
+                    intent.putExtra("money", money);
+                    Log.d("result_OrderId", orderId);
+                    activity.startActivityForResult(intent, 1);
+                } else {
+                    AppUtils.toastText(activity, "尚未绑定银行卡");
+                }
 
                 break;
             case R.id.tv_delete_all_order_lv:
@@ -234,7 +239,7 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
                     //若成功，则刷新列表
-                   list.get(index).setOrderStatus("close");
+                    list.get(index).setOrderStatus("close");
                     notifyDataSetChanged();
                 } else {
                     AppUtils.toastText(activity, message);
@@ -250,5 +255,29 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
         }.datePost(DefineUtil.CANCEL_ORDER, AllOrderUrl.postCancelOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, orderId), activity);
     }
 
+
+//    //获取银行卡列表
+//    public void getCardListData() {
+//        new XHttpuTools() {
+//            @Override
+//            public void initViews(ResponseInfo<String> arg0) {
+//                if (customProgress != null && customProgress.isShowing()) {
+//                    customProgress.dismiss();
+//                }
+//                Log.d("result_cardList", arg0.result);
+//                String message = JsonUtils.getJsonParam(arg0.result, "message");
+//                String status = JsonUtils.getJsonParam(arg0.result, "status");
+//                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
+//                if (obj==null)
+//            }
+//
+//            @Override
+//            public void failureInitViews(HttpException arg0, String arg1) {
+//                if (customProgress != null && customProgress.isShowing()) {
+//                    customProgress.dismiss();
+//                }
+//            }
+//        }.datePost(DefineUtil.BANKCARD_LIST, CardListUrl.postBankCardListUrl(DefineUtil.USERID, DefineUtil.TOKEN), activity);
+//    }
 
 }

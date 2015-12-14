@@ -268,6 +268,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
                 if (status.equals("1")) {//登录成功,跳转页面
                     DefineUtil.TOKEN = login.getToken();
                     DefineUtil.USERID = login.getPshUser().getUserId();
+                    DefineUtil.BANKBAND=login.getPshUser().isBankBind();
                     comAppApplication.setLogin(login);
 //                    Intent intent = new Intent(MainActivity.this, MineFragment.class);
 //                    MainActivity.this.setResult(1);

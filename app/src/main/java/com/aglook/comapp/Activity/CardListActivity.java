@@ -46,6 +46,7 @@ public class CardListActivity extends BaseActivity {
     private boolean isDelete = false;
     private CustomProgress customProgress;
     private View emptyView;
+
     @Override
     public void initView() {
         setContentView(R.layout.activity_card_list);
@@ -132,27 +133,29 @@ public class CardListActivity extends BaseActivity {
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
                 list = JsonUtils.parseList(obj, CardList.class);
-                if (list.size() != 0 && list != null) {
-                    if (isAdded) {
-                        mList.clear();
-                        isAdded = false;
-                    } else if (isMoRen) {
-                        mList.clear();
-                        isMoRen = false;
-                    } else if (isDelete) {
-                        mList.clear();
-                        isDelete = false;
-                    }
-
-                    mList.addAll(list);
-                }
                 if (status.equals("1")) {
                     //假如成功
+                    if (list.size() != 0 && list != null) {
+                        if (isAdded) {
+                            mList.clear();
+                            isAdded = false;
+                        } else if (isMoRen) {
+                            mList.clear();
+                            isMoRen = false;
+                        } else if (isDelete) {
+                            mList.clear();
+                            isDelete = false;
+                        }
+
+                        mList.addAll(list);
+                    } else {
+                    DefineUtil.BANKBAND=false;
+                    }
                 } else {
                     AppUtils.toastText(CardListActivity.this, message);
                 }
 
-                    adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
                 lv_card_list.setEmptyView(emptyView);
                 lv_card_list.onRefreshComplete();
             }

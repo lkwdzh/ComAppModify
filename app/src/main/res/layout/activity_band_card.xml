@@ -33,6 +33,7 @@
         <EditText
             android:id="@+id/et_num_bang_card"
             style="@style/basic_infor_edittext_weight"
+            android:inputType="number"
             android:hint="请输入卡号" />
     </LinearLayout>
 
@@ -59,6 +60,7 @@
         <EditText
             android:id="@+id/et_phone_bang_card"
             style="@style/basic_infor_edittext_weight"
+            android:inputType="number"
             android:hint="请输入预留手机号" />
     </LinearLayout>
 

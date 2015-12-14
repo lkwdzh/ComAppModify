@@ -157,6 +157,7 @@ public class LoginActivity extends BaseActivity {
                 if (status.equals("1")) {//登录成功,跳转页面
                     DefineUtil.TOKEN = login.getToken();
                     DefineUtil.USERID = login.getPshUser().getUserId();
+                    DefineUtil.BANKBAND=login.getPshUser().isBankBind();
                     comAppApplication.setLogin(login);
                     // 发送广播给MainActivity
 

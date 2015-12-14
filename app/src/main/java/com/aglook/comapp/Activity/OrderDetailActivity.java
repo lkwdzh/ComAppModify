@@ -68,7 +68,6 @@ public class OrderDetailActivity extends BaseActivity {
     private boolean isDelete;
 
 
-
     private String orderStatus;
     private ImageView left_icon;
     //    private String  pageSize=10;
@@ -172,13 +171,18 @@ public class OrderDetailActivity extends BaseActivity {
                 showDailog();
                 break;
             case R.id.tv_click_all_order_lv:
-                money = String.valueOf(allOrder.getMoney());
-                orderId = allOrder.getOrderId();
-                intent.setClass(OrderDetailActivity.this, PayActivity.class);
-                intent.putExtra("orderId", orderId);
-                intent.putExtra("money", money);
-                Log.d("result_OrderId", orderId);
-                startActivityForResult(intent, DETAIL_PAY);
+                if (DefineUtil.BANKBAND) {
+                    //已绑定银行卡
+                    money = String.valueOf(allOrder.getMoney());
+                    orderId = allOrder.getOrderId();
+                    intent.setClass(OrderDetailActivity.this, PayActivity.class);
+                    intent.putExtra("orderId", orderId);
+                    intent.putExtra("money", money);
+                    Log.d("result_OrderId", orderId);
+                    startActivityForResult(intent, DETAIL_PAY);
+                } else {
+                    AppUtils.toastText(OrderDetailActivity.this, "尚未绑定银行卡");
+                }
 
                 break;
 
@@ -195,6 +199,7 @@ public class OrderDetailActivity extends BaseActivity {
                 break;
         }
     }
+
     //监听返回键
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -207,6 +212,7 @@ public class OrderDetailActivity extends BaseActivity {
         }
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == DETAIL_PAY && resultCode == 2) {
@@ -271,11 +277,11 @@ public class OrderDetailActivity extends BaseActivity {
                             if (allOrder.getOrderDateList() != null && allOrder.getOrderDateList().size() != 0) {
                                 if (isPay) {
                                     mList.clear();
-                                    isPay=false;
+                                    isPay = false;
                                 }
 
-                                if (isDelete){
-                                    isDelete=false;
+                                if (isDelete) {
+                                    isDelete = false;
                                     mList.clear();
                                 }
                                 mList.addAll(allOrder.getOrderDateList());
@@ -334,7 +340,7 @@ public class OrderDetailActivity extends BaseActivity {
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
                     //若成功，则刷新列表
-                    isDelete=true;
+                    isDelete = true;
                     getData();
                 } else {
                     AppUtils.toastText(OrderDetailActivity.this, message);
