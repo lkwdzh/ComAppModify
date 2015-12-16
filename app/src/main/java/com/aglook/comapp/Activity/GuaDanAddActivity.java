@@ -22,6 +22,7 @@ import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.aglook.comapp.view.Timestamp;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -82,7 +83,7 @@ public class GuaDanAddActivity extends BaseActivity {
     private String originalId;
     private boolean isPlate;
     private TextView tv_goods_zhiliang_gua_dan;
-
+    private CustomProgress customProgress;
     @Override
     public void initView() {
         setContentView(R.layout.activity_gua_dan_add);
@@ -91,8 +92,11 @@ public class GuaDanAddActivity extends BaseActivity {
         init();
         click();
         if (isPlate) {
+            customProgress = CustomProgress.show(this, "", true);
             getPlatData();
         } else {
+
+            customProgress = CustomProgress.show(this, "", true);
             getData();
         }
     }
@@ -234,8 +238,10 @@ public class GuaDanAddActivity extends BaseActivity {
 //        }
 
         if (isPlate) {
+            customProgress = CustomProgress.show(this, "", true);
             upPlatData();
         } else {
+            customProgress = CustomProgress.show(this, "", true);
             upData();
         }
 
@@ -314,6 +320,9 @@ public class GuaDanAddActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
                 Log.d("result_add", orderdataId + "___" + originalListid + "__" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
@@ -329,7 +338,9 @@ public class GuaDanAddActivity extends BaseActivity {
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.CANG_DAN, GuaDanUrl.postGuaDanAddUrl(codeGua, DefineUtil.TOKEN, DefineUtil.USERID, originalListid, tradeNum, limitDate, tradePrice, productName, designatedUserid, productText), GuaDanAddActivity.this);
     }
@@ -339,6 +350,9 @@ public class GuaDanAddActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
                 Log.d("result_add_plate", orderdataId + "___" + originalListid + "__" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
@@ -354,7 +368,9 @@ public class GuaDanAddActivity extends BaseActivity {
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.CANG_DAN, GuaDanUrl.postGuaDanPlateAddUrl(codeGua, DefineUtil.TOKEN, DefineUtil.USERID, originalListid, tradeNum, limitDate, tradePrice, productName, designatedUserid, productText, orderdataId), GuaDanAddActivity.this);
     }
@@ -367,6 +383,9 @@ public class GuaDanAddActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
                 Log.d("result_detail", originalId + "____" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
@@ -383,7 +402,9 @@ public class GuaDanAddActivity extends BaseActivity {
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.CANG_DAN, CangDanUrl.postCangDanDetailUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, originalId), GuaDanAddActivity.this);
     }
@@ -394,6 +415,9 @@ public class GuaDanAddActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
                 Log.d("result_Platdetail", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
@@ -410,7 +434,9 @@ public class GuaDanAddActivity extends BaseActivity {
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.CANG_DAN, CangDanUrl.postPlatCangDanDetailUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, orderdataId), GuaDanAddActivity.this);
     }

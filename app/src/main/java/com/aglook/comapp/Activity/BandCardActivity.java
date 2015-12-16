@@ -156,8 +156,18 @@ public class BandCardActivity extends BaseActivity {
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")){
-                    BandCardActivity.this.setResult(1);
-                    finish();
+                    //如果FLAG=1，表示是从确认订单调过来的，返回时需要调到订单界面，
+//                    if (DefineUtil.FLAG == 1) {
+//                        Intent intent = new Intent();
+//                        intent.setClass(BandCardActivity.this, MainActivity.class);
+//                        DefineUtil.FLAG=2;
+//                        startActivity(intent);
+//                        BandCardActivity.this.finish();
+//                    }else {
+
+                        BandCardActivity.this.setResult(1);
+                        finish();
+//                    }
                 }else {
                     AppUtils.toastText(BandCardActivity.this,message);
                 }

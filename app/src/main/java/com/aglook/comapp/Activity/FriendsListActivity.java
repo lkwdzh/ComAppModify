@@ -23,6 +23,7 @@ import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.CustomProgress;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -99,7 +100,7 @@ public class FriendsListActivity extends BaseActivity {
 //                startActivity(intent);
 //            }
 //        });
-
+        lv_buyer_list.setMode(PullToRefreshBase.Mode.DISABLED);
        lv_buyer_list.getRefreshableView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
            @Override
            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -202,7 +203,9 @@ public class FriendsListActivity extends BaseActivity {
                 } else {
                     AppUtils.toastText(FriendsListActivity.this, message);
                 }
-
+                    if (mList.size()!=0&&mList!=null){
+                        rl_bottom.setVisibility(View.VISIBLE);
+                    }
                 adapter.notifyDataSetChanged();
                 compareList();
                 lv_buyer_list.setEmptyView(emptyView);

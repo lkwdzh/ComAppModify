@@ -6,7 +6,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ExitApplication;
@@ -46,6 +46,7 @@ public class CardListActivity extends BaseActivity {
     private boolean isDelete = false;
     private CustomProgress customProgress;
     private View emptyView;
+    private ImageView left_icon;
 
     @Override
     public void initView() {
@@ -58,7 +59,7 @@ public class CardListActivity extends BaseActivity {
     }
 
     public void init() {
-
+        left_icon = (ImageView) findViewById(R.id.left_icon);
         right_text = (TextView) findViewById(R.id.right_text);
         right_text.setText("添加");
         right_text.setVisibility(View.VISIBLE);
@@ -68,24 +69,12 @@ public class CardListActivity extends BaseActivity {
         lv_card_list.setMode(PullToRefreshBase.Mode.BOTH);
         adapter = new CardListAdapter(CardListActivity.this, mList);
         lv_card_list.setAdapter(adapter);
-        lv_card_list.setMode(PullToRefreshBase.Mode.BOTH);
+        lv_card_list.setMode(PullToRefreshBase.Mode.DISABLED);
     }
 
     public void click() {
         //添加银行卡
         right_text.setOnClickListener(this);
-        lv_card_list.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
-            @Override
-            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-
-//                getCardListData();
-            }
-
-            @Override
-            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-//                getCardListData();
-            }
-        });
 
         lv_card_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -97,6 +86,7 @@ public class CardListActivity extends BaseActivity {
                         Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
             }
         });
+        left_icon.setOnClickListener(this);
     }
 
     @Override
@@ -108,6 +98,17 @@ public class CardListActivity extends BaseActivity {
                 isAdded = true;
                 startActivityForResult(intent, 1);
                 break;
+            case R.id.left_icon:
+                //如果FLAG=1，表示是从确认订单调过来的，返回时需要调到订单界面，
+                if (DefineUtil.FLAG == 1) {
+                    intent.setClass(CardListActivity.this, MainActivity.class);
+                    DefineUtil.FLAG=2;
+                    startActivity(intent);
+                    CardListActivity.this.finish();
+                } else {
+                    CardListActivity.this.finish();
+                }
+                break;
         }
     }
 
@@ -115,7 +116,6 @@ public class CardListActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == 1) {
-            AppUtils.toastText(this, "1111111");
             getCardListData();
         }
     }
@@ -144,12 +144,15 @@ public class CardListActivity extends BaseActivity {
                             isMoRen = false;
                         } else if (isDelete) {
                             mList.clear();
+                            Log.d("result_isDelete",isDelete+"");
                             isDelete = false;
                         }
 
                         mList.addAll(list);
+                        Log.d("result_mList",mList+"_____");
+                        DefineUtil.BANKBAND=true;
                     } else {
-                    DefineUtil.BANKBAND=false;
+                        DefineUtil.BANKBAND = false;
                     }
                 } else {
                     AppUtils.toastText(CardListActivity.this, message);
@@ -181,6 +184,7 @@ public class CardListActivity extends BaseActivity {
                     break;
                 case R.id.tv_delete_select_popup:
                     popupWindow.dismiss();
+                    customProgress=CustomProgress.show(CardListActivity.this,"",true);
                     deleteCard();
                     break;
             }
@@ -213,11 +217,12 @@ public class CardListActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-//                Log.d("result_delete", arg0.result);/
+                Log.d("result_delete", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
                     isDelete = true;
+
                     getCardListData();
                 }
                 AppUtils.toastText(CardListActivity.this, message);

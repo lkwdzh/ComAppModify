@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -22,8 +23,10 @@ import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.SpinnerAdapter;
+import com.aglook.comapp.bean.AllOrder;
 import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.bean.ShoppingCart;
+import com.aglook.comapp.url.AllOrderUrl;
 import com.aglook.comapp.url.LoginUrl;
 import com.aglook.comapp.url.ShoppingCartUrl;
 import com.aglook.comapp.util.AppUtils;
@@ -77,9 +80,9 @@ public class LoginActivity extends BaseActivity {
         ll_top = (LinearLayout) findViewById(R.id.ll_top);
         et_username_login = (EditText) findViewById(R.id.et_username_login);
         et_password_login = (EditText) findViewById(R.id.et_password_login);
-        accountType=mShare.getString("accountType","");
-        if (accountType==null||"".equals(accountType)){
-            accountType="1";
+        accountType = mShare.getString("accountType", "");
+        if (accountType == null || "".equals(accountType)) {
+            accountType = "1";
         }
         tv_name.setText("用户名：");
         fillData();
@@ -132,9 +135,12 @@ public class LoginActivity extends BaseActivity {
                 } else {
                     mEditor.putString("setName", userName);
                 }
-                mEditor.putString("accountType",accountType);
+                mEditor.putString("accountType", accountType);
                 mEditor.putString("password", password);
                 mEditor.commit();
+                TelephonyManager TelephonyMgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+                String szImei = TelephonyMgr.getDeviceId();
+                Log.d("szImei", szImei);
                 login();
                 break;
             case R.id.tv_name:
@@ -149,7 +155,7 @@ public class LoginActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_login",accountType+"_______"+ arg0.result);
+                Log.d("result_login", accountType + "_______" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String str = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -157,7 +163,7 @@ public class LoginActivity extends BaseActivity {
                 if (status.equals("1")) {//登录成功,跳转页面
                     DefineUtil.TOKEN = login.getToken();
                     DefineUtil.USERID = login.getPshUser().getUserId();
-                    DefineUtil.BANKBAND=login.getPshUser().isBankBind();
+                    DefineUtil.BANKBAND = login.getPshUser().isBankBind();
                     comAppApplication.setLogin(login);
                     // 发送广播给MainActivity
 
@@ -165,6 +171,7 @@ public class LoginActivity extends BaseActivity {
                     LoginActivity.this.setResult(1);
                     LoginActivity.this.finish();
                     getCartListData();
+                    getNotPayData();
                 }
                 AppUtils.toastText(LoginActivity.this, message);
             }
@@ -250,5 +257,39 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
+    }
+
+    private String orderStatus = "1";
+    private int pageNum = 1;
+    private int pageSize = 100;
+    private String orderId;
+
+    //获取未支付
+    //获取数据
+    public void getNotPayData() {
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                Log.d("result_all_order", arg0.result);
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
+                List<AllOrder> sonList = new ArrayList<AllOrder>();
+                sonList = JsonUtils.parseList(obj, AllOrder.class);
+                if (status.equals("1")) {
+                    if (sonList != null && sonList.size() != 0) {
+                        if (orderStatus.equals("1")) {
+                            DefineUtil.NOTPAY_NUM = sonList.size();
+                        }
+                    }
+                } else {
+                    AppUtils.toastText(LoginActivity.this, message);
+                }
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+            }
+        }.datePost(DefineUtil.ORDER_LIST, AllOrderUrl.postAllOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, orderStatus, String.valueOf(pageSize), String.valueOf(pageNum), orderId), LoginActivity.this);
     }
 }

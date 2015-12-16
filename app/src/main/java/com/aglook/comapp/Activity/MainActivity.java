@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -23,8 +24,10 @@ import com.aglook.comapp.Fragment.HomePageFragment;
 import com.aglook.comapp.Fragment.MineFragment;
 import com.aglook.comapp.Fragment.ShoppingCartFragment;
 import com.aglook.comapp.R;
+import com.aglook.comapp.bean.AllOrder;
 import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.bean.ShoppingCart;
+import com.aglook.comapp.url.AllOrderUrl;
 import com.aglook.comapp.url.LoginUrl;
 import com.aglook.comapp.url.ShoppingCartUrl;
 import com.aglook.comapp.util.AppUtils;
@@ -52,6 +55,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
     private String userName;
 
     private String password;
+    private boolean isLogin;
     //Fragment集合
     private Class fragmentArray[] = {
             HomePageFragment.class, ClassificationFragment.class, ShoppingCartFragment.class,
@@ -79,6 +83,35 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
     public void initView() {
 //        db=DbUtils.create(this,"MESSAGE");
 //        comAppApplication.setDb(db);
+
+        mShare = getSharedPreferences("une_pwd", MainActivity.this.MODE_PRIVATE);
+        mEditor = mShare.edit();
+        accountType = mShare.getString("accountType", "");
+        password = mShare.getString("password", "");
+        if (!"".equals(accountType)) {
+            if (accountType.equals("1")) {
+                //用户名登录
+                userName = mShare.getString("userName", "");
+                if (!"".equals(userName) && !"".equals(password)){
+                    if (comAppApplication.getLogin()==null) {
+                        Log.d("result_acc", accountType + "____" + userName + "____" + password);
+                        login();
+                    }
+                }
+
+            }else if (accountType.equals("0")){
+                //席位号登录
+                userName = mShare.getString("setName", "");
+                if (!"".equals(userName) && !"".equals(password)){
+                    if (comAppApplication.getLogin()==null) {
+                        Log.d("result_acc", accountType + "____" + userName + "____" + password);
+                        login();
+                    }
+                }
+            }
+        }
+
+
         mTabHost = (FragmentTabHost) findViewById(R.id.tabhost);
         setupTabView();
         mTabHost.setBackgroundColor(getResources().getColor(R.color.red_c91014));
@@ -88,34 +121,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         if (isGoods) {
             mTabHost.setCurrentTab(2);
         }
-        mShare = getSharedPreferences("une_pwd", MainActivity.this.MODE_PRIVATE);
-        mEditor = mShare.edit();
-        accountType = mShare.getString("accountType", "");
-        password = mShare.getString("password", "");
-        Log.d("result----",accountType+"----"+ mShare.getString("userName", "")+"-----"+ mShare.getString("setName", ""));
-        if (!"".equals(accountType)) {
-            if (accountType.equals("1")) {
-                //用户名登录
-                userName = mShare.getString("userName", "");
-                if (!"".equals(userName) && !"".equals(password)){
-                    Log.d("result_acc", accountType + "____" + userName + "____" + password);
-                    login();
-                }
 
-            }else if (accountType.equals("0")){
-                //席位号登录
-                userName = mShare.getString("setName", "");
-                if (!"".equals(userName) && !"".equals(password)){
-                    Log.d("result_acc", accountType + "____" + userName + "____" + password);
-                    login();
-                }
-            }
-        }
-//        //假如已经存在，则登录
-//        if (!"".equals(accountType) && !"".equals(userName) && !"".equals(password)) {
-//            Log.d("result_acc", accountType + "____" + userName + "____" + password);
-//            login();
-//        }
 
         tv_shopping_point = (TextView) findViewById(R.id.tv_shopping_point);
 
@@ -131,6 +137,10 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         IntentFilter filter = new IntentFilter();
         filter.addAction("MainActivity");
         registerReceiver(myReceiver, filter);
+
+        if (DefineUtil.FLAG==2){
+            mTabHost.setCurrentTab(3);
+        }
     }
 
     @Override
@@ -165,15 +175,6 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
     }
 
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        isFirst= SharedPreferencesUtils.getBoolean(MainActivity.this,"first",true);
-//        if (isFirst){
-//            startActivity(new Intent(MainActivity.this,GuideActivity.class));
-//            SharedPreferencesUtils.saveBoolean(MainActivity.this,"first",false);
-//        }
-//    }
 
     //TabHost的图片改变
     private View getTabItemView(int index) {
@@ -213,13 +214,6 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
             view.setBackgroundResource(R.drawable.tabhost_background);
             TextView textView = (TextView) view.findViewById(R.id.tv_bottom);
             ImageView imageView = (ImageView) view.findViewById(R.id.iv_bottom);
-            //如果选中
-//            if (tabHost.getCurrentTab()==i){
-////                imageView.setBackgroundResource(R.drawable.xuanzhong);
-//                view.setBackgroundColor(getResources().getColor(R.color.black));
-//            }else {
-//                view.setBackgroundColor(getResources().getColor(R.color.red_c91014));
-//            }
         }
     }
 
@@ -251,16 +245,18 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         }
         return true;
     }
-
+   // 868227025178724
 
     //登录账户
     public void login() {
-
+        TelephonyManager TelephonyMgr = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
+        String szImei = TelephonyMgr.getDeviceId();
+        Log.d("szImei",szImei);
         new XHttpuTools() {
 
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_login", arg0.result);
+                Log.d("result_main_login", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String str = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -274,6 +270,11 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
 //                    MainActivity.this.setResult(1);
 //                    MainActivity.this.finish();
                     getCartListData();
+                    getNotPayData();
+                    isLogin=true;
+                    Intent intent1 = new Intent();
+                    intent1.setAction("HomeMain");
+                    MainActivity.this.sendBroadcast(intent1);
                 } else {
 
                     AppUtils.toastText(MainActivity.this, message);
@@ -311,5 +312,40 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
             public void failureInitViews(HttpException arg0, String arg1) {
             }
         }.datePost(DefineUtil.CARTLIST, ShoppingCartUrl.postCartListUrl(DefineUtil.USERID, DefineUtil.TOKEN), MainActivity.this);
+    }
+
+
+    private String orderStatus = "1";
+    private int pageNum = 1;
+    private int pageSize = 100;
+    private String orderId;
+
+    //获取未支付
+    //获取数据
+    public void getNotPayData() {
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                Log.d("result_all_order", arg0.result);
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
+                List<AllOrder> sonList = new ArrayList<AllOrder>();
+                sonList = JsonUtils.parseList(obj, AllOrder.class);
+                if (status.equals("1")) {
+                    if (sonList != null && sonList.size() != 0) {
+                        if (orderStatus.equals("1")) {
+                            DefineUtil.NOTPAY_NUM = sonList.size();
+                        }
+                    }
+                } else {
+                    AppUtils.toastText(MainActivity.this, message);
+                }
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+            }
+        }.datePost(DefineUtil.ORDER_LIST, AllOrderUrl.postAllOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, orderStatus, String.valueOf(pageSize), String.valueOf(pageNum), orderId), MainActivity.this);
     }
 }

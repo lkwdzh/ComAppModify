@@ -399,7 +399,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_alignParentRight">true</item>
-        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentTop">true</item>
         <item name="android:background">@drawable/red_round</item>
         <item name="android:gravity">center</item>
         <item name="android:paddingLeft">@dimen/px_5</item>

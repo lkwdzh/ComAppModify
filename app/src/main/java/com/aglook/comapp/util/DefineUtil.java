@@ -58,6 +58,8 @@ public class DefineUtil {
     public static String INFORMATION = URL_HOST + "index/information";
     //资讯列表
     public static String INFOR_LIST = URL_HOST + "information/list";
+    //价格走势
+    public static String TREND=URL_HOST+"trend";
 
     /**
      * 商品搜索
@@ -139,5 +141,10 @@ public class DefineUtil {
 
     //是否绑定银行卡
     public static boolean BANKBAND;
+    public static int FLAG=0;
 
+    /**
+     * 未支付订单个数
+     */
+    public static int NOTPAY_NUM=0;
 }

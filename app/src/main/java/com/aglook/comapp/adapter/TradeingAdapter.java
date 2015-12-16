@@ -73,7 +73,7 @@ public class TradeingAdapter extends BaseAdapter implements View.OnClickListener
             holder = (ViewHolder) convertView.getTag();
         }
         holder.tv_trans_all_order_lv.setText("修改");
-        holder.tv_tihuo_all_order_lv.setText("删除");
+        holder.tv_tihuo_all_order_lv.setText("取消");
         holder.tv_state_all_order_lv.setVisibility(View.VISIBLE);
         holder.tv_tihuo_all_order_lv.setOnClickListener(this);
         holder.tv_trans_all_order_lv.setOnClickListener(this);

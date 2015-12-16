@@ -57,7 +57,10 @@ public class GuaDanStataAdapter extends BaseAdapter {
         if (stataLiL.getOrderFtime()!=null&&!"".equals(stataLiL.getOrderFtime())) {
             holder.tv_over_state.setText(Timestamp.getDateToDate(stataLiL.getOrderFtime()));
         }
-        holder.tv_weight_state.setText(stataLiL.getWeightUse() + "吨");
+
+
+
+        holder.tv_weight_state.setText(stataLiL.getInnerWeight() + "吨");
         if (stataLiL.getOrderState().equals("notpay")) {
             holder.tv_state_state.setText("待支付");
         } else if (stataLiL.getOrderState().equals("success")) {

@@ -16,7 +16,7 @@ import com.aglook.comapp.R;
 public class HomePageZiAdapter extends BaseAdapter{
     private Context context;
     private int[] imageArray={R.drawable.kandian,R.drawable.hangqin,R.drawable.zoushi,R.drawable.gonggao,R.drawable.wangzhan,R.drawable.zhishi,R.drawable.mai,R.drawable.buy};
-    private String[] str={"每日看点","行情报告","品种走势","品种公告","网站公告","知识学堂","我要卖","我要买"};
+    private String[] str={"每日看点","行情报告","价格走势","品种公告","网站公告","知识学堂","我要卖","我要买"};
     public HomePageZiAdapter(Context context) {
         this.context = context;
     }

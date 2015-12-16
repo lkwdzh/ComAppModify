@@ -71,7 +71,7 @@ public class MyCangDanAdapter extends BaseAdapter implements View.OnClickListene
         }
         XBitmap.displayImage(holder.iv_lv_lv, cangDanList.getGetlistPic(), context);
         holder.tv_name_lv_lv.setText(cangDanList.getPshCategory().getCategoryName());
-        holder.tv_weight_lv_lv.setText(cangDanList.getInnerWeight() + "吨");
+        holder.tv_weight_lv_lv.setText(cangDanList.getWeightUseable() + "吨");
 
         return convertView;
     }

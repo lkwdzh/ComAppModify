@@ -159,7 +159,9 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
         IntentFilter filter = new IntentFilter();
         filter.addAction("Shopping");
         getActivity().registerReceiver(myReceiver,filter);
+
     }
+
 
 
     //接收广播

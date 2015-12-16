@@ -14,6 +14,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.aglook.comapp.Activity.CardListActivity;
 import com.aglook.comapp.Activity.OrderDetailActivity;
 import com.aglook.comapp.Activity.PayActivity;
 import com.aglook.comapp.R;
@@ -79,22 +80,14 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
         }
         holder.tv_click_all_order_lv.setTag(position);
         holder.tv_delete_all_order_lv.setTag(position);
-//        holder.tv_click_all_order_lv.setText("去支付");
-//        holder.tv_click_all_order_lv.setVisibility(View.VISIBLE);
-//        holder.tv_delete_all_order_lv.setVisibility(View.VISIBLE);
-//        holder.tv_delete_all_order_lv.setText("取消");
         holder.tv_click_all_order_lv.setOnClickListener(this);
         holder.tv_delete_all_order_lv.setOnClickListener(this);
-//        holder.tv_click_all_order_lv.setVisibility(View.VISIBLE);
-//        holder.tv_delete_all_order_lv.setOnClickListener(this);
 
         holder.lv_all_order_lv.setFocusable(false);
-//        holder.tv_delete_all_order_lv.setVisibility(View.VISIBLE);
 
         final AllOrder order = list.get(position);
 
 
-//        Log.d("result_list_adapter", position + "_______" + sonList.size() + "____" + sonList.toString());
         holder.lv_all_order_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position1, long id) {
@@ -116,10 +109,6 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
         } else if (order.getOrderStatus().equals("success")) {
             holder.tv_success_all_order_lv.setText("交易成功");
             holder.tv_success_all_order_lv.setTextColor(activity.getResources().getColor(R.color.red_c91014));
-//            holder.tv_click_all_order_lv.setVisibility(View.VISIBLE);
-//            holder.tv_click_all_order_lv.setText("提货");
-//            holder.tv_delete_all_order_lv.setVisibility(View.VISIBLE);
-//            holder.tv_delete_all_order_lv.setText("转售");
             holder.tv_click_all_order_lv.setVisibility(View.GONE);
             holder.tv_delete_all_order_lv.setVisibility(View.GONE);
             isSuccess = false;
@@ -160,6 +149,8 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
                     activity.startActivityForResult(intent, 1);
                 } else {
                     AppUtils.toastText(activity, "尚未绑定银行卡");
+                    intent.setClass(activity, CardListActivity.class);
+                    activity.startActivity(intent);
                 }
 
                 break;

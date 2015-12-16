@@ -97,11 +97,11 @@ public class ModifyPickUpActivity extends BaseActivity {
         tv_house_num_my_cangdan.setText(pickUpDetail.getGetId());
         if (pickUpDetail.getIsget()!=null&&!"".equals(pickUpDetail.getIsget())){
             if (pickUpDetail.getIsget().equals("0")){
-                tv_house_num_my_cangdan.setText("已取消");
+                tv_success_all_order_lv.setText("已取消");
             }else  if (pickUpDetail.getIsget().equals("1")){
-                tv_house_num_my_cangdan.setText("提货中");
+                tv_success_all_order_lv.setText("提货中");
             }else  if (pickUpDetail.getIsget().equals("2")){
-                tv_house_num_my_cangdan.setText("提货成功");
+                tv_success_all_order_lv.setText("提货成功");
             }
         }
         if (pickUpDetail.getGetAtime()!=null&&!"".equals(pickUpDetail.getGetAtime())){
@@ -162,6 +162,7 @@ public class ModifyPickUpActivity extends BaseActivity {
                 String obj=JsonUtils.getJsonParam(arg0.result,"obj");
                 if (status.equals("1")){
                     pickUpDetail=JsonUtils.parse(obj,PickUpDetail.class);
+                    fillData();
                     adapter.getID(pickUpDetail.getGetId());
                     if (pickUpDetail.getDriverList()!=null&&pickUpDetail.getDriverList().size()!=0){
                         mList.addAll(pickUpDetail.getDriverList());

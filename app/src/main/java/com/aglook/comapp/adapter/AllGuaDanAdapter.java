@@ -137,7 +137,7 @@ public class AllGuaDanAdapter extends BaseAdapter implements View.OnClickListene
                 intent.setClass(activity, ModifyGuaDanActivity.class);
                 index = (int) v.getTag();
                 intent.putExtra("productId", list.get(index).getProductId());
-                activity.startActivity(intent);
+                activity.startActivityForResult(intent,12);
                 break;
             case R.id.tv_state_all_order_lv:
                 index = (int) v.getTag();

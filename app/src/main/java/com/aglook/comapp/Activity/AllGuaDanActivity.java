@@ -36,6 +36,7 @@ public class AllGuaDanActivity extends BaseActivity {
     private int pageNum = 1;
     private int pageSize = 10;
     private String _sort;
+    private boolean isModify;
     private CustomProgress customProgress;
 
     @Override
@@ -65,8 +66,7 @@ public class AllGuaDanActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 intent.setClass(AllGuaDanActivity.this, GoodsDetailActivity.class);
                 intent.putExtra("isSelf", true);
-                intent.putExtra("productId",mList.get(position-1).getProductId());
-                AppUtils.toastText(AllGuaDanActivity.this,position-1+"");
+                intent.putExtra("productId", mList.get(position - 1).getProductId());
                 startActivity(intent);
             }
         });
@@ -83,6 +83,15 @@ public class AllGuaDanActivity extends BaseActivity {
                 getData();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==12&&resultCode==1){
+            customProgress=CustomProgress.show(AllGuaDanActivity.this,"",true);
+            isModify=true;
+            getData();
+        }
     }
 
     @Override
@@ -108,6 +117,10 @@ public class AllGuaDanActivity extends BaseActivity {
                         guaDan = JsonUtils.parse(obj, GuaDan.class);
                         if (guaDan.getList() != null && guaDan.getList().size() != 0) {
                             if (pageNum == 1) {
+                                mList.clear();
+                            }
+                            if (isModify){
+                                isModify=false;
                                 mList.clear();
                             }
 

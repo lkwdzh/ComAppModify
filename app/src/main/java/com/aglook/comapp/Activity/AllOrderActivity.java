@@ -2,9 +2,11 @@ package com.aglook.comapp.Activity;
 
 import android.content.Intent;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.aglook.comapp.Application.ExitApplication;
@@ -46,6 +48,7 @@ public class AllOrderActivity extends BaseActivity {
     private boolean isDetail;
 
     private int status;
+    private ImageView left_icon;
 
     @Override
     public void initView() {
@@ -68,6 +71,7 @@ public class AllOrderActivity extends BaseActivity {
 
     public void init() {
         customProgress = CustomProgress.show(this, "加载中···", true);
+        left_icon = (ImageView) findViewById(R.id.left_icon);
         lv_all_order = (PullToRefreshListView) findViewById(R.id.lv_all_order);
         adapter = new AllOrderAdapter(AllOrderActivity.this, mList);
         lv_all_order.setAdapter(adapter);
@@ -98,11 +102,28 @@ public class AllOrderActivity extends BaseActivity {
                 getData();
             }
         });
+        left_icon.setOnClickListener(this);
     }
 
     @Override
     public void widgetClick(View view) {
-
+        switch (view.getId()){
+            case R.id.left_icon:
+                AllOrderActivity.this.setResult(22);
+                AllOrderActivity.this.finish();
+                break;
+        }
+    }
+    //监听返回键
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            AllOrderActivity.this.setResult(22);
+            AllOrderActivity.this.finish();
+            return false;
+        } else {
+            return super.onKeyDown(keyCode, event);
+        }
     }
 
     @Override
@@ -117,47 +138,6 @@ public class AllOrderActivity extends BaseActivity {
         }
     }
 
-    //获取数据
-//    public void getData() {
-//        new XHttpuTools() {
-//            @Override
-//            public void initViews(ResponseInfo<String> arg0) {
-//                if (customProgress != null && customProgress.isShowing()) {
-//                    customProgress.dismiss();
-//                }
-//                Log.d("result_all_order", arg0.result);
-//                String message = JsonUtils.getJsonParam(arg0.result, "message");
-//                String status = JsonUtils.getJsonParam(arg0.result, "status");
-//                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
-//                List<AllOrder> sonList = new ArrayList<AllOrder>();
-//                sonList = JsonUtils.parseList(obj, AllOrder.class);
-//                if (status.equals("1")) {
-//                    if (sonList != null && sonList.size() != 0) {
-//                        if (isBrower) {
-//                            mList.clear();
-//                            isBrower = false;
-//                        }
-//                        if (pageNum == 1) {
-//                            mList.clear();
-//                        }
-//                        mList.addAll(sonList);
-//                    }
-//                } else {
-//                    AppUtils.toastText(AllOrderActivity.this, message);
-//                }
-//                adapter.notifyDataSetChanged();
-//                lv_all_order.setEmptyView(emptyView);
-//                lv_all_order.onRefreshComplete();
-//            }
-//
-//            @Override
-//            public void failureInitViews(HttpException arg0, String arg1) {
-//                if (customProgress != null && customProgress.isShowing()) {
-//                    customProgress.dismiss();
-//                }
-//            }
-//        }.datePost(DefineUtil.CANG_DAN, AllOrderUrl.postAllOrderUrl(code,DefineUtil.TOKEN, DefineUtil.USERID,  String.valueOf(pageSize), String.valueOf(pageNum),_sort, orderState), AllOrderActivity.this);
-//    }
 
     //获取数据
     public void getData() {
@@ -187,6 +167,13 @@ public class AllOrderActivity extends BaseActivity {
                             mList.clear();
                         }
                         mList.addAll(sonList);
+                    }
+                    if (orderStatus!=null&&orderStatus.equals("1")) {
+                        if (mList.size() != 0) {
+                            DefineUtil.NOTPAY_NUM = mList.size();
+                        } else {
+                            DefineUtil.NOTPAY_NUM = 0;
+                        }
                     }
                 } else {
                     AppUtils.toastText(AllOrderActivity.this, message);

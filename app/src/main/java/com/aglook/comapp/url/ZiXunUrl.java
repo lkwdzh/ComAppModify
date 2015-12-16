@@ -19,5 +19,14 @@ public class ZiXunUrl {
         params.addBodyParameter("classId", classId);
         return params;
     }
-
+    /**
+     * 价格走势
+     * @param categoryId 种类id
+     * @return
+     */
+    public static RequestParams postTrendUrl(String categoryId){
+        params=new RequestParams();
+        params.addBodyParameter("categoryId",categoryId);
+        return params;
+    }
 }

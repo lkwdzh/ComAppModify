@@ -16,17 +16,17 @@
         <TextView
             android:id="@+id/tv_name_modify_pick_up"
             style="@style/orderDetail_TextView_666666_13_center"
-            android:text="李坤" />
+             />
 
         <TextView
             android:id="@+id/tv_weight_modify_pick_up"
             style="@style/orderDetail_TextView_666666_13_center"
-            android:text="100吨" />
+           />
 
         <TextView
             android:id="@+id/tv_type_modify_pick_up"
             style="@style/orderDetail_TextView_666666_13_center"
-            android:text="未提货" />
+             />
 
         <LinearLayout
             android:id="@+id/ll_modify_pick_up"

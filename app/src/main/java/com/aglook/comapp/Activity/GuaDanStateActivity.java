@@ -1,6 +1,7 @@
 package com.aglook.comapp.Activity;
 
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
 
@@ -35,10 +36,11 @@ public class GuaDanStateActivity extends BaseActivity {
     private GuaDanStata guaDanStata;
     private List<GuaDanStataLiL> mList = new ArrayList<>();
     private CustomProgress customProgress;
+    private View emptyView;
     @Override
     public void initView() {
         setContentView(R.layout.activity_order_state);
-        setTitleBar("交易状态");
+        setTitleBar("交易记录");
         init();
         click();
         getData();
@@ -47,6 +49,7 @@ public class GuaDanStateActivity extends BaseActivity {
     public void init() {
         customProgress = CustomProgress.show(this, "加载中···", true);
         productId = getIntent().getStringExtra("productId");
+        emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
         adapter = new GuaDanStataAdapter(GuaDanStateActivity.this,mList);
         lv_order_state = (PullToRefreshListView) findViewById(R.id.lv_order_state);
         lv_order_state.setAdapter(adapter);
@@ -99,6 +102,7 @@ public class GuaDanStateActivity extends BaseActivity {
                 }
                 adapter.notifyDataSetChanged();
                 lv_order_state.onRefreshComplete();
+                lv_order_state.setEmptyView(emptyView);
             }
 
             @Override

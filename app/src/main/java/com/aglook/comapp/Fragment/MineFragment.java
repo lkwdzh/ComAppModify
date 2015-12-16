@@ -26,6 +26,7 @@ import com.aglook.comapp.Activity.TransSucceedActivity;
 import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.Login;
+import com.aglook.comapp.util.DefineUtil;
 
 /**
  * Created by aglook on 2015/10/26.
@@ -58,6 +59,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private TextView tv_tihuo_point;
     private TextView tv_message_mine_fragment;
 
+    private final int NOTPAY = 1;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -72,6 +75,12 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public void initView(View view) {
         comAppApplication = (ComAppApplication) getActivity().getApplication();
         login = comAppApplication.getLogin();
+        if (DefineUtil.FLAG == 2) {
+            Intent intent = new Intent();
+            intent.setClass(getActivity(), AllOrderActivity.class);
+            intent.putExtra("status", 2);
+            startActivity(intent);
+        }
         iv_icon_mine_fragment = ((ImageView) view.findViewById(R.id.iv_icon_mine_fragment));
         rl_background_mine_fragment = (RelativeLayout) view.findViewById(R.id.rl_background_mine_fragment);
         ll_all_guadan_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_all_guadan_mine_fragment);
@@ -122,6 +131,13 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         if (requestCode == 1 && resultCode == 1) {
             login = comAppApplication.getLogin();
             fillData();
+        } else if (requestCode==1&&resultCode==22){
+            if (DefineUtil.NOTPAY_NUM != 0) {
+                tv_daifukuan_point.setText(DefineUtil.NOTPAY_NUM + "");
+                tv_daifukuan_point.setVisibility(View.VISIBLE);
+            }else {
+                tv_daifukuan_point.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -131,7 +147,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             tv_name_mine_fragment.setText(login.getPshUser().getUsername());
 
 //            tv_all_order_point.setVisibility(View.VISIBLE);
-//            tv_daifukuan_point.setVisibility(View.VISIBLE);
+            if (DefineUtil.NOTPAY_NUM != 0) {
+                tv_daifukuan_point.setText(DefineUtil.NOTPAY_NUM + "");
+            tv_daifukuan_point.setVisibility(View.VISIBLE);
+            }
 //            tv_daishouhuo_point.setVisibility(View.VISIBLE);
 //            tv_all_guadan_point.setVisibility(View.VISIBLE);
 //            tv_jiaoyizhong_point.setVisibility(View.VISIBLE);
@@ -139,11 +158,12 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 //            tv_cangdan_point.setVisibility(View.VISIBLE);
 //            tv_pingtaicangdan_point.setVisibility(View.VISIBLE);
 //            tv_tihuo_point.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             tv_name_mine_fragment.setText("");
 
 //            tv_all_order_point.setVisibility(View.GONE);
-//            tv_daifukuan_point.setVisibility(View.GONE);
+                tv_daifukuan_point.setVisibility(View.GONE);
+
 //            tv_daishouhuo_point.setVisibility(View.GONE);
 //            tv_all_guadan_point.setVisibility(View.GONE);
 //            tv_jiaoyizhong_point.setVisibility(View.GONE);
@@ -221,7 +241,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 } else {
                     intent.setClass(getActivity(), AllOrderActivity.class);
                     intent.putExtra("status", 2);
-                    startActivity(intent);
+                    startActivityForResult(intent, NOTPAY);
                 }
                 break;
             case R.id.ll_to_receive_mine_fragment:

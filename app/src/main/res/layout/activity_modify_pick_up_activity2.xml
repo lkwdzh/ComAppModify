@@ -29,15 +29,13 @@
             <TextView
                 android:id="@+id/tv_house_num_my_cangdan"
                 style="@style/grayTextView_333333_15"
-                android:layout_toRightOf="@+id/tv_cangdan"
-                android:text="12346549879879" />
+                android:layout_toRightOf="@+id/tv_cangdan" />
 
             <TextView
                 android:id="@+id/tv_success_all_order_lv"
                 style="@style/redTextView_c91014"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:text="已售完"
                 android:textSize="13sp" />
         </RelativeLayout>
 
@@ -61,7 +59,6 @@
                 <TextView
                     android:id="@+id/tv_in_time_my_cangdan"
                     style="@style/grayTextView_999999"
-                    android:text="2015-01-01 16:24"
                     android:textSize="11sp" />
 
             </LinearLayout>
@@ -83,7 +80,6 @@
                 <TextView
                     android:id="@+id/tv_time_tihuo"
                     style="@style/grayTextView_999999"
-                    android:text="2015-01-01 16:21"
                     android:textSize="11sp" />
             </LinearLayout>
         </RelativeLayout>

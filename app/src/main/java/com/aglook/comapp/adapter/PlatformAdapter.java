@@ -80,7 +80,7 @@ public class PlatformAdapter extends BaseAdapter implements View.OnClickListener
         XBitmap.displayImage(holder.iv_lv_lv, danList.getProductLogo(), context);
         holder.tv_name_lv_lv.setText(danList.getProductName());
         holder.tv_price_lv_lv.setText(danList.getProductMoney());
-        holder.tv_weight_lv_lv.setText(danList.getInnerWeight() + "吨");
+        holder.tv_weight_lv_lv.setText(danList.getWeightUseable() + "吨");
         holder.tv_trans_all_order_lv.setTag(position);
         if (danList.getOrderPtime()!=null&&!"".equals(danList.getOrderPtime())){
             holder.tv_in_time_my_cangdan.setText(Timestamp.getDateTo(danList.getOrderPtime()));

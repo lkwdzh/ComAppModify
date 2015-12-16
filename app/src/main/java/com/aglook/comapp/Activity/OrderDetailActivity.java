@@ -144,6 +144,11 @@ public class OrderDetailActivity extends BaseActivity {
         }
         if (allOrder.getPrderPayTime() != null && !"".equals(allOrder.getPrderPayTime())) {
             tv_pay_order_detail.setText(Timestamp.getDateTo(allOrder.getPrderPayTime()));
+            tv_over_order_detail.setText(Timestamp.getDateTo(allOrder.getPrderPayTime()));
+
+        }else {
+            tv_pay_order_detail.setText("未付款");
+            tv_over_order_detail.setText("未确认");
         }
         tv_money_order_detail.setText(allOrder.getMoney() + "");
         tv_cost_order_detail.setText(allOrder.getTotalFee());
@@ -182,6 +187,8 @@ public class OrderDetailActivity extends BaseActivity {
                     startActivityForResult(intent, DETAIL_PAY);
                 } else {
                     AppUtils.toastText(OrderDetailActivity.this, "尚未绑定银行卡");
+                    intent.setClass(OrderDetailActivity.this, CardListActivity.class);
+                    OrderDetailActivity.this.startActivity(intent);
                 }
 
                 break;
@@ -222,39 +229,6 @@ public class OrderDetailActivity extends BaseActivity {
         }
     }
 
-    //    获取数据
-//    public void getData() {
-//        new XHttpuTools() {
-//            @Override
-//            public void initViews(ResponseInfo<String> arg0) {
-//                if (customProgress != null && customProgress.isShowing()) {
-//                    customProgress.dismiss();
-//                }
-//                Log.d("result_detail", arg0.result);
-//                String message = JsonUtils.getJsonParam(arg0.result, "message");
-//                String status = JsonUtils.getJsonParam(arg0.result, "status");
-//                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
-//                if (status.equals("1")) {
-//                    allOrder = JsonUtils.parse(obj, AllOrder.class);
-//                    if (allOrder != null) {
-//                        fillData();
-//                    }
-//                    if (allOrder.getOrderDetailList() != null && allOrder.getOrderDetailList().size() != 0) {
-//                        mList.addAll(allOrder.getOrderDetailList());
-//                    }
-//                }
-//
-//                adapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void failureInitViews(HttpException arg0, String arg1) {
-//                if (customProgress != null && customProgress.isShowing()) {
-//                    customProgress.dismiss();
-//                }
-//            }
-//        }.datePost(DefineUtil.ORDER_DETAIL, AllOrderUrl.postOrderDetailUrl(DefineUtil.USERID, DefineUtil.TOKEN, orderId), OrderDetailActivity.this);
-//    }
 //获取数据
     public void getData() {
         new XHttpuTools() {

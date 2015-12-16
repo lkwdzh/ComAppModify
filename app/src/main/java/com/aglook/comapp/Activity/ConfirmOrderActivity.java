@@ -35,6 +35,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.aglook.comapp.R.id;
+
 public class ConfirmOrderActivity extends BaseActivity {
 
     private TextView tv_name_confirm_order;
@@ -55,11 +57,14 @@ public class ConfirmOrderActivity extends BaseActivity {
     private String cartids;
     private ImageView left_icon;
 
+    public static ConfirmOrderActivity instance = null;
+
 
     @Override
     public void initView() {
         setContentView(R.layout.activity_confirm_order);
         setTitleBar("确认订单");
+        instance = this;
         ExitApplication.getInstance().addActivity(this);
         comAppApplication = (ComAppApplication) getApplication();
         init();
@@ -69,16 +74,16 @@ public class ConfirmOrderActivity extends BaseActivity {
     public void init() {
         login = comAppApplication.getLogin();
         mList = (List<ShoppingCart>) getIntent().getSerializableExtra("CharList");
-        tv_name_confirm_order = (TextView) findViewById(R.id.tv_name_confirm_order);
-        tv_phone_confirm_order = (TextView) findViewById(R.id.tv_phone_confirm_order);
-        lv_confirm_order = (ListView) findViewById(R.id.lv_confirm_order);
-        tv_money_confirm_order = (TextView) findViewById(R.id.tv_money_confirm_order);
-        tv_confirm_confirm_order = (TextView) findViewById(R.id.tv_confirm_confirm_order);
+        tv_name_confirm_order = (TextView) findViewById(id.tv_name_confirm_order);
+        tv_phone_confirm_order = (TextView) findViewById(id.tv_phone_confirm_order);
+        lv_confirm_order = (ListView) findViewById(id.lv_confirm_order);
+        tv_money_confirm_order = (TextView) findViewById(id.tv_money_confirm_order);
+        tv_confirm_confirm_order = (TextView) findViewById(id.tv_confirm_confirm_order);
         View view = LayoutInflater.from(ConfirmOrderActivity.this).inflate(R.layout.footview_confirm_order, null);
         lv_confirm_order.addFooterView(view);
-        tv_zonge_confirm_order = (TextView) view.findViewById(R.id.tv_zonge_confirm_order);
-        tv_shouxufei_confirm_order = (TextView) view.findViewById(R.id.tv_shouxufei_confirm_order);
-        left_icon = (ImageView) findViewById(R.id.left_icon);
+        tv_zonge_confirm_order = (TextView) view.findViewById(id.tv_zonge_confirm_order);
+        tv_shouxufei_confirm_order = (TextView) view.findViewById(id.tv_shouxufei_confirm_order);
+        left_icon = (ImageView) findViewById(id.left_icon);
         addCostMoney();
     }
 
@@ -177,18 +182,19 @@ public class ConfirmOrderActivity extends BaseActivity {
         Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.btn_cancel_pay_popup:
+                ConfirmOrderActivity.this.setResult(1);
+                ConfirmOrderActivity.this.finish();
                 dialog.dismiss();
                 break;
             case R.id.btn_confirm_pay_popup:
+                intent.setClass(ConfirmOrderActivity.this, CardListActivity.class);
+                ConfirmOrderActivity.this.finish();
+                DefineUtil.FLAG = 1;
+                startActivity(intent);
                 dialog.dismiss();
                 break;
             case R.id.tv_confirm_confirm_order:
-//                showDialog();
-                if (DefineUtil.BANKBAND) {
-                    getData();
-                } else {
-                    AppUtils.toastText(ConfirmOrderActivity.this, "尚未绑定银行卡");
-                }
+                getData();
                 break;
             case R.id.left_icon:
 //                intent.setClass(ConfirmOrderActivity.this, ShoppingCartFragment.class);
@@ -224,12 +230,8 @@ public class ConfirmOrderActivity extends BaseActivity {
     public void showDialog() {
         LayoutInflater inflater = LayoutInflater.from(ConfirmOrderActivity.this);
         View inView = inflater.inflate(R.layout.layout_pay_dialog, null);
-        btn_cancel_pay_popup = (Button) inView.findViewById(R.id.btn_cancel_pay_popup);
-        btn_confirm_pay_popup = (Button) inView.findViewById(R.id.btn_confirm_pay_popup);
-        tv_money_pay_popup = (TextView) inView.findViewById(R.id.tv_money_pay_popup);
-        tv_card_pay_popup = (TextView) inView.findViewById(R.id.tv_card_pay_popup);
-        et_input_pay_popup = (EditText) inView.findViewById(R.id.et_input_pay_popup);
-        tv_yanzheng_pay_popup = (TextView) inView.findViewById(R.id.tv_yanzheng_pay_popup);
+        btn_cancel_pay_popup = (Button) inView.findViewById(id.btn_cancel_pay_popup);
+        btn_confirm_pay_popup = (Button) inView.findViewById(id.btn_confirm_pay_popup);
         AlertDialog.Builder builder = new AlertDialog.Builder(ConfirmOrderActivity.this);
         builder.create();
         builder.setView(inView);
@@ -237,7 +239,6 @@ public class ConfirmOrderActivity extends BaseActivity {
         dialog = builder.show();
         btn_cancel_pay_popup.setOnClickListener(this);
         btn_confirm_pay_popup.setOnClickListener(this);
-        tv_card_pay_popup.setOnClickListener(this);
     }
 
     private String orderId;
@@ -263,14 +264,18 @@ public class ConfirmOrderActivity extends BaseActivity {
                     Intent intentBroad = new Intent();
                     intentBroad.setAction("Shopping");
                     sendBroadcast(intentBroad);
-
-
-                    Intent intent = new Intent(ConfirmOrderActivity.this, PayActivity.class);
-                    intent.putExtra("orderId", orderId);
-                    intent.putExtra("money", money);
-                    startActivity(intent);
+                    AppUtils.toastText(ConfirmOrderActivity.this, DefineUtil.BANKBAND+"");
+                    if (DefineUtil.BANKBAND) {
+                        Intent intent = new Intent(ConfirmOrderActivity.this, PayActivity.class);
+                        intent.putExtra("orderId", orderId);
+                        intent.putExtra("money", money);
+                        startActivity(intent);
 //                    ConfirmOrderActivity.this.setResult(1);
-                    ConfirmOrderActivity.this.finish();
+                        ConfirmOrderActivity.this.finish();
+                    } else {
+                        AppUtils.toastText(ConfirmOrderActivity.this, "尚未绑定银行卡");
+                        showDialog();
+                    }
                 } else {
                     AppUtils.toastText(ConfirmOrderActivity.this, message);
                 }

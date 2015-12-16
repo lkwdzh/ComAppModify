@@ -21,7 +21,6 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/rl_bottom"
         android:layout_below="@+id/view1"
-        android:layout_marginBottom="@dimen/px_20"
         android:divider="@null"></com.handmark.pulltorefresh.library.PullToRefreshListView>
 
     <RelativeLayout
@@ -32,6 +31,7 @@
         android:background="@color/gray_eeeeee"
         android:paddingLeft="@dimen/px_20"
         android:paddingRight="@dimen/px_20"
+        android:visibility="gone"
         android:gravity="center_vertical">
 
         <CheckBox
