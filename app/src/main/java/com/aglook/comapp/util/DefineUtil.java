@@ -147,4 +147,9 @@ public class DefineUtil {
      * 未支付订单个数
      */
     public static int NOTPAY_NUM=0;
+
+    /**
+     * 设备号
+     */
+    public static String DEVICE_NUM;
 }

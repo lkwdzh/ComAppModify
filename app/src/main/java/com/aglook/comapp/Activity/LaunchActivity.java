@@ -2,9 +2,12 @@ package com.aglook.comapp.Activity;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.View;
 
 import com.aglook.comapp.R;
+import com.aglook.comapp.util.DefineUtil;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -15,6 +18,9 @@ public class LaunchActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_launch);
         init();
+        TelephonyManager TelephonyMgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        DefineUtil.DEVICE_NUM = TelephonyMgr.getDeviceId();
+        Log.d("DefineUtil.DEVICE_NUM", DefineUtil.DEVICE_NUM);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

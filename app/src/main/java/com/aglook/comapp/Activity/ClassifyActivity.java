@@ -80,7 +80,7 @@ public class ClassifyActivity extends BaseActivity {
                 Intent intent = new Intent(ClassifyActivity.this, HangDetailActivity.class);
                 intent.putExtra("url",DefineUtil.TREND+"?categoryId="+rightList.get(i).getCategoryId());
                 intent.putExtra("className","价格走势");
-                Log.d("result_url",DefineUtil.TREND+rightList.get(i).getCategoryId());
+                Log.d("result_url",DefineUtil.TREND+"?categoryId="+rightList.get(i).getCategoryId());
                 startActivity(intent);
             }
         });

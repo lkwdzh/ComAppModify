@@ -117,4 +117,35 @@ public class GuaDanUrl {
         Log.d("result_json",str);
         return str;
     }
+
+
+    /**
+     * 挂单详情
+     * @param code 4007
+     * @param token 用户token
+     * @param userId 用户id
+     * @param orderdataId 平台仓单id
+     * @param productId 商品id
+     * @return
+     */
+    public static RequestParams postGuaDanDetailUrl(String code,String token, String userId, String orderdataId,
+                                                    String productId){
+        params=new RequestParams();
+        String sign=null;
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("token", token);
+            jsonObject.put("userId", userId);
+            jsonObject.put("orderdataId", orderdataId);
+            jsonObject.put("productId", productId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String content=jsonObject.toString();
+        params.addBodyParameter("code", code);
+        params.addBodyParameter("version", DefineUtil.VERSON);
+        params.addBodyParameter("content", content);
+        params.addBodyParameter("sign", sign);
+        return params;
+    }
 }

@@ -13,7 +13,7 @@ public class GuaDanStataLiL {
     private String  productMoneyYh;//": 0.00,优惠价格
     private String  productNum;//": 2,总量
     private String  proruleKey;//": "",
-    private String  proruleName;//": "",
+    private String  proruleName;//":
     private String  harvestCode;//": null,
     private String  innerWeight;//": 2,总量
     private String  weightUse;//": 0,交易数量

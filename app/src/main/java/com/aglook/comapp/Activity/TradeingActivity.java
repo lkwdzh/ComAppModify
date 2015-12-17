@@ -39,6 +39,7 @@ public class TradeingActivity extends BaseActivity {
     private String orderState = "notpay";
     private CustomProgress customProgress;
     private View emptyView;
+    private boolean isModify;
     @Override
     public void initView() {
         setContentView(R.layout.activity_tradeing);
@@ -84,7 +85,14 @@ public class TradeingActivity extends BaseActivity {
             }
         });
     }
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==12&&resultCode==1){
+            customProgress=CustomProgress.show(TradeingActivity.this,"",true);
+            isModify=true;
+            getData();
+        }
+    }
     @Override
     public void widgetClick(View view) {
 
@@ -107,6 +115,10 @@ public class TradeingActivity extends BaseActivity {
                     if (guaDanStataLi.getList() != null && guaDanStataLi.getList().size() != 0) {
                         if (pageNum == 1) {
                             mList.clear();
+                        }
+                        if (isModify){
+                            mList.clear();
+                            isModify=false;
                         }
                         mList.addAll(guaDanStataLi.getList());
                         Log.d("1111", mList.toString());

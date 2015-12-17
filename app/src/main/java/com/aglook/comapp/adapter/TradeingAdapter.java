@@ -15,8 +15,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.aglook.comapp.Activity.GuaDanAddActivity;
-import com.aglook.comapp.Activity.GuaDanStateActivity;
+import com.aglook.comapp.Activity.ModifyGuaDanActivity;
+import com.aglook.comapp.Activity.TransDetailActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.GuaDanStataLiL;
 import com.aglook.comapp.url.AllGuaDanUrl;
@@ -122,13 +122,17 @@ public class TradeingAdapter extends BaseAdapter implements View.OnClickListener
                 deleteGua();
                 break;
             case R.id.tv_trans_all_order_lv:
-                intent.setClass(activity, GuaDanAddActivity.class);
-                activity.startActivity(intent);
+//                intent.setClass(activity, GuaDanAddActivity.class);
+                intent.setClass(activity, ModifyGuaDanActivity.class);
+                index = (int) v.getTag();
+                intent.putExtra("productId", list.get(index).getProductId());
+                activity.startActivityForResult(intent, 12);
                 break;
             case R.id.tv_state_all_order_lv:
                 index = (int) v.getTag();
-                intent.setClass(activity, GuaDanStateActivity.class);
+                intent.setClass(activity, TransDetailActivity.class);
                 intent.putExtra("productId", list.get(index).getProductId());
+                intent.putExtra("orderdataId",list.get(index).getOrderdataId());
                 activity.startActivity(intent);
                 break;
         }

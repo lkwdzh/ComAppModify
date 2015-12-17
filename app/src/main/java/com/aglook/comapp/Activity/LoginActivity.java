@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -138,9 +137,7 @@ public class LoginActivity extends BaseActivity {
                 mEditor.putString("accountType", accountType);
                 mEditor.putString("password", password);
                 mEditor.commit();
-                TelephonyManager TelephonyMgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-                String szImei = TelephonyMgr.getDeviceId();
-                Log.d("szImei", szImei);
+
                 login();
                 break;
             case R.id.tv_name:
@@ -179,7 +176,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
             }
-        }.datePost(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType), LoginActivity.this);
+        }.datePost(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType,DefineUtil.DEVICE_NUM), LoginActivity.this);
     }
 
     //    获取购物车列表

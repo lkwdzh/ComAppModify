@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.Activity.GuaDanAddActivity;
-import com.aglook.comapp.Activity.GuaDanStateActivity;
+import com.aglook.comapp.Activity.TransDetailActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.GuaDanStataLiL;
 import com.aglook.comapp.util.XBitmap;
@@ -107,8 +107,9 @@ public class TransSucceedAdapter extends BaseAdapter implements View.OnClickList
                 break;
             case R.id.tv_state_all_order_lv:
                 index = (int) v.getTag();
-                intent.setClass(activity, GuaDanStateActivity.class);
+                intent.setClass(activity, TransDetailActivity.class);
                 intent.putExtra("productId", list.get(index).getProductId());
+                intent.putExtra("orderdataId",list.get(index).getOrderdataId());
                 activity.startActivity(intent);
                 break;
         }

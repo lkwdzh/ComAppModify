@@ -61,7 +61,6 @@ public class PlatformAdapter extends BaseAdapter implements View.OnClickListener
         }
 
         holder.tv_in_time.setText("交易时间");
-        holder.ll_1.setVisibility(View.INVISIBLE);
         holder.ll_3.setVisibility(View.INVISIBLE);
         holder.tv_trans_all_order_lv.setOnClickListener(this);
         holder.tv_tihuo_all_order_lv.setOnClickListener(this);

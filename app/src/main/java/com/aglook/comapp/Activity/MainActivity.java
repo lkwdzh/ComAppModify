@@ -5,10 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -142,6 +143,19 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
             mTabHost.setCurrentTab(3);
         }
     }
+    private ApplicationInfo info;
+    private String channel;
+    //获取渠道并且检查更新
+    public void checkUpdate(){
+        //获取发布渠道
+        try {
+            info = this.getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        channel = info.metaData.getString("UMENG_CHANNEL");
+    }
+
 
     @Override
     protected void onDestroy() {
@@ -249,9 +263,9 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
 
     //登录账户
     public void login() {
-        TelephonyManager TelephonyMgr = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
-        String szImei = TelephonyMgr.getDeviceId();
-        Log.d("szImei",szImei);
+//        TelephonyManager TelephonyMgr = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
+//        String szImei = TelephonyMgr.getDeviceId();
+//        Log.d("szImei",szImei);
         new XHttpuTools() {
 
             @Override
@@ -285,7 +299,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        }.datePost(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType), MainActivity.this);
+        }.datePost(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType,DefineUtil.DEVICE_NUM), MainActivity.this);
     }
 
     //    获取购物车列表
