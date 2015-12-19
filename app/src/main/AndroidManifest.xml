@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aglook.comapp"
-    android:versionName="1.0" >
+    android:versionName="1.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -44,7 +44,7 @@
         android:allowBackup="true"
         android:icon="@drawable/tubiao"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="5666add8e0f55a3b0c0023ad" />
@@ -61,7 +61,7 @@
         <!--<meta-data  android:value="baidu" android:name="UMENG_CHANNEL"/>-->
 
         <!--&lt;!&ndash;91&ndash;&gt;-->
-        <!--<meta-data  android:value="91" android:name="UMENG_CHANNEL"/>-->
+        <!--<meta-data  android:value="91sc" android:name="UMENG_CHANNEL"/>-->
 
         <!--&lt;!&ndash;安卓市场&ndash;&gt;-->
         <!--<meta-data  android:value="anzhuo" android:name="UMENG_CHANNEL"/>-->
@@ -80,7 +80,7 @@
             android:name="cn.jpush.android.ui.PushActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="false"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
 
@@ -92,15 +92,14 @@
         <service
             android:name="cn.jpush.android.service.DownloadService"
             android:enabled="true"
-            android:exported="false" >
-        </service>
+            android:exported="false"></service>
 
         <!-- Required SDK 核心功能 -->
         <!-- 可配置android:process参数将PushService放在其他进程中 -->
         <service
             android:name="cn.jpush.android.service.PushService"
             android:enabled="true"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTER" />
                 <action android:name="cn.jpush.android.intent.REPORT" />
@@ -114,7 +113,7 @@
         <service
             android:name="cn.jpush.android.service.DaemonService"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService" />
 
@@ -126,9 +125,10 @@
         <receiver
             android:name="cn.jpush.android.service.PushReceiver"
             android:enabled="true"
-            android:exported="false" >
-            <intent-filter android:priority="1000" >
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" /> <!-- Required  显示通知栏 -->
+            android:exported="false">
+            <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
+                <!-- Required  显示通知栏 -->
                 <category android:name="com.aglook.comapp" />
             </intent-filter>
             <intent-filter>
@@ -153,15 +153,21 @@
         <receiver
             android:name=".receiver.MyReceiver"
             android:enabled="true"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
-                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!-- Required  用户注册SDK的intent -->
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <!-- Required  用户注册SDK的intent -->
                 <action android:name="cn.jpush.android.intent.UNREGISTRATION" />
-                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!-- Required  用户接收SDK消息的intent -->
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!-- Required  用户接收SDK通知栏信息的intent -->
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!-- Required  用户打开自定义通知栏的intent -->
-                <action android:name="cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK" /> <!-- Optional 用户接受Rich Push Javascript 回调函数的intent -->
-                <action android:name="cn.jpush.android.intent.CONNECTION" /> <!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <!-- Required  用户接收SDK消息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <!-- Required  用户接收SDK通知栏信息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <!-- Required  用户打开自定义通知栏的intent -->
+                <action android:name="cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK" />
+                <!-- Optional 用户接受Rich Push Javascript 回调函数的intent -->
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
+                <!-- 接收网络变化 连接/断开 since 1.6.3 -->
                 <category android:name="com.aglook.comapp" />
             </intent-filter>
         </receiver>
@@ -172,12 +178,14 @@
             android:value="developer-default" />
         <meta-data
             android:name="JPUSH_APPKEY"
-            android:value="a1e5c517ff725468b26b6e23" /> <!-- </>值来自开发者平台取得的AppKey -->
+            android:value="a1e5c517ff725468b26b6e23" />
+        <!-- </>值来自开发者平台取得的AppKey -->
 
         <activity
             android:name=".Activity.MainActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="adjustPan" >
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -210,7 +218,7 @@
         <activity
             android:name=".Activity.BasicInformationActivity"
             android:label="@string/title_activity_basic_information"
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="adjustPan">
             wi
         </activity>
         <activity
@@ -339,7 +347,7 @@
             android:label="@string/title_activity_help_center" />
         <activity
             android:name=".Activity.LaunchActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -348,8 +356,7 @@
         </activity>
         <activity
             android:name=".Activity.TransDetailActivity"
-            android:label="@string/title_activity_trans_detail" >
-        </activity>
+            android:label="@string/title_activity_trans_detail"></activity>
     </application>
 
 </manifest>

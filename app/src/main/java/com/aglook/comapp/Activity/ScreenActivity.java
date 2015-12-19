@@ -7,9 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ExitApplication;
@@ -23,7 +23,7 @@ import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.CustomProgress;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshGridView;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
@@ -33,7 +33,7 @@ import java.util.List;
 public class ScreenActivity extends BaseActivity {
 
 
-    private PullToRefreshGridView gv_screen;
+    private PullToRefreshListView gv_screen;
     private ScreenAdapter adapter;
     private TextView tv_all_screen;
     private LinearLayout ll_price_screen;
@@ -87,7 +87,7 @@ public class ScreenActivity extends BaseActivity {
         productName = getIntent().getStringExtra("productName");
         isSearch = getIntent().getBooleanExtra("isSearch", false);
         categoryId = getIntent().getStringExtra("categoryId");
-        gv_screen = (PullToRefreshGridView) findViewById(R.id.gv_screen);
+        gv_screen = (PullToRefreshListView) findViewById(R.id.gv_screen);
         left_icon = (ImageView) findViewById(R.id.left_icon);
         adapter = new ScreenAdapter(ScreenActivity.this, mList);
         gv_screen.setAdapter(adapter);
@@ -117,9 +117,9 @@ public class ScreenActivity extends BaseActivity {
         });
 
         gv_screen.setMode(PullToRefreshBase.Mode.BOTH);
-        gv_screen.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<GridView>() {
+        gv_screen.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
-            public void onPullDownToRefresh(PullToRefreshBase<GridView> refreshView) {
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 pageNumber = 1;
                 if (isSearch) {
                     getSearchData();
@@ -129,7 +129,7 @@ public class ScreenActivity extends BaseActivity {
             }
 
             @Override
-            public void onPullUpToRefresh(PullToRefreshBase<GridView> refreshView) {
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 pageNumber++;
                 if (isSearch) {
                     getSearchData();

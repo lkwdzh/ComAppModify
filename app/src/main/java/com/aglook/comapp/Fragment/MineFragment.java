@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.aglook.comapp.Activity.AllGuaDanActivity;
 import com.aglook.comapp.Activity.AllOrderActivity;
 import com.aglook.comapp.Activity.LoginActivity;
-import com.aglook.comapp.Activity.MessageActivity;
 import com.aglook.comapp.Activity.MyCangDanActivity;
 import com.aglook.comapp.Activity.PersonInformationActivity;
 import com.aglook.comapp.Activity.PickUpActivity;
@@ -23,6 +22,7 @@ import com.aglook.comapp.Activity.PlatformActivity;
 import com.aglook.comapp.Activity.SettingActivity;
 import com.aglook.comapp.Activity.TradeingActivity;
 import com.aglook.comapp.Activity.TransSucceedActivity;
+import com.aglook.comapp.Activity.ZiXunListActivity;
 import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.Login;
@@ -80,6 +80,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             intent.setClass(getActivity(), AllOrderActivity.class);
             intent.putExtra("status", 2);
             startActivity(intent);
+            DefineUtil.FLAG = 3;
         }
         iv_icon_mine_fragment = ((ImageView) view.findViewById(R.id.iv_icon_mine_fragment));
         rl_background_mine_fragment = (RelativeLayout) view.findViewById(R.id.rl_background_mine_fragment);
@@ -131,11 +132,11 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         if (requestCode == 1 && resultCode == 1) {
             login = comAppApplication.getLogin();
             fillData();
-        } else if (requestCode==1&&resultCode==22){
+        } else if (requestCode == 1 && resultCode == 22) {
             if (DefineUtil.NOTPAY_NUM != 0) {
                 tv_daifukuan_point.setText(DefineUtil.NOTPAY_NUM + "");
                 tv_daifukuan_point.setVisibility(View.VISIBLE);
-            }else {
+            } else {
                 tv_daifukuan_point.setVisibility(View.GONE);
             }
         }
@@ -149,7 +150,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 //            tv_all_order_point.setVisibility(View.VISIBLE);
             if (DefineUtil.NOTPAY_NUM != 0) {
                 tv_daifukuan_point.setText(DefineUtil.NOTPAY_NUM + "");
-            tv_daifukuan_point.setVisibility(View.VISIBLE);
+                tv_daifukuan_point.setVisibility(View.VISIBLE);
             }
 //            tv_daishouhuo_point.setVisibility(View.VISIBLE);
 //            tv_all_guadan_point.setVisibility(View.VISIBLE);
@@ -162,7 +163,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             tv_name_mine_fragment.setText("");
 
 //            tv_all_order_point.setVisibility(View.GONE);
-                tv_daifukuan_point.setVisibility(View.GONE);
+            tv_daifukuan_point.setVisibility(View.GONE);
 
 //            tv_daishouhuo_point.setVisibility(View.GONE);
 //            tv_all_guadan_point.setVisibility(View.GONE);
@@ -179,6 +180,13 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         super.onResume();
         login = comAppApplication.getLogin();
         fillData();
+        if (DefineUtil.FLAG == 2) {
+            Intent intent = new Intent();
+            intent.setClass(getActivity(), AllOrderActivity.class);
+            intent.putExtra("status", 2);
+            startActivity(intent);
+            DefineUtil.FLAG = 3;
+        }
     }
 
     @Override
@@ -292,13 +300,15 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 }
                 break;
             case R.id.tv_message_mine_fragment:
-                if (login == null || "".equals(login)) {
-                    intent.setClass(getActivity(), LoginActivity.class);
-                    startActivityForResult(intent, 1);
-                } else {
-                    intent.setClass(getActivity(), MessageActivity.class);
-                    startActivity(intent);
-                }
+//                if (login == null || "".equals(login)) {
+//                    intent.setClass(getActivity(), LoginActivity.class);
+//                    startActivityForResult(intent, 1);
+//                } else {
+                intent.setClass(getActivity(), ZiXunListActivity.class);
+                intent.putExtra("isMessage", true);
+                intent.putExtra("className", "消息");
+                startActivity(intent);
+//                }
                 break;
         }
     }

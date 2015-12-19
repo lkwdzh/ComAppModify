@@ -11,11 +11,11 @@
         style="@style/line_1"
         android:layout_marginTop="@dimen/px_14" />
 
-    <com.handmark.pulltorefresh.library.PullToRefreshGridView
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/gv_goods"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:numColumns="2"></com.handmark.pulltorefresh.library.PullToRefreshGridView>
+        android:numColumns="2"></com.handmark.pulltorefresh.library.PullToRefreshListView>
 
 </LinearLayout>

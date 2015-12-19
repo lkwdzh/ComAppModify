@@ -27,6 +27,7 @@ import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.CustomProgress;
 import com.aglook.comapp.view.MyListView;
+import com.aglook.comapp.view.Timestamp;
 import com.aglook.comapp.view.Utility;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -122,6 +123,9 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
         holder.tv_money_all_order_lv.setText(order.getMoney() + "");
         holder.tv_order_total_all_order_lv.setText(order.getOrderDateList().size() + "");
 
+        if (order.getOrderTime()!=null&&!"".equals(order.getOrderTime())){
+            holder.tv_in_time_my_cangdan.setText(Timestamp.getDateTo(order.getOrderTime()));
+        }
 
         sonList = list.get(position).getOrderDateList();
         holder.adapter = new AllOrderLVAdapter(activity, sonList, isSuccess);
@@ -137,6 +141,7 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
         Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.tv_click_all_order_lv:
+                Log.d("result_login_order", DefineUtil.BANKBAND+"");
                 if (DefineUtil.BANKBAND) {
                     //若已绑定
                     index = (int) v.getTag();
@@ -181,6 +186,7 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
         TextView tv_click_all_order_lv;
         AllOrderLVAdapter adapter;
         TextView tv_delete_all_order_lv;
+        TextView tv_in_time_my_cangdan;
 
         ViewHolder(View view) {
             tv_order_num_all_order_lv = (TextView) view.findViewById(R.id.tv_order_num_all_order_lv);
@@ -191,6 +197,7 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
             tv_cost_all_order_lv = (TextView) view.findViewById(R.id.tv_cost_all_order_lv);
             tv_click_all_order_lv = (TextView) view.findViewById(R.id.tv_click_all_order_lv);
             tv_delete_all_order_lv = (TextView) view.findViewById(R.id.tv_delete_all_order_lv);
+            tv_in_time_my_cangdan=(TextView)view.findViewById(R.id.tv_in_time_my_cangdan);
             adapter = new AllOrderLVAdapter(activity, sonList, isSuccess);
         }
     }

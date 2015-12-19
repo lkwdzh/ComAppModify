@@ -101,6 +101,7 @@ public class PlatformAdapter extends BaseAdapter implements View.OnClickListener
                 context.startActivity(intent);
                 break;
             case R.id.tv_tihuo_all_order_lv:
+                index = (int) v.getTag();
                 intent.setClass(context, PickInfoActivity.class);
                 intent.putExtra("orderdataId", list.get(index).getOrderdataId());
                 intent.putExtra("code", "2002");

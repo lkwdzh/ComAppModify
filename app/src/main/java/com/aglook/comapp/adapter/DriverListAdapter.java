@@ -6,10 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.DriverList;
+import com.aglook.comapp.util.AppUtils;
 
 import java.util.List;
 
@@ -65,16 +67,18 @@ public class DriverListAdapter extends BaseAdapter {
 
         holder.cb_driver_lv.setChecked(driverList.isChecked());
         holder.tv_driver_lv.setText(driverList.getUserName());
-        holder.cb_driver_lv.setOnClickListener(new View.OnClickListener() {
+        holder.ll_cb_d_lv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               driverList.setChecked(!driverList.isChecked());
+                AppUtils.toastText(context,position+"_____");
+               list.get(position).setChecked(! list.get(position).isChecked());
                 num=0;
                 for (int i = 0; i < list.size(); i++) {
                     if (list.get(i).isChecked()){
                         num++;
                     }
                 }
+                notifyDataSetChanged();
                 callBackData.callBack(num);
             }
         });
@@ -85,10 +89,12 @@ public class DriverListAdapter extends BaseAdapter {
     class ViewHolder{
         TextView tv_driver_lv;
         CheckBox cb_driver_lv;
+        LinearLayout ll_cb_d_lv;
 
         ViewHolder(View view) {
             tv_driver_lv=(TextView)view.findViewById(R.id.tv_driver_lv);
             cb_driver_lv=(CheckBox)view.findViewById(R.id.cb_driver_lv);
+            ll_cb_d_lv=(LinearLayout)view.findViewById(R.id.ll_cb_d_lv);
         }
     }
 

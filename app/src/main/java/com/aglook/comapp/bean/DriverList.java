@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class DriverList implements Serializable{
     private boolean isChecked;
-    private String  id;//id
+    private int  id;//id
     private String userName;
     private String phone;
     private String tel;
@@ -35,11 +35,11 @@ public class DriverList implements Serializable{
         this.isChecked = isChecked;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

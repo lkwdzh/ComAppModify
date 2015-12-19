@@ -453,6 +453,12 @@
         <item name="android:scaleType">fitXY</item>
     </style>
 
+    <style name="imageview_px120_centerInside">
+        <item name="android:layout_width">@dimen/px_120</item>
+        <item name="android:layout_height">@dimen/px_120</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
     <style name="imageview_px134">
         <item name="android:layout_width">@dimen/px_134</item>
         <item name="android:layout_height">@dimen/px_134</item>

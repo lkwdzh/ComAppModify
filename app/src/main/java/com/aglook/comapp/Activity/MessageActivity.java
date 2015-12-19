@@ -63,28 +63,6 @@ public class MessageActivity extends BaseActivity {
 
     public void getData() {
 
-//        List<Message> all = null;
-//        try {
-//            all = db.findAll(Selector.from(Message.class).orderBy("id", true).limit(pageSize).offset(pageSize * pageNum));
-//        } catch (DbException e) {
-//            e.printStackTrace();
-//        }
-//        if (all != null) {
-//            if (pageNum == 0) {
-//                strList.clear();
-//            }
-//            for (int i = 0; i < all.size(); i++) {
-//                strList.add(all.get(i).getTitle());
-//            }
-//        }
-//        lv_message.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                lv_message.onRefreshComplete();
-//        adapter.notifyDataSetChanged();
-//
-//            }
-//        }, 1000);
     }
 
     @Override

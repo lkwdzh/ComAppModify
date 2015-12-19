@@ -15,7 +15,7 @@ import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.CustomProgress;
-import com.handmark.pulltorefresh.library.PullToRefreshGridView;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
@@ -26,7 +26,7 @@ public class GoodsCollectActivity extends BaseActivity {
 
 
     private ScreenAdapter adapter;
-    private PullToRefreshGridView gv_goods;
+    private PullToRefreshListView gv_goods;
     private List<Screen> mList = new ArrayList<>();
     private CustomProgress customProgress;
     private boolean isToDetail;
@@ -41,7 +41,7 @@ public class GoodsCollectActivity extends BaseActivity {
     }
 
     public void init() {
-        gv_goods = (PullToRefreshGridView) findViewById(R.id.gv_goods);
+        gv_goods = (PullToRefreshListView) findViewById(R.id.gv_goods);
         adapter = new ScreenAdapter(GoodsCollectActivity.this, mList);
         gv_goods.setAdapter(adapter);
         customProgress = CustomProgress.show(GoodsCollectActivity.this, "加载中···", true);

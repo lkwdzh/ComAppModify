@@ -25,6 +25,24 @@ public class CangDanDetail {
     private String productDesc;//商品描述
     private String validTime;//有效时间
     private List<Buyer> customerList;
+    private String productOwnerProve;//货权图片
+    private String productLogo;//货物图片
+
+    public String getProductOwnerProve() {
+        return productOwnerProve;
+    }
+
+    public void setProductOwnerProve(String productOwnerProve) {
+        this.productOwnerProve = productOwnerProve;
+    }
+
+    public String getProductLogo() {
+        return productLogo;
+    }
+
+    public void setProductLogo(String productLogo) {
+        this.productLogo = productLogo;
+    }
 
     public String getProductDesc() {
         return productDesc;
@@ -200,6 +218,8 @@ public class CangDanDetail {
                 ", productDesc='" + productDesc + '\'' +
                 ", validTime='" + validTime + '\'' +
                 ", customerList=" + customerList +
+                ", productOwnerProve='" + productOwnerProve + '\'' +
+                ", productLogo='" + productLogo + '\'' +
                 '}';
     }
 }

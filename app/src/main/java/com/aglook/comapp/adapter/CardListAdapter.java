@@ -61,6 +61,8 @@ public class CardListAdapter extends BaseAdapter {
         holder.tv_type_card_lv.setText(cardList.getCardType());
         if (cardList.getDefaultType().equals("1")) {
             holder.tv_is_moren_card_list.setVisibility(View.VISIBLE);
+        }else {
+            holder.tv_is_moren_card_list.setVisibility(View.GONE);
         }
         if (cardList.getCardType().equals("0")) {
             holder.tv_type_card_lv.setText("储蓄卡");

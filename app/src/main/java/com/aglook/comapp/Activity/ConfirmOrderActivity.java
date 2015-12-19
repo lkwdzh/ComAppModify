@@ -265,6 +265,9 @@ public class ConfirmOrderActivity extends BaseActivity {
                     intentBroad.setAction("Shopping");
                     sendBroadcast(intentBroad);
                     AppUtils.toastText(ConfirmOrderActivity.this, DefineUtil.BANKBAND+"");
+                    Log.d("result_confirm_De",DefineUtil.BANKBAND+"");
+                    Log.d("result_confirm_con",comAppApplication.getLogin()+"");
+                    Log.d("result_confirm",comAppApplication.getLogin().isBankBind()+"");
                     if (DefineUtil.BANKBAND) {
                         Intent intent = new Intent(ConfirmOrderActivity.this, PayActivity.class);
                         intent.putExtra("orderId", orderId);

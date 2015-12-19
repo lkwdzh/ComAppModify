@@ -129,10 +129,10 @@ public class ShoppingCartAdapter extends BaseAdapter {
                 int numCut = list.get(position).getProductNum();
                 //给产品id赋值
                 cartId = list.get(position).getCartId();
-                if (numCut > 0) {
+                if (numCut > 1) {
                     numCut--;
                 } else {
-                    numCut = 0;
+                    numCut = 1;
                 }
                 shoppingCart.setProductNum(numCut);
                 holder.tv_count_shopping_cart_listview.setText(numCut + "");

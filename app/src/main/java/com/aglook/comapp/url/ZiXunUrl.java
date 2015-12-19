@@ -29,4 +29,11 @@ public class ZiXunUrl {
         params.addBodyParameter("categoryId",categoryId);
         return params;
     }
+
+    public static RequestParams postMessageUrl(String pageSize,String pageNum){
+        params=new RequestParams();
+        params.addBodyParameter("pageSize",pageSize);
+        params.addBodyParameter("pageNum",pageNum);
+        return params;
+    }
 }

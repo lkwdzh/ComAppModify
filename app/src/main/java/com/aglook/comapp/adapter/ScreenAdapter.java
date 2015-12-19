@@ -53,8 +53,8 @@ public class ScreenAdapter extends BaseAdapter {
         }
         Screen screen = list.get(position);
         XBitmap.displayImage(holder.iv_screen_gridview, screen.getProductLogo(), context);
-        holder.tv_address_screen_gridview.setText(screen.getGoodPlace());
-        holder.tv_grade_screen_gridview.setText(screen.getGoodType());
+//        holder.tv_address_screen_gridview.setText(screen.getGoodPlace());
+//        holder.tv_grade_screen_gridview.setText(screen.getGoodType());
         holder.tv_weight_screen_gridview.setText(screen.getProductSellNum());
         holder.tv_price_screen_gridview.setText(screen.getProductMoney());
         holder.tv_name_screen_gridview.setText(screen.getProductName());
@@ -72,8 +72,8 @@ public class ScreenAdapter extends BaseAdapter {
     class ViewHolder {
 
         ImageView iv_screen_gridview;
-        TextView tv_address_screen_gridview;
-        TextView tv_grade_screen_gridview;
+//        TextView tv_address_screen_gridview;
+//        TextView tv_grade_screen_gridview;
         TextView tv_weight_screen_gridview;
         TextView tv_price_screen_gridview;
         ImageView iv_dx;
@@ -82,8 +82,8 @@ public class ScreenAdapter extends BaseAdapter {
         ViewHolder(View view) {
             iv_dx=(ImageView)view.findViewById(R.id.iv_dx);
             iv_screen_gridview = (ImageView) view.findViewById(R.id.iv_screen_gridview);
-            tv_address_screen_gridview = (TextView) view.findViewById(R.id.tv_address_screen_gridview);
-            tv_grade_screen_gridview = (TextView) view.findViewById(R.id.tv_grade_screen_gridview);
+//            tv_address_screen_gridview = (TextView) view.findViewById(R.id.tv_address_screen_gridview);
+//            tv_grade_screen_gridview = (TextView) view.findViewById(R.id.tv_grade_screen_gridview);
             tv_weight_screen_gridview = (TextView) view.findViewById(R.id.tv_weight_screen_gridview);
             tv_price_screen_gridview = (TextView) view.findViewById(R.id.tv_price_screen_gridview);
             tv_name_screen_gridview = (TextView) view.findViewById(R.id.tv_name_screen_gridview);

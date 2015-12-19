@@ -18,6 +18,7 @@ import com.aglook.comapp.url.PickInfoUrl;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
+import com.aglook.comapp.util.XBitmap;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.CustomProgress;
 import com.aglook.comapp.view.MyListView;
@@ -115,8 +116,8 @@ public class PickInfoActivity extends BaseActivity {
 
     //填充数据
     public void fillData() {
-//            XBitmap.displayImage(iv_huowu, cangDan.getGetlistPic(), PickInfoActivity.this);
-//            XBitmap.displayImage(iv_huoquan, cangDan.getGoodsOwnerProve(), PickInfoActivity.this);
+        XBitmap.displayImage(iv_huowu, cangDanDetail.getProductLogo(), PickInfoActivity.this);
+        XBitmap.displayImage(iv_huoquan, cangDanDetail.getProductOwnerProve(), PickInfoActivity.this);
             et_goods_name_pick_info.setText(cangDanDetail.getProductName());
             tv_cangdanhao_pick_infod.setText(cangDanDetail.getOriginalListId());
             tv_goods_kind_pick_info.setText(cangDanDetail.getCategoryName());

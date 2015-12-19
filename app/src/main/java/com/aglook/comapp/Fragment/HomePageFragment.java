@@ -123,9 +123,13 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         View view = View.inflate(getActivity(), R.layout.layout_homepage_fragment, null);
         comAppApplication = (ComAppApplication) getActivity().getApplication();
         initView(view);
-        if (isLogin) {
+        Log.d("result_login",isLogin+"___");
             getData();
-        }
+
+        IntentFilter filter2 = new IntentFilter();
+        filter2.addAction("HomeMain");
+        getActivity().registerReceiver(myReceiver2, filter2);
+
         getScroll();
         getInfo();
         click();
@@ -184,9 +188,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
 
         rl_search_homepage_fragment = (RelativeLayout) view.findViewById(R.id.rl_search_homepage_fragment);
 
-        IntentFilter filter2 = new IntentFilter();
-        filter2.addAction("HomeMain");
-        getActivity().registerReceiver(myReceiver2, filter2);
+
     }
 
     //接收广播
@@ -194,9 +196,11 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         @Override
         public void onReceive(Context context, Intent intent) {
             isLogin=true;
+            Log.d("result_result","_________myReceiver2");
             getData();
         }
     };
+
 
     @Override
     public void onDestroy() {
@@ -213,7 +217,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                 sv_homepage.onRefreshComplete();
             }
         });
-
+        Log.d("result_confirm_Home",comAppApplication.getLogin()+"");
         mgv_homePage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -447,6 +451,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                             Log.d("result_mList","mList.toString()" );
 //                            mList.clear();
                         }
+                        mList.clear();
                         //指定买家
                         HomePage newHomePage=new HomePage();
                         if (listAppoint != null && listAppoint.size() != 0) {

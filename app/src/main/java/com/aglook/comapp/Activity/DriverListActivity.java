@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -51,6 +53,8 @@ public class DriverListActivity extends BaseActivity {
     private String getId;
     private String driverId;
     private String name;
+    private CheckBox cb_driver_list;
+    private LinearLayout ll_cb;
 
     @Override
     public void initView() {
@@ -73,6 +77,7 @@ public class DriverListActivity extends BaseActivity {
         lv_driver_list = (PullToRefreshListView) findViewById(R.id.lv_driver_list);
         rl_bottom = (RelativeLayout) findViewById(R.id.rl_bottom);
         tv_num_driver_list = (TextView) findViewById(R.id.tv_num_driver_list);
+        ll_cb = (LinearLayout) findViewById(R.id.ll_cb);
         canCheck = getIntent().getBooleanExtra("canCheck", false);
         isModify = getIntent().getBooleanExtra("isModify", false);
         adapter = new DriverListAdapter(DriverListActivity.this, mList, canCheck, new DriverListAdapter.CallBackData() {
@@ -89,16 +94,15 @@ public class DriverListActivity extends BaseActivity {
         }
         getList = (List<DriverList>) getIntent().getSerializableExtra("ToSelect");
         adapter.notifyDataSetChanged();
-//        for (int i = 0; i < 10; i++) {
-//            mList.get(i).setId(i);
-//        }
         tv_confirm_driver_list = (TextView) findViewById(R.id.tv_confirm_driver_list);
+        cb_driver_list = (CheckBox) findViewById(R.id.cb_driver_list);
     }
 
     //比较从网络获取的list与getIntent的list
 
     public void compareList() {
         if ((getList != null && getList.size() != 0) && (mList != null && mList.size() != 0)) {
+            Log.d("result_driver_getList", getList+"_____"+mList);
             for (int i = 0; i < getList.size(); i++) {
                 for (int j = 0; j < mList.size(); j++) {
                     if (getList.get(i).getId() == mList.get(j).getId()) {
@@ -121,19 +125,38 @@ public class DriverListActivity extends BaseActivity {
                 Intent intent = new Intent();
                 //如果是从修改页面跳转的，点击则返回并带回数据，否则，跳转到详情
                 if (isModify) {
-                    driverId=mList.get(position-1).getId();
-                    name=mList.get(position-1).getUserName();
+                    driverId = mList.get(position - 1).getId() + "";
+                    name = mList.get(position - 1).getUserName();
                     modifyDriver();
 
                 } else {
 
                     intent.setClass(DriverListActivity.this, DriverInfoActivity.class);
-                    intent.putExtra("driver",mList.get(position-1));
+                    intent.putExtra("driver", mList.get(position - 1));
                     startActivityForResult(intent, 2);
                 }
             }
         });
         tv_confirm_driver_list.setOnClickListener(this);
+        ll_cb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!cb_driver_list.isChecked()) {
+                    cb_driver_list.setChecked(true);
+                    for (int i = 0; i < mList.size(); i++) {
+                        mList.get(i).setChecked(true);
+                    }
+                    tv_num_driver_list.setText(mList.size() + "");
+                } else {
+                    cb_driver_list.setChecked(false);
+                    for (int i = 0; i < mList.size(); i++) {
+                        mList.get(i).setChecked(false);
+                    }
+                    tv_num_driver_list.setText("0");
+                }
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 
 
@@ -155,6 +178,7 @@ public class DriverListActivity extends BaseActivity {
                         setList.add(mList.get(i));
                     }
                 }
+                Log.d("result_isCheck3","_______"+setList);
                 intent.putExtra("Selected", (Serializable) setList);
                 DriverListActivity.this.setResult(1, intent);
                 DriverListActivity.this.finish();
@@ -189,17 +213,19 @@ public class DriverListActivity extends BaseActivity {
                 List<DriverList> sonListt = new ArrayList<DriverList>();
                 if (status.equals("1")) {
                     sonListt = JsonUtils.parseList(obj, DriverList.class);
-                    if (sonListt != null && sonListt.size() != 0) {
-                        if (isAdd){
-                            isAdd=false;
-                            mList.clear();
-                        }
+                    if (isAdd){
+                        isAdd=false;
+                        mList.clear();
+                    }
 
-                        if (isUpDate){
-                            isUpDate=false;
-                            mList.clear();
-                        }
+                    if (isUpDate){
+                        isUpDate=false;
+                        mList.clear();
+                    }
+                    if (sonListt != null && sonListt.size() != 0) {
+
                         mList.addAll(sonListt);
+                        compareList();
                     }
                 } else {
                     AppUtils.toastText(DriverListActivity.this, message);
@@ -216,7 +242,7 @@ public class DriverListActivity extends BaseActivity {
             }
         }.datePost(DefineUtil.DRIVER_LIST, DriverUrl.postDriverListUrl(DefineUtil.TOKEN, DefineUtil.USERID), DriverListActivity.this);
 
-        compareList();
+
 
     }
 

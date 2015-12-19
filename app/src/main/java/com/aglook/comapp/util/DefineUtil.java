@@ -112,6 +112,13 @@ public class DefineUtil {
     //用户仓单列表
     public static String CANG_DAN = URL_HOST + "app/api";
 
+    /**
+     * 消息推送
+     */
+    public static String PUSH_MESSAGE=URL_HOST+"push/message";
+    //查看推送消息
+    public static String PUSH_ARTICLE=URL_HOST+"push/article";
+
 
     /**
      * 设置
@@ -152,4 +159,18 @@ public class DefineUtil {
      * 设备号
      */
     public static String DEVICE_NUM;
+
+    /**
+     * 判断首页是否是登录
+     */
+    public static boolean ISUSERID=false;
+
+    /**
+     * 检查更新
+     */
+    public static String CHECK_UPDATE=URL_HOST+"phone/appVersion/check";
+
+
+    //程序是否启动
+    public static boolean IS_LAUNCH=false;
 }

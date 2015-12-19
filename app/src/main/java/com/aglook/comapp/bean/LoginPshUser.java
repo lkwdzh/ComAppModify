@@ -20,15 +20,7 @@ public class LoginPshUser implements Serializable {
     private String userAddress;//地址
     private String userSeat;//席位号
     private double rate;
-    private boolean bankBind;//是否绑定银行卡
 
-    public boolean isBankBind() {
-        return bankBind;
-    }
-
-    public void setBankBind(boolean bankBind) {
-        this.bankBind = bankBind;
-    }
 
     public double getRate() {
         return rate;
@@ -159,7 +151,6 @@ public class LoginPshUser implements Serializable {
                 ", userAddress='" + userAddress + '\'' +
                 ", userSeat='" + userSeat + '\'' +
                 ", rate=" + rate +
-                ", bankBind=" + bankBind +
                 '}';
     }
 }

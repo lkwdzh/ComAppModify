@@ -4,18 +4,20 @@ package com.aglook.comapp.receiver;
  * Created by aglook on 2015/12/2.
  */
 
+import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.aglook.comapp.Activity.MessageActivity;
+import com.aglook.comapp.Activity.ZiXunListActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Iterator;
+import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -50,13 +52,13 @@ public class MyReceiver extends BroadcastReceiver {
 
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
             Log.d(TAG+"6", "[MyReceiver] 用户点击打开了通知");
-
-            //打开自定义的Activity
-            Intent i = new Intent(context, MessageActivity.class);
-            i.putExtras(bundle);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            context.startActivity(i);
+checkStart(context,intent,bundle);
+//            //打开自定义的Activity
+//            Intent i = new Intent(context, ZiXunListActivity.class);
+//            i.putExtras(bundle);
+//            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            context.startActivity(i);
 
         } else if (JPushInterface.ACTION_RICHPUSH_CALLBACK.equals(intent.getAction())) {
             Log.d(TAG+"7", "[MyReceiver] 用户收到到RICH PUSH CALLBACK: " + bundle.getString(JPushInterface.EXTRA_EXTRA));
@@ -106,25 +108,61 @@ public class MyReceiver extends BroadcastReceiver {
         return sb.toString();
     }
 
-    //send msg to MainActivity
-//    private void processCustomMessage(Context context, Bundle bundle) {
-//        if (MainActivity.isForeground) {
-//            String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
-//            String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
-//            Intent msgIntent = new Intent(MainActivity.MESSAGE_RECEIVED_ACTION);
-//            msgIntent.putExtra(MainActivity.KEY_MESSAGE, message);
-//            if (!ExampleUtil.isEmpty(extras)) {
-//                try {
-//                    JSONObject extraJson = new JSONObject(extras);
-//                    if (null != extraJson && extraJson.length() > 0) {
-//                        msgIntent.putExtra(MainActivity.KEY_EXTRAS, extras);
-//                    }
-//                } catch (JSONException e) {
+    public void checkStart(Context context, Intent intent,Bundle bundle){
+        //判断app进程是否存活
+        if(isAppAlive(context, "com.aglook.comapp")){
+            Log.i("NotificationReceiver", "the app process is alive");
+            //打开自定义的Activity
+            Intent i = new Intent(context, ZiXunListActivity.class);
+            i.putExtras(bundle);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            context.startActivity(i);
+
+//            Intent mainIntent = new Intent(context, MainActivity.class);
+//            mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //
-//                }
+//            Intent detailIntent = new Intent(context, ZiXunListActivity.class);
+//            detailIntent.putExtra("name", "电饭锅");
+//            detailIntent.putExtra("price", "58元");
+//            detailIntent.putExtra("detail", "这是一个好锅, 这是app进程存在，直接启动Activity的");
 //
-//            }
-//            context.sendBroadcast(msgIntent);
-//        }
-//    }
+//            Intent[] intents = {mainIntent, detailIntent};
+//
+//            context.startActivities(intents);
+        }else {
+            Log.i("NotificationReceiver", "the app process is dead");
+            Intent launchIntent = context.getPackageManager().
+                    getLaunchIntentForPackage("com.aglook.comapp");
+            launchIntent.setFlags(
+                    Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+//            Bundle args = new Bundle();
+//            args.putString("name", "电饭锅");
+//            args.putString("price", "58元");
+//            args.putString("detail", "这是一个好锅, 这是app进程不存在，先启动应用再启动Activity的");
+//            launchIntent.putExtra(Constants.EXTRA_BUNDLE, args);
+            context.startActivity(launchIntent);
+        }
+    }
+
+
+    /**
+     * 判断应用是否已经启动
+     * @param context 一个context
+     * @param packageName 要判断应用的包名
+     * @return boolean
+     */
+    public static boolean isAppAlive(Context context, String packageName){
+        ActivityManager activityManager =
+                (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> processInfos
+                = activityManager.getRunningAppProcesses();
+        for(int i = 0; i < processInfos.size(); i++){
+            if(processInfos.get(i).processName.equals(packageName)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

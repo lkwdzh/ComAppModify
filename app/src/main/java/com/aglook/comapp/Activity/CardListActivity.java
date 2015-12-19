@@ -100,10 +100,12 @@ public class CardListActivity extends BaseActivity {
                 break;
             case R.id.left_icon:
                 //如果FLAG=1，表示是从确认订单调过来的，返回时需要调到订单界面，
+                Log.d("result_DefineUtil.FLAG__!",DefineUtil.FLAG+"");
                 if (DefineUtil.FLAG == 1) {
                     intent.setClass(CardListActivity.this, MainActivity.class);
                     DefineUtil.FLAG=2;
                     startActivity(intent);
+                    Log.d("result_DefineUtil.FLAG__2",DefineUtil.FLAG+"");
                     CardListActivity.this.finish();
                 } else {
                     CardListActivity.this.finish();
@@ -135,21 +137,19 @@ public class CardListActivity extends BaseActivity {
                 list = JsonUtils.parseList(obj, CardList.class);
                 if (status.equals("1")) {
                     //假如成功
+                    if (isAdded) {
+                        mList.clear();
+                        isAdded = false;
+                    } else if (isMoRen) {
+                        mList.clear();
+                        isMoRen = false;
+                    } else if (isDelete) {
+                        mList.clear();
+                        Log.d("result_isDelete",isDelete+"");
+                        isDelete = false;
+                    }
                     if (list.size() != 0 && list != null) {
-                        if (isAdded) {
-                            mList.clear();
-                            isAdded = false;
-                        } else if (isMoRen) {
-                            mList.clear();
-                            isMoRen = false;
-                        } else if (isDelete) {
-                            mList.clear();
-                            Log.d("result_isDelete",isDelete+"");
-                            isDelete = false;
-                        }
-
                         mList.addAll(list);
-                        Log.d("result_mList",mList+"_____");
                         DefineUtil.BANKBAND=true;
                     } else {
                         DefineUtil.BANKBAND = false;
@@ -185,6 +185,7 @@ public class CardListActivity extends BaseActivity {
                 case R.id.tv_delete_select_popup:
                     popupWindow.dismiss();
                     customProgress=CustomProgress.show(CardListActivity.this,"",true);
+                    isDelete = true;
                     deleteCard();
                     break;
             }
@@ -214,6 +215,7 @@ public class CardListActivity extends BaseActivity {
 
     //删除银行卡
     public void deleteCard() {
+
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -221,7 +223,7 @@ public class CardListActivity extends BaseActivity {
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
-                    isDelete = true;
+
 
                     getCardListData();
                 }

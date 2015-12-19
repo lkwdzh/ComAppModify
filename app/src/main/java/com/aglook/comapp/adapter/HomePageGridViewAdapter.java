@@ -64,7 +64,7 @@ public class HomePageGridViewAdapter extends BaseAdapter {
         holder.tv_name_homepage.setText(homePage.getProductName());
         holder.tv_address_mygridview.setText(homePage.getGoodPlace());
         holder.tv_grade_mygridview.setText(homePage.getGoodType());
-        holder.tv_weight_mygridview.setText(homePage.getProductSellNum());
+        holder.tv_weight_mygridview.setText(homePage.getProductSellNum()+"吨");
         holder.tv_price_mygridview.setText(homePage.getProductMoney());
         XBitmap.displayImage(holder.iv_myGridView_homepage,homePage.getProductLogo(),context);
         if (homePage.getIsAppoint().equals("1")){

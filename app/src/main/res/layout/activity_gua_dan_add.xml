@@ -57,7 +57,7 @@
 
                     <ImageView
                         android:id="@+id/iv_huoquan"
-                        style="@style/imageview_px120"
+                        style="@style/imageview_px120_centerInside"
                         android:src="@drawable/tongxun" />
 
                     <TextView

@@ -120,7 +120,7 @@ public class DriverInfoActivity extends BaseActivity {
 
     //获取输入信息
     public void getInput(){
-        driverId=driver.getId();
+        driverId=driver.getId()+"";
         driverName= AppUtils.toStringTrim_ET(tv_name_driver_info);
         driverPhone=AppUtils.toStringTrim_ET(tv_phone_driver_info);
         carCode=AppUtils.toStringTrim_ET(tv_email_driver_info);

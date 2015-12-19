@@ -9,6 +9,15 @@ public class Login  implements Serializable{
     private String token;
     private String isNeedFee;
     private LoginPshUser pshUser;
+    private boolean bankBind;//是否绑定银行卡
+
+    public boolean isBankBind() {
+        return bankBind;
+    }
+
+    public void setBankBind(boolean bankBind) {
+        this.bankBind = bankBind;
+    }
 
     @Override
     public String toString() {
@@ -16,6 +25,7 @@ public class Login  implements Serializable{
                 "token='" + token + '\'' +
                 ", isNeedFee='" + isNeedFee + '\'' +
                 ", pshUser=" + pshUser +
+                ", bankBind=" + bankBind +
                 '}';
     }
 

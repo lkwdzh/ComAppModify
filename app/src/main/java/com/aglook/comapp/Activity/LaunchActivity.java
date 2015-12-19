@@ -20,6 +20,7 @@ public class LaunchActivity extends BaseActivity {
         init();
         TelephonyManager TelephonyMgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
         DefineUtil.DEVICE_NUM = TelephonyMgr.getDeviceId();
+        DefineUtil.IS_LAUNCH=true;
         Log.d("DefineUtil.DEVICE_NUM", DefineUtil.DEVICE_NUM);
         new Handler().postDelayed(new Runnable() {
             @Override

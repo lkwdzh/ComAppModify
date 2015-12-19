@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:gravity="center"
+    android:gravity="center_vertical"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -15,22 +15,21 @@
 
         <LinearLayout
             android:id="@+id/ll_left"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center"
+            android:layout_centerVertical="true"
             android:orientation="horizontal">
 
             <RelativeLayout
                 android:layout_width="@dimen/px_120"
-                android:layout_marginRight="@dimen/px_10"
+                android:layout_marginRight="@dimen/px_20"
                 android:layout_height="@dimen/px_120">
 
                 <ImageView
                     android:id="@+id/iv_screen_gridview"
                     style="@style/imageview_px120"
                     android:layout_centerVertical="true"
-                     />
+                    android:src="@drawable/tongxun" />
 
                 <ImageView
                     android:id="@+id/iv_dx"
@@ -43,85 +42,92 @@
             </RelativeLayout>
 
             <LinearLayout
-                style="@style/ll_wrap_content_ver"
+                style="@style/ll_match_wrap_content_ver"
                 android:layout_centerVertical="true"
-                android:scaleType="centerInside"
                 android:layout_toRightOf="@+id/iv_screen_gridview">
 
                 <TextView
                     android:id="@+id/tv_name_screen_gridview"
                     style="@style/grayTextView_333333_13"
                     android:layout_marginTop="@dimen/px_5"
-                    android:singleLine="true"
-                    />
+                    android:text="小米"
+                    android:singleLine="true" />
 
-                <LinearLayout
-                    style="@style/ll_wrap_content_hor"
-                    android:layout_marginTop="@dimen/px_5">
+                <!--<LinearLayout-->
+                <!--style="@style/ll_wrap_content_hor"-->
+                <!--android:layout_marginTop="@dimen/px_5">-->
 
-                    <TextView
-                        style="@style/grayTextView_666666"
-                        android:text="@string/screen_gridview_address"
-                        android:textSize="11sp" />
+                <!--<TextView-->
+                <!--style="@style/grayTextView_666666"-->
+                <!--android:text="@string/screen_gridview_address"-->
+                <!--android:textSize="11sp" />-->
 
-                    <TextView
-                        android:id="@+id/tv_address_screen_gridview"
-                        style="@style/grayTextView_666666"
+                <!--<TextView-->
+                <!--android:id="@+id/tv_address_screen_gridview"-->
+                <!--style="@style/grayTextView_666666"-->
 
-                        android:singleLine="true"
-                        android:textSize="11sp" />
-                </LinearLayout>
+                <!--android:singleLine="true"-->
+                <!--android:textSize="11sp" />-->
+                <!--</LinearLayout>-->
 
-                <LinearLayout
-                    style="@style/ll_wrap_content_hor"
-                    android:layout_marginTop="@dimen/px_5">
+                <!--<LinearLayout-->
+                <!--style="@style/ll_wrap_content_hor"-->
+                <!--android:layout_marginTop="@dimen/px_5">-->
 
-                    <TextView
-                        style="@style/grayTextView_666666"
-                        android:text="@string/screen_gridview_grade"
-                        android:textSize="11sp" />
+                <!--<TextView-->
+                <!--style="@style/grayTextView_666666"-->
+                <!--android:text="@string/screen_gridview_grade"-->
+                <!--android:textSize="11sp" />-->
 
-                    <TextView
-                        android:id="@+id/tv_grade_screen_gridview"
-                        style="@style/grayTextView_666666"
+                <!--<TextView-->
+                <!--android:id="@+id/tv_grade_screen_gridview"-->
+                <!--style="@style/grayTextView_666666"-->
 
-                        android:singleLine="true"
-                        android:textSize="11sp" />
-                </LinearLayout>
+                <!--android:singleLine="true"-->
+                <!--android:textSize="11sp" />-->
+                <!--</LinearLayout>-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/px_20"
+                    android:layout_height="wrap_content">
 
-                <LinearLayout
-                    style="@style/ll_wrap_content_hor"
-                    android:layout_marginTop="@dimen/px_5">
+                    <LinearLayout
+                        style="@style/ll_wrap_content_hor"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginTop="@dimen/px_5">
 
-                    <TextView
-                        style="@style/grayTextView_666666"
-                        android:text="@string/screen_gridview_weight"
-                        android:textSize="11sp" />
+                        <TextView
+                            style="@style/grayTextView_666666"
+                            android:text="@string/screen_gridview_weight"
+                            android:textSize="11sp" />
 
-                    <TextView
-                        android:id="@+id/tv_weight_screen_gridview"
-                        style="@style/grayTextView_666666"
+                        <TextView
+                            android:id="@+id/tv_weight_screen_gridview"
+                            style="@style/grayTextView_666666"
 
-                        android:singleLine="true"
-                        android:textSize="11sp" />
-                </LinearLayout>
+                            android:singleLine="true"
+                            android:textSize="11sp" />
+                    </LinearLayout>
 
-                <LinearLayout
-                    style="@style/ll_wrap_content_hor"
-                    android:layout_marginTop="@dimen/px_5">
+                    <LinearLayout
+                        style="@style/ll_wrap_content_hor"
+                        android:layout_alignParentRight="true"
+                        android:paddingRight="@dimen/px_20"
+                        android:layout_marginTop="@dimen/px_5">
 
-                    <TextView
-                        style="@style/redTextView_c91014"
-                        android:text="@string/screen_gridview_price"
-                        android:textSize="11sp" />
+                        <TextView
+                            style="@style/redTextView_c91014"
+                            android:text="@string/screen_gridview_price"
+                            android:textSize="11sp" />
 
-                    <TextView
-                        android:id="@+id/tv_price_screen_gridview"
-                        style="@style/redTextView_c91014"
-                        android:text="0.0"
-                        android:singleLine="true"
-                        android:textSize="11sp" />
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/tv_price_screen_gridview"
+                            style="@style/redTextView_c91014"
+                            android:text="0.0"
+                            android:singleLine="true"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </RelativeLayout>
 
 
             </LinearLayout>

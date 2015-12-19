@@ -152,7 +152,7 @@
             <EditText
                 android:id="@+id/et_guding_basic_info"
                 style="@style/basic_infor_edittext_weight"
-                android:inputType="number"
+              android:digits="1234567890-"
                 android:hint="请输入固定电话" />
         </LinearLayout>
 

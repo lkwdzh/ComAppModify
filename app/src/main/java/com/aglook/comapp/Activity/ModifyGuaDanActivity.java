@@ -20,6 +20,7 @@ import com.aglook.comapp.url.AllGuaDanUrl;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
+import com.aglook.comapp.util.XBitmap;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.Timestamp;
 import com.lidroid.xutils.exception.HttpException;
@@ -166,9 +167,8 @@ public class ModifyGuaDanActivity extends BaseActivity {
     }
     //填充数据
     public void fillData() {
-//        XBitmap.displayImage(iv_huowu, cangDan.getGetlistPic(), GuaDanAddActivity.this);
-//            XBitmap.displayImage(iv_huoquan, cangDan.getGoodsOwnerProve(), GuaDanAddActivity.this);
-
+        XBitmap.displayImage(iv_huowu, cangDanDetail.getProductLogo(), ModifyGuaDanActivity.this);
+        XBitmap.displayImage(iv_huoquan, cangDanDetail.getProductOwnerProve(), ModifyGuaDanActivity.this);
 
 
         et_goods_name_gua_dan.setText(cangDanDetail.getProductName());

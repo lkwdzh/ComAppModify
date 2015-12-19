@@ -15,7 +15,10 @@
 
     <RelativeLayout
         style="@style/rl_wrap_content"
-        android:padding="@dimen/px_20">
+        android:paddingLeft="@dimen/px_20"
+        android:paddingRight="@dimen/px_20"
+        android:paddingTop="@dimen/px_10"
+        android:paddingBottom="@dimen/px_10">
 
         <LinearLayout
             style="@style/ll_wrap_content_hor"
@@ -39,10 +42,30 @@
             style="@style/redTextView_c91014"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-
             android:textSize="13sp" />
     </RelativeLayout>
+    <LinearLayout
+        style="@style/ll_match_wrap_content_hor"
+        android:layout_toLeftOf="@+id/ll_right"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:paddingLeft="@dimen/px_20"
+        android:paddingBottom="@dimen/px_10"
+        android:gravity="center_vertical">
 
+        <TextView
+            android:id="@+id/tv_in_time"
+            style="@style/grayTextView_999999"
+            android:text="下单时间"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/tv_in_time_my_cangdan"
+            style="@style/grayTextView_999999"
+
+            android:textSize="11sp" />
+
+    </LinearLayout>
     <View style="@style/line_1" />
 
     <com.aglook.comapp.view.MyListView

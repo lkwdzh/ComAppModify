@@ -93,18 +93,18 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
             if (accountType.equals("1")) {
                 //用户名登录
                 userName = mShare.getString("userName", "");
-                if (!"".equals(userName) && !"".equals(password)){
-                    if (comAppApplication.getLogin()==null) {
+                if (!"".equals(userName) && !"".equals(password)) {
+                    if (comAppApplication.getLogin() == null) {
                         Log.d("result_acc", accountType + "____" + userName + "____" + password);
                         login();
                     }
                 }
 
-            }else if (accountType.equals("0")){
+            } else if (accountType.equals("0")) {
                 //席位号登录
                 userName = mShare.getString("setName", "");
-                if (!"".equals(userName) && !"".equals(password)){
-                    if (comAppApplication.getLogin()==null) {
+                if (!"".equals(userName) && !"".equals(password)) {
+                    if (comAppApplication.getLogin() == null) {
                         Log.d("result_acc", accountType + "____" + userName + "____" + password);
                         login();
                     }
@@ -139,14 +139,20 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         filter.addAction("MainActivity");
         registerReceiver(myReceiver, filter);
 
-        if (DefineUtil.FLAG==2){
+        if (DefineUtil.FLAG == 2) {
+            Log.d("result_DefineUtil.FLAG_cr",DefineUtil.FLAG+"");
             mTabHost.setCurrentTab(3);
         }
+
+
+
     }
+
     private ApplicationInfo info;
     private String channel;
+
     //获取渠道并且检查更新
-    public void checkUpdate(){
+    public void checkUpdate() {
         //获取发布渠道
         try {
             info = this.getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
@@ -187,7 +193,6 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
             mTabHost.addTab(tabSpec, fragmentArray[i], null);
         }
     }
-
 
 
     //TabHost的图片改变
@@ -236,6 +241,13 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
     protected void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
+           if (comAppApplication.getLogin()!=null){
+               getNotPayData();
+           }
+        if (DefineUtil.FLAG == 2) {
+            Log.d("result_DefineUtil.FLAG_re",DefineUtil.FLAG+"");
+            mTabHost.setCurrentTab(3);
+        }
     }
 
     @Override
@@ -259,7 +271,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         }
         return true;
     }
-   // 868227025178724
+    // 868227025178724
 
     //登录账户
     public void login() {
@@ -278,28 +290,24 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
                 if (status.equals("1")) {//登录成功,跳转页面
                     DefineUtil.TOKEN = login.getToken();
                     DefineUtil.USERID = login.getPshUser().getUserId();
-                    DefineUtil.BANKBAND=login.getPshUser().isBankBind();
+                    DefineUtil.BANKBAND = login.isBankBind();
+                    Log.d("result_login_main", DefineUtil.BANKBAND+"");
                     comAppApplication.setLogin(login);
-//                    Intent intent = new Intent(MainActivity.this, MineFragment.class);
-//                    MainActivity.this.setResult(1);
-//                    MainActivity.this.finish();
                     getCartListData();
                     getNotPayData();
-                    isLogin=true;
+                    isLogin = true;
+                    Log.d("result_main_islog——2",isLogin+"");
+                    DefineUtil.ISUSERID=true;
                     Intent intent1 = new Intent();
                     intent1.setAction("HomeMain");
                     MainActivity.this.sendBroadcast(intent1);
-                } else {
-
-                    AppUtils.toastText(MainActivity.this, message);
                 }
             }
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
             }
-        }.datePost(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType,DefineUtil.DEVICE_NUM), MainActivity.this);
+        }.datePost(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType, DefineUtil.DEVICE_NUM), MainActivity.this);
     }
 
     //    获取购物车列表

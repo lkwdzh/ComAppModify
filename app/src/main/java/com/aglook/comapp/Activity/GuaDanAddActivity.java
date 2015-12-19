@@ -21,6 +21,7 @@ import com.aglook.comapp.url.GuaDanUrl;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
+import com.aglook.comapp.util.XBitmap;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.CustomProgress;
 import com.aglook.comapp.view.Timestamp;
@@ -176,8 +177,8 @@ public class GuaDanAddActivity extends BaseActivity {
 
     //填充数据
     public void fillData() {
-//            XBitmap.displayImage(iv_huowu, cangDan.getGetlistPic(), GuaDanAddActivity.this);
-//            XBitmap.displayImage(iv_huoquan, cangDan.getGoodsOwnerProve(), GuaDanAddActivity.this);
+            XBitmap.displayImage(iv_huowu, cangDanDetail.getProductLogo(), GuaDanAddActivity.this);
+            XBitmap.displayImage(iv_huoquan, cangDanDetail.getProductOwnerProve(), GuaDanAddActivity.this);
         et_goods_name_gua_dan.setText(cangDanDetail.getProductName());
         tv_cangdanhao_gua_dan_add.setText(cangDanDetail.getOriginalListId());
         tv_goods_kind_gua_dan.setText(cangDanDetail.getCategoryName());
