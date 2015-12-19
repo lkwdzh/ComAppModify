@@ -119,6 +119,8 @@ checkStart(context,intent,bundle);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             context.startActivity(i);
 
+
+
 //            Intent mainIntent = new Intent(context, MainActivity.class);
 //            mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //
