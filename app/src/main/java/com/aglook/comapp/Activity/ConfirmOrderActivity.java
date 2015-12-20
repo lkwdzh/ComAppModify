@@ -245,6 +245,7 @@ public class ConfirmOrderActivity extends BaseActivity {
     private String money;
     private String totalFee;
 
+
     //确认订单
     public void getData() {
 
@@ -279,8 +280,6 @@ public class ConfirmOrderActivity extends BaseActivity {
                         AppUtils.toastText(ConfirmOrderActivity.this, "尚未绑定银行卡");
                         showDialog();
                     }
-                } else {
-                    AppUtils.toastText(ConfirmOrderActivity.this, message);
                 }
             }
 

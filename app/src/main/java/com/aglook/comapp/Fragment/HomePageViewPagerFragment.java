@@ -34,7 +34,9 @@ public class HomePageViewPagerFragment extends Fragment {
         Bundle bundle=getArguments();
         int position = bundle.getInt("position");
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        XBitmap.displayImage(imageView, list.get(position).getAdLogo(), getActivity());
+        if (list.get(position).getAdLogo()!=null&&!"".equals(list.get(position).getAdLogo())) {
+            XBitmap.displayImage(imageView, list.get(position).getAdLogo(), getActivity());
+        }
 
         return imageView;
     }

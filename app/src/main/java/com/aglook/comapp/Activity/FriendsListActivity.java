@@ -68,7 +68,6 @@ public class FriendsListActivity extends BaseActivity {
         right_text = (TextView) findViewById(R.id.right_text);
         right_text.setText("添加");
         right_text.setVisibility(View.VISIBLE);
-        customProgress = CustomProgress.show(this, "加载中···", true);
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
         lv_buyer_list = (PullToRefreshListView) findViewById(R.id.lv_buyer_list);
         tv_num_buyer_list = (TextView) findViewById(R.id.tv_num_buyer_list);
@@ -132,7 +131,10 @@ public class FriendsListActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == 1) {
-            customProgress = CustomProgress.show(this, "加载中···", true);
+
+            getData();
+        }else if (requestCode==33&&resultCode==1){
+            mList.clear();
             getData();
         }
     }
@@ -175,7 +177,7 @@ public class FriendsListActivity extends BaseActivity {
     //获取数据
     public void getData() {
 
-
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {

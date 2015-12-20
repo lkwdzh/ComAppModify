@@ -113,13 +113,20 @@ public class ZiXunListActivity extends BaseActivity {
         Intent intent = new Intent();
         switch (view.getId()){
             case R.id.left_icon:
-                if (isReceiver&&!DefineUtil.IS_LAUNCH){
-                    intent.setClass(ZiXunListActivity.this,LaunchActivity.class);
-                    startActivity(intent);
+//                if (isReceiver&&!DefineUtil.IS_LAUNCH){
+//                    intent.setClass(ZiXunListActivity.this,LaunchActivity.class);
+//                    startActivity(intent);
+//                    ZiXunListActivity.this.finish();
+//                }else {
+//                    ZiXunListActivity.this.finish();
+//                }
+//                if (isReceiver){
+//                    intent.setClass(ZiXunListActivity.this,LaunchActivity.class);
+//                    startActivity(intent);
+//                    ZiXunListActivity.this.finish();
+//                }else {
                     ZiXunListActivity.this.finish();
-                }else {
-                    ZiXunListActivity.this.finish();
-                }
+//                }
                 break;
         }
 

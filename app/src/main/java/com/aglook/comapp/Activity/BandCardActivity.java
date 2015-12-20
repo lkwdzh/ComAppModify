@@ -129,8 +129,6 @@ public class BandCardActivity extends BaseActivity {
                 if (status.equals("1")) {
                     adapter = new BandCardDialogAdapter(BandCardActivity.this, mList);
                     lv_dialog_lv.setAdapter(adapter);
-                } else {
-                    AppUtils.toastText(BandCardActivity.this, message);
                 }
             }
 
@@ -168,9 +166,8 @@ public class BandCardActivity extends BaseActivity {
                         BandCardActivity.this.setResult(1);
                         finish();
 //                    }
-                }else {
-                    AppUtils.toastText(BandCardActivity.this,message);
                 }
+
             }
 
             @Override
@@ -179,6 +176,6 @@ public class BandCardActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.BANKCARD, CardListUrl.postBandUrl(DefineUtil.USERID, DefineUtil.TOKEN, cardNo, userName, cardType, bankCode, bankAlis, cardPhone), BandCardActivity.this);
+        }.datePostUp(DefineUtil.BANKCARD, CardListUrl.postBandUrl(DefineUtil.USERID, DefineUtil.TOKEN, cardNo, userName, cardType, bankCode, bankAlis, cardPhone), BandCardActivity.this);
     }
 }

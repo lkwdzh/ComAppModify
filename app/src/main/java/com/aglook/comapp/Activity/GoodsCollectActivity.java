@@ -10,7 +10,6 @@ import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ScreenAdapter;
 import com.aglook.comapp.bean.Screen;
 import com.aglook.comapp.url.GoodsCollectUrl;
-import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
@@ -44,7 +43,7 @@ public class GoodsCollectActivity extends BaseActivity {
         gv_goods = (PullToRefreshListView) findViewById(R.id.gv_goods);
         adapter = new ScreenAdapter(GoodsCollectActivity.this, mList);
         gv_goods.setAdapter(adapter);
-        customProgress = CustomProgress.show(GoodsCollectActivity.this, "加载中···", true);
+
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
     }
 
@@ -63,8 +62,10 @@ public class GoodsCollectActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode==1&&resultCode==1){
-            customProgress = CustomProgress.show(GoodsCollectActivity.this, "加载中···", true);
             isToDetail=true;
+            getData();
+        }else if (requestCode==33&&resultCode==1){
+            mList.clear();
             getData();
         }
     }
@@ -76,6 +77,7 @@ public class GoodsCollectActivity extends BaseActivity {
 
     //获取数据
     public void getData() {
+        customProgress = CustomProgress.show(GoodsCollectActivity.this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -118,19 +120,18 @@ public class GoodsCollectActivity extends BaseActivity {
                 if (status.equals("1")) {
                     if (obj != null && !"".equals(obj)) {
                         sonList = JsonUtils.parseList(obj, Screen.class);
-                        if (sonList != null && sonList.size() != 0) {
                             if (isToDetail){
                                 mList.clear();
                                 isToDetail=false;
                             }
+                        if (sonList != null && sonList.size() != 0) {
                             mList.addAll(sonList);
                             Log.d("mlist",mList.toString());
                         }
                     }
 
-                } else {
-                    AppUtils.toastText(GoodsCollectActivity.this, message);
                 }
+
                 adapter.notifyDataSetChanged();
                 gv_goods.onRefreshComplete();
                 gv_goods.setEmptyView(emptyView);

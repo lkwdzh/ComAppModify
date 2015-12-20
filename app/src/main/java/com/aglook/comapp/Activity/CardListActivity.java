@@ -63,7 +63,7 @@ public class CardListActivity extends BaseActivity {
         right_text = (TextView) findViewById(R.id.right_text);
         right_text.setText("添加");
         right_text.setVisibility(View.VISIBLE);
-        customProgress = CustomProgress.show(this, "加载中···", true);
+
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
         lv_card_list = (PullToRefreshListView) findViewById(R.id.lv_card_list);
         lv_card_list.setMode(PullToRefreshBase.Mode.BOTH);
@@ -119,11 +119,15 @@ public class CardListActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == 1) {
             getCardListData();
+        }else if (requestCode==33&&resultCode==1){
+            mList.clear();
+            getCardListData();
         }
     }
 
     //获取银行卡列表
     public void getCardListData() {
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -154,8 +158,6 @@ public class CardListActivity extends BaseActivity {
                     } else {
                         DefineUtil.BANKBAND = false;
                     }
-                } else {
-                    AppUtils.toastText(CardListActivity.this, message);
                 }
 
                 adapter.notifyDataSetChanged();
@@ -202,15 +204,15 @@ public class CardListActivity extends BaseActivity {
                 if (status.equals("1")) {
                     isMoRen = true;
                     getCardListData();
-                }
                 AppUtils.toastText(CardListActivity.this, message);
+                }
             }
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        }.datePost(DefineUtil.BINDING_DEFAULT, CardListUrl.postBindDefaultUrl(DefineUtil.USERID, DefineUtil.TOKEN, bankCardId), CardListActivity.this);
+        }.datePostUp(DefineUtil.BINDING_DEFAULT, CardListUrl.postBindDefaultUrl(DefineUtil.USERID, DefineUtil.TOKEN, bankCardId), CardListActivity.this);
     }
 
     //删除银行卡
@@ -234,7 +236,7 @@ public class CardListActivity extends BaseActivity {
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        }.datePost(DefineUtil.DELETE_BANKCARD, CardListUrl.postDeleteUrl(DefineUtil.USERID, DefineUtil.TOKEN, bankCardId), CardListActivity.this);
+        }.datePostUp(DefineUtil.DELETE_BANKCARD, CardListUrl.postDeleteUrl(DefineUtil.USERID, DefineUtil.TOKEN, bankCardId), CardListActivity.this);
     }
 
 }

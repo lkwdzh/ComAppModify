@@ -1,5 +1,6 @@
 package com.aglook.comapp.Activity;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,6 @@ import com.aglook.comapp.adapter.GuaDanStataAdapter;
 import com.aglook.comapp.bean.GuaDanStata;
 import com.aglook.comapp.bean.GuaDanStataLiL;
 import com.aglook.comapp.url.AllGuaDanUrl;
-import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
@@ -47,7 +47,7 @@ public class GuaDanStateActivity extends BaseActivity {
     }
 
     public void init() {
-        customProgress = CustomProgress.show(this, "加载中···", true);
+
         productId = getIntent().getStringExtra("productId");
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
         adapter = new GuaDanStataAdapter(GuaDanStateActivity.this,mList);
@@ -73,12 +73,21 @@ public class GuaDanStateActivity extends BaseActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==33&&resultCode==1){
+            mList.clear();
+            getData();
+        }
+    }
+
+    @Override
     public void widgetClick(View view) {
 
     }
 
     //获取数据
     public void getData() {
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -91,15 +100,14 @@ public class GuaDanStateActivity extends BaseActivity {
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
                 if (status.equals("1")) {
                     guaDanStata = JsonUtils.parse(obj, GuaDanStata.class);
-                    if (guaDanStata.getList().getList()!=null&&guaDanStata.getList().getList().size()!=0){
                         if (pageNum==1){
                             mList.clear();
                         }
+                    if (guaDanStata.getList().getList()!=null&&guaDanStata.getList().getList().size()!=0){
                         mList.addAll(guaDanStata.getList().getList());
                     }
-                } else {
-                    AppUtils.toastText(GuaDanStateActivity.this, message);
                 }
+
                 adapter.notifyDataSetChanged();
                 lv_order_state.onRefreshComplete();
                 lv_order_state.setEmptyView(emptyView);

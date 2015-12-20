@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.AllGuaDanAdapter;
@@ -38,11 +39,13 @@ public class AllGuaDanActivity extends BaseActivity {
     private String _sort;
     private boolean isModify;
     private CustomProgress customProgress;
+    private ComAppApplication comAppApplication;
 
     @Override
     public void initView() {
         setContentView(R.layout.activity_all_gua_dan);
         setTitleBar("全部挂单");
+        comAppApplication= (ComAppApplication) getApplication();
         ExitApplication.getInstance().addActivity(this);
         init();
         click();
@@ -50,7 +53,7 @@ public class AllGuaDanActivity extends BaseActivity {
     }
 
     public void init() {
-        customProgress = CustomProgress.show(this, "加载中···", true);
+
         lv_all_order = (PullToRefreshListView) findViewById(R.id.lv_all_order);
         adapter = new AllGuaDanAdapter(AllGuaDanActivity.this, mList);
         lv_all_order.setAdapter(adapter);
@@ -88,8 +91,10 @@ public class AllGuaDanActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode==12&&resultCode==1){
-            customProgress=CustomProgress.show(AllGuaDanActivity.this,"",true);
             isModify=true;
+            getData();
+        }else if (requestCode==33&&resultCode==1){
+            mList.clear();
             getData();
         }
     }
@@ -101,6 +106,7 @@ public class AllGuaDanActivity extends BaseActivity {
 
     //获取数据
     public void getData() {
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -115,7 +121,6 @@ public class AllGuaDanActivity extends BaseActivity {
                 if (status.equals("1")) {
                     if (obj != null && !"".equals(obj)) {
                         guaDan = JsonUtils.parse(obj, GuaDan.class);
-                        if (guaDan.getList() != null && guaDan.getList().size() != 0) {
                             if (pageNum == 1) {
                                 mList.clear();
                             }
@@ -123,13 +128,14 @@ public class AllGuaDanActivity extends BaseActivity {
                                 isModify=false;
                                 mList.clear();
                             }
+                        if (guaDan.getList() != null && guaDan.getList().size() != 0) {
 
                             mList.addAll(guaDan.getList());
                         }
                     }
-                } else {
-                    AppUtils.toastText(AllGuaDanActivity.this, message);
                 }
+//
+
 
                 adapter.notifyDataSetChanged();
                 lv_all_order.onRefreshComplete();

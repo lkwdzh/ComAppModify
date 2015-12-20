@@ -3,6 +3,7 @@ package com.aglook.comapp.Application;
 import android.app.Application;
 
 import com.aglook.comapp.bean.Login;
+import com.aglook.comapp.util.DefineUtil;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -34,11 +35,11 @@ public class ComAppApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        DefineUtil.IS_LAUNCH=true;
         JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
         JPushInterface.init(this);     		// 初始化 JPush
 //        db=DbUtils.create(this,"MESSAGE");
     }
-
     public static ComAppApplication getInstance(){
         if (null==instance){
             instance=new ComAppApplication();

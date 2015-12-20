@@ -138,9 +138,8 @@ public class GoodsDetailActivity extends BaseActivity {
                     //成功
 //                    Log.d("result_GoodsDetail_goodsDetail",goodsDetail+"");
                     fillData();
-                } else {
-                    AppUtils.toastText(GoodsDetailActivity.this, message);
                 }
+
             }
 
             @Override
@@ -149,7 +148,7 @@ public class GoodsDetailActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.PRODUCT_DETAIL, GoodsDetailUrl.postGoodsDetailUrl(DefineUtil.USERID, productId), GoodsDetailActivity.this);
+        }.datePostCheck(DefineUtil.PRODUCT_DETAIL, GoodsDetailUrl.postGoodsDetailUrl(DefineUtil.USERID, productId), GoodsDetailActivity.this);
     }
 
     //    填充数据
@@ -322,9 +321,8 @@ public class GoodsDetailActivity extends BaseActivity {
                     Intent intent = new Intent();
                     intent.setAction("MainActivity");
                     sendBroadcast(intent);
-                } else {
-                    AppUtils.toastText(GoodsDetailActivity.this, message);
                 }
+
             }
 
             @Override
@@ -352,8 +350,6 @@ public class GoodsDetailActivity extends BaseActivity {
                     tv_shoucang_goods_detail.setText("已收藏");
                     iv_shoucang_goods_detail.setImageResource(R.drawable.guanzhu_checked);
                     goodsDetail.setIsCollect("1");
-                } else {
-                    AppUtils.toastText(GoodsDetailActivity.this, message);
                 }
             }
 

@@ -85,18 +85,11 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         }
     };
     private PullToRefreshScrollView sv_homepage;
-    //    private RecyclerView my_recycler_view;
-//    private MyGridView gv_homepage;
-//    private HomePageGridViewAdapter gridViewAdapter;
     private RelativeLayout rl_search_homepage_fragment;
 
     private ComAppApplication comAppApplication;
 
     private String userId;
-    //    private View view1;
-//    private View view2;
-//    private View view3;
-//    private ArrayList<View> viewArrayList;
     private MyExpandableListView melv_homePage;
     private HomePageEXGridView homePageEXGridViewAdapter;
     private MyGridView mgv_homePage;

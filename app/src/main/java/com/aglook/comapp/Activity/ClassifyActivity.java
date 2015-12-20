@@ -12,7 +12,6 @@ import com.aglook.comapp.adapter.ClassificationLeftAdapter;
 import com.aglook.comapp.adapter.ClassificationRightAdapter;
 import com.aglook.comapp.bean.Classify;
 import com.aglook.comapp.bean.ClassifyGV;
-import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
@@ -45,7 +44,7 @@ public class ClassifyActivity extends BaseActivity {
 
     //初始化控件
     public void init(){
-        customProgress = CustomProgress.show(ClassifyActivity.this, "加载中···", true);
+
         mList = new ArrayList<>();
         sonList = new ArrayList<>();
         rightList = new ArrayList<>();
@@ -92,8 +91,17 @@ public class ClassifyActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==33&&resultCode==1){
+            mList.clear();
+            getData();
+        }
+    }
+
     //    获取数据
     public void getData() {
+        customProgress = CustomProgress.show(ClassifyActivity.this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -109,8 +117,6 @@ public class ClassifyActivity extends BaseActivity {
 //                    假如成功则分别添加到list中
                     mList.addAll(sonList);
                     rightList.addAll(sonList.get(0).getContent());
-                } else {
-                    AppUtils.toastText(ClassifyActivity.this, message);
                 }
                 rightAdapter.notifyDataSetChanged();
                 leftAdapter.notifyDataSetChanged();

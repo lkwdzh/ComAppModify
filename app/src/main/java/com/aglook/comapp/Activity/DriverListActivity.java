@@ -194,12 +194,15 @@ public class DriverListActivity extends BaseActivity {
         }else if (requestCode==2&&resultCode==RESULT_OK){
             isUpDate=true;
             getData();
+        }else if (requestCode==33&&resultCode==1){
+            mList.clear();
+            getData();
         }
     }
 
     //获取数据
     public void getData() {
-
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -223,7 +226,6 @@ public class DriverListActivity extends BaseActivity {
                         mList.clear();
                     }
                     if (sonListt != null && sonListt.size() != 0) {
-
                         mList.addAll(sonListt);
                         compareList();
                     }
@@ -265,9 +267,8 @@ public class DriverListActivity extends BaseActivity {
                     DriverListActivity.this.setResult(RESULT_OK, intent);
                     DriverListActivity.this.finish();
                     AppUtils.toastText(DriverListActivity.this,"修改成功");
-                }else {
-                    AppUtils.toastText(DriverListActivity.this,message);
                 }
+
             }
 
             @Override
@@ -276,7 +277,7 @@ public class DriverListActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.CANG_DAN, PickUpUrl.postModifyDriverUrl(code,DefineUtil.TOKEN,DefineUtil.USERID,getId,driverId,getListDriverId),DriverListActivity.this);
+        }.datePostUp(DefineUtil.CANG_DAN, PickUpUrl.postModifyDriverUrl(code,DefineUtil.TOKEN,DefineUtil.USERID,getId,driverId,getListDriverId),DriverListActivity.this);
     }
 
 }

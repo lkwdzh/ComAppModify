@@ -90,8 +90,6 @@ public class DriverAddActivity extends BaseActivity {
                     //成功
                     DriverAddActivity.this.setResult(1);
                     DriverAddActivity.this.finish();
-                }else {
-                    AppUtils.toastText(DriverAddActivity.this,message);
                 }
             }
 
@@ -101,7 +99,7 @@ public class DriverAddActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.DRIVER_ADD, DriverUrl.postDriverAddUrl(DefineUtil.TOKEN,DefineUtil.USERID,driverName,driverTel,driverPhone,carCode,cardNo),DriverAddActivity.this);
+        }.datePostCheck(DefineUtil.DRIVER_ADD, DriverUrl.postDriverAddUrl(DefineUtil.TOKEN,DefineUtil.USERID,driverName,driverTel,driverPhone,carCode,cardNo),DriverAddActivity.this);
     }
 
 

@@ -1,7 +1,11 @@
 package com.aglook.comapp.util;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 
+import com.aglook.comapp.Activity.LoginActivity;
+import com.aglook.comapp.Application.ComAppApplication;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
@@ -13,8 +17,74 @@ import com.lidroid.xutils.http.client.HttpRequest;
  * Created by aglook on 2015/10/26.
  */
 public abstract class XHttpuTools {
+    private ComAppApplication comAppApplication;
 
-    public void datePost(String url, RequestParams params, final Context context) {
+    public void datePost(String url, RequestParams params, final Activity context) {
+        HttpUtils httpUtils = new HttpUtils();
+        httpUtils.configCurrentHttpCacheExpiry(1000 * 10);
+
+        httpUtils.send(HttpRequest.HttpMethod.POST, url, params, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> objectResponseInfo) {
+                initViews(objectResponseInfo);
+                comAppApplication= (ComAppApplication) context.getApplication();
+                String status=JsonUtils.getJsonParam(objectResponseInfo.result,"status");
+                if (!"1".equals(status)) {
+                    String error = JsonUtils.getJsonParam(objectResponseInfo.result, "errCode");
+                    String errCode = JsonUtils.getJsonParam(error, "errCode");
+                    if (errCode.equals("U1008")) {
+                        //token已过期,请重新获取!
+                        comAppApplication.setLogin(null);
+                        Intent intent = new Intent(context, LoginActivity.class);
+                        context.startActivityForResult(intent, 33);
+                        AppUtils.toastText(context, "账号登录异常，请重新登录");
+                    } else {
+                        AppUtils.toastText(context, "网络异常，请重新操作");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                failureInitViews(e, s);
+                AppUtils.toastText(context, "网络异常，请重新操作");
+            }
+        });
+    }
+
+    public void datePostUp(String url, RequestParams params, final Activity context) {
+        HttpUtils httpUtils = new HttpUtils();
+        httpUtils.configCurrentHttpCacheExpiry(1000 * 10);
+
+        httpUtils.send(HttpRequest.HttpMethod.POST, url, params, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> objectResponseInfo) {
+                initViews(objectResponseInfo);
+                comAppApplication= (ComAppApplication) context.getApplication();
+                String status=JsonUtils.getJsonParam(objectResponseInfo.result,"status");
+                if (!"1".equals(status)) {
+                    String error = JsonUtils.getJsonParam(objectResponseInfo.result, "errCode");
+                    String errCode = JsonUtils.getJsonParam(error, "errCode");
+                    if (errCode.equals("U1008")) {
+                        //token已过期,请重新获取!
+                        comAppApplication.setLogin(null);
+                        Intent intent = new Intent(context, LoginActivity.class);
+                        context.startActivity(intent);
+                        AppUtils.toastText(context, "账号登录异常，请重新登录");
+                    } else {
+                        AppUtils.toastText(context, "网络异常，请重新操作");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                failureInitViews(e, s);
+                AppUtils.toastText(context, "网络异常，请重新操作");
+            }
+        });
+    }
+    public void datePostCheck(String url, RequestParams params, final Activity context) {
         HttpUtils httpUtils = new HttpUtils();
         httpUtils.configCurrentHttpCacheExpiry(1000 * 10);
 
@@ -27,7 +97,7 @@ public abstract class XHttpuTools {
             @Override
             public void onFailure(HttpException e, String s) {
                 failureInitViews(e, s);
-                AppUtils.toastText(context, "服务器请求失败");
+                AppUtils.toastText(context, "网络异常，请重新操作");
             }
         });
     }
@@ -45,7 +115,7 @@ public abstract class XHttpuTools {
             @Override
             public void onFailure(HttpException e, String s) {
                 failureInitViews(e, s);
-                AppUtils.toastText(context, "服务器请求失败");
+                AppUtils.toastText(context, "网络异常，请重新操作");
             }
         });
     }
@@ -62,7 +132,7 @@ public abstract class XHttpuTools {
             @Override
             public void onFailure(HttpException e, String s) {
                 failureInitViews(e, s);
-                AppUtils.toastText(context, "服务器请求失败");
+                AppUtils.toastText(context, "网络异常，请重新操作");
             }
         });
     }

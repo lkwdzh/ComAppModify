@@ -1,5 +1,6 @@
 package com.aglook.comapp.Activity;
 
+import android.os.Handler;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -7,6 +8,7 @@ import android.webkit.WebViewClient;
 
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
+import com.aglook.comapp.view.CustomProgress;
 
 public class HangDetailActivity extends BaseActivity {
 
@@ -15,7 +17,7 @@ public class HangDetailActivity extends BaseActivity {
     private String url;
     private String className;
 
-
+    private CustomProgress customProgress;
     @Override
     public void initView() {
         setContentView(R.layout.activity_hang_detail);
@@ -27,6 +29,7 @@ public class HangDetailActivity extends BaseActivity {
     }
 
     public void init() {
+        customProgress = CustomProgress.show(this, "", true);
         url=getIntent().getStringExtra("url");
         web_hangdetail = (WebView) findViewById(R.id.web_hangdetail);
 
@@ -36,8 +39,14 @@ public class HangDetailActivity extends BaseActivity {
 
         web_hangdetail.setWebViewClient(new WebViewClient());// 当点击超链地址后不会新打开浏览器来访问，而是始终在本app中浏览页面
         web_hangdetail.loadUrl(url);
-
-
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
+            }
+        },2000);
 
     }
 

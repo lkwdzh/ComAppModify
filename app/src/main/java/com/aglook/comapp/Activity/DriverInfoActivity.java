@@ -145,8 +145,6 @@ public class DriverInfoActivity extends BaseActivity {
                     cb_driver_info.setText("修改");
                     DriverInfoActivity.this.setResult(RESULT_OK);
                     DriverInfoActivity.this.finish();
-                }else {
-                    AppUtils.toastText(DriverInfoActivity.this,message);
                 }
             }
 

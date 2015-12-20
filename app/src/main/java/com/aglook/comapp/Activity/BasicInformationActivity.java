@@ -153,9 +153,6 @@ public class BasicInformationActivity extends BaseActivity {
                     }
 
 
-                }else {
-                AppUtils.toastText(BasicInformationActivity.this,message);
-
                 }
             }
 
@@ -163,7 +160,7 @@ public class BasicInformationActivity extends BaseActivity {
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        }.datePost(DefineUtil.PERSON_UPDATE, BasicInformationUrl.postBasicInfoUpdateUrl(DefineUtil.USERID, DefineUtil.TOKEN, userTName,userNumber,userPhone,userEmail,userTel,userQq,userMoney,userPoint,userAllPoint,username,userAddress,userSeat), BasicInformationActivity.this);
+        }.datePostUp(DefineUtil.PERSON_UPDATE, BasicInformationUrl.postBasicInfoUpdateUrl(DefineUtil.USERID, DefineUtil.TOKEN, userTName,userNumber,userPhone,userEmail,userTel,userQq,userMoney,userPoint,userAllPoint,username,userAddress,userSeat), BasicInformationActivity.this);
     }
 
     //获取输入内容

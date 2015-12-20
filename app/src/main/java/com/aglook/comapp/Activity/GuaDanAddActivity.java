@@ -313,6 +313,15 @@ public class GuaDanAddActivity extends BaseActivity {
                 tv_1_gua_dan_add.setText("");
                 tv_2_gua_dan_add.setText("");
             }
+        }else if (requestCode==33&&resultCode==1){
+            if (isPlate) {
+                customProgress = CustomProgress.show(this, "", true);
+                getPlatData();
+            } else {
+
+                customProgress = CustomProgress.show(this, "", true);
+                getData();
+            }
         }
     }
 
@@ -332,9 +341,8 @@ public class GuaDanAddActivity extends BaseActivity {
                     //成功则跳转
                     GuaDanAddActivity.this.setResult(1);
                     GuaDanAddActivity.this.finish();
-                } else {
-                    AppUtils.toastText(GuaDanAddActivity.this, message);
                 }
+
             }
 
             @Override
@@ -362,9 +370,8 @@ public class GuaDanAddActivity extends BaseActivity {
                     //成功则跳转
                     GuaDanAddActivity.this.setResult(1);
                     GuaDanAddActivity.this.finish();
-                } else {
-                    AppUtils.toastText(GuaDanAddActivity.this, message);
                 }
+
             }
 
             @Override
@@ -396,9 +403,8 @@ public class GuaDanAddActivity extends BaseActivity {
                     if (cangDanDetail != null) {
                         fillData();
                     }
-                } else {
-                    AppUtils.toastText(GuaDanAddActivity.this, message);
                 }
+
             }
 
             @Override
@@ -428,9 +434,8 @@ public class GuaDanAddActivity extends BaseActivity {
                     if (cangDanDetail != null) {
                         fillData();
                     }
-                } else {
-                    AppUtils.toastText(GuaDanAddActivity.this, message);
                 }
+
             }
 
             @Override

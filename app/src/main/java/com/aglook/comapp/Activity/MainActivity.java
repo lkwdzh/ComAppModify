@@ -1,12 +1,16 @@
 package com.aglook.comapp.Activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
@@ -14,6 +18,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -30,6 +35,7 @@ import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.bean.ShoppingCart;
 import com.aglook.comapp.url.AllOrderUrl;
 import com.aglook.comapp.url.LoginUrl;
+import com.aglook.comapp.url.MainUrl;
 import com.aglook.comapp.url.ShoppingCartUrl;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
@@ -43,7 +49,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends FragmentActivity implements ShoppingCartFragment.onShoppingCartClick, HomePageFragment.HomePageCallBack {
+public class MainActivity extends FragmentActivity implements ShoppingCartFragment.onShoppingCartClick, HomePageFragment.HomePageCallBack, View.OnClickListener {
 
     private FragmentTabHost mTabHost;
     //是否是第一次启动
@@ -54,9 +60,12 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
     private Login login;
     private String accountType;
     private String userName;
+    private boolean isJpush;
 
     private String password;
     private boolean isLogin;
+
+    private String appName = "com.aglook.comapp";
     //Fragment集合
     private Class fragmentArray[] = {
             HomePageFragment.class, ClassificationFragment.class, ShoppingCartFragment.class,
@@ -77,6 +86,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         setContentView(R.layout.activity_main);
         ExitApplication.getInstance().addActivity(this);
         comAppApplication = (ComAppApplication) getApplication();
+        isJpush = getIntent().getBooleanExtra("isJpush", false);
         initView();
     }
 
@@ -140,17 +150,24 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         registerReceiver(myReceiver, filter);
 
         if (DefineUtil.FLAG == 2) {
-            Log.d("result_DefineUtil.FLAG_cr",DefineUtil.FLAG+"");
+            Log.d("result_DefineUtil.FLAG_cr", DefineUtil.FLAG + "");
             mTabHost.setCurrentTab(3);
         }
 
-
-
+        if (isJpush) {
+            Intent intent1 = new Intent(MainActivity.this, ZiXunListActivity.class);
+            intent1.putExtra("className", "消息");
+            intent1.putExtra("isMessage", true);
+            intent1.putExtra("isReceiver", true);
+            startActivity(intent1);
+        }
+        checkUpdate();
     }
 
     private ApplicationInfo info;
     private String channel;
-
+private boolean isForce;
+    private String url;
     //获取渠道并且检查更新
     public void checkUpdate() {
         //获取发布渠道
@@ -159,14 +176,81 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        channel = info.metaData.getString("UMENG_CHANNEL");
+        channel = info.metaData.getString("channel");
+
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                Log.d("result_check", arg0.result);
+                if (arg0.result != null && !"".equals(arg0.result)) {
+                    String status = JsonUtils.getJsonParam(arg0.result, "status");
+                    if (status.equals("wait")) {
+                        //审核中
+                    } else if (status.equals("success")) {
+                        //再判断versionCode
+                        //获取versionName
+                        String packageName = MainActivity.this.getPackageName();
+                        int myCode=0;
+                        try {
+                            PackageInfo packageInfo = MainActivity.this.getPackageManager().getPackageInfo(packageName, 0);
+                            myCode = packageInfo.versionCode;
+                        } catch (PackageManager.NameNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        //如果本地code小于获取到的，则更新
+                        int versionCode=Integer.parseInt(JsonUtils.getJsonParam(arg0.result,"versionCode"));
+                        if (myCode<versionCode){
+                            //更新
+                            url=JsonUtils.getJsonParam(arg0.result,"downloadUrl");
+                            //判断是否强制
+                            int forcedUpdate=Integer.parseInt(JsonUtils.getJsonParam(arg0.result,"forcedUpdate"));
+                            if (forcedUpdate==0){
+                                //非强制
+                                isForce=false;
+                            }else if (forcedUpdate==1){
+                                //强制
+                                isForce=true;
+                            }
+                            showDailog(isForce);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+
+            }
+        }.datePostCheck(DefineUtil.CHECK_UPDATE, MainUrl.postCheckUpUrl(appName, channel), MainActivity.this);
     }
 
+    private Dialog dialog;
+    private TextView tv_delete_order;
 
+    public void showDailog(boolean isforce) {
+        LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = layoutInflater.inflate(R.layout.layout_order, null);
+        btn_cancel_delete = (Button) view.findViewById(R.id.btn_cancel_delete);
+        btn_confirm_delete = (Button) view.findViewById(R.id.btn_confirm_delete);
+        tv_delete_order = (TextView) view.findViewById(R.id.tv_delete_order);
+        tv_delete_order.setText("检测到有新版本，确认更新?");
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.create();
+        builder.setView(view);
+        builder.setCancelable(isforce);
+        dialog = builder.show();
+//        dialog.setTitle("版本更新");
+        btn_cancel_delete.setOnClickListener(this);
+        btn_confirm_delete.setOnClickListener(this);
+    }
+
+    private Button btn_cancel_delete;
+    private Button btn_confirm_delete;
     @Override
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(myReceiver);
+        DefineUtil.IS_LAUNCH = false;
     }
 
     private BroadcastReceiver myReceiver = new BroadcastReceiver() {
@@ -217,6 +301,27 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         mTabHost.setCurrentTab(position);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_cancel_delete:
+                if (isForce) {
+
+                } else {
+                    dialog.dismiss();
+                }
+                break;
+            case R.id.btn_confirm_delete:
+                Intent intent = new Intent();
+                intent.setAction("android.intent.action.VIEW");
+                Uri content_url = Uri.parse(url);
+                intent.setData(content_url);
+                startActivity(intent);
+                dialog.dismiss();
+                break;
+        }
+    }
+
     class TabChangeListener implements TabHost.OnTabChangeListener {
 
         @Override
@@ -241,11 +346,11 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
     protected void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
-           if (comAppApplication.getLogin()!=null){
-               getNotPayData();
-           }
+        if (comAppApplication.getLogin() != null) {
+            getNotPayData();
+        }
         if (DefineUtil.FLAG == 2) {
-            Log.d("result_DefineUtil.FLAG_re",DefineUtil.FLAG+"");
+            Log.d("result_DefineUtil.FLAG_re", DefineUtil.FLAG + "");
             mTabHost.setCurrentTab(3);
         }
     }
@@ -291,13 +396,13 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
                     DefineUtil.TOKEN = login.getToken();
                     DefineUtil.USERID = login.getPshUser().getUserId();
                     DefineUtil.BANKBAND = login.isBankBind();
-                    Log.d("result_login_main", DefineUtil.BANKBAND+"");
+                    Log.d("result_login_main", DefineUtil.BANKBAND + "");
                     comAppApplication.setLogin(login);
                     getCartListData();
                     getNotPayData();
                     isLogin = true;
-                    Log.d("result_main_islog——2",isLogin+"");
-                    DefineUtil.ISUSERID=true;
+                    Log.d("result_main_islog——2", isLogin + "");
+                    DefineUtil.ISUSERID = true;
                     Intent intent1 = new Intent();
                     intent1.setAction("HomeMain");
                     MainActivity.this.sendBroadcast(intent1);
