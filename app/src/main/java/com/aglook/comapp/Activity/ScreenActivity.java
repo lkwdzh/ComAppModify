@@ -185,6 +185,7 @@ public class ScreenActivity extends BaseActivity {
                     isSaleFirst = true;
                 }
                 isPrice = true;
+                pageNumber=1;
                 if (isSearch) {
                     getSearchData();
                 } else {
@@ -218,6 +219,7 @@ public class ScreenActivity extends BaseActivity {
                     isPriceFirst = true;
                 }
                 isSale = true;
+                pageNumber=1;
                 if (isSearch) {
                     getSearchData();
                 } else {

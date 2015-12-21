@@ -82,7 +82,7 @@ public class ZiXunListActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ZiXunListActivity.this, HangDetailActivity.class);
                 if (isMessage) {
-                    url = DefineUtil.PUSH_ARTICLE + "?classId=" + mList.get(position - 1).getClassId() + "&articleId=" + mList.get(position - 1).getClassId();
+                    url = DefineUtil.PUSH_ARTICLE + "?classId=" + mList.get(position - 1).getClassId() + "&articleId=" + mList.get(position - 1).getArticleId();
                     intent.putExtra("url", url);
                 } else {
                     intent.putExtra("url", mList.get(position - 1).getUrl());

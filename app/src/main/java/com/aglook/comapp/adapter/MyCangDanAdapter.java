@@ -165,7 +165,6 @@ public class MyCangDanAdapter extends BaseAdapter implements View.OnClickListene
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.layout_alpha_dialog, null);
         tv_phone_call = (TextView) view.findViewById(R.id.tv_phone_call);
-        tv_phone_call.setText("18538300482");
         tv_quxiao=(TextView)view.findViewById(R.id.tv_quxiao);
         tv_boda=(TextView)view.findViewById(R.id.tv_boda);
         builder = new AlertDialog.Builder(context).create();

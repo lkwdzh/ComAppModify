@@ -58,7 +58,7 @@
 
         <!--发布渠道-->
         <!--百度-->
-        <meta-data  android:value="baidu" android:name="UMENG_CHANNEL"/>
+        <!--<meta-data  android:value="baidu" android:name="UMENG_CHANNEL"/>-->
 
         <!--<!-91-->-->
         <!--<meta-data  android:value="91sc" android:name="UMENG_CHANNEL"/>-->
@@ -74,13 +74,13 @@
 
 
         <!--<!-自己服务器-->-->
-        <!--<meta-data  android:value="local" android:name="UMENG_CHANNEL"/>-->
+        <meta-data  android:value="local" android:name="UMENG_CHANNEL"/>
 
 
 
         <!--发布渠道-->
         <!--百度-->
-        <meta-data  android:value="baidu" android:name="channel"/>
+        <!--<meta-data  android:value="baidu" android:name="channel"/>-->
 
         <!--91-->
         <!--<meta-data  android:value="91sc" android:name="channel"/>-->
@@ -95,7 +95,7 @@
         <!--<meta-data  android:value="tengxun" android:name="channel"/>-->
 
         <!--<!-自己服务器-->-->
-        <!--<meta-data  android:value="local" android:name="channel"/>-->
+        <meta-data  android:value="local" android:name="channel"/>
 
 
         <!-- Required SDK核心功能 -->

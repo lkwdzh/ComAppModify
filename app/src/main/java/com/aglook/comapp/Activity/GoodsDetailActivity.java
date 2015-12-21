@@ -436,7 +436,6 @@ public class GoodsDetailActivity extends BaseActivity {
         tv_phone_call = (TextView) view.findViewById(R.id.tv_phone_call);
         tv_quxiao=(TextView)view.findViewById(R.id.tv_quxiao);
         tv_boda=(TextView)view.findViewById(R.id.tv_boda);
-        tv_phone_call.setText("18538300482");
         builder = new AlertDialog.Builder(GoodsDetailActivity.this).create();
 //        builder.create();
         builder.setView(view);
