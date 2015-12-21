@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.GuaDanStataLiL;
 import com.aglook.comapp.url.GuaDanUrl;
-import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XBitmap;
@@ -64,7 +63,7 @@ public class TransDetailActivity extends BaseActivity {
     }
 
     public void init() {
-        customProgress = CustomProgress.show(this, "加载中···", true);
+
         productId = getIntent().getStringExtra("productId");
         orderdataId = getIntent().getStringExtra("orderdataId");
         tv_house_num_my_cangdan = (TextView) findViewById(R.id.tv_house_num_my_cangdan);
@@ -146,9 +145,16 @@ public class TransDetailActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==33&&resultCode==1){
+            getData();
+        }
+    }
 
     //获取数据
     public void getData() {
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -164,9 +170,8 @@ public class TransDetailActivity extends BaseActivity {
                     if (guaDanStataLiL != null) {
                         fillData();
                     }
-                } else {
-                    AppUtils.toastText(TransDetailActivity.this, message);
                 }
+
             }
 
             @Override

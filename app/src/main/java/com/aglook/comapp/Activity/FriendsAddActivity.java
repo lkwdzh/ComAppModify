@@ -48,6 +48,10 @@ public class FriendsAddActivity extends BaseActivity {
             case R.id.right_text:
                 //假如成功，则返回
                 seatNo= AppUtils.toStringTrim_ET(et_seatNO_Friends_add);
+                if (seatNo==null||"".equals(seatNo)){
+                    AppUtils.toastText(this,"席位号不能为空");
+                    return;
+                }
                 addFriend();
                 break;
         }
@@ -66,9 +70,8 @@ public class FriendsAddActivity extends BaseActivity {
                     if (status.equals("1")) {
                         FriendsAddActivity.this.setResult(1);
                         FriendsAddActivity.this.finish();
-                    }else {
-                        AppUtils.toastText(FriendsAddActivity.this,message);
                     }
+
                 }
             }
 

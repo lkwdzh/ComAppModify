@@ -77,11 +77,10 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         public void handleMessage(Message msg) {
             if (msg.what == 1) {
 //                viewpager自动切换
-                vp_home_page_head.setCurrentItem(index % scrollList.size());
+                vp_home_page_head.setCurrentItem(index % 5);
                 handler.sendEmptyMessageDelayed(1, 3000);
                 index++;
             }
-            super.handleMessage(msg);
         }
     };
     private PullToRefreshScrollView sv_homepage;
@@ -106,7 +105,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     private ImageView[] tips;
     private ViewGroup viewGroup;
 
-    private boolean isLogin=false;
+    private boolean isLogin = false;
 //    private int count=0;
 
 
@@ -116,13 +115,12 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         View view = View.inflate(getActivity(), R.layout.layout_homepage_fragment, null);
         comAppApplication = (ComAppApplication) getActivity().getApplication();
         initView(view);
-        Log.d("result_login",isLogin+"___");
-            getData();
+        Log.d("result_login", isLogin + "___");
+        getData();
 
         IntentFilter filter2 = new IntentFilter();
         filter2.addAction("HomeMain");
         getActivity().registerReceiver(myReceiver2, filter2);
-
         getScroll();
         getInfo();
         click();
@@ -149,7 +147,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         inList = new ArrayList<>();
         scrollList = new ArrayList<>();
 //        adapter = new RecycleHomePageAdapter(getActivity(),inList);
-
+        vp_home_page_head = (ViewPager) view.findViewById(R.id.vp_home_page_head);
         sv_homepage = (PullToRefreshScrollView) view.findViewById(R.id.sv_homepage);
         mgv_homePage = (MyGridView) view.findViewById(R.id.mgv_homePage);
         melv_homePage = (MyExpandableListView) view.findViewById(R.id.melv_homePage);
@@ -169,14 +167,14 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
 //        rv_homepage = (RecyclerView) view.findViewById(R.id.rv_homepage);
 
         customProgress = CustomProgress.show(getActivity(), "加载中···", true);
-        vp_home_page_head = (ViewPager) view.findViewById(R.id.vp_home_page_head);
+
 
         viewGroup = (ViewGroup) view.findViewById(R.id.viewGroup);
         vp_home_page_head.setOnPageChangeListener(this);
         vp_home_page_head.setCurrentItem(mCurrentPagePosition, false);
 
 
-        sv_homepage.setMode(PullToRefreshBase.Mode.DISABLED);
+        sv_homepage.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
 
 
         rl_search_homepage_fragment = (RelativeLayout) view.findViewById(R.id.rl_search_homepage_fragment);
@@ -188,8 +186,8 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     private BroadcastReceiver myReceiver2 = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            isLogin=true;
-            Log.d("result_result","_________myReceiver2");
+            isLogin = true;
+            Log.d("result_result", "_________myReceiver2");
             getData();
         }
     };
@@ -206,11 +204,13 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         sv_homepage.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ScrollView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
-//                getData();
-                sv_homepage.onRefreshComplete();
+                customProgress = CustomProgress.show(getActivity(), "", true);
+                mList.clear();
+                getData();
+
             }
         });
-        Log.d("result_confirm_Home",comAppApplication.getLogin()+"");
+        Log.d("result_confirm_Home", comAppApplication.getLogin() + "");
         mgv_homePage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -370,6 +370,12 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         }
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        handler.removeMessages(1);
+    }
+
     class MyFramentPageAdapter extends FragmentPagerAdapter {
         public MyFramentPageAdapter(FragmentManager fm) {
             super(fm);
@@ -428,7 +434,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
 //                未指定买家
                 List<HomePage> list = new ArrayList<HomePage>();
 //                指定买家
-                List<HomePage>newListAppoint=new ArrayList<HomePage>();
+                List<HomePage> newListAppoint = new ArrayList<HomePage>();
                 List<HomePageList> listAppoint = new ArrayList<HomePageList>();
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
@@ -440,13 +446,13 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                     listAppoint = JsonUtils.parseList(pointProduct, HomePageList.class);
                     if (status.equals("1")) {
                         //假如成功,给每个实体加上标识，并且将指定的list放在首位
-                        if (isLogin){
-                            Log.d("result_mList","mList.toString()" );
+                        if (isLogin) {
+                            Log.d("result_mList", "mList.toString()");
 //                            mList.clear();
                         }
                         mList.clear();
                         //指定买家
-                        HomePage newHomePage=new HomePage();
+                        HomePage newHomePage = new HomePage();
                         if (listAppoint != null && listAppoint.size() != 0) {
                             for (int j = 0; j < listAppoint.size(); j++) {
                                 listAppoint.get(j).setIsAppoint("1");
@@ -484,7 +490,6 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
 
                 homePageEXGridViewAdapter.notifyDataSetChanged();
                 sv_homepage.onRefreshComplete();
-
             }
 
             @Override
@@ -493,7 +498,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.HOT_LIST, HomePageUrl.postHomePageCategoryUrl(DefineUtil.USERID), getActivity());
+        }.datePostCheck(DefineUtil.HOT_LIST, HomePageUrl.postHomePageCategoryUrl(DefineUtil.USERID), getActivity());
     }
 
     public void fillData() {
@@ -524,7 +529,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                         vp_home_page_head.setAdapter(myViewPagerAdapter);
                         scrollLength = scrollList.size();
                         setTips();
-//                        handler.sendEmptyMessageDelayed(1, 3000);
+                        handler.sendEmptyMessageDelayed(1, 3000);
                     }
                 }
             }
@@ -533,7 +538,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        }.datePost(DefineUtil.INDEX_SCROLLPIC, getActivity());
+        }.datePostCheck(DefineUtil.INDEX_SCROLLPIC, getActivity());
     }
 
     //获取首页资讯条
@@ -551,9 +556,8 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                     if (sonList != null && sonList.size() != 0) {
                         inList.addAll(sonList);
                     }
-                } else {
-                    AppUtils.toastText(getActivity(), message);
                 }
+
 //                adapter.notifyDataSetChanged();
             }
 
@@ -561,7 +565,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        }.datePost(DefineUtil.INFORMATION, getActivity());
+        }.datePostCheck(DefineUtil.INFORMATION, getActivity());
     }
 
 

@@ -1,5 +1,6 @@
 package com.aglook.comapp.Activity;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,6 @@ import com.aglook.comapp.adapter.PlatformAdapter;
 import com.aglook.comapp.bean.PlatformCangDan;
 import com.aglook.comapp.bean.PlatformCangDanList;
 import com.aglook.comapp.url.PlateFormUrl;
-import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
@@ -35,9 +35,10 @@ public class PlatformActivity extends BaseActivity {
     private String _sort;
 
     private PlatformCangDan platformCangDan;
-    private List<PlatformCangDanList>mList=new ArrayList<>();
+    private List<PlatformCangDanList> mList = new ArrayList<>();
     private CustomProgress customProgress;
     private View emptyView;
+
     @Override
     public void initView() {
         setContentView(R.layout.activity_platform);
@@ -50,11 +51,11 @@ public class PlatformActivity extends BaseActivity {
 
     public void init() {
         lv_my_platform = (PullToRefreshListView) findViewById(R.id.lv_my_platform);
-        adapter = new PlatformAdapter(PlatformActivity.this,mList);
+        adapter = new PlatformAdapter(PlatformActivity.this, mList);
         lv_my_platform.setAdapter(adapter);
         lv_my_platform.setMode(PullToRefreshBase.Mode.BOTH);
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
-        customProgress = CustomProgress.show(this, "加载中···", true);
+
     }
 
     public void click() {
@@ -69,16 +70,32 @@ public class PlatformActivity extends BaseActivity {
         lv_my_platform.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-                pageNum=1;
+                pageNum = 1;
                 getData();
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-            pageNum++;
+                pageNum++;
                 getData();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==33&&resultCode==1){
+            mList.clear();
+            getData();
+        }else if(requestCode==2&&resultCode==1){
+            Log.d("result_shuaxin_1","AAAAAAAAAAAAAAAAAAAA");
+            mList.clear();
+            getData();
+        }else if (requestCode==2&&resultCode==RESULT_OK){
+            Log.d("result_shuaxin_2","AAAAAAAAAAAAAAAAAAAA");
+            mList.clear();
+            getData();
+        }
     }
 
     @Override
@@ -88,29 +105,29 @@ public class PlatformActivity extends BaseActivity {
 
     //获取数据
     public void getData() {
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_plateform",arg0.result);
-                String message= JsonUtils.getJsonParam(arg0.result,"message");
-                String status=JsonUtils.getJsonParam(arg0.result,"status");
-                String obj=JsonUtils.getJsonParam(arg0.result,"obj");
-                platformCangDan=JsonUtils.parse(obj,PlatformCangDan.class);
-                if (status.equals("1")){
-                if (platformCangDan!=null){
-                    if (platformCangDan.getList()!=null&&platformCangDan.getList().size()!=0){
-                        if (pageNum==1){
+                Log.d("result_plateform", arg0.result);
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
+                platformCangDan = JsonUtils.parse(obj, PlatformCangDan.class);
+                if (status.equals("1")) {
+                    if (platformCangDan != null) {
+                        if (pageNum == 1) {
                             mList.clear();
                         }
-                        mList.addAll(platformCangDan.getList());
+                        if (platformCangDan.getList() != null && platformCangDan.getList().size() != 0) {
+                            mList.addAll(platformCangDan.getList());
+                        }
                     }
                 }
-                }else {
-                    AppUtils.toastText(PlatformActivity.this,message);
-                }
+
                 adapter.notifyDataSetChanged();
                 lv_my_platform.onRefreshComplete();
                 lv_my_platform.setEmptyView(emptyView);

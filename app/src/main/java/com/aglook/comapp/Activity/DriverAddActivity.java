@@ -60,6 +60,23 @@ public class DriverAddActivity extends BaseActivity {
         driverPhone=AppUtils.toStringTrim_ET(et_phone_driver_add);
         carCode=AppUtils.toStringTrim_ET(et_email_driver_add);
         cardNo=AppUtils.toStringTrim_ET(et_num_driver_add);
+        if (driverName==null||"".equals(driverName)){
+            AppUtils.toastText(this,"司机姓名不能为空");
+            return;
+        }
+        if (et_phone_driver_add==null||"".equals(et_phone_driver_add)){
+            AppUtils.toastText(this,"司机手机号不能为空");
+            return;
+        }
+        if (cardNo==null||"".equals(cardNo)){
+            AppUtils.toastText(this,"司机身份证号不能为空");
+            return;
+        }
+        if (carCode==null||"".equals(carCode)){
+            AppUtils.toastText(this,"司机车牌号不能为空");
+            return;
+        }
+        addDriver();
     }
 
     @Override
@@ -67,7 +84,7 @@ public class DriverAddActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.right_text:
                 //调用增加接口，若成功，则返回
-                addDriver();
+                getInput();
 
                 break;
         }
@@ -76,7 +93,7 @@ public class DriverAddActivity extends BaseActivity {
     //添加司机
     public void addDriver(){
         customProgress = CustomProgress.show(this, "提交中···", true);
-        getInput();
+
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {

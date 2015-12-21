@@ -67,7 +67,6 @@ public class DriverListActivity extends BaseActivity {
     }
 
     public void init() {
-        customProgress = CustomProgress.show(this, "加载中···", true);
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
         getListDriverId=getIntent().getStringExtra("getListDriverId");
         getId=getIntent().getStringExtra("getId");
@@ -138,17 +137,18 @@ public class DriverListActivity extends BaseActivity {
             }
         });
         tv_confirm_driver_list.setOnClickListener(this);
-        ll_cb.setOnClickListener(new View.OnClickListener() {
+        cb_driver_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!cb_driver_list.isChecked()) {
-                    cb_driver_list.setChecked(true);
+                cb_driver_list.setChecked(cb_driver_list.isChecked());
+                if (cb_driver_list.isChecked()) {
+//                    cb_driver_list.setChecked(true);
                     for (int i = 0; i < mList.size(); i++) {
                         mList.get(i).setChecked(true);
                     }
                     tv_num_driver_list.setText(mList.size() + "");
                 } else {
-                    cb_driver_list.setChecked(false);
+//                    cb_driver_list.setChecked(false);
                     for (int i = 0; i < mList.size(); i++) {
                         mList.get(i).setChecked(false);
                     }
@@ -229,9 +229,8 @@ public class DriverListActivity extends BaseActivity {
                         mList.addAll(sonListt);
                         compareList();
                     }
-                } else {
-                    AppUtils.toastText(DriverListActivity.this, message);
                 }
+
                 adapter.notifyDataSetChanged();
                 lv_driver_list.setEmptyView(emptyView);
             }

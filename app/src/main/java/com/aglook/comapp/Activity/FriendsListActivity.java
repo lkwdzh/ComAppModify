@@ -191,7 +191,6 @@ public class FriendsListActivity extends BaseActivity {
                 if (status.equals("1")) {
                     String obj = JsonUtils.getJsonParam(arg0.result, "obj");
                     llList = JsonUtils.parseList(obj, LinkMan.class);
-                    if (llList != null && llList.size() != 0) {
                         if (isAdd){
                             isAdd=false;
                             mList.clear();
@@ -200,11 +199,11 @@ public class FriendsListActivity extends BaseActivity {
                             isDelete=false;
                             mList.clear();
                         }
+                    if (llList != null && llList.size() != 0) {
                         mList.addAll(llList);
                     }
-                } else {
-                    AppUtils.toastText(FriendsListActivity.this, message);
                 }
+
                     if (mList.size()!=0&&mList!=null){
                         rl_bottom.setVisibility(View.VISIBLE);
                     }

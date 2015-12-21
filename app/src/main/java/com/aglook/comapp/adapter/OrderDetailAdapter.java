@@ -1,7 +1,7 @@
 package com.aglook.comapp.adapter;
 
-import android.content.Context;
-import android.util.Log;
+import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.aglook.comapp.Activity.GuaDanAddActivity;
+import com.aglook.comapp.Activity.PickInfoActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.AllOrderDataList;
 import com.aglook.comapp.util.XBitmap;
@@ -18,12 +20,12 @@ import java.util.List;
 /**
  * Created by aglook on 2015/11/10.
  */
-public class OrderDetailAdapter extends BaseAdapter {
-    private Context context;
+public class OrderDetailAdapter extends BaseAdapter implements View.OnClickListener {
+    private Activity context;
     private List<AllOrderDataList> list;
     private boolean isSuccess;
 
-    public OrderDetailAdapter(Context context, List<AllOrderDataList> list) {
+    public OrderDetailAdapter(Activity context, List<AllOrderDataList> list) {
         this.context = context;
         this.list = list;
     }
@@ -65,7 +67,8 @@ public class OrderDetailAdapter extends BaseAdapter {
         holder.tv_weight_lv_lv.setText(dataList.getWeightUseable() + "吨");
         holder.tv_num_lv_lv.setText(dataList.getProductMoneyYh() + "");
 //        holder.tv_num_lv_lv.setText(dataList.getProductNum());
-
+        holder.tv_sell_all_order_lv.setTag(position);
+        holder.tv_pick_all_order_lv.setTag(position);
         if (!isSuccess) {
             holder.tv_sell_all_order_lv.setVisibility(View.GONE);
             holder.tv_pick_all_order_lv.setVisibility(View.GONE);
@@ -73,8 +76,39 @@ public class OrderDetailAdapter extends BaseAdapter {
             holder.tv_sell_all_order_lv.setVisibility(View.VISIBLE);
             holder.tv_pick_all_order_lv.setVisibility(View.VISIBLE);
         }
-        Log.d("isSuccess", isSuccess + "");
+        holder.tv_sell_all_order_lv.setOnClickListener(this);
+        holder.tv_pick_all_order_lv.setOnClickListener(this);
         return convertView;
+    }
+
+    private int index;
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent();
+        switch (v.getId()) {
+            case R.id.tv_pick_all_order_lv:
+                index = (int) v.getTag();
+                //提货
+                intent.setClass(context, PickInfoActivity.class);
+                intent.putExtra("code", "2002");
+                intent.putExtra("isPlate", true);
+                intent.putExtra("orderdataId", list.get(index).getOrderdataId());
+                intent.putExtra("originalListId", list.get(index).getProductListId());
+                context.startActivityForResult(intent, 13);
+                break;
+            case R.id.tv_sell_all_order_lv:
+                index = (int) v.getTag();
+                //转售
+                intent.setClass(context, GuaDanAddActivity.class);
+                intent.putExtra("code", "2002");
+                intent.putExtra("codeGua", "2003");
+                intent.putExtra("isPlate", true);
+                intent.putExtra("orderdataId", list.get(index).getOrderdataId());
+                intent.putExtra("originalListId", list.get(index).getProductListId());
+                context.startActivityForResult(intent, 13);
+                break;
+        }
     }
 
 //    @Override

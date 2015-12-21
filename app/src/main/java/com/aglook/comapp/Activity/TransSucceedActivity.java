@@ -51,7 +51,7 @@ public class TransSucceedActivity extends BaseActivity {
     }
 
     public void init() {
-        customProgress = CustomProgress.show(this, "加载中···", true);
+
         lv_all_order = (PullToRefreshListView) findViewById(R.id.lv_all_order);
         adapter = new TransSucceedAdapter(TransSucceedActivity.this, mList);
         lv_all_order.setAdapter(adapter);
@@ -89,12 +89,21 @@ public class TransSucceedActivity extends BaseActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==33&&resultCode==1){
+            mList.clear();
+            getData();
+        }
+    }
+
+    @Override
     public void widgetClick(View view) {
 
     }
 
     //获取数据
     public void getData() {
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -114,9 +123,8 @@ public class TransSucceedActivity extends BaseActivity {
                         mList.addAll(guaDanStataLi.getList());
                         Log.d("1111", mList.toString());
                     }
-                } else {
-                    AppUtils.toastText(TransSucceedActivity.this, message);
                 }
+
                 adapter.notifyDataSetChanged();
                 lv_all_order.onRefreshComplete();
                 lv_all_order.setEmptyView(emptyView);

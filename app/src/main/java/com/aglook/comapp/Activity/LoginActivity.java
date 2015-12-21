@@ -177,7 +177,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
             }
-        }.datePost(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType,DefineUtil.DEVICE_NUM), LoginActivity.this);
+        }.datePostCheck(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType,DefineUtil.DEVICE_NUM), LoginActivity.this);
     }
 
     //    获取购物车列表
@@ -206,7 +206,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
             }
-        }.datePost(DefineUtil.CARTLIST, ShoppingCartUrl.postCartListUrl(DefineUtil.USERID, DefineUtil.TOKEN), LoginActivity.this);
+        }.datePostCheck(DefineUtil.CARTLIST, ShoppingCartUrl.postCartListUrl(DefineUtil.USERID, DefineUtil.TOKEN), LoginActivity.this);
     }
 
 
@@ -280,14 +280,12 @@ public class LoginActivity extends BaseActivity {
                             DefineUtil.NOTPAY_NUM = sonList.size();
                         }
                     }
-                } else {
-                    AppUtils.toastText(LoginActivity.this, message);
                 }
             }
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
             }
-        }.datePost(DefineUtil.ORDER_LIST, AllOrderUrl.postAllOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, orderStatus, String.valueOf(pageSize), String.valueOf(pageNum), orderId), LoginActivity.this);
+        }.datePostCheck(DefineUtil.ORDER_LIST, AllOrderUrl.postAllOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, orderStatus, String.valueOf(pageSize), String.valueOf(pageNum), orderId), LoginActivity.this);
     }
 }

@@ -3,6 +3,7 @@ package com.aglook.comapp.util;
 import android.content.Context;
 import android.view.View;
 
+import com.aglook.comapp.R;
 import com.lidroid.xutils.BitmapUtils;
 
 /**
@@ -14,8 +15,8 @@ public class XBitmap {
         BitmapUtils bitmapUtils=new BitmapUtils(context);
 //        bitmapUtils.configDefaultLoadingImage(context.getResources().getDrawable(
 //                R.drawable.tanluicon));// 默认背景图片
-//        bitmapUtils.configDefaultLoadFailedImage(context.getResources().getDrawable(
-//                R.drawable.tanluicon));// 加载失败图片
+        bitmapUtils.configDefaultLoadFailedImage(context.getResources().getDrawable(
+                R.drawable.downloadfaild));// 加载失败图片
 
         bitmapUtils.display(imageView, url);
     }

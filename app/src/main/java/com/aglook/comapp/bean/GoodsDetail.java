@@ -22,6 +22,15 @@ public class GoodsDetail {
     private String responsibleEmail;//邮箱
     private String depotAddress;//仓库地址
     private String isCollect;//0:未收藏，1：已收藏
+    private String productOwnerProve;//货权图片
+
+    public String getProductOwnerProve() {
+        return productOwnerProve;
+    }
+
+    public void setProductOwnerProve(String productOwnerProve) {
+        this.productOwnerProve = productOwnerProve;
+    }
 
     public String getIsCollect() {
         return isCollect;

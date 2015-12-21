@@ -96,6 +96,9 @@ public class Timestamp {
 	 * @return
 	 */
 	public static String getDateTo(String time) {
+        if (time.length()==10){
+            time=time+"000";
+        }
 		long lcc = Long.valueOf(time);
 
 		sf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -111,6 +114,9 @@ public class Timestamp {
 	 * @return
 	 */
 	public static String getServerDateTo(String time) {
+        if (time.length()==10){
+            time=time+"000";
+        }
 		long lcc = Long.valueOf(time);
 		
 		sf = new SimpleDateFormat("yyyyMMddHHmmss");

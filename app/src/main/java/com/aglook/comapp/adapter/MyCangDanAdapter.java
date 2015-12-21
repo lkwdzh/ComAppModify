@@ -1,10 +1,16 @@
 package com.aglook.comapp.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,6 +20,7 @@ import com.aglook.comapp.Activity.GuaDanAddActivity;
 import com.aglook.comapp.Activity.PickInfoActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.CangDanList;
+import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.XBitmap;
 import com.aglook.comapp.view.Timestamp;
 
@@ -58,7 +65,8 @@ public class MyCangDanAdapter extends BaseAdapter implements View.OnClickListene
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
+        holder.tv_mai_all_order_lv.setVisibility(View.VISIBLE);
+        holder.tv_mai_all_order_lv.setOnClickListener(this);
         holder.tv_trans_all_order_lv.setOnClickListener(this);
         holder.tv_tihuo_all_order_lv.setOnClickListener(this);
         holder.ll_1.setVisibility(View.INVISIBLE);
@@ -96,7 +104,20 @@ public class MyCangDanAdapter extends BaseAdapter implements View.OnClickListene
                 intent.putExtra("originalId", String.valueOf(list.get(index1).getId()));
                 intent.putExtra("code", "1002");
                 intent.putExtra("isPlate", false);
-                context.startActivity(intent);
+                context.startActivityForResult(intent,1);
+                break;
+            case R.id.tv_mai_all_order_lv:
+            showDailog();
+                break;
+            case R.id.tv_boda:
+                //打电话，并取消dialog
+                Intent intent1 = new Intent(Intent.ACTION_CALL);
+                intent1.setData(Uri.parse("tel:" + AppUtils.toStringTrim_TV(tv_phone_call)));
+                context.startActivity(intent1);
+                builder.dismiss();
+                break;
+            case R.id.tv_quxiao:
+                builder.dismiss();
                 break;
         }
     }
@@ -114,6 +135,7 @@ public class MyCangDanAdapter extends BaseAdapter implements View.OnClickListene
         LinearLayout ll_1;
         LinearLayout ll_3;
         TextView tv_success_all_order_lv;
+        TextView tv_mai_all_order_lv;
 
         ViewHolder(View view) {
             iv_lv_lv = (ImageView) view.findViewById(R.id.iv_lv_lv);
@@ -128,6 +150,37 @@ public class MyCangDanAdapter extends BaseAdapter implements View.OnClickListene
             ll_1 = (LinearLayout) view.findViewById(R.id.ll_1);
             ll_3 = (LinearLayout) view.findViewById(R.id.ll_3);
             tv_success_all_order_lv=(TextView)view.findViewById(R.id.tv_success_all_order_lv);
+            tv_mai_all_order_lv=(TextView)view.findViewById(R.id.tv_mai_all_order_lv);
         }
     }
+
+
+    private Dialog dialog;
+    private TextView tv_phone_call;
+    private AlertDialog builder;
+    private TextView tv_quxiao;
+    private TextView tv_boda;
+
+    public void showDailog() {
+        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = layoutInflater.inflate(R.layout.layout_alpha_dialog, null);
+        tv_phone_call = (TextView) view.findViewById(R.id.tv_phone_call);
+        tv_phone_call.setText("18538300482");
+        tv_quxiao=(TextView)view.findViewById(R.id.tv_quxiao);
+        tv_boda=(TextView)view.findViewById(R.id.tv_boda);
+        builder = new AlertDialog.Builder(context).create();
+//        builder.create();
+        builder.setView(view);
+        Window window = builder.getWindow();
+        WindowManager.LayoutParams lp = window.getAttributes();
+        //设置透明度为0.75
+//        lp.alpha = 0.25f;
+//        window.setAttributes(lp);
+        builder.show();
+//        builder.setCancelable(false);
+//        dialog = builder.show();
+        tv_quxiao.setOnClickListener(this);
+        tv_boda.setOnClickListener(this);
+    }
+
 }

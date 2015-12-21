@@ -8,10 +8,10 @@ import android.widget.TextView;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.Information;
 import com.aglook.comapp.url.SettingUrl;
-import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
@@ -28,7 +28,7 @@ public class HelpCenterActivity extends BaseActivity {
 
     private String className;
     private String classId;
-
+    private CustomProgress customProgress;
     private int pageSize = 10;
     private int pageNumber = 1;
     private List<Information> mList = new ArrayList<>();
@@ -109,12 +109,25 @@ public class HelpCenterActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==33&&resultCode==1){
+            mList.clear();
+            getData();
+        }
+    }
+
     //获取数据
     public void getData() {
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 Log.d("result_help", arg0.result);
+
+                if (customProgress!=null&&customProgress.isShowing()){
+                    customProgress.dismiss();
+                }
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -124,14 +137,15 @@ public class HelpCenterActivity extends BaseActivity {
                     if (sonList != null && sonList.size() != 0) {
                         mList.addAll(sonList);
                     }
-                } else {
-                    AppUtils.toastText(HelpCenterActivity.this, message);
                 }
+
             }
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress!=null&&customProgress.isShowing()){
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.SETTING_HELP, SettingUrl.postHelpUrl(String.valueOf(pageSize), String.valueOf(pageNumber)), HelpCenterActivity.this);
     }

@@ -166,8 +166,9 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
 
     private ApplicationInfo info;
     private String channel;
-private boolean isForce;
+    private boolean isForce;
     private String url;
+
     //获取渠道并且检查更新
     public void checkUpdate() {
         //获取发布渠道
@@ -190,7 +191,7 @@ private boolean isForce;
                         //再判断versionCode
                         //获取versionName
                         String packageName = MainActivity.this.getPackageName();
-                        int myCode=0;
+                        int myCode = 0;
                         try {
                             PackageInfo packageInfo = MainActivity.this.getPackageManager().getPackageInfo(packageName, 0);
                             myCode = packageInfo.versionCode;
@@ -198,18 +199,18 @@ private boolean isForce;
                             e.printStackTrace();
                         }
                         //如果本地code小于获取到的，则更新
-                        int versionCode=Integer.parseInt(JsonUtils.getJsonParam(arg0.result,"versionCode"));
-                        if (myCode<versionCode){
+                        int versionCode = Integer.parseInt(JsonUtils.getJsonParam(arg0.result, "versionCode"));
+                        if (myCode < versionCode) {
                             //更新
-                            url=JsonUtils.getJsonParam(arg0.result,"downloadUrl");
+                            url = JsonUtils.getJsonParam(arg0.result, "downloadUrl");
                             //判断是否强制
-                            int forcedUpdate=Integer.parseInt(JsonUtils.getJsonParam(arg0.result,"forcedUpdate"));
-                            if (forcedUpdate==0){
+                            int forcedUpdate = Integer.parseInt(JsonUtils.getJsonParam(arg0.result, "forcedUpdate"));
+                            if (forcedUpdate == 0) {
                                 //非强制
-                                isForce=false;
-                            }else if (forcedUpdate==1){
+                                isForce = false;
+                            } else if (forcedUpdate == 1) {
                                 //强制
-                                isForce=true;
+                                isForce = true;
                             }
                             showDailog(isForce);
                         }
@@ -246,6 +247,7 @@ private boolean isForce;
 
     private Button btn_cancel_delete;
     private Button btn_confirm_delete;
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -303,7 +305,7 @@ private boolean isForce;
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_cancel_delete:
                 if (isForce) {
 
@@ -412,7 +414,7 @@ private boolean isForce;
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
             }
-        }.datePost(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType, DefineUtil.DEVICE_NUM), MainActivity.this);
+        }.datePostCheck(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType, DefineUtil.DEVICE_NUM), MainActivity.this);
     }
 
     //    获取购物车列表
@@ -438,7 +440,7 @@ private boolean isForce;
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
             }
-        }.datePost(DefineUtil.CARTLIST, ShoppingCartUrl.postCartListUrl(DefineUtil.USERID, DefineUtil.TOKEN), MainActivity.this);
+        }.datePostCheck(DefineUtil.CARTLIST, ShoppingCartUrl.postCartListUrl(DefineUtil.USERID, DefineUtil.TOKEN), MainActivity.this);
     }
 
 
@@ -465,14 +467,12 @@ private boolean isForce;
                             DefineUtil.NOTPAY_NUM = sonList.size();
                         }
                     }
-                } else {
-                    AppUtils.toastText(MainActivity.this, message);
                 }
             }
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
             }
-        }.datePost(DefineUtil.ORDER_LIST, AllOrderUrl.postAllOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, orderStatus, String.valueOf(pageSize), String.valueOf(pageNum), orderId), MainActivity.this);
+        }.datePostCheck(DefineUtil.ORDER_LIST, AllOrderUrl.postAllOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, orderStatus, String.valueOf(pageSize), String.valueOf(pageNum), orderId), MainActivity.this);
     }
 }

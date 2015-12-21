@@ -37,6 +37,7 @@
 
     <View
         style="@style/line_1"
+        android:visibility="gone"
         android:layout_marginTop="@dimen/px_14" />
 
     <RelativeLayout
@@ -44,6 +45,7 @@
         style="@style/rl_match_wrap_content"
         android:background="@color/white"
         android:paddingLeft="@dimen/px_14"
+        android:visibility="gone"
         android:paddingRight="@dimen/px_14"
         android:paddingTop="@dimen/px_20"
         android:paddingBottom="@dimen/px_20">
@@ -61,7 +63,8 @@
             android:text="V1.0.0" />
     </RelativeLayout>
 
-    <View style="@style/line_1" />
+    <View style="@style/line_1"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/btn_tuichu"

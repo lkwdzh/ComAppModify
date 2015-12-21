@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">农业展望</string>
+    <string name="app_name">迪易克斯</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_base">BaseActivity</string>
@@ -24,7 +24,7 @@
     <string name="goods_detail_email">仓管邮箱：</string>
     <string name="goods_detail_address">仓管地址：</string>
     <string name="goods_detail_goods_detail">商品详情：</string>
-    <string name="goods_detail_kefu">客服</string>
+    <string name="goods_detail_kefu">融资买货</string>
     <string name="goods_detail_guanzhu">关注</string>
     <string name="goods_detail_gouwuche">购物车</string>
     <string name="goods_detail_add_cart">加入购物车</string>

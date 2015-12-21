@@ -24,7 +24,6 @@ import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ShoppingCartAdapter;
 import com.aglook.comapp.bean.ShoppingCart;
 import com.aglook.comapp.url.ShoppingCartUrl;
-import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
@@ -212,7 +211,11 @@ public class ShoppingCartActivity extends BaseActivity {
         intent = new Intent();
         switch (view.getId()) {
             case R.id.tv_delete_shopping_cart:
-                showDailog();
+                if (cartId==null||"".equals(cartId)){
+                    return;
+                }else {
+                    showDailog();
+                }
                 break;
             case R.id.btn_cancel_delete:
                 dialog.dismiss();
@@ -251,6 +254,15 @@ public class ShoppingCartActivity extends BaseActivity {
 
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==33&&resultCode==1){
+            mList.clear();
+            getCartListData();
+        }
+    }
+
     private Dialog dialog;
     private TextView tv_delete_order;
     //选中个数
@@ -279,6 +291,7 @@ public class ShoppingCartActivity extends BaseActivity {
 
     //    获取购物车列表
     public void getCartListData() {
+        customProgress = CustomProgress.show(ShoppingCartActivity.this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -293,7 +306,6 @@ public class ShoppingCartActivity extends BaseActivity {
                 list = JsonUtils.parseList(obj, ShoppingCart.class);
                 int num = 0;
                 if (status.equals("1")) {
-                    if (list != null && list.size() != 0) {
                         if (isDelete) {
                             mList.clear();
                             isDelete = false;
@@ -308,6 +320,7 @@ public class ShoppingCartActivity extends BaseActivity {
                             mList.clear();
                             isConfirm = false;
                         }
+                    if (list != null && list.size() != 0) {
                         mList.addAll(list);
 
                         for (int i = 0; i < mList.size(); i++) {
@@ -352,7 +365,6 @@ public class ShoppingCartActivity extends BaseActivity {
                         cb_top_right_shopping_cart.setVisibility(View.GONE);
 
                     }
-                    AppUtils.toastText(ShoppingCartActivity.this, message);
                 }
                 Intent intent1 = new Intent();
                 intent1.setAction("MainActivity");
@@ -415,9 +427,8 @@ public class ShoppingCartActivity extends BaseActivity {
                     isDelete = true;
                     getCartListData();
                     adapter.notifyDataSetChanged();
-                } else {
-                    AppUtils.toastText(ShoppingCartActivity.this, message);
                 }
+
             }
 
             @Override

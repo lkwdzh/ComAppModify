@@ -13,7 +13,6 @@ import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ZiXunListAdapter;
 import com.aglook.comapp.bean.ZiXunList;
 import com.aglook.comapp.url.ZiXunUrl;
-import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
@@ -49,9 +48,9 @@ public class ZiXunListActivity extends BaseActivity {
         setContentView(R.layout.activity_hang_qing_list);
         className = getIntent().getStringExtra("className");
         isMessage = getIntent().getBooleanExtra("isMessage", false);
-        isReceiver=getIntent().getBooleanExtra("isReceiver",false);
+        isReceiver = getIntent().getBooleanExtra("isReceiver", false);
         setTitleBar(className);
-        customProgress = CustomProgress.show(ZiXunListActivity.this, "加载中···", true);
+
         ExitApplication.getInstance().addActivity(this);
         init();
         click();
@@ -83,9 +82,9 @@ public class ZiXunListActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ZiXunListActivity.this, HangDetailActivity.class);
                 if (isMessage) {
-                    url=DefineUtil.PUSH_ARTICLE+"?classId="+mList.get(position-1).getClassId()+"&articleId="+mList.get(position-1).getClassId();
-                    intent.putExtra("url",url);
-                }else {
+                    url = DefineUtil.PUSH_ARTICLE + "?classId=" + mList.get(position - 1).getClassId() + "&articleId=" + mList.get(position - 1).getClassId();
+                    intent.putExtra("url", url);
+                } else {
                     intent.putExtra("url", mList.get(position - 1).getUrl());
                 }
 //                AppUtils.toastText(ZiXunListActivity.this,position-1+"");
@@ -109,9 +108,16 @@ public class ZiXunListActivity extends BaseActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 33 && resultCode == 1) {
+
+        }
+    }
+
+    @Override
     public void widgetClick(View view) {
         Intent intent = new Intent();
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.left_icon:
 //                if (isReceiver&&!DefineUtil.IS_LAUNCH){
 //                    intent.setClass(ZiXunListActivity.this,LaunchActivity.class);
@@ -125,7 +131,7 @@ public class ZiXunListActivity extends BaseActivity {
 //                    startActivity(intent);
 //                    ZiXunListActivity.this.finish();
 //                }else {
-                    ZiXunListActivity.this.finish();
+                ZiXunListActivity.this.finish();
 //                }
                 break;
         }
@@ -134,6 +140,7 @@ public class ZiXunListActivity extends BaseActivity {
 
     //获取数据
     public void getData() {
+        customProgress = CustomProgress.show(ZiXunListActivity.this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -150,9 +157,8 @@ public class ZiXunListActivity extends BaseActivity {
                     if (sonList != null && sonList.size() != 0) {
                         mList.addAll(sonList);
                     }
-                } else {
-                    AppUtils.toastText(ZiXunListActivity.this, message);
                 }
+
                 adapter.notifyDataSetChanged();
             }
 
@@ -167,6 +173,7 @@ public class ZiXunListActivity extends BaseActivity {
 
     //获取消息
     public void getMessage() {
+        customProgress = CustomProgress.show(ZiXunListActivity.this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -187,9 +194,8 @@ public class ZiXunListActivity extends BaseActivity {
                     if (sonList != null && sonList.size() != 0) {
                         mList.addAll(sonList);
                     }
-                } else {
-                    AppUtils.toastText(ZiXunListActivity.this, message);
                 }
+
                 adapter.notifyDataSetChanged();
                 lv_hang_qing_list.onRefreshComplete();
                 lv_hang_qing_list.setEmptyView(emptyView);

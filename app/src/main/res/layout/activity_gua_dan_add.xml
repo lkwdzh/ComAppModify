@@ -63,7 +63,7 @@
                     <TextView
                         style="@style/grayTextView_333333_15"
                         android:layout_marginBottom="@dimen/px_10"
-                        android:text="货权图片" />
+                        android:text="其他图片" />
                 </LinearLayout>
             </LinearLayout>
 

@@ -199,6 +199,17 @@
             android:gravity="center_vertical">
 
 
+            <TextView
+                android:id="@+id/tv_mai_all_order_lv"
+                style="@style/redTextView_c91014"
+                android:layout_marginBottom="@dimen/px_5"
+                android:layout_marginTop="@dimen/px_10"
+                android:background="@drawable/shanchu"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="融资买货"
+                android:layout_marginRight="@dimen/px_20"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/tv_trans_all_order_lv"

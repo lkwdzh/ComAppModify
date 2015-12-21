@@ -131,7 +131,7 @@ public class AllOrderActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1 && resultCode == 2) {
+        if (requestCode == 1 && resultCode == 2) {//支付
             isBrower = true;
             getData();
         } else if (requestCode == LIST_DETAIL && resultCode == 2) {
@@ -140,6 +140,12 @@ public class AllOrderActivity extends BaseActivity {
             getData();
         } else if (requestCode == 33 && resultCode == 1) {
             isLogin = true;
+            getData();
+        }else if (requestCode==13&&resultCode==RESULT_OK){
+            mList.clear();
+            getData();
+        }else if (requestCode==13&&resultCode==1){
+            mList.clear();
             getData();
         }
     }

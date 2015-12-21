@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.DriverList;
-import com.aglook.comapp.util.AppUtils;
 
 import java.util.List;
 
@@ -67,10 +66,14 @@ public class DriverListAdapter extends BaseAdapter {
 
         holder.cb_driver_lv.setChecked(driverList.isChecked());
         holder.tv_driver_lv.setText(driverList.getUserName());
-        holder.ll_cb_d_lv.setOnClickListener(new View.OnClickListener() {
+        holder.cb_driver_lv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppUtils.toastText(context,position+"_____");
+//                if (holder.cb_driver_lv.isChecked()){
+//                    list.get(position).setChecked(false);
+//                }else {
+//                    list.get(position).setChecked(true);
+//                }
                list.get(position).setChecked(! list.get(position).isChecked());
                 num=0;
                 for (int i = 0; i < list.size(); i++) {
@@ -82,7 +85,25 @@ public class DriverListAdapter extends BaseAdapter {
                 callBackData.callBack(num);
             }
         });
-
+//        holder.ll_cb_d_lv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (holder.cb_driver_lv.isChecked()){
+//                    list.get(position).setChecked(false);
+//                }else {
+//                    list.get(position).setChecked(true);
+//                }
+////               list.get(position).setChecked(! list.get(position).isChecked());
+//                num=0;
+//                for (int i = 0; i < list.size(); i++) {
+//                    if (list.get(i).isChecked()){
+//                        num++;
+//                    }
+//                }
+//                notifyDataSetChanged();
+//                callBackData.callBack(num);
+//            }
+//        });
         return convertView;
     }
 

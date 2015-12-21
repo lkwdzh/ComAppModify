@@ -224,13 +224,13 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 }
                 break;
             case R.id.tv_setting_mine_fragment:
-                if (login == null || "".equals(login)) {
-                    intent.setClass(getActivity(), LoginActivity.class);
-                    startActivityForResult(intent, 1);
-                } else {
+//                if (login == null || "".equals(login)) {
+//                    intent.setClass(getActivity(), LoginActivity.class);
+//                    startActivityForResult(intent, 1);
+//                } else {
                     intent.setClass(getActivity(), SettingActivity.class);
                     startActivity(intent);
-                }
+//                }
                 break;
             case R.id.ll_all_order_mine_fragment:
                 if (login == null || "".equals(login)) {

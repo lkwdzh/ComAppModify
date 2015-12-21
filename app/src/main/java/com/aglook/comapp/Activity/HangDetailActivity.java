@@ -38,6 +38,16 @@ public class HangDetailActivity extends BaseActivity {
         web_hangdetail.setWebChromeClient(new WebChromeClient());// 支持运行特殊的javascript（例如：alert()）
 
         web_hangdetail.setWebViewClient(new WebViewClient());// 当点击超链地址后不会新打开浏览器来访问，而是始终在本app中浏览页面
+
+        // 设置可以支持缩放
+        web_hangdetail.getSettings().setSupportZoom(true);
+// 设置出现缩放工具
+        web_hangdetail.getSettings().setBuiltInZoomControls(true);
+//扩大比例的缩放
+        web_hangdetail.getSettings().setUseWideViewPort(true);
+//自适应屏幕
+//        web_hangdetail.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+//        web_hangdetail.getSettings().setLoadWithOverviewMode(true);
         web_hangdetail.loadUrl(url);
         new Handler().postDelayed(new Runnable() {
             @Override

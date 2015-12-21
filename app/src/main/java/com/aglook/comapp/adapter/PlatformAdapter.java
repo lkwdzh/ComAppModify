@@ -1,6 +1,6 @@
 package com.aglook.comapp.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,11 +23,11 @@ import java.util.List;
  * Created by aglook on 2015/11/11.
  */
 public class PlatformAdapter extends BaseAdapter implements View.OnClickListener {
-    private Context context;
+    private Activity context;
     private List<PlatformCangDanList> list;
     private int index;
 
-    public PlatformAdapter(Context context, List<PlatformCangDanList> list) {
+    public PlatformAdapter(Activity context, List<PlatformCangDanList> list) {
         this.context = context;
         this.list = list;
     }
@@ -80,6 +80,14 @@ public class PlatformAdapter extends BaseAdapter implements View.OnClickListener
         holder.tv_name_lv_lv.setText(danList.getProductName());
         holder.tv_price_lv_lv.setText(danList.getProductMoney());
         holder.tv_weight_lv_lv.setText(danList.getWeightUseable() + "吨");
+        if (danList.getWeightUseable().equals("0")){
+            //仓单交易与提货不可见
+            holder.tv_trans_all_order_lv.setVisibility(View.GONE);
+            holder.tv_tihuo_all_order_lv.setVisibility(View.GONE);
+        }else {
+            holder.tv_trans_all_order_lv.setVisibility(View.VISIBLE);
+            holder.tv_tihuo_all_order_lv.setVisibility(View.VISIBLE);
+        }
         holder.tv_trans_all_order_lv.setTag(position);
         if (danList.getOrderPtime()!=null&&!"".equals(danList.getOrderPtime())){
             holder.tv_in_time_my_cangdan.setText(Timestamp.getDateTo(danList.getOrderPtime()));
@@ -98,7 +106,7 @@ public class PlatformAdapter extends BaseAdapter implements View.OnClickListener
                 intent.putExtra("code", "2002");
                 intent.putExtra("codeGua", "2003");
                 intent.putExtra("isPlate", true);
-                context.startActivity(intent);
+                context.startActivityForResult(intent,2);
                 break;
             case R.id.tv_tihuo_all_order_lv:
                 index = (int) v.getTag();
@@ -106,7 +114,7 @@ public class PlatformAdapter extends BaseAdapter implements View.OnClickListener
                 intent.putExtra("orderdataId", list.get(index).getOrderdataId());
                 intent.putExtra("code", "2002");
                 intent.putExtra("isPlate", true);
-                context.startActivity(intent);
+                context.startActivityForResult(intent,2);
                 break;
         }
     }

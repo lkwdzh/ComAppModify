@@ -1,9 +1,16 @@
 package com.aglook.comapp.Activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -61,6 +68,8 @@ public class GoodsDetailActivity extends BaseActivity {
 
     private boolean isSelf;
     private ImageView iv_detail;
+    private LinearLayout ll_kefu_goods_detail;
+    private ImageView iv_hq;
 
 
     @Override
@@ -105,6 +114,8 @@ public class GoodsDetailActivity extends BaseActivity {
         tv_shoucang_goods_detail = (TextView) findViewById(R.id.tv_shoucang_goods_detail);
         iv_shoucang_goods_detail = (ImageView) findViewById(R.id.iv_shoucang_goods_detail);
         ll_attention_goods_detail = (LinearLayout) findViewById(R.id.ll_attention_goods_detail);
+        ll_kefu_goods_detail = (LinearLayout) findViewById(R.id.ll_kefu_goods_detail);
+        iv_hq = (ImageView) findViewById(R.id.iv_hq);
         //获取屏幕宽度
 
         int widgh = this.getWindowManager().getDefaultDisplay().getWidth();
@@ -119,6 +130,7 @@ public class GoodsDetailActivity extends BaseActivity {
         left_icon.setOnClickListener(this);
         ll_shopping_cart_goods_detail.setOnClickListener(this);
         ll_attention_goods_detail.setOnClickListener(this);
+        ll_kefu_goods_detail.setOnClickListener(this);
     }
 
     //    获取数据
@@ -183,6 +195,10 @@ public class GoodsDetailActivity extends BaseActivity {
             if (goodsDetail.getProductLogo() != null && !"".equals(goodsDetail.getProductLogo())) {
                 XBitmap.displayImage(iv_detail, goodsDetail.getProductLogo(), GoodsDetailActivity.this);
             }
+
+            if (goodsDetail.getProductOwnerProve()!=null&&!"".equals(goodsDetail.getProductOwnerProve())){
+                XBitmap.displayImage(iv_hq,goodsDetail.getProductOwnerProve(),GoodsDetailActivity.this);
+            }
         }
         //判断是否已经登录，若登录则显示购物车个数，否则不显示
         if (comAppApplication.getLogin() != null && !"".equals(comAppApplication.getLogin())) {
@@ -211,7 +227,7 @@ public class GoodsDetailActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == 1) {
-            addCart();
+//            addCart();
         } else if (requestCode == 2 && resultCode == 1) {
             Intent intent = new Intent(GoodsDetailActivity.this, ConfirmOrderActivity.class);
             startActivity(intent);
@@ -225,6 +241,19 @@ public class GoodsDetailActivity extends BaseActivity {
     public void widgetClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.tv_boda:
+                //打电话，并取消dialog
+                Intent intent1 = new Intent(Intent.ACTION_CALL);
+                intent1.setData(Uri.parse("tel:"+AppUtils.toStringTrim_TV(tv_phone_call)));
+                startActivity(intent1);
+                builder.dismiss();
+                break;
+            case R.id.tv_quxiao:
+                builder.dismiss();
+                break;
+            case R.id.ll_kefu_goods_detail:
+                showDailog();
+                break;
             case R.id.tv_buy_goods_detail:
 //                立即购买
                 if (comAppApplication.getLogin() == null || comAppApplication.getLogin().equals("")) {
@@ -244,9 +273,14 @@ public class GoodsDetailActivity extends BaseActivity {
                 } else {
                     //判断是否是从挂单进去，若从挂单进入则无法购买自己的
                     if (isSelf) {
-                        AppUtils.toastText(GoodsDetailActivity.this, "无法购买自己的产品");
+                        AppUtils.toastText(GoodsDetailActivity.this, "不能购买自己出售的商品");
                     } else {
-                        addCart();
+                        //判断剩余重量是否为0
+                        if (goodsDetail.getProductSellNum().equals("0")) {
+                            AppUtils.toastText(GoodsDetailActivity.this, "商品已卖完");
+                        } else {
+                            addCart();
+                        }
                     }
                 }
                 break;
@@ -377,9 +411,8 @@ public class GoodsDetailActivity extends BaseActivity {
                     tv_shoucang_goods_detail.setText("收藏");
                     iv_shoucang_goods_detail.setImageResource(R.drawable.guanzhu);
                     goodsDetail.setIsCollect("0");
-                } else {
-                    AppUtils.toastText(GoodsDetailActivity.this, message);
                 }
+
             }
 
             @Override
@@ -390,5 +423,35 @@ public class GoodsDetailActivity extends BaseActivity {
             }
         }.datePost(DefineUtil.DELETE_COLLECT, GoodsDetailUrl.postDeleteUrl(DefineUtil.TOKEN, DefineUtil.USERID, productId), GoodsDetailActivity.this);
     }
+
+    private Dialog dialog;
+    private TextView tv_phone_call;
+    private AlertDialog builder;
+    private TextView tv_quxiao;
+    private TextView tv_boda;
+
+    public void showDailog() {
+        LayoutInflater layoutInflater = (LayoutInflater) GoodsDetailActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = layoutInflater.inflate(R.layout.layout_alpha_dialog, null);
+        tv_phone_call = (TextView) view.findViewById(R.id.tv_phone_call);
+        tv_quxiao=(TextView)view.findViewById(R.id.tv_quxiao);
+        tv_boda=(TextView)view.findViewById(R.id.tv_boda);
+        tv_phone_call.setText("18538300482");
+        builder = new AlertDialog.Builder(GoodsDetailActivity.this).create();
+//        builder.create();
+        builder.setView(view);
+        Window window = builder.getWindow();
+        WindowManager.LayoutParams lp = window.getAttributes();
+        //设置透明度为0.75
+//        lp.alpha = 0.55f;
+//        window.setAttributes(lp);
+        builder.show();
+//        window.setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND,WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
+//        builder.setCancelable(false);
+//        dialog = builder.show();
+        tv_quxiao.setOnClickListener(this);
+        tv_boda.setOnClickListener(this);
+    }
+
 
 }

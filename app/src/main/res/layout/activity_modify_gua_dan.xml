@@ -108,7 +108,19 @@
                     style="@style/guadan_edittext_weight"
                     android:hint="请输入货物种类" />
             </LinearLayout>
+            <View style="@style/line_1" />
 
+            <LinearLayout style="@style/guadan_ll_weight">
+
+                <TextView
+                    style="@style/guadan_TextView_333333"
+                    android:text="货物质量" />
+
+                <TextView
+                    android:id="@+id/tv_goods_zhiliang_gua_dan"
+                    style="@style/guadan_edittext_weight"
+                    />
+            </LinearLayout>
             <View style="@style/line_1" />
 
             <LinearLayout style="@style/guadan_ll_weight">
@@ -131,10 +143,10 @@
                     style="@style/guadan_TextView_333333"
                     android:text="@string/gua_dan_use_weight" />
 
-                <EditText
+                <TextView
                     android:id="@+id/tv_use_weight_gua_dan"
                     style="@style/guadan_edittext_weight"
-                    android:hint="请输入可用重量" />
+                    />
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -147,6 +159,7 @@
                 <EditText
                     android:id="@+id/et_price_gua_dan"
                     style="@style/guadan_edittext_weight"
+                    android:inputType="numberDecimal"
                     android:hint="请输入价格" />
             </LinearLayout>
 
@@ -193,19 +206,19 @@
 
             <View style="@style/line_1" />
 
-            <LinearLayout style="@style/guadan_ll_weight">
+            <!--<LinearLayout style="@style/guadan_ll_weight">-->
 
-                <TextView
-                    style="@style/guadan_TextView_333333"
-                    android:text="@string/gua_dan_userful_time" />
+                <!--<TextView-->
+                    <!--style="@style/guadan_TextView_333333"-->
+                    <!--android:text="@string/gua_dan_userful_time" />-->
 
-                <TextView
-                    android:id="@+id/tv_userful_time_gua_dan_add"
-                    style="@style/guadan_edittext_weight"
-                    android:hint="请选择挂单有效期" />
-            </LinearLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_userful_time_gua_dan_add"-->
+                    <!--style="@style/guadan_edittext_weight"-->
+                    <!--android:hint="请选择挂单有效期" />-->
+            <!--</LinearLayout>-->
 
-            <View style="@style/line_1" />
+            <!--<View style="@style/line_1" />-->
 
             <LinearLayout style="@style/guadan_ll_weight">
 

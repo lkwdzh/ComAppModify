@@ -43,7 +43,7 @@
     <LinearLayout
         style="@style/ll_match_content_hor"
         android:weightSum="7"
-        android:layout_marginTop="@dimen/px_18">
+        >
 
         <ListView
             android:id="@+id/lv_left"

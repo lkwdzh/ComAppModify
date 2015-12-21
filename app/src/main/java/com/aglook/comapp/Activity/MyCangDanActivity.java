@@ -12,7 +12,6 @@ import com.aglook.comapp.adapter.MyCangDanAdapter;
 import com.aglook.comapp.bean.CangDan;
 import com.aglook.comapp.bean.CangDanList;
 import com.aglook.comapp.url.CangDanUrl;
-import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
@@ -54,13 +53,23 @@ public class MyCangDanActivity extends BaseActivity {
         adapter = new MyCangDanAdapter(MyCangDanActivity.this,mList);
         lv_my_cang_dan.setAdapter(adapter);
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
-        customProgress = CustomProgress.show(this, "加载中···", true);
+
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode==1&&resultCode==RESULT_OK){
-            customProgress = CustomProgress.show(this, "加载中···", true);
+            mList.clear();
+            getData();
+        }else if (requestCode==33&&resultCode==1){
+            mList.clear();
+            getData();
+        }else if (requestCode==1&&resultCode==1){
+            Log.d("result_pu_can_1","_________");
+            mList.clear();
+            getData();
+        }else if (requestCode==1&&resultCode==RESULT_OK){
+            Log.d("result_pu_can_2","_________");
             mList.clear();
             getData();
         }
@@ -89,7 +98,7 @@ public class MyCangDanActivity extends BaseActivity {
 
     //获取数据
     public void getData() {
-
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -110,9 +119,8 @@ public class MyCangDanActivity extends BaseActivity {
                             mList.addAll(cangDan.getList());
                         }
                     }
-                } else {
-                    AppUtils.toastText(MyCangDanActivity.this, message);
                 }
+
                 adapter.notifyDataSetChanged();
                 lv_my_cang_dan.onRefreshComplete();
                 lv_my_cang_dan.setEmptyView(emptyView);

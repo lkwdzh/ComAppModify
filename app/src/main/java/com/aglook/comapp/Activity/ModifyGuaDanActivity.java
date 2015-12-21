@@ -48,7 +48,7 @@ public class ModifyGuaDanActivity extends BaseActivity {
     private TextView tv_cangdanhao_gua_dan_add;
     private TextView tv_goods_kind_gua_dan;
     private TextView tv_stock_weight_gua_dan;
-    private EditText tv_use_weight_gua_dan;
+    private TextView tv_use_weight_gua_dan;
     private TextView et_goods_area_gua_dan;
     private TextView tv_xue_tou_gua_dan_add;
     private TextView et_cang_name_gua_dan;
@@ -87,7 +87,7 @@ public class ModifyGuaDanActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        setContentView(R.layout.activity_gua_dan_add);
+        setContentView(R.layout.activity_modify_gua_dan);
         setTitleBar("修改挂单");
         ExitApplication.getInstance().addActivity(this);
         init();
@@ -111,7 +111,7 @@ public class ModifyGuaDanActivity extends BaseActivity {
         tv_cangdanhao_gua_dan_add = (TextView) findViewById(R.id.tv_cangdanhao_gua_dan_add);
         tv_goods_kind_gua_dan = (TextView) findViewById(R.id.tv_goods_kind_gua_dan);
         tv_stock_weight_gua_dan = (TextView) findViewById(R.id.tv_stock_weight_gua_dan);
-        tv_use_weight_gua_dan = (EditText) findViewById(R.id.tv_use_weight_gua_dan);
+        tv_use_weight_gua_dan = (TextView) findViewById(R.id.tv_use_weight_gua_dan);
         et_goods_area_gua_dan = (TextView) findViewById(R.id.et_goods_area_gua_dan);
         tv_xue_tou_gua_dan_add = (TextView) findViewById(R.id.tv_xue_tou_gua_dan_add);
         et_cang_name_gua_dan = (TextView) findViewById(R.id.et_cang_name_gua_dan);
@@ -170,11 +170,11 @@ public class ModifyGuaDanActivity extends BaseActivity {
         XBitmap.displayImage(iv_huowu, cangDanDetail.getProductLogo(), ModifyGuaDanActivity.this);
         XBitmap.displayImage(iv_huoquan, cangDanDetail.getProductOwnerProve(), ModifyGuaDanActivity.this);
 
-
+        tv_use_weight_gua_dan.setText(cangDanDetail.getWeightUseable()+"吨");
         et_goods_name_gua_dan.setText(cangDanDetail.getProductName());
         tv_cangdanhao_gua_dan_add.setText(cangDanDetail.getOriginalListId());
         tv_goods_kind_gua_dan.setText(cangDanDetail.getCategoryName());
-        tv_stock_weight_gua_dan.setText(cangDanDetail.getWeightUseable()+"吨");
+        tv_stock_weight_gua_dan.setText(cangDanDetail.getInnerWeight()+"吨");
         if (cangDanDetail.getInnerTime()!=null&&!"".equals(cangDanDetail.getInnerTime())) {
             tv_in_time_gua_dan_add.setText(Timestamp.getDateToString(cangDanDetail.getInnerTime()));
         }
@@ -188,6 +188,7 @@ public class ModifyGuaDanActivity extends BaseActivity {
         et_cang_phone_gua_dan.setText(cangDanDetail.getResponsibleMobile());
         et_cang_email_gua_dan.setText(cangDanDetail.getResponsibleEmail());
         et_cang_address_gua_dan.setText(cangDanDetail.getDepotAddress());
+        Log.d("result_cangDanDetail.getDepotQuality()",cangDanDetail.getDepotQuality()+"11111111111");
         tv_goods_zhiliang_gua_dan.setText(cangDanDetail.getDepotQuality());
         if (cangDanDetail.getCustomerList()!=null&&cangDanDetail.getCustomerList().size()!=0){
             mList.addAll(cangDanDetail.getCustomerList());
@@ -208,7 +209,6 @@ public class ModifyGuaDanActivity extends BaseActivity {
 
     //获取输入的值
     public void getInput() {
-        tradeNum = AppUtils.toStringTrim_ET(tv_use_weight_gua_dan);
         productMoney = AppUtils.toStringTrim_ET(et_price_gua_dan);
         productName = AppUtils.toStringTrim_ET(et_goods_name_gua_dan);
 //        validTime=Timestamp.dateToTime(AppUtils.toStringTrim_TV(tv_userful_time_gua_dan_add)).toString();
@@ -218,15 +218,15 @@ public class ModifyGuaDanActivity extends BaseActivity {
             return;
         }
 
-        if (tradeNum==null||"".equals(tradeNum)){
-            AppUtils.toastText(ModifyGuaDanActivity.this,"商品数量不能为空");
-            return;
-        }
 
         if (productMoney==null||"".equals(productMoney)){
             AppUtils.toastText(ModifyGuaDanActivity.this,"商品价格不能为空");
             return;
         }
+//        if (tradeNum==null||"".equals(tradeNum)){
+//            AppUtils.toastText(ModifyGuaDanActivity.this,"商品数量不能为空");
+//            return;
+//        }
         upData();
     }
 
@@ -290,9 +290,8 @@ public class ModifyGuaDanActivity extends BaseActivity {
 //                     startActivity(intent);
                     ModifyGuaDanActivity.this.setResult(1);
                     ModifyGuaDanActivity.this.finish();
-                } else {
-                    AppUtils.toastText(ModifyGuaDanActivity.this, message);
                 }
+
             }
 
             @Override
@@ -317,9 +316,8 @@ public class ModifyGuaDanActivity extends BaseActivity {
                     if (cangDanDetail!=null){
                         fillData();
                     }
-                }else {
-                    AppUtils.toastText(ModifyGuaDanActivity.this,message);
                 }
+
             }
 
             @Override

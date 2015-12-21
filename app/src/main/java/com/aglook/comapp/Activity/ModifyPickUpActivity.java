@@ -15,10 +15,10 @@ import com.aglook.comapp.adapter.ModifyPickUpAdapter;
 import com.aglook.comapp.bean.ModfyDriverList;
 import com.aglook.comapp.bean.PickUpDetail;
 import com.aglook.comapp.url.PickUpUrl;
-import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.aglook.comapp.view.Timestamp;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -45,7 +45,7 @@ public class ModifyPickUpActivity extends BaseActivity {
     private TextView tv_success_all_order_lv;
     private TextView tv_in_time_my_cangdan;
     private TextView tv_time_tihuo;
-
+private CustomProgress customProgress;
     @Override
     public void initView() {
         setContentView(R.layout.activity_modify_pick_up_activity2);
@@ -56,6 +56,7 @@ public class ModifyPickUpActivity extends BaseActivity {
     }
 
     public void init() {
+        customProgress=CustomProgress.show(this,"",true);
         getId=getIntent().getStringExtra("getId");
 //        DriverList driverList;
 //        for (int i = 0; i < 10; i++) {
@@ -124,6 +125,9 @@ public class ModifyPickUpActivity extends BaseActivity {
             mList.get(position).setName(name);
 //            mList.add(position, driverList);
             adapter.notifyDataSetChanged();
+        }else if (requestCode==33&&resultCode==1){
+            mList.clear();
+            getDetailData();
         }
     }
 
@@ -156,6 +160,9 @@ public class ModifyPickUpActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress!=null&&customProgress.isShowing()){
+                    customProgress.dismiss();
+                }
                 Log.d("result_detail",arg0.result);
                 String message= JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
@@ -167,15 +174,16 @@ public class ModifyPickUpActivity extends BaseActivity {
                     if (pickUpDetail.getDriverList()!=null&&pickUpDetail.getDriverList().size()!=0){
                         mList.addAll(pickUpDetail.getDriverList());
                     }
-                }else {
-                    AppUtils.toastText(ModifyPickUpActivity.this,message);
                 }
+
                 adapter.notifyDataSetChanged();
             }
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress!=null&&customProgress.isShowing()){
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.CANG_DAN, PickUpUrl.postDetailUrl(code,DefineUtil.TOKEN,DefineUtil.USERID,getId),ModifyPickUpActivity.this);
     }

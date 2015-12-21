@@ -36,7 +36,7 @@ public class ComAppApplication extends Application {
     public void onCreate() {
         super.onCreate();
         DefineUtil.IS_LAUNCH=true;
-        JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
+        JPushInterface.setDebugMode(false); 	// 设置开启日志,发布时请关闭日志
         JPushInterface.init(this);     		// 初始化 JPush
 //        db=DbUtils.create(this,"MESSAGE");
     }

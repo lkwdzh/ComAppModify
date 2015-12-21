@@ -29,17 +29,26 @@ public abstract class XHttpuTools {
                 initViews(objectResponseInfo);
                 comAppApplication= (ComAppApplication) context.getApplication();
                 String status=JsonUtils.getJsonParam(objectResponseInfo.result,"status");
+                String message=JsonUtils.getJsonParam(objectResponseInfo.result,"message");
                 if (!"1".equals(status)) {
                     String error = JsonUtils.getJsonParam(objectResponseInfo.result, "errCode");
                     String errCode = JsonUtils.getJsonParam(error, "errCode");
+                    if (errCode!=null&&!"".equals(errCode)){
+
                     if (errCode.equals("U1008")) {
-                        //token已过期,请重新获取!
-                        comAppApplication.setLogin(null);
-                        Intent intent = new Intent(context, LoginActivity.class);
-                        context.startActivityForResult(intent, 33);
-                        AppUtils.toastText(context, "账号登录异常，请重新登录");
-                    } else {
-                        AppUtils.toastText(context, "网络异常，请重新操作");
+                            //token已过期,请重新获取!
+                            comAppApplication.setLogin(null);
+                            Intent intent = new Intent(context, LoginActivity.class);
+                            context.startActivityForResult(intent, 33);
+                            AppUtils.toastText(context, "账号登录异常，请重新登录");
+                        }else if (errCode.equals("W1026")){
+                            AppUtils.toastText(context, "不能购买自己出售的商品");
+                        }
+                        else {
+                            AppUtils.toastText(context, message);
+                        }
+                    }else {
+                        AppUtils.toastText(context, message);
                     }
                 }
             }
@@ -47,7 +56,47 @@ public abstract class XHttpuTools {
             @Override
             public void onFailure(HttpException e, String s) {
                 failureInitViews(e, s);
-                AppUtils.toastText(context, "网络异常，请重新操作");
+                AppUtils.toastText(context, "网络繁忙，请重新操作");
+            }
+        });
+    }
+
+    public void datePostHomepage(String url, RequestParams params, final Activity context) {
+        HttpUtils httpUtils = new HttpUtils();
+        httpUtils.configCurrentHttpCacheExpiry(1000 * 10);
+        httpUtils.configDefaultHttpCacheExpiry(100*1000);
+//        httpUtils.configCurrRequestExpiry(1000 * 10);
+        httpUtils.send(HttpRequest.HttpMethod.POST, url, params, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> objectResponseInfo) {
+                initViews(objectResponseInfo);
+                comAppApplication= (ComAppApplication) context.getApplication();
+                String status=JsonUtils.getJsonParam(objectResponseInfo.result,"status");
+                String message=JsonUtils.getJsonParam(objectResponseInfo.result,"message");
+                if (!"1".equals(status)) {
+                    String error = JsonUtils.getJsonParam(objectResponseInfo.result, "errCode");
+                    String errCode = JsonUtils.getJsonParam(error, "errCode");
+                    if (errCode != null && !"".equals(errCode)){
+
+                    if (errCode.equals("U1008")) {
+                        //token已过期,请重新获取!
+                        comAppApplication.setLogin(null);
+                        Intent intent = new Intent(context, LoginActivity.class);
+                        context.startActivityForResult(intent, 33);
+                        AppUtils.toastText(context, "账号登录异常，请重新登录");
+                    } else {
+                        AppUtils.toastText(context, message);
+                    }
+                    } else {
+                        AppUtils.toastText(context, message);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                failureInitViews(e, s);
+                AppUtils.toastText(context, "网络繁忙，请重新操作");
             }
         });
     }
@@ -62,9 +111,12 @@ public abstract class XHttpuTools {
                 initViews(objectResponseInfo);
                 comAppApplication= (ComAppApplication) context.getApplication();
                 String status=JsonUtils.getJsonParam(objectResponseInfo.result,"status");
+                String message=JsonUtils.getJsonParam(objectResponseInfo.result,"message");
                 if (!"1".equals(status)) {
                     String error = JsonUtils.getJsonParam(objectResponseInfo.result, "errCode");
                     String errCode = JsonUtils.getJsonParam(error, "errCode");
+                    if (errCode != null && !"".equals(errCode)){
+
                     if (errCode.equals("U1008")) {
                         //token已过期,请重新获取!
                         comAppApplication.setLogin(null);
@@ -72,7 +124,10 @@ public abstract class XHttpuTools {
                         context.startActivity(intent);
                         AppUtils.toastText(context, "账号登录异常，请重新登录");
                     } else {
-                        AppUtils.toastText(context, "网络异常，请重新操作");
+                        AppUtils.toastText(context, message);
+                    }
+                    }else {
+                        AppUtils.toastText(context, message);
                     }
                 }
             }
@@ -80,7 +135,7 @@ public abstract class XHttpuTools {
             @Override
             public void onFailure(HttpException e, String s) {
                 failureInitViews(e, s);
-                AppUtils.toastText(context, "网络异常，请重新操作");
+                AppUtils.toastText(context, "网络繁忙，请重新操作");
             }
         });
     }
@@ -97,7 +152,25 @@ public abstract class XHttpuTools {
             @Override
             public void onFailure(HttpException e, String s) {
                 failureInitViews(e, s);
-                AppUtils.toastText(context, "网络异常，请重新操作");
+                AppUtils.toastText(context, "网络繁忙，请重新操作");
+            }
+        });
+    }
+
+    public void datePostCheck(String url, final Activity context) {
+        HttpUtils httpUtils = new HttpUtils();
+        httpUtils.configCurrentHttpCacheExpiry(1000 * 10);
+
+        httpUtils.send(HttpRequest.HttpMethod.POST, url, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> objectResponseInfo) {
+                initViews(objectResponseInfo);
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                failureInitViews(e, s);
+                AppUtils.toastText(context, "网络繁忙，请重新操作");
             }
         });
     }
@@ -115,7 +188,7 @@ public abstract class XHttpuTools {
             @Override
             public void onFailure(HttpException e, String s) {
                 failureInitViews(e, s);
-                AppUtils.toastText(context, "网络异常，请重新操作");
+                AppUtils.toastText(context, "网络繁忙，请重新操作");
             }
         });
     }
@@ -132,7 +205,7 @@ public abstract class XHttpuTools {
             @Override
             public void onFailure(HttpException e, String s) {
                 failureInitViews(e, s);
-                AppUtils.toastText(context, "网络异常，请重新操作");
+                AppUtils.toastText(context, "网络繁忙，请重新操作");
             }
         });
     }

@@ -163,6 +163,12 @@ public class PickInfoActivity extends BaseActivity {
             mList.clear();
             mList.addAll(getList);
             adapter.notifyDataSetChanged();
+        }else if (requestCode==33&&resultCode==1){
+            if (isPlate){
+                getPlatData();
+            }else {
+                getData();
+            }
         }
     }
 
@@ -182,7 +188,7 @@ public class PickInfoActivity extends BaseActivity {
                 for (int i = 0; i < mList.size(); i++) {
 //                    Log.d("result_mList_display", mList.get(i).getWeitht() + "");
                 }
-                customProgress = CustomProgress.show(this, "提交中···", true);
+
                 getInput();
                 pickUp();
                 break;
@@ -191,6 +197,7 @@ public class PickInfoActivity extends BaseActivity {
 
     //申请提货
     public void pickUp() {
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -203,9 +210,8 @@ public class PickInfoActivity extends BaseActivity {
                 if (status.equals("1")) {
                     PickInfoActivity.this.setResult(RESULT_OK);
                     PickInfoActivity.this.finish();
-                } else {
-                    AppUtils.toastText(PickInfoActivity.this, message);
                 }
+
             }
 
             @Override
@@ -214,15 +220,19 @@ public class PickInfoActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.CANG_DAN, PickInfoUrl.postPickInfoUrl(codePick, DefineUtil.TOKEN, DefineUtil.USERID, originalListId, orderdataId, deliveryNum,mList), PickInfoActivity.this);
+        }.datePostUp(DefineUtil.CANG_DAN, PickInfoUrl.postPickInfoUrl(codePick, DefineUtil.TOKEN, DefineUtil.USERID, originalListId, orderdataId, deliveryNum,mList), PickInfoActivity.this);
     }
 
     private CangDanDetail cangDanDetail;
     //获取详情
     public void getData(){
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
                 Log.d("result_detail",originalId+"____"+arg0.result);
                 String message=JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
@@ -232,14 +242,14 @@ public class PickInfoActivity extends BaseActivity {
                     if (cangDanDetail!=null){
                         fillData();
                     }
-                }else {
-                    AppUtils.toastText(PickInfoActivity.this,message);
                 }
             }
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.CANG_DAN, CangDanUrl.postCangDanDetailUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, originalId),PickInfoActivity.this);
     }
@@ -247,9 +257,13 @@ public class PickInfoActivity extends BaseActivity {
 
     //获取平台详情
     public void getPlatData(){
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
                 Log.d("result_Platdetail",arg0.result);
                 String message=JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
@@ -259,14 +273,15 @@ public class PickInfoActivity extends BaseActivity {
                     if (cangDanDetail!=null){
                         fillData();
                     }
-                }else {
-                    AppUtils.toastText(PickInfoActivity.this,message);
                 }
+
             }
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.CANG_DAN, CangDanUrl.postPlatCangDanDetailUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, orderdataId),PickInfoActivity.this);
     }

@@ -50,7 +50,7 @@ public class TradeingActivity extends BaseActivity {
     }
 
     public void init() {
-        customProgress = CustomProgress.show(this, "加载中···", true);
+
         lv_tradeing = (PullToRefreshListView) findViewById(R.id.lv_tradeing);
         adapter = new TradeingAdapter(TradeingActivity.this, mList);
         lv_tradeing.setAdapter(adapter);
@@ -91,6 +91,9 @@ public class TradeingActivity extends BaseActivity {
             customProgress=CustomProgress.show(TradeingActivity.this,"",true);
             isModify=true;
             getData();
+        }else if (requestCode==33&&resultCode==1){
+            mList.clear();
+            getData();
         }
     }
     @Override
@@ -100,6 +103,7 @@ public class TradeingActivity extends BaseActivity {
 
     //获取数据
     public void getData() {
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -112,7 +116,6 @@ public class TradeingActivity extends BaseActivity {
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
                 guaDanStataLi = JsonUtils.parse(obj, GuaDanStataLi.class);
                 if (status.equals("1")) {
-                    if (guaDanStataLi.getList() != null && guaDanStataLi.getList().size() != 0) {
                         if (pageNum == 1) {
                             mList.clear();
                         }
@@ -120,12 +123,12 @@ public class TradeingActivity extends BaseActivity {
                             mList.clear();
                             isModify=false;
                         }
+                    if (guaDanStataLi.getList() != null && guaDanStataLi.getList().size() != 0) {
                         mList.addAll(guaDanStataLi.getList());
                         Log.d("1111", mList.toString());
                     }
-                } else {
-                    AppUtils.toastText(TradeingActivity.this, message);
                 }
+
                adapter.notifyDataSetChanged();
                 lv_tradeing.onRefreshComplete();
                         lv_tradeing.setEmptyView(emptyView);

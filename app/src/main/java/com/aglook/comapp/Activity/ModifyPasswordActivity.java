@@ -94,7 +94,7 @@ public class ModifyPasswordActivity extends BaseActivity {
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        }.datePost(DefineUtil.CHANGE_PWD, ModifyPasswordUrl.postModifypwdUrl(DefineUtil.USERID, DefineUtil.TOKEN, pwd, newPwd), ModifyPasswordActivity.this);
+        }.datePostCheck(DefineUtil.CHANGE_PWD, ModifyPasswordUrl.postModifypwdUrl(DefineUtil.USERID, DefineUtil.TOKEN, pwd, newPwd), ModifyPasswordActivity.this);
     }
 
 }

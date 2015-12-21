@@ -1,6 +1,6 @@
 package com.aglook.comapp.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,12 +21,12 @@ import java.util.List;
  * Created by aglook on 2015/11/6.
  */
 public class AllOrderLVAdapter extends BaseAdapter implements View.OnClickListener {
-    private Context context;
+    private Activity context;
     private List<AllOrderDataList> list;
     private boolean isSuccess;
     private int index;
 
-    public AllOrderLVAdapter(Context context, List<AllOrderDataList> list,boolean isSuccess) {
+    public AllOrderLVAdapter(Activity context, List<AllOrderDataList> list,boolean isSuccess) {
         this.context = context;
         this.list = list;
         this.isSuccess=isSuccess;
@@ -91,7 +91,7 @@ public class AllOrderLVAdapter extends BaseAdapter implements View.OnClickListen
                 intent.putExtra("isPlate",true);
                 intent.putExtra("orderdataId",list.get(index).getOrderdataId());
                 intent.putExtra("originalListId",list.get(index).getProductListId());
-                context.startActivity(intent);
+                context.startActivityForResult(intent,13);
                 break;
             case R.id.tv_sell_all_order_lv:
                 index=(int)v.getTag();
@@ -102,7 +102,7 @@ public class AllOrderLVAdapter extends BaseAdapter implements View.OnClickListen
                 intent.putExtra("isPlate",true);
                 intent.putExtra("orderdataId",list.get(index).getOrderdataId());
                 intent.putExtra("originalListId",list.get(index).getProductListId());
-                context.startActivity(intent);
+                context.startActivityForResult(intent,13);
                 break;
         }
     }

@@ -337,14 +337,23 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                 startActivityForResult(intent, 1);
                 break;
             case R.id.tv_delete_shopping_cart:
-                showDailog();
+                if (cartId==null||"".equals(cartId)){
+                    return;
+                }else {
+                    showDailog();
+                }
                 break;
             case R.id.btn_cancel_delete:
                 dialog.dismiss();
                 break;
             case R.id.btn_confirm_delete:
+                if (cartId==null||"".equals(cartId)){
+                    return;
+                }else {
                 deleteCart();
                 dialog.dismiss();
+
+                }
                 break;
             case R.id.ll_shopping_cart_jiesuan:
                 intent.setClass(getActivity(), ConfirmOrderActivity.class);
@@ -521,7 +530,6 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_delete", cartId + "-------" + cartId.length() + "------" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {

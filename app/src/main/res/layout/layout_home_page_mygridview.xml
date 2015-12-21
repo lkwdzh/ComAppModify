@@ -47,7 +47,8 @@
                      />
             </LinearLayout>
 
-            <LinearLayout style="@style/ll_match_wrap_content_hor">
+            <LinearLayout style="@style/ll_match_wrap_content_hor"
+                android:visibility="gone">
 
                 <TextView
                     style="@style/grayTextView_666666_13"

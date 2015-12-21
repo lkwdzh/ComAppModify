@@ -98,7 +98,7 @@ public class TradeingAdapter extends BaseAdapter implements View.OnClickListener
             holder.tv_success_all_order_lv.setText("交易中");
         }
 //        holder.tv_order_num_all_order_lv.setText(order.getOrderId());
-
+holder.tv_trans_all_order_lv.setTag(position);
         holder.tv_state_all_order_lv.setTag(position);
         holder.tv_state_all_order_lv.setOnClickListener(this);
         holder.tv_tihuo_all_order_lv.setTag(position);

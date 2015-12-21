@@ -265,7 +265,6 @@ public class ConfirmOrderActivity extends BaseActivity {
                     Intent intentBroad = new Intent();
                     intentBroad.setAction("Shopping");
                     sendBroadcast(intentBroad);
-                    AppUtils.toastText(ConfirmOrderActivity.this, DefineUtil.BANKBAND+"");
                     Log.d("result_confirm_De",DefineUtil.BANKBAND+"");
                     Log.d("result_confirm_con",comAppApplication.getLogin()+"");
                     Log.d("result_confirm",comAppApplication.getLogin().isBankBind()+"");
@@ -280,6 +279,8 @@ public class ConfirmOrderActivity extends BaseActivity {
                         AppUtils.toastText(ConfirmOrderActivity.this, "尚未绑定银行卡");
                         showDialog();
                     }
+                }else {
+                    AppUtils.toastText(ConfirmOrderActivity.this,message);
                 }
             }
 
@@ -287,7 +288,7 @@ public class ConfirmOrderActivity extends BaseActivity {
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        }.datePost(DefineUtil.CREATE_ORDER, ConfirmOrderUrl.postConfirmOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartids, String.valueOf(allMoney), text, String.valueOf(costMoney)), ConfirmOrderActivity.this);
+        }.datePostCheck(DefineUtil.CREATE_ORDER, ConfirmOrderUrl.postConfirmOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartids, String.valueOf(allMoney), text, String.valueOf(costMoney)), ConfirmOrderActivity.this);
     }
 
 }

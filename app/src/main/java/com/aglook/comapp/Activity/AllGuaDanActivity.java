@@ -14,7 +14,6 @@ import com.aglook.comapp.adapter.AllGuaDanAdapter;
 import com.aglook.comapp.bean.GuaDan;
 import com.aglook.comapp.bean.GuaDanList;
 import com.aglook.comapp.url.AllGuaDanUrl;
-import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
@@ -114,7 +113,6 @@ public class AllGuaDanActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
                 Log.d("result_All_guadan", arg0.result);
-                AppUtils.toastText(AllGuaDanActivity.this,DefineUtil.USERID);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");

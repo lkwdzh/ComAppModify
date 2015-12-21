@@ -101,9 +101,11 @@ public class AllGuaDanAdapter extends BaseAdapter implements View.OnClickListene
                     if (guaDanList.getProductNum().equals("0")) {
                         holder.tv_success_all_order_lv.setText("已售完");
                         holder.tv_trans_all_order_lv.setVisibility(View.GONE);
+                        holder.tv_tihuo_all_order_lv.setVisibility(View.GONE);
                     } else {
                         holder.tv_success_all_order_lv.setText("交易中");
                         holder.tv_trans_all_order_lv.setVisibility(View.VISIBLE);
+                        holder.tv_tihuo_all_order_lv.setVisibility(View.VISIBLE);
                     }
                 }
             }

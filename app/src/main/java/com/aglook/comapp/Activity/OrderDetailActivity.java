@@ -88,7 +88,7 @@ public class OrderDetailActivity extends BaseActivity {
         lv_all_order_lv = (MyListView) findViewById(R.id.lv_all_order_lv);
 //        allOrder= (AllOrder) getIntent().getSerializableExtra("AllOrder");
         orderId = getIntent().getStringExtra("orderId");
-        customProgress = CustomProgress.show(this, "加载中···", true);
+
         getData();
 
 //        mList.addAll(allOrder.getOrderDateList());
@@ -223,14 +223,23 @@ public class OrderDetailActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == DETAIL_PAY && resultCode == 2) {
-            customProgress = CustomProgress.show(this, "加载中···", true);
             isPay = true;
+            getData();
+        }else if (requestCode==33&&resultCode==1){
+            mList.clear();
+            getData();
+        }else if (requestCode==13&&resultCode==RESULT_OK){
+            mList.clear();
+            getData();
+        }else if (requestCode==13&&resultCode==1){
+            mList.clear();
             getData();
         }
     }
 
 //获取数据
     public void getData() {
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -244,11 +253,6 @@ public class OrderDetailActivity extends BaseActivity {
                 List<AllOrder> faList = new ArrayList<AllOrder>();
                 faList = JsonUtils.parseList(obj, AllOrder.class);
                 if (status.equals("1")) {
-                    if (faList != null && faList.size() != 0) {
-                        allOrder = faList.get(0);
-                        if (allOrder != null) {
-
-                            if (allOrder.getOrderDateList() != null && allOrder.getOrderDateList().size() != 0) {
                                 if (isPay) {
                                     mList.clear();
                                     isPay = false;
@@ -258,15 +262,19 @@ public class OrderDetailActivity extends BaseActivity {
                                     isDelete = false;
                                     mList.clear();
                                 }
+                    if (faList != null && faList.size() != 0) {
+                        allOrder = faList.get(0);
+                        if (allOrder != null) {
+
+                            if (allOrder.getOrderDateList() != null && allOrder.getOrderDateList().size() != 0) {
                                 mList.addAll(allOrder.getOrderDateList());
                             }
                             fillData();
                         }
 
                     }
-                } else {
-                    AppUtils.toastText(OrderDetailActivity.this, message);
                 }
+
                 adapter.notifyDataSetChanged();
             }
 
@@ -316,9 +324,8 @@ public class OrderDetailActivity extends BaseActivity {
                     //若成功，则刷新列表
                     isDelete = true;
                     getData();
-                } else {
-                    AppUtils.toastText(OrderDetailActivity.this, message);
                 }
+
             }
 
             @Override

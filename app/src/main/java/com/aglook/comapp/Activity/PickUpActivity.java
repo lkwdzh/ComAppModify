@@ -12,7 +12,6 @@ import com.aglook.comapp.adapter.PickUpAdapter;
 import com.aglook.comapp.bean.PickUp;
 import com.aglook.comapp.bean.PickUpList;
 import com.aglook.comapp.url.PickUpUrl;
-import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
@@ -51,7 +50,7 @@ public class PickUpActivity extends BaseActivity {
     }
 
     public void init() {
-        customProgress = CustomProgress.show(this, "加载中···", true);
+
         lv_pick_up = (PullToRefreshListView) findViewById(R.id.lv_pick_up);
         adapter = new PickUpAdapter(PickUpActivity.this, mList);
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
@@ -91,11 +90,15 @@ public class PickUpActivity extends BaseActivity {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             isModify = true;
             getData();
+        }else if (requestCode==33&&resultCode==1){
+            mList.clear();
+            getData();
         }
     }
 
     //获取数据
     public void getData() {
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -108,7 +111,6 @@ public class PickUpActivity extends BaseActivity {
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
                 if (status.equals("1")) {
                     pickUp = JsonUtils.parse(obj, PickUp.class);
-                    if (pickUp.getList() != null && pickUp.getList().size() != 0) {
                         if (pageNum == 1) {
                             mList.clear();
                         }
@@ -116,11 +118,11 @@ public class PickUpActivity extends BaseActivity {
                             isModify = false;
                             mList.clear();
                         }
+                    if (pickUp.getList() != null && pickUp.getList().size() != 0) {
                         mList.addAll(pickUp.getList());
                     }
-                } else {
-                    AppUtils.toastText(PickUpActivity.this, message);
                 }
+
 
                 adapter.notifyDataSetChanged();
                 lv_pick_up.onRefreshComplete();

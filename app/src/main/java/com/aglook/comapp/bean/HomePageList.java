@@ -12,6 +12,15 @@ public class HomePageList {
     private String productMoney;//价格
     private String  isAppoint;//是否是指定
     private String productLogo;//图像
+    private String productLogoSmall;//缩略图
+
+    public String getProductLogoSmall() {
+        return productLogoSmall;
+    }
+
+    public void setProductLogoSmall(String productLogoSmall) {
+        this.productLogoSmall = productLogoSmall;
+    }
 
     public String getProductLogo() {
         return productLogo;

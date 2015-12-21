@@ -17,6 +17,7 @@ import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
@@ -30,6 +31,7 @@ public class SettingActivity extends BaseActivity {
     private RelativeLayout tv_update_setting;
     private Button btn_tuichu;
     private ComAppApplication comAppApplication;
+    private CustomProgress customProgress;
 
     @Override
     public void initView() {
@@ -51,6 +53,11 @@ public class SettingActivity extends BaseActivity {
         tv_modify_pwd = (TextView) findViewById(R.id.tv_modify_pwd);
         tv_update_setting = (RelativeLayout) findViewById(R.id.tv_update_setting);
         btn_tuichu = (Button) findViewById(R.id.btn_tuichu);
+        if (comAppApplication.getLogin()==null){
+            btn_tuichu.setVisibility(View.INVISIBLE);
+        }else {
+            btn_tuichu.setVisibility(View.VISIBLE);
+        }
     }
 
     public void click(){
@@ -59,6 +66,13 @@ public class SettingActivity extends BaseActivity {
         tv_modify_pwd.setOnClickListener(this);
         tv_update_setting.setOnClickListener(this);
         btn_tuichu.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1 && resultCode == 1) {
+
+        }
     }
 
     @Override
@@ -76,8 +90,13 @@ public class SettingActivity extends BaseActivity {
 //                startActivity(intent);
 //                break;
             case R.id.tv_modify_pwd:
-                intent.setClass(SettingActivity.this,ModifyPasswordActivity.class);
-                startActivity(intent);
+                if (comAppApplication.getLogin()==null||"".equals(comAppApplication.getLogin())){
+                    intent.setClass(SettingActivity.this, LoginActivity.class);
+                    startActivityForResult(intent, 1);
+                }else {
+                    intent.setClass(SettingActivity.this, ModifyPasswordActivity.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.tv_update_setting:
                 //版本更新
@@ -108,9 +127,13 @@ public class SettingActivity extends BaseActivity {
 
     //退出
     public void loginOut(){
+        customProgress=CustomProgress.show(this,"",true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress!=null&&customProgress.isShowing()){
+                    customProgress.dismiss();
+                }
                 Log.d("result_login_out",arg0.result);
                 String message= JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
@@ -119,16 +142,17 @@ public class SettingActivity extends BaseActivity {
                     AppUtils.toastText(SettingActivity.this,"退出成功");
                     comAppApplication.setLogin(null);
                     SettingActivity.this.finish();
-                }else {
-                    AppUtils.toastText(SettingActivity.this,message);
                 }
+
             }
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress!=null&&customProgress.isShowing()){
+                    customProgress.dismiss();
+                }
             }
-        }.datePost(DefineUtil.LOGIN_OUT, SettingUrl.postLogin_out_url(DefineUtil.USERID),SettingActivity.this);
+        }.datePostUp(DefineUtil.LOGIN_OUT, SettingUrl.postLogin_out_url(DefineUtil.USERID),SettingActivity.this);
     }
 
 }

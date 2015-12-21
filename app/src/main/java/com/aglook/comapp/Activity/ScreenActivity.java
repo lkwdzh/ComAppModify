@@ -99,7 +99,7 @@ public class ScreenActivity extends BaseActivity {
         cb_sale_screen = (CheckBox) findViewById(R.id.cb_sale_screen);
         tv_sale_screen = (TextView) findViewById(R.id.tv_sale_screen);
         tv_all_screen.setTextColor(getResources().getColor(R.color.red_c91014));
-        customProgress = CustomProgress.show(ScreenActivity.this, "加载中···", true);
+
     }
 
     public void click() {
@@ -152,7 +152,6 @@ public class ScreenActivity extends BaseActivity {
                 isPriceFirst = true;
                 isSaleFirst = true;
                 isAll = true;
-                customProgress = CustomProgress.show(ScreenActivity.this, "加载中···", true);
                 if (isSearch) {
                     getSearchData();
                 } else {
@@ -185,7 +184,6 @@ public class ScreenActivity extends BaseActivity {
                     isPriceFirst = false;
                     isSaleFirst = true;
                 }
-                customProgress = CustomProgress.show(ScreenActivity.this, "加载中···", true);
                 isPrice = true;
                 if (isSearch) {
                     getSearchData();
@@ -219,7 +217,6 @@ public class ScreenActivity extends BaseActivity {
                     isSaleFirst = false;
                     isPriceFirst = true;
                 }
-                customProgress = CustomProgress.show(ScreenActivity.this, "加载中···", true);
                 isSale = true;
                 if (isSearch) {
                     getSearchData();
@@ -245,9 +242,22 @@ public class ScreenActivity extends BaseActivity {
         }
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==33&&resultCode==1){
+            mList.clear();
+            if (isSearch) {
+                getSearchData();
+            } else {
+                getScreenData();
+            }
+        }
+    }
+
     //获取搜索信息
     public void getSearchData() {
-
+        customProgress = CustomProgress.show(ScreenActivity.this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -301,9 +311,8 @@ public class ScreenActivity extends BaseActivity {
                             mList.addAll(sonList);
                         }
 
-                    } else {
-                        AppUtils.toastText(ScreenActivity.this, message);
                     }
+
 
                 }
                 adapter.notifyDataSetChanged();
@@ -324,6 +333,7 @@ public class ScreenActivity extends BaseActivity {
 
     //获取分类xinx
     public void getScreenData() {
+        customProgress = CustomProgress.show(ScreenActivity.this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
