@@ -60,6 +60,7 @@
 
         <!-- 发布渠道 -->
         <!-- 百度 -->
+
          <meta-data  android:value="baidu" android:name="UMENG_CHANNEL"/>
          <meta-data  android:value="baidu" android:name="channel"/>
         <!-- 发布渠道 -->
