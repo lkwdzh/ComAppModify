@@ -67,7 +67,6 @@ public class TradeingActivity extends BaseActivity {
                 intent.setClass(TradeingActivity.this, GoodsDetailActivity.class);
                 intent.putExtra("isSelf", true);
                 intent.putExtra("productId",mList.get(position-1).getProductId());
-                AppUtils.toastText(TradeingActivity.this,position-1+"");
                 startActivity(intent);
             }
         });

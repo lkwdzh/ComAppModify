@@ -8,7 +8,7 @@ public class DefineUtil {
     //    测试环境端口
 //    public static String URL_HOST = "http://192.168.1.118:8080/payment/";
 //    public static String URL_HOST = "http://192.168.1.105:8080/payment/";
-//        public static String URL_HOST = "http://192.168.1.103:8080/payment/";
+//        public static String URL_HOST = "http://trade.decxgroup.com/trade/";
 
     /**
      * 正式环境
@@ -59,7 +59,7 @@ public class DefineUtil {
     //资讯列表
     public static String INFOR_LIST = URL_HOST + "information/list";
     //价格走势
-    public static String TREND=URL_HOST+"trend";
+    public static String TREND = URL_HOST + "trend";
 
     /**
      * 商品搜索
@@ -115,9 +115,9 @@ public class DefineUtil {
     /**
      * 消息推送
      */
-    public static String PUSH_MESSAGE=URL_HOST+"push/message";
+    public static String PUSH_MESSAGE = URL_HOST + "push/message";
     //查看推送消息
-    public static String PUSH_ARTICLE=URL_HOST+"push/article";
+    public static String PUSH_ARTICLE = URL_HOST + "push/article";
 
 
     /**
@@ -126,7 +126,7 @@ public class DefineUtil {
     //退出程序
     public static String LOGIN_OUT = URL_HOST + "login-out";
     //帮助中心
-    public static String SETTING_HELP=URL_HOST+"index/help";
+    public static String SETTING_HELP = URL_HOST + "index/help";
 
     //TOKEN
     public static String TOKEN;
@@ -148,12 +148,12 @@ public class DefineUtil {
 
     //是否绑定银行卡
     public static boolean BANKBAND;
-    public static int FLAG=0;
+    public static int FLAG = 0;
 
     /**
      * 未支付订单个数
      */
-    public static int NOTPAY_NUM=0;
+    public static int NOTPAY_NUM = 0;
 
     /**
      * 设备号
@@ -163,14 +163,14 @@ public class DefineUtil {
     /**
      * 判断首页是否是登录
      */
-    public static boolean ISUSERID=false;
+    public static boolean ISUSERID = false;
 
     /**
      * 检查更新
      */
-    public static String CHECK_UPDATE=URL_HOST+"phone/appVersion/check";
+    public static String CHECK_UPDATE = URL_HOST + "phone/appVersion/check";
 
 
     //程序是否启动
-    public static boolean IS_LAUNCH=false;
+    public static boolean IS_LAUNCH = false;
 }

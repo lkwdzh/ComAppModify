@@ -69,13 +69,15 @@ public class AllOrderLVAdapter extends BaseAdapter implements View.OnClickListen
         holder.tv_price_lv_lv.setText(dataList.getProductMoney()+"");
         holder.tv_weight_lv_lv.setText(dataList.getWeightUseable()+"吨");
         holder.tv_num_lv_lv.setText(dataList.getProductMoneyYh()+"");
-        if (isSuccess){
+        if (isSuccess||dataList.getWeightUseable().equals("0")){
             holder.tv_sell_all_order_lv.setVisibility(View.GONE);
             holder.tv_pick_all_order_lv.setVisibility(View.GONE);
         }else {
             holder.tv_sell_all_order_lv.setVisibility(View.VISIBLE);
             holder.tv_pick_all_order_lv.setVisibility(View.VISIBLE);
         }
+
+
         return convertView;
     }
 

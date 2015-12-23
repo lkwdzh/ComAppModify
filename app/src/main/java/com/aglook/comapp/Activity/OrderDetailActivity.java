@@ -142,7 +142,7 @@ public class OrderDetailActivity extends BaseActivity {
         if (allOrder.getOrderTime() != null && !"".equals(allOrder.getOrderTime())) {
             tv_xia_order_detail.setText(Timestamp.getDateTo(allOrder.getOrderTime()));
         }
-        if (allOrder.getPrderPayTime() != null && !"".equals(allOrder.getPrderPayTime())) {
+        if (allOrder.getPrderPayTime() != null && !"".equals(allOrder.getPrderPayTime())&&!"0".equals(allOrder.getPrderPayTime())) {
             tv_pay_order_detail.setText(Timestamp.getDateTo(allOrder.getPrderPayTime()));
             tv_over_order_detail.setText(Timestamp.getDateTo(allOrder.getPrderPayTime()));
 

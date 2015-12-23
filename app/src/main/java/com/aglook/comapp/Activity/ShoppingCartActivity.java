@@ -211,7 +211,13 @@ public class ShoppingCartActivity extends BaseActivity {
         intent = new Intent();
         switch (view.getId()) {
             case R.id.tv_delete_shopping_cart:
-                if (cartId==null||"".equals(cartId)){
+                int ss=0;
+                for (int i = 0; i < mList.size(); i++) {
+                    if (mList.get(i).isChecked()){
+                        ss++;
+                    }
+                }
+                if (ss==0){
                     return;
                 }else {
                     showDailog();

@@ -28,8 +28,7 @@
             <TextView
                 android:id="@+id/tv_zonge_confirm_order"
                 style="@style/grayTextView_666666_13"
-                android:layout_alignParentRight="true"
-                 />
+                android:layout_alignParentRight="true" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -46,10 +45,12 @@
             <TextView
                 android:id="@+id/tv_shouxufei_confirm_order"
                 style="@style/grayTextView_666666_13"
-                android:layout_alignParentRight="true"
-                 />
+                android:layout_alignParentRight="true" />
         </RelativeLayout>
 
     </LinearLayout>
-        <View style="@style/line_1" />
+
+    <View style="@style/line_1" />
+
+
 </LinearLayout>

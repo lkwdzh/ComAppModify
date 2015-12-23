@@ -162,7 +162,6 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
             case R.id.tv_delete_all_order_lv:
 
                 index = (int) v.getTag();
-                AppUtils.toastText(activity, index + "");
                 orderId = list.get(index).getOrderId();
                 showDailog();
                 break;

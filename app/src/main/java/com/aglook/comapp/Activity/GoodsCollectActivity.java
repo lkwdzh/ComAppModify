@@ -30,6 +30,7 @@ public class GoodsCollectActivity extends BaseActivity {
     private CustomProgress customProgress;
     private boolean isToDetail;
     private View emptyView;
+    private int page=1;
     @Override
     public void initView() {
         setContentView(R.layout.activity_friends);
@@ -52,10 +53,11 @@ public class GoodsCollectActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(GoodsCollectActivity.this, GoodsDetailActivity.class);
-                intent.putExtra("productId", mList.get(position).getProductId());
+                intent.putExtra("productId", mList.get(position-1).getProductId());
                 startActivityForResult(intent, 1);
             }
         });
+
     }
 
 

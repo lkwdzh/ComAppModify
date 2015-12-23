@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:textColor="@color/textcolor_333333"
                 android:textSize="13sp"
-                android:text="客服电话:"
+                android:text="客服邮箱:"
                 android:layout_centerInParent="true"
                 android:layout_height="wrap_content" />
 
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:textColor="@color/textcolor_333333"
                 android:textSize="13sp"
-                android:text="010-53669806"
+                android:text="kefu@aglook.net"
                 android:layout_centerInParent="true"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -65,7 +65,7 @@
                 android:id="@+id/tv_boda"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="去拨打"
+                android:text="去发送"
                 android:gravity="center"
                 android:textColor="#0a76ff"
                 android:textSize="15sp"

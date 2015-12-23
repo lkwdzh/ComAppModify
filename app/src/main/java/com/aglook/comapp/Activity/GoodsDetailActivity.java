@@ -172,12 +172,12 @@ public class GoodsDetailActivity extends BaseActivity {
             tv_huowuzhonglei_goods_detail.setText(goodsDetail.getCategoryName());
             tv_weight_goods_detail.setText(goodsDetail.getProductSellNum() + "吨");
             if (goodsDetail.getInnerTime() != null) {
-                tv_in_time_goods_detail.setText(Timestamp.getDateToString(goodsDetail.getInnerTime()));
+                tv_in_time_goods_detail.setText(Timestamp.getDateTo(goodsDetail.getInnerTime()));
             }
             tv_producing_area_goods_detail.setText(goodsDetail.getGoodsPlace());
             tv_xuetou_goods_detail.setText(goodsDetail.getMark());
             if (goodsDetail.getProductAvailable() != null) {
-                tv_userful_life_goods_detail.setText(Timestamp.getDateToString(goodsDetail.getProductAvailable()));
+                tv_userful_life_goods_detail.setText(Timestamp.getDateTo(goodsDetail.getProductAvailable()));
             }
             tv_name_goods_detail.setText(goodsDetail.getDepotResponsible());
             tv_phone_goods_detail.setText(goodsDetail.getResponsibleMobile());
@@ -243,9 +243,29 @@ public class GoodsDetailActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.tv_boda:
                 //打电话，并取消dialog
-                Intent intent1 = new Intent(Intent.ACTION_CALL);
-                intent1.setData(Uri.parse("tel:"+AppUtils.toStringTrim_TV(tv_phone_call)));
-                startActivity(intent1);
+//                Intent intent1 = new Intent(Intent.ACTION_CALL);
+//                intent1.setData(Uri.parse("tel:"+AppUtils.toStringTrim_TV(tv_phone_call)));
+//                startActivity(intent1);
+
+//                String[] email = {"771915131@qq.com"}; // 需要注意，email必须以数组形式传入
+//                Intent intent1 = new Intent(Intent.ACTION_SEND);
+//                intent1.setType("message/rfc822"); // 设置邮件格式
+//                intent1.putExtra(Intent.EXTRA_EMAIL, email); // 接收人
+//                intent1.putExtra(Intent.EXTRA_CC, email); // 抄送人
+//                intent1.putExtra(Intent.EXTRA_SUBJECT, "这是邮件的主题部分"); // 主题
+//                intent1.putExtra(Intent.EXTRA_TEXT, "这是邮件的正文部分"); // 正文
+//                startActivity(Intent.createChooser(intent1, "请选择邮件类应用"));
+
+                // 必须明确使用mailto前缀来修饰邮件地址,如果使用
+// intent.putExtra(Intent.EXTRA_EMAIL, email)，结果将匹配不到任何应用
+                Uri uri = Uri.parse("mailto:"+AppUtils.toStringTrim_TV(tv_phone_call));
+                String[] email = {AppUtils.toStringTrim_TV(tv_phone_call)};
+                Intent intent1 = new Intent(Intent.ACTION_SENDTO, uri);
+                intent1.putExtra(Intent.EXTRA_CC, email); // 抄送人
+                intent1.putExtra(Intent.EXTRA_SUBJECT, "这是邮件的主题部分"); // 主题
+                intent1.putExtra(Intent.EXTRA_TEXT, "这是邮件的正文部分"); // 正文
+                startActivity(Intent.createChooser(intent1, "请选择邮件类应用"));
+
                 builder.dismiss();
                 break;
             case R.id.tv_quxiao:

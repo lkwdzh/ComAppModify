@@ -28,9 +28,10 @@
 
         <CheckBox
             android:id="@+id/cb_driver_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/px_100"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
+            android:gravity="center_vertical|right"
             android:layout_centerVertical="true"
             android:button="@null"
             android:text="修改"

@@ -102,7 +102,7 @@ public class DriverInfoActivity extends BaseActivity {
                     tv_num_driver_info.setFocusableInTouchMode(true);
                     tv_num_driver_info.requestFocus();
                 } else {
-                    upData();
+                   getInput();
 
                 }
             }
@@ -125,12 +125,29 @@ public class DriverInfoActivity extends BaseActivity {
         driverPhone=AppUtils.toStringTrim_ET(tv_phone_driver_info);
         carCode=AppUtils.toStringTrim_ET(tv_email_driver_info);
         cardNo=AppUtils.toStringTrim_ET(tv_num_driver_info);
+        if (driverName==null||"".equals(driverName)){
+            AppUtils.toastText(DriverInfoActivity.this,"司机姓名不能为空");
+            return;
+        }
+        if (driverPhone==null||"".equals(driverPhone)){
+            AppUtils.toastText(DriverInfoActivity.this,"司机手机号不能为空");
+            return;
+        }
+        if (cardNo==null||"".equals(cardNo)){
+            AppUtils.toastText(DriverInfoActivity.this,"司机身份证号不能为空");
+            return;
+        }
+        if (carCode==null||"".equals(carCode)){
+            AppUtils.toastText(DriverInfoActivity.this,"司机车牌号不能为空");
+            return;
+        }
+        upData();
     }
 
     //更新司机信息
     public void upData() {
         customProgress = CustomProgress.show(this, "提交中···", true);
-        getInput();
+
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {

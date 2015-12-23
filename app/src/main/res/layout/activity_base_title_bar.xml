@@ -36,7 +36,7 @@
         android:layout_centerVertical="true"
         android:gravity="center_vertical|right"
         android:textColor="@color/white"
-        android:layout_marginRight="@dimen/px_14"
+        android:paddingRight="@dimen/px_14"
         android:visibility="gone"
         />
 </RelativeLayout>

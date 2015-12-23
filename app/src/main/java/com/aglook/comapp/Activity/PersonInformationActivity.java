@@ -81,7 +81,7 @@ public class PersonInformationActivity extends BaseActivity {
                 break;
             case R.id.tv_linkman_person_info:
                 intent.setClass(PersonInformationActivity.this,FriendsListActivity.class);
-                intent.putExtra("buyOrLink",false);
+//                intent.putExtra("buyOrLink",false);
                 startActivity(intent);
                 break;
             case R.id.tv_friend_person_info:

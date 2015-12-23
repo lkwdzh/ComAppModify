@@ -168,7 +168,6 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
     private BroadcastReceiver myReceiver=new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            AppUtils.toastText(getActivity(),"22222222");
             //刷新
             isConfirm = true;
 
@@ -337,7 +336,13 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                 startActivityForResult(intent, 1);
                 break;
             case R.id.tv_delete_shopping_cart:
-                if (cartId==null||"".equals(cartId)){
+                int ss=0;
+                for (int i = 0; i < mList.size(); i++) {
+                    if (mList.get(i).isChecked()){
+                        ss++;
+                    }
+                }
+                if (ss==0){
                     return;
                 }else {
                     showDailog();
@@ -347,13 +352,9 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                 dialog.dismiss();
                 break;
             case R.id.btn_confirm_delete:
-                if (cartId==null||"".equals(cartId)){
-                    return;
-                }else {
                 deleteCart();
                 dialog.dismiss();
 
-                }
                 break;
             case R.id.ll_shopping_cart_jiesuan:
                 intent.setClass(getActivity(), ConfirmOrderActivity.class);

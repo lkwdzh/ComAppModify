@@ -68,7 +68,6 @@ public class TransSucceedActivity extends BaseActivity {
                 intent.setClass(TransSucceedActivity.this, GoodsDetailActivity.class);
                 intent.putExtra("isSelf", true);
                 intent.putExtra("productId",mList.get(position-1).getProductId());
-                AppUtils.toastText(TransSucceedActivity.this,position-1+"");
                 startActivity(intent);
             }
         });

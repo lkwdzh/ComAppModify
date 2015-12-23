@@ -31,7 +31,7 @@ public class LaunchActivity extends BaseActivity {
                 LaunchActivity.this.finish();
 
             }
-        },3000);
+        },5000);
     }
 
     // 初始化 JPush。如果已经初始化，但没有登录成功，则执行重新登录。

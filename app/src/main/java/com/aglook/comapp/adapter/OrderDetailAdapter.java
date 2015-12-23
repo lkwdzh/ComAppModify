@@ -69,7 +69,7 @@ public class OrderDetailAdapter extends BaseAdapter implements View.OnClickListe
 //        holder.tv_num_lv_lv.setText(dataList.getProductNum());
         holder.tv_sell_all_order_lv.setTag(position);
         holder.tv_pick_all_order_lv.setTag(position);
-        if (!isSuccess) {
+        if (!isSuccess||dataList.getWeightUseable().equals("0")) {
             holder.tv_sell_all_order_lv.setVisibility(View.GONE);
             holder.tv_pick_all_order_lv.setVisibility(View.GONE);
         } else {

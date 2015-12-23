@@ -80,6 +80,8 @@ public class PlatformAdapter extends BaseAdapter implements View.OnClickListener
         holder.tv_name_lv_lv.setText(danList.getProductName());
         holder.tv_price_lv_lv.setText(danList.getProductMoney());
         holder.tv_weight_lv_lv.setText(danList.getWeightUseable() + "吨");
+        if (danList.getWeightUseable()!=null&&!"".equals(danList.getWeightUseable())){
+
         if (danList.getWeightUseable().equals("0")){
             //仓单交易与提货不可见
             holder.tv_trans_all_order_lv.setVisibility(View.GONE);
@@ -87,6 +89,7 @@ public class PlatformAdapter extends BaseAdapter implements View.OnClickListener
         }else {
             holder.tv_trans_all_order_lv.setVisibility(View.VISIBLE);
             holder.tv_tihuo_all_order_lv.setVisibility(View.VISIBLE);
+        }
         }
         holder.tv_trans_all_order_lv.setTag(position);
         if (danList.getOrderPtime()!=null&&!"".equals(danList.getOrderPtime())){

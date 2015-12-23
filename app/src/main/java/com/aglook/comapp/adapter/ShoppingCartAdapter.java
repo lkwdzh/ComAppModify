@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.ShoppingCart;
 import com.aglook.comapp.url.ShoppingCartUrl;
-import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XBitmap;
@@ -227,9 +226,10 @@ public class ShoppingCartAdapter extends BaseAdapter {
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
                     dataChange();
-                } else {
-                    AppUtils.toastText(context, message);
                 }
+//                else {
+//                    AppUtils.toastText(context, message);
+//                }
             }
 
             @Override

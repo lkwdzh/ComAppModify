@@ -100,16 +100,16 @@ private CustomProgress customProgress;
             if (pickUpDetail.getIsget().equals("0")){
                 tv_success_all_order_lv.setText("已取消");
             }else  if (pickUpDetail.getIsget().equals("1")){
-                tv_success_all_order_lv.setText("提货中");
+                tv_success_all_order_lv.setText("等待提货");
             }else  if (pickUpDetail.getIsget().equals("2")){
                 tv_success_all_order_lv.setText("提货成功");
             }
         }
-        if (pickUpDetail.getGetAtime()!=null&&!"".equals(pickUpDetail.getGetAtime())){
+//        if (pickUpDetail.getGetAtime()!=null&&!"".equals(pickUpDetail.getGetAtime())){
+//            tv_in_time_my_cangdan.setText(Timestamp.getDateTo(pickUpDetail.getGetAtime()));
+//        }
+        if (pickUpDetail.getGetCtime()!=null&&!"".equals(pickUpDetail.getGetAtime())){
             tv_in_time_my_cangdan.setText(Timestamp.getDateTo(pickUpDetail.getGetAtime()));
-        }
-        if (pickUpDetail.getGetCtime()!=null&&!"".equals(pickUpDetail.getGetCtime())){
-            tv_time_tihuo.setText(Timestamp.getDateTo(pickUpDetail.getGetCtime()));
         }
     }
 

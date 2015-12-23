@@ -60,6 +60,8 @@ public class ConfirmOrderActivity extends BaseActivity {
     public static ConfirmOrderActivity instance = null;
 
 
+
+
     @Override
     public void initView() {
         setContentView(R.layout.activity_confirm_order);
@@ -72,6 +74,7 @@ public class ConfirmOrderActivity extends BaseActivity {
     }
 
     public void init() {
+
         login = comAppApplication.getLogin();
         mList = (List<ShoppingCart>) getIntent().getSerializableExtra("CharList");
         tv_name_confirm_order = (TextView) findViewById(id.tv_name_confirm_order);
@@ -219,6 +222,8 @@ public class ConfirmOrderActivity extends BaseActivity {
     }
 
 
+
+
     private Dialog dialog;
     private Button btn_cancel_pay_popup;
     private Button btn_confirm_pay_popup;
@@ -265,9 +270,9 @@ public class ConfirmOrderActivity extends BaseActivity {
                     Intent intentBroad = new Intent();
                     intentBroad.setAction("Shopping");
                     sendBroadcast(intentBroad);
-                    Log.d("result_confirm_De",DefineUtil.BANKBAND+"");
-                    Log.d("result_confirm_con",comAppApplication.getLogin()+"");
-                    Log.d("result_confirm",comAppApplication.getLogin().isBankBind()+"");
+                    Log.d("result_confirm_De", DefineUtil.BANKBAND + "");
+                    Log.d("result_confirm_con", comAppApplication.getLogin() + "");
+                    Log.d("result_confirm", comAppApplication.getLogin().isBankBind() + "");
                     if (DefineUtil.BANKBAND) {
                         Intent intent = new Intent(ConfirmOrderActivity.this, PayActivity.class);
                         intent.putExtra("orderId", orderId);
@@ -279,8 +284,8 @@ public class ConfirmOrderActivity extends BaseActivity {
                         AppUtils.toastText(ConfirmOrderActivity.this, "尚未绑定银行卡");
                         showDialog();
                     }
-                }else {
-                    AppUtils.toastText(ConfirmOrderActivity.this,message);
+                } else {
+                    AppUtils.toastText(ConfirmOrderActivity.this, message);
                 }
             }
 

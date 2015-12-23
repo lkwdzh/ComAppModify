@@ -205,7 +205,11 @@ public class FriendsListActivity extends BaseActivity {
                 }
 
                     if (mList.size()!=0&&mList!=null){
-                        rl_bottom.setVisibility(View.VISIBLE);
+                        if (isBuyer) {
+                            rl_bottom.setVisibility(View.VISIBLE);
+                        } else {
+                            rl_bottom.setVisibility(View.GONE);
+                        }
                     }
                 adapter.notifyDataSetChanged();
                 compareList();

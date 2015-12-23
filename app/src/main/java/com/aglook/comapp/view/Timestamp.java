@@ -32,6 +32,9 @@ public class Timestamp {
 	 * @return
 	 */
 	public static String getDateToString(String time) {
+        if (time.length()==10){
+            time=time+"000";
+        }
 		long lcc = Long.valueOf(time);
 
 		sf = new SimpleDateFormat("yyyy-MM-dd");
@@ -48,6 +51,9 @@ public class Timestamp {
 	 * @return
 	 */
 	public static String getDateToDate(String time) {
+        if (time.length()==10){
+            time=time+"000";
+        }
 		long lcc = Long.valueOf(time);
 
 		sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -133,6 +139,9 @@ public class Timestamp {
 	 * @return
 	 */
 	public static String getDate(String time) {
+        if (time.length()==10){
+            time=time+"000";
+        }
 		long lcc = Long.valueOf(time);
 
 		sf = new SimpleDateFormat("yyyy年MM月dd日");
@@ -148,6 +157,9 @@ public class Timestamp {
 	 * @return
 	 */
 	public static String DateToWeek(String time) {
+        if (time.length()==10){
+            time=time+"000";
+        }
 		sf = new SimpleDateFormat("yyyy-MM-dd");
 
 		Long lcc = Long.valueOf(time);
@@ -193,6 +205,9 @@ public class Timestamp {
 	 * @return
 	 */
 	public String data(String time) {
+        if (time.length()==10){
+            time=time+"000";
+        }
 		sf = new SimpleDateFormat("yyyy.MM.dd", Locale.CHINA);
 		Date date;
 		String times = null;
@@ -215,6 +230,9 @@ public class Timestamp {
 	 * @return
 	 */
 	public static Long dateToTime(String time) {
+        if (time.length()==10){
+            time=time+"000";
+        }
 		sf = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
 		Date date;
 		String times = null;

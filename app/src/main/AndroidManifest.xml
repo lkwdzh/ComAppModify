@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aglook.comapp"
-    android:versionName="1.0">
+    android:versionName="1.0" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <!-- 友盟分享 -->
     <!-- <uses-sdk android:minSdkVersion="8" -->
     <!-- android:targetSdkVersion="18" /> -->
@@ -17,6 +17,7 @@
     <permission
         android:name="com.aglook.comapp.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
+
     <uses-permission android:name="android.permission.GET_TASKS" />
     <!-- Required 一些系统要求的权限，如访问网络等 -->
     <uses-permission android:name="com.aglook.comapp.permission.JPUSH_MESSAGE" />
@@ -44,7 +45,7 @@
         android:allowBackup="true"
         android:icon="@drawable/tubiao"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="5666add8e0f55a3b0c0023ad" />
@@ -52,50 +53,63 @@
         <!-- 例如在豌豆荚渠道推广此包，代码示例： -->
         <!-- <meta-data android:value="Wandoujia" android:name="UMENG_CHANNEL"/> -->
         <!-- 注意：一个包中只能添加一个渠道； -->
+        <!-- <meta-data -->
+        <!-- android:name="UMENG_CHANNEL" -->
+        <!-- android:value="Umeng" /> -->
+
+
+        <!-- 发布渠道 -->
+        <!-- 百度 -->
+         <meta-data  android:value="baidu" android:name="UMENG_CHANNEL"/>
+         <meta-data  android:value="baidu" android:name="channel"/>
+        <!-- 发布渠道 -->
+        <!-- 百度 -->
+
+
+        <!-- <!-安卓市场 -->
+-->
+         <!--<meta-data  android:value="anzhuo" android:name="UMENG_CHANNEL"/>-->
+         <!--<meta-data  android:value="anzhuo" android:name="channel"/>-->
+        <!-- 安卓市场 -->
+
+
+        <!-- <!-QQ -->
+-->
+         <!--<meta-data  android:value="tengxun" android:name="UMENG_CHANNEL"/>-->
+         <!--<meta-data  android:value="tengxun" android:name="channel"/>-->
+        <!-- <!-QQ -->
+-->
+
+        <!-- <!-91 -->
+-->
+         <!--<meta-data  android:value="91sc" android:name="UMENG_CHANNEL"/>-->
+         <!--<meta-data  android:value="91sc" android:name="channel"/>-->
+        <!-- 91 -->
+
+
+        <!-- <!-安智 -->
+-->
+         <!--<meta-data  android:value="anzhi" android:name="UMENG_CHANNEL"/>-->
+         <!--<meta-data  android:value="anzhi" android:name="channel"/>-->
+        <!-- <!-安智 -->
+-->
+
+        <!-- 自己服务器 -->
         <!--<meta-data-->
             <!--android:name="UMENG_CHANNEL"-->
-            <!--android:value="Umeng" />-->
+            <!--android:value="local" />-->
+        <!--<meta-data-->
+            <!--android:name="channel"-->
+            <!--android:value="local" />-->
 
-        <!--发布渠道-->
-        <!--百度-->
-        <!--<meta-data  android:value="baidu" android:name="UMENG_CHANNEL"/>-->
+        <!-- <!-自己服务器 -->
+-->
 
-        <!--<!-91-->-->
-        <!--<meta-data  android:value="91sc" android:name="UMENG_CHANNEL"/>-->
-
-        <!--<!-安卓市场-->-->
-        <!--<meta-data  android:value="anzhuo" android:name="UMENG_CHANNEL"/>-->
-
-        <!--<!-安智-->-->
-        <!--<meta-data  android:value="anzhi" android:name="UMENG_CHANNEL"/>-->
-
-        <!--<!-QQ-->-->
-        <!--<meta-data  android:value="tengxun" android:name="UMENG_CHANNEL"/>-->
-
-
-        <!--<!-自己服务器-->-->
-        <meta-data  android:value="local" android:name="UMENG_CHANNEL"/>
-
-
-
-        <!--发布渠道-->
-        <!--百度-->
-        <!--<meta-data  android:value="baidu" android:name="channel"/>-->
-
-        <!--91-->
-        <!--<meta-data  android:value="91sc" android:name="channel"/>-->
-
-        <!--安卓市场-->
-        <!--<meta-data  android:value="anzhuo" android:name="channel"/>-->
-
-        <!--<!-安智-->-->
-        <!--<meta-data  android:value="anzhi" android:name="channel"/>-->
-
-        <!--<!-QQ-->-->
-        <!--<meta-data  android:value="tengxun" android:name="channel"/>-->
-
-        <!--<!-自己服务器-->-->
-        <meta-data  android:value="local" android:name="channel"/>
+        <!-- 发布渠道 -->
+        <!-- 华为 -->
+         <!--<meta-data  android:value="huawei" android:name="UMENG_CHANNEL"/>-->
+         <!--<meta-data  android:value="huawei" android:name="channel"/>-->
+        <!-- 发布渠道 -->
 
 
         <!-- Required SDK核心功能 -->
@@ -103,7 +117,7 @@
             android:name="cn.jpush.android.ui.PushActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="false"
-            android:theme="@android:style/Theme.NoTitleBar">
+            android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
 
@@ -115,14 +129,14 @@
         <service
             android:name="cn.jpush.android.service.DownloadService"
             android:enabled="true"
-            android:exported="false"></service>
+            android:exported="false" />
 
         <!-- Required SDK 核心功能 -->
         <!-- 可配置android:process参数将PushService放在其他进程中 -->
         <service
             android:name="cn.jpush.android.service.PushService"
             android:enabled="true"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTER" />
                 <action android:name="cn.jpush.android.intent.REPORT" />
@@ -136,7 +150,7 @@
         <service
             android:name="cn.jpush.android.service.DaemonService"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService" />
 
@@ -148,8 +162,8 @@
         <receiver
             android:name="cn.jpush.android.service.PushReceiver"
             android:enabled="true"
-            android:exported="false">
-            <intent-filter android:priority="1000">
+            android:exported="false" >
+            <intent-filter android:priority="1000" >
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
                 <!-- Required  显示通知栏 -->
                 <category android:name="com.aglook.comapp" />
@@ -176,7 +190,7 @@
         <receiver
             android:name=".receiver.MyReceiver"
             android:enabled="true"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTRATION" />
                 <!-- Required  用户注册SDK的intent -->
@@ -208,179 +222,245 @@
             android:name=".Activity.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustPan">
-
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
             android:name=".Activity.BaseActivity"
-            android:label="@string/title_activity_base" />
+            android:label="@string/title_activity_base"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.RegisterActivity"
-            android:label="@string/title_activity_register" />
+            android:label="@string/title_activity_register"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.ClassifyActivity"
-            android:label="@string/title_activity_classify" />
+            android:label="@string/title_activity_classify"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.GoodsDetailActivity"
-            android:label="@string/title_activity_goods_detail" />
+            android:label="@string/title_activity_goods_detail"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.GuideActivity"
-            android:label="@string/title_activity_guide" />
+            android:label="@string/title_activity_guide"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.FindPasswordActivity"
-            android:label="@string/title_activity_find_password" />
+            android:label="@string/title_activity_find_password"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.BasicInformationActivity"
             android:label="@string/title_activity_basic_information"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Activity.GuaDanDetailActivity"
-            android:label="@string/title_activity_gua_dan_detail" />
+            android:label="@string/title_activity_gua_dan_detail"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.GuaDanAddActivity"
             android:label="@string/title_activity_gua_dan_add"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Activity.SettingActivity"
-            android:label="@string/title_activity_setting" />
+            android:label="@string/title_activity_setting"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.SearchActivity"
-            android:label="@string/title_activity_search" />
+            android:label="@string/title_activity_search"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.PayResultActivity"
-            android:label="@string/title_activity_pay_succeed" />
+            android:label="@string/title_activity_pay_succeed"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.PersonInformationActivity"
-            android:label="@string/title_activity_person_information" />
+            android:label="@string/title_activity_person_information"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.BandCardActivity"
-            android:label="@string/title_activity_band_card" />
+            android:label="@string/title_activity_band_card"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.ScreenActivity"
-            android:label="@string/title_activity_screen" />
+            android:label="@string/title_activity_screen"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.ConfirmOrderActivity"
             android:label="@string/title_activity_confirm_order"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Activity.AllOrderActivity"
-            android:label="@string/title_activity_all_order" />
+            android:label="@string/title_activity_all_order"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.AllGuaDanActivity"
-            android:label="@string/title_activity_all_gua_dan" />
+            android:label="@string/title_activity_all_gua_dan"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.ToPayActivity"
-            android:label="@string/title_activity_to_pay" />
+            android:label="@string/title_activity_to_pay"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.TransSucceedActivity"
-            android:label="@string/title_activity_to_receive" />
+            android:label="@string/title_activity_to_receive"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.CardListActivity"
-            android:label="@string/title_activity_card_list" />
+            android:label="@string/title_activity_card_list"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.MyCangDanActivity"
-            android:label="@string/title_activity_my_cang_dan" />
+            android:label="@string/title_activity_my_cang_dan"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.PlatformActivity"
-            android:label="@string/title_activity_platform" />
+            android:label="@string/title_activity_platform"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.PickUpActivity"
-            android:label="@string/title_activity_pick_up" />
+            android:label="@string/title_activity_pick_up"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.PickInfoActivity"
             android:label="@string/title_activity_pick_info"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Activity.DriverListActivity"
-            android:label="@string/title_activity_driver_list" />
+            android:label="@string/title_activity_driver_list"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.DriverAddActivity"
-            android:label="@string/title_activity_driver_add" />
+            android:label="@string/title_activity_driver_add"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.DriverInfoActivity"
-            android:label="@string/title_activity_driver_info" />
+            android:label="@string/title_activity_driver_info"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.OrderDetailActivity"
-            android:label="@string/title_activity_order_detail" />
+            android:label="@string/title_activity_order_detail"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.ModifyPasswordActivity"
-            android:label="@string/title_activity_modify_password" />
+            android:label="@string/title_activity_modify_password"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.ZiXunListActivity"
+            android:exported="true"
             android:label="@string/title_activity_hang_qing_list"
-            android:exported="true">
-    </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.HangDetailActivity"
-            android:label="@string/title_activity_hang_detail" />
+            android:label="@string/title_activity_hang_detail"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.PlatformDetailActivity"
-            android:label="@string/title_activity_platform_detail" />
+            android:label="@string/title_activity_platform_detail"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.PickUpDtailActivity"
-            android:label="@string/title_activity_pick_up_dtail_activity2" />
+            android:label="@string/title_activity_pick_up_dtail_activity2"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.FriendsListActivity"
-            android:label="@string/title_activity_buyer_list" />
+            android:label="@string/title_activity_buyer_list"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.FriendsAddActivity"
-            android:label="@string/title_activity_buyer_add" />
+            android:label="@string/title_activity_buyer_add"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.GoodsCollectActivity"
-            android:label="@string/title_activity_friends" />
+            android:label="@string/title_activity_friends"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.FriendsDetailActivity"
-            android:label="@string/title_activity_friends_detail" />
+            android:label="@string/title_activity_friends_detail"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.TradeingActivity"
-            android:label="@string/title_activity_tradeing" />
+            android:label="@string/title_activity_tradeing"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.PayActivity"
-            android:label="@string/title_activity_pay" />
+            android:label="@string/title_activity_pay"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.ModifyPickUpActivity"
-            android:label="@string/title_activity_modify_pick_up_activity2" />
+            android:label="@string/title_activity_modify_pick_up_activity2"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.GuaDanStateActivity"
-            android:label="@string/title_activity_order_state" />
+            android:label="@string/title_activity_order_state"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.ModifyGuaDanActivity"
             android:label="@string/title_activity_modify_gua_dan"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Activity.BuyerListActivity"
-            android:label="@string/title_activity_buyer_list" />
+            android:label="@string/title_activity_buyer_list"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.ShoppingCartActivity"
-            android:label="@string/title_activity_shopping_cart" />
+            android:label="@string/title_activity_shopping_cart"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.MessageActivity"
-            android:label="@string/title_activity_message" />
+            android:label="@string/title_activity_message"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.HelpCenterActivity"
-            android:label="@string/title_activity_help_center" />
+            android:label="@string/title_activity_help_center"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.LaunchActivity"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent" >
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+
+
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="decx"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="decx" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Activity.TransDetailActivity"
-            android:label="@string/title_activity_trans_detail"></activity>
+            android:label="@string/title_activity_trans_detail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.AddAddressActivity"
+            android:label="@string/title_activity_add_address" >
+        </activity>
+        <activity
+            android:name=".Activity.AddressListActivity"
+            android:label="@string/title_activity_address_list" >
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
     </application>
 
 </manifest>

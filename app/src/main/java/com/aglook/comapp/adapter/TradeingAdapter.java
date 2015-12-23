@@ -20,7 +20,6 @@ import com.aglook.comapp.Activity.TransDetailActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.GuaDanStataLiL;
 import com.aglook.comapp.url.AllGuaDanUrl;
-import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XBitmap;
@@ -203,9 +202,10 @@ holder.tv_trans_all_order_lv.setTag(position);
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
 
-                } else {
-                    AppUtils.toastText(activity, message);
                 }
+//                else {
+//                    AppUtils.toastText(activity, message);
+//                }
             }
 
             @Override

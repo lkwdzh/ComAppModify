@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.aglook.comapp.Activity.DriverListActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.ModfyDriverList;
-import com.aglook.comapp.util.AppUtils;
 
 import java.util.List;
 
@@ -84,7 +83,6 @@ public class ModifyPickUpAdapter extends BaseAdapter implements View.OnClickList
         switch (v.getId()) {
             case R.id.tv_modify_modify_pick_up:
                 index = (int) v.getTag();
-                AppUtils.toastText(context,index+"");
                 intent.setClass(context, DriverListActivity.class);
                 intent.putExtra("isModify", true);
                 intent.putExtra("getListDriverId",list.get(index).getId());
