@@ -15,12 +15,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            style="@style/grayTextView_666666_13"
-            android:paddingLeft="@dimen/px_20"
-            android:paddingTop="@dimen/px_14"
-            android:paddingBottom="@dimen/px_14"
-            android:text="发票相关信息" />
+        <LinearLayout style="@style/guadan_ll_weight">
+
+            <TextView
+                style="@style/foot_TextView_333333"
+                android:text="收货人" />
+
+            <EditText
+                android:id="@+id/et_name_add_address"
+                style="@style/foot_edittext_weight"
+                android:hint="请输入收货人姓名" />
+        </LinearLayout>
+
+        <View style="@style/line_1" />
+
+        <LinearLayout style="@style/guadan_ll_weight">
+
+            <TextView
+                style="@style/foot_TextView_333333"
+                android:text="手机号码" />
+
+            <EditText
+                android:id="@+id/et_phone_add_address"
+                style="@style/foot_edittext_weight"
+                android:inputType="phone"
+                android:hint="请输入收货人手机号码" />
+        </LinearLayout>
 
         <View style="@style/line_1" />
 
@@ -31,18 +51,10 @@
                 android:text="所在地区" />
 
             <TextView
-                android:id="@+id/tv_sheng"
-                style="@style/foot_TextView_333333"
-                android:drawableRight="@drawable/jiage_down"
-                android:paddingRight="@dimen/px_20"
-                android:hint="请选择省" />
-
-            <TextView
-                android:id="@+id/tv_shi"
-                style="@style/foot_TextView_333333"
-                android:drawableRight="@drawable/jiage_down"
-                android:paddingRight="@dimen/px_20"
-                android:hint="请选择市" />
+                android:id="@+id/tv_diqu"
+                style="@style/foot_edittext_weight"
+                android:hint="请选择地区"
+                android:drawableRight="@drawable/next" />
         </LinearLayout>
     </LinearLayout>
 
@@ -63,6 +75,7 @@
     <View style="@style/line_1" />
 
     <RelativeLayout
+        android:id="@+id/rl_check"
         android:layout_width="match_parent"
         android:layout_height="@dimen/px_70"
         android:background="@color/white">
@@ -84,7 +97,8 @@
             android:background="@drawable/cb_setting" />
     </RelativeLayout>
 
-    <View style="@style/line_1" />
+    <View style="@style/line_1"
+        android:id="@+id/view_check"/>
 
     <Button
         android:id="@+id/btn_baocun"

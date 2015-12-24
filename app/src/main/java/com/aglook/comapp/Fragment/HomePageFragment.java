@@ -128,6 +128,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         return view;
     }
 
+
     //轮播图下面的小点
     private void setCurrentDot(int position) {
         for (int i = 0; i < scrollLength; i++) {
@@ -187,7 +188,6 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         @Override
         public void onReceive(Context context, Intent intent) {
             isLogin = true;
-            Log.d("result_result", "_________myReceiver2");
             getData();
         }
     };
@@ -196,7 +196,9 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     @Override
     public void onDestroy() {
         super.onDestroy();
-        getActivity().unregisterReceiver(myReceiver2);
+        if (myReceiver2!=null) {
+            getActivity().unregisterReceiver(myReceiver2);
+        }
     }
 
     public void click() {

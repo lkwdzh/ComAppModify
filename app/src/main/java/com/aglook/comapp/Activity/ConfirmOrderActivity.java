@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,13 +18,16 @@ import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ConfirmOrderAdapter;
+import com.aglook.comapp.bean.Address;
 import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.bean.ShoppingCart;
+import com.aglook.comapp.url.AddressUrl;
 import com.aglook.comapp.url.ConfirmOrderUrl;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
@@ -58,9 +62,21 @@ public class ConfirmOrderActivity extends BaseActivity {
     private ImageView left_icon;
 
     public static ConfirmOrderActivity instance = null;
+    private LinearLayout ll_info_confirm_order;
+    private CustomProgress customProgress;
 
+    //选择地址
+    public final int CHOOSE_ADDRESS = 1;
+    private final int FAPIAO=2;
 
+    private String defaultFlag = "1";//1默认 0 非默认（非必须）
+    private TextView tv_isNull;
+    private LinearLayout ll_content;
 
+    private Address address;
+    private TextView tv_isMoren;
+    private TextView tv_address;
+    private TextView tv_diqu;
 
     @Override
     public void initView() {
@@ -71,6 +87,7 @@ public class ConfirmOrderActivity extends BaseActivity {
         comAppApplication = (ComAppApplication) getApplication();
         init();
         click();
+        getAddressData();
     }
 
     public void init() {
@@ -86,8 +103,15 @@ public class ConfirmOrderActivity extends BaseActivity {
         lv_confirm_order.addFooterView(view);
         tv_zonge_confirm_order = (TextView) view.findViewById(id.tv_zonge_confirm_order);
         tv_shouxufei_confirm_order = (TextView) view.findViewById(id.tv_shouxufei_confirm_order);
+        tv_diqu = (TextView) view.findViewById(id.tv_diqu);
         left_icon = (ImageView) findViewById(id.left_icon);
         addCostMoney();
+
+        ll_info_confirm_order = (LinearLayout) findViewById(id.ll_info_confirm_order);
+        tv_isNull = (TextView) findViewById(id.tv_isNull);
+        ll_content = (LinearLayout) findViewById(id.ll_content);
+        tv_isMoren = (TextView) findViewById(id.tv_isMoren);
+        tv_address = (TextView) findViewById(id.tv_address);
     }
 
     //填充数据
@@ -178,6 +202,8 @@ public class ConfirmOrderActivity extends BaseActivity {
     public void click() {
         tv_confirm_confirm_order.setOnClickListener(this);
         left_icon.setOnClickListener(this);
+        ll_info_confirm_order.setOnClickListener(this);
+        tv_diqu.setOnClickListener(this);
     }
 
     @Override
@@ -204,6 +230,28 @@ public class ConfirmOrderActivity extends BaseActivity {
                 ConfirmOrderActivity.this.setResult(1);
                 ConfirmOrderActivity.this.finish();
                 break;
+            case R.id.ll_info_confirm_order:
+                intent.setClass(ConfirmOrderActivity.this, AddressListActivity.class);
+                if (address != null) {
+                    //传递id判断
+                    intent.putExtra("id", address.getId());
+                }
+                intent.putExtra("isFromConfirm",true);
+                startActivityForResult(intent, CHOOSE_ADDRESS);
+                break;
+            case R.id.tv_diqu:
+                intent.setClass(ConfirmOrderActivity.this,FaPiaoActivity.class);
+
+                startActivityForResult(intent,FAPIAO);
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CHOOSE_ADDRESS && resultCode == RESULT_OK) {
+            address = (Address) data.getSerializableExtra("selectAddress");
+            fillAddress();
         }
     }
 
@@ -220,8 +268,6 @@ public class ConfirmOrderActivity extends BaseActivity {
         }
 
     }
-
-
 
 
     private Dialog dialog;
@@ -295,5 +341,61 @@ public class ConfirmOrderActivity extends BaseActivity {
             }
         }.datePostCheck(DefineUtil.CREATE_ORDER, ConfirmOrderUrl.postConfirmOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartids, String.valueOf(allMoney), text, String.valueOf(costMoney)), ConfirmOrderActivity.this);
     }
+
+
+    //填充地址信息
+    public void fillAddress() {
+        if (address != null) {
+            tv_name_confirm_order.setText(address.getUserName());
+            tv_phone_confirm_order.setText(address.getUserPhone());
+            if (address.getDefaultFlag() != null) {
+                if (address.getDefaultFlag().equals("1")) {
+                    //默认
+                    tv_isMoren.setVisibility(View.VISIBLE);
+                } else {
+                    tv_isMoren.setVisibility(View.GONE);
+                }
+            }
+            tv_address.setText(address.getUserArea() + address.getUserAddress());
+        }
+    }
+
+    //获取数据
+    public void getAddressData() {
+        customProgress = CustomProgress.show(this, "", true);
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
+                Log.d("result_addresslist", arg0.result);
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
+                List<Address> sonList = new ArrayList<Address>();
+                if (status.equals("1")) {
+                    sonList = JsonUtils.parseList(obj, Address.class);
+                    if (sonList != null && sonList.size() != 0) {
+                        address = sonList.get(0);
+                        address.setCheck(true);
+                        ll_content.setVisibility(View.VISIBLE);
+                        tv_isNull.setVisibility(View.GONE);
+                        fillAddress();
+                    }
+                }
+
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
+            }
+        }.datePost(DefineUtil.ADDRESS_LIST, AddressUrl.postAddressListUrl(DefineUtil.USERID, DefineUtil.TOKEN, defaultFlag), ConfirmOrderActivity.this);
+    }
+
 
 }

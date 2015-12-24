@@ -251,7 +251,9 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(myReceiver);
+        if (myReceiver!=null) {
+            unregisterReceiver(myReceiver);
+        }
         DefineUtil.IS_LAUNCH = false;
     }
 

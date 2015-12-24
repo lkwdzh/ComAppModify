@@ -5,6 +5,25 @@
     android:background="@color/gray_eeeeee"
     android:orientation="vertical">
 
+    <View
+        style="@style/line_1"
+        android:layout_marginTop="@dimen/px_20" />
+
+    <LinearLayout style="@style/guadan_ll_weight">
+
+        <TextView
+            style="@style/foot_TextView_333333"
+            android:text="发票信息" />
+
+        <TextView
+            android:id="@+id/tv_diqu"
+            style="@style/foot_edittext_weight"
+            android:hint="请输入发票信息"
+            android:drawableRight="@drawable/next" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+
     <LinearLayout
         android:id="@+id/ll_con"
         android:layout_width="match_parent"
