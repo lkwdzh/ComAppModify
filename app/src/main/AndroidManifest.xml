@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aglook.comapp"
-    android:versionName="1.0" >
+    android:versionName="1.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -45,7 +45,7 @@
         android:allowBackup="true"
         android:icon="@drawable/tubiao"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="5666add8e0f55a3b0c0023ad" />
@@ -62,39 +62,39 @@
         <!-- 百度 -->
 
 
-        <!-- <meta-data  android:value="baidu" android:name="UMENG_CHANNEL"/> -->
-        <!-- <meta-data  android:value="baidu" android:name="channel"/> -->
+        <!--<meta-data  android:value="baidu" android:name="UMENG_CHANNEL"/>-->
+        <!--<meta-data  android:value="baidu" android:name="channel"/>-->
         <!-- 发布渠道 -->
         <!-- 百度 -->
 
 
         <!-- <!-安卓市场 -->
--->
-        <!-- <meta-data  android:value="anzhuo" android:name="UMENG_CHANNEL"/> -->
-        <!-- <meta-data  android:value="anzhuo" android:name="channel"/> -->
+        -->
+        <!--<meta-data  android:value="anzhuo" android:name="UMENG_CHANNEL"/>-->
+        <!--<meta-data  android:value="anzhuo" android:name="channel"/>-->
         <!-- 安卓市场 -->
 
 
         <!-- <!-QQ -->
--->
+        -->
         <!-- <meta-data  android:value="tengxun" android:name="UMENG_CHANNEL"/> -->
         <!-- <meta-data  android:value="tengxun" android:name="channel"/> -->
         <!-- <!-QQ -->
--->
+        -->
 
         <!-- <!-91 -->
--->
-        <!-- <meta-data  android:value="91sc" android:name="UMENG_CHANNEL"/> -->
-        <!-- <meta-data  android:value="91sc" android:name="channel"/> -->
+        -->
+        <!--<meta-data  android:value="91sc" android:name="UMENG_CHANNEL"/>-->
+        <!--<meta-data  android:value="91sc" android:name="channel"/>-->
         <!-- 91 -->
 
 
         <!-- <!-安智 -->
--->
+        -->
         <!-- <meta-data  android:value="anzhi" android:name="UMENG_CHANNEL"/> -->
         <!-- <meta-data  android:value="anzhi" android:name="channel"/> -->
         <!-- <!-安智 -->
--->
+        -->
 
         <!-- 自己服务器 -->
         <meta-data
@@ -105,7 +105,7 @@
             android:value="local" />
 
         <!-- <!-自己服务器 -->
--->
+        -->
 
         <!-- 发布渠道 -->
         <!-- 华为 -->
@@ -119,7 +119,7 @@
             android:name="cn.jpush.android.ui.PushActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="false"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
 
@@ -138,7 +138,7 @@
         <service
             android:name="cn.jpush.android.service.PushService"
             android:enabled="true"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTER" />
                 <action android:name="cn.jpush.android.intent.REPORT" />
@@ -152,7 +152,7 @@
         <service
             android:name="cn.jpush.android.service.DaemonService"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService" />
 
@@ -164,8 +164,8 @@
         <receiver
             android:name="cn.jpush.android.service.PushReceiver"
             android:enabled="true"
-            android:exported="false" >
-            <intent-filter android:priority="1000" >
+            android:exported="false">
+            <intent-filter android:priority="1000">
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
                 <!-- Required  显示通知栏 -->
                 <category android:name="com.aglook.comapp" />
@@ -192,7 +192,7 @@
         <receiver
             android:name=".receiver.MyReceiver"
             android:enabled="true"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTRATION" />
                 <!-- Required  用户注册SDK的intent -->
@@ -225,8 +225,7 @@
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" >
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".Activity.BaseActivity"
             android:label="@string/title_activity_base"
@@ -429,7 +428,7 @@
             android:name=".Activity.LaunchActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent" >
+            android:theme="@android:style/Theme.Translucent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -450,11 +449,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.AddAddressActivity"
-            android:label="@string/title_activity_add_address" >
-        </activity>
+            android:label="@string/title_activity_add_address"></activity>
         <activity
             android:name=".Activity.AddressListActivity"
-            android:label="@string/title_activity_address_list" >
+            android:label="@string/title_activity_address_list">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -465,8 +463,7 @@
         </activity>
         <activity
             android:name=".Activity.FaPiaoActivity"
-            android:label="@string/title_activity_fa_piao" >
-        </activity>
+            android:label="@string/title_activity_fa_piao"></activity>
     </application>
 
 </manifest>

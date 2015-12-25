@@ -74,7 +74,7 @@ public class BandCardActivity extends BaseActivity {
                 break;
             case R.id.right_text:
                 getInput();
-                bandCard();
+
                 break;
         }
     }
@@ -83,6 +83,23 @@ public class BandCardActivity extends BaseActivity {
         userName = AppUtils.toStringTrim_ET(et_name_bang_card);
         cardNo = AppUtils.toStringTrim_ET(et_num_bang_card);
         cardPhone = AppUtils.toStringTrim_ET(et_phone_bang_card);
+        if (userName==null||"".equals(userName)){
+            AppUtils.toastText(BandCardActivity.this,"账号名不能为空");
+            return;
+        }
+        if (cardNo==null||"".equals(cardNo)){
+            AppUtils.toastText(BandCardActivity.this,"银行卡号不能为空");
+            return;
+        }
+        if (bankCode==null||"".equals(bankCode)){
+            AppUtils.toastText(BandCardActivity.this,"请选择银行");
+            return;
+        }
+        if (cardPhone==null||"".equals(cardPhone)){
+            AppUtils.toastText(BandCardActivity.this,"银行预留手机号不能为空");
+            return;
+        }
+        bandCard();
     }
 
 

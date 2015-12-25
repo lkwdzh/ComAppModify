@@ -139,7 +139,11 @@ public class PickInfoActivity extends BaseActivity {
         originalListId = cangDanDetail.getOriginalListId();
         orderdataId=cangDanDetail.getOrderdataId();
         deliveryNum = AppUtils.toStringTrim_ET(et_pick_weight_pick_info);
-
+        if (deliveryNum==null||"".equals(deliveryNum)){
+            AppUtils.toastText(PickInfoActivity.this,"提货数量不能为空");
+            return;
+        }
+        pickUp();
     }
 
 
@@ -190,7 +194,7 @@ public class PickInfoActivity extends BaseActivity {
                 }
 
                 getInput();
-                pickUp();
+
                 break;
         }
     }

@@ -59,6 +59,7 @@ public class LoginActivity extends BaseActivity {
     private int index;
     private SpinnerAdapter adapter;
     private TextView tv_name;
+    private TextView tv_register;
 
     @Override
     public void initView() {
@@ -84,6 +85,7 @@ public class LoginActivity extends BaseActivity {
             accountType = "1";
         }
         tv_name.setText("用户名：");
+        tv_register = (TextView) findViewById(R.id.tv_register);
         fillData();
     }
 
@@ -120,6 +122,7 @@ public class LoginActivity extends BaseActivity {
                 return false;
             }
         });
+        tv_register.setOnClickListener(this);
     }
 
     @Override
@@ -137,11 +140,23 @@ public class LoginActivity extends BaseActivity {
                 mEditor.putString("accountType", accountType);
                 mEditor.putString("password", password);
                 mEditor.commit();
+                if (userName==null||"".equals(userName)){
+                    AppUtils.toastText(LoginActivity.this,"用户名或席位号不能为空");
+                    return;
+                }
 
+                if (password==null||"".equals(password)){
+                    AppUtils.toastText(LoginActivity.this,"密码不能为空");
+                    return;
+                }
                 login();
                 break;
             case R.id.tv_name:
                 showWindow(view);
+                break;
+            case R.id.tv_register:
+                intent.setClass(LoginActivity.this,RegisterActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -164,12 +179,21 @@ public class LoginActivity extends BaseActivity {
                     Log.d("result_login", DefineUtil.BANKBAND+"");
                     comAppApplication.setLogin(login);
                     // 发送广播给MainActivity
+                    //如果真实姓名，身份证与邮箱有一个为空，则去个人信息页面完善
+                    if ((login.getPshUser().getUserTName()==null||"".equals(login.getPshUser().getUserTName()))||
+                            (login.getPshUser().getUserId()==null||"".equals(login.getPshUser().getUserId()))
+                            ||( (login.getPshUser().getUserEmail()==null||"".equals(login.getPshUser().getUserEmail())))){
+                        Intent intent = new Intent(LoginActivity.this, BasicInformationActivity.class);
+                        LoginActivity.this.setResult(1);
+                        LoginActivity.this.finish();
+                        startActivity(intent);
+                    }else {
 
-
-                    LoginActivity.this.setResult(1);
-                    LoginActivity.this.finish();
-                    getCartListData();
-                    getNotPayData();
+                        LoginActivity.this.setResult(1);
+                        LoginActivity.this.finish();
+                    }
+                        getCartListData();
+                        getNotPayData();
                 }
                 AppUtils.toastText(LoginActivity.this, message);
             }

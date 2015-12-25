@@ -1,40 +1,66 @@
 package com.aglook.comapp.Activity;
 
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.content.Intent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.aglook.comapp.R;
+import com.aglook.comapp.util.AppUtils;
 
-public class FaPiaoActivity extends ActionBarActivity {
+public class FaPiaoActivity extends BaseActivity {
+
+
+    private EditText et_taitou;
+    private EditText et_content;
+    private String taitou;
+    private String content;
+    private Button btn_baocun;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void initView() {
         setContentView(R.layout.activity_fa_piao);
+        setTitleBar("发票详情");
+        init();
+        click();
     }
 
+    public void init(){
+        et_taitou = (EditText) findViewById(R.id.et_taitou);
+        et_content = (EditText) findViewById(R.id.et_content);
+        btn_baocun = (Button) findViewById(R.id.btn_baocun);
+        taitou=getIntent().getStringExtra("taitou");
+        content=getIntent().getStringExtra("content");
+        et_taitou.setText(taitou);
+        et_content.setText(content);
+    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_fa_piao, menu);
-        return true;
+    public void click(){
+    btn_baocun.setOnClickListener(this);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void widgetClick(View view) {
+        switch (view.getId()){
+            case R.id.btn_baocun:
+                taitou= AppUtils.toStringTrim_ET(et_taitou);
+                content=AppUtils.toStringTrim_ET(et_content);
+                if (taitou==null||"".equals(taitou)){
+                    AppUtils.toastText(FaPiaoActivity.this,"请输入发票抬头");
+                    return;
+                }
+                if (content==null||"".equals(content)){
+                    AppUtils.toastText(FaPiaoActivity.this,"请输入发票内容");
+                    return;
+                }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+                Intent intent = new Intent(FaPiaoActivity.this, ConfirmOrderActivity.class);
+                intent.putExtra("taitou",taitou);
+                intent.putExtra("content",content);
+                FaPiaoActivity.this.setResult(RESULT_OK,intent);
+                FaPiaoActivity.this.finish();
+                break;
         }
-
-        return super.onOptionsItemSelected(item);
     }
+
 }

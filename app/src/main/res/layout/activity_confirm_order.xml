@@ -24,6 +24,7 @@
             android:text="请新建收货地址以确保商品准确送达"
             android:textColor="@color/textcolor_333333"
             android:textSize="13sp"
+            android:visibility="visible"
             android:gravity="center" />
 
         <LinearLayout

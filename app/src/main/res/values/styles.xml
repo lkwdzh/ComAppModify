@@ -302,12 +302,43 @@
         <item name="android:layout_marginLeft">@dimen/px_25</item>
         <item name="android:layout_weight">1</item>
     </style>
-
+    <!--黑色333333的textview_15sp_-->
+    <style name="register_TextView_333333" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/textcolor_333333</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">@dimen/px_25</item>
+        <item name="android:layout_weight">1</item>
+    </style>
     <style name="guadan_edittext_weight">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginLeft">@dimen/px_10</item>
         <item name="android:layout_weight">2</item>
+        <item name="android:background">@null</item>
+        <item name="android:textColorHint">@color/textcolor_999999</item>
+        <item name="android:textColor">@color/textcolor_666666</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="register_edittext_weight">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">@dimen/px_10</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:background">@null</item>
+        <item name="android:textColorHint">@color/textcolor_999999</item>
+        <item name="android:textColor">@color/textcolor_666666</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="guadan_edittext_weight_1">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">@dimen/px_10</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:background">@null</item>
         <item name="android:textColorHint">@color/textcolor_999999</item>
         <item name="android:textColor">@color/textcolor_666666</item>
@@ -518,5 +549,47 @@
             <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
 
         </style>
+
+
+
+    <!--我的界面的weightsum=3的linearlayout-->
+    <style name="ll_match_wrap_content_horWe3">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:paddingLeft">@dimen/px_20</item>
+        <item name="android:paddingRight">@dimen/px_20</item>
+        <item name="android:weightSum">3</item>
+    </style>
+
+
+    <!--黑色333333的textview_13sp_-->
+    <style name="save_TextView_333333_13" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/textcolor_333333</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingLeft">@dimen/px_20</item>
+        <item name="android:paddingTop">@dimen/px_20</item>
+        <item name="android:paddingBottom">@dimen/px_20</item>
+    </style>
+
+    <!--黑色666666的textview_13sp_center-->
+    <style name="save_TextView_666666_13_center" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/textcolor_666666</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColorHint">@color/textcolor_999999</item>
+        <item name="android:background">@null</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:paddingLeft">@dimen/px_20</item>
+        <item name="android:paddingTop">@dimen/px_20</item>
+        <item name="android:paddingBottom">@dimen/px_20</item>
+    </style>
 </resources>
 

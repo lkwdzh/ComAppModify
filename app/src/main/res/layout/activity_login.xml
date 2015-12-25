@@ -125,4 +125,10 @@
         android:textColor="@color/white"
         android:textSize="13sp" />
 
+    <TextView
+        android:id="@+id/tv_register"
+        style="@style/redTextView_c91014"
+        android:layout_marginLeft="@dimen/px_20"
+        android:layout_marginTop="@dimen/px_20"
+        android:text="点击注册" />
 </LinearLayout>

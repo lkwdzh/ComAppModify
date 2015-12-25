@@ -2,8 +2,10 @@ package com.aglook.comapp.Activity;
 
 import android.content.Intent;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
@@ -39,6 +41,7 @@ public class BasicInformationActivity extends BaseActivity {
 
     private SelectPopupWindow popupWindow;
     private EditText et_qq_basic_info;
+    private ImageView left_icon;
 
 
     @Override
@@ -61,7 +64,8 @@ public class BasicInformationActivity extends BaseActivity {
         right_text.setVisibility(View.VISIBLE);
         right_text.setText("完成");
         login = comAppApplication.getLogin();
-//        rl_right = (RelativeLayout) findViewById(R.id.rl_right);
+        left_icon = (ImageView) findViewById(R.id.left_icon);
+
         et_username_basic_info = (TextView) findViewById(R.id.et_username_basic_info);
         et_truename_basic_info = (EditText) findViewById(R.id.et_truename_basic_info);
         tv_seat_basic_info = (TextView) findViewById(R.id.tv_seat_basic_info);
@@ -71,10 +75,57 @@ public class BasicInformationActivity extends BaseActivity {
         et_guding_basic_info = (EditText) findViewById(R.id.et_guding_basic_info);
         tv_change_basic_info = (TextView) findViewById(R.id.tv_change_basic_info);
         et_qq_basic_info = (EditText) findViewById(R.id.et_qq_basic_info);
+        if ((login.getPshUser().getUserTName()==null||"".equals(login.getPshUser().getUserTName()))||
+                (login.getPshUser().getUserId()==null||"".equals(login.getPshUser().getUserId()))
+                ||( (login.getPshUser().getUserEmail()==null||"".equals(login.getPshUser().getUserEmail())))){
+            //有一个为空
+            left_icon.setVisibility(View.GONE);
+            et_truename_basic_info.setFocusable(true);
+            et_truename_basic_info.setFocusableInTouchMode(true);
+            et_truename_basic_info.requestFocus();
+
+            et_email_basic_info.setFocusable(true);
+            et_email_basic_info.setFocusableInTouchMode(true);
+            et_email_basic_info.requestFocus();
+
+            et_num_basic_info.setFocusable(true);
+            et_num_basic_info.setFocusableInTouchMode(true);
+            et_num_basic_info.requestFocus();
+
+
+        }else {
+            left_icon.setVisibility(View.VISIBLE);
+            et_truename_basic_info.setFocusable(false);
+            et_truename_basic_info.setFocusableInTouchMode(false);
+            et_email_basic_info.setFocusable(false);
+            et_email_basic_info.setFocusableInTouchMode(false);
+            et_num_basic_info.setFocusable(false);
+            et_num_basic_info.setFocusableInTouchMode(false);
+
+            et_truename_basic_info.setText(login.getPshUser().getUserTName());
+            et_num_basic_info.setText(login.getPshUser().getUserId());
+            et_email_basic_info.setText(login.getPshUser().getUserEmail());
+        }
         fillData();
     }
 
+    //监听返回键
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            if ((login.getPshUser().getUserTName()==null||"".equals(login.getPshUser().getUserTName()))||
+                    (login.getPshUser().getUserId()==null||"".equals(login.getPshUser().getUserId()))
+                    ||( (login.getPshUser().getUserEmail()==null||"".equals(login.getPshUser().getUserEmail())))){
+                return true;
+            }else {
+                BasicInformationActivity.this.finish();
+                return false;
+            }
+        } else {
+            return super.onKeyDown(keyCode, event);
+        }
 
+    }
     //填充数据
     public void fillData() {
         if (login != null) {

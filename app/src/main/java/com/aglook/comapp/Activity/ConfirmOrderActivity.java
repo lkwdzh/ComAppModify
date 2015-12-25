@@ -78,6 +78,8 @@ public class ConfirmOrderActivity extends BaseActivity {
     private TextView tv_address;
     private TextView tv_diqu;
 
+    private String taitou,content;//发票信息
+
     @Override
     public void initView() {
         setContentView(R.layout.activity_confirm_order);
@@ -117,8 +119,8 @@ public class ConfirmOrderActivity extends BaseActivity {
     //填充数据
     public void fillData() {
         if (login != null) {
-            tv_name_confirm_order.setText(login.getPshUser().getUsername());
-            tv_phone_confirm_order.setText(login.getPshUser().getUserPhone());
+//            tv_name_confirm_order.setText(login.getPshUser().getUsername());
+//            tv_phone_confirm_order.setText(login.getPshUser().getUserPhone());
             tv_zonge_confirm_order.setText(goodsMoney + "");
             tv_shouxufei_confirm_order.setText(costMoney + "");
             tv_money_confirm_order.setText(allMoney + "");
@@ -195,6 +197,7 @@ public class ConfirmOrderActivity extends BaseActivity {
             }
 //            list.add(mList.get(i).getCartId());
             cartids = jsonArray.toString();
+
         }
 //        cartids=list.toString().substring(1,list.size()-1);
     }
@@ -241,7 +244,8 @@ public class ConfirmOrderActivity extends BaseActivity {
                 break;
             case R.id.tv_diqu:
                 intent.setClass(ConfirmOrderActivity.this,FaPiaoActivity.class);
-
+                intent.putExtra("taitou",taitou);
+                intent.putExtra("content",content);
                 startActivityForResult(intent,FAPIAO);
                 break;
         }
@@ -252,6 +256,10 @@ public class ConfirmOrderActivity extends BaseActivity {
         if (requestCode == CHOOSE_ADDRESS && resultCode == RESULT_OK) {
             address = (Address) data.getSerializableExtra("selectAddress");
             fillAddress();
+        }else if (requestCode==FAPIAO&&resultCode==RESULT_OK){
+            taitou=data.getStringExtra("taitou");
+            content=data.getStringExtra("content");
+            tv_diqu.setText(taitou);
         }
     }
 

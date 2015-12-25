@@ -90,6 +90,7 @@ public class PersonInformationActivity extends BaseActivity {
             case R.id.tv_friend_person_info:
                 intent.setClass(PersonInformationActivity.this,GoodsCollectActivity.class);
                 startActivity(intent);
+                break;
             case R.id.tv_address_person_info:
                 intent.setClass(PersonInformationActivity.this,AddressListActivity.class);
                 startActivity(intent);

@@ -1,67 +1,208 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-   style="@style/ll_match_content_ver"
-    android:background="@color/white"
-    android:gravity="center_vertical"
-    >
-    <LinearLayout
-        style="@style/ll_match_wrap_content_hor"
-        android:padding="@dimen/px_20"
-        android:weightSum="4"
-        android:gravity="center_vertical">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="用户名:"
-            android:textSize="20sp"/>
-        <EditText
-            android:id="@+id/et_username_register"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="wrap_content"
-            android:hint="请输入用户名"/>
-        </LinearLayout>
-    <LinearLayout
-        style="@style/ll_match_wrap_content_hor"
-        android:padding="@dimen/px_20"
-        android:weightSum="4"
-        android:gravity="center_vertical">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="密 码:"
-            android:textSize="20sp"/>
-        <EditText
-            android:id="@+id/et_password_first_register"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="wrap_content"
-            android:hint="请输入密码"/>
-    </LinearLayout>
-    <LinearLayout
-        style="@style/ll_match_wrap_content_hor"
-        android:padding="@dimen/px_20"
-        android:weightSum="4"
-        android:gravity="center_vertical">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="密 码:"
-            android:textSize="20sp"/>
-        <EditText
-            android:id="@+id/et_password_second_register"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="wrap_content"
-            android:hint="请再次输入密码"/>
-    </LinearLayout>
-    <Button
-        android:id="@+id/btn_register"
-        android:text="注册"
-        android:textSize="20sp"
+    style="@style/ll_match_content_ver"
+    android:background="@color/gray_eeeeee">
+
+    <include layout="@layout/activity_base_title_bar" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:background="@color/gray_eeeeee"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/gray_eeeeee">
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/ll_match_wrap_content_horWe3">
+
+                <TextView
+                    style="@style/save_TextView_333333_13"
+                    android:text="用户名" />
+
+                <EditText
+                    android:id="@+id/et_username_register"
+                    style="@style/save_TextView_666666_13_center"
+                    android:maxLength="15"
+                    android:hint="请输入6-15位字符" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/ll_match_wrap_content_horWe3">
+
+                <TextView
+                    style="@style/save_TextView_333333_13"
+                    android:text="密码" />
+
+                <EditText
+                    android:id="@+id/et_password__register"
+                    style="@style/save_TextView_666666_13_center"
+                    android:inputType="textPassword"
+                    android:maxLength="20"
+                    android:hint="请输入6-20位字符" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/ll_match_wrap_content_horWe3">
+
+                <TextView
+                    style="@style/save_TextView_333333_13"
+                    android:text="手机号" />
+
+                <EditText
+                    android:id="@+id/et_phone__register"
+                    style="@style/save_TextView_666666_13_center"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:hint="请输入手机号" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout
+                style="@style/ll_match_wrap_content_horWe3"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/save_TextView_333333_13"
+                    android:text="验证码" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/et_code_register"
+                        style="@style/save_TextView_666666_13_center"
+                        android:layout_marginRight="@dimen/px_20"
+                        android:inputType="number"
+                        android:hint="请输入验证码" />
+
+                    <TextView
+                        android:id="@+id/tv_code_register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:textColor="@color/red_c91014"
+                        android:background="@drawable/delete"
+                        android:text="验证码" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+
+            <LinearLayout style="@style/ll_match_wrap_content_horWe3">
+
+                <TextView
+                    style="@style/save_TextView_333333_13"
+                    android:text="类型" />
+
+                <RadioGroup
+                    android:id="@+id/rg_type"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_person"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:layout_marginLeft="@dimen/px_20"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:background="@drawable/rb_check"
+                        android:checked="true"
+                        android:text="个人" />
+
+                    <RadioButton
+                        android:id="@+id/rb_company"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:layout_marginLeft="@dimen/px_40"
+                        android:textColor="@color/textcolor_333333"
+                        android:background="@drawable/rb_check"
+                        android:textSize="13sp"
+                        android:text="公司" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout
+                android:id="@+id/ll_company"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <LinearLayout style="@style/ll_match_wrap_content_horWe3">
+
+                    <TextView
+                        style="@style/save_TextView_333333_13"
+                        android:text="公司名称" />
+
+                    <EditText
+                        android:id="@+id/et_company_register"
+                        style="@style/save_TextView_666666_13_center"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:hint="请输入公司名称" />
+                </LinearLayout>
+
+                <View style="@style/line_1" />
+                <LinearLayout style="@style/ll_match_wrap_content_horWe3">
+
+                    <TextView
+                        style="@style/save_TextView_333333_13"
+                        android:text="公司地址" />
+
+                    <EditText
+                        android:id="@+id/et_company_address_register"
+                        style="@style/save_TextView_666666_13_center"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:hint="请输入公司地址" />
+                </LinearLayout>
+
+                <View style="@style/line_1" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_50"
+                android:layout_marginRight="@dimen/px_50"
+                android:layout_marginTop="@dimen/px_20"
+                android:background="@drawable/anjian"
+                android:gravity="center"
+                android:text="注册"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
 </LinearLayout>

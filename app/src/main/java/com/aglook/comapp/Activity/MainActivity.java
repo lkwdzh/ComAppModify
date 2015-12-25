@@ -78,12 +78,14 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
 
     private boolean isGoods = false;
     private TextView tv_shopping_point;
+    public static MainActivity instance=null;
 
     //private DbUtils db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        instance=this;
         ExitApplication.getInstance().addActivity(this);
         comAppApplication = (ComAppApplication) getApplication();
         isJpush = getIntent().getBooleanExtra("isJpush", false);
@@ -266,6 +268,9 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
             } else {
                 tv_shopping_point.setVisibility(View.INVISIBLE);
             }
+
+
+
         }
     };
 
@@ -352,6 +357,9 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         MobclickAgent.onResume(this);
         if (comAppApplication.getLogin() != null) {
             getNotPayData();
+        }
+        if (comAppApplication.getLogin()==null){
+            tv_shopping_point.setVisibility(View.INVISIBLE);
         }
         if (DefineUtil.FLAG == 2) {
             Log.d("result_DefineUtil.FLAG_re", DefineUtil.FLAG + "");

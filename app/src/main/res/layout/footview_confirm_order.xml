@@ -9,7 +9,8 @@
         style="@style/line_1"
         android:layout_marginTop="@dimen/px_20" />
 
-    <LinearLayout style="@style/guadan_ll_weight">
+    <LinearLayout style="@style/guadan_ll_weight"
+       >
 
         <TextView
             style="@style/foot_TextView_333333"

@@ -128,6 +128,13 @@ public class DefineUtil {
     //帮助中心
     public static String SETTING_HELP = URL_HOST + "index/help";
 
+    /**
+     * 注册
+     */
+    public static String REGISTER=URL_HOST+"userInfo/register";
+    //验证码
+    public static String GETPHONECODE=URL_HOST+"userInfo/getPhoneCode";
+
 
     /**
      * 地址管理

@@ -1,5 +1,8 @@
 package com.aglook.comapp.url;
 
+import android.util.Log;
+
+import com.google.gson.Gson;
 import com.lidroid.xutils.http.RequestParams;
 
 /**
@@ -16,6 +19,7 @@ public class ConfirmOrderUrl {
         params.addBodyParameter("money",money);
         params.addBodyParameter("text",text);
         params.addBodyParameter("totalFee",totalFee);
+        Log.d("result_confirmOrder", new Gson().toJson(params));
         return params;
     }
 }

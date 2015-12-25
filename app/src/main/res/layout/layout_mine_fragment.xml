@@ -354,7 +354,7 @@
                         <TextView
                             android:id="@+id/tv_cangdan_mine_fragment"
                             style="@style/orderDetail_TextView_666666_12"
-                            android:text="@string/mine_fragment_my_cang_dan" />
+                            android:text="原始仓单" />
                     </LinearLayout>
 
                     <LinearLayout

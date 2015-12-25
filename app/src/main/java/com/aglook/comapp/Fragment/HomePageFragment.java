@@ -29,6 +29,7 @@ import android.widget.TextView;
 
 import com.aglook.comapp.Activity.ClassifyActivity;
 import com.aglook.comapp.Activity.LoginActivity;
+import com.aglook.comapp.Activity.MainActivity;
 import com.aglook.comapp.Activity.MyCangDanActivity;
 import com.aglook.comapp.Activity.PlatformActivity;
 import com.aglook.comapp.Activity.SearchActivity;
@@ -196,7 +197,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (myReceiver2!=null) {
+        if (MainActivity.instance!=null) {
             getActivity().unregisterReceiver(myReceiver2);
         }
     }
