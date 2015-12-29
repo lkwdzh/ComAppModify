@@ -12,7 +12,6 @@
     <!-- <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> -->
     <!-- <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission> -->
 
-
     <!-- 极光推送 -->
     <permission
         android:name="com.aglook.comapp.permission.JPUSH_MESSAGE"
@@ -62,16 +61,16 @@
         <!-- 百度 -->
 
 
-        <!--<meta-data  android:value="baidu" android:name="UMENG_CHANNEL"/>-->
-        <!--<meta-data  android:value="baidu" android:name="channel"/>-->
+        <!-- <meta-data  android:value="baidu" android:name="UMENG_CHANNEL"/> -->
+        <!-- <meta-data  android:value="baidu" android:name="channel"/> -->
         <!-- 发布渠道 -->
         <!-- 百度 -->
 
 
         <!-- <!-安卓市场 -->
         -->
-        <!--<meta-data  android:value="anzhuo" android:name="UMENG_CHANNEL"/>-->
-        <!--<meta-data  android:value="anzhuo" android:name="channel"/>-->
+        <!-- <meta-data  android:value="anzhuo" android:name="UMENG_CHANNEL"/> -->
+        <!-- <meta-data  android:value="anzhuo" android:name="channel"/> -->
         <!-- 安卓市场 -->
 
 
@@ -84,8 +83,8 @@
 
         <!-- <!-91 -->
         -->
-        <!--<meta-data  android:value="91sc" android:name="UMENG_CHANNEL"/>-->
-        <!--<meta-data  android:value="91sc" android:name="channel"/>-->
+        <!-- <meta-data  android:value="91sc" android:name="UMENG_CHANNEL"/> -->
+        <!-- <meta-data  android:value="91sc" android:name="channel"/> -->
         <!-- 91 -->
 
 
@@ -220,12 +219,60 @@
             android:value="a1e5c517ff725468b26b6e23" />
         <!-- </>值来自开发者平台取得的AppKey -->
 
+
+
+        <!-- ###################注册SDK使用的Activity###################### -->
+        <!--分享编辑页-->
+        <activity
+            android:name="com.umeng.socialize.view.ShareActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:theme="@style/Theme.UMDialog"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
+        </activity>
+
+        <!-- ############ QQ空间和QQ SSO授权的Activity注册 ############ -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- 100424468，如果你使用的公用账号，则不需要修改；否则修改成你在QQ开放平台申请的 APP ID-->
+                <data android:scheme="1105045872" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.tencent.connect.common.AssistActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+
+
+        <!-- ###################添加UmengAppkey###################### -->
+
+
+        <!-- 微信回调activity -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+
+
+
         <activity
             android:name=".Activity.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Activity.BaseActivity"
             android:label="@string/title_activity_base"
@@ -449,7 +496,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.AddAddressActivity"
-            android:label="@string/title_activity_add_address"></activity>
+            android:label="@string/title_activity_add_address" />
         <activity
             android:name=".Activity.AddressListActivity"
             android:label="@string/title_activity_address_list">
@@ -463,7 +510,13 @@
         </activity>
         <activity
             android:name=".Activity.FaPiaoActivity"
-            android:label="@string/title_activity_fa_piao"></activity>
+            android:label="@string/title_activity_fa_piao" />
+        <activity
+            android:name=".Activity.VersionActivity"
+            android:label="@string/title_activity_version"></activity>
+        <activity
+            android:name=".Activity.IntroActivity"
+            android:label="@string/title_activity_intro"></activity>
     </application>
 
 </manifest>

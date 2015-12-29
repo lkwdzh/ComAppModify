@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.ShoppingCart;
 import com.aglook.comapp.url.ShoppingCartUrl;
+import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XBitmap;
@@ -37,6 +38,8 @@ public class ShoppingCartAdapter extends BaseAdapter {
 
     private String deleteFlag;
     private boolean isEditting;
+    private int numAdd;
+    private int numCut;
 
     public ShoppingCartAdapter(Activity context, List<ShoppingCart> list, CallBackData callBackData) {
         this.context = context;
@@ -63,10 +66,12 @@ public class ShoppingCartAdapter extends BaseAdapter {
         return 0;
     }
 
+    private ViewHolder holder;
+    private ShoppingCart shoppingCart;
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final ViewHolder holder;
+//        final ViewHolder holder;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.layout_shoppring_cart_listview, null);
             holder = new ViewHolder(convertView);
@@ -75,8 +80,9 @@ public class ShoppingCartAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        final ShoppingCart shoppingCart = list.get(position);
+//        final ShoppingCart shoppingCart = list.get(position);
 
+        shoppingCart = list.get(position);
         holder.tv_count_shopping_cart_listview.setText(shoppingCart.getProductNum() + "");
         holder.cb_shopping_cart_listview.setChecked(shoppingCart.isChecked());
         XBitmap.displayImage(holder.iv_shopping_cart_listview, shoppingCart.getProductLogo(), context);
@@ -103,18 +109,18 @@ public class ShoppingCartAdapter extends BaseAdapter {
         holder.iv_add_shopping_cart_listview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                int numAdd = Integer.parseInt(AppUtils.toStringTrim_TV(holder.tv_count_shopping_cart_listview));
-                int numAdd = list.get(position).getProductNum();
+//                int numAdd = list.get(position).getProductNum();
+                numAdd = list.get(position).getProductNum();
                 //给产品id赋值
                 cartId = list.get(position).getCartId();
                 numAdd++;
-                shoppingCart.setProductNum(numAdd);
-                holder.tv_count_shopping_cart_listview.setText(numAdd + "");
-
-                double total = numAdd * shoppingCart.getProductMoney();
-                holder.tv_total_shopping_cart_listview.setText(total + "");
-                shoppingCart.setTotal(total);
                 productNum = numAdd + "";
+//                shoppingCart.setProductNum(numAdd);
+//                holder.tv_count_shopping_cart_listview.setText(numAdd + "");
+//
+//                double total = numAdd * shoppingCart.getProductMoney();
+//                holder.tv_total_shopping_cart_listview.setText(total + "");
+//                shoppingCart.setTotal(total);
                 addCart();
             }
         });
@@ -125,21 +131,22 @@ public class ShoppingCartAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
 //                int numCut = Integer.parseInt(AppUtils.toStringTrim_TV(holder.tv_count_shopping_cart_listview));
-                int numCut = list.get(position).getProductNum();
+                numCut = list.get(position).getProductNum();
                 //给产品id赋值
                 cartId = list.get(position).getCartId();
                 if (numCut > 1) {
                     numCut--;
                 } else {
                     numCut = 1;
+                    return;
                 }
-                shoppingCart.setProductNum(numCut);
-                holder.tv_count_shopping_cart_listview.setText(numCut + "");
-                double total = numCut * shoppingCart.getProductMoney();
-                holder.tv_total_shopping_cart_listview.setText(total + "");
-                shoppingCart.setTotal(total);
                 productNum = numCut + "";
-                addCart();
+//                shoppingCart.setProductNum(numCut);
+//                holder.tv_count_shopping_cart_listview.setText(numCut + "");
+//                double total = numCut * shoppingCart.getProductMoney();
+//                holder.tv_total_shopping_cart_listview.setText(total + "");
+//                shoppingCart.setTotal(total);
+                cutCart();
             }
         });
 
@@ -225,11 +232,19 @@ public class ShoppingCartAdapter extends BaseAdapter {
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
+//                    numAdd++;
+                    shoppingCart.setProductNum(numAdd);
+                    holder.tv_count_shopping_cart_listview.setText(numAdd + "");
+
+                    double total = numAdd * shoppingCart.getProductMoney();
+                    holder.tv_total_shopping_cart_listview.setText(total + "");
+                    shoppingCart.setTotal(total);
+//                productNum = numAdd + "";
                     dataChange();
+                } else {
+                    numAdd--;
+                    AppUtils.toastText(context, message);
                 }
-//                else {
-//                    AppUtils.toastText(context, message);
-//                }
             }
 
             @Override
@@ -237,8 +252,45 @@ public class ShoppingCartAdapter extends BaseAdapter {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
+                numAdd--;
             }
         }.datePost(DefineUtil.EDIT_CART, ShoppingCartUrl.postDeleteUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartId, productNum, "0"), context);
     }
+
+
+    public void cutCart() {
+        customProgress = CustomProgress.show(context, "", true);
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                if (status.equals("1")) {
+                    shoppingCart.setProductNum(numCut);
+                    holder.tv_count_shopping_cart_listview.setText(numCut + "");
+                    double total = numCut * shoppingCart.getProductMoney();
+                    holder.tv_total_shopping_cart_listview.setText(total + "");
+                    shoppingCart.setTotal(total);
+//                    productNum = numCut + "";
+                    dataChange();
+                } else {
+                    numCut++;
+                    AppUtils.toastText(context, message);
+                }
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
+                numCut++;
+            }
+        }.datePost(DefineUtil.EDIT_CART, ShoppingCartUrl.postDeleteUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartId, productNum, "0"), context);
+    }
+
 
 }

@@ -47,6 +47,7 @@ public class RegisterActivity extends BaseActivity {
     private String userCompany;
     private String userAddres;
     private Button btn_register;
+    private String userCode;
 
     private int time=60;
 
@@ -66,6 +67,8 @@ public class RegisterActivity extends BaseActivity {
             }
         }
     };
+    private EditText et_tuijian__register;
+
     @Override
     public void initView() {
         setContentView(R.layout.activity_register);
@@ -86,6 +89,7 @@ public class RegisterActivity extends BaseActivity {
         et_company_register = (EditText) findViewById(R.id.et_company_register);
         et_company_address_register = (EditText) findViewById(R.id.et_company_address_register);
         btn_register = (Button) findViewById(R.id.btn_register);
+        et_tuijian__register = (EditText) findViewById(R.id.et_tuijian__register);
     }
 
     public void click() {
@@ -136,11 +140,12 @@ public class RegisterActivity extends BaseActivity {
     //获取输入值
     public void getInput() {
         userName = AppUtils.toStringTrim_ET(et_username_register);
-        userPw = AppUtils.toStringTrim_ET(et_phone__register);
+        userPw = AppUtils.toStringTrim_ET(et_password__register);
         userPhone = AppUtils.toStringTrim_ET(et_phone__register);
         authCode = AppUtils.toStringTrim_ET(et_code_register);
         userCompany = AppUtils.toStringTrim_ET(et_company_register);
         userAddres = AppUtils.toStringTrim_ET(et_company_address_register);
+        userCode=AppUtils.toStringTrim_ET(et_tuijian__register);
         if (userName == null || "".equals(userName)) {
             AppUtils.toastText(RegisterActivity.this, "请输入用户名");
             return;
@@ -242,7 +247,7 @@ public class RegisterActivity extends BaseActivity {
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        }.datePostCheck(DefineUtil.REGISTER, RegisterUrl.postRegisterUrl(userName, userPw, userPhone, authCode, userType, userCompany, userAddres), RegisterActivity.this);
+        }.datePostCheck(DefineUtil.REGISTER, RegisterUrl.postRegisterUrl(userName, userPw, userPhone, authCode, userType, userCompany, userAddres,userCode), RegisterActivity.this);
     }
 
 }

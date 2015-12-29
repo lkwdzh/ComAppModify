@@ -10,183 +10,225 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout
-        style="@style/ll_match_content_ver"
-        android:background="@color/gray_eeeeee">
+        <LinearLayout
+            style="@style/ll_match_content_ver"
+            android:background="@color/gray_eeeeee">
 
 
-        <!--<View-->
+            <!--<View-->
             <!--style="@style/line_1"-->
             <!--android:layout_marginTop="@dimen/px_14" />-->
 
-        <!--<LinearLayout style="@style/basic_infor_ll_weight">-->
+            <!--<LinearLayout style="@style/basic_infor_ll_weight">-->
 
             <!--<TextView-->
-                <!--style="@style/basic_infor_TextView_333333"-->
-                <!--android:text="@string/basic_information_icon" />-->
+            <!--style="@style/basic_infor_TextView_333333"-->
+            <!--android:text="@string/basic_information_icon" />-->
 
             <!--<RelativeLayout-->
-                <!--android:id="@+id/rl_right"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center_vertical"-->
-                <!--android:layout_weight="3">-->
+            <!--android:id="@+id/rl_right"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_weight="3">-->
 
-                <!--<ImageView-->
-                    <!--android:id="@+id/iv_right"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_alignParentRight="true"-->
-                    <!--android:layout_centerVertical="true"-->
-                    <!--android:src="@drawable/next" />-->
+            <!--<ImageView-->
+            <!--android:id="@+id/iv_right"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:src="@drawable/next" />-->
 
-                <!--<ImageView-->
-                    <!--android:id="@+id/tv_icon_basic_information"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_toLeftOf="@+id/iv_right"-->
-                    <!--android:src="@drawable/tongxun" />-->
+            <!--<ImageView-->
+            <!--android:id="@+id/tv_icon_basic_information"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_toLeftOf="@+id/iv_right"-->
+            <!--android:src="@drawable/tongxun" />-->
             <!--</RelativeLayout>-->
-        <!--</LinearLayout>-->
+            <!--</LinearLayout>-->
 
-        <View style="@style/line_1" />
+            <View style="@style/line_1" />
 
-        <LinearLayout style="@style/basic_infor_ll_weight">
+            <LinearLayout style="@style/basic_infor_ll_weight">
 
-            <TextView
-                style="@style/basic_infor_TextView_333333"
-                android:text="@string/basic_information_name" />
+                <TextView
+                    style="@style/basic_infor_TextView_333333"
+                    android:text="@string/basic_information_name" />
 
-            <TextView
-                android:id="@+id/et_username_basic_info"
-                style="@style/basic_infor_edittext_weight"
-                android:hint="请输入用户名" />
+                <TextView
+                    android:id="@+id/et_username_basic_info"
+                    style="@style/basic_infor_edittext_weight"
+                    android:hint="请输入用户名" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/basic_infor_ll_weight">
+
+                <TextView
+                    style="@style/basic_infor_TextView_333333"
+                    android:text="@string/basic_information_true_name" />
+
+                <EditText
+                    android:id="@+id/et_truename_basic_info"
+                    style="@style/basic_infor_edittext_weight"
+                    android:hint="请输入真实姓名" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/basic_infor_ll_weight">
+
+                <TextView
+                    style="@style/basic_infor_TextView_333333"
+                    android:text="席位号" />
+
+                <TextView
+                    android:id="@+id/tv_seat_basic_info"
+                    style="@style/basic_infor_edittext_weight" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/basic_infor_ll_weight">
+
+                <TextView
+                    style="@style/basic_infor_TextView_333333"
+                    android:text="@string/basic_information_id_card" />
+
+                <EditText
+                    android:id="@+id/et_num_basic_info"
+                    style="@style/basic_infor_edittext_weight"
+                    android:digits="1234567890x"
+                    android:maxLength="18"
+                    android:hint="请输入身份证号" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/basic_infor_ll_weight">
+
+                <TextView
+                    style="@style/basic_infor_TextView_333333"
+                    android:text="@string/basic_information_email" />
+
+                <EditText
+                    android:id="@+id/et_email_basic_info"
+                    style="@style/basic_infor_edittext_weight"
+                    android:inputType="textEmailAddress"
+                    android:hint="请输入邮箱" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout
+                android:visibility="gone"
+                style="@style/basic_infor_ll_weight">
+
+                <TextView
+                    style="@style/basic_infor_TextView_333333"
+                    android:text="QQ" />
+
+                <EditText
+                    android:id="@+id/et_qq_basic_info"
+                    style="@style/basic_infor_edittext_weight"
+                    android:inputType="number"
+                    android:hint="请输入QQ号" />
+            </LinearLayout>
+
+
+            <View
+                style="@style/line_1"
+                android:layout_marginTop="@dimen/px_14" />
+
+
+            <LinearLayout
+                style="@style/basic_infor_ll_weight"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/basic_infor_TextView_333333"
+                    android:text="@string/basic_information_fix_num" />
+
+                <EditText
+                    android:id="@+id/et_guding_basic_info"
+                    style="@style/basic_infor_edittext_weight"
+                    android:digits="1234567890-"
+                    android:hint="请输入固定电话" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <View
+                style="@style/line_1"
+                android:visibility="gone" />
+
+            <LinearLayout style="@style/basic_infor_ll_weight">
+
+                <TextView
+                    style="@style/basic_infor_TextView_333333"
+                    android:text="@string/basic_information_phone_num" />
+
+                <EditText
+                    android:id="@+id/et_phone_basic_info"
+                    style="@style/basic_infor_edittext_weight"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:hint="请输入手机号" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout
+                style="@style/basic_infor_ll_weight"
+                android:id="@+id/ll_company">
+
+                <TextView
+                    style="@style/basic_infor_TextView_333333"
+                    android:text="公司名称" />
+
+                <TextView
+                    android:id="@+id/tv_company_basic_info"
+                    style="@style/basic_infor_edittext_weight" />
+            </LinearLayout>
+
+            <View
+                style="@style/line_1"
+                android:id="@+id/view_company" />
+
+            <LinearLayout
+                style="@style/basic_infor_ll_weight"
+                android:id="@+id/ll_company_address">
+
+                <TextView
+                    style="@style/basic_infor_TextView_333333"
+                    android:text="公司地址" />
+
+                <TextView
+                    android:id="@+id/tv_company_address_basic_info"
+                    style="@style/basic_infor_edittext_weight" />
+            </LinearLayout>
+
+            <View
+                style="@style/line_1"
+                android:id="@+id/view_company_address" />
+
+            <LinearLayout style="@style/basic_infor_ll_weight">
+
+                <TextView
+                    style="@style/basic_infor_TextView_333333"
+                    android:text="@string/basic_information_safe" />
+
+                <TextView
+                    android:id="@+id/tv_change_basic_info"
+                    style="@style/basic_infor_edittext_weight"
+                    android:drawableRight="@drawable/next"
+                    android:text="可修改密码" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
         </LinearLayout>
-
-        <View style="@style/line_1" />
-
-        <LinearLayout style="@style/basic_infor_ll_weight">
-
-            <TextView
-                style="@style/basic_infor_TextView_333333"
-                android:text="@string/basic_information_true_name" />
-
-            <EditText
-                android:id="@+id/et_truename_basic_info"
-                style="@style/basic_infor_edittext_weight"
-                android:hint="请输入真实姓名" />
-        </LinearLayout>
-
-        <View style="@style/line_1" />
-
-        <LinearLayout style="@style/basic_infor_ll_weight">
-
-            <TextView
-                style="@style/basic_infor_TextView_333333"
-                android:text="席位号" />
-
-            <TextView
-                android:id="@+id/tv_seat_basic_info"
-                style="@style/basic_infor_edittext_weight"
-                />
-        </LinearLayout>
-
-        <View style="@style/line_1" />
-
-        <LinearLayout style="@style/basic_infor_ll_weight">
-
-            <TextView
-                style="@style/basic_infor_TextView_333333"
-                android:text="@string/basic_information_id_card" />
-
-            <EditText
-                android:id="@+id/et_num_basic_info"
-                style="@style/basic_infor_edittext_weight"
-                android:hint="请输入身份证号" />
-        </LinearLayout>
-
-        <View style="@style/line_1" />
-
-        <LinearLayout style="@style/basic_infor_ll_weight">
-
-            <TextView
-                style="@style/basic_infor_TextView_333333"
-                android:text="@string/basic_information_email" />
-
-            <EditText
-                android:id="@+id/et_email_basic_info"
-                style="@style/basic_infor_edittext_weight"
-                android:inputType="textEmailAddress"
-                android:hint="请输入邮箱" />
-        </LinearLayout>
-
-        <View style="@style/line_1" />
-
-        <LinearLayout style="@style/basic_infor_ll_weight">
-
-            <TextView
-                style="@style/basic_infor_TextView_333333"
-                android:text="QQ" />
-
-            <EditText
-                android:id="@+id/et_qq_basic_info"
-                style="@style/basic_infor_edittext_weight"
-                android:inputType="number"
-                android:hint="请输入QQ号" />
-        </LinearLayout>
-
-
-        <View
-            style="@style/line_1"
-            android:layout_marginTop="@dimen/px_14" />
-
-
-        <View style="@style/line_1" />
-
-        <LinearLayout style="@style/basic_infor_ll_weight">
-
-            <TextView
-                style="@style/basic_infor_TextView_333333"
-                android:text="@string/basic_information_fix_num" />
-
-            <EditText
-                android:id="@+id/et_guding_basic_info"
-                style="@style/basic_infor_edittext_weight"
-              android:digits="1234567890-"
-                android:hint="请输入固定电话" />
-        </LinearLayout>
-
-        <View style="@style/line_1" />
-
-        <LinearLayout style="@style/basic_infor_ll_weight">
-
-            <TextView
-                style="@style/basic_infor_TextView_333333"
-                android:text="@string/basic_information_phone_num" />
-
-            <EditText
-                android:id="@+id/et_phone_basic_info"
-                style="@style/basic_infor_edittext_weight"
-                android:inputType="number"
-                android:hint="请输入手机号" />
-        </LinearLayout>
-
-        <View style="@style/line_1" />
-
-        <LinearLayout style="@style/basic_infor_ll_weight">
-
-            <TextView
-                style="@style/basic_infor_TextView_333333"
-                android:text="@string/basic_information_safe" />
-
-            <TextView
-                android:id="@+id/tv_change_basic_info"
-                style="@style/basic_infor_edittext_weight"
-                android:drawableRight="@drawable/next"
-                android:text="可修改密码" />
-        </LinearLayout>
-
-        <View style="@style/line_1" />
-    </LinearLayout>
     </ScrollView>
 </LinearLayout>

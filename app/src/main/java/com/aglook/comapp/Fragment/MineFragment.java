@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.aglook.comapp.Activity.AllGuaDanActivity;
 import com.aglook.comapp.Activity.AllOrderActivity;
+import com.aglook.comapp.Activity.HelpCenterActivity;
 import com.aglook.comapp.Activity.LoginActivity;
 import com.aglook.comapp.Activity.MyCangDanActivity;
 import com.aglook.comapp.Activity.PersonInformationActivity;
@@ -60,6 +61,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private TextView tv_message_mine_fragment;
 
     private final int NOTPAY = 1;
+    private TextView tv_help_setting;
 
 
     @Override
@@ -96,7 +98,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         ll_jiaoyichenggong_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_jiaoyichenggong_mine_fragment);
         tv_name_mine_fragment = (TextView) view.findViewById(R.id.tv_name_mine_fragment);
         tv_message_mine_fragment = (TextView) view.findViewById(R.id.tv_message_mine_fragment);
-
+        tv_help_setting = (TextView) view.findViewById(R.id.tv_help_setting);
         //红点
         tv_all_order_point = (TextView) view.findViewById(R.id.tv_all_order_point);
         tv_daifukuan_point = (TextView) view.findViewById(R.id.tv_daifukuan_point);
@@ -124,6 +126,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         ll_jiaoyizhong_mine_fragment.setOnClickListener(this);
         ll_jiaoyichenggong_mine_fragment.setOnClickListener(this);
         tv_message_mine_fragment.setOnClickListener(this);
+        tv_help_setting.setOnClickListener(this);
     }
 
 
@@ -309,6 +312,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 intent.putExtra("className", "消息");
                 startActivity(intent);
 //                }
+                break;
+            case R.id.tv_help_setting:
+                intent.setClass(getActivity(),HelpCenterActivity.class);
+                startActivity(intent);
                 break;
         }
     }

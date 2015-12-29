@@ -53,7 +53,7 @@
             <RelativeLayout
                 android:id="@+id/rl_background_mine_fragment"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_300"
+                android:layout_height="@dimen/px_200"
                 android:background="@drawable/beijing">
 
                 <ImageView
@@ -70,7 +70,8 @@
                     style="@style/whiteTextView"
                     android:layout_below="@+id/iv_icon_mine_fragment"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/px_8"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/px_8"
                     android:text="昵称" />
 
                 <TextView
@@ -84,6 +85,8 @@
                     android:textColor="@color/white" />
 
             </RelativeLayout>
+
+            <View style="@style/line_1" />
 
             <LinearLayout
                 style="@style/ll_match_wrap_content_ver"
@@ -416,6 +419,20 @@
             <View
                 style="@style/line_1"
                 android:layout_marginBottom="@dimen/px_15" />
+
+            <View style="@style/line_1" />
+
+            <TextView
+                android:id="@+id/tv_help_setting"
+                style="@style/basic_infor_TextView_333333_set"
+                android:drawableRight="@drawable/next"
+                android:text="帮助中心" />
+
+
+            <View
+                style="@style/line_1"
+                android:layout_marginBottom="@dimen/px_15" />
+
         </LinearLayout>
 
     </ScrollView>

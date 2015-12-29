@@ -6,7 +6,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ExitApplication;
@@ -46,7 +45,7 @@ public class CardListActivity extends BaseActivity {
     private boolean isDelete = false;
     private CustomProgress customProgress;
     private View emptyView;
-    private ImageView left_icon;
+//    private ImageView left_icon;
 
     @Override
     public void initView() {
@@ -59,7 +58,7 @@ public class CardListActivity extends BaseActivity {
     }
 
     public void init() {
-        left_icon = (ImageView) findViewById(R.id.left_icon);
+//        left_icon = (ImageView) findViewById(R.id.left_icon);
         right_text = (TextView) findViewById(R.id.right_text);
         right_text.setText("添加");
         right_text.setVisibility(View.VISIBLE);
@@ -86,7 +85,7 @@ public class CardListActivity extends BaseActivity {
                         Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
             }
         });
-        left_icon.setOnClickListener(this);
+//        left_icon.setOnClickListener(this);
     }
 
     @Override
@@ -98,19 +97,19 @@ public class CardListActivity extends BaseActivity {
                 isAdded = true;
                 startActivityForResult(intent, 1);
                 break;
-            case R.id.left_icon:
-                //如果FLAG=1，表示是从确认订单调过来的，返回时需要调到订单界面，
-                Log.d("result_DefineUtil.FLAG__!",DefineUtil.FLAG+"");
-                if (DefineUtil.FLAG == 1) {
-                    intent.setClass(CardListActivity.this, MainActivity.class);
-                    DefineUtil.FLAG=2;
-                    startActivity(intent);
-                    Log.d("result_DefineUtil.FLAG__2",DefineUtil.FLAG+"");
-                    CardListActivity.this.finish();
-                } else {
-                    CardListActivity.this.finish();
-                }
-                break;
+//            case R.id.left_icon:
+//                //如果FLAG=1，表示是从确认订单调过来的，返回时需要调到订单界面，
+//                Log.d("result_DefineUtil.FLAG__!",DefineUtil.FLAG+"");
+//                if (DefineUtil.FLAG == 1) {
+//                    intent.setClass(CardListActivity.this, MainActivity.class);
+//                    DefineUtil.FLAG=2;
+//                    startActivity(intent);
+//                    Log.d("result_DefineUtil.FLAG__2",DefineUtil.FLAG+"");
+//                    CardListActivity.this.finish();
+//                } else {
+//                    CardListActivity.this.finish();
+//                }
+//                break;
         }
     }
 

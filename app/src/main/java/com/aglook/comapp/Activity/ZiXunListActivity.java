@@ -88,7 +88,7 @@ public class ZiXunListActivity extends BaseActivity {
                     intent.putExtra("url", mList.get(position - 1).getUrl());
                 }
 //                AppUtils.toastText(ZiXunListActivity.this,position-1+"");
-                intent.putExtra("className", className);
+                intent.putExtra("className", mList.get(position-1).getArticleName());
                 startActivity(intent);
             }
         });

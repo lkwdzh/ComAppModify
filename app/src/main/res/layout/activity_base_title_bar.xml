@@ -6,37 +6,51 @@
 
     <ImageView
         android:id="@+id/left_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/px_100"
+        android:layout_height="match_parent"
         android:layout_centerVertical="true"
-        android:padding="@dimen/px_14"
+        android:layout_alignParentLeft="true"
+        android:paddingTop="@dimen/px_14"
+        android:paddingBottom="@dimen/px_14"
+        android:paddingRight="@dimen/px_14"
         android:src="@drawable/back" />
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:layout_toRightOf="@+id/left_icon"
+        android:gravity="center"
+        android:layout_toLeftOf="@+id/rl_right"
         android:layout_centerInParent="true"
         android:textColor="@color/white" />
 
-    <ImageView
-        android:id="@+id/right_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/right_text"
+    <RelativeLayout
+        android:id="@+id/rl_right"
         android:layout_width="@dimen/px_100"
-        android:layout_height="match_parent"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:gravity="center_vertical|right"
-        android:textColor="@color/white"
-        android:paddingRight="@dimen/px_14"
-        android:visibility="gone"
-        />
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/right_image"
+            android:layout_width="@dimen/px_100"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+           android:scaleType="center"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/right_text"
+            android:layout_width="@dimen/px_100"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical|right"
+            android:textColor="@color/white"
+            android:paddingRight="@dimen/px_14"
+            android:visibility="gone" />
+    </RelativeLayout>
+
 </RelativeLayout>

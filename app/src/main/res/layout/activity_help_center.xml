@@ -43,7 +43,7 @@
         android:id="@+id/tv_gy_help"
         style="@style/basic_infor_TextView_333333_set"
         android:drawableRight="@drawable/next"
-        android:text="关于我们" />
+        android:text="网站说明" />
 
     <View style="@style/line_1" />
 

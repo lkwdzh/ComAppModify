@@ -102,6 +102,21 @@
 
             <View style="@style/line_1" />
 
+            <LinearLayout style="@style/ll_match_wrap_content_horWe3">
+
+                <TextView
+                    style="@style/save_TextView_333333_13"
+                    android:text="推荐人" />
+
+                <EditText
+                    android:id="@+id/et_tuijian__register"
+                    style="@style/save_TextView_666666_13_center"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:hint="请输入推荐人席位号" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
 
             <LinearLayout style="@style/ll_match_wrap_content_horWe3">
 
@@ -162,7 +177,6 @@
                     <EditText
                         android:id="@+id/et_company_register"
                         style="@style/save_TextView_666666_13_center"
-                        android:inputType="phone"
                         android:maxLength="11"
                         android:hint="请输入公司名称" />
                 </LinearLayout>
@@ -177,7 +191,6 @@
                     <EditText
                         android:id="@+id/et_company_address_register"
                         style="@style/save_TextView_666666_13_center"
-                        android:inputType="phone"
                         android:maxLength="11"
                         android:hint="请输入公司地址" />
                 </LinearLayout>

@@ -25,6 +25,7 @@ import com.aglook.comapp.url.ShoppingCartUrl;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
+import com.aglook.comapp.util.ShareUtil;
 import com.aglook.comapp.util.XBitmap;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.CustomProgress;
@@ -70,7 +71,11 @@ public class GoodsDetailActivity extends BaseActivity {
     private ImageView iv_detail;
     private LinearLayout ll_kefu_goods_detail;
     private ImageView iv_hq;
+    private ImageView right_image;
 
+    private String url;
+    private String title;
+    private String imageUrl;
 
     @Override
     public void initView() {
@@ -88,10 +93,14 @@ public class GoodsDetailActivity extends BaseActivity {
 //        right_text.setVisibility(View.VISIBLE);
 //        right_text.setText("更多");
         left_icon = (ImageView) findViewById(R.id.left_icon);
+        right_image = (ImageView) findViewById(R.id.right_image);
+        right_image.setImageResource(R.drawable.share);
+        right_image.setVisibility(View.VISIBLE);
         customProgress = CustomProgress.show(GoodsDetailActivity.this, "加载中···", true);
         isSelf = getIntent().getBooleanExtra("isSelf", false);
         productId = getIntent().getStringExtra("productId");
         pointUser = getIntent().getStringExtra("pointUser");
+        url="http://www.decxgroup.com/product/"+productId;
         iv_detail = (ImageView) findViewById(R.id.iv_detail);
         tv_detail_goods_detail = (TextView) findViewById(R.id.tv_detail_goods_detail);
         tv_price_goods_detail = (TextView) findViewById(R.id.tv_price_goods_detail);
@@ -131,6 +140,7 @@ public class GoodsDetailActivity extends BaseActivity {
         ll_shopping_cart_goods_detail.setOnClickListener(this);
         ll_attention_goods_detail.setOnClickListener(this);
         ll_kefu_goods_detail.setOnClickListener(this);
+        right_image.setOnClickListener(this);
     }
 
     //    获取数据
@@ -166,6 +176,8 @@ public class GoodsDetailActivity extends BaseActivity {
     //    填充数据
     public void fillData() {
         if (goodsDetail != null && !"".equals(goodsDetail)) {
+            title=goodsDetail.getProductName();
+            imageUrl=goodsDetail.getProductLogo();
             tv_detail_goods_detail.setText(goodsDetail.getProductName());
             tv_price_goods_detail.setText(goodsDetail.getProductMoney());
             tv_cangdanhao_goods_detail.setText(goodsDetail.getProductListId());
@@ -241,6 +253,9 @@ public class GoodsDetailActivity extends BaseActivity {
     public void widgetClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.right_image:
+                ShareUtil.Share(GoodsDetailActivity.this,title,url);
+                break;
             case R.id.tv_boda:
                 //打电话，并取消dialog
 //                Intent intent1 = new Intent(Intent.ACTION_CALL);

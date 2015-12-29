@@ -21,6 +21,33 @@ public class LoginPshUser implements Serializable {
     private String userSeat;//席位号
     private double rate;
 
+    private int userType;//用户类别：1.公司，2.个人
+    private String userCompany;//公司名称
+    private String userAddres;//公司地址
+
+    public int getUserType() {
+        return userType;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
+
+    public String getUserCompany() {
+        return userCompany;
+    }
+
+    public void setUserCompany(String userCompany) {
+        this.userCompany = userCompany;
+    }
+
+    public String getUserAddres() {
+        return userAddres;
+    }
+
+    public void setUserAddres(String userAddres) {
+        this.userAddres = userAddres;
+    }
 
     public double getRate() {
         return rate;
@@ -151,6 +178,9 @@ public class LoginPshUser implements Serializable {
                 ", userAddress='" + userAddress + '\'' +
                 ", userSeat='" + userSeat + '\'' +
                 ", rate=" + rate +
+                ", userType=" + userType +
+                ", userCompany='" + userCompany + '\'' +
+                ", userAddres='" + userAddres + '\'' +
                 '}';
     }
 }

@@ -25,13 +25,13 @@ public class SettingActivity extends BaseActivity {
 
 
     private TextView tv_versionName_setting;
-    private TextView tv_help_setting;
     private TextView tv_modify_pwd;
-//    private TextView tv_sell_setting;
     private RelativeLayout tv_update_setting;
     private Button btn_tuichu;
     private ComAppApplication comAppApplication;
     private CustomProgress customProgress;
+    private TextView tv_intro;
+    private TextView tv_share;
 
     @Override
     public void initView() {
@@ -46,10 +46,8 @@ public class SettingActivity extends BaseActivity {
 
     public void init(){
         tv_versionName_setting = (TextView) findViewById(R.id.tv_versionName_setting);
-        tv_versionName_setting.setText(getAppInfo());
+        tv_versionName_setting.setText("V"+getAppInfo());
 
-        tv_help_setting = (TextView) findViewById(R.id.tv_help_setting);
-//        tv_sell_setting = (TextView) findViewById(R.id.tv_sell_setting);
         tv_modify_pwd = (TextView) findViewById(R.id.tv_modify_pwd);
         tv_update_setting = (RelativeLayout) findViewById(R.id.tv_update_setting);
         btn_tuichu = (Button) findViewById(R.id.btn_tuichu);
@@ -58,14 +56,16 @@ public class SettingActivity extends BaseActivity {
         }else {
             btn_tuichu.setVisibility(View.VISIBLE);
         }
+        tv_intro = (TextView) findViewById(R.id.tv_intro);
+        tv_share = (TextView) findViewById(R.id.tv_share);
     }
 
     public void click(){
-        tv_help_setting.setOnClickListener(this);
-//        tv_sell_setting.setOnClickListener(this);
         tv_modify_pwd.setOnClickListener(this);
         tv_update_setting.setOnClickListener(this);
         btn_tuichu.setOnClickListener(this);
+        tv_intro.setOnClickListener(this);
+        tv_share.setOnClickListener(this);
     }
 
     @Override
@@ -79,16 +79,6 @@ public class SettingActivity extends BaseActivity {
     public void widgetClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()){
-            case R.id.tv_help_setting:
-                intent.setClass(SettingActivity.this,HelpCenterActivity.class);
-                startActivity(intent);
-                break;
-//            case R.id.tv_sell_setting:
-//                intent.setClass(SettingActivity.this,ZiXunListActivity.class);
-//
-//                intent.putExtra("className", "售后服务");
-//                startActivity(intent);
-//                break;
             case R.id.tv_modify_pwd:
                 if (comAppApplication.getLogin()==null||"".equals(comAppApplication.getLogin())){
                     intent.setClass(SettingActivity.this, LoginActivity.class);
@@ -100,16 +90,26 @@ public class SettingActivity extends BaseActivity {
                 break;
             case R.id.tv_update_setting:
                 //版本更新
-                AppUtils.toastText(SettingActivity.this,"更新");
+                intent.setClass(SettingActivity.this,VersionActivity.class);
+                startActivity(intent);
                 break;
             case R.id.btn_tuichu:
-//                AppUtils.toastText(SettingActivity.this,"退出");
                 loginOut();
+                break;
+            case R.id.tv_intro:
+                intent.setClass(SettingActivity.this,IntroActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.tv_share:
+                //分享
+//                ShareUtil.Share(SettingActivity.this);
                 break;
         }
 
     }
-
+    private String buildTransaction(final String type) {
+        return (type == null) ? String.valueOf(System.currentTimeMillis()) : type + System.currentTimeMillis();
+    }
     //获取版本号与版本名
     public String getAppInfo(){
         String versionName=null;

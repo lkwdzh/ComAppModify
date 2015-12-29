@@ -77,7 +77,7 @@ public class HelpCenterActivity extends BaseActivity {
                 className = "买卖规则";
                 break;
             case R.id.tv_gy_help:
-                className = "关于我们";
+                className = "网站说明";
                 break;
             case R.id.tv_sell_setting:
                 className="售后服务";

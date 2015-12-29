@@ -79,6 +79,7 @@ public class ConfirmOrderActivity extends BaseActivity {
     private TextView tv_diqu;
 
     private String taitou,content;//发票信息
+    private String addressId;//用户地址
 
     @Override
     public void initView() {
@@ -214,19 +215,28 @@ public class ConfirmOrderActivity extends BaseActivity {
         Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.btn_cancel_pay_popup:
-                ConfirmOrderActivity.this.setResult(1);
-                ConfirmOrderActivity.this.finish();
+//                ConfirmOrderActivity.this.setResult(1);
+//                ConfirmOrderActivity.this.finish();
                 dialog.dismiss();
                 break;
             case R.id.btn_confirm_pay_popup:
                 intent.setClass(ConfirmOrderActivity.this, CardListActivity.class);
-                ConfirmOrderActivity.this.finish();
-                DefineUtil.FLAG = 1;
+//                ConfirmOrderActivity.this.finish();
+//                DefineUtil.FLAG = 1;
                 startActivity(intent);
                 dialog.dismiss();
                 break;
             case R.id.tv_confirm_confirm_order:
-                getData();
+                //线判断是否绑定银行号，若绑定则确认订单并支付，否则，先绑定
+                if (DefineUtil.BANKBAND) {
+                    //获取发票地址与信息
+                    if (address!=null){
+                        addressId=String.valueOf(address.getId());
+                    }
+                    getData();
+                } else {
+                    showDialog();
+                }
                 break;
             case R.id.left_icon:
 //                intent.setClass(ConfirmOrderActivity.this, ShoppingCartFragment.class);
@@ -327,17 +337,12 @@ public class ConfirmOrderActivity extends BaseActivity {
                     Log.d("result_confirm_De", DefineUtil.BANKBAND + "");
                     Log.d("result_confirm_con", comAppApplication.getLogin() + "");
                     Log.d("result_confirm", comAppApplication.getLogin().isBankBind() + "");
-                    if (DefineUtil.BANKBAND) {
                         Intent intent = new Intent(ConfirmOrderActivity.this, PayActivity.class);
                         intent.putExtra("orderId", orderId);
                         intent.putExtra("money", money);
                         startActivity(intent);
 //                    ConfirmOrderActivity.this.setResult(1);
                         ConfirmOrderActivity.this.finish();
-                    } else {
-                        AppUtils.toastText(ConfirmOrderActivity.this, "尚未绑定银行卡");
-                        showDialog();
-                    }
                 } else {
                     AppUtils.toastText(ConfirmOrderActivity.this, message);
                 }
@@ -347,13 +352,15 @@ public class ConfirmOrderActivity extends BaseActivity {
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        }.datePostCheck(DefineUtil.CREATE_ORDER, ConfirmOrderUrl.postConfirmOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartids, String.valueOf(allMoney), text, String.valueOf(costMoney)), ConfirmOrderActivity.this);
+        }.datePostCheck(DefineUtil.CREATE_ORDER, ConfirmOrderUrl.postConfirmOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartids, String.valueOf(allMoney), text, String.valueOf(costMoney),addressId,taitou,content), ConfirmOrderActivity.this);
     }
 
 
     //填充地址信息
     public void fillAddress() {
         if (address != null) {
+            ll_content.setVisibility(View.VISIBLE);
+            tv_isNull.setVisibility(View.GONE);
             tv_name_confirm_order.setText(address.getUserName());
             tv_phone_confirm_order.setText(address.getUserPhone());
             if (address.getDefaultFlag() != null) {
@@ -387,8 +394,8 @@ public class ConfirmOrderActivity extends BaseActivity {
                     if (sonList != null && sonList.size() != 0) {
                         address = sonList.get(0);
                         address.setCheck(true);
-                        ll_content.setVisibility(View.VISIBLE);
-                        tv_isNull.setVisibility(View.GONE);
+//                        ll_content.setVisibility(View.VISIBLE);
+//                        tv_isNull.setVisibility(View.GONE);
                         fillAddress();
                     }
                 }

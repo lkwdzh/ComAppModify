@@ -8,7 +8,7 @@ public class DefineUtil {
     //    测试环境端口
 //    public static String URL_HOST = "http://192.168.1.118:8080/payment/";
 //    public static String URL_HOST = "http://192.168.1.105:8080/payment/";
-        public static String URL_HOST = "http://trade.decxgroup.com/trade/";
+    public static String URL_HOST = "http://trade.decxgroup.com/trade/";
 
     /**
      * 正式环境
@@ -131,20 +131,20 @@ public class DefineUtil {
     /**
      * 注册
      */
-    public static String REGISTER=URL_HOST+"userInfo/register";
+    public static String REGISTER = URL_HOST + "userInfo/register";
     //验证码
-    public static String GETPHONECODE=URL_HOST+"userInfo/getPhoneCode";
+    public static String GETPHONECODE = URL_HOST + "userInfo/getPhoneCode";
 
 
     /**
      * 地址管理
      */
     //地址列表
-    public static String ADDRESS_LIST=URL_HOST+"userAddress/list";
+    public static String ADDRESS_LIST = URL_HOST + "userAddress/list";
     //地址添加
-    public static String ADDRESS_ADD=URL_HOST+"userAddress/add";
+    public static String ADDRESS_ADD = URL_HOST + "userAddress/add";
     //地址修改
-    public static String ADDRESS_UPDATE=URL_HOST+"userAddress/update";
+    public static String ADDRESS_UPDATE = URL_HOST + "userAddress/update";
 
 
     //TOKEN

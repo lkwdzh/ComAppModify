@@ -6,6 +6,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
@@ -42,6 +43,12 @@ public class BasicInformationActivity extends BaseActivity {
     private SelectPopupWindow popupWindow;
     private EditText et_qq_basic_info;
     private ImageView left_icon;
+    private LinearLayout ll_company;
+    private View view_company;
+    private LinearLayout ll_company_address;
+    private View view_company_address;
+    private TextView tv_company_basic_info;
+    private TextView tv_company_address_basic_info;
 
 
     @Override
@@ -84,9 +91,9 @@ public class BasicInformationActivity extends BaseActivity {
             et_truename_basic_info.setFocusableInTouchMode(true);
             et_truename_basic_info.requestFocus();
 
-            et_email_basic_info.setFocusable(true);
-            et_email_basic_info.setFocusableInTouchMode(true);
-            et_email_basic_info.requestFocus();
+//            et_email_basic_info.setFocusable(true);
+//            et_email_basic_info.setFocusableInTouchMode(true);
+//            et_email_basic_info.requestFocus();
 
             et_num_basic_info.setFocusable(true);
             et_num_basic_info.setFocusableInTouchMode(true);
@@ -97,8 +104,8 @@ public class BasicInformationActivity extends BaseActivity {
             left_icon.setVisibility(View.VISIBLE);
             et_truename_basic_info.setFocusable(false);
             et_truename_basic_info.setFocusableInTouchMode(false);
-            et_email_basic_info.setFocusable(false);
-            et_email_basic_info.setFocusableInTouchMode(false);
+//            et_email_basic_info.setFocusable(false);
+//            et_email_basic_info.setFocusableInTouchMode(false);
             et_num_basic_info.setFocusable(false);
             et_num_basic_info.setFocusableInTouchMode(false);
 
@@ -106,6 +113,13 @@ public class BasicInformationActivity extends BaseActivity {
             et_num_basic_info.setText(login.getPshUser().getUserId());
             et_email_basic_info.setText(login.getPshUser().getUserEmail());
         }
+
+        ll_company = (LinearLayout) findViewById(R.id.ll_company);
+        view_company = (View) findViewById(R.id.view_company);
+        ll_company_address = (LinearLayout) findViewById(R.id.ll_company_address);
+        view_company_address = (View) findViewById(R.id.view_company_address);
+        tv_company_basic_info = (TextView) findViewById(R.id.tv_company_basic_info);
+        tv_company_address_basic_info = (TextView) findViewById(R.id.tv_company_address_basic_info);
         fillData();
     }
 
@@ -144,6 +158,21 @@ public class BasicInformationActivity extends BaseActivity {
                 userAllPoint=user.getUserAllPoint();
                 userAddress=user.getUserAddress();
                 userSeat=user.getUserSeat();
+                if (user.getUserType()==2){
+                    //个人
+                    ll_company.setVisibility(View.GONE);
+                    view_company.setVisibility(View.GONE);
+                    ll_company_address.setVisibility(View.GONE);
+                    view_company_address.setVisibility(View.GONE);
+                }else {
+                    //公司
+                    ll_company.setVisibility(View.VISIBLE);
+                    view_company.setVisibility(View.VISIBLE);
+                    ll_company_address.setVisibility(View.VISIBLE);
+                    view_company_address.setVisibility(View.VISIBLE);
+                    tv_company_basic_info.setText(user.getUserCompany());
+                    tv_company_address_basic_info.setText(user.getUserAddres());
+                }
             }
         }
 
@@ -181,12 +210,12 @@ public class BasicInformationActivity extends BaseActivity {
                 if (status.equals("1")){
                     finish();
                     LoginPshUser pshUser = login.getPshUser();
-                    if (userQq!=null&&!"".equals(userQq)){
-                        pshUser.setUserQq(userQq);
-                    }
-                    if (userTel!=null&&!"".equals(userTel)){
-                        pshUser.setUserTel(userTel);
-                    }
+//                    if (userQq!=null&&!"".equals(userQq)){
+//                        pshUser.setUserQq(userQq);
+//                    }
+//                    if (userTel!=null&&!"".equals(userTel)){
+//                        pshUser.setUserTel(userTel);
+//                    }
                     if (userEmail!=null&&!"".equals(userEmail)){
                         pshUser.setUserEmail(userEmail);
                     }
@@ -224,6 +253,18 @@ public class BasicInformationActivity extends BaseActivity {
         userPhone = AppUtils.toStringTrim_ET(et_phone_basic_info);
         username = AppUtils.toStringTrim_TV(et_username_basic_info);
         userTName = AppUtils.toStringTrim_ET(et_truename_basic_info);
+        if (userTName==null||"".equals(userTName)){
+            AppUtils.toastText(BasicInformationActivity.this,"真实姓名不能为空");
+            return;
+        }
+        if (userNumber==null||"".equals(userNumber)){
+            AppUtils.toastText(BasicInformationActivity.this,"身份证号不能为空");
+            return;
+        }
+        if (userEmail==null||"".equals(userEmail)){
+            AppUtils.toastText(BasicInformationActivity.this,"邮箱不能为空");
+            return;
+        }
         updata();
     }
 }

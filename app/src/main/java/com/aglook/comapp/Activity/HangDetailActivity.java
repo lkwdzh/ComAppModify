@@ -5,9 +5,11 @@ import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
+import com.aglook.comapp.util.ShareUtil;
 import com.aglook.comapp.view.CustomProgress;
 
 public class HangDetailActivity extends BaseActivity {
@@ -18,10 +20,12 @@ public class HangDetailActivity extends BaseActivity {
     private String className;
 
     private CustomProgress customProgress;
+    private ImageView right_image;
+
     @Override
     public void initView() {
         setContentView(R.layout.activity_hang_detail);
-        className=getIntent().getStringExtra("className");
+        className = getIntent().getStringExtra("className");
         setTitleBar(className);
         ExitApplication.getInstance().addActivity(this);
         init();
@@ -30,7 +34,10 @@ public class HangDetailActivity extends BaseActivity {
 
     public void init() {
         customProgress = CustomProgress.show(this, "", true);
-        url=getIntent().getStringExtra("url");
+        url = getIntent().getStringExtra("url");
+        right_image = (ImageView) findViewById(R.id.right_image);
+        right_image.setVisibility(View.VISIBLE);
+        right_image.setImageResource(R.drawable.share);
         web_hangdetail = (WebView) findViewById(R.id.web_hangdetail);
 
         web_hangdetail.getSettings().setJavaScriptEnabled(true);// 支持运行javascript
@@ -56,17 +63,20 @@ public class HangDetailActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        },2000);
+        }, 2000);
 
     }
 
     public void click() {
+        right_image.setOnClickListener(this);
     }
 
     @Override
     public void widgetClick(View view) {
         switch (view.getId()) {
-
+            case R.id.right_image:
+                ShareUtil.Share(HangDetailActivity.this, className, url);
+                break;
         }
     }
 
