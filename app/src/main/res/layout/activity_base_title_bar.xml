@@ -41,6 +41,7 @@
            android:scaleType="center"
             android:visibility="gone" />
 
+
         <TextView
             android:id="@+id/right_text"
             android:layout_width="@dimen/px_100"
