@@ -49,6 +49,7 @@ public class AddAddressActivity extends BaseActivity {
     private String diqu;
     private String name;
     private String phone;
+
     private String defaultFlag;
     private String detail;
     private String sheng,shi;
