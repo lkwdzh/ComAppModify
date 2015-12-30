@@ -68,6 +68,7 @@ public class AddAddressActivity extends BaseActivity {
     private View view_check;
 
     private boolean isModify;//是否是修改
+
     private TextView right_text;
 
        private Address modifyAddress;
