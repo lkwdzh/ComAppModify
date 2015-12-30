@@ -62,6 +62,7 @@ public class AddAddressActivity extends BaseActivity {
     private CustomProgress customProgress;
 
     private boolean isOnly;//判断是否是第一个
+
     private RelativeLayout rl_check;
     private View view_check;
 
