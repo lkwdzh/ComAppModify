@@ -64,6 +64,7 @@ public class AddAddressActivity extends BaseActivity {
     private boolean isOnly;//判断是否是第一个
 
     private RelativeLayout rl_check;
+
     private View view_check;
 
     private boolean isModify;//是否是修改
