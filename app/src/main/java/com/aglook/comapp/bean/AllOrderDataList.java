@@ -13,7 +13,7 @@ public class AllOrderDataList implements Serializable{
     private String productLogo;//图标
     private double productMoney;//单价
     private double productMoneyYh;//
-    private int productNum;//个数
+    private double productNum;//个数
     private String proruleKey;
     private String proruleName;
     private String harvestCode;
@@ -97,11 +97,11 @@ public class AllOrderDataList implements Serializable{
         this.productMoneyYh = productMoneyYh;
     }
 
-    public int getProductNum() {
+    public double getProductNum() {
         return productNum;
     }
 
-    public void setProductNum(int productNum) {
+    public void setProductNum(double productNum) {
         this.productNum = productNum;
     }
 

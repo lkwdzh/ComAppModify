@@ -161,7 +161,9 @@ public class DefineUtil {
     //    商户号
     public static String MERCHANTNO = "Q0000157";
     //协议适用范围
-    public static String SERVICESCOPE = "ep";
+    public static String SERVICESCOPE = "www";
+    //协议适用范围
+    public static String SERVICESCOPEPER = "ep";
     //签名类型
     public static String SIGNTYPE = "MD5";
 

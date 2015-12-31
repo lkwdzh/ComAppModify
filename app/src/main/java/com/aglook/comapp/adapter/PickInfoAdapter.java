@@ -70,8 +70,23 @@ public class PickInfoAdapter extends BaseAdapter {
 
             @Override
             public void afterTextChanged(Editable s) {
-                String s1 = s.toString();
-                driverList.setWeight(s1);
+//                String s1 = s.toString();
+//                driverList.setWeight(s1);
+                String temp = s.toString();
+                int d = temp.indexOf(".");
+                if (d < 0) {
+//                if (temp.length() > 3) {
+//
+//                    s.delete(3, 4);
+//                }
+                    return;
+                }
+                if (temp.length() - d - 1 > 2) {
+                    s.delete(d + 3, d + 4);
+                } else if (d == 0) {
+                    s.delete(d, d + 1);
+                }
+                driverList.setWeight(temp);
             }
         });
         return convertView;

@@ -1,6 +1,8 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -112,6 +114,37 @@ public class PickInfoActivity extends BaseActivity {
         lv_pick_info = (MyListView) findViewById(R.id.lv_pick_info);
         adapter = new PickInfoAdapter(PickInfoActivity.this, mList);
         lv_pick_info.setAdapter(adapter);
+
+        //监听Edittext数据变化
+        et_pick_weight_pick_info.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String temp = s.toString();
+                int d = temp.indexOf(".");
+                if (d < 0) {
+//                if (temp.length() > 3) {
+//
+//                    s.delete(3, 4);
+//                }
+                    return;
+                }
+                if (temp.length() - d - 1 > 2) {
+                    s.delete(d + 3, d + 4);
+                } else if (d == 0) {
+                    s.delete(d, d + 1);
+                }
+            }
+        });
     }
 
     //填充数据

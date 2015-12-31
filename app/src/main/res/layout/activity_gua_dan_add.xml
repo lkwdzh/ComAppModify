@@ -147,7 +147,8 @@
                 <EditText
                     android:id="@+id/tv_use_weight_gua_dan"
                     style="@style/guadan_edittext_weight"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
+                    android:digits="0123456789."
                     android:hint="请输入交易数量" />
             </LinearLayout>
 
