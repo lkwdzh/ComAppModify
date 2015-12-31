@@ -8,7 +8,7 @@ public class GoodsDetail {
     private String productName;//产品名称
     private String productMoney;//价格
     private String productListId;//仓单号
-    private String productSellNum;//可用重量
+    private double productSellNum;//可用重量
     private String productAppDesc;//
     private String productAvailable;//挂单有效期
     private String productLogo;//图片
@@ -72,11 +72,11 @@ public class GoodsDetail {
         this.productListId = productListId;
     }
 
-    public String getProductSellNum() {
+    public double getProductSellNum() {
         return productSellNum;
     }
 
-    public void setProductSellNum(String productSellNum) {
+    public void setProductSellNum(double productSellNum) {
         this.productSellNum = productSellNum;
     }
 
@@ -183,7 +183,7 @@ public class GoodsDetail {
                 ", productName='" + productName + '\'' +
                 ", productMoney='" + productMoney + '\'' +
                 ", productListId='" + productListId + '\'' +
-                ", productSellNum='" + productSellNum + '\'' +
+                ", productSellNum=" + productSellNum +
                 ", productAppDesc='" + productAppDesc + '\'' +
                 ", productAvailable='" + productAvailable + '\'' +
                 ", productLogo='" + productLogo + '\'' +
@@ -197,6 +197,7 @@ public class GoodsDetail {
                 ", responsibleEmail='" + responsibleEmail + '\'' +
                 ", depotAddress='" + depotAddress + '\'' +
                 ", isCollect='" + isCollect + '\'' +
+                ", productOwnerProve='" + productOwnerProve + '\'' +
                 '}';
     }
 }

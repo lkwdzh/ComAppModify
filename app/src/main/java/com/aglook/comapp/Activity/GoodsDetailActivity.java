@@ -311,9 +311,14 @@ public class GoodsDetailActivity extends BaseActivity {
                         AppUtils.toastText(GoodsDetailActivity.this, "不能购买自己出售的商品");
                     } else {
                         //判断剩余重量是否为0
-                        if (goodsDetail.getProductSellNum().equals("0")) {
+                        if (goodsDetail.getProductSellNum()==0) {
                             AppUtils.toastText(GoodsDetailActivity.this, "商品已卖完");
                         } else {
+                            if (goodsDetail.getProductSellNum()>=1){
+                                productNum="1";
+                            }else {
+                                productNum=String.valueOf(productNum);
+                            }
                             addCart();
                         }
                     }

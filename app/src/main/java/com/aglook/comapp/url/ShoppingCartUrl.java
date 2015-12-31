@@ -1,5 +1,8 @@
 package com.aglook.comapp.url;
 
+import android.util.Log;
+
+import com.google.gson.Gson;
 import com.lidroid.xutils.http.RequestParams;
 
 /**
@@ -45,7 +48,7 @@ public class ShoppingCartUrl {
         params.addBodyParameter("cartId", cartId);
         params.addBodyParameter("productNum", productNum);
         params.addBodyParameter("deleteFlag", deleteFlag);
-
+        Log.d("result_shop",new Gson().toJson(params));
         return params;
     }
 

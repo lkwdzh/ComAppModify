@@ -87,7 +87,7 @@
     <string name="mine_fragment_my_cang">我的仓单</string>
     <string name="mine_fragment_my_cang_dan">仓单</string>
     <string name="title_activity_band_card">BandCardActivity</string>
-    <string name="band_card_name">账号名</string>
+    <string name="band_card_name">姓名</string>
     <string name="bang_card_num">卡号</string>
     <string name="bang_card_bank">银行</string>
     <string name="bang_card_phone">预留手机号</string>

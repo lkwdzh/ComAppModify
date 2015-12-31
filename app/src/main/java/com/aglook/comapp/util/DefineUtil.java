@@ -152,7 +152,7 @@ public class DefineUtil {
     public static String USERID;
 
     //购物车个数
-    public static int NUM = 0;
+    public static double NUM = 0;
 
     //支付
     public static String PAY = URL_HOST + "payment/v2/order/pay";
@@ -161,7 +161,7 @@ public class DefineUtil {
     //    商户号
     public static String MERCHANTNO = "Q0000157";
     //协议适用范围
-    public static String SERVICESCOPE = "www";
+    public static String SERVICESCOPE = "ep";
     //签名类型
     public static String SIGNTYPE = "MD5";
 

@@ -62,7 +62,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
     private CheckBox cb_buy_shopping_cart;
     private TextView tv_shopping_cart_jiesuan;
     private TextView tv_total_shopping_cart_fragment;
-    private int allNum = 0;
+    private double allNum = 0;
     private double allMoney = 0;
     private LinearLayout ll_empty_shopping_cart;
     private RelativeLayout ll_full_content;
@@ -90,6 +90,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
         comAppApplication = (ComAppApplication) getActivity().getApplication();
         initView(viewAll);
         click();
+
         return viewAll;
     }
 
@@ -107,7 +108,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
         mList = new ArrayList<>();
         adapter = new ShoppingCartAdapter(getActivity(), mList, new ShoppingCartAdapter.CallBackData() {
             @Override
-            public void callBack(int num, double total) {
+            public void callBack(double num, double total) {
                 allMoney = total;
                 allNum = num;
                 DefineUtil.NUM = num;

@@ -20,7 +20,7 @@
         <EditText
             android:id="@+id/et_name_bang_card"
             style="@style/basic_infor_edittext_weight"
-            android:hint="请输入账户名" />
+            android:hint="请输入姓名" />
     </LinearLayout>
 
     <View style="@style/line_1" />

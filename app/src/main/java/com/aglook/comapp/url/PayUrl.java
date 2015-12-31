@@ -48,7 +48,7 @@ public class PayUrl {
 
 
 
-        String url = "code=" + "2001" + "&content=" +Base64.encodeToString(content.getBytes(), Base64.DEFAULT) + "&merchantNo=" + DefineUtil.MERCHANTNO + "&serviceScope=" +
+        String url = "code=" + "1003" + "&content=" +Base64.encodeToString(content.getBytes(), Base64.DEFAULT) + "&merchantNo=" + DefineUtil.MERCHANTNO + "&serviceScope=" +
                 DefineUtil.SERVICESCOPE + "&signType=" + DefineUtil.SIGNTYPE + "&version=" + DefineUtil.VERSON;
         url=url.replaceAll("\\n","");
         String ss = MD5.ss(url, "xxxxxxxx");

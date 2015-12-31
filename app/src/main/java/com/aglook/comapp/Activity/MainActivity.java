@@ -443,6 +443,10 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
                         for (int i = 0; i < list.size(); i++) {
                             DefineUtil.NUM += list.get(i).getProductNum();
                         }
+                        if (DefineUtil.NUM != 0) {
+                            tv_shopping_point.setVisibility(View.VISIBLE);
+                            tv_shopping_point.setText(DefineUtil.NUM + "");
+                        }
                     }
                 }
             }

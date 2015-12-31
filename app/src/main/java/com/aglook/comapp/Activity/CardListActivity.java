@@ -46,6 +46,7 @@ public class CardListActivity extends BaseActivity {
     private CustomProgress customProgress;
     private View emptyView;
 //    private ImageView left_icon;
+    private String defaut;
 
     @Override
     public void initView() {
@@ -78,11 +79,17 @@ public class CardListActivity extends BaseActivity {
         lv_card_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                bankCardId = mList.get(position - 1).getBankCardId();
-                popupWindow = new SelectPopupWindow(CardListActivity.this, itemsOnClick);
-                // 显示窗口
-                popupWindow.showAtLocation(CardListActivity.this.findViewById(R.id.waww),
-                        Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+                defaut=mList.get(position-1).getDefaultType();
+//                if (mList.get(position-1).getDefaultType().equals("1")){
+//                    //默认，无法删除
+//                    AppUtils.toastText(CardListActivity.this,"无法删除默认银行卡");
+//                }else {
+                    bankCardId = mList.get(position - 1).getBankCardId();
+                    popupWindow = new SelectPopupWindow(CardListActivity.this, itemsOnClick);
+                    // 显示窗口
+                    popupWindow.showAtLocation(CardListActivity.this.findViewById(R.id.waww),
+                            Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+//                }
             }
         });
 //        left_icon.setOnClickListener(this);
@@ -185,6 +192,11 @@ public class CardListActivity extends BaseActivity {
                     break;
                 case R.id.tv_delete_select_popup:
                     popupWindow.dismiss();
+                    if (defaut.equals("1")){
+                        //默认，无法删除
+                        AppUtils.toastText(CardListActivity.this,"无法删除默认银行卡");
+                        return;
+                    }
                     customProgress=CustomProgress.show(CardListActivity.this,"",true);
                     isDelete = true;
                     deleteCard();

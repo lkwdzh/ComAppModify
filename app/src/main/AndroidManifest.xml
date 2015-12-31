@@ -272,7 +272,7 @@
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".Activity.BaseActivity"
             android:label="@string/title_activity_base"
@@ -462,6 +462,7 @@
         <activity
             android:name=".Activity.ShoppingCartActivity"
             android:label="@string/title_activity_shopping_cart"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.MessageActivity"
@@ -496,9 +497,11 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.AddAddressActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_add_address" />
         <activity
             android:name=".Activity.AddressListActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_address_list">
 
             <!-- <intent-filter> -->
@@ -510,12 +513,15 @@
         </activity>
         <activity
             android:name=".Activity.FaPiaoActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_fa_piao" />
         <activity
             android:name=".Activity.VersionActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_version"></activity>
         <activity
             android:name=".Activity.IntroActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_intro"></activity>
     </application>
 

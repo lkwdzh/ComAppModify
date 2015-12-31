@@ -1,11 +1,21 @@
 package com.aglook.comapp.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +31,7 @@ import com.aglook.comapp.view.CustomProgress;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -30,7 +41,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
     private Activity context;
     private List<ShoppingCart> list;
     private CallBackData callBackData;
-    private int num = 0;
+    private double num = 0;
     private double total = 0;
     private String cartId;
     private String productNum;
@@ -38,8 +49,17 @@ public class ShoppingCartAdapter extends BaseAdapter {
 
     private String deleteFlag;
     private boolean isEditting;
-    private int numAdd;
-    private int numCut;
+
+    private int indexAdd;
+    private double numAdd;
+    private int index;
+    private ImageView iv_cut_shopping_input;
+    private EditText et_count_shopping_cart_input;
+    private ImageView iv_add_shopping_cart_input;
+
+    private boolean isInput;
+
+    private DecimalFormat decimalFormat = new DecimalFormat("#.00");
 
     public ShoppingCartAdapter(Activity context, List<ShoppingCart> list, CallBackData callBackData) {
         this.context = context;
@@ -66,12 +86,10 @@ public class ShoppingCartAdapter extends BaseAdapter {
         return 0;
     }
 
-    private ViewHolder holder;
-    private ShoppingCart shoppingCart;
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-//        final ViewHolder holder;
+        final ViewHolder holder;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.layout_shoppring_cart_listview, null);
             holder = new ViewHolder(convertView);
@@ -80,9 +98,8 @@ public class ShoppingCartAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-//        final ShoppingCart shoppingCart = list.get(position);
+        final ShoppingCart shoppingCart = list.get(position);
 
-        shoppingCart = list.get(position);
         holder.tv_count_shopping_cart_listview.setText(shoppingCart.getProductNum() + "");
         holder.cb_shopping_cart_listview.setChecked(shoppingCart.isChecked());
         XBitmap.displayImage(holder.iv_shopping_cart_listview, shoppingCart.getProductLogo(), context);
@@ -94,7 +111,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
 
         }
         holder.tv_total_shopping_cart_listview.setText(shoppingCart.getTotal() + "");
-
+        holder.tv_count_shopping_cart_listview.setTag(position);
 
         //假如是是编辑状态，则可以选择，若不是。则不可选择
         if (isEditting) {
@@ -109,18 +126,21 @@ public class ShoppingCartAdapter extends BaseAdapter {
         holder.iv_add_shopping_cart_listview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                int numAdd = list.get(position).getProductNum();
+//                int numAdd = Integer.parseInt(AppUtils.toStringTrim_TV(holder.tv_count_shopping_cart_listview));
                 numAdd = list.get(position).getProductNum();
+                indexAdd = position;
                 //给产品id赋值
                 cartId = list.get(position).getCartId();
                 numAdd++;
+                numAdd = Double.parseDouble(decimalFormat.format(numAdd));
                 productNum = numAdd + "";
-//                shoppingCart.setProductNum(numAdd);
-//                holder.tv_count_shopping_cart_listview.setText(numAdd + "");
-//
-//                double total = numAdd * shoppingCart.getProductMoney();
-//                holder.tv_total_shopping_cart_listview.setText(total + "");
-//                shoppingCart.setTotal(total);
+                Log.d("result__numAdd", numAdd + "___");
+                list.get(position).setProductNum(numAdd);
+                holder.tv_count_shopping_cart_listview.setText(numAdd + "");
+
+                double total = numAdd * list.get(position).getProductMoney();
+                list.get(position).setTotal(total);
+                holder.tv_total_shopping_cart_listview.setText(total + "");
                 addCart();
             }
         });
@@ -131,25 +151,35 @@ public class ShoppingCartAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
 //                int numCut = Integer.parseInt(AppUtils.toStringTrim_TV(holder.tv_count_shopping_cart_listview));
-                numCut = list.get(position).getProductNum();
+                numAdd = list.get(position).getProductNum();
+                indexAdd = position;
                 //给产品id赋值
                 cartId = list.get(position).getCartId();
-                if (numCut > 1) {
-                    numCut--;
+                if (numAdd > 1) {
+                    numAdd--;
+                    numAdd = Double.parseDouble(decimalFormat.format(numAdd));
                 } else {
-                    numCut = 1;
                     return;
+
                 }
-                productNum = numCut + "";
-//                shoppingCart.setProductNum(numCut);
-//                holder.tv_count_shopping_cart_listview.setText(numCut + "");
-//                double total = numCut * shoppingCart.getProductMoney();
-//                holder.tv_total_shopping_cart_listview.setText(total + "");
-//                shoppingCart.setTotal(total);
-                cutCart();
+                Log.d("result_numCut", numAdd + "___");
+                productNum = numAdd + "";
+                list.get(position).setProductNum(numAdd);
+                holder.tv_count_shopping_cart_listview.setText(numAdd + "");
+                double total = numAdd * list.get(position).getProductMoney();
+                list.get(position).setTotal(total);
+                holder.tv_total_shopping_cart_listview.setText(total + "");
+                addCart();
             }
         });
-
+        holder.tv_count_shopping_cart_listview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                index = (int) v.getTag();
+                isInput = true;
+                showDailog(index);
+            }
+        });
         holder.cb_shopping_cart_listview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,6 +187,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
                 dataChange();
             }
         });
+
 
         return convertView;
     }
@@ -216,7 +247,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
     }
 
     public interface CallBackData {
-        public void callBack(int num, double total);
+        public void callBack(double num, double total);
     }
 
 
@@ -229,68 +260,167 @@ public class ShoppingCartAdapter extends BaseAdapter {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
+                Log.d("result___", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
-//                    numAdd++;
-                    shoppingCart.setProductNum(numAdd);
-                    holder.tv_count_shopping_cart_listview.setText(numAdd + "");
 
-                    double total = numAdd * shoppingCart.getProductMoney();
-                    holder.tv_total_shopping_cart_listview.setText(total + "");
-                    shoppingCart.setTotal(total);
-//                productNum = numAdd + "";
                     dataChange();
+                    if (isInput) {
+                        isInput = false;
+                        notifyDataSetChanged();
+                    }
                 } else {
+                    indexAdd--;
+                    list.get(indexAdd).setProductNum(numAdd);
+                    Log.d("result___ADD", numAdd + "____" + indexAdd);
+                    double total = numAdd * list.get(indexAdd).getProductMoney();
+                    list.get(indexAdd).setTotal(total);
+                    notifyDataSetChanged();
+                    AppUtils.toastText(context, message);
+                }
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
+                indexAdd--;
+                list.get(indexAdd).setProductNum(numAdd);
+                Log.d("result___ADD", numAdd + "____" + indexAdd);
+                double total = numAdd * list.get(indexAdd).getProductMoney();
+                list.get(indexAdd).setTotal(total);
+                notifyDataSetChanged();
+            }
+        }.datePost(DefineUtil.EDIT_CART, ShoppingCartUrl.postDeleteUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartId, productNum, "0"), context);
+    }
+
+
+    private Dialog dialog;
+
+    public void showDailog(final int index) {
+
+        numAdd = list.get(index).getProductNum();
+//                indexAdd = position;
+        //给产品id赋值
+        cartId = list.get(index).getCartId();
+        productNum = numAdd + "";
+
+        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = layoutInflater.inflate(R.layout.layout_input, null);
+        btn_cancel_delete = (Button) view.findViewById(R.id.btn_cancel_delete);
+        btn_confirm_delete = (Button) view.findViewById(R.id.btn_confirm_delete);
+        iv_cut_shopping_input = (ImageView) view.findViewById(R.id.iv_cut_shopping_input);
+        et_count_shopping_cart_input = (EditText) view.findViewById(R.id.et_count_shopping_cart_input);
+        et_count_shopping_cart_input.setText(String.valueOf(list.get(index).getProductNum()));
+        et_count_shopping_cart_input.setSelection(String.valueOf(list.get(index).getProductNum()).length());
+        iv_add_shopping_cart_input = (ImageView) view.findViewById(R.id.iv_add_shopping_cart_input);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.create();
+        builder.setView(view);
+//        builder.setCancelable(false);
+        dialog = builder.show();
+        dialog.getWindow().clearFlags(
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                        | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        dialog.getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        btn_cancel_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                InputMethodManager imm = ( InputMethodManager ) v.getContext( ).getSystemService(Context.INPUT_METHOD_SERVICE);
+                if ( imm.isActive( ) ) {
+                    AppUtils.toastText(context,"键盘");
+                    imm.hideSoftInputFromWindow( v.getApplicationWindowToken( ) , 0 );
+
+                }
+            }
+        });
+        btn_confirm_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                productNum = et_count_shopping_cart_input.getText().toString();
+                if (productNum == null) {
+                    AppUtils.toastText(context, "数量不能为空");
+                    return;
+                }
+                list.get(index).setProductNum(Double.parseDouble(productNum));
+                double total = Double.parseDouble(productNum) * list.get(index).getProductMoney();
+                list.get(index).setTotal(total);
+                addCart();
+                dialog.dismiss();
+                InputMethodManager imm = ( InputMethodManager ) v.getContext( ).getSystemService(Context.INPUT_METHOD_SERVICE);
+                if ( imm.isActive( ) ) {
+                    imm.hideSoftInputFromWindow( v.getApplicationWindowToken( ) , 0 );
+
+                }
+            }
+        });
+
+
+        //点击增加按钮
+        iv_add_shopping_cart_input.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numAdd = Double.parseDouble(et_count_shopping_cart_input.getText().toString());
+                numAdd++;
+                et_count_shopping_cart_input.setText(numAdd + "");
+                et_count_shopping_cart_input.setSelection(String.valueOf(numAdd).length());
+            }
+        });
+
+
+//        点击减少按钮
+        iv_cut_shopping_input.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numAdd = Double.parseDouble(et_count_shopping_cart_input.getText().toString());
+                if (numAdd > 1) {
                     numAdd--;
-                    AppUtils.toastText(context, message);
-                }
-            }
-
-            @Override
-            public void failureInitViews(HttpException arg0, String arg1) {
-                if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
-                }
-                numAdd--;
-            }
-        }.datePost(DefineUtil.EDIT_CART, ShoppingCartUrl.postDeleteUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartId, productNum, "0"), context);
-    }
-
-
-    public void cutCart() {
-        customProgress = CustomProgress.show(context, "", true);
-        new XHttpuTools() {
-            @Override
-            public void initViews(ResponseInfo<String> arg0) {
-                if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
-                }
-                String message = JsonUtils.getJsonParam(arg0.result, "message");
-                String status = JsonUtils.getJsonParam(arg0.result, "status");
-                if (status.equals("1")) {
-                    shoppingCart.setProductNum(numCut);
-                    holder.tv_count_shopping_cart_listview.setText(numCut + "");
-                    double total = numCut * shoppingCart.getProductMoney();
-                    holder.tv_total_shopping_cart_listview.setText(total + "");
-                    shoppingCart.setTotal(total);
-//                    productNum = numCut + "";
-                    dataChange();
                 } else {
-                    numCut++;
-                    AppUtils.toastText(context, message);
+                    return;
+
                 }
+                et_count_shopping_cart_input.setText(numAdd + "");
+                et_count_shopping_cart_input.setSelection(String.valueOf(numAdd).length());
+            }
+        });
+        //监听Edittext数据变化
+        et_count_shopping_cart_input.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
 
             @Override
-            public void failureInitViews(HttpException arg0, String arg1) {
-                if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
-                }
-                numCut++;
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
             }
-        }.datePost(DefineUtil.EDIT_CART, ShoppingCartUrl.postDeleteUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartId, productNum, "0"), context);
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String temp = s.toString();
+                int d = temp.indexOf(".");
+                if (d < 0) {
+//                if (temp.length() > 3) {
+//
+//                    s.delete(3, 4);
+//                }
+                    return;
+                }
+                if (temp.length() - d - 1 > 2) {
+                    s.delete(d + 3, d + 4);
+                } else if (d == 0) {
+                    s.delete(d, d + 1);
+                }
+            }
+        });
     }
+
+    private Button btn_cancel_delete;
+    private Button btn_confirm_delete;
 
 
 }

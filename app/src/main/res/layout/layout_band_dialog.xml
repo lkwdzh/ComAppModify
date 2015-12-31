@@ -6,10 +6,15 @@
 
     <TextView
         android:id="@+id/tv_name_band_dialog"
-        android:paddingLeft="@dimen/px_14"
-        android:paddingTop="@dimen/px_10"
-        android:paddingBottom="@dimen/px_10"
-        style="@style/grayTextView_333333_13" />
+        android:padding="@dimen/px_20"
+        android:text="1111"
+        android:textColor="@color/textcolor_333333"
+        android:textSize="13sp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
     <View
         style="@style/line_1"/>
 </LinearLayout>

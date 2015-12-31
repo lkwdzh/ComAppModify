@@ -1,7 +1,6 @@
 package com.aglook.comapp.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,7 +70,6 @@ public class CardListAdapter extends BaseAdapter {
         }
 //        holder.iv_card_lv.setImageResource(R.drawable.bejing);
         String bankCode = cardList.getBankCode();
-        Log.d("result_bankCode",position+"________"+bankCode);
         if (bankCode.equals("6")){
             holder.iv_card_lv.setImageResource(R.drawable.bejing);
         }else if (bankCode.equals("62")){

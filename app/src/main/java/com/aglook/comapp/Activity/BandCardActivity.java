@@ -84,7 +84,7 @@ public class BandCardActivity extends BaseActivity {
         cardNo = AppUtils.toStringTrim_ET(et_num_bang_card);
         cardPhone = AppUtils.toStringTrim_ET(et_phone_bang_card);
         if (userName==null||"".equals(userName)){
-            AppUtils.toastText(BandCardActivity.this,"账号名不能为空");
+            AppUtils.toastText(BandCardActivity.this,"姓名不能为空");
             return;
         }
         if (cardNo==null||"".equals(cardNo)){
@@ -131,7 +131,7 @@ public class BandCardActivity extends BaseActivity {
 
     //获取银行卡列表
     public void getDialogData() {
-        customProgress = CustomProgress.show(this, "加载中···", true);
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -160,7 +160,7 @@ public class BandCardActivity extends BaseActivity {
 
     //绑定银行卡
     public void bandCard() {
-        customProgress = CustomProgress.show(this, "绑定中···", true);
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {

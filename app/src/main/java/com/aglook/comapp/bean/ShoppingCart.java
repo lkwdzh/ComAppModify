@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class ShoppingCart implements Serializable{
     private String cartId;
     private String productId;
-    private int productNum;
+    private double productNum;
     private boolean isChecked;
     private double productMoney;
     private String productName;
@@ -51,11 +51,11 @@ public class ShoppingCart implements Serializable{
         this.productId = productId;
     }
 
-    public int getProductNum() {
+    public double getProductNum() {
         return productNum;
     }
 
-    public void setProductNum(int productNum) {
+    public void setProductNum(double productNum) {
         this.productNum = productNum;
     }
 

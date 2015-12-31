@@ -50,7 +50,7 @@ public class ShoppingCartActivity extends BaseActivity {
     private CheckBox cb_buy_shopping_cart;
     private TextView tv_shopping_cart_jiesuan;
     private TextView tv_total_shopping_cart_fragment;
-    private int allNum = 0;
+    private double allNum = 0;
     private double allMoney = 0;
     private LinearLayout ll_empty_shopping_cart;
     private RelativeLayout ll_full_content;
@@ -83,7 +83,7 @@ public class ShoppingCartActivity extends BaseActivity {
         mList = new ArrayList<>();
         adapter = new ShoppingCartAdapter(ShoppingCartActivity.this, mList, new ShoppingCartAdapter.CallBackData() {
             @Override
-            public void callBack(int num, double total) {
+            public void callBack(double num, double total) {
                 allMoney = total;
                 allNum = num;
                 DefineUtil.NUM = num;
@@ -266,6 +266,9 @@ public class ShoppingCartActivity extends BaseActivity {
         if (requestCode==33&&resultCode==1){
             mList.clear();
             getCartListData();
+        }else if (requestCode==2&&resultCode==1){
+            mList.clear();
+            getCartListData();
         }
     }
 
@@ -317,10 +320,10 @@ public class ShoppingCartActivity extends BaseActivity {
                             isDelete = false;
                         }
 
-                        if (isToGoodsDetail) {
-                            mList.clear();
-                            isToGoodsDetail = false;
-                        }
+//                        if (isToGoodsDetail) {
+//                            mList.clear();
+//                            isToGoodsDetail = false;
+//                        }
 
                         if (isConfirm) {
                             mList.clear();
