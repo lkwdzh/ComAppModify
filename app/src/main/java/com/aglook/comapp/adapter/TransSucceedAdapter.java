@@ -75,7 +75,7 @@ public class TransSucceedAdapter extends BaseAdapter implements View.OnClickList
         XBitmap.displayImage(holder.iv_lv_lv, stataLiL.getProductLogo(), activity);
         holder.tv_name_lv_lv.setText(stataLiL.getProductName());
         holder.tv_price_lv_lv.setText(stataLiL.getProductMoney());
-        holder.tv_weight_lv_lv.setText(stataLiL.getWeightUseable() + "吨");
+        holder.tv_weight_lv_lv.setText(stataLiL.getProductNum() + "吨");
         if (stataLiL.getOrderState().equals("close")) {
             holder.tv_success_all_order_lv.setText("已关闭");
         } else if (stataLiL.getOrderState().equals("success")) {

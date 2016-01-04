@@ -152,7 +152,7 @@ public abstract class XHttpuTools {
             @Override
             public void onFailure(HttpException e, String s) {
                 failureInitViews(e, s);
-                AppUtils.toastText(context, "网络繁忙，请重新操作");
+//                AppUtils.toastText(context, "网络繁忙，请重新操作");
             }
         });
     }

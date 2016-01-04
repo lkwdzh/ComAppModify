@@ -40,7 +40,6 @@ import com.aglook.comapp.adapter.HomePageEXGridView;
 import com.aglook.comapp.adapter.HomePageZiAdapter;
 import com.aglook.comapp.bean.HomePage;
 import com.aglook.comapp.bean.HomePageList;
-import com.aglook.comapp.bean.HomePageScroll;
 import com.aglook.comapp.bean.Information;
 import com.aglook.comapp.url.HomePageUrl;
 import com.aglook.comapp.util.AppUtils;
@@ -70,7 +69,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     //    private static final int POINT_LENGTH = 4;
     private int mCurrentIndex;
     private int mCurrentPagePosition = FIRST_ITEM_INDEX;
-    private static final int FIRST_ITEM_INDEX = 1;
+    private static final int FIRST_ITEM_INDEX = 0;
     private boolean mIsChanged = false;
     private CustomProgress customProgress;
     private Handler handler = new Handler() {
@@ -122,7 +121,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         IntentFilter filter2 = new IntentFilter();
         filter2.addAction("HomeMain");
         getActivity().registerReceiver(myReceiver2, filter2);
-        getScroll();
+//        getScroll();
         getInfo();
         click();
         fillData();
@@ -132,7 +131,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
 
     //轮播图下面的小点
     private void setCurrentDot(int position) {
-        for (int i = 0; i < scrollLength; i++) {
+        for (int i = 0; i < 5; i++) {
             if (i == position) {
                 tips[i].setBackgroundResource(R.drawable.checked);
             } else {
@@ -147,7 +146,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     public void initView(View view) {
         mList = new ArrayList<>();
         inList = new ArrayList<>();
-        scrollList = new ArrayList<>();
+//        scrollList = new ArrayList<>();
 //        adapter = new RecycleHomePageAdapter(getActivity(),inList);
         vp_home_page_head = (ViewPager) view.findViewById(R.id.vp_home_page_head);
         sv_homepage = (PullToRefreshScrollView) view.findViewById(R.id.sv_homepage);
@@ -172,6 +171,10 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
 
 
         viewGroup = (ViewGroup) view.findViewById(R.id.viewGroup);
+        MyFramentPageAdapter myViewPagerAdapter = new MyFramentPageAdapter(getChildFragmentManager());
+                        vp_home_page_head.setAdapter(myViewPagerAdapter);
+                        setTips();
+                        handler.sendEmptyMessageDelayed(1, 3000);
         vp_home_page_head.setOnPageChangeListener(this);
         vp_home_page_head.setCurrentItem(mCurrentPagePosition, false);
 
@@ -391,17 +394,17 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
 
         @Override
         public int getCount() {
-            return scrollList != null ? scrollList.size() : 0;
+            return 5;
         }
     }
 
 
     //设置点数
     public void setTips() {
-        if (scrollLength > 0) {
+//        if (scrollLength > 0) {
 
             // 将小点点装入ViewGroup
-            tips = new ImageView[scrollLength];
+            tips = new ImageView[5];
             for (int i = 0; i < tips.length; i++) {
                 ImageView imageTip = new ImageView(getActivity());
                 imageTip.setLayoutParams(new ViewGroup.LayoutParams(200, 200));
@@ -419,7 +422,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                 layoutParams.rightMargin = 20;
                 viewGroup.addView(imageTip, layoutParams);
             }
-        }
+//        }
     }
 
     private List<HomePage> mList;
@@ -508,41 +511,41 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
 
     }
 
-    public static List<HomePageScroll> scrollList;
+//    public static List<HomePageScroll> scrollList;
 
     // 盛放图片
 //    private List<Bitmap>bitmapList;
 //    private ImageView imageView;
 //    private List<Bitmap>bitmapList1;
     //首页轮播图
-    public void getScroll() {
-        scrollList = new ArrayList<>();
-
-        new XHttpuTools() {
-            @Override
-            public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_homePage_scroll", arg0.result);
-                String message = JsonUtils.getJsonParam(arg0.result, "message");
-                String status = JsonUtils.getJsonParam(arg0.result, "status");
-                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
-                if (obj != null && !"".equals(obj)) {
-                    scrollList = JsonUtils.parseList(obj, HomePageScroll.class);
-                    if (scrollList != null && scrollList.size() != 0) {
-                        MyFramentPageAdapter myViewPagerAdapter = new MyFramentPageAdapter(getChildFragmentManager());
-                        vp_home_page_head.setAdapter(myViewPagerAdapter);
-                        scrollLength = scrollList.size();
-                        setTips();
-                        handler.sendEmptyMessageDelayed(1, 3000);
-                    }
-                }
-            }
-
-            @Override
-            public void failureInitViews(HttpException arg0, String arg1) {
-
-            }
-        }.datePostCheck(DefineUtil.INDEX_SCROLLPIC, getActivity());
-    }
+//    public void getScroll() {
+//        scrollList = new ArrayList<>();
+//
+//        new XHttpuTools() {
+//            @Override
+//            public void initViews(ResponseInfo<String> arg0) {
+//                Log.d("result_homePage_scroll", arg0.result);
+//                String message = JsonUtils.getJsonParam(arg0.result, "message");
+//                String status = JsonUtils.getJsonParam(arg0.result, "status");
+//                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
+//                if (obj != null && !"".equals(obj)) {
+//                    scrollList = JsonUtils.parseList(obj, HomePageScroll.class);
+//                    if (scrollList != null && scrollList.size() != 0) {
+//                        MyFramentPageAdapter myViewPagerAdapter = new MyFramentPageAdapter(getChildFragmentManager());
+//                        vp_home_page_head.setAdapter(myViewPagerAdapter);
+//                        scrollLength = scrollList.size();
+//                        setTips();
+//                        handler.sendEmptyMessageDelayed(1, 3000);
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void failureInitViews(HttpException arg0, String arg1) {
+//
+//            }
+//        }.datePostCheck(DefineUtil.INDEX_SCROLLPIC, getActivity());
+//    }
 
     //获取首页资讯条
     public void getInfo() {

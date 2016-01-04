@@ -40,7 +40,7 @@ public class MyCangDanActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_my_cang_dan);
-        setTitleBar("仓单");
+        setTitleBar("原始仓单");
         ExitApplication.getInstance().addActivity(this);
         init();
         click();

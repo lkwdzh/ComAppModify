@@ -103,7 +103,7 @@ public class TransDetailActivity extends BaseActivity {
             tv_in_time_my_cangdan.setText(Timestamp.getDateTo(guaDanStataLiL.getOrderAtime()));
             tv_xia_order_detail.setText(Timestamp.getDateTo(guaDanStataLiL.getOrderAtime()));
         }
-        if (!"".equals(guaDanStataLiL.getOrderPtime())) {
+        if (!"0".equals(guaDanStataLiL.getOrderPtime())) {
             tv_pay_order_detail.setText(Timestamp.getDateTo(guaDanStataLiL.getOrderPtime()));
         } else {
             tv_pay_order_detail.setText("未付款");
@@ -120,7 +120,7 @@ public class TransDetailActivity extends BaseActivity {
         tv_price_lv_lv.setText(guaDanStataLiL.getProductMoney());
         tv_weight_lv_lv.setText(guaDanStataLiL.getInnerWeight());
         if (guaDanStataLiL.getProductNum()!=null&&guaDanStataLiL.getProductMoney()!=null&&guaDanStataLiL.getCounter()!=null) {
-            tv_money_lv_lv.setText(Integer.parseInt(guaDanStataLiL.getProductNum()) * Double.parseDouble(guaDanStataLiL.getProductMoney()) + Double.parseDouble(guaDanStataLiL.getCounter()) + "");
+            tv_money_lv_lv.setText(Double.parseDouble(guaDanStataLiL.getProductNum()) * Double.parseDouble(guaDanStataLiL.getProductMoney()) + Double.parseDouble(guaDanStataLiL.getCounter()) + "");
         }
         tv_shouxu_lv_lv.setText(guaDanStataLiL.getCounter());
         tv_cangchu_lv_lv.setText(guaDanStataLiL.getStorage());

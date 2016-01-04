@@ -53,39 +53,6 @@
                     android:text="小米"
                     android:singleLine="true" />
 
-                <!--<LinearLayout-->
-                <!--style="@style/ll_wrap_content_hor"-->
-                <!--android:layout_marginTop="@dimen/px_5">-->
-
-                <!--<TextView-->
-                <!--style="@style/grayTextView_666666"-->
-                <!--android:text="@string/screen_gridview_address"-->
-                <!--android:textSize="11sp" />-->
-
-                <!--<TextView-->
-                <!--android:id="@+id/tv_address_screen_gridview"-->
-                <!--style="@style/grayTextView_666666"-->
-
-                <!--android:singleLine="true"-->
-                <!--android:textSize="11sp" />-->
-                <!--</LinearLayout>-->
-
-                <!--<LinearLayout-->
-                <!--style="@style/ll_wrap_content_hor"-->
-                <!--android:layout_marginTop="@dimen/px_5">-->
-
-                <!--<TextView-->
-                <!--style="@style/grayTextView_666666"-->
-                <!--android:text="@string/screen_gridview_grade"-->
-                <!--android:textSize="11sp" />-->
-
-                <!--<TextView-->
-                <!--android:id="@+id/tv_grade_screen_gridview"-->
-                <!--style="@style/grayTextView_666666"-->
-
-                <!--android:singleLine="true"-->
-                <!--android:textSize="11sp" />-->
-                <!--</LinearLayout>-->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/px_20"

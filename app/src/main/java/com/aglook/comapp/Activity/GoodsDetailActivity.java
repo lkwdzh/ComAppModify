@@ -96,11 +96,11 @@ public class GoodsDetailActivity extends BaseActivity {
         right_image = (ImageView) findViewById(R.id.right_image);
         right_image.setImageResource(R.drawable.share);
         right_image.setVisibility(View.VISIBLE);
-        customProgress = CustomProgress.show(GoodsDetailActivity.this, "加载中···", true);
+        customProgress = CustomProgress.show(GoodsDetailActivity.this, "", true);
         isSelf = getIntent().getBooleanExtra("isSelf", false);
         productId = getIntent().getStringExtra("productId");
         pointUser = getIntent().getStringExtra("pointUser");
-        url="http://www.decxgroup.com/product/"+productId;
+        url = "http://www.decxgroup.com/product/" + productId;
         iv_detail = (ImageView) findViewById(R.id.iv_detail);
         tv_detail_goods_detail = (TextView) findViewById(R.id.tv_detail_goods_detail);
         tv_price_goods_detail = (TextView) findViewById(R.id.tv_price_goods_detail);
@@ -176,8 +176,8 @@ public class GoodsDetailActivity extends BaseActivity {
     //    填充数据
     public void fillData() {
         if (goodsDetail != null && !"".equals(goodsDetail)) {
-            title=goodsDetail.getProductName();
-            imageUrl=goodsDetail.getProductLogo();
+            title = goodsDetail.getProductName();
+            imageUrl = goodsDetail.getProductLogo();
             tv_detail_goods_detail.setText(goodsDetail.getProductName());
             tv_price_goods_detail.setText(goodsDetail.getProductMoney());
             tv_cangdanhao_goods_detail.setText(goodsDetail.getProductListId());
@@ -208,8 +208,8 @@ public class GoodsDetailActivity extends BaseActivity {
                 XBitmap.displayImage(iv_detail, goodsDetail.getProductLogo(), GoodsDetailActivity.this);
             }
 
-            if (goodsDetail.getProductOwnerProve()!=null&&!"".equals(goodsDetail.getProductOwnerProve())){
-                XBitmap.displayImage(iv_hq,goodsDetail.getProductOwnerProve(),GoodsDetailActivity.this);
+            if (goodsDetail.getProductOwnerProve() != null && !"".equals(goodsDetail.getProductOwnerProve())) {
+                XBitmap.displayImage(iv_hq, goodsDetail.getProductOwnerProve(), GoodsDetailActivity.this);
             }
         }
         //判断是否已经登录，若登录则显示购物车个数，否则不显示
@@ -254,7 +254,7 @@ public class GoodsDetailActivity extends BaseActivity {
         Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.right_image:
-                ShareUtil.Share(GoodsDetailActivity.this,title,url);
+                ShareUtil.Share(GoodsDetailActivity.this, title, url);
                 break;
             case R.id.tv_boda:
                 //打电话，并取消dialog
@@ -273,7 +273,7 @@ public class GoodsDetailActivity extends BaseActivity {
 
                 // 必须明确使用mailto前缀来修饰邮件地址,如果使用
 // intent.putExtra(Intent.EXTRA_EMAIL, email)，结果将匹配不到任何应用
-                Uri uri = Uri.parse("mailto:"+AppUtils.toStringTrim_TV(tv_phone_call));
+                Uri uri = Uri.parse("mailto:" + AppUtils.toStringTrim_TV(tv_phone_call));
                 String[] email = {AppUtils.toStringTrim_TV(tv_phone_call)};
                 Intent intent1 = new Intent(Intent.ACTION_SENDTO, uri);
                 intent1.putExtra(Intent.EXTRA_CC, email); // 抄送人
@@ -311,13 +311,13 @@ public class GoodsDetailActivity extends BaseActivity {
                         AppUtils.toastText(GoodsDetailActivity.this, "不能购买自己出售的商品");
                     } else {
                         //判断剩余重量是否为0
-                        if (goodsDetail.getProductSellNum()==0) {
+                        if (goodsDetail.getProductSellNum() == 0) {
                             AppUtils.toastText(GoodsDetailActivity.this, "商品已卖完");
                         } else {
-                            if (goodsDetail.getProductSellNum()>=1){
-                                productNum="1";
-                            }else {
-                                productNum=String.valueOf(productNum);
+                            if (goodsDetail.getProductSellNum() >= 1) {
+                                productNum = "1";
+                            } else {
+                                productNum = String.valueOf(goodsDetail.getProductSellNum());
                             }
                             addCart();
                         }
@@ -474,8 +474,8 @@ public class GoodsDetailActivity extends BaseActivity {
         LayoutInflater layoutInflater = (LayoutInflater) GoodsDetailActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.layout_alpha_dialog, null);
         tv_phone_call = (TextView) view.findViewById(R.id.tv_phone_call);
-        tv_quxiao=(TextView)view.findViewById(R.id.tv_quxiao);
-        tv_boda=(TextView)view.findViewById(R.id.tv_boda);
+        tv_quxiao = (TextView) view.findViewById(R.id.tv_quxiao);
+        tv_boda = (TextView) view.findViewById(R.id.tv_boda);
         builder = new AlertDialog.Builder(GoodsDetailActivity.this).create();
 //        builder.create();
         builder.setView(view);

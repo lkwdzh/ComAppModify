@@ -10,8 +10,10 @@
     <TextView
         android:id="@+id/tv_cangdan_home"
         style="@style/grayTextView_333333_15"
-        android:text="仓单"
+        android:text="原始仓单"
         android:gravity="center"
+        android:paddingLeft="@dimen/px_5"
+        android:paddingRight="@dimen/px_5"
         android:layout_marginRight="@dimen/px_50"
         android:background="@drawable/delete" />
 
@@ -19,6 +21,8 @@
         android:id="@+id/tv_plat_home"
         style="@style/grayTextView_333333_15"
         android:text="平台仓单"
+        android:paddingLeft="@dimen/px_5"
+        android:paddingRight="@dimen/px_5"
         android:gravity="center"
         android:background="@drawable/delete" />
 

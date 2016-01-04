@@ -8,17 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.aglook.comapp.bean.HomePageScroll;
-import com.aglook.comapp.util.XBitmap;
-
-import java.util.List;
+import com.aglook.comapp.R;
 
 /**
  * Created by aglook on 2015/10/27.
  */
 public class HomePageViewPagerFragment extends Fragment {
-    private List<HomePageScroll> list=HomePageFragment.scrollList;
-//    public int imageArray[]={R.drawable.startup01,R.drawable.startup02,R.drawable.startup03,R.drawable.startup04};
+//    private List<HomePageScroll> list=HomePageFragment.scrollList;
+    public int imageArray[]={R.drawable.viewpage1,R.drawable.viewpage2,R.drawable.viewpage3,R.drawable.viewpage4,R.drawable.viewpage5};
     public static HomePageViewPagerFragment myFragment(int position){
         HomePageViewPagerFragment fragment=new HomePageViewPagerFragment();
         Bundle bundle=new Bundle();
@@ -34,10 +31,10 @@ public class HomePageViewPagerFragment extends Fragment {
         Bundle bundle=getArguments();
         int position = bundle.getInt("position");
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        if (list.get(position).getAdLogo()!=null&&!"".equals(list.get(position).getAdLogo())) {
-            XBitmap.displayImage(imageView, list.get(position).getAdLogo(), getActivity());
-        }
-
+//        if (list.get(position).getAdLogo()!=null&&!"".equals(list.get(position).getAdLogo())) {
+//            XBitmap.displayImage(imageView, list.get(position).getAdLogo(), getActivity());
+//        }
+        imageView.setImageResource(imageArray[position]);
         return imageView;
     }
 }

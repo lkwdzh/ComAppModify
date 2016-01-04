@@ -54,7 +54,7 @@
             <TextView
                 android:id="@+id/tv_num_buyer_list"
                 style="@style/grayTextView_333333_15"
-                android:text="2"/>
+                android:text="0"/>
             <TextView
                 style="@style/grayTextView_333333_15"
                 android:text="位买家"/>

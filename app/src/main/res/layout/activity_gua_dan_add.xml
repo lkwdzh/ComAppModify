@@ -23,6 +23,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
+                android:layout_marginTop="@dimen/px_20"
                 android:weightSum="4">
 
                 <LinearLayout
@@ -40,7 +41,7 @@
                     <TextView
                         style="@style/grayTextView_333333_15"
                         android:layout_marginBottom="@dimen/px_10"
-                        android:text="货物图片" />
+                        android:text="货物样品" />
                 </LinearLayout>
 
                 <LinearLayout

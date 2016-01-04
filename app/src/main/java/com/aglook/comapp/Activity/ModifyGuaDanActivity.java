@@ -22,6 +22,7 @@ import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XBitmap;
 import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.aglook.comapp.view.Timestamp;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -84,7 +85,7 @@ public class ModifyGuaDanActivity extends BaseActivity {
     private CangDanDetail cangDanDetail;
     private List<Buyer>mList=new ArrayList<>();
     private TextView tv_goods_zhiliang_gua_dan;
-
+    private CustomProgress customProgress;
     @Override
     public void initView() {
         setContentView(R.layout.activity_modify_gua_dan);
@@ -174,7 +175,7 @@ public class ModifyGuaDanActivity extends BaseActivity {
         et_goods_name_gua_dan.setText(cangDanDetail.getProductName());
         tv_cangdanhao_gua_dan_add.setText(cangDanDetail.getOriginalListId());
         tv_goods_kind_gua_dan.setText(cangDanDetail.getCategoryName());
-        tv_stock_weight_gua_dan.setText(cangDanDetail.getInnerWeight()+"吨");
+        tv_stock_weight_gua_dan.setText(cangDanDetail.getWeightUseable()+"吨");
         if (cangDanDetail.getInnerTime()!=null&&!"".equals(cangDanDetail.getInnerTime())) {
             tv_in_time_gua_dan_add.setText(Timestamp.getDateToString(cangDanDetail.getInnerTime()));
         }
@@ -188,7 +189,6 @@ public class ModifyGuaDanActivity extends BaseActivity {
         et_cang_phone_gua_dan.setText(cangDanDetail.getResponsibleMobile());
         et_cang_email_gua_dan.setText(cangDanDetail.getResponsibleEmail());
         et_cang_address_gua_dan.setText(cangDanDetail.getDepotAddress());
-        Log.d("result_cangDanDetail.getDepotQuality()",cangDanDetail.getDepotQuality()+"11111111111");
         tv_goods_zhiliang_gua_dan.setText(cangDanDetail.getDepotQuality());
         if (cangDanDetail.getCustomerList()!=null&&cangDanDetail.getCustomerList().size()!=0){
             mList.addAll(cangDanDetail.getCustomerList());
@@ -304,9 +304,13 @@ public class ModifyGuaDanActivity extends BaseActivity {
 
     //获取挂单详情
     public void getData() {
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
                 Log.d("result_Modi",arg0.result);
                 String message=JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
@@ -322,7 +326,9 @@ public class ModifyGuaDanActivity extends BaseActivity {
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress != null && customProgress.isShowing()) {
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.CANG_DAN, AllGuaDanUrl.postgetDetailUrl(codeGua, DefineUtil.TOKEN, DefineUtil.USERID, productId), ModifyGuaDanActivity.this);
     }
