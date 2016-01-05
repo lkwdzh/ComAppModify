@@ -389,7 +389,7 @@ public class GoodsDetailActivity extends BaseActivity {
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
                     AppUtils.toastText(GoodsDetailActivity.this, message);
-                    DefineUtil.NUM++;
+//                    DefineUtil.NUM++;
                     tv_num_goods_detail.setVisibility(View.VISIBLE);
                     tv_num_goods_detail.setText(DefineUtil.NUM + "");
                     Intent intent = new Intent();

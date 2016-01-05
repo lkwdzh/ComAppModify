@@ -84,6 +84,10 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
     private TextView tv_zonge_shop_cart;
     private View emptyView;
     private View viewAll;
+    private LinearLayout ll_cb_bottom;
+
+    //选中的list
+//    private List<ShoppingCart>selectedList=new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
          viewAll = View.inflate(getActivity(), R.layout.layout_shopping_cart_fragment, null);
@@ -111,13 +115,19 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
             public void callBack(double num, double total) {
                 allMoney = total;
                 allNum = num;
-                DefineUtil.NUM = num;
+//                DefineUtil.NUM = num;
                 Intent intent1 = new Intent();
                 intent1.setAction("MainActivity");
                 getActivity().sendBroadcast(intent1);
                 tv_shopping_cart_jiesuan.setText("(" + num + ")");
                 tv_total_shopping_cart_fragment.setText(total + "");
                 tv_zonge_shop_cart.setText(total+"");
+//                selectedList.clear();
+//                for (int i = 0; i < mList.size(); i++) {
+//                    if (mList.get(i).isChecked()){
+//                        selectedList.add(mList.get(i));
+//                    }
+//                }
             }
         });
         lv_shopping_cart.setAdapter(adapter);
@@ -144,7 +154,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
 //        登录按钮
         tv_denglu_shopping_cart = (TextView) view.findViewById(R.id.tv_denglu_shopping_cart);
         btn_login = (Button) view.findViewById(R.id.btn_login);
-
+        ll_cb_bottom = (LinearLayout) view.findViewById(R.id.ll_cb_bottom);
         //如果未登录
         if (comAppApplication.getLogin() == null || "".equals(comAppApplication.getLogin())) {
             unLogin();
@@ -230,15 +240,23 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                     rl_edit_bottom_shopping_cart.setVisibility(View.VISIBLE);
                     ll_buy_bottom_shopping_cart.setVisibility(View.GONE);
                     cb_top_right_shopping_cart.setText("完成");
-                    cb_buy_shopping_cart.setChecked(false);
+//                    cb_buy_shopping_cart.setChecked(false);
+//                    ll_cb_bottom.setVisibility(View.VISIBLE);
                     adapter.isEditting(true);
+                    for (int i = 0; i < mList.size(); i++) {
+                        mList.get(i).setChecked(false);
+                    }
                     adapter.notifyDataSetChanged();
                 } else {
                     rl_edit_bottom_shopping_cart.setVisibility(View.GONE);
                     ll_buy_bottom_shopping_cart.setVisibility(View.VISIBLE);
                     cb_top_right_shopping_cart.setText("编辑");
-                    cb_edit_shopping_cart.setChecked(false);
+//                    cb_edit_shopping_cart.setChecked(false);
+//                    ll_cb_bottom.setVisibility(View.INVISIBLE);
                     adapter.isEditting(false);
+                    for (int i = 0; i < mList.size(); i++) {
+                        mList.get(i).setChecked(true);
+                    }
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -266,6 +284,8 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
 //        cb_buy_shopping_cart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 //            @Override
 //            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                selectedList.clear();
+//
 //                if (isChecked) {
 //                    allMoney = 0;
 //                    allNum = 0;
@@ -277,6 +297,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
 //                    tv_shopping_cart_jiesuan.setText("(" + allNum + ")");
 //                    tv_total_shopping_cart_fragment.setText(allMoney + "");
 //
+//                    selectedList.addAll(mList);
 //                } else {
 //                    for (int i = 0; i < mList.size(); i++) {
 //                        mList.get(i).setChecked(false);
@@ -285,6 +306,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
 //                    allNum = 0;
 //                    tv_shopping_cart_jiesuan.setText("(" + 0 + ")");
 //                    tv_total_shopping_cart_fragment.setText(0 + "");
+//                    selectedList.clear();
 //                }
 ////                tv_shopping_cart_jiesuan.setText("(" + allNum + ")");
 ////                tv_total_shopping_cart_fragment.setText(allMoney + "");
@@ -426,7 +448,6 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                 list = JsonUtils.parseList(obj, ShoppingCart.class);
                 int num = 0;
                 if (status.equals("1")) {
-                    if (list != null && list.size() != 0) {
                         if (isDelete) {
                             mList.clear();
                             isDelete = false;
@@ -441,11 +462,12 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                             mList.clear();
                             isConfirm = false;
                         }
+                    if (list != null && list.size() != 0) {
                         mList.addAll(list);
 
                         for (int i = 0; i < mList.size(); i++) {
                             num+=mList.get(i).getProductNum();
-                            DefineUtil.NUM=num;
+                            mList.get(i).setChecked(true);
                         }
 
                     } else {
@@ -461,7 +483,6 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                             cb_top_right_shopping_cart.setVisibility(View.GONE);
                             isDelete = false;
                         }
-                        DefineUtil.NUM=0;
                     }
                     if (mList == null || mList.size() == 0) {
                         ll_empty_shopping_cart.setVisibility(View.VISIBLE);
@@ -485,6 +506,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                 getActivity().sendBroadcast(intent1);
                 adapter.notifyDataSetChanged();
 //                lv_shopping_cart.setEmptyView(emptyView);
+                DefineUtil.NUM=mList.size();
             }
 
             @Override

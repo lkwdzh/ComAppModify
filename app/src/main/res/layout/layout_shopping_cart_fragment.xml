@@ -114,17 +114,27 @@
                 android:background="@color/gray_eeeeee"
                 android:gravity="center_vertical"
                 android:visibility="gone">
+                <LinearLayout
+                    style="@style/ll_wrap_match_content_hor">
 
                 <CheckBox
                     android:id="@+id/cb_edit_shopping_cart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_margin="@dimen/px_13"
+                    android:padding="@dimen/px_15"
                     android:button="@drawable/ischecked"
-                    android:text="全选"
                     android:textColor="@color/textcolor_333333"
                     android:textSize="15sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textColor="@color/textcolor_333333"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="@dimen/px_15"
+                        android:text="全选" />
+                    </LinearLayout>
 
                 <TextView
                     android:id="@+id/tv_delete_shopping_cart"
@@ -150,19 +160,36 @@
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:orientation="horizontal"
-                    android:background="@color/black">
+                    android:background="@color/gray_d9d8d8">
 
-                    <CheckBox
-                        android:id="@+id/cb_buy_shopping_cart"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="@dimen/px_12"
-                        android:button="@drawable/ischecked"
-                        android:text="全选"
+                    <LinearLayout
+                        android:id="@+id/ll_cb_bottom"
                         android:visibility="invisible"
-                        android:textColor="@color/white"
-                        android:textSize="15sp" />
+
+                        style="@style/ll_wrap_match_content_hor">
+
+                        <CheckBox
+                            android:id="@+id/cb_buy_shopping_cart"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:button="@drawable/ischecked"
+                            android:gravity="center"
+                            android:padding="@dimen/px_15"
+                            android:layout_marginLeft="@dimen/px_10"
+                            android:textColor="@color/textcolor_333333"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:textColor="@color/textcolor_333333"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginRight="@dimen/px_15"
+                            android:text="全选" />
+                    </LinearLayout>
+
                     <LinearLayout
                         style="@style/ll_match_content_ver"
                         android:gravity="center_vertical">
@@ -170,17 +197,20 @@
                         <LinearLayout style="@style/ll_match_wrap_content_hor">
 
                             <TextView
-                                style="@style/whiteTextView"
+                                style="@style/grayTextView_333333"
+
                                 android:text="合计： ￥"
                                 android:textSize="18sp" />
 
                             <TextView
                                 android:id="@+id/tv_total_shopping_cart_fragment"
-                                style="@style/whiteTextView"
+                                style="@style/grayTextView_333333"
                                 android:textSize="18sp" />
                         </LinearLayout>
 
-                        <LinearLayout style="@style/ll_match_wrap_content_hor">
+                        <LinearLayout
+                            style="@style/ll_match_wrap_content_hor"
+                            android:visibility="gone">
 
                             <TextView
                                 style="@style/whiteTextView"
@@ -200,13 +230,13 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/red"
+                    android:background="@color/red_e74c3c"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
                         style="@style/whiteTextView"
-                        android:text="去结算"
+                        android:text="结算"
                         android:textSize="18sp" />
 
                     <TextView

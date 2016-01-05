@@ -59,7 +59,7 @@ public class AllOrderActivity extends BaseActivity {
         if (status == 1) {
             setTitleBar("全部订单");
         } else if (status == 2) {
-            setTitleBar("代付款");
+            setTitleBar("待付款");
             orderStatus = "1";
         } else if (status == 3) {
             setTitleBar("成功订单");

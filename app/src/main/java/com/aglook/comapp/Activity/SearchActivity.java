@@ -1,12 +1,15 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
@@ -42,6 +45,8 @@ public class
 
     private final int SEARCH = 0;
     private boolean isSearch;
+    private TextView tv_search;
+    private Button btn_search;
 
 
     @Override
@@ -58,19 +63,30 @@ public class
         iv_search = (ImageView) findViewById(R.id.iv_search);
         lv_search = (ListView) findViewById(R.id.lv_search);
         gv_search = (GridView) findViewById(R.id.gv_search);
+        tv_search = (TextView) findViewById(R.id.tv_search);
         db = DbUtils.create(this, "SEARCH");
         //写死热搜
+        gvList.add("热搜");
         gvList.add("芝麻");
         gvList.add("大豆");
         gvList.add("花生");
         gvList.add("玉米");
         gvList.add("小麦");
+        gvList.add("索马里");
+        gvList.add("苏丹");
+        gvList.add("乌干达");
+        gvList.add("缅甸");
+        gvList.add("越南");
+        gvList.add("中国");
 //        for (int i = 0; i < 10; i++) {
 //            gvList.add("数据" + i);
 //            lvList.add("数据" + i);
 //        }
         gvAdapter = new SearchGVAdapter(gvList, SearchActivity.this);
         gv_search.setAdapter(gvAdapter);
+        View view= LayoutInflater.from(this).inflate(R.layout.search_footview,null);
+        btn_search = (Button) view.findViewById(R.id.btn_search);
+        lv_search.addFooterView(view);
         lvAdapter = new SearchLVAdapter(lvList, SearchActivity.this);
         lv_search.setAdapter(lvAdapter);
 
@@ -100,21 +116,28 @@ public class
             lvList.addAll(sonStr);
             lvAdapter.notifyDataSetChanged();
         }
-
+        if (sonList.size()==0){
+            btn_search.setVisibility(View.GONE);
+        }else {
+            btn_search.setVisibility(View.VISIBLE);
+        }
     }
 
     public void click() {
-        iv_search.setOnClickListener(this);
+        btn_search.setOnClickListener(this);
+        tv_search.setOnClickListener(this);
         gv_search.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                et_search.setText(gvList.get(position));
-                saveContent();
-                save();
-                Intent intent = new Intent(SearchActivity.this, ScreenActivity.class);
-                intent.putExtra("productName", productName);
-                intent.putExtra("isSearch", true);
-                startActivityForResult(intent, SEARCH);
+                if (position!=0) {
+                    et_search.setText(gvList.get(position));
+                    saveContent();
+                    save();
+                    Intent intent = new Intent(SearchActivity.this, ScreenActivity.class);
+                    intent.putExtra("productName", productName);
+                    intent.putExtra("isSearch", true);
+                    startActivityForResult(intent, SEARCH);
+                }
             }
         });
 
@@ -195,7 +218,7 @@ public class
     @Override
     public void widgetClick(View view) {
         switch (view.getId()) {
-            case R.id.iv_search:
+            case R.id.tv_search:
 //                productName = AppUtils.toStringTrim_ET(et_search);
                 saveContent();
                 save();
@@ -203,6 +226,17 @@ public class
                 intent.putExtra("productName", productName);
                 intent.putExtra("isSearch", true);
                 startActivityForResult(intent, SEARCH);
+                break;
+            case R.id.btn_search:
+                try {
+                    db.deleteAll(Search.class);
+                    sonList.clear();
+                    lvList.clear();
+                    btn_search.setVisibility(View.GONE);
+                    lvAdapter.notifyDataSetChanged();
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 break;
         }
     }

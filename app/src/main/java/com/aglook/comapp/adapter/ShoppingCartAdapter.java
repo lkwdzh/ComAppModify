@@ -107,7 +107,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
         holder.tv_name_shopping_cast_listview.setText(shoppingCart.getProductName());
         //将小计添加到实体类中
         for (int i = 0; i < list.size(); i++) {
-            list.get(i).setTotal(list.get(i).getProductNum() * list.get(i).getProductMoney());
+            list.get(i).setTotal(Double.parseDouble(decimalFormat.format(list.get(i).getProductNum() * list.get(i).getProductMoney())));
 
         }
         holder.tv_total_shopping_cart_listview.setText(shoppingCart.getTotal() + "");
@@ -139,6 +139,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
                 holder.tv_count_shopping_cart_listview.setText(numAdd + "");
 
                 double total = numAdd * list.get(position).getProductMoney();
+                total=Double.parseDouble(decimalFormat.format(total));
                 list.get(position).setTotal(total);
                 holder.tv_total_shopping_cart_listview.setText(total + "");
                 addCart();
@@ -167,6 +168,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
                 list.get(position).setProductNum(numAdd);
                 holder.tv_count_shopping_cart_listview.setText(numAdd + "");
                 double total = numAdd * list.get(position).getProductMoney();
+                total=Double.parseDouble(decimalFormat.format(total));
                 list.get(position).setTotal(total);
                 holder.tv_total_shopping_cart_listview.setText(total + "");
                 addCart();
@@ -205,15 +207,15 @@ public class ShoppingCartAdapter extends BaseAdapter {
 //    }
 
 
-    //记得把datachange与addcart交换
+    //
     public void dataChange() {
         num = 0;
         total = 0;
         for (int i = 0; i < list.size(); i++) {
-//            if (list.get(i).isChecked()) {
+            if (list.get(i).isChecked()) {
             num += list.get(i).getProductNum();
             total += list.get(i).getTotal();
-//            }
+            }
         }
         callBackData.callBack(num, total);
     }
@@ -348,6 +350,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
                 }
                 list.get(index).setProductNum(Double.parseDouble(productNum));
                 double total = Double.parseDouble(productNum) * list.get(index).getProductMoney();
+                total=Double.parseDouble(decimalFormat.format(total));
                 list.get(index).setTotal(total);
                 addCart();
                 dialog.dismiss();

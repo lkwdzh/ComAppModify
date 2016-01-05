@@ -57,7 +57,7 @@ public class ClassificationFragment extends Fragment implements View.OnClickList
 
     //初始化控件
     public void initView(View view) {
-        customProgress = CustomProgress.show(getActivity(), "加载中···", true);
+        customProgress = CustomProgress.show(getActivity(), "", true);
         mList = new ArrayList<>();
         sonList = new ArrayList<>();
         rightList = new ArrayList<>();

@@ -25,15 +25,16 @@ public class SearchGVAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if (list==null){
-            return 0;
-        }else {
-            if (list.size()>5){
-                return 5;
-            }else {
-                return list.size();
-            }
-        }
+//        if (list==null){
+//            return 0;
+//        }else {
+//            if (list.size()>5){
+//                return 5;
+//            }else {
+//                return list.size();
+//            }
+//        }
+        return 12;
     }
 
     @Override
@@ -56,7 +57,15 @@ public class SearchGVAdapter extends BaseAdapter {
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
-
+        if (position==0){
+            holder.tv_search_gridView.setTextColor(context.getResources().getColor(R.color.red_c91014));
+            holder.tv_search_gridView.setTextSize(13);
+            holder.tv_search_gridView.setBackgroundColor(context.getResources().getColor(R.color.white));
+        }else {
+            holder.tv_search_gridView.setTextColor(context.getResources().getColor(R.color.textcolor_666666));
+            holder.tv_search_gridView.setTextSize(10);
+            holder.tv_search_gridView.setBackgroundResource(R.drawable.tv_search_cornor_frame);
+        }
         holder.tv_search_gridView.setText(list.get(position));
         return convertView;
     }

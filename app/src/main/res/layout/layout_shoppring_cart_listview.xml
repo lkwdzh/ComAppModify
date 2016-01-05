@@ -21,9 +21,11 @@
         <CheckBox
             android:id="@+id/cb_shopping_cart_listview"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/px_100"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/px_15"
+            android:padding="@dimen/px_15"
+            android:visibility="invisible"
             android:button="@drawable/ischecked" />
 
         <LinearLayout
@@ -65,9 +67,10 @@
     <RelativeLayout
 
         style="@style/rl_wrap_content"
-        android:layout_marginLeft="@dimen/px_57"
+        android:layout_marginLeft="@dimen/px_75"
         android:layout_marginTop="@dimen/px_14"
         android:gravity="center_vertical"
+        android:layout_marginBottom="@dimen/px_20"
         android:orientation="horizontal">
 
         <ImageView
@@ -97,34 +100,28 @@
             android:layout_toRightOf="@+id/tv_count_shopping_cart_listview"
             android:src="@drawable/shuzhi_add" />
 
-        <View
-            android:id="@+id/view_right"
-            android:layout_width="match_parent"
-            android:layout_toRightOf="@+id/iv_add_shopping_cart_listview"
-            android:layout_alignBottom="@+id/iv_add_shopping_cart_listview"
-            android:layout_alignTop="@+id/iv_add_shopping_cart_listview"
-            android:layout_marginLeft="@dimen/px_20"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:id="@+id/ll_bottom_shop"
+            style="@style/ll_wrap_content_hor"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="@dimen/px_57"
+            android:layout_marginRight="@dimen/px_20"
+            android:layout_centerVertical="true">
+
+            <TextView
+                style="@style/redTextView_f47070"
+                android:text="小计：￥"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_total_shopping_cart_listview"
+                style="@style/redTextView_f47070"
+                android:text="0.0"
+                android:textSize="15sp" />
+        </LinearLayout>
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_bottom_shop"
-        style="@style/ll_match_content_hor"
-        android:layout_marginBottom="@dimen/px_20"
-        android:paddingLeft="@dimen/px_57"
-        android:layout_marginTop="@dimen/px_20">
 
-        <TextView
-            style="@style/redTextView_f47070"
-            android:text="小计：￥"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/tv_total_shopping_cart_listview"
-            style="@style/redTextView_f47070"
-            android:text="0.0"
-            android:textSize="15sp" />
-    </LinearLayout>
 
     <View style="@style/line_1" />
 </LinearLayout>

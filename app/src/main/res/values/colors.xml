@@ -6,6 +6,8 @@
     <color name="black">#000000</color>
     <!--红色-->
     <color name="red">#ff0000</color>
+    <!--红色e74c3c-->
+    <color name="red_e74c3c">#e74c3c</color>
     <!--灰色分割线dfdfdf-->
     <color name="gray_line">#dfdfdf</color>
     <!--字体颜色333333-->
@@ -30,4 +32,8 @@
     <color name="green_356600">#356600</color>
     <!--蓝色3859c0-->
     <color name="blue_3859c0">#3859c0</color>
+    <!-- 灰色d9d8d8-->
+    <color name="gray_d9d8d8">#d9d8d8</color>
+    <!-- 灰色f9f9f9-->
+    <color name="gray_f9f9f9">#f9f9f9</color>
 </resources>

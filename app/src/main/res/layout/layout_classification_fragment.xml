@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_eeeeee"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <LinearLayout
@@ -12,31 +12,26 @@
         <RelativeLayout
             android:id="@+id/rl_search_classify"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_40"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/px_13"
             android:layout_marginLeft="@dimen/px_33"
             android:layout_marginRight="@dimen/px_33"
             android:layout_marginTop="@dimen/px_13"
+
             android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/et_white_corner"
-                android:hint="输入关键字"
+                android:background="@drawable/tv_back_search"
+                android:hint="搜索您需要的商品"
                 android:paddingBottom="@dimen/px_8"
                 android:paddingTop="@dimen/px_8"
-                android:paddingLeft="@dimen/px_14"
+                android:paddingLeft="@dimen/px_45"
                 android:gravity="center_vertical"
                 android:textColorHint="@color/textcolor_999999"
                 android:textSize="13sp" />
 
-            <ImageView
-                android:id="@+id/iv_search_homepage"
-                android:layout_width="@dimen/px_45"
-                android:layout_height="@dimen/px_45"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/search" />
         </RelativeLayout>
     </LinearLayout>
 

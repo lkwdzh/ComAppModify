@@ -9,11 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/tl_bot"></FrameLayout>
-
+    <View
+        style="@style/line_1"
+        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/tl_bot"/>
     <RelativeLayout
         android:id="@+id/tl_bot"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/px_85"
+        android:layout_height="@dimen/px_80"
         android:layout_alignParentBottom="true">
 
         <android.support.v4.app.FragmentTabHost
@@ -21,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
-            android:background="@color/black"></android.support.v4.app.FragmentTabHost>
+            android:background="@color/gray_f9f9f9"></android.support.v4.app.FragmentTabHost>
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aglook.comapp"
-    android:versionName="1.0">
+    android:versionName="1.0" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -11,6 +11,7 @@
     <!-- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission> -->
     <!-- <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> -->
     <!-- <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission> -->
+
 
     <!-- 极光推送 -->
     <permission
@@ -44,7 +45,7 @@
         android:allowBackup="true"
         android:icon="@drawable/tubiao"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="5666add8e0f55a3b0c0023ad" />
@@ -118,7 +119,7 @@
             android:name="cn.jpush.android.ui.PushActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="false"
-            android:theme="@android:style/Theme.NoTitleBar">
+            android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
 
@@ -137,7 +138,7 @@
         <service
             android:name="cn.jpush.android.service.PushService"
             android:enabled="true"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTER" />
                 <action android:name="cn.jpush.android.intent.REPORT" />
@@ -151,7 +152,7 @@
         <service
             android:name="cn.jpush.android.service.DaemonService"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService" />
 
@@ -163,8 +164,8 @@
         <receiver
             android:name="cn.jpush.android.service.PushReceiver"
             android:enabled="true"
-            android:exported="false">
-            <intent-filter android:priority="1000">
+            android:exported="false" >
+            <intent-filter android:priority="1000" >
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
                 <!-- Required  显示通知栏 -->
                 <category android:name="com.aglook.comapp" />
@@ -191,7 +192,7 @@
         <receiver
             android:name=".receiver.MyReceiver"
             android:enabled="true"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTRATION" />
                 <!-- Required  用户注册SDK的intent -->
@@ -220,9 +221,8 @@
         <!-- </>值来自开发者平台取得的AppKey -->
 
 
-
         <!-- ###################注册SDK使用的Activity###################### -->
-        <!--分享编辑页-->
+        <!-- 分享编辑页 -->
         <activity
             android:name="com.umeng.socialize.view.ShareActivity"
             android:configChanges="orientation|keyboard"
@@ -242,16 +242,15 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <!-- 100424468，如果你使用的公用账号，则不需要修改；否则修改成你在QQ开放平台申请的 APP ID-->
+                <!-- 100424468，如果你使用的公用账号，则不需要修改；否则修改成你在QQ开放平台申请的 APP ID -->
                 <data android:scheme="1105045872" />
             </intent-filter>
         </activity>
-        <activity android:name="com.tencent.connect.common.AssistActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:screenOrientation="portrait">
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
-
-
 
         <!-- ###################添加UmengAppkey###################### -->
 
@@ -263,10 +262,6 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-
-
-
         <activity
             android:name=".Activity.MainActivity"
             android:label="@string/app_name"
@@ -462,8 +457,8 @@
         <activity
             android:name=".Activity.ShoppingCartActivity"
             android:label="@string/title_activity_shopping_cart"
-            android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Activity.MessageActivity"
             android:label="@string/title_activity_message"
@@ -476,7 +471,7 @@
             android:name=".Activity.LaunchActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent">
+            android:theme="@android:style/Theme.Translucent" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -497,12 +492,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.AddAddressActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_add_address" />
+            android:label="@string/title_activity_add_address"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.AddressListActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_address_list">
+            android:label="@string/title_activity_address_list"
+            android:screenOrientation="portrait" >
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -513,16 +508,20 @@
         </activity>
         <activity
             android:name=".Activity.FaPiaoActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_fa_piao" />
+            android:label="@string/title_activity_fa_piao"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.VersionActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_version"></activity>
+            android:label="@string/title_activity_version"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.IntroActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_intro"></activity>
+            android:label="@string/title_activity_intro"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.IndexActivity"
+            android:label="@string/title_activity_index" >
+        </activity>
     </application>
 
 </manifest>

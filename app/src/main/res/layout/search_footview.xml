@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:gravity="center_horizontal"
+    android:background="@color/gray_eeeeee"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btn_search"
+        android:text="清空历史搜索"
+        android:layout_marginTop="@dimen/px_50"
+
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/px_40"
+        android:layout_marginRight="@dimen/px_40"
+        android:textColor="@color/textcolor_999999"
+        android:textSize="15sp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/px_5"
+        android:background="@drawable/et_white_corner" />
+</LinearLayout>

@@ -68,7 +68,8 @@ public class ShoppingCartActivity extends BaseActivity {
     private TextView tv_zonge_shop_cart;
     private Button btn_login;
     private ImageView left_icon;
-
+    //选中的list
+//    private List<ShoppingCart>selectedList=new ArrayList<>();
     @Override
     public void initView() {
         setContentView(R.layout.activity_shopping_cart);
@@ -86,13 +87,19 @@ public class ShoppingCartActivity extends BaseActivity {
             public void callBack(double num, double total) {
                 allMoney = total;
                 allNum = num;
-                DefineUtil.NUM = num;
+//                DefineUtil.NUM = num;
 //                Intent intent1 = new Intent();
 //                intent1.setAction("MainActivity");
 //                ShoppingCartActivity.this.sendBroadcast(intent1);
                 tv_shopping_cart_jiesuan.setText("(" + num + ")");
                 tv_total_shopping_cart_fragment.setText(total + "");
                 tv_zonge_shop_cart.setText(total + "");
+//                selectedList.clear();
+//                for (int i = 0; i < mList.size(); i++) {
+//                    if (mList.get(i).isChecked()){
+//                        selectedList.add(mList.get(i));
+//                    }
+//                }
             }
         });
         lv_shopping_cart.setAdapter(adapter);
@@ -160,6 +167,9 @@ public class ShoppingCartActivity extends BaseActivity {
                     cb_top_right_shopping_cart.setText("完成");
                     cb_buy_shopping_cart.setChecked(false);
                     adapter.isEditting(true);
+                    for (int i = 0; i < mList.size(); i++) {
+                        mList.get(i).setChecked(false);
+                    }
                     adapter.notifyDataSetChanged();
                 } else {
                     rl_edit_bottom_shopping_cart.setVisibility(View.GONE);
@@ -167,6 +177,9 @@ public class ShoppingCartActivity extends BaseActivity {
                     cb_top_right_shopping_cart.setText("编辑");
                     cb_edit_shopping_cart.setChecked(false);
                     adapter.isEditting(false);
+                    for (int i = 0; i < mList.size(); i++) {
+                    mList.get(i).setChecked(true);
+                    }
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -203,7 +216,38 @@ public class ShoppingCartActivity extends BaseActivity {
                 startActivityForResult(intent1, 2);
             }
         });
-
+//        //购买的全选
+//        cb_buy_shopping_cart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                selectedList.clear();
+//                if (isChecked) {
+//                    allMoney = 0;
+//                    allNum = 0;
+//                    for (int i = 0; i < mList.size(); i++) {
+//                        mList.get(i).setChecked(true);
+//                        allNum += mList.get(i).getProductNum();
+//                        allMoney += mList.get(i).getTotal();
+//                    }
+//                    tv_shopping_cart_jiesuan.setText("(" + allNum + ")");
+//                    tv_total_shopping_cart_fragment.setText(allMoney + "");
+//
+//                    selectedList.addAll(mList);
+//                } else {
+//                    for (int i = 0; i < mList.size(); i++) {
+//                        mList.get(i).setChecked(false);
+//                    }
+//                    allMoney = 0;
+//                    allNum = 0;
+//                    tv_shopping_cart_jiesuan.setText("(" + 0 + ")");
+//                    tv_total_shopping_cart_fragment.setText(0 + "");
+//                    selectedList.clear();
+//                }
+////                tv_shopping_cart_jiesuan.setText("(" + allNum + ")");
+////                tv_total_shopping_cart_fragment.setText(allMoney + "");
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
     }
 
     @Override
@@ -334,7 +378,7 @@ public class ShoppingCartActivity extends BaseActivity {
 
                         for (int i = 0; i < mList.size(); i++) {
                             num += mList.get(i).getProductNum();
-                            DefineUtil.NUM = num;
+
                         }
 
                     } else {
@@ -349,7 +393,6 @@ public class ShoppingCartActivity extends BaseActivity {
                             cb_top_right_shopping_cart.setVisibility(View.GONE);
                             isDelete = false;
                         }
-                        DefineUtil.NUM = 0;
                     }
                     if (mList == null || mList.size() == 0) {
                         ll_empty_shopping_cart.setVisibility(View.VISIBLE);
@@ -359,8 +402,9 @@ public class ShoppingCartActivity extends BaseActivity {
                     }
 
                     for (int i = 0; i < mList.size(); i++) {
-                        mList.get(i).setTotal(mList.get(i).getProductNum() * mList.get(i).getProductMoney());
 
+                        mList.get(i).setTotal(mList.get(i).getProductNum() * mList.get(i).getProductMoney());
+                        mList.get(i).setChecked(true);
                     }
                     for (int i = 0; i < mList.size(); i++) {
                         totalMoney += mList.get(i).getTotal();
@@ -379,6 +423,7 @@ public class ShoppingCartActivity extends BaseActivity {
                 intent1.setAction("MainActivity");
                 sendBroadcast(intent1);
                 adapter.notifyDataSetChanged();
+                DefineUtil.NUM = mList.size();
             }
 
             @Override

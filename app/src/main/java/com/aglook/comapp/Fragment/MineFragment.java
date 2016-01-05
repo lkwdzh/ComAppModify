@@ -62,6 +62,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     private final int NOTPAY = 1;
     private TextView tv_help_setting;
+    private TextView tv_type_user;
 
 
     @Override
@@ -99,6 +100,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         tv_name_mine_fragment = (TextView) view.findViewById(R.id.tv_name_mine_fragment);
         tv_message_mine_fragment = (TextView) view.findViewById(R.id.tv_message_mine_fragment);
         tv_help_setting = (TextView) view.findViewById(R.id.tv_help_setting);
+        tv_type_user = (TextView) view.findViewById(R.id.tv_type_user);
         //红点
         tv_all_order_point = (TextView) view.findViewById(R.id.tv_all_order_point);
         tv_daifukuan_point = (TextView) view.findViewById(R.id.tv_daifukuan_point);

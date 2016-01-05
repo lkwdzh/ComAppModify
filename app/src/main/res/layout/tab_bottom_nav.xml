@@ -16,7 +16,7 @@
         <TextView
             android:id="@+id/tv_bottom"
             android:layout_width="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/textcolor_999999"
             android:layout_height="wrap_content" />
        </LinearLayout>
 </LinearLayout>

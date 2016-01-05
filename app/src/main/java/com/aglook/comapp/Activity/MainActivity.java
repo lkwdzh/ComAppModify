@@ -127,9 +127,9 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
 
         mTabHost = (FragmentTabHost) findViewById(R.id.tabhost);
         setupTabView();
-        mTabHost.setBackgroundColor(getResources().getColor(R.color.red_c91014));
+//        mTabHost.setBackgroundColor(getResources().getColor(R.color.red_c91014));
         mTabHost.setOnTabChangedListener(new TabChangeListener());
-        mTabHost.getCurrentTabView().setBackgroundColor(getResources().getColor(R.color.red_a50000));
+//        mTabHost.getCurrentTabView().setBackgroundColor(getResources().getColor(R.color.red_a50000));
         isGoods = getIntent().getBooleanExtra("isGoods", false);
         if (isGoods) {
             mTabHost.setCurrentTab(2);
@@ -296,7 +296,9 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         imageView.setImageResource(iconArray[index]);
         textView = (TextView) view.findViewById(R.id.tv_bottom);
         textView.setText(titleArray[index]);
-
+        if (index==0){
+            textView.setTextColor(getResources().getColor(R.color.red_c91014));
+        }
         return view;
     }
 
@@ -344,9 +346,15 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
     public void updateTab(TabHost tabHost) {
         for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
             View view = tabHost.getTabWidget().getChildAt(i);
-            view.setBackgroundResource(R.drawable.tabhost_background);
+//            view.setBackgroundResource(R.drawable.tabhost_background);
             TextView textView = (TextView) view.findViewById(R.id.tv_bottom);
             ImageView imageView = (ImageView) view.findViewById(R.id.iv_bottom);
+            if (tabHost.getCurrentTab() == i) {// 选中
+                textView.setTextColor(this.getResources()
+                        .getColor(R.color.red_c91014));
+            } else {// 不选中
+                textView.setTextColor(this.getResources().getColor(R.color.textcolor_999999));
+            }
         }
     }
 
@@ -441,7 +449,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
                 if (status.equals("1")) {
                     if (list != null && list.size() != 0) {
                         for (int i = 0; i < list.size(); i++) {
-                            DefineUtil.NUM += list.get(i).getProductNum();
+                            DefineUtil.NUM =list.size();
                         }
                         if (DefineUtil.NUM != 0) {
                             tv_shopping_point.setVisibility(View.VISIBLE);

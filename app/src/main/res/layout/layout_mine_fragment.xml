@@ -19,7 +19,7 @@
             android:gravity="center"
             android:text="设置"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -28,7 +28,7 @@
             android:gravity="center"
             android:text="我的"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tv_message_mine_fragment"
@@ -54,35 +54,51 @@
                 android:id="@+id/rl_background_mine_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px_200"
-                android:background="@drawable/beijing">
+                android:background="@color/white">
 
                 <ImageView
                     android:id="@+id/iv_icon_mine_fragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
                     android:layout_margin="@dimen/px_18"
                     android:src="@drawable/icon_user" />
 
-
+                <LinearLayout
+                    style="@style/ll_wrap_content_ver"
+                    android:layout_toRightOf="@id/iv_icon_mine_fragment"
+                    android:layout_centerVertical="true">
                 <TextView
                     android:id="@+id/tv_name_mine_fragment"
-                    style="@style/whiteTextView"
+                    style="@style/grayTextView_333333_18"
                     android:layout_below="@+id/iv_icon_mine_fragment"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="@dimen/px_8"
                     android:text="昵称" />
+                    <LinearLayout
+                       style="@style/ll_wrap_content_hor">
+                        <TextView
+                           style="@style/grayTextView_999999"
+                            android:textSize="15sp"
+                            android:text="账户："/>
+                        <TextView
+                            android:id="@+id/tv_type_user"
+                            style="@style/grayTextView_999999"
+                            android:textSize="15sp"
+                            android:text="个人"/>
+                       </LinearLayout>
+                    </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
+                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     android:drawableRight="@drawable/next"
                     android:gravity="center"
                     android:text="@string/mine_fragment_person_info"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/textcolor_999999" />
 
             </RelativeLayout>
 
@@ -90,6 +106,7 @@
 
             <LinearLayout
                 style="@style/ll_match_wrap_content_ver"
+                android:layout_marginTop="@dimen/px_20"
                 android:background="@color/white">
 
                 <RelativeLayout style="@style/rl_match_wrap_content_padltb">

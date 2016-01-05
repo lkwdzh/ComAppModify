@@ -31,7 +31,7 @@ public class IDCard {
      * @param IDStr
      *            身份证号
      * @return 有效：返回"" 无效：返回String信息
-     * @throws ParseException
+     * @throws org.apache.http.ParseException
      */
     @SuppressWarnings("unchecked")
     public static String IDCardValidate(String IDStr) throws ParseException {
@@ -201,19 +201,19 @@ public class IDCard {
         }
     }
 
-    /**
-     * @param args
-     * @throws ParseException
-     */
-    @SuppressWarnings("static-access")
-    public static void main(String[] args) throws ParseException {
-        // String IDCardNum="210102820826411";
-        // String IDCardNum="210102198208264114";
-        String IDCardNum = "210181198807193116";
-        IDCard cc = new IDCard();
-        System.out.println(cc.IDCardValidate(IDCardNum));
-        // System.out.println(cc.isDate("1996-02-29"));
-    }
-    /*********************************** 身份证验证结束 ****************************************/
+//    /**
+//     * @param args
+//     * @throws org.apache.http.ParseException
+//     */
+//    @SuppressWarnings("static-access")
+//    public static void main(String[] args) throws ParseException {
+//        // String IDCardNum="210102820826411";
+//        // String IDCardNum="210102198208264114";
+//        String IDCardNum = "210181198807193116";
+//        IDCard cc = new IDCard();
+//        System.out.println(cc.IDCardValidate(IDCardNum));
+//        // System.out.println(cc.isDate("1996-02-29"));
+//    }
+//    /*********************************** 身份证验证结束 ****************************************/
 
 }

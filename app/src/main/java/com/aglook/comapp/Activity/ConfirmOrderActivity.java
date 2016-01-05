@@ -168,6 +168,7 @@ public class ConfirmOrderActivity extends BaseActivity {
         for (int i = 0; i < mList.size(); i++) {
             ShoppingCart cart = mList.get(i);
             goodsMoney += cart.getProductMoney() * cart.getProductNum();
+            goodsMoney=Double.parseDouble(df.format(goodsMoney));
             costMoney += cart.getCostMoney();
             String format = df.format(costMoney);
             costMoney = Double.parseDouble(format);

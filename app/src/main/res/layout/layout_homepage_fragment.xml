@@ -1,45 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_eeeeee"
+    android:background="@color/white"
     android:orientation="vertical">
 
-    <LinearLayout
-        style="@style/ll_match_wrap_content_hor"
-        android:background="@color/red_c91014">
 
-        <RelativeLayout
-            android:id="@+id/rl_search_homepage_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/px_40"
-            android:layout_marginBottom="@dimen/px_13"
-            android:layout_marginLeft="@dimen/px_33"
-            android:layout_marginRight="@dimen/px_33"
-            android:layout_marginTop="@dimen/px_13"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/et_white_corner"
-                android:gravity="center_vertical"
-                android:hint="输入关键字"
-                android:paddingBottom="@dimen/px_6"
-                android:paddingLeft="@dimen/px_13"
-                android:paddingTop="@dimen/px_7"
-                android:textColorHint="@color/textcolor_999999"
-                android:textSize="13sp" />
-
-            <ImageView
-                android:id="@+id/iv_search_homepage"
-                android:layout_width="@dimen/px_39"
-                android:layout_height="@dimen/px_39"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/search" />
-        </RelativeLayout>
-    </LinearLayout>
 
     <com.handmark.pulltorefresh.library.PullToRefreshScrollView
         android:id="@+id/sv_homepage"
@@ -84,6 +51,36 @@
                 android:divider="@null"></com.aglook.comapp.view.MyExpandableListView>
         </LinearLayout>
     </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+    <LinearLayout
+        style="@style/ll_match_wrap_content_hor"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/background_alpha"
+       android:alpha="0.7">
 
+        <RelativeLayout
+            android:id="@+id/rl_search_homepage_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/px_13"
+            android:layout_marginLeft="@dimen/px_33"
+            android:layout_marginRight="@dimen/px_33"
+            android:layout_marginTop="@dimen/px_13"
+            android:gravity="center_vertical">
 
-</LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tv_back_search"
+                android:gravity="center_vertical"
+                android:hint="搜索您需要的商品"
+                android:paddingBottom="@dimen/px_6"
+                android:paddingLeft="@dimen/px_50"
+                android:paddingTop="@dimen/px_7"
+
+                android:textColorHint="@color/textcolor_999999"
+                android:textSize="13sp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

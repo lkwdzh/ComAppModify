@@ -218,7 +218,7 @@ public class LoginActivity extends BaseActivity {
                 if (status.equals("1")) {
                     if (list != null && list.size() != 0) {
                         for (int i = 0; i < list.size(); i++) {
-                            DefineUtil.NUM += list.get(i).getProductNum();
+                            DefineUtil.NUM=list.size();
                         }
                     }
                     Intent intent = new Intent();
