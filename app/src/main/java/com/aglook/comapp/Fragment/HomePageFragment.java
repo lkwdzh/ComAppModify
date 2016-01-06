@@ -66,6 +66,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     //    private RecycleHomePageAdapter adapter;
     private ViewPager vp_home_page_head;
     private int index = 0;
+
     //    private static final int POINT_LENGTH = 4;
     private int mCurrentIndex;
     private int mCurrentPagePosition = FIRST_ITEM_INDEX;
