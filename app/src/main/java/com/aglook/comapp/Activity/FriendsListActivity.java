@@ -57,7 +57,7 @@ public class FriendsListActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_buyer_list);
-        setTitleBar("联系人列表");
+        setTitleBar("指定买家");
         ExitApplication.getInstance().addActivity(this);
         init();
         click();

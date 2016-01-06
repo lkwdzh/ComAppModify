@@ -87,10 +87,10 @@ public class ShoppingCartActivity extends BaseActivity {
             public void callBack(double num, double total) {
                 allMoney = total;
                 allNum = num;
-//                DefineUtil.NUM = num;
-//                Intent intent1 = new Intent();
-//                intent1.setAction("MainActivity");
-//                ShoppingCartActivity.this.sendBroadcast(intent1);
+                DefineUtil.NUM = num;
+                Intent intent1 = new Intent();
+                intent1.setAction("MainActivity");
+                ShoppingCartActivity.this.sendBroadcast(intent1);
                 tv_shopping_cart_jiesuan.setText("(" + num + ")");
                 tv_total_shopping_cart_fragment.setText(total + "");
                 tv_zonge_shop_cart.setText(total + "");
@@ -338,6 +338,7 @@ public class ShoppingCartActivity extends BaseActivity {
         tv_num_delete.setText(deleteSeleteNum + "");
     }
 
+
     private Button btn_cancel_delete;
     private Button btn_confirm_delete;
     private int totalMoney;
@@ -378,7 +379,7 @@ public class ShoppingCartActivity extends BaseActivity {
 
                         for (int i = 0; i < mList.size(); i++) {
                             num += mList.get(i).getProductNum();
-
+                            DefineUtil.NUM=num;
                         }
 
                     } else {
@@ -393,6 +394,7 @@ public class ShoppingCartActivity extends BaseActivity {
                             cb_top_right_shopping_cart.setVisibility(View.GONE);
                             isDelete = false;
                         }
+                        DefineUtil.NUM=0;
                     }
                     if (mList == null || mList.size() == 0) {
                         ll_empty_shopping_cart.setVisibility(View.VISIBLE);
@@ -423,7 +425,7 @@ public class ShoppingCartActivity extends BaseActivity {
                 intent1.setAction("MainActivity");
                 sendBroadcast(intent1);
                 adapter.notifyDataSetChanged();
-                DefineUtil.NUM = mList.size();
+//                DefineUtil.NUM = mList.size();
             }
 
             @Override

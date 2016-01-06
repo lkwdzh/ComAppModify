@@ -2,33 +2,33 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ll_classify_listview"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:padding="@dimen/px_2">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/iv_classify_lisview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <View
+        android:id="@+id/view_left"
+        android:layout_width="@dimen/px_1"
+        android:visibility="visible"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/px_10"
+        android:background="@color/red_a50000"
+        android:layout_height="@dimen/px_15" />
 
     <TextView
         android:id="@+id/tv_classify_lisview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:paddingTop="@dimen/px_10"
-        android:paddingBottom="@dimen/px_10"
-        android:gravity="center_horizontal"
-        android:layout_toRightOf="@+id/iv_classify_lisview"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:layout_toRightOf="@+id/view_left"
+        android:layout_marginLeft="@dimen/px_15"
+        android:layout_marginRight="@dimen/px_15"
+        android:layout_marginTop="@dimen/px_20"
+        android:text="11111111111"
+        android:layout_marginBottom="@dimen/px_20"
         android:textColor="@color/textcolor_333333" />
 
-    <View
-        style="@style/line_2"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/px_5" />
+
     <View
         android:layout_alignParentBottom="true"
-       style="@style/line_1"/>
+        style="@style/line_1" />
 </RelativeLayout>

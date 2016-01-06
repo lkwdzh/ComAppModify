@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -22,7 +21,6 @@ public class ClassificationLeftAdapter extends BaseAdapter {
     private Context context;
     private int imageArray[] = {R.drawable.liangshi, R.drawable.siliao, R.drawable.tongxun,
             R.drawable.youlei, R.drawable.youliao};
-//    private String nameArray[] = {"粮食", "饲料", "通讯", "油类", "油料"};
     private int position;
 
     public ClassificationLeftAdapter(List<Classify> list, Context context) {
@@ -59,27 +57,26 @@ public class ClassificationLeftAdapter extends BaseAdapter {
         if (i == position) {
             holder.ll_classify_listview.setBackgroundColor(context.getResources().getColor(R.color.white));
             holder.tv_classify_lisview.setTextColor(context.getResources().getColor(R.color.red_a50000));
+            holder.view_left.setVisibility(View.VISIBLE);
         } else {
             holder.ll_classify_listview.setBackgroundColor(context.getResources().getColor(R.color.gray_eeeeee));
             holder.tv_classify_lisview.setTextColor(context.getResources().getColor(R.color.textcolor_333333));
+            holder.view_left.setVisibility(View.INVISIBLE);
         }
 
         Classify classify = list.get(i);
         holder.tv_classify_lisview.setText(classify.getName());
-//        holder.tv_classify_lisview.setText(nameArray[i]);
-//        holder.iv_classify_lisview.setImageResource(imageArray[i]);
         return view;
     }
 
     class ViewHolder {
-        ImageView iv_classify_lisview;
         TextView tv_classify_lisview;
         RelativeLayout ll_classify_listview;
-
+        View view_left;
         ViewHolder(View view) {
-            iv_classify_lisview = (ImageView) view.findViewById(R.id.iv_classify_lisview);
             tv_classify_lisview = (TextView) view.findViewById(R.id.tv_classify_lisview);
             ll_classify_listview = (RelativeLayout) view.findViewById(R.id.ll_classify_listview);
+            view_left=(View)view.findViewById(R.id.view_left);
         }
     }
 

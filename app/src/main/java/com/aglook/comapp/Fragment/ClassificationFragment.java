@@ -9,8 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.aglook.comapp.Activity.ScreenActivity;
 import com.aglook.comapp.Activity.SearchActivity;
@@ -22,6 +25,7 @@ import com.aglook.comapp.bean.ClassifyGV;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
+import com.aglook.comapp.util.XBitmap;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.CustomProgress;
 import com.lidroid.xutils.exception.HttpException;
@@ -35,7 +39,7 @@ import java.util.List;
  */
 public class ClassificationFragment extends Fragment implements View.OnClickListener {
     private ListView mLeftList;
-    private ListView gv_right;
+    private GridView gv_right;
     private ClassificationLeftAdapter leftAdapter;
     private ClassificationRightAdapter rightAdapter;
     private RelativeLayout rl_search_classify;
@@ -43,6 +47,8 @@ public class ClassificationFragment extends Fragment implements View.OnClickList
     private List<Classify> sonList;
     private List<ClassifyGV> rightList;
     private CustomProgress customProgress;
+    private ImageView iv_nation_flag;
+    private TextView tv_nation_flag;
 
     @Nullable
     @Override
@@ -62,14 +68,18 @@ public class ClassificationFragment extends Fragment implements View.OnClickList
         sonList = new ArrayList<>();
         rightList = new ArrayList<>();
         mLeftList = ((ListView) view.findViewById(R.id.lv_left));
-        gv_right = (ListView) view.findViewById(R.id.gv_right);
+        gv_right = (GridView) view.findViewById(R.id.gv_right);
         leftAdapter = new ClassificationLeftAdapter(mList, getActivity());
         mLeftList.setAdapter(leftAdapter);
 //        mLeftList.setSelection(3);
+        iv_nation_flag = (ImageView) view.findViewById(R.id.iv_nation_flag);
+        tv_nation_flag = (TextView) view.findViewById(R.id.tv_nation_flag);
+
         rightAdapter = new ClassificationRightAdapter(getActivity(), rightList);
         gv_right.setAdapter(rightAdapter);
         rl_search_classify = (RelativeLayout) view.findViewById(R.id.rl_search_classify);
     }
+
 
     //点击事件
     public void click() {
@@ -83,6 +93,8 @@ public class ClassificationFragment extends Fragment implements View.OnClickList
                 rightList.clear();
                 rightList.addAll(sonList.get(i).getContent());
                 rightAdapter.notifyDataSetChanged();
+                XBitmap.displayImage(iv_nation_flag, mList.get(i).getNationalFlag(), getActivity());
+                tv_nation_flag.setText(mList.get(i).getName());
             }
         });
 
@@ -91,7 +103,7 @@ public class ClassificationFragment extends Fragment implements View.OnClickList
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                跳转到筛选界面
                 Intent intent = new Intent(getActivity(), ScreenActivity.class);
-                intent.putExtra("categoryId",rightList.get(i).getCategoryId());
+                intent.putExtra("categoryId", rightList.get(i).getCategoryId());
                 startActivity(intent);
             }
         });
@@ -126,8 +138,14 @@ public class ClassificationFragment extends Fragment implements View.OnClickList
                 sonList = JsonUtils.parseList(obj, Classify.class);
                 if (status.equals("1")) {
 //                    假如成功则分别添加到list中
-                    mList.addAll(sonList);
-                    rightList.addAll(sonList.get(0).getContent());
+                    if (sonList != null && sonList.size() != 0) {
+                        mList.addAll(sonList);
+                    }
+                    if (mList != null && mList.size() != 0) {
+                        rightList.addAll(sonList.get(0).getContent());
+                        XBitmap.displayImage(iv_nation_flag, mList.get(0).getNationalFlag(), getActivity());
+                        tv_nation_flag.setText(mList.get(0).getName());
+                    }
                 } else {
                     AppUtils.toastText(getActivity(), message);
                 }

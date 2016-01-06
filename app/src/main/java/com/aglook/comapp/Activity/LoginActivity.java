@@ -216,9 +216,10 @@ public class LoginActivity extends BaseActivity {
                 List<ShoppingCart> list = new ArrayList<ShoppingCart>();
                 list = JsonUtils.parseList(obj, ShoppingCart.class);
                 if (status.equals("1")) {
+                    DefineUtil.NUM=0;
                     if (list != null && list.size() != 0) {
                         for (int i = 0; i < list.size(); i++) {
-                            DefineUtil.NUM=list.size();
+                            DefineUtil.NUM+=list.get(i).getProductNum();
                         }
                     }
                     Intent intent = new Intent();

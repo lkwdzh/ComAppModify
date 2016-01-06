@@ -3,6 +3,7 @@ package com.aglook.comapp.adapter;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,7 +87,8 @@ public class PickInfoAdapter extends BaseAdapter {
                 } else if (d == 0) {
                     s.delete(d, d + 1);
                 }
-                driverList.setWeight(temp);
+                driverList.setWeight(holder.et_weighr_pick_info.getText().toString());
+                Log.d("result_driver",temp+"____"+driverList.getWeight());
             }
         });
         return convertView;

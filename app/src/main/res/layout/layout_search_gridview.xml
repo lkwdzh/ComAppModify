@@ -11,6 +11,7 @@
         android:textSize="10sp"
         android:text="芝麻"
         android:layout_gravity="center"
+        android:gravity="center"
         android:paddingTop="@dimen/px_5"
         android:paddingBottom="@dimen/px_5"
         android:paddingLeft="@dimen/px_10"

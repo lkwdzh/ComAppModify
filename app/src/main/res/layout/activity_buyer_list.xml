@@ -36,8 +36,8 @@
 
         <CheckBox
             android:id="@+id/cb_buyer_list"
-            android:button="@null"
-            android:background="@drawable/ischecked"
+            android:button="@drawable/ischecked"
+            android:padding="@dimen/px_15"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

@@ -31,17 +31,16 @@ public class LaunchActivity extends BaseActivity {
                 Intent intent = new Intent();
                 if (isFirst) {
                     intent.setClass(LaunchActivity.this, IndexActivity.class);
-
                     SharedPreferencesUtils.saveBoolean(LaunchActivity.this, "first", false);
                 }else {
                     intent.setClass(LaunchActivity.this,MainActivity.class);
                     intent.putExtra("isJpush", getIntent().getBooleanExtra("isJpush", false));
-                    startActivity(intent);
                 }
+                    startActivity(intent);
                 LaunchActivity.this.finish();
 
             }
-        }, 5000);
+        }, 3000);
     }
 
     // 初始化 JPush。如果已经初始化，但没有登录成功，则执行重新登录。

@@ -1,29 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:gravity="center"
-    android:paddingTop="@dimen/px_50"
-    android:paddingBottom="@dimen/px_50"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_cangdan_home"
-        style="@style/grayTextView_333333_15"
-        android:text="原始仓单"
+    <LinearLayout
+        style="@style/ll_match_wrap_content_hor"
+        android:background="@drawable/tianchukuang"
         android:gravity="center"
-        android:paddingLeft="@dimen/px_5"
-        android:paddingRight="@dimen/px_5"
-        android:layout_marginRight="@dimen/px_50"
-        android:background="@drawable/delete" />
+        android:padding="@dimen/px_35">
 
-    <TextView
-        android:id="@+id/tv_plat_home"
-        style="@style/grayTextView_333333_15"
-        android:text="平台仓单"
-        android:paddingLeft="@dimen/px_5"
-        android:paddingRight="@dimen/px_5"
+        <TextView
+            android:id="@+id/tv_delete_order"
+            android:text="请选择仓单类别"
+            style="@style/grayTextView_333333_15" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/ll_match_wrap_content_hor"
+        android:background="@drawable/tianchukuang2"
         android:gravity="center"
-        android:background="@drawable/delete" />
+        android:padding="@dimen/px_20">
 
+        <Button
+            android:id="@+id/btn_cancel_delete"
+            android:layout_width="@dimen/px_150"
+            android:layout_height="@dimen/px_55"
+            android:layout_marginRight="@dimen/px_40"
+            android:background="@drawable/zhifuquxiao"
+            android:text="原始仓单"
+            android:textColor="@color/textcolor_999999"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btn_confirm_delete"
+            android:layout_width="@dimen/px_150"
+            android:layout_height="@dimen/px_55"
+            android:layout_marginLeft="@dimen/px_10"
+            android:background="@drawable/zhifuquxiao"
+            android:text="平台仓单"
+            android:textColor="@color/textcolor_999999"
+            android:textSize="13sp" />
+    </LinearLayout>
 </LinearLayout>

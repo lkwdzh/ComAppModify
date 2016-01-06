@@ -350,7 +350,7 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
-                    android:layout_width="@dimen/px_40"
+                    android:layout_width="@dimen/px_60"
                     android:layout_height="@dimen/px_40">
 
                     <ImageView
@@ -363,7 +363,7 @@
                         android:id="@+id/tv_num_goods_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentTop="true"
                         android:layout_alignParentRight="true"
                         android:background="@drawable/red_round"
                         android:gravity="center"

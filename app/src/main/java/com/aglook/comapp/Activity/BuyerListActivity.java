@@ -20,7 +20,7 @@ public class BuyerListActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_buyer_list2);
-        setTitleBar("指定买家");
+        setTitleBar("联系人列表");
         init();
         click();
     }

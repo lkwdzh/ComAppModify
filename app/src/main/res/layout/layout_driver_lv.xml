@@ -21,12 +21,13 @@
 
             <CheckBox
                 android:id="@+id/cb_driver_lv"
-                android:layout_width="@dimen/px_27"
-                android:layout_height="@dimen/px_27"
-                android:layout_marginLeft="@dimen/px_14"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/ischecked"
-                android:button="@null" />
+                android:button="@drawable/ischecked"
+                android:padding="@dimen/px_15"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/px_20"
+                android:background="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"  />
 
             <TextView
                 android:id="@+id/tv_driver_lv"

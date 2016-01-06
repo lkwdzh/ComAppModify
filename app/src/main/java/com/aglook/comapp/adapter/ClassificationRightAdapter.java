@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aglook.comapp.R;
@@ -58,10 +57,8 @@ public class ClassificationRightAdapter extends BaseAdapter {
 
     class ViewHolder {
         TextView tv_classify_gridvew;
-        ImageView iv_classify_gridview;
 
         ViewHolder(View view) {
-            iv_classify_gridview = (ImageView) view.findViewById(R.id.iv_classify_gridview);
             tv_classify_gridvew = (TextView) view.findViewById(R.id.tv_classify_gridvew);
         }
     }

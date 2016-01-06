@@ -115,7 +115,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
             public void callBack(double num, double total) {
                 allMoney = total;
                 allNum = num;
-//                DefineUtil.NUM = num;
+                DefineUtil.NUM = num;
                 Intent intent1 = new Intent();
                 intent1.setAction("MainActivity");
                 getActivity().sendBroadcast(intent1);
@@ -170,7 +170,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
         IntentFilter filter = new IntentFilter();
         filter.addAction("Shopping");
         getActivity().registerReceiver(myReceiver,filter);
-
+        ll_buy_bottom_shopping_cart.setVisibility(View.VISIBLE);
     }
 
 
@@ -246,7 +246,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                     for (int i = 0; i < mList.size(); i++) {
                         mList.get(i).setChecked(false);
                     }
-                    adapter.notifyDataSetChanged();
+//                    adapter.notifyDataSetChanged();
                 } else {
                     rl_edit_bottom_shopping_cart.setVisibility(View.GONE);
                     ll_buy_bottom_shopping_cart.setVisibility(View.VISIBLE);
@@ -257,8 +257,8 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                     for (int i = 0; i < mList.size(); i++) {
                         mList.get(i).setChecked(true);
                     }
-                    adapter.notifyDataSetChanged();
                 }
+                    adapter.notifyDataSetChanged();
             }
         });
 
@@ -468,6 +468,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                         for (int i = 0; i < mList.size(); i++) {
                             num+=mList.get(i).getProductNum();
                             mList.get(i).setChecked(true);
+                            DefineUtil.NUM=num;
                         }
 
                     } else {
@@ -483,6 +484,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                             cb_top_right_shopping_cart.setVisibility(View.GONE);
                             isDelete = false;
                         }
+                        DefineUtil.NUM=0;
                     }
                     if (mList == null || mList.size() == 0) {
                         ll_empty_shopping_cart.setVisibility(View.VISIBLE);
@@ -506,7 +508,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                 getActivity().sendBroadcast(intent1);
                 adapter.notifyDataSetChanged();
 //                lv_shopping_cart.setEmptyView(emptyView);
-                DefineUtil.NUM=mList.size();
+//                DefineUtil.NUM=mList.size();
             }
 
             @Override

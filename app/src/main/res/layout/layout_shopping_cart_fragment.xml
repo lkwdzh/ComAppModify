@@ -123,6 +123,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:padding="@dimen/px_15"
+                    android:layout_marginLeft="@dimen/px_14"
                     android:button="@drawable/ischecked"
                     android:textColor="@color/textcolor_333333"
                     android:textSize="15sp" />

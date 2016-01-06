@@ -152,7 +152,7 @@ public class DefineUtil {
     public static String USERID;
 
     //购物车个数
-    public static int NUM = 0;
+    public static double NUM = 0;
 
     //支付
     public static String PAY = URL_HOST + "payment/v2/order/pay";

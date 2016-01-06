@@ -33,28 +33,31 @@
         android:paddingLeft="@dimen/px_20"
         android:paddingRight="@dimen/px_20"
         android:gravity="center_vertical">
-<LinearLayout
-    android:id="@+id/ll_cb"
-    android:layout_width="wrap_content"
-    android:layout_centerVertical="true"
-    android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:orientation="horizontal">
 
-        <CheckBox
-            android:id="@+id/cb_driver_list"
-            android:button="@null"
-            android:background="@drawable/ischecked"
-            android:layout_centerVertical="true"
+        <LinearLayout
+            android:id="@+id/ll_cb"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/tv_all"
-            style="@style/grayTextView_333333_15"
-            android:layout_toRightOf="@id/cb_driver_list"
             android:layout_centerVertical="true"
-            android:text="全选"/>
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cb_driver_list"
+                android:button="@drawable/ischecked"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:padding="@dimen/px_15"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_all"
+                style="@style/grayTextView_333333_15"
+                android:layout_toRightOf="@id/cb_driver_list"
+                android:layout_centerVertical="true"
+                android:text="全选" />
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,17 +65,20 @@
             android:layout_marginLeft="@dimen/px_10"
             android:layout_toRightOf="@id/ll_cb"
             android:orientation="horizontal">
+
             <TextView
-               style="@style/grayTextView_333333_15"
-                android:text="确定选中"/>
+                style="@style/grayTextView_333333_15"
+                android:text="确定选中" />
+
             <TextView
                 android:id="@+id/tv_num_driver_list"
                 style="@style/grayTextView_333333_15"
-                android:text="2"/>
+                android:text="0" />
+
             <TextView
                 style="@style/grayTextView_333333_15"
-                android:text="位司机"/>
-            </LinearLayout>
+                android:text="位司机" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_confirm_driver_list"
@@ -81,8 +87,7 @@
             android:layout_centerVertical="true"
             android:background="@drawable/delete"
             android:gravity="center"
-            android:text="确定"
-            />
+            android:text="确定" />
 
     </RelativeLayout>
 </RelativeLayout>

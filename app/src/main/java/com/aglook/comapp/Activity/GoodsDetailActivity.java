@@ -237,6 +237,24 @@ public class GoodsDetailActivity extends BaseActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        //判断是否已经登录，若登录则显示购物车个数，否则不显示
+        if (comAppApplication.getLogin() != null && !"".equals(comAppApplication.getLogin())) {
+            if (DefineUtil.NUM != 0) {
+                //假如已登录
+                tv_num_goods_detail.setVisibility(View.VISIBLE);
+                tv_num_goods_detail.setText(DefineUtil.NUM + "");
+            } else {
+                tv_num_goods_detail.setVisibility(View.INVISIBLE);
+            }
+        } else {
+            tv_num_goods_detail.setVisibility(View.INVISIBLE);
+        }
+
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == 1) {
 //            addCart();
@@ -389,7 +407,7 @@ public class GoodsDetailActivity extends BaseActivity {
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
                     AppUtils.toastText(GoodsDetailActivity.this, message);
-//                    DefineUtil.NUM++;
+                    DefineUtil.NUM+=Double.parseDouble(productNum);
                     tv_num_goods_detail.setVisibility(View.VISIBLE);
                     tv_num_goods_detail.setText(DefineUtil.NUM + "");
                     Intent intent = new Intent();

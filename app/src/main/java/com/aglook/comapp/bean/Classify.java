@@ -10,6 +10,15 @@ public class Classify {
     private String name;
     private int id;
     private List<ClassifyGV> content;
+    private String nationalFlag;//国旗
+
+    public String getNationalFlag() {
+        return nationalFlag;
+    }
+
+    public void setNationalFlag(String nationalFlag) {
+        this.nationalFlag = nationalFlag;
+    }
 
     public String getName() {
         return name;
@@ -41,6 +50,7 @@ public class Classify {
                 "name='" + name + '\'' +
                 ", id=" + id +
                 ", content=" + content +
+                ", nationalFlag='" + nationalFlag + '\'' +
                 '}';
     }
 }

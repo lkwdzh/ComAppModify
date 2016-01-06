@@ -17,6 +17,7 @@ import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.CustomProgress;
+import com.aglook.comapp.view.IDCard;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
@@ -133,8 +134,18 @@ public class DriverInfoActivity extends BaseActivity {
             AppUtils.toastText(DriverInfoActivity.this,"司机手机号不能为空");
             return;
         }
+        if (driverPhone.length()!=11){
+            AppUtils.toastText(this,"请输入11位手机号");
+            return;
+        }
         if (cardNo==null||"".equals(cardNo)){
-            AppUtils.toastText(DriverInfoActivity.this,"司机身份证号不能为空");
+            AppUtils.toastText(this,"司机身份证号不能为空");
+            return;
+        }
+        //判断身份证格式
+        String ss= IDCard.IDCardValidate(cardNo);
+        if (!"".equals(ss)){
+            AppUtils.toastText(DriverInfoActivity.this,ss);
             return;
         }
         if (carCode==null||"".equals(carCode)){

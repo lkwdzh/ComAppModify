@@ -55,8 +55,8 @@ public class TransDetailActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        setTitleBar("交易详情");
         setContentView(R.layout.activity_trans_detail);
+        setTitleBar("交易详情");
         init();
         click();
         getData();
@@ -118,7 +118,7 @@ public class TransDetailActivity extends BaseActivity {
             XBitmap.displayImage(iv_lv_lv, guaDanStataLiL.getProductLogo(), TransDetailActivity.this);
         }
         tv_price_lv_lv.setText(guaDanStataLiL.getProductMoney());
-        tv_weight_lv_lv.setText(guaDanStataLiL.getInnerWeight());
+        tv_weight_lv_lv.setText(guaDanStataLiL.getProductNum()+"吨");
         if (guaDanStataLiL.getProductNum()!=null&&guaDanStataLiL.getProductMoney()!=null&&guaDanStataLiL.getCounter()!=null) {
             tv_money_lv_lv.setText(Double.parseDouble(guaDanStataLiL.getProductNum()) * Double.parseDouble(guaDanStataLiL.getProductMoney()) + Double.parseDouble(guaDanStataLiL.getCounter()) + "");
         }

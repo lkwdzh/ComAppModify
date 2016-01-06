@@ -9,16 +9,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/tl_bot"></FrameLayout>
-    <View
-        style="@style/line_1"
-        android:layout_alignParentBottom="true"
-        android:layout_above="@+id/tl_bot"/>
+
+
+
     <RelativeLayout
         android:id="@+id/tl_bot"
         android:layout_width="match_parent"
         android:layout_height="@dimen/px_80"
         android:layout_alignParentBottom="true">
-
+        <View
+        android:id="@+id/view_bottom"
+        style="@style/line_1"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/tabhost" />
         <android.support.v4.app.FragmentTabHost
             android:id="@+id/tabhost"
             android:layout_width="match_parent"
@@ -29,21 +32,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="12">
+            android:weightSum="24">
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="8" />
+                android:layout_weight="15" />
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/tv_shopping_point"
-                    android:layout_marginTop="@dimen/px_5"
+                    android:layout_marginTop="@dimen/px_10"
                     android:layout_marginRight="@dimen/px_5"
                     style="@style/red_point_mine_fragment"
                     android:text="2" />

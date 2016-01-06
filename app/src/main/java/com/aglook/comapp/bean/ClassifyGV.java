@@ -11,6 +11,15 @@ public class ClassifyGV {
     private String categoryKeys;
     private String categoryDesc;
     private String categoryOrder;
+    private String categoryNationalFlag;//国旗
+
+    public String getCategoryNationalFlag() {
+        return categoryNationalFlag;
+    }
+
+    public void setCategoryNationalFlag(String categoryNationalFlag) {
+        this.categoryNationalFlag = categoryNationalFlag;
+    }
 
     public String getCategoryId() {
         return categoryId;
@@ -78,6 +87,7 @@ public class ClassifyGV {
                 ", categoryKeys='" + categoryKeys + '\'' +
                 ", categoryDesc='" + categoryDesc + '\'' +
                 ", categoryOrder='" + categoryOrder + '\'' +
+                ", categoryNationalFlag='" + categoryNationalFlag + '\'' +
                 '}';
     }
 }

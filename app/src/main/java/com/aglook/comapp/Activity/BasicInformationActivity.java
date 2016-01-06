@@ -280,6 +280,14 @@ public class BasicInformationActivity extends BaseActivity {
             AppUtils.toastText(BasicInformationActivity.this,"邮箱格式不正确");
             return;
         }
+        if (userPhone==null||"".equals(userPhone)){
+            AppUtils.toastText(BasicInformationActivity.this,"手机号不能为空");
+            return;
+        }
+        if (userPhone.length()!=11){
+            AppUtils.toastText(BasicInformationActivity.this,"请输入11位手机号");
+            return;
+        }
         updata();
     }
 
@@ -289,8 +297,6 @@ public class BasicInformationActivity extends BaseActivity {
         String str = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
         Pattern p = Pattern.compile(str);
         Matcher m = p.matcher(email);
-
-
         return m.matches();
     }
 }

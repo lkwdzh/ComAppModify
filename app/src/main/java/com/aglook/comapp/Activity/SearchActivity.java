@@ -41,12 +41,13 @@ public class
 
     private DbUtils db;
     private Search search;
-    private List<Search> sonList;
+    private List<Search> sonList = new ArrayList<>();
 
     private final int SEARCH = 0;
     private boolean isSearch;
     private TextView tv_search;
     private Button btn_search;
+    private ImageView iv_left;
 
 
     @Override
@@ -64,6 +65,7 @@ public class
         lv_search = (ListView) findViewById(R.id.lv_search);
         gv_search = (GridView) findViewById(R.id.gv_search);
         tv_search = (TextView) findViewById(R.id.tv_search);
+        iv_left = (ImageView) findViewById(R.id.iv_left);
         db = DbUtils.create(this, "SEARCH");
         //写死热搜
         gvList.add("热搜");
@@ -116,7 +118,7 @@ public class
             lvList.addAll(sonStr);
             lvAdapter.notifyDataSetChanged();
         }
-        if (sonList.size()==0){
+        if (sonList==null||sonList.size()==0){
             btn_search.setVisibility(View.GONE);
         }else {
             btn_search.setVisibility(View.VISIBLE);
@@ -126,6 +128,7 @@ public class
     public void click() {
         btn_search.setOnClickListener(this);
         tv_search.setOnClickListener(this);
+        iv_left.setOnClickListener(this);
         gv_search.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -237,6 +240,9 @@ public class
                 } catch (DbException e) {
                     e.printStackTrace();
                 }
+                break;
+            case R.id.iv_left:
+                SearchActivity.this.finish();
                 break;
         }
     }

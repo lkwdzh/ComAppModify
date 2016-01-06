@@ -124,11 +124,17 @@
         android:text="登录"
         android:textColor="@color/white"
         android:textSize="13sp" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/tv_register"
         style="@style/redTextView_c91014"
+        android:layout_alignParentRight="true"
         android:layout_marginLeft="@dimen/px_20"
+        android:layout_marginRight="@dimen/px_20"
         android:layout_marginTop="@dimen/px_20"
         android:text="点击注册" />
+    </RelativeLayout>
 </LinearLayout>

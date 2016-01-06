@@ -72,6 +72,7 @@ public class RegisterActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_register);
+        setTitleBar("注册");
         init();
         click();
     }

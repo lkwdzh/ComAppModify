@@ -139,7 +139,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
                 holder.tv_count_shopping_cart_listview.setText(numAdd + "");
 
                 double total = numAdd * list.get(position).getProductMoney();
-                total=Double.parseDouble(decimalFormat.format(total));
+                total = Double.parseDouble(decimalFormat.format(total));
                 list.get(position).setTotal(total);
                 holder.tv_total_shopping_cart_listview.setText(total + "");
                 addCart();
@@ -168,7 +168,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
                 list.get(position).setProductNum(numAdd);
                 holder.tv_count_shopping_cart_listview.setText(numAdd + "");
                 double total = numAdd * list.get(position).getProductMoney();
-                total=Double.parseDouble(decimalFormat.format(total));
+                total = Double.parseDouble(decimalFormat.format(total));
                 list.get(position).setTotal(total);
                 holder.tv_total_shopping_cart_listview.setText(total + "");
                 addCart();
@@ -213,8 +213,8 @@ public class ShoppingCartAdapter extends BaseAdapter {
         total = 0;
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).isChecked()) {
-            num += list.get(i).getProductNum();
-            total += list.get(i).getTotal();
+                num += list.get(i).getProductNum();
+                total += list.get(i).getTotal();
             }
         }
         callBackData.callBack(num, total);
@@ -275,7 +275,6 @@ public class ShoppingCartAdapter extends BaseAdapter {
                 } else {
                     indexAdd--;
                     list.get(indexAdd).setProductNum(numAdd);
-                    Log.d("result___ADD", numAdd + "____" + indexAdd);
                     double total = numAdd * list.get(indexAdd).getProductMoney();
                     list.get(indexAdd).setTotal(total);
                     notifyDataSetChanged();
@@ -290,7 +289,6 @@ public class ShoppingCartAdapter extends BaseAdapter {
                 }
                 indexAdd--;
                 list.get(indexAdd).setProductNum(numAdd);
-                Log.d("result___ADD", numAdd + "____" + indexAdd);
                 double total = numAdd * list.get(indexAdd).getProductMoney();
                 list.get(indexAdd).setTotal(total);
                 notifyDataSetChanged();
@@ -332,10 +330,10 @@ public class ShoppingCartAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                InputMethodManager imm = ( InputMethodManager ) v.getContext( ).getSystemService(Context.INPUT_METHOD_SERVICE);
-                if ( imm.isActive( ) ) {
-                    AppUtils.toastText(context,"键盘");
-                    imm.hideSoftInputFromWindow( v.getApplicationWindowToken( ) , 0 );
+                InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm.isActive()) {
+                    AppUtils.toastText(context, "键盘");
+                    imm.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
 
                 }
             }
@@ -350,13 +348,13 @@ public class ShoppingCartAdapter extends BaseAdapter {
                 }
                 list.get(index).setProductNum(Double.parseDouble(productNum));
                 double total = Double.parseDouble(productNum) * list.get(index).getProductMoney();
-                total=Double.parseDouble(decimalFormat.format(total));
+                total = Double.parseDouble(decimalFormat.format(total));
                 list.get(index).setTotal(total);
                 addCart();
                 dialog.dismiss();
-                InputMethodManager imm = ( InputMethodManager ) v.getContext( ).getSystemService(Context.INPUT_METHOD_SERVICE);
-                if ( imm.isActive( ) ) {
-                    imm.hideSoftInputFromWindow( v.getApplicationWindowToken( ) , 0 );
+                InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm.isActive()) {
+                    imm.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
 
                 }
             }
@@ -369,8 +367,9 @@ public class ShoppingCartAdapter extends BaseAdapter {
             public void onClick(View v) {
                 numAdd = Double.parseDouble(et_count_shopping_cart_input.getText().toString());
                 numAdd++;
+                numAdd = Double.parseDouble(decimalFormat.format(numAdd).toString());
                 et_count_shopping_cart_input.setText(numAdd + "");
-                et_count_shopping_cart_input.setSelection(String.valueOf(numAdd).length());
+                et_count_shopping_cart_input.setSelection(et_count_shopping_cart_input.getText().toString().length());
             }
         });
 
@@ -386,8 +385,9 @@ public class ShoppingCartAdapter extends BaseAdapter {
                     return;
 
                 }
+                numAdd = Double.parseDouble(decimalFormat.format(numAdd).toString());
                 et_count_shopping_cart_input.setText(numAdd + "");
-                et_count_shopping_cart_input.setSelection(String.valueOf(numAdd).length());
+                et_count_shopping_cart_input.setSelection(et_count_shopping_cart_input.getText().toString().length());
             }
         });
         //监听Edittext数据变化

@@ -253,28 +253,5 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
     }
 
 
-//    //获取银行卡列表
-//    public void getCardListData() {
-//        new XHttpuTools() {
-//            @Override
-//            public void initViews(ResponseInfo<String> arg0) {
-//                if (customProgress != null && customProgress.isShowing()) {
-//                    customProgress.dismiss();
-//                }
-//                Log.d("result_cardList", arg0.result);
-//                String message = JsonUtils.getJsonParam(arg0.result, "message");
-//                String status = JsonUtils.getJsonParam(arg0.result, "status");
-//                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
-//                if (obj==null)
-//            }
-//
-//            @Override
-//            public void failureInitViews(HttpException arg0, String arg1) {
-//                if (customProgress != null && customProgress.isShowing()) {
-//                    customProgress.dismiss();
-//                }
-//            }
-//        }.datePost(DefineUtil.BANKCARD_LIST, CardListUrl.postBankCardListUrl(DefineUtil.USERID, DefineUtil.TOKEN), activity);
-//    }
 
 }

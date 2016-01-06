@@ -57,7 +57,7 @@ public class DriverListAdapter extends BaseAdapter {
         }
         if (canCheck){
             holder.cb_driver_lv.setVisibility(View.VISIBLE);
-            holder.cb_driver_lv.setBackgroundResource(R.drawable.ischecked);
+            holder.cb_driver_lv.setButtonDrawable(R.drawable.ischecked);
         }else {
             holder.cb_driver_lv.setVisibility(View.GONE);
         }
@@ -69,11 +69,6 @@ public class DriverListAdapter extends BaseAdapter {
         holder.cb_driver_lv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (holder.cb_driver_lv.isChecked()){
-//                    list.get(position).setChecked(false);
-//                }else {
-//                    list.get(position).setChecked(true);
-//                }
                list.get(position).setChecked(! list.get(position).isChecked());
                 num=0;
                 for (int i = 0; i < list.size(); i++) {
@@ -85,25 +80,6 @@ public class DriverListAdapter extends BaseAdapter {
                 callBackData.callBack(num);
             }
         });
-//        holder.ll_cb_d_lv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (holder.cb_driver_lv.isChecked()){
-//                    list.get(position).setChecked(false);
-//                }else {
-//                    list.get(position).setChecked(true);
-//                }
-////               list.get(position).setChecked(! list.get(position).isChecked());
-//                num=0;
-//                for (int i = 0; i < list.size(); i++) {
-//                    if (list.get(i).isChecked()){
-//                        num++;
-//                    }
-//                }
-//                notifyDataSetChanged();
-//                callBackData.callBack(num);
-//            }
-//        });
         return convertView;
     }
 

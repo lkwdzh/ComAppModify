@@ -6,9 +6,11 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:layout_width="@dimen/px_300"
-        android:layout_height="@dimen/px_180"
-        android:background="@drawable/alpha_dialog">
+        android:layout_width="wrap_content"
+        android:background="@drawable/alpha_dialog_top"
+        android:paddingBottom="@dimen/px_30"
+        android:paddingTop="@dimen/px_20"
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tv_top"
@@ -42,34 +44,38 @@
                 android:layout_centerInParent="true"
                 android:layout_height="wrap_content" />
         </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/px_60"
-            android:weightSum="2"
-            android:gravity="center_vertical"
-            android:layout_alignParentBottom="true">
-
-            <TextView
-                android:id="@+id/tv_quxiao"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="取消"
-                android:textSize="15sp"
-                android:textColor="#0a76ff"
-                android:gravity="center"
-                android:layout_height="match_parent" />
-
-            <TextView
-                android:id="@+id/tv_boda"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="去发送"
-                android:gravity="center"
-                android:textColor="#0a76ff"
-                android:textSize="15sp"
-                android:layout_height="match_parent" />
-        </LinearLayout>
     </RelativeLayout>
+<View
+    android:layout_width="wrap_content"
+    android:background="@drawable/alpha_dialog_line"
+    android:layout_height="0.5dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_60"
+        android:weightSum="2"
+        android:gravity="center_vertical"
+        android:background="@drawable/alpha_dialog_bottom"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/tv_quxiao"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="取消"
+            android:textSize="15sp"
+            android:textColor="#0a76ff"
+            android:gravity="center"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tv_boda"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="去发送"
+            android:gravity="center"
+            android:textColor="#0a76ff"
+            android:textSize="15sp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
 </LinearLayout>

@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -342,7 +343,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                 intent.setClass(getActivity(), SearchActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.tv_cangdan_home:
+            case R.id.btn_cancel_delete:
                 if (comAppApplication.getLogin() == null || "".equals(comAppApplication.getLogin())) {
                     intent.setClass(getActivity(), LoginActivity.class);
                     startActivityForResult(intent, 1);
@@ -352,7 +353,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                 }
                 dialog.dismiss();
                 break;
-            case R.id.tv_plat_home:
+            case R.id.btn_confirm_delete:
                 if (comAppApplication.getLogin() == null || "".equals(comAppApplication.getLogin())) {
                     intent.setClass(getActivity(), LoginActivity.class);
                     startActivityForResult(intent, 2);
@@ -576,22 +577,43 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     }
 
 
-    //选择平台仓单与仓单的对话框
+//    //选择平台仓单与仓单的对话框
+//    private Dialog dialog;
+//
+//    public void showDailog() {
+//        LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        View view = layoutInflater.inflate(R.layout.layout_home_dialog, null);
+//        tv_cangdan_home = (TextView) view.findViewById(R.id.tv_cangdan_home);
+//        tv_plat_home = (TextView) view.findViewById(R.id.tv_plat_home);
+//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//        builder.create();
+//        builder.setView(view);
+////        builder.setCancelable(false);
+//        dialog = builder.show();
+//        tv_cangdan_home.setOnClickListener(this);
+//        tv_plat_home.setOnClickListener(this);
+//    }
     private Dialog dialog;
+    private TextView tv_delete_order;
 
     public void showDailog() {
         LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.layout_home_dialog, null);
-        tv_cangdan_home = (TextView) view.findViewById(R.id.tv_cangdan_home);
-        tv_plat_home = (TextView) view.findViewById(R.id.tv_plat_home);
+        btn_cancel_delete = (Button) view.findViewById(R.id.btn_cancel_delete);
+        btn_confirm_delete = (Button) view.findViewById(R.id.btn_confirm_delete);
+        tv_delete_order = (TextView) view.findViewById(R.id.tv_delete_order);
+        tv_delete_order.setText("请选择仓单类别");
+        btn_cancel_delete.setText("原始仓单");
+        btn_confirm_delete.setText("平台仓单");
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.create();
         builder.setView(view);
 //        builder.setCancelable(false);
         dialog = builder.show();
-        tv_cangdan_home.setOnClickListener(this);
-        tv_plat_home.setOnClickListener(this);
+        btn_cancel_delete.setOnClickListener(this);
+        btn_confirm_delete.setOnClickListener(this);
     }
 
-
+    private Button btn_cancel_delete;
+    private Button btn_confirm_delete;
 }

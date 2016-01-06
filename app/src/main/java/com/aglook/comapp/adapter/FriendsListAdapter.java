@@ -54,9 +54,9 @@ public class FriendsListAdapter extends BaseAdapter{
         }
 
         if (isBuyer){
-            holder.cb_driver_lv.setBackgroundResource(R.drawable.ischecked);
+            holder.cb_driver_lv.setButtonDrawable(R.drawable.ischecked);
         }else {
-            holder.cb_driver_lv.setBackgroundResource(R.drawable.star_checked);
+            holder.cb_driver_lv.setButtonDrawable(R.drawable.star_checked);
             holder.cb_driver_lv.setVisibility(View.INVISIBLE);
         }
 

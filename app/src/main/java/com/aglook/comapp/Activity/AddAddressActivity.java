@@ -186,6 +186,10 @@ public class AddAddressActivity extends BaseActivity {
             AppUtils.toastText(AddAddressActivity.this,"请输入收货人手机号");
             return;
         }
+        if (phone.length()!=11){
+            AppUtils.toastText(AddAddressActivity.this,"请输入正确的手机号");
+            return;
+        }
         if (diqu==null||"".equals(diqu)){
             AppUtils.toastText(AddAddressActivity.this,"请选择地区");
             return;
