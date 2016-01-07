@@ -1,7 +1,6 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,7 +11,6 @@ import com.aglook.comapp.adapter.TradeingAdapter;
 import com.aglook.comapp.bean.GuaDanStataLi;
 import com.aglook.comapp.bean.GuaDanStataLiL;
 import com.aglook.comapp.url.AllGuaDanUrl;
-import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
@@ -109,7 +107,7 @@ public class TradeingActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_trading", DefineUtil.TOKEN + "____" + DefineUtil.USERID + "___" + arg0.result);
+//                Log.d("result_trading", DefineUtil.TOKEN + "____" + DefineUtil.USERID + "___" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -124,7 +122,7 @@ public class TradeingActivity extends BaseActivity {
                         }
                     if (guaDanStataLi.getList() != null && guaDanStataLi.getList().size() != 0) {
                         mList.addAll(guaDanStataLi.getList());
-                        Log.d("1111", mList.toString());
+//                        Log.d("1111", mList.toString());
                     }
                 }
 

@@ -26,6 +26,15 @@ public class PickUpList {
     private String categoryName;//": "早稻",种类名称
     private String categoryTitle;//": "早稻" 种类标题
     private String innerTime;//入仓时间
+    private String productLogo;//图片
+
+    public String getProductLogo() {
+        return productLogo;
+    }
+
+    public void setProductLogo(String productLogo) {
+        this.productLogo = productLogo;
+    }
 
     public String getInnerTime() {
         return innerTime;

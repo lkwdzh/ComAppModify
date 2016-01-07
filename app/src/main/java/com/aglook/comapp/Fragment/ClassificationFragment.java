@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,10 +90,11 @@ public class ClassificationFragment extends Fragment implements View.OnClickList
                 leftAdapter.notifyDataSetChanged();
 //                填充右边的list，并刷新
                 rightList.clear();
-                rightList.addAll(sonList.get(i).getContent());
-                rightAdapter.notifyDataSetChanged();
+                rightList.addAll(mList.get(i).getContent());
+//                Log.d("result_right",i+"_______"+mList.get(i).getNationalFlag());
                 XBitmap.displayImage(iv_nation_flag, mList.get(i).getNationalFlag(), getActivity());
                 tv_nation_flag.setText(mList.get(i).getName());
+                rightAdapter.notifyDataSetChanged();
             }
         });
 
@@ -131,7 +131,7 @@ public class ClassificationFragment extends Fragment implements View.OnClickList
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_Classify", arg0.result);
+//                Log.d("result_Classify", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");

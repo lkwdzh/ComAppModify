@@ -1,8 +1,5 @@
 package com.aglook.comapp.url;
 
-import android.util.Log;
-
-import com.google.gson.Gson;
 import com.lidroid.xutils.http.RequestParams;
 
 /**
@@ -45,7 +42,7 @@ public class RegisterUrl {
         params.addBodyParameter("userCompany",userCompany);
         params.addBodyParameter("userAddres",userAddres);
         params.addBodyParameter("userCode",userCode);
-        Log.d("result_params",new Gson().toJson(params));
+//        Log.d("result_params",new Gson().toJson(params));
         return params;
     }
 }

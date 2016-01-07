@@ -6,7 +6,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -352,7 +351,7 @@ public class ShoppingCartActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_getCartList", arg0.result);
+//                Log.d("result_getCartList", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -469,7 +468,7 @@ public class ShoppingCartActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_delete", cartId + "-------" + cartId.length() + "------" + arg0.result);
+//                Log.d("result_delete", cartId + "-------" + cartId.length() + "------" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {

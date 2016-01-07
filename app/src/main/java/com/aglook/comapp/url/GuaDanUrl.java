@@ -1,9 +1,6 @@
 package com.aglook.comapp.url;
 
-import android.util.Log;
-
 import com.aglook.comapp.util.DefineUtil;
-import com.google.gson.Gson;
 import com.lidroid.xutils.http.RequestParams;
 
 import org.json.JSONException;
@@ -56,7 +53,7 @@ public class GuaDanUrl {
         params.addBodyParameter("version", DefineUtil.VERSON);
         params.addBodyParameter("content", content);
         params.addBodyParameter("sign", sign);
-        Log.d("result_json",new Gson().toJson(params));
+//        Log.d("result_json",new Gson().toJson(params));
         return params;
     }
 
@@ -86,7 +83,7 @@ public class GuaDanUrl {
         params.addBodyParameter("version", DefineUtil.VERSON);
         params.addBodyParameter("content", content);
         params.addBodyParameter("sign", sign);
-        Log.d("result_json",new Gson().toJson(params));
+//        Log.d("result_json",new Gson().toJson(params));
         return params;
     }
     public static String  postGua(String code,String token, String userId, String originalListId,
@@ -114,7 +111,7 @@ public class GuaDanUrl {
 //        params.addBodyParameter("sign", sign);
         String str=DefineUtil.CANG_DAN+"?&code=1003&version=1.0&sign=null&content="+ URLEncoder.encode(content);
 //        Log.d("result_json",new Gson().toJson(params));
-        Log.d("result_json",str);
+//        Log.d("result_json",str);
         return str;
     }
 

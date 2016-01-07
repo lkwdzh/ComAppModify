@@ -1,7 +1,6 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -111,7 +110,7 @@ public class ScreenActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ScreenActivity.this, GoodsDetailActivity.class);
-                intent.putExtra("productId", mList.get(position).getProductId());
+                intent.putExtra("productId", mList.get(position-1).getProductId());
                 startActivity(intent);
             }
         });
@@ -266,8 +265,8 @@ public class ScreenActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_descFlag, clickNum, productMoney, productName", descFlag + "____" + clickNum + "____" + productMoney + "____" + productName);
-                Log.d("result_Search", arg0.result);
+//                Log.d("result_descFlag, clickNum, productMoney, productName", descFlag + "____" + clickNum + "____" + productMoney + "____" + productName);
+//                Log.d("result_Search", arg0.result);
                 List<Screen> sonList = new ArrayList<>();
                 List<Screen> sonListAppoint = new ArrayList<Screen>();
 //                List<Screen> llList = new ArrayList<Screen>();
@@ -342,8 +341,8 @@ public class ScreenActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_categoryId,descFlag, clickNum, productMoney, productName", categoryId + "____" + descFlag + "____" + clickNum + "____" + productMoney + "____" + productName);
-                Log.d("result_Screen", arg0.result);
+//                Log.d("result_categoryId,descFlag, clickNum, productMoney, productName", categoryId + "____" + descFlag + "____" + clickNum + "____" + productMoney + "____" + productName);
+//                Log.d("result_Screen", arg0.result);
                 List<Screen> sonList = new ArrayList<>();
                 List<Screen> sonListAppoint = new ArrayList<Screen>();
 //                List<Screen> llList = new ArrayList<Screen>();

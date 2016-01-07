@@ -13,7 +13,6 @@ import com.aglook.comapp.adapter.TransSucceedAdapter;
 import com.aglook.comapp.bean.GuaDanStataLi;
 import com.aglook.comapp.bean.GuaDanStataLiL;
 import com.aglook.comapp.url.AllGuaDanUrl;
-import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
@@ -109,7 +108,7 @@ public class TransSucceedActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_success", DefineUtil.TOKEN + "____" + DefineUtil.USERID + "___" + arg0.result);
+//                Log.d("result_success", DefineUtil.TOKEN + "____" + DefineUtil.USERID + "___" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");

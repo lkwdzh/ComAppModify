@@ -207,7 +207,9 @@
                 android:background="@drawable/shanchu"
                 android:gravity="center"
                 android:visibility="gone"
-                android:text="融资买货"
+                android:text="仓库抵押融资"
+                android:paddingLeft="@dimen/px_5"
+                android:paddingRight="@dimen/px_5"
                 android:layout_marginRight="@dimen/px_20"
                 android:textSize="13sp" />
 

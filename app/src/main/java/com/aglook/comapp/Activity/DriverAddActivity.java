@@ -1,6 +1,5 @@
 package com.aglook.comapp.Activity;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,6 +13,7 @@ import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.CustomProgress;
 import com.aglook.comapp.view.IDCard;
+import com.aglook.comapp.view.PatternNum;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
@@ -65,12 +65,16 @@ public class DriverAddActivity extends BaseActivity {
             AppUtils.toastText(this,"司机姓名不能为空");
             return;
         }
-        if (et_phone_driver_add==null||"".equals(et_phone_driver_add)){
+        if (driverPhone==null||"".equals(driverPhone)){
             AppUtils.toastText(this,"司机手机号不能为空");
             return;
         }
-        if (et_phone_driver_add.length()!=11){
+        if (driverPhone.length()!=11){
             AppUtils.toastText(this,"请输入11位手机号");
+            return;
+        }
+        if (!PatternNum.isMobileNO(driverPhone)){
+            AppUtils.toastText(this,"请输入正确手机号");
             return;
         }
         if (cardNo==null||"".equals(cardNo)){
@@ -85,6 +89,10 @@ public class DriverAddActivity extends BaseActivity {
         }
         if (carCode==null||"".equals(carCode)){
             AppUtils.toastText(this,"司机车牌号不能为空");
+            return;
+        }
+        if (!PatternNum.isCarnumberNO(carCode)){
+            AppUtils.toastText(this,"请输入正确车牌号");
             return;
         }
         addDriver();
@@ -103,7 +111,7 @@ public class DriverAddActivity extends BaseActivity {
 
     //添加司机
     public void addDriver(){
-        customProgress = CustomProgress.show(this, "提交中···", true);
+        customProgress = CustomProgress.show(this, "", true);
 
         new XHttpuTools() {
             @Override
@@ -111,7 +119,7 @@ public class DriverAddActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_add",arg0.result);
+//                Log.d("result_add",arg0.result);
                 String message= JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
                 if (status.equals("1")){

@@ -1,8 +1,5 @@
 package com.aglook.comapp.url;
 
-import android.util.Log;
-
-import com.google.gson.Gson;
 import com.lidroid.xutils.http.RequestParams;
 
 /**
@@ -18,7 +15,7 @@ public class ModifyPasswordUrl {
         params.addBodyParameter("token", token);
         params.addBodyParameter("pwd", pwd);
         params.addBodyParameter("newPwd", newPwd);
-        Log.d("result_pass",new Gson().toJson(params));
+//        Log.d("result_pass",new Gson().toJson(params));
         return params;
     }
 }

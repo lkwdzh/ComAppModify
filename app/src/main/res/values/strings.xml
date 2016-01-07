@@ -114,7 +114,7 @@
     <string name="grade_lv_lv">等级：</string>
     <string name="address_lv_lv">产地：</string>
     <string name="weight_lv_lv">重量：</string>
-    <string name="trans_all_order_lv">仓单交易</string>
+    <string name="trans_all_order_lv">交易</string>
     <string name="tihuo_all_order_lv">提货</string>
     //平台仓单                                                                                                                            <string name="title_activity_platform">PlatformActivity</string>
     <string name="platform_house_num">仓单号</string>

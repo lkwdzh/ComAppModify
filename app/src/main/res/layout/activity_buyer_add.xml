@@ -20,52 +20,12 @@
         <EditText
             android:id="@+id/et_seatNO_Friends_add"
             style="@style/guadan_edittext_weight"
+            android:inputType="number"
             android:hint="请输入联系人席位号" />
     </LinearLayout>
 
     <View style="@style/line_1" />
 
-    <!--<LinearLayout style="@style/guadan_ll_weight">-->
-
-        <!--<TextView-->
-            <!--style="@style/guadan_TextView_333333"-->
-            <!--android:text="@string/driver_add_phone" />-->
-
-        <!--<EditText-->
-            <!--android:id="@+id/et_phone_buyer_add"-->
-            <!--style="@style/guadan_edittext_weight"-->
-            <!--android:inputType="phone"-->
-            <!--android:hint="请输入联系人电话" />-->
-    <!--</LinearLayout>-->
-
-    <!--<View style="@style/line_1" />-->
-
-    <!--<LinearLayout style="@style/guadan_ll_weight">-->
-
-        <!--<TextView-->
-            <!--style="@style/guadan_TextView_333333"-->
-            <!--android:text="@string/driver_add_email" />-->
-
-        <!--<EditText-->
-            <!--android:id="@+id/et_email_buyer_add"-->
-            <!--style="@style/guadan_edittext_weight"-->
-            <!--android:inputType="textEmailAddress"-->
-            <!--android:hint="请输入联系人邮箱" />-->
-    <!--</LinearLayout>-->
-
-    <!--<View style="@style/line_1" />-->
-
-    <!--<LinearLayout style="@style/guadan_ll_weight">-->
-
-        <!--<TextView-->
-            <!--style="@style/guadan_TextView_333333"-->
-            <!--android:text="身份证号" />-->
-
-        <!--<EditText-->
-            <!--android:id="@+id/et_num_buyer_add"-->
-            <!--style="@style/guadan_edittext_weight"-->
-            <!--android:hint="请输入联系人身份证号" />-->
-    <!--</LinearLayout>-->
 
 
 </LinearLayout>

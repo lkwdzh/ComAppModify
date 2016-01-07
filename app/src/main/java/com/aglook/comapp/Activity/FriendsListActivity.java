@@ -5,11 +5,12 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -49,6 +50,8 @@ public class FriendsListActivity extends BaseActivity {
     private boolean isDelete;
     private CustomProgress customProgress;
     private View emptyView;
+    private CheckBox cb_buyer_list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +60,12 @@ public class FriendsListActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_buyer_list);
-        setTitleBar("指定买家");
+        isBuyer = getIntent().getBooleanExtra("buyOrLink", false);
+        if (isBuyer) {
+            setTitleBar("指定买家");
+        }else {
+            setTitleBar("联系人列表");
+        }
         ExitApplication.getInstance().addActivity(this);
         init();
         click();
@@ -72,7 +80,7 @@ public class FriendsListActivity extends BaseActivity {
         lv_buyer_list = (PullToRefreshListView) findViewById(R.id.lv_buyer_list);
         tv_num_buyer_list = (TextView) findViewById(R.id.tv_num_buyer_list);
         tv_confirm_buyer_list = (TextView) findViewById(R.id.tv_confirm_buyer_list);
-        isBuyer = getIntent().getBooleanExtra("buyOrLink", false);
+        cb_buyer_list = (CheckBox) findViewById(R.id.cb_buyer_list);
         adapter = new FriendsListAdapter(FriendsListActivity.this, isBuyer, mList, new FriendsListAdapter.CallBackData() {
             @Override
             public void callBack(int num) {
@@ -99,6 +107,23 @@ public class FriendsListActivity extends BaseActivity {
 //                startActivity(intent);
 //            }
 //        });
+        cb_buyer_list.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    for (int i = 0; i < mList.size(); i++) {
+                        mList.get(i).setChecked(true);
+                    }
+                    tv_num_buyer_list.setText(mList.size() + "");
+                }else {
+                    for (int i = 0; i < mList.size(); i++) {
+                        mList.get(i).setChecked(false);
+                    }
+                    tv_num_buyer_list.setText( "0");
+                }
+                adapter.notifyDataSetChanged();
+            }
+        });
         lv_buyer_list.setMode(PullToRefreshBase.Mode.DISABLED);
        lv_buyer_list.getRefreshableView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
            @Override
@@ -159,7 +184,7 @@ public class FriendsListActivity extends BaseActivity {
 
                 intent.setClass(FriendsListActivity.this, GuaDanAddActivity.class);
                 intent.putExtra("setSelected", (Serializable) setList);
-                Log.d("11111", setList.size() + "");
+//                Log.d("11111", setList.size() + "");
                 FriendsListActivity.this.setResult(1, intent);
                 FriendsListActivity.this.finish();
                 break;
@@ -185,7 +210,7 @@ public class FriendsListActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
                 List<LinkMan> llList = new ArrayList<>();
-                Log.d("result_BuyerList", arg0.result);
+//                Log.d("result_BuyerList", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
@@ -249,11 +274,11 @@ public class FriendsListActivity extends BaseActivity {
 
     //删除联系人
     public void deleteFriend(){
-        customProgress = CustomProgress.show(this, "删除中···", true);
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-            Log.d("result_delete",arg0.result);
+//            Log.d("result_delete",arg0.result);
                 String message=JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
                 if (status.equals("1")){

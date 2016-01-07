@@ -14,7 +14,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -107,7 +106,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
                 userName = mShare.getString("userName", "");
                 if (!"".equals(userName) && !"".equals(password)) {
                     if (comAppApplication.getLogin() == null) {
-                        Log.d("result_acc", accountType + "____" + userName + "____" + password);
+//                        Log.d("result_acc", accountType + "____" + userName + "____" + password);
                         login();
                     }
                 }
@@ -117,7 +116,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
                 userName = mShare.getString("setName", "");
                 if (!"".equals(userName) && !"".equals(password)) {
                     if (comAppApplication.getLogin() == null) {
-                        Log.d("result_acc", accountType + "____" + userName + "____" + password);
+//                        Log.d("result_acc", accountType + "____" + userName + "____" + password);
                         login();
                     }
                 }
@@ -152,7 +151,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         registerReceiver(myReceiver, filter);
 
         if (DefineUtil.FLAG == 2) {
-            Log.d("result_DefineUtil.FLAG_cr", DefineUtil.FLAG + "");
+//            Log.d("result_DefineUtil.FLAG_cr", DefineUtil.FLAG + "");
             mTabHost.setCurrentTab(3);
         }
 
@@ -184,7 +183,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_check", arg0.result);
+//                Log.d("result_check", arg0.result);
                 if (arg0.result != null && !"".equals(arg0.result)) {
                     String status = JsonUtils.getJsonParam(arg0.result, "status");
                     if (status.equals("wait")) {
@@ -370,7 +369,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
             tv_shopping_point.setVisibility(View.INVISIBLE);
         }
         if (DefineUtil.FLAG == 2) {
-            Log.d("result_DefineUtil.FLAG_re", DefineUtil.FLAG + "");
+//            Log.d("result_DefineUtil.FLAG_re", DefineUtil.FLAG + "");
             mTabHost.setCurrentTab(3);
         }
     }
@@ -407,7 +406,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
 
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_main_login", arg0.result);
+//                Log.d("result_main_login", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String str = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -416,12 +415,12 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
                     DefineUtil.TOKEN = login.getToken();
                     DefineUtil.USERID = login.getPshUser().getUserId();
                     DefineUtil.BANKBAND = login.isBankBind();
-                    Log.d("result_login_main", DefineUtil.BANKBAND + "");
+//                    Log.d("result_login_main", DefineUtil.BANKBAND + "");
                     comAppApplication.setLogin(login);
                     getCartListData();
                     getNotPayData();
                     isLogin = true;
-                    Log.d("result_main_islog——2", isLogin + "");
+//                    Log.d("result_main_islog——2", isLogin + "");
                     DefineUtil.ISUSERID = true;
                     Intent intent1 = new Intent();
                     intent1.setAction("HomeMain");
@@ -440,7 +439,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_getCartList", arg0.result);
+//                Log.d("result_getCartList", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -478,7 +477,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_all_order", arg0.result);
+//                Log.d("result_all_order", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");

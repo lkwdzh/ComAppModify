@@ -3,7 +3,6 @@ package com.aglook.comapp.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -322,7 +321,7 @@ public class ConfirmOrderActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_confirmOrder", cartids + "--------" + arg0.result);
+//                Log.d("result_confirmOrder", cartids + "--------" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -335,9 +334,9 @@ public class ConfirmOrderActivity extends BaseActivity {
                     Intent intentBroad = new Intent();
                     intentBroad.setAction("Shopping");
                     sendBroadcast(intentBroad);
-                    Log.d("result_confirm_De", DefineUtil.BANKBAND + "");
-                    Log.d("result_confirm_con", comAppApplication.getLogin() + "");
-                    Log.d("result_confirm", comAppApplication.getLogin().isBankBind() + "");
+//                    Log.d("result_confirm_De", DefineUtil.BANKBAND + "");
+//                    Log.d("result_confirm_con", comAppApplication.getLogin() + "");
+//                    Log.d("result_confirm", comAppApplication.getLogin().isBankBind() + "");
                         Intent intent = new Intent(ConfirmOrderActivity.this, PayActivity.class);
                         intent.putExtra("orderId", orderId);
                         intent.putExtra("money", money);
@@ -385,7 +384,7 @@ public class ConfirmOrderActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_addresslist", arg0.result);
+//                Log.d("result_addresslist", arg0.result);
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");

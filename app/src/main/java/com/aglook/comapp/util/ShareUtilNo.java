@@ -1,7 +1,6 @@
 package com.aglook.comapp.util;
 
 import android.app.Activity;
-import android.util.Log;
 
 import com.aglook.comapp.R;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -21,7 +20,7 @@ import com.umeng.socialize.weixin.media.WeiXinShareContent;
  */
 public class ShareUtilNo {
     public static void Share(Activity activity,String title,String url) {
-        Log.d("result_share", title + "______" + url);
+//        Log.d("result_share", title + "______" + url);
         UMSocialService mController = UMServiceFactory.getUMSocialService("com.umeng.share");
         // 设置分享内容
         mController.setShareContent("测试内容");

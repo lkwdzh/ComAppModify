@@ -2,7 +2,6 @@ package com.aglook.comapp.Activity;
 
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +17,7 @@ import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.CustomProgress;
+import com.aglook.comapp.view.PatternNum;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
@@ -127,7 +127,10 @@ public class RegisterActivity extends BaseActivity {
                     AppUtils.toastText(RegisterActivity.this, "请输入正确手机号");
                     return;
                 }
-
+                if (!PatternNum.isMobileNO(userPhone)){
+                    AppUtils.toastText(RegisterActivity.this, "请输入正确手机号");
+                    return;
+                }
                 if (time==60) {
                     getPhoneCode();
                 }
@@ -169,7 +172,11 @@ public class RegisterActivity extends BaseActivity {
             return;
         }
         if (userPhone.length() != 11) {
-            AppUtils.toastText(RegisterActivity.this, "请输入11位手机号");
+            AppUtils.toastText(RegisterActivity.this, "请输入正确手机号");
+            return;
+        }
+        if (!PatternNum.isMobileNO(userPhone)){
+            AppUtils.toastText(RegisterActivity.this, "请输入正确手机号");
             return;
         }
         if (authCode == null || "".equals(authCode)) {
@@ -205,7 +212,7 @@ public class RegisterActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_getPhoneCode", arg0.result);
+//                Log.d("result_getPhoneCode", arg0.result);
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 if (status.equals("1")) {
@@ -234,7 +241,7 @@ public class RegisterActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_getPhoneCode", arg0.result);
+//                Log.d("result_getPhoneCode", arg0.result);
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 if (status.equals("1")) {

@@ -3,7 +3,6 @@ package com.aglook.comapp.Activity;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -225,7 +224,7 @@ public class PickInfoActivity extends BaseActivity {
                 for (int i = 0; i < mList.size(); i++) {
 //                    Log.d("result_mList_display", mList.get(i).getWeitht() + "");
                 }
-
+//                Log.d("result_json_mlist", mList.toString());
                 getInput();
 
                 break;
@@ -241,7 +240,7 @@ public class PickInfoActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_pickinfo", arg0.result);
+//                Log.d("result_pickinfo", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
@@ -270,7 +269,7 @@ public class PickInfoActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_detail",originalId+"____"+arg0.result);
+//                Log.d("result_detail",originalId+"____"+arg0.result);
                 String message=JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
                 String obj=JsonUtils.getJsonParam(arg0.result,"obj");
@@ -301,7 +300,7 @@ public class PickInfoActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_Platdetail",arg0.result);
+//                Log.d("result_Platdetail",arg0.result);
                 String message=JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
                 String obj=JsonUtils.getJsonParam(arg0.result,"obj");

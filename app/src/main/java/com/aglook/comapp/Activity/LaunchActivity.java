@@ -3,7 +3,6 @@ package com.aglook.comapp.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.View;
 
 import com.aglook.comapp.R;
@@ -23,7 +22,7 @@ public class LaunchActivity extends BaseActivity {
         TelephonyManager TelephonyMgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
         DefineUtil.DEVICE_NUM = TelephonyMgr.getDeviceId();
 
-        Log.d("DefineUtil.DEVICE_NUM", DefineUtil.DEVICE_NUM);
+//        Log.d("DefineUtil.DEVICE_NUM", DefineUtil.DEVICE_NUM);
         isFirst = SharedPreferencesUtils.getBoolean(LaunchActivity.this, "first", true);
         new Handler().postDelayed(new Runnable() {
             @Override

@@ -45,6 +45,7 @@
         <LinearLayout style="@style/ll_match_content_ver">
 
             <RelativeLayout
+                android:id="@+id/rl_viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px_250">
 

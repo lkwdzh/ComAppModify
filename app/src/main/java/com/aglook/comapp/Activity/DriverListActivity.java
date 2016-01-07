@@ -1,7 +1,6 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -101,7 +100,7 @@ public class DriverListActivity extends BaseActivity {
 
     public void compareList() {
         if ((getList != null && getList.size() != 0) && (mList != null && mList.size() != 0)) {
-            Log.d("result_driver_getList", getList+"_____"+mList);
+//            Log.d("result_driver_getList", getList+"_____"+mList);
             for (int i = 0; i < getList.size(); i++) {
                 for (int j = 0; j < mList.size(); j++) {
                     if (getList.get(i).getId() == mList.get(j).getId()) {
@@ -178,7 +177,7 @@ public class DriverListActivity extends BaseActivity {
                         setList.add(mList.get(i));
                     }
                 }
-                Log.d("result_isCheck3","_______"+setList);
+//                Log.d("result_isCheck3","_______"+setList);
                 intent.putExtra("Selected", (Serializable) setList);
                 DriverListActivity.this.setResult(1, intent);
                 DriverListActivity.this.finish();
@@ -209,7 +208,7 @@ public class DriverListActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_driver", arg0.result);
+//                Log.d("result_driver", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -256,7 +255,7 @@ public class DriverListActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_modify——getId,driverId,getListDriverId",getId+"_____"+driverId+"_____"+getListDriverId+"_____"+arg0.result);
+//                Log.d("result_modify——getId,driverId,getListDriverId",getId+"_____"+driverId+"_____"+getListDriverId+"_____"+arg0.result);
                 String message=JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
                 if (status.equals("1")){

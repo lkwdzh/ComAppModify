@@ -1,7 +1,6 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
@@ -34,9 +33,10 @@ public class MyCangDanActivity extends BaseActivity {
     private String _sort;
     private List<CangDanList> mList = new ArrayList<>();
     private CangDan cangDan = new CangDan();
-    private String code="1001";
+    private String code = "1001";
     private CustomProgress customProgress;
     private View emptyView;
+
     @Override
     public void initView() {
         setContentView(R.layout.activity_my_cang_dan);
@@ -50,7 +50,7 @@ public class MyCangDanActivity extends BaseActivity {
     public void init() {
         lv_my_cang_dan = (PullToRefreshListView) findViewById(R.id.lv_my_cang_dan);
         lv_my_cang_dan.setMode(PullToRefreshBase.Mode.BOTH);
-        adapter = new MyCangDanAdapter(MyCangDanActivity.this,mList);
+        adapter = new MyCangDanAdapter(MyCangDanActivity.this, mList);
         lv_my_cang_dan.setAdapter(adapter);
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
 
@@ -58,18 +58,18 @@ public class MyCangDanActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode==1&&resultCode==RESULT_OK){
+        if (requestCode == 1 && resultCode == RESULT_OK) {
             mList.clear();
             getData();
-        }else if (requestCode==33&&resultCode==1){
+        } else if (requestCode == 33 && resultCode == 1) {
             mList.clear();
             getData();
-        }else if (requestCode==1&&resultCode==1){
-            Log.d("result_pu_can_1","_________");
+        } else if (requestCode == 1 && resultCode == 1) {
+//            Log.d("result_pu_can_1", "_________");
             mList.clear();
             getData();
-        }else if (requestCode==1&&resultCode==RESULT_OK){
-            Log.d("result_pu_can_2","_________");
+        } else if (requestCode == 1 && resultCode == RESULT_OK) {
+//            Log.d("result_pu_can_2", "_________");
             mList.clear();
             getData();
         }
@@ -105,12 +105,12 @@ public class MyCangDanActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_myCangdan", arg0.result);
+//                Log.d("result_myCangdan", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
-                cangDan = JsonUtils.parse(obj, CangDan.class);
                 if (status.equals("1")) {
+                    cangDan = JsonUtils.parse(obj, CangDan.class);
                     if (cangDan != null) {
                         if (cangDan.getList() != null && cangDan.getList().size() != 0) {
                             if (pageNum == 1) {
@@ -132,7 +132,7 @@ public class MyCangDanActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.CANG_DAN, CangDanUrl.postCangDanUrl(code,DefineUtil.TOKEN, DefineUtil.USERID, String.valueOf(pageSize), String.valueOf(pageNum), _sort), this);
+        }.datePost(DefineUtil.CANG_DAN, CangDanUrl.postCangDanUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, String.valueOf(pageSize), String.valueOf(pageNum), _sort), this);
 
     }
 

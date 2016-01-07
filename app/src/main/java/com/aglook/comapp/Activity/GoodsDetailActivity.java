@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +31,8 @@ import com.aglook.comapp.view.CustomProgress;
 import com.aglook.comapp.view.Timestamp;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
+
+import java.text.DecimalFormat;
 
 public class GoodsDetailActivity extends BaseActivity {
 
@@ -76,7 +77,7 @@ public class GoodsDetailActivity extends BaseActivity {
     private String url;
     private String title;
     private String imageUrl;
-
+    private DecimalFormat decimalFormat = new DecimalFormat("#.00");
     @Override
     public void initView() {
         setContentView(R.layout.activity_goods_detail);
@@ -151,7 +152,7 @@ public class GoodsDetailActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_GoodsDetail", productId + "-------" + arg0.result);
+//                Log.d("result_GoodsDetail", productId + "-------" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -212,18 +213,18 @@ public class GoodsDetailActivity extends BaseActivity {
                 XBitmap.displayImage(iv_hq, goodsDetail.getProductOwnerProve(), GoodsDetailActivity.this);
             }
         }
-        //判断是否已经登录，若登录则显示购物车个数，否则不显示
-        if (comAppApplication.getLogin() != null && !"".equals(comAppApplication.getLogin())) {
-            if (DefineUtil.NUM != 0) {
-                //假如已登录
-                tv_num_goods_detail.setVisibility(View.VISIBLE);
-                tv_num_goods_detail.setText(DefineUtil.NUM + "");
-            } else {
-                tv_num_goods_detail.setVisibility(View.INVISIBLE);
-            }
-        } else {
-            tv_num_goods_detail.setVisibility(View.INVISIBLE);
-        }
+//        //判断是否已经登录，若登录则显示购物车个数，否则不显示
+//        if (comAppApplication.getLogin() != null && !"".equals(comAppApplication.getLogin())) {
+//            if (DefineUtil.NUM != 0) {
+//                //假如已登录
+//                tv_num_goods_detail.setVisibility(View.VISIBLE);
+//                tv_num_goods_detail.setText(DefineUtil.NUM + "");
+//            } else {
+//                tv_num_goods_detail.setVisibility(View.INVISIBLE);
+//            }
+//        } else {
+//            tv_num_goods_detail.setVisibility(View.INVISIBLE);
+//        }
 
         //假如已收藏，就显示收藏，若未收藏，就显示为收藏
 //        if (已收藏){
@@ -244,6 +245,7 @@ public class GoodsDetailActivity extends BaseActivity {
             if (DefineUtil.NUM != 0) {
                 //假如已登录
                 tv_num_goods_detail.setVisibility(View.VISIBLE);
+                DefineUtil.NUM = Double.parseDouble(decimalFormat.format(DefineUtil.NUM));
                 tv_num_goods_detail.setText(DefineUtil.NUM + "");
             } else {
                 tv_num_goods_detail.setVisibility(View.INVISIBLE);
@@ -402,12 +404,13 @@ public class GoodsDetailActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_class_ada", arg0.result);
+//                Log.d("result_class_ada", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
                     AppUtils.toastText(GoodsDetailActivity.this, message);
                     DefineUtil.NUM+=Double.parseDouble(productNum);
+                    DefineUtil.NUM = Double.parseDouble(decimalFormat.format(DefineUtil.NUM));
                     tv_num_goods_detail.setVisibility(View.VISIBLE);
                     tv_num_goods_detail.setText(DefineUtil.NUM + "");
                     Intent intent = new Intent();
@@ -435,7 +438,7 @@ public class GoodsDetailActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_shoucang", arg0.result);
+//                Log.d("result_shoucang", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
@@ -462,7 +465,7 @@ public class GoodsDetailActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_delete", arg0.result);
+//                Log.d("result_delete", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {

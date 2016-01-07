@@ -1,8 +1,5 @@
 package com.aglook.comapp.url;
 
-import android.util.Log;
-
-import com.google.gson.Gson;
 import com.lidroid.xutils.http.RequestParams;
 
 /**
@@ -103,7 +100,7 @@ public class AddressUrl {
         params.addBodyParameter("userName",userName);
         params.addBodyParameter("defaultFlag",defaultFlag);
         params.addBodyParameter("deleteFlag",deleteFlag);
-        Log.d("result_add_params",new Gson().toJson(params));
+//        Log.d("result_add_params",new Gson().toJson(params));
         return params;
     }
 

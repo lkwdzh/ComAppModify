@@ -1,7 +1,6 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -87,7 +86,7 @@ public class GoodsCollectActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
 
-                Log.d("result_collect", DefineUtil.TOKEN + "____" + DefineUtil.USERID + "_____" + arg0.result);
+//                Log.d("result_collect", DefineUtil.TOKEN + "____" + DefineUtil.USERID + "_____" + arg0.result);
                 List<Screen> sonList = new ArrayList<>();
                 List<Screen> sonListAppoint = new ArrayList<Screen>();
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -128,7 +127,7 @@ public class GoodsCollectActivity extends BaseActivity {
                             }
                         if (sonList != null && sonList.size() != 0) {
                             mList.addAll(sonList);
-                            Log.d("mlist",mList.toString());
+//                            Log.d("mlist",mList.toString());
                         }
                     }
 

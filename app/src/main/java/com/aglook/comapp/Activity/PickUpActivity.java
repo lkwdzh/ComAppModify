@@ -1,7 +1,6 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
@@ -102,7 +101,7 @@ public class PickUpActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_pickupList", arg0.result);
+//                Log.d("result_pickupList", arg0.result);
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }

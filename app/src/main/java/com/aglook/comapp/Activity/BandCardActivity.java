@@ -2,7 +2,6 @@ package com.aglook.comapp.Activity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,6 +19,7 @@ import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.CustomProgress;
+import com.aglook.comapp.view.PatternNum;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
@@ -99,6 +99,10 @@ public class BandCardActivity extends BaseActivity {
             AppUtils.toastText(BandCardActivity.this,"银行预留手机号不能为空");
             return;
         }
+        if (!PatternNum.isMobileNO(cardPhone)){
+            AppUtils.toastText(BandCardActivity.this, "请输入正确手机号");
+            return;
+        }
         bandCard();
     }
 
@@ -138,7 +142,7 @@ public class BandCardActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_bandCard", arg0.result);
+//                Log.d("result_bandCard", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -167,7 +171,7 @@ public class BandCardActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_bandCard_res", arg0.result);
+//                Log.d("result_bandCard_res", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")){

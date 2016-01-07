@@ -1,8 +1,5 @@
 package com.aglook.comapp.url;
 
-import android.util.Log;
-
-import com.google.gson.Gson;
 import com.lidroid.xutils.http.RequestParams;
 
 /**
@@ -50,7 +47,7 @@ public class CardListUrl {
         params.addBodyParameter("bankCode", bankCode);
         params.addBodyParameter("bankAlis", bankAlis);
         params.addBodyParameter("cardPhone", cardPhone);
-        Log.d("result_card",new Gson().toJson(params));
+//        Log.d("result_card",new Gson().toJson(params));
         return params;
     }
 }

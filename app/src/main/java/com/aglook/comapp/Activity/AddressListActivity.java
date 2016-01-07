@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -163,7 +162,7 @@ public class AddressListActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_addresslist", arg0.result);
+//                Log.d("result_addresslist", arg0.result);
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -216,7 +215,7 @@ public class AddressListActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_addressdelete", arg0.result);
+//                Log.d("result_addressdelete", arg0.result);
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");

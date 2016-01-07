@@ -1,7 +1,6 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -147,7 +146,7 @@ public class ZiXunListActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_zixunList", classId + "___" + arg0.result);
+//                Log.d("result_zixunList", classId + "___" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -160,6 +159,7 @@ public class ZiXunListActivity extends BaseActivity {
                 }
 
                 adapter.notifyDataSetChanged();
+                lv_hang_qing_list.setEmptyView(emptyView);
             }
 
             @Override
@@ -180,7 +180,7 @@ public class ZiXunListActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_zixunList", arg0.result);
+//                Log.d("result_zixunList", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");

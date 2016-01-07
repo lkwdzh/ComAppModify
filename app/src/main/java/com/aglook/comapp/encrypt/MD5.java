@@ -1,13 +1,7 @@
 package com.aglook.comapp.encrypt;
 
-import android.util.Log;
-
-import com.lidroid.xutils.util.IOUtils;
-
 import org.apache.commons.codec.digest.DigestUtils;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.math.BigInteger;
@@ -58,7 +52,7 @@ public class MD5 {
         BigInteger bi = new BigInteger(1, md5.digest());
         String mdStr = bi.toString(16);
         System.out.print("result_text______"+text+key);
-        Log.d("result_text",text+key);
+//        Log.d("result_text",text+key);
         return mdStr;
 
     }

@@ -1,6 +1,5 @@
 package com.aglook.comapp.Activity;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -18,6 +17,7 @@ import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.CustomProgress;
 import com.aglook.comapp.view.IDCard;
+import com.aglook.comapp.view.PatternNum;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
@@ -138,6 +138,10 @@ public class DriverInfoActivity extends BaseActivity {
             AppUtils.toastText(this,"请输入11位手机号");
             return;
         }
+        if (!PatternNum.isMobileNO(driverPhone)){
+            AppUtils.toastText(this,"请输入正确手机号");
+            return;
+        }
         if (cardNo==null||"".equals(cardNo)){
             AppUtils.toastText(this,"司机身份证号不能为空");
             return;
@@ -152,12 +156,16 @@ public class DriverInfoActivity extends BaseActivity {
             AppUtils.toastText(DriverInfoActivity.this,"司机车牌号不能为空");
             return;
         }
+        if (!PatternNum.isCarnumberNO(carCode)){
+            AppUtils.toastText(this,"请输入正确车牌号");
+            return;
+        }
         upData();
     }
 
     //更新司机信息
     public void upData() {
-        customProgress = CustomProgress.show(this, "提交中···", true);
+        customProgress = CustomProgress.show(this, "", true);
 
         new XHttpuTools() {
             @Override
@@ -165,7 +173,7 @@ public class DriverInfoActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_update",driverId+"_____"+arg0.result);
+//                Log.d("result_update",driverId+"_____"+arg0.result);
                 String message= JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
                 if (status.equals("1")){

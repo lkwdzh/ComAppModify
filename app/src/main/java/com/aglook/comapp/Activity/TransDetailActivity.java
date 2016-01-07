@@ -2,7 +2,6 @@ package com.aglook.comapp.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -161,7 +160,7 @@ public class TransDetailActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_trading", DefineUtil.TOKEN + "____" + DefineUtil.USERID + "___" + arg0.result);
+//                Log.d("result_trading", DefineUtil.TOKEN + "____" + DefineUtil.USERID + "___" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");

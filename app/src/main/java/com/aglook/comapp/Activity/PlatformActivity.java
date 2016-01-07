@@ -1,7 +1,6 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
@@ -88,11 +87,11 @@ public class PlatformActivity extends BaseActivity {
             mList.clear();
             getData();
         }else if(requestCode==2&&resultCode==1){
-            Log.d("result_shuaxin_1","AAAAAAAAAAAAAAAAAAAA");
+//            Log.d("result_shuaxin_1","AAAAAAAAAAAAAAAAAAAA");
             mList.clear();
             getData();
         }else if (requestCode==2&&resultCode==RESULT_OK){
-            Log.d("result_shuaxin_2","AAAAAAAAAAAAAAAAAAAA");
+//            Log.d("result_shuaxin_2","AAAAAAAAAAAAAAAAAAAA");
             mList.clear();
             getData();
         }
@@ -112,7 +111,7 @@ public class PlatformActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_plateform", arg0.result);
+//                Log.d("result_plateform", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");

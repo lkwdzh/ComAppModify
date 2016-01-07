@@ -1,7 +1,5 @@
 package com.aglook.comapp.url;
 
-import android.util.Log;
-
 import com.aglook.comapp.bean.DriverList;
 import com.aglook.comapp.util.DefineUtil;
 import com.lidroid.xutils.http.RequestParams;
@@ -19,7 +17,7 @@ import java.util.List;
 public class PickInfoUrl {
     private static RequestParams params;
 
-    public static RequestParams postPickInfoUrl(String code, String token, String userId, String originalListId, String orderdataId, String  deliveryNum,List<DriverList> dirverList) {
+    public static RequestParams postPickInfoUrl(String code, String token, String userId, String originalListId, String orderdataId, String deliveryNum, List<DriverList> dirverList) {
         params = new RequestParams();
         JSONObject jsonObject = new JSONObject();
         try {
@@ -30,11 +28,10 @@ public class PickInfoUrl {
                     jsonObject1 = new JSONObject();
 //                    jsonObject1.put("id", "1");
                     jsonObject1.put("id", dirverList.get(i).getId());
-                    if (dirverList.get(i).getWeight()!=null){
-
+                    if (dirverList.get(i).getWeight() != null) {
+                        jsonObject1.put("getWeight", dirverList.get(i).getWeight());
                     }
 //                    jsonObject1.put("getWeight", Integer.parseInt(dirverList.get(i).getWeight()));
-                    jsonObject1.put("getWeight", dirverList.get(i).getWeight());
 //                    jsonObject1.put("getWeight", 1);
                     jsonArray.add(jsonObject1);
                 }
@@ -49,7 +46,7 @@ public class PickInfoUrl {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.d("result_json",jsonObject.toString());
+//        Log.d("result_json", jsonObject.toString());
         String content = jsonObject.toString();
         String sign = null;
         params.addBodyParameter("code", code);

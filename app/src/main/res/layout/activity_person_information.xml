@@ -20,6 +20,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px_300"
+                android:visibility="gone"
                 android:background="@drawable/beijing">
 
                 <ImageView
@@ -46,6 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
+                android:layout_marginTop="@dimen/px_14"
                 android:drawableLeft="@drawable/jibenxinxi"
                 android:drawableRight="@drawable/next"
                 android:gravity="center_vertical"
@@ -142,7 +144,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:drawableLeft="@drawable/shoucanghaoyou"
+                android:drawableLeft="@drawable/address"
                 android:drawableRight="@drawable/next"
                 android:gravity="center_vertical"
                 android:padding="@dimen/px_14"

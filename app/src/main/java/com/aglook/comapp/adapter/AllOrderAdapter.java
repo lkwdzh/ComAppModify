@@ -102,7 +102,7 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
         if (order.getOrderStatus().equals("notpay")) {
             holder.tv_success_all_order_lv.setText("待支付");
             holder.tv_success_all_order_lv.setTextColor(activity.getResources().getColor(R.color.green_356600));
-            holder.tv_click_all_order_lv.setText("去支付");
+            holder.tv_click_all_order_lv.setText("支付");
             holder.tv_click_all_order_lv.setVisibility(View.VISIBLE);
             holder.tv_delete_all_order_lv.setVisibility(View.VISIBLE);
             holder.tv_delete_all_order_lv.setText("取消");
@@ -141,7 +141,7 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
         Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.tv_click_all_order_lv:
-                Log.d("result_login_order", DefineUtil.BANKBAND+"");
+//                Log.d("result_login_order", DefineUtil.BANKBAND+"");
                 if (DefineUtil.BANKBAND) {
                     //若已绑定
                     index = (int) v.getTag();
@@ -231,7 +231,7 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_cancel", arg0.result);
+//                Log.d("result_cancel", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {

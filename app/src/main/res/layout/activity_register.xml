@@ -28,6 +28,7 @@
                     android:id="@+id/et_username_register"
                     style="@style/save_TextView_666666_13_center"
                     android:maxLength="15"
+                    android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ"
                     android:hint="请输入6-15位字符" />
             </LinearLayout>
 
@@ -111,7 +112,7 @@
                 <EditText
                     android:id="@+id/et_tuijian__register"
                     style="@style/save_TextView_666666_13_center"
-                    android:inputType="phone"
+                    android:inputType="number"
                     android:maxLength="11"
                     android:hint="请输入推荐人席位号" />
             </LinearLayout>

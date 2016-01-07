@@ -1,7 +1,6 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -163,7 +162,7 @@ private CustomProgress customProgress;
                 if (customProgress!=null&&customProgress.isShowing()){
                     customProgress.dismiss();
                 }
-                Log.d("result_detail",arg0.result);
+//                Log.d("result_detail",arg0.result);
                 String message= JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
                 String obj=JsonUtils.getJsonParam(arg0.result,"obj");

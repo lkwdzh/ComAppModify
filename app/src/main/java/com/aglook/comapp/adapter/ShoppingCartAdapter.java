@@ -134,7 +134,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
                 numAdd++;
                 numAdd = Double.parseDouble(decimalFormat.format(numAdd));
                 productNum = numAdd + "";
-                Log.d("result__numAdd", numAdd + "___");
+//                Log.d("result__numAdd", numAdd + "___");
                 list.get(position).setProductNum(numAdd);
                 holder.tv_count_shopping_cart_listview.setText(numAdd + "");
 
@@ -262,7 +262,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result___", arg0.result);
+//                Log.d("result___", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {

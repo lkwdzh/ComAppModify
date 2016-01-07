@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +21,7 @@ import com.aglook.comapp.url.PickUpUrl;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
+import com.aglook.comapp.util.XBitmap;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.CustomProgress;
 import com.aglook.comapp.view.Timestamp;
@@ -86,6 +86,7 @@ public class PickUpAdapter extends BaseAdapter implements View.OnClickListener {
             holder.tv_in_time_my_cangdan.setText(Timestamp.getDateTo(pickUp.getInnerTime()));
         }
         holder.tv_cangdan.setText("提货编号");
+        XBitmap.displayImage(holder.iv_lv_lv,pickUp.getProductLogo(),activity);
         if (pickUp.getGetAtime() != null && !"".equals(pickUp.getGetAtime())) {
             holder.tv_time_tihuo.setText(Timestamp.getDateTo(pickUp.getGetAtime()));
         }
@@ -211,14 +212,14 @@ public class PickUpAdapter extends BaseAdapter implements View.OnClickListener {
 
     //取消提货单
     public void cancelPick() {
-        customProgress = CustomProgress.show(activity, "取消中···", true);
+        customProgress = CustomProgress.show(activity, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("resutl_quxiao", getId + "____" + DefineUtil.USERID + "_____" + arg0.result);
+//                Log.d("resutl_quxiao", getId + "____" + DefineUtil.USERID + "_____" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {

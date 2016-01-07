@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -167,7 +166,7 @@ public class LoginActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_login", accountType + "_______" + arg0.result);
+//                Log.d("result_login", accountType + "_______" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String str = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -176,7 +175,7 @@ public class LoginActivity extends BaseActivity {
                     DefineUtil.TOKEN = login.getToken();
                     DefineUtil.USERID = login.getPshUser().getUserId();
                     DefineUtil.BANKBAND = login.isBankBind();
-                    Log.d("result_login", DefineUtil.BANKBAND+"");
+//                    Log.d("result_login", DefineUtil.BANKBAND+"");
                     comAppApplication.setLogin(login);
                     // 发送广播给MainActivity
                     //如果真实姓名，身份证与邮箱有一个为空，则去个人信息页面完善
@@ -209,7 +208,7 @@ public class LoginActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_getCartList", arg0.result);
+//                Log.d("result_getCartList", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -293,7 +292,7 @@ public class LoginActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_all_order", arg0.result);
+//                Log.d("result_all_order", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");

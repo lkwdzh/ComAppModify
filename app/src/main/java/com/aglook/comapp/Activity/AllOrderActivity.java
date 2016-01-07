@@ -1,7 +1,6 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -156,14 +155,14 @@ public class AllOrderActivity extends BaseActivity {
 
     //获取数据
     public void getData() {
-        customProgress = CustomProgress.show(this, "加载中···", true);
+        customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_all_order", arg0.result);
+//                Log.d("result_all_order", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");

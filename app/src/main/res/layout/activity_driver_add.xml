@@ -32,7 +32,8 @@
         <EditText
             android:id="@+id/et_phone_driver_add"
             style="@style/guadan_edittext_weight"
-            android:inputType="number"
+            android:inputType="phone"
+            android:maxLength="11"
             android:hint="请输入司机电话" />
     </LinearLayout>
 
@@ -49,6 +50,8 @@
         <EditText
             android:id="@+id/et_num_driver_add"
             style="@style/guadan_edittext_weight"
+            android:digits="0123456789x"
+           android:maxLength="18"
             android:hint="请输入司机身份证号" />
     </LinearLayout>
     <View style="@style/line_1" />

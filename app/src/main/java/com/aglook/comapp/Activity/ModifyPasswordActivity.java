@@ -1,6 +1,5 @@
 package com.aglook.comapp.Activity;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -77,7 +76,7 @@ public class ModifyPasswordActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_modypwd", arg0.result);
+//                Log.d("result_modypwd", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                     ll_modify.setVisibility(View.GONE);

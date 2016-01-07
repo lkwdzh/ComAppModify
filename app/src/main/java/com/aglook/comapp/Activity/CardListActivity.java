@@ -1,7 +1,6 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -140,7 +139,7 @@ public class CardListActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_cardList", arg0.result);
+//                Log.d("result_cardList", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -155,7 +154,7 @@ public class CardListActivity extends BaseActivity {
                         isMoRen = false;
                     } else if (isDelete) {
                         mList.clear();
-                        Log.d("result_isDelete",isDelete+"");
+//                        Log.d("result_isDelete",isDelete+"");
                         isDelete = false;
                     }
                     if (list.size() != 0 && list != null) {
@@ -232,7 +231,7 @@ public class CardListActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_delete", arg0.result);
+//                Log.d("result_delete", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {

@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -155,7 +154,7 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
                    intent.setClass(activity, PayActivity.class);
                    intent.putExtra("orderId", orderId);
                    intent.putExtra("money", money);
-                   Log.d("result_OrderId", orderId);
+//                   Log.d("result_OrderId", orderId);
                    activity.startActivityForResult(intent, 1);
                }
 
@@ -235,7 +234,7 @@ public class ToPayAdapter extends BaseAdapter implements View.OnClickListener {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_cancel", arg0.result);
+//                Log.d("result_cancel", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {

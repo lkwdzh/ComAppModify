@@ -1,7 +1,6 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -79,7 +78,7 @@ public class ClassifyActivity extends BaseActivity {
                 Intent intent = new Intent(ClassifyActivity.this, HangDetailActivity.class);
                 intent.putExtra("url",DefineUtil.TREND+"?categoryId="+rightList.get(i).getCategoryId());
                 intent.putExtra("className","价格走势");
-                Log.d("result_url",DefineUtil.TREND+"?categoryId="+rightList.get(i).getCategoryId());
+//                Log.d("result_url",DefineUtil.TREND+"?categoryId="+rightList.get(i).getCategoryId());
                 startActivity(intent);
             }
         });
@@ -108,7 +107,7 @@ public class ClassifyActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_Classify", arg0.result);
+//                Log.d("result_Classify", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");

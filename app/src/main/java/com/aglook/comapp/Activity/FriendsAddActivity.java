@@ -1,6 +1,5 @@
 package com.aglook.comapp.Activity;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,6 +11,7 @@ import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
@@ -21,6 +21,7 @@ public class FriendsAddActivity extends BaseActivity {
     private TextView right_text;
     private EditText et_seatNO_Friends_add;
     private String seatNo;
+    private CustomProgress customProgress;
 
     @Override
     public void initView() {
@@ -60,10 +61,14 @@ public class FriendsAddActivity extends BaseActivity {
 
     //添加联系人
     public void addFriend(){
+        customProgress=CustomProgress.show(FriendsAddActivity.this,"",true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_add_friend",arg0.result);
+                if (customProgress!=null&&customProgress.isShowing()){
+                    customProgress.dismiss();
+                }
+//                Log.d("result_add_friend",arg0.result);
                 String message= JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
                 if (status!=null&&!"".equals(status)){
@@ -77,7 +82,9 @@ public class FriendsAddActivity extends BaseActivity {
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
+                if (customProgress!=null&&customProgress.isShowing()){
+                    customProgress.dismiss();
+                }
             }
         }.datePost(DefineUtil.ADD_CONTACT, FriendsUrl.postAddUrl(DefineUtil.USERID,DefineUtil.TOKEN,seatNo),FriendsAddActivity.this);
     }

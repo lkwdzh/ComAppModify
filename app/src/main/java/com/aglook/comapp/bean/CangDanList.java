@@ -17,8 +17,8 @@ public class CangDanList implements Serializable{
     private String goodsOwnerEmail;//货权人邮箱
     private String goodsOwnerProve;//货权证明图片
     private String innerWeight;//入库重量
-    private long weightUse;//正在出售数量
-    private long weightUseable;//未出售数量
+    private double weightUse;//正在出售数量
+    private double weightUseable;//未出售数量
     private String goodsPlace;//产地
     private String goodsType;//货物种类
     private String depotQuality;//货物级别描述
@@ -105,19 +105,19 @@ public class CangDanList implements Serializable{
         this.innerWeight = innerWeight;
     }
 
-    public long getWeightUse() {
+    public double getWeightUse() {
         return weightUse;
     }
 
-    public void setWeightUse(long weightUse) {
+    public void setWeightUse(double weightUse) {
         this.weightUse = weightUse;
     }
 
-    public long getWeightUseable() {
+    public double getWeightUseable() {
         return weightUseable;
     }
 
-    public void setWeightUseable(long weightUseable) {
+    public void setWeightUseable(double weightUseable) {
         this.weightUseable = weightUseable;
     }
 
@@ -230,19 +230,17 @@ public class CangDanList implements Serializable{
         return "CangDanList{" +
                 "id=" + id +
                 ", listId='" + listId + '\'' +
-                ", getlistId='" + getlistId + '\'' +
-                ", getlistPic='" + getlistPic + '\'' +
                 ", mark='" + mark + '\'' +
+                ", innerTime='" + innerTime + '\'' +
+                ", pshCategory=" + pshCategory +
                 ", goodsOwner='" + goodsOwner + '\'' +
                 ", goodsOwnerMobile='" + goodsOwnerMobile + '\'' +
                 ", goodsOwnerPhone='" + goodsOwnerPhone + '\'' +
                 ", goodsOwnerEmail='" + goodsOwnerEmail + '\'' +
                 ", goodsOwnerProve='" + goodsOwnerProve + '\'' +
-                ", getlistWeight='" + getlistWeight + '\'' +
                 ", innerWeight='" + innerWeight + '\'' +
                 ", weightUse=" + weightUse +
                 ", weightUseable=" + weightUseable +
-                ", innerTime='" + innerTime + '\'' +
                 ", goodsPlace='" + goodsPlace + '\'' +
                 ", goodsType='" + goodsType + '\'' +
                 ", depotQuality='" + depotQuality + '\'' +
@@ -251,7 +249,9 @@ public class CangDanList implements Serializable{
                 ", responsiblePhone='" + responsiblePhone + '\'' +
                 ", responsibleEmail='" + responsibleEmail + '\'' +
                 ", depotAddr='" + depotAddr + '\'' +
-                ", pshCategory=" + pshCategory +
+                ", getlistId='" + getlistId + '\'' +
+                ", getlistPic='" + getlistPic + '\'' +
+                ", getlistWeight='" + getlistWeight + '\'' +
                 '}';
     }
 }

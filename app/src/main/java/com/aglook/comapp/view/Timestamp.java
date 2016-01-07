@@ -1,7 +1,5 @@
 package com.aglook.comapp.view;
 
-import android.util.Log;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -241,7 +239,7 @@ public class Timestamp {
 			long l = date.getTime();
 			String stf = String.valueOf(l);
 			times = stf.substring(0, 11);
-            Log.d("--444444---", times);
+//            Log.d("--444444---", times);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

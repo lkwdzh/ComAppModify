@@ -46,7 +46,7 @@ public class ToPayActivity extends BaseActivity {
         getData();
     }
     public void init(){
-        customProgress = CustomProgress.show(this, "加载中···", true);
+        customProgress = CustomProgress.show(this, "", true);
 
         if (isSuccess){
             orderState="success";

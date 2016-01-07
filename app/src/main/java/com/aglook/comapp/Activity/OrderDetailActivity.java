@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -158,7 +157,7 @@ public class OrderDetailActivity extends BaseActivity {
             tv_name_order_detail.setText(login.getPshUser().getUserTName());
             tv_address_order_detail.setText(login.getPshUser().getUserAddress());
         }
-        Log.d("status", allOrder.getOrderStatus() + "____" + isSuccess);
+//        Log.d("status", allOrder.getOrderStatus() + "____" + isSuccess);
         adapter.notifyDataSetChanged();
     }
 
@@ -183,7 +182,7 @@ public class OrderDetailActivity extends BaseActivity {
                     intent.setClass(OrderDetailActivity.this, PayActivity.class);
                     intent.putExtra("orderId", orderId);
                     intent.putExtra("money", money);
-                    Log.d("result_OrderId", orderId);
+//                    Log.d("result_OrderId", orderId);
                     startActivityForResult(intent, DETAIL_PAY);
                 } else {
                     AppUtils.toastText(OrderDetailActivity.this, "尚未绑定银行卡");
@@ -246,7 +245,7 @@ public class OrderDetailActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_detail", orderId + "_____" + arg0.result);
+//                Log.d("result_detail", orderId + "_____" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -317,7 +316,7 @@ public class OrderDetailActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_cancel", arg0.result);
+//                Log.d("result_cancel", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {

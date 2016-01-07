@@ -1,8 +1,5 @@
 package com.aglook.comapp.url;
 
-import android.util.Log;
-
-import com.google.gson.Gson;
 import com.lidroid.xutils.http.RequestParams;
 
 /**
@@ -22,7 +19,7 @@ public class MainUrl {
         params.addBodyParameter("appType","android");
         params.addBodyParameter("appName",appName);
         params.addBodyParameter("marketType",marketType);
-        Log.d("result",new Gson().toJson(params));
+//        Log.d("result",new Gson().toJson(params));
         return params;
     }
 }

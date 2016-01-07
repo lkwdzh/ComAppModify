@@ -39,6 +39,7 @@
                 android:id="@+id/et_phone_add_address"
                 style="@style/foot_edittext_weight"
                 android:inputType="phone"
+                android:maxLength="11"
                 android:hint="请输入收货人手机号码" />
         </LinearLayout>
 

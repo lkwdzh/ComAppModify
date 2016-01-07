@@ -60,7 +60,8 @@
         <EditText
             android:id="@+id/et_phone_bang_card"
             style="@style/basic_infor_edittext_weight"
-            android:inputType="number"
+            android:inputType="phone"
+            android:maxLength="11"
             android:hint="请输入预留手机号" />
     </LinearLayout>
 

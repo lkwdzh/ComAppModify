@@ -133,7 +133,7 @@
                         android:layout_marginTop="@dimen/px_10"
                         android:background="@drawable/red_back"
                         android:gravity="center"
-                        android:text="去支付"
+                        android:text="支付"
                         android:textColor="@color/white"
                         android:layout_marginBottom="@dimen/px_3"
                         android:layout_marginLeft="@dimen/px_20"

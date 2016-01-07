@@ -2,7 +2,6 @@ package com.aglook.comapp.Activity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,6 +30,7 @@ import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.CustomProgress;
+import com.aglook.comapp.view.PatternNum;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
@@ -187,7 +187,11 @@ public class AddAddressActivity extends BaseActivity {
             return;
         }
         if (phone.length()!=11){
-            AppUtils.toastText(AddAddressActivity.this,"请输入正确的手机号");
+            AppUtils.toastText(AddAddressActivity.this,"请输入正确手机号");
+            return;
+        }
+        if (!PatternNum.isMobileNO(phone)){
+            AppUtils.toastText(this,"请输入正确手机号");
             return;
         }
         if (diqu==null||"".equals(diqu)){
@@ -215,7 +219,7 @@ public class AddAddressActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_addressAdd", arg0.result);
+//                Log.d("result_addressAdd", arg0.result);
                 String status= JsonUtils.getJsonParam(arg0.result,"status");
                 String message= JsonUtils.getJsonParam(arg0.result,"message");
                 String obj=JsonUtils.getJsonParam(arg0.result,"obj");
@@ -242,7 +246,7 @@ public class AddAddressActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_addressAdd", arg0.result);
+//                Log.d("result_addressAdd", arg0.result);
                 String status= JsonUtils.getJsonParam(arg0.result,"status");
                 String message= JsonUtils.getJsonParam(arg0.result,"message");
                 String obj=JsonUtils.getJsonParam(arg0.result,"obj");
@@ -269,7 +273,7 @@ public class AddAddressActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_addressdelete", arg0.result);
+//                Log.d("result_addressdelete", arg0.result);
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");

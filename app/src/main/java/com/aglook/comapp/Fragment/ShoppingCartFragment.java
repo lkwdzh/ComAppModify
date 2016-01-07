@@ -12,7 +12,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -159,7 +158,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
         if (comAppApplication.getLogin() == null || "".equals(comAppApplication.getLogin())) {
             unLogin();
         } else {
-            customProgress = CustomProgress.show(getActivity(), "加载中···", true);
+            customProgress = CustomProgress.show(getActivity(), "", true);
             isLogined();
         }
 //        去结算
@@ -339,7 +338,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
             isLogined();
         } else if (requestCode == 2 && resultCode == 1) {
             isDelete = false;
-            customProgress = CustomProgress.show(getActivity(), "加载中···", true);
+            customProgress = CustomProgress.show(getActivity(), "", true);
             getCartListData();
         }
 //        else if (requestCode == 3 && resultCode == 1) {
@@ -440,7 +439,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_getCartList", arg0.result);
+//                Log.d("result_getCartList", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");

@@ -77,8 +77,8 @@
                     android:id="@+id/iv_nation_flag"
                     android:layout_marginLeft="@dimen/px_20"
                     android:scaleType="centerInside"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="@dimen/px_120"
+                    android:layout_height="@dimen/px_120" />
 
                 <TextView
                     android:id="@+id/tv_nation_flag"

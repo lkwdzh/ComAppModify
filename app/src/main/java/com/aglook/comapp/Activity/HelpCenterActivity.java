@@ -1,7 +1,6 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -101,7 +100,7 @@ public class HelpCenterActivity extends BaseActivity {
             information = mList.get(i);
             if (information.getClassName().equals(name)) {
                 classId = information.getClassId();
-                Log.d("result_classId", classId);
+//                Log.d("result_classId", classId);
                 return;
             } else {
                 classId=null;
@@ -123,7 +122,7 @@ public class HelpCenterActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_help", arg0.result);
+//                Log.d("result_help", arg0.result);
 
                 if (customProgress!=null&&customProgress.isShowing()){
                     customProgress.dismiss();

@@ -1,7 +1,6 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -208,7 +207,7 @@ public class BasicInformationActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_basinfo", arg0.result);
+//                Log.d("result_basinfo", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
                 if (status.equals("1")){

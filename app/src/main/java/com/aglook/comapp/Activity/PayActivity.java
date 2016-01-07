@@ -53,13 +53,13 @@ public class PayActivity extends BaseActivity {
                 handler.proceed();
             }
         });
-//        if (comAppApplication.getLogin().getPshUser().getUserType() == 2) {
-//            //个人
-//            uri = Uri.parse(PayUrl.postPayPer(orderId, DefineUtil.USERID, money, money));
-//        } else if (comAppApplication.getLogin().getPshUser().getUserType() == 2){
+        if (comAppApplication.getLogin().getPshUser().getUserType() == 2) {
+            //个人
+            uri = Uri.parse(PayUrl.postPayPer(orderId, DefineUtil.USERID, money, money));
+        } else if (comAppApplication.getLogin().getPshUser().getUserType() == 1){
             //企业
             uri = Uri.parse(PayUrl.postPay(orderId, DefineUtil.USERID, money, money));
-//        }
+        }
         // 设置可以支持缩放
         webView.getSettings().setSupportZoom(true);
 // 设置出现缩放工具

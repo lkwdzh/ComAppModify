@@ -3,7 +3,6 @@ package com.aglook.comapp.Activity;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -134,7 +133,7 @@ public class SettingActivity extends BaseActivity {
                 if (customProgress!=null&&customProgress.isShowing()){
                     customProgress.dismiss();
                 }
-                Log.d("result_login_out",arg0.result);
+//                Log.d("result_login_out",arg0.result);
                 String message= JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
                 if (status.equals("1")){
