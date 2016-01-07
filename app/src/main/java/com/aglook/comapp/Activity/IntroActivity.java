@@ -2,6 +2,7 @@ package com.aglook.comapp.Activity;
 
 import android.view.View;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 
 public class IntroActivity extends BaseActivity {
@@ -10,6 +11,7 @@ public class IntroActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_intro);
+        ExitApplication.getInstance().addActivity(this);
         setTitleBar("功能介绍");
     }
 

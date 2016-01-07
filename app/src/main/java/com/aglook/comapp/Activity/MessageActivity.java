@@ -5,6 +5,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.aglook.comapp.Application.ComAppApplication;
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.Message;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -27,6 +28,7 @@ public class MessageActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_message);
+        ExitApplication.getInstance().addActivity(this);
         setTitleBar("消息");
         init();
         click();

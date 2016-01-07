@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.GuaDanStataLiL;
 import com.aglook.comapp.url.GuaDanUrl;
@@ -55,6 +56,7 @@ public class TransDetailActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_trans_detail);
+        ExitApplication.getInstance().addActivity(this);
         setTitleBar("交易详情");
         init();
         click();

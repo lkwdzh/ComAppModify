@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.Information;
 import com.aglook.comapp.url.SettingUrl;
@@ -38,6 +39,7 @@ public class HelpCenterActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_help_center);
+        ExitApplication.getInstance().addActivity(this);
         setTitleBar("帮助中心");
         init();
         click();

@@ -10,6 +10,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.url.RegisterUrl;
 import com.aglook.comapp.util.AppUtils;
@@ -72,6 +73,7 @@ public class RegisterActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_register);
+        ExitApplication.getInstance().addActivity(this);
         setTitleBar("注册");
         init();
         click();

@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ShoppingCartAdapter;
 import com.aglook.comapp.bean.ShoppingCart;
@@ -72,6 +73,7 @@ public class ShoppingCartActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_shopping_cart);
+        ExitApplication.getInstance().addActivity(this);
         setTitleBar("购物车");
         init();
         click();

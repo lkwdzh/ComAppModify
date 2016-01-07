@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ModifyPickUpAdapter;
 import com.aglook.comapp.bean.ModfyDriverList;
@@ -48,6 +49,7 @@ private CustomProgress customProgress;
     @Override
     public void initView() {
         setContentView(R.layout.activity_modify_pick_up_activity2);
+        ExitApplication.getInstance().addActivity(this);
         setTitleBar("修改");
         init();
         click();

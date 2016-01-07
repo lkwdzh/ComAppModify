@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.GuaDanStataAdapter;
 import com.aglook.comapp.bean.GuaDanStata;
@@ -39,6 +40,7 @@ public class GuaDanStateActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_order_state);
+        ExitApplication.getInstance().addActivity(this);
         setTitleBar("交易记录");
         init();
         click();

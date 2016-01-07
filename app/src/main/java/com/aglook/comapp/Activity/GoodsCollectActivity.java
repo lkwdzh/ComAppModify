@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ScreenAdapter;
 import com.aglook.comapp.bean.Screen;
@@ -33,6 +34,7 @@ public class GoodsCollectActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_friends);
+        ExitApplication.getInstance().addActivity(this);
         setTitleBar("收藏商品");
         init();
         click();

@@ -13,6 +13,7 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
 import com.aglook.comapp.Application.ComAppApplication;
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.url.PayUrl;
 import com.aglook.comapp.util.DefineUtil;
@@ -33,6 +34,7 @@ public class PayActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_pay);
         setTitleBar("支付");
+        ExitApplication.getInstance().addActivity(this);
         comAppApplication = (ComAppApplication) getApplication();
         init();
         click();

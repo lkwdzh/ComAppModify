@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.TradeingAdapter;
 import com.aglook.comapp.bean.GuaDanStataLi;
@@ -41,6 +42,7 @@ public class TradeingActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_tradeing);
+        ExitApplication.getInstance().addActivity(this);
         setTitleBar("交易中");
         init();
         click();
