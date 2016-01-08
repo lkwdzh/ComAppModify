@@ -33,6 +33,7 @@ public class AddressListActivity extends BaseActivity {
     private final int MODIFY_ADDRESS=2;//修改地址
 
     private ListView lv_add_list;
+
     private TextView right_text;
     private AddressListAdapter adapter;
     private String defaultFlag;//1默认 0 非默认（非必须）
