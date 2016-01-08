@@ -80,7 +80,7 @@
             android:layout_marginTop="@dimen/px_24"
             android:background="@drawable/btn_orange_corner"
             android:gravity="center"
-            android:text="快来填满吧"
+            android:text="添加购物车"
             android:textColor="@color/white"
             android:textSize="13sp" />
     </LinearLayout>

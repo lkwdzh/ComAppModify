@@ -836,11 +836,21 @@ ADDED from AndroidManifest.xml:510:9
 activity#com.aglook.comapp.Activity.IndexActivity
 ADDED from AndroidManifest.xml:514:9
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:516:13
-	android:label
 		ADDED from AndroidManifest.xml:517:13
+	android:label
+		ADDED from AndroidManifest.xml:516:13
 	android:name
 		ADDED from AndroidManifest.xml:515:13
+activity#com.aglook.comapp.Activity.ImageActivity
+ADDED from AndroidManifest.xml:519:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:521:13
+	android:label
+		ADDED from AndroidManifest.xml:523:13
+	android:hardwareAccelerated
+		ADDED from AndroidManifest.xml:522:13
+	android:name
+		ADDED from AndroidManifest.xml:520:13
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 MERGED from com.android.support:appcompat-v7:22.0.0:20:5

@@ -69,20 +69,18 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:layout_width="match_parent"
-                android:paddingTop="@dimen/px_30"
-                android:paddingBottom="@dimen/px_30"
                 android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/iv_nation_flag"
                     android:layout_marginLeft="@dimen/px_20"
-                    android:scaleType="centerInside"
-                    android:layout_width="@dimen/px_101"
+                    android:scaleType="centerCrop"
+                    android:layout_width="@dimen/px_100"
                     android:layout_height="@dimen/px_100" />
 
                 <TextView
                     android:id="@+id/tv_nation_flag"
-                    style="@style/grayTextView_999999_13"
+                    style="@style/grayTextView_666666_15"
                     android:layout_marginLeft="@dimen/px_15" />
             </LinearLayout>
 

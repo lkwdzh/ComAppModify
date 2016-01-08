@@ -19,7 +19,7 @@
             <TextView
                 style="@style/grayTextView_333333_13"
                 android:padding="@dimen/px_20"
-                android:text="V1.0.2:" />
+                android:text="V1.1:" />
 
             <View style="@style/line_1" />
 

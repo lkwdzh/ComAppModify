@@ -211,7 +211,7 @@
                         <TextView
                             android:id="@+id/tv_daishouhuo_mine_fragment"
                             style="@style/orderDetail_TextView_666666_12"
-                            android:text="成功订单" />
+                            android:text="交易成功" />
 
 
                     </LinearLayout>
@@ -295,7 +295,7 @@
                         <TextView
                             android:id="@+id/tv_jiaoyizhong_mine_fragment"
                             style="@style/orderDetail_TextView_666666_12"
-                            android:text="交易中" />
+                            android:text="等待交易" />
 
 
                     </LinearLayout>

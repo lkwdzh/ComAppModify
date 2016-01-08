@@ -215,7 +215,7 @@
                     style="@style/orderDetail_ll_weight">
                     <TextView
                         style="@style/orderDetail_TextView_666666_13"
-                        android:text="收货姓名"/>
+                        android:text="买家姓名"/>
                     <TextView
                         android:id="@+id/tv_name_order_detail"
                         style="@style/orderDetail_TextView_333333_13"
@@ -227,7 +227,7 @@
                     style="@style/orderDetail_ll_weight">
                     <TextView
                         style="@style/orderDetail_TextView_666666_13"
-                        android:text="收货地址"/>
+                        android:text="发票地址"/>
                     <TextView
                         android:id="@+id/tv_address_order_detail"
                         style="@style/orderDetail_TextView_333333_13"

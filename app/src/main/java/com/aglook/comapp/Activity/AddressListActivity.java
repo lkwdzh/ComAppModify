@@ -55,7 +55,7 @@ public class AddressListActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_address_list);
-        setTitleBar("地址管理");
+        setTitleBar("我的发票地址");
         ExitApplication.getInstance().addActivity(this);
         init();
         click();

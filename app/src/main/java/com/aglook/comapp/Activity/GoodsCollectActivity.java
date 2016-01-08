@@ -35,7 +35,7 @@ public class GoodsCollectActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_friends);
         ExitApplication.getInstance().addActivity(this);
-        setTitleBar("收藏商品");
+        setTitleBar("我的收藏");
         init();
         click();
         getData();

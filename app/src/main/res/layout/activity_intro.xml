@@ -6,4 +6,79 @@
     android:background="@color/gray_eeeeee">
 
     <include layout="@layout/activity_base_title_bar" />
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_65"
+        android:textColor="@color/textcolor_333333"
+        android:textSize="15sp"
+        android:text="登录-注册"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/px_14"
+        android:paddingRight="@dimen/px_14"
+        android:drawableRight="@drawable/next"
+        android:paddingTop="@dimen/px_20"
+        android:paddingBottom="@dimen/px_20" />
+
+    <View style="@style/line_1" />
+    <TextView
+        android:id="@+id/tv_buy"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_65"
+        android:textColor="@color/textcolor_333333"
+        android:textSize="15sp"
+        android:text="购买"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/px_14"
+        android:paddingRight="@dimen/px_14"
+        android:drawableRight="@drawable/next"
+        android:paddingTop="@dimen/px_20"
+        android:paddingBottom="@dimen/px_20" />
+
+    <View style="@style/line_1" />
+    <TextView
+        android:id="@+id/tv_guadan"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_65"
+        android:textColor="@color/textcolor_333333"
+        android:textSize="15sp"
+        android:text="挂单"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/px_14"
+        android:paddingRight="@dimen/px_14"
+        android:drawableRight="@drawable/next"
+        android:paddingTop="@dimen/px_20"
+        android:paddingBottom="@dimen/px_20" />
+
+    <View style="@style/line_1" />
+    <TextView
+        android:id="@+id/tv_rongzi"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_65"
+        android:textColor="@color/textcolor_333333"
+        android:textSize="15sp"
+        android:text="融资买货"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/px_14"
+        android:paddingRight="@dimen/px_14"
+        android:drawableRight="@drawable/next"
+        android:paddingTop="@dimen/px_20"
+        android:paddingBottom="@dimen/px_20" />
+
+    <View style="@style/line_1" />
+    <TextView
+        android:id="@+id/tv_pickup"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_65"
+        android:textColor="@color/textcolor_333333"
+        android:textSize="15sp"
+        android:text="提货"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/px_14"
+        android:paddingRight="@dimen/px_14"
+        android:drawableRight="@drawable/next"
+        android:paddingTop="@dimen/px_20"
+        android:paddingBottom="@dimen/px_20" />
+
+    <View style="@style/line_1" />
 </LinearLayout>

@@ -220,6 +220,8 @@
                 android:layout_marginTop="@dimen/px_10"
                 android:background="@drawable/shanchu"
                 android:gravity="center"
+                android:paddingRight="@dimen/px_5"
+                android:paddingLeft="@dimen/px_5"
                 android:text="@string/trans_all_order_lv"
                 android:textSize="13sp" />
 

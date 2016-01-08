@@ -101,7 +101,7 @@
                 <EditText
                     android:id="@+id/et_num_basic_info"
                     style="@style/basic_infor_edittext_weight"
-                    android:digits="1234567890x"
+                    android:digits="1234567890xX"
                     android:maxLength="18"
                     android:hint="请输入身份证号" />
             </LinearLayout>
@@ -215,7 +215,8 @@
                 style="@style/line_1"
                 android:id="@+id/view_company_address" />
 
-            <LinearLayout style="@style/basic_infor_ll_weight">
+            <LinearLayout style="@style/basic_infor_ll_weight"
+                android:visibility="gone">
 
                 <TextView
                     style="@style/basic_infor_TextView_333333"
@@ -228,7 +229,8 @@
                     android:text="可修改密码" />
             </LinearLayout>
 
-            <View style="@style/line_1" />
+            <View style="@style/line_1"
+                android:visibility="gone"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -24,7 +24,7 @@
             <EditText
                 android:id="@+id/et_name_add_address"
                 style="@style/foot_edittext_weight"
-                android:hint="请输入收货人姓名" />
+                android:hint="请输入发票收货人姓名" />
         </LinearLayout>
 
         <View style="@style/line_1" />
@@ -40,7 +40,7 @@
                 style="@style/foot_edittext_weight"
                 android:inputType="phone"
                 android:maxLength="11"
-                android:hint="请输入收货人手机号码" />
+                android:hint="请输入发票收货人手机号码" />
         </LinearLayout>
 
         <View style="@style/line_1" />

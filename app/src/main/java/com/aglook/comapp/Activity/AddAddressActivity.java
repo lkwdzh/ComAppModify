@@ -78,9 +78,9 @@ public class AddAddressActivity extends BaseActivity {
         isModify=getIntent().getBooleanExtra("isModify",false);
         modifyAddress= (Address) getIntent().getSerializableExtra("modifyAddress");
         if (isModify){
-            setTitleBar("修改收货地址");
+            setTitleBar("修改发票地址");
         }else {
-            setTitleBar("新建收货地址");
+            setTitleBar("新增发票地址");
         }
         ExitApplication.getInstance().addActivity(this);
         isOnly=getIntent().getBooleanExtra("isOnly",false);

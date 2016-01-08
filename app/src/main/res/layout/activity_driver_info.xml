@@ -86,7 +86,7 @@
             android:id="@+id/tv_num_driver_info"
             style="@style/guadan_edittext_weight"
             android:maxLength="18"
-            android:digits="0123456789x"
+            android:digits="0123456789xX"
             android:hint="请输入身份证号" />
     </LinearLayout>
     <View style="@style/line_1" />

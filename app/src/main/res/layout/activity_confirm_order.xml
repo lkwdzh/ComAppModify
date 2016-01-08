@@ -21,7 +21,7 @@
             android:id="@+id/tv_isNull"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_70"
-            android:text="请新建收货地址以确保发票准确送达"
+            android:text="请新建发票地址以确保发票准确送达"
             android:textColor="@color/textcolor_333333"
             android:textSize="13sp"
             android:visibility="visible"

@@ -91,7 +91,7 @@ public class ClassificationFragment extends Fragment implements View.OnClickList
 //                填充右边的list，并刷新
                 rightList.clear();
                 rightList.addAll(mList.get(i).getContent());
-//                Log.d("result_right",i+"_______"+mList.get(i).getNationalFlag());
+//                Log.d("result_right", i + "_______" + mList.get(i).getNationalFlag());
                 XBitmap.displayImage(iv_nation_flag, mList.get(i).getNationalFlag(), getActivity());
                 tv_nation_flag.setText(mList.get(i).getName());
                 rightAdapter.notifyDataSetChanged();
