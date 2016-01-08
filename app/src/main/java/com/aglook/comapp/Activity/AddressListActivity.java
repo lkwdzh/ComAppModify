@@ -35,6 +35,7 @@ public class AddressListActivity extends BaseActivity {
     private ListView lv_add_list;
 
     private TextView right_text;
+
     private AddressListAdapter adapter;
     private String defaultFlag;//1默认 0 非默认（非必须）
     private View emptyView;
