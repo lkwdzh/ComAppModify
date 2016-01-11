@@ -11,12 +11,17 @@ public class ZiXunUrl {
 
     /**
      * 资讯列表
-     * @param classId
+     * @param classId id
+     * @param rows 长度
+     * @param page 页数
      * @return
      */
-    public static RequestParams postZiXunListUrl(String classId) {
+    public static RequestParams postZiXunListUrl(String classId,String rows,String page) {
         params = new RequestParams();
         params.addBodyParameter("classId", classId);
+        params.addBodyParameter("rows", rows);
+        params.addBodyParameter("page", page);
+        params.addBodyParameter("sort", "sort");
         return params;
     }
     /**

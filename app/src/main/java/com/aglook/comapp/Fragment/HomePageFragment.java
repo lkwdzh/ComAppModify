@@ -28,6 +28,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.aglook.comapp.Activity.ClassifyActivity;
+import com.aglook.comapp.Activity.HelpCenterActivity;
 import com.aglook.comapp.Activity.LoginActivity;
 import com.aglook.comapp.Activity.MainActivity;
 import com.aglook.comapp.Activity.MyCangDanActivity;
@@ -282,10 +283,13 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                         startActivity(intent);
                         break;
                     case 6:
-                        showDailog();
+//                        showDailog();
+                        intent.setClass(getActivity(),HelpCenterActivity.class);
+                        startActivity(intent);
                         break;
                     case 7:
-                        homePageCallBack.callBack(1);
+//                        homePageCallBack.callBack(1);
+                        showDailog();
                         break;
                 }
 

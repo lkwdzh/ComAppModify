@@ -9,44 +9,77 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/white">
+        <TextView
+            style="@style/grayTextView_333333_13"
+            android:padding="@dimen/px_20"
+            android:text="V1.1.1:" />
 
-            <TextView
-                style="@style/grayTextView_333333_13"
-                android:padding="@dimen/px_20"
-                android:text="V1.1:" />
+        <View style="@style/line_1" />
 
-            <View style="@style/line_1" />
+        <TextView
+            style="@style/grayTextView_666666_13"
+            android:padding="@dimen/px_20"
+            android:layout_marginLeft="@dimen/px_40"
+            android:text="1.修改帮助中心功能" />
 
-            <TextView
-                style="@style/grayTextView_666666_13"
-                android:padding="@dimen/px_20"
-                android:layout_marginLeft="@dimen/px_40"
-                android:text="1.新加版本信息，分享功能，功能介绍" />
+        <View style="@style/line_1" />
+        <TextView
+            style="@style/grayTextView_666666_13"
+            android:padding="@dimen/px_20"
+            android:layout_marginLeft="@dimen/px_40"
+            android:text="2.新增流程示意图排序" />
 
-            <View style="@style/line_1" />
+        <View style="@style/line_1" />
 
-            <TextView
-                style="@style/grayTextView_666666_13"
-                android:padding="@dimen/px_20"
-                android:layout_marginLeft="@dimen/px_40"
-                android:text="2.货物数量改为小数" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white">
 
-            <View style="@style/line_1" />
+        <TextView
+            style="@style/grayTextView_333333_13"
+            android:padding="@dimen/px_20"
+            android:text="V1.1:" />
 
-            <TextView
-                style="@style/grayTextView_666666_13"
-                android:padding="@dimen/px_20"
-                android:layout_marginLeft="@dimen/px_40"
-                android:text="3.新增发票信息，收货地址" />
+        <View style="@style/line_1" />
 
-            <View style="@style/line_1" />
-        </LinearLayout>
+        <TextView
+            style="@style/grayTextView_666666_13"
+            android:padding="@dimen/px_20"
+            android:layout_marginLeft="@dimen/px_40"
+            android:text="1.新加版本信息，分享功能，功能介绍" />
+
+        <View style="@style/line_1" />
+
+        <TextView
+            style="@style/grayTextView_666666_13"
+            android:padding="@dimen/px_20"
+            android:layout_marginLeft="@dimen/px_40"
+            android:text="2.货物数量改为小数" />
+
+        <View style="@style/line_1" />
+
+        <TextView
+            style="@style/grayTextView_666666_13"
+            android:padding="@dimen/px_20"
+            android:layout_marginLeft="@dimen/px_40"
+            android:text="3.新增发票信息，收货地址" />
+
+        <View style="@style/line_1" />
+    </LinearLayout>
+</LinearLayout>
     </ScrollView>
 
 </LinearLayout>

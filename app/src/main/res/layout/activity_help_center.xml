@@ -5,57 +5,61 @@
 
     <include layout="@layout/activity_base_title_bar" />
 
-    <View style="@style/line_1" />
+    <!--<View style="@style/line_1" />-->
 
-    <TextView
-        android:id="@+id/tv_xh_help"
-        style="@style/basic_infor_TextView_333333_set"
-        android:drawableRight="@drawable/next"
-        android:text="仓库现货" />
-
-    <View style="@style/line_1" />
-
-    <TextView
-        android:id="@+id/tv_ht_help"
-        style="@style/basic_infor_TextView_333333_set"
-        android:layout_centerVertical="true"
-        android:drawableRight="@drawable/next"
-        android:text="远期合同" />
-
-    <View style="@style/line_1" />
-
-    <TextView
-        android:id="@+id/tv_mm_help"
-        style="@style/basic_infor_TextView_333333_set"
-        android:drawableRight="@drawable/next"
-        android:text="买卖规则" />
+    <!--<TextView-->
+    <!--android:id="@+id/tv_xh_help"-->
+    <!--style="@style/basic_infor_TextView_333333_set"-->
+    <!--android:drawableRight="@drawable/next"-->
+    <!--android:text="仓库现货" />-->
 
     <!--<View style="@style/line_1" />-->
 
     <!--<TextView-->
-        <!--android:id="@+id/tv_lc_help"-->
-        <!--style="@style/basic_infor_TextView_333333_set"-->
-        <!--android:drawableRight="@drawable/next"-->
-        <!--android:text="买卖流程" />-->
+    <!--android:id="@+id/tv_ht_help"-->
+    <!--style="@style/basic_infor_TextView_333333_set"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:drawableRight="@drawable/next"-->
+    <!--android:text="远期合同" />-->
 
-    <View style="@style/line_1" />
-    <TextView
-        android:id="@+id/tv_gy_help"
-        style="@style/basic_infor_TextView_333333_set"
-        android:drawableRight="@drawable/next"
-        android:text="网站说明" />
+    <!--<View style="@style/line_1" />-->
 
-    <View style="@style/line_1" />
+    <!--<TextView-->
+    <!--android:id="@+id/tv_mm_help"-->
+    <!--style="@style/basic_infor_TextView_333333_set"-->
+    <!--android:drawableRight="@drawable/next"-->
+    <!--android:text="买卖规则" />-->
 
-    <TextView
-        android:id="@+id/tv_sell_setting"
-        style="@style/basic_infor_TextView_333333_set"
-        android:drawableRight="@drawable/next"
-        android:text="售后服务" />
+    <!--&lt;!&ndash;<View style="@style/line_1" />&ndash;&gt;-->
 
-    <View style="@style/line_1" />
+    <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+    <!--&lt;!&ndash;android:id="@+id/tv_lc_help"&ndash;&gt;-->
+    <!--&lt;!&ndash;style="@style/basic_infor_TextView_333333_set"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:drawableRight="@drawable/next"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:text="买卖流程" />&ndash;&gt;-->
+
+    <!--<View style="@style/line_1" />-->
+    <!--<TextView-->
+    <!--android:id="@+id/tv_gy_help"-->
+    <!--style="@style/basic_infor_TextView_333333_set"-->
+    <!--android:drawableRight="@drawable/next"-->
+    <!--android:text="网站说明" />-->
+
+    <!--<View style="@style/line_1" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_sell_setting"-->
+    <!--style="@style/basic_infor_TextView_333333_set"-->
+    <!--android:drawableRight="@drawable/next"-->
+    <!--android:text="售后服务" />-->
+
+    <!--<View style="@style/line_1" />-->
 
 
-
+    <ListView
+        android:id="@+id/lv_help_center"
+        android:divider="@null"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
 
 </LinearLayout>

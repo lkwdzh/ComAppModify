@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/px_55"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="@dimen/px_200"
-        android:layout_height="@dimen/px_50" />
+        android:layout_height="@dimen/px_70" />
 </RelativeLayout>

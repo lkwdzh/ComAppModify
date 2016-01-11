@@ -55,7 +55,7 @@ public class ScreenAdapter extends BaseAdapter {
         XBitmap.displayImage(holder.iv_screen_gridview, screen.getProductLogo(), context);
 //        holder.tv_address_screen_gridview.setText(screen.getGoodPlace());
 //        holder.tv_grade_screen_gridview.setText(screen.getGoodType());
-        holder.tv_weight_screen_gridview.setText(screen.getProductSellNum());
+        holder.tv_weight_screen_gridview.setText(screen.getProductSellNum()+"吨");
         holder.tv_price_screen_gridview.setText(screen.getProductMoney());
         holder.tv_name_screen_gridview.setText(screen.getProductName());
         if (screen.getIsAppoint()!=null&&!"".equals(screen.getIsAppoint())){

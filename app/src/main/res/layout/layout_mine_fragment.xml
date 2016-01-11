@@ -11,12 +11,12 @@
 
         <TextView
             android:id="@+id/tv_setting_mine_fragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/px_90"
+            android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/px_10"
-            android:gravity="center"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/px_15"
             android:text="设置"
             android:textColor="@color/white"
             android:textSize="15sp" />
@@ -32,12 +32,12 @@
 
         <TextView
             android:id="@+id/tv_message_mine_fragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/px_90"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/px_10"
-            android:gravity="center"
+            android:paddingRight="@dimen/px_15"
+            android:gravity="center_vertical|right"
             android:text="消息"
             android:textColor="@color/white"
             android:textSize="15sp" />
@@ -441,17 +441,19 @@
                 style="@style/line_1"
                 android:layout_marginBottom="@dimen/px_15" />
 
-            <View style="@style/line_1" />
+            <View style="@style/line_1" android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/tv_help_setting"
                 style="@style/basic_infor_TextView_333333_set"
                 android:drawableRight="@drawable/next"
+                android:visibility="gone"
                 android:text="帮助中心" />
 
 
             <View
                 style="@style/line_1"
+                android:visibility="gone"
                 android:layout_marginBottom="@dimen/px_15" />
 
         </LinearLayout>

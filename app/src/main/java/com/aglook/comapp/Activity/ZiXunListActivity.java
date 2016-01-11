@@ -67,11 +67,11 @@ public class ZiXunListActivity extends BaseActivity {
         lv_hang_qing_list = (PullToRefreshListView) findViewById(R.id.lv_hang_qing_list);
         adapter = new ZiXunListAdapter(ZiXunListActivity.this, mList);
         lv_hang_qing_list.setAdapter(adapter);
-        if (isMessage) {
+//        if (isMessage) {
             lv_hang_qing_list.setMode(PullToRefreshBase.Mode.BOTH);
-        } else {
-            lv_hang_qing_list.setMode(PullToRefreshBase.Mode.DISABLED);
-        }
+//        } else {
+//            lv_hang_qing_list.setMode(PullToRefreshBase.Mode.DISABLED);
+//        }
     }
 
     public void click() {
@@ -95,13 +95,21 @@ public class ZiXunListActivity extends BaseActivity {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 pageNum = 1;
-                getMessage();
+                if (isMessage) {
+                    getMessage();
+                }else {
+                    getData();
+                }
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 pageNum++;
-                getMessage();
+                if (isMessage) {
+                    getMessage();
+                }else {
+                    getData();
+                }
             }
         });
     }
@@ -153,6 +161,9 @@ public class ZiXunListActivity extends BaseActivity {
                 List<ZiXunList> sonList = new ArrayList<ZiXunList>();
                 if (status.equals("1")) {
                     sonList = JsonUtils.parseList(obj, ZiXunList.class);
+                    if (pageNum==1){
+                        mList.clear();
+                    }
                     if (sonList != null && sonList.size() != 0) {
                         mList.addAll(sonList);
                     }
@@ -160,6 +171,7 @@ public class ZiXunListActivity extends BaseActivity {
 
                 adapter.notifyDataSetChanged();
                 lv_hang_qing_list.setEmptyView(emptyView);
+                lv_hang_qing_list.onRefreshComplete();
             }
 
             @Override
@@ -168,7 +180,7 @@ public class ZiXunListActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.INFOR_LIST, ZiXunUrl.postZiXunListUrl(classId), ZiXunListActivity.this);
+        }.datePost(DefineUtil.INFOR_LIST, ZiXunUrl.postZiXunListUrl(classId,String.valueOf(pageSize),String.valueOf(pageNum)), ZiXunListActivity.this);
     }
 
     //获取消息

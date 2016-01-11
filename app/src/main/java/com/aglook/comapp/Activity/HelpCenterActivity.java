@@ -1,11 +1,14 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
+import com.aglook.comapp.adapter.HelpCenterAdapter;
 import com.aglook.comapp.bean.Information;
 import com.aglook.comapp.url.SettingUrl;
 import com.aglook.comapp.util.DefineUtil;
@@ -21,10 +24,6 @@ import java.util.List;
 public class HelpCenterActivity extends BaseActivity {
 
 
-    private TextView tv_xh_help;
-    private TextView tv_ht_help;
-    private TextView tv_mm_help;
-    private TextView tv_gy_help;
 
     private String className;
     private String classId;
@@ -32,9 +31,10 @@ public class HelpCenterActivity extends BaseActivity {
     private int pageSize = 10;
     private int pageNumber = 1;
     private List<Information> mList = new ArrayList<>();
-    private TextView tv_sell_setting;
-//    private TextView tv_lc_help;
-
+    private ListView lv_help_center;
+    private HelpCenterAdapter adapter;
+    //    private TextView tv_lc_help;
+    private View emptyView;
 
     @Override
     public void initView() {
@@ -47,52 +47,29 @@ public class HelpCenterActivity extends BaseActivity {
     }
 
     public void init() {
-        tv_xh_help = (TextView) findViewById(R.id.tv_xh_help);
-        tv_ht_help = (TextView) findViewById(R.id.tv_ht_help);
-        tv_mm_help = (TextView) findViewById(R.id.tv_mm_help);
-        tv_gy_help = (TextView) findViewById(R.id.tv_gy_help);
-        tv_sell_setting = (TextView) findViewById(R.id.tv_sell_setting);
 //        tv_lc_help = (TextView) findViewById(R.id.tv_lc_help);
+        lv_help_center = (ListView) findViewById(R.id.lv_help_center);
+        adapter = new HelpCenterAdapter(mList, this);
+        lv_help_center.setAdapter(adapter);
+        emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
     }
 
     public void click() {
-        tv_xh_help.setOnClickListener(this);
-        tv_ht_help.setOnClickListener(this);
-        tv_mm_help.setOnClickListener(this);
-        tv_gy_help.setOnClickListener(this);
-        tv_sell_setting.setOnClickListener(this);
-//        tv_lc_help.setOnClickListener(this);
+        lv_help_center.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
+                intent.setClass(HelpCenterActivity.this, ZiXunListActivity.class);
+                intent.putExtra("className", mList.get(position).getClassName());
+
+                intent.putExtra("classId", mList.get(position).getClassId());
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     public void widgetClick(View view) {
-        Intent intent = new Intent();
-        switch (view.getId()) {
-            case R.id.tv_xh_help:
-                className = "仓库现货";
-                break;
-            case R.id.tv_ht_help:
-                className = "远期合同";
-                break;
-            case R.id.tv_mm_help:
-                className = "买卖规则";
-                break;
-            case R.id.tv_gy_help:
-                className = "网站说明";
-                break;
-            case R.id.tv_sell_setting:
-                className="售后服务";
-                break;
-//            case R.id.tv_lc_help:
-//                className="买卖流程";
-//                break;
-        }
-        getId(className);
-        intent.setClass(HelpCenterActivity.this, ZiXunListActivity.class);
-        intent.putExtra("className", className);
-
-        intent.putExtra("classId", classId);
-        startActivity(intent);
     }
 
     //根据className获取classId;
@@ -138,8 +115,16 @@ public class HelpCenterActivity extends BaseActivity {
                     if (sonList != null && sonList.size() != 0) {
                         mList.addAll(sonList);
                     }
+//                    if (mList!=null&&mList.size()!=0){
+//                        for (int i = 0; i < mList.size(); i++) {
+//                            if (mList.get(i).getClassName().equals("软件下载")){
+//                                mList.remove(i);
+//                            }
+//                        }
+//                    }
                 }
-
+                lv_help_center.setEmptyView(emptyView);
+                adapter.notifyDataSetChanged();
             }
 
             @Override

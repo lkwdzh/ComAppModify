@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,14 +78,14 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
 
     private boolean isGoods = false;
     private TextView tv_shopping_point;
-    public static MainActivity instance=null;
+    public static MainActivity instance = null;
 
     //private DbUtils db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        instance=this;
+        instance = this;
         ExitApplication.getInstance().addActivity(this);
         comAppApplication = (ComAppApplication) getApplication();
         isJpush = getIntent().getBooleanExtra("isJpush", false);
@@ -183,37 +184,42 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-//                Log.d("result_check", arg0.result);
-                if (arg0.result != null && !"".equals(arg0.result)) {
+                Log.d("result_check", arg0.result);
+                if (arg0.result != null && !"".equals(arg0.result)&&!"null".equals(arg0.result)) {
                     String status = JsonUtils.getJsonParam(arg0.result, "status");
-                    if (status.equals("wait")) {
-                        //审核中
-                    } else if (status.equals("success")) {
-                        //再判断versionCode
-                        //获取versionName
-                        String packageName = MainActivity.this.getPackageName();
-                        int myCode = 0;
-                        try {
-                            PackageInfo packageInfo = MainActivity.this.getPackageManager().getPackageInfo(packageName, 0);
-                            myCode = packageInfo.versionCode;
-                        } catch (PackageManager.NameNotFoundException e) {
-                            e.printStackTrace();
-                        }
-                        //如果本地code小于获取到的，则更新
-                        int versionCode = Integer.parseInt(JsonUtils.getJsonParam(arg0.result, "versionCode"));
-                        if (myCode < versionCode) {
-                            //更新
-                            url = JsonUtils.getJsonParam(arg0.result, "downloadUrl");
-                            //判断是否强制
-                            int forcedUpdate = Integer.parseInt(JsonUtils.getJsonParam(arg0.result, "forcedUpdate"));
-                            if (forcedUpdate == 0) {
-                                //非强制
-                                isForce = false;
-                            } else if (forcedUpdate == 1) {
-                                //强制
-                                isForce = true;
+                    if (status != null && !"".equals(status)) {
+
+                        if (status.equals("wait")) {
+                            //审核中
+                        } else if (status.equals("success")) {
+                            //再判断versionCode
+                            //获取versionName
+                            String packageName = MainActivity.this.getPackageName();
+                            int myCode = 0;
+                            try {
+                                PackageInfo packageInfo = MainActivity.this.getPackageManager().getPackageInfo(packageName, 0);
+                                myCode = packageInfo.versionCode;
+                            } catch (PackageManager.NameNotFoundException e) {
+                                e.printStackTrace();
                             }
-                            showDailog(isForce);
+                            //如果本地code小于获取到的，则更新
+                            int versionCode = Integer.parseInt(JsonUtils.getJsonParam(arg0.result, "versionCode"));
+                            if (myCode < versionCode) {
+                                //更新
+                                url = JsonUtils.getJsonParam(arg0.result, "downloadUrl");
+                                //判断是否强制
+                                int forcedUpdate = Integer.parseInt(JsonUtils.getJsonParam(arg0.result, "forcedUpdate"));
+                                if (forcedUpdate == 0) {
+                                    //非强制
+                                    isForce = false;
+                                    tv_delete_order.setText("检测到有新版本，确认更新?");
+                                } else if (forcedUpdate == 1) {
+                                    //强制
+                                    isForce = true;
+                                    tv_delete_order.setText("检测到有重要版本，确认更新?");
+                                }
+                                showDailog(isForce);
+                            }
                         }
                     }
                 }
@@ -252,7 +258,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (myReceiver!=null) {
+        if (myReceiver != null) {
             unregisterReceiver(myReceiver);
         }
         DefineUtil.IS_LAUNCH = false;
@@ -267,7 +273,6 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
             } else {
                 tv_shopping_point.setVisibility(View.INVISIBLE);
             }
-
 
 
         }
@@ -295,7 +300,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         imageView.setImageResource(iconArray[index]);
         textView = (TextView) view.findViewById(R.id.tv_bottom);
         textView.setText(titleArray[index]);
-        if (index==0){
+        if (index == 0) {
             textView.setTextColor(getResources().getColor(R.color.red_c91014));
         }
         return view;
@@ -365,7 +370,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         if (comAppApplication.getLogin() != null) {
             getNotPayData();
         }
-        if (comAppApplication.getLogin()==null){
+        if (comAppApplication.getLogin() == null) {
             tv_shopping_point.setVisibility(View.INVISIBLE);
         }
         if (DefineUtil.FLAG == 2) {
@@ -446,10 +451,10 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
                 List<ShoppingCart> list = new ArrayList<ShoppingCart>();
                 list = JsonUtils.parseList(obj, ShoppingCart.class);
                 if (status.equals("1")) {
-                    DefineUtil.NUM=0;
+                    DefineUtil.NUM = 0;
                     if (list != null && list.size() != 0) {
                         for (int i = 0; i < list.size(); i++) {
-                            DefineUtil.NUM +=list.get(i).getProductNum();
+                            DefineUtil.NUM += list.get(i).getProductNum();
                         }
                         if (DefineUtil.NUM != 0) {
                             tv_shopping_point.setVisibility(View.VISIBLE);
