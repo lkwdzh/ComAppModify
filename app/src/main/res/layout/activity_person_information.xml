@@ -42,12 +42,16 @@
 
             </RelativeLayout>
 
+            <View
+                style="@style/line_1"
+                android:layout_marginTop="@dimen/px_14" />
+
             <TextView
                 android:id="@+id/tv_basic_infor_peson_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:layout_marginTop="@dimen/px_14"
+
                 android:drawableLeft="@drawable/jibenxinxi"
                 android:drawableRight="@drawable/next"
                 android:gravity="center_vertical"

@@ -252,7 +252,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                         break;
                     case 2:
                         Intent intent1 = new Intent(getActivity(), ClassifyActivity.class);
-                        className = "价格走势";
+                        className = "品种走势";
                         getId(className);
                         intent1.putExtra("classId", classId);
                         intent1.putExtra("className", className);

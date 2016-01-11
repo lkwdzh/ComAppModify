@@ -136,6 +136,7 @@ public class ClassificationFragment extends Fragment implements View.OnClickList
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
                 sonList = JsonUtils.parseList(obj, Classify.class);
+                mList.clear();
                 if (status.equals("1")) {
 //                    假如成功则分别添加到list中
                     if (sonList != null && sonList.size() != 0) {

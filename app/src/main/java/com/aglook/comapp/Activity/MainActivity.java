@@ -14,7 +14,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -184,7 +183,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_check", arg0.result);
+//                Log.d("result_check", arg0.result);
                 if (arg0.result != null && !"".equals(arg0.result)&&!"null".equals(arg0.result)) {
                     String status = JsonUtils.getJsonParam(arg0.result, "status");
                     if (status != null && !"".equals(status)) {
