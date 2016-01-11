@@ -34,6 +34,8 @@ public class AddressListActivity extends BaseActivity {
 
     private ListView lv_add_list;
 
+
+
     private TextView right_text;
 
     
