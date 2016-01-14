@@ -1,9 +1,5 @@
 package com.bigkoo.convenientbanner;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Handler;
@@ -23,6 +19,10 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.listener.CBPageChangeListener;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.bigkoo.convenientbanner.view.CBLoopViewPager;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 页面翻转控件，极方便的广告栏
