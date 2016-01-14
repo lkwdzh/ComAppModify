@@ -1,6 +1,8 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -40,6 +42,7 @@ public class ZiXunListActivity extends BaseActivity {
     private String url;
     private ImageView left_icon;
     private boolean isReceiver;
+    private boolean isWebview;
 
 
     @Override
@@ -48,6 +51,7 @@ public class ZiXunListActivity extends BaseActivity {
         className = getIntent().getStringExtra("className");
         isMessage = getIntent().getBooleanExtra("isMessage", false);
         isReceiver = getIntent().getBooleanExtra("isReceiver", false);
+
         setTitleBar(className);
 
         ExitApplication.getInstance().addActivity(this);
@@ -60,6 +64,27 @@ public class ZiXunListActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isWebview = getIntent().getBooleanExtra("isWebview", true);
+//        Log.d("result_isMessage",isMessage+"______"+isWebview);
+        if (!isMessage){
+            if (isWebview) {
+                getUrl();
+                setTitleBar(className);
+                mList.clear();
+                getData();
+            }
+        }
+    }
+
     public void init() {
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
         classId = getIntent().getStringExtra("classId");
@@ -68,10 +93,36 @@ public class ZiXunListActivity extends BaseActivity {
         adapter = new ZiXunListAdapter(ZiXunListActivity.this, mList);
         lv_hang_qing_list.setAdapter(adapter);
 //        if (isMessage) {
-            lv_hang_qing_list.setMode(PullToRefreshBase.Mode.BOTH);
+        lv_hang_qing_list.setMode(PullToRefreshBase.Mode.BOTH);
 //        } else {
 //            lv_hang_qing_list.setMode(PullToRefreshBase.Mode.DISABLED);
 //        }
+    }
+
+
+    //启动activity，获取url
+    public void getUrl() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            String scheme = intent.getScheme();
+            Uri uri = intent.getData();
+            Log.d("result_scheme:", scheme.toString());
+            if (uri != null) {
+                String host = uri.getHost();
+                String dataString = intent.getDataString();
+                classId = uri.getQueryParameter("classId");
+                className=uri.getQueryParameter("title");
+                String path = uri.getPath();
+                String path1 = uri.getEncodedPath();
+                String queryString = uri.getQuery();
+                Log.d("result_host:", host.toString());
+                Log.d("result_dataString:", dataString.toString());
+//                Log.d("result_id:", id.toString());
+                Log.d("result_path:", path.toString());
+                Log.d("result_path1:", scheme.toString());
+                Log.d("result_queryString:", queryString.toString());
+            }
+        }
     }
 
     public void click() {
@@ -87,7 +138,7 @@ public class ZiXunListActivity extends BaseActivity {
                     intent.putExtra("url", mList.get(position - 1).getUrl());
                 }
 //                AppUtils.toastText(ZiXunListActivity.this,position-1+"");
-                intent.putExtra("className", mList.get(position-1).getArticleName());
+                intent.putExtra("className", mList.get(position - 1).getArticleName());
                 startActivity(intent);
             }
         });
@@ -97,7 +148,7 @@ public class ZiXunListActivity extends BaseActivity {
                 pageNum = 1;
                 if (isMessage) {
                     getMessage();
-                }else {
+                } else {
                     getData();
                 }
             }
@@ -107,7 +158,7 @@ public class ZiXunListActivity extends BaseActivity {
                 pageNum++;
                 if (isMessage) {
                     getMessage();
-                }else {
+                } else {
                     getData();
                 }
             }
@@ -161,7 +212,7 @@ public class ZiXunListActivity extends BaseActivity {
                 List<ZiXunList> sonList = new ArrayList<ZiXunList>();
                 if (status.equals("1")) {
                     sonList = JsonUtils.parseList(obj, ZiXunList.class);
-                    if (pageNum==1){
+                    if (pageNum == 1) {
                         mList.clear();
                     }
                     if (sonList != null && sonList.size() != 0) {
@@ -180,7 +231,7 @@ public class ZiXunListActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.INFOR_LIST, ZiXunUrl.postZiXunListUrl(classId,String.valueOf(pageSize),String.valueOf(pageNum)), ZiXunListActivity.this);
+        }.datePost(DefineUtil.INFOR_LIST, ZiXunUrl.postZiXunListUrl(classId, String.valueOf(pageSize), String.valueOf(pageNum)), ZiXunListActivity.this);
     }
 
     //获取消息

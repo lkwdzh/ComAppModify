@@ -124,250 +124,258 @@ ADDED from AndroidManifest.xml:49:9
 	android:name
 		ADDED from AndroidManifest.xml:50:13
 meta-data#UMENG_CHANNEL
-ADDED from AndroidManifest.xml:100:9
+ADDED from AndroidManifest.xml:94:10
 	android:value
-		ADDED from AndroidManifest.xml:102:13
+		ADDED from AndroidManifest.xml:94:22
 	android:name
-		ADDED from AndroidManifest.xml:101:13
+		ADDED from AndroidManifest.xml:94:44
 meta-data#channel
-ADDED from AndroidManifest.xml:103:9
+ADDED from AndroidManifest.xml:95:10
 	android:value
-		ADDED from AndroidManifest.xml:105:13
+		ADDED from AndroidManifest.xml:95:22
 	android:name
-		ADDED from AndroidManifest.xml:104:13
+		ADDED from AndroidManifest.xml:95:44
 activity#cn.jpush.android.ui.PushActivity
-ADDED from AndroidManifest.xml:118:9
+ADDED from AndroidManifest.xml:114:9
 	android:exported
-		ADDED from AndroidManifest.xml:121:13
+		ADDED from AndroidManifest.xml:117:13
 	android:configChanges
-		ADDED from AndroidManifest.xml:120:13
+		ADDED from AndroidManifest.xml:116:13
 	android:theme
-		ADDED from AndroidManifest.xml:122:13
+		ADDED from AndroidManifest.xml:118:13
 	android:name
-		ADDED from AndroidManifest.xml:119:13
+		ADDED from AndroidManifest.xml:115:13
 intent-filter#android.intent.category.DEFAULT+cn.jpush.android.ui.PushActivity+com.aglook.comapp
-ADDED from AndroidManifest.xml:123:13
+ADDED from AndroidManifest.xml:119:13
 action#cn.jpush.android.ui.PushActivity
-ADDED from AndroidManifest.xml:124:17
+ADDED from AndroidManifest.xml:120:17
 	android:name
-		ADDED from AndroidManifest.xml:124:25
+		ADDED from AndroidManifest.xml:120:25
 category#android.intent.category.DEFAULT
-ADDED from AndroidManifest.xml:126:17
+ADDED from AndroidManifest.xml:122:17
 	android:name
-		ADDED from AndroidManifest.xml:126:27
+		ADDED from AndroidManifest.xml:122:27
 category#com.aglook.comapp
-ADDED from AndroidManifest.xml:127:17
+ADDED from AndroidManifest.xml:123:17
 	android:name
-		ADDED from AndroidManifest.xml:127:27
+		ADDED from AndroidManifest.xml:123:27
 service#cn.jpush.android.service.DownloadService
-ADDED from AndroidManifest.xml:131:9
+ADDED from AndroidManifest.xml:127:9
 	android:enabled
-		ADDED from AndroidManifest.xml:133:13
+		ADDED from AndroidManifest.xml:129:13
 	android:exported
-		ADDED from AndroidManifest.xml:134:13
+		ADDED from AndroidManifest.xml:130:13
 	android:name
-		ADDED from AndroidManifest.xml:132:13
+		ADDED from AndroidManifest.xml:128:13
 service#cn.jpush.android.service.PushService
-ADDED from AndroidManifest.xml:138:9
+ADDED from AndroidManifest.xml:134:9
 	android:enabled
-		ADDED from AndroidManifest.xml:140:13
+		ADDED from AndroidManifest.xml:136:13
 	android:exported
-		ADDED from AndroidManifest.xml:141:13
+		ADDED from AndroidManifest.xml:137:13
 	android:name
-		ADDED from AndroidManifest.xml:139:13
+		ADDED from AndroidManifest.xml:135:13
 intent-filter#cn.jpush.android.intent.PUSH_TIME+cn.jpush.android.intent.PushService+cn.jpush.android.intent.REGISTER+cn.jpush.android.intent.REPORT
-ADDED from AndroidManifest.xml:142:13
+ADDED from AndroidManifest.xml:138:13
 action#cn.jpush.android.intent.REGISTER
-ADDED from AndroidManifest.xml:143:17
+ADDED from AndroidManifest.xml:139:17
 	android:name
-		ADDED from AndroidManifest.xml:143:25
+		ADDED from AndroidManifest.xml:139:25
 action#cn.jpush.android.intent.REPORT
-ADDED from AndroidManifest.xml:144:17
+ADDED from AndroidManifest.xml:140:17
 	android:name
-		ADDED from AndroidManifest.xml:144:25
+		ADDED from AndroidManifest.xml:140:25
 action#cn.jpush.android.intent.PushService
-ADDED from AndroidManifest.xml:145:17
+ADDED from AndroidManifest.xml:141:17
 	android:name
-		ADDED from AndroidManifest.xml:145:25
+		ADDED from AndroidManifest.xml:141:25
 action#cn.jpush.android.intent.PUSH_TIME
-ADDED from AndroidManifest.xml:146:17
+ADDED from AndroidManifest.xml:142:17
 	android:name
-		ADDED from AndroidManifest.xml:146:25
+		ADDED from AndroidManifest.xml:142:25
 service#cn.jpush.android.service.DaemonService
-ADDED from AndroidManifest.xml:152:9
+ADDED from AndroidManifest.xml:148:9
 	android:enabled
-		ADDED from AndroidManifest.xml:154:13
+		ADDED from AndroidManifest.xml:150:13
 	android:exported
-		ADDED from AndroidManifest.xml:155:13
+		ADDED from AndroidManifest.xml:151:13
 	android:name
-		ADDED from AndroidManifest.xml:153:13
+		ADDED from AndroidManifest.xml:149:13
 intent-filter#cn.jpush.android.intent.DaemonService+com.aglook.comapp
-ADDED from AndroidManifest.xml:156:13
+ADDED from AndroidManifest.xml:152:13
 action#cn.jpush.android.intent.DaemonService
-ADDED from AndroidManifest.xml:157:17
+ADDED from AndroidManifest.xml:153:17
 	android:name
-		ADDED from AndroidManifest.xml:157:25
+		ADDED from AndroidManifest.xml:153:25
 receiver#cn.jpush.android.service.PushReceiver
-ADDED from AndroidManifest.xml:164:9
+ADDED from AndroidManifest.xml:160:9
 	android:enabled
-		ADDED from AndroidManifest.xml:166:13
+		ADDED from AndroidManifest.xml:162:13
 	android:exported
-		ADDED from AndroidManifest.xml:167:13
+		ADDED from AndroidManifest.xml:163:13
 	android:name
-		ADDED from AndroidManifest.xml:165:13
+		ADDED from AndroidManifest.xml:161:13
 intent-filter#cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY+com.aglook.comapp
-ADDED from AndroidManifest.xml:168:13
+ADDED from AndroidManifest.xml:164:13
 	android:priority
-		ADDED from AndroidManifest.xml:168:28
+		ADDED from AndroidManifest.xml:164:28
 action#cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY
-ADDED from AndroidManifest.xml:169:17
+ADDED from AndroidManifest.xml:165:17
 	android:name
-		ADDED from AndroidManifest.xml:169:25
+		ADDED from AndroidManifest.xml:165:25
 intent-filter#android.intent.action.USER_PRESENT+android.net.conn.CONNECTIVITY_CHANGE
-ADDED from AndroidManifest.xml:173:13
+ADDED from AndroidManifest.xml:169:13
 action#android.intent.action.USER_PRESENT
-ADDED from AndroidManifest.xml:174:17
+ADDED from AndroidManifest.xml:170:17
 	android:name
-		ADDED from AndroidManifest.xml:174:25
+		ADDED from AndroidManifest.xml:170:25
 action#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from AndroidManifest.xml:171:17
+	android:name
+		ADDED from AndroidManifest.xml:171:25
+intent-filter#android.intent.action.PACKAGE_ADDED+android.intent.action.PACKAGE_REMOVED
+ADDED from AndroidManifest.xml:174:13
+action#android.intent.action.PACKAGE_ADDED
 ADDED from AndroidManifest.xml:175:17
 	android:name
 		ADDED from AndroidManifest.xml:175:25
-intent-filter#android.intent.action.PACKAGE_ADDED+android.intent.action.PACKAGE_REMOVED
-ADDED from AndroidManifest.xml:178:13
-action#android.intent.action.PACKAGE_ADDED
-ADDED from AndroidManifest.xml:179:17
-	android:name
-		ADDED from AndroidManifest.xml:179:25
 action#android.intent.action.PACKAGE_REMOVED
-ADDED from AndroidManifest.xml:180:17
+ADDED from AndroidManifest.xml:176:17
 	android:name
-		ADDED from AndroidManifest.xml:180:25
+		ADDED from AndroidManifest.xml:176:25
 data
-ADDED from AndroidManifest.xml:182:17
+ADDED from AndroidManifest.xml:178:17
 	android:scheme
-		ADDED from AndroidManifest.xml:182:23
+		ADDED from AndroidManifest.xml:178:23
 receiver#cn.jpush.android.service.AlarmReceiver
-ADDED from AndroidManifest.xml:187:9
+ADDED from AndroidManifest.xml:183:9
 	android:exported
-		ADDED from AndroidManifest.xml:189:13
+		ADDED from AndroidManifest.xml:185:13
 	android:name
-		ADDED from AndroidManifest.xml:188:13
+		ADDED from AndroidManifest.xml:184:13
 receiver#com.aglook.comapp.receiver.MyReceiver
-ADDED from AndroidManifest.xml:192:9
+ADDED from AndroidManifest.xml:188:9
 	android:enabled
-		ADDED from AndroidManifest.xml:194:13
+		ADDED from AndroidManifest.xml:190:13
 	android:exported
-		ADDED from AndroidManifest.xml:195:13
+		ADDED from AndroidManifest.xml:191:13
 	android:name
-		ADDED from AndroidManifest.xml:193:13
+		ADDED from AndroidManifest.xml:189:13
 intent-filter#cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK+cn.jpush.android.intent.CONNECTION+cn.jpush.android.intent.MESSAGE_RECEIVED+cn.jpush.android.intent.NOTIFICATION_OPENED+cn.jpush.android.intent.NOTIFICATION_RECEIVED+cn.jpush.android.intent.REGISTRATION+cn.jpush.android.intent.UNREGISTRATION+com.aglook.comapp
-ADDED from AndroidManifest.xml:196:13
+ADDED from AndroidManifest.xml:192:13
 action#cn.jpush.android.intent.REGISTRATION
-ADDED from AndroidManifest.xml:197:17
+ADDED from AndroidManifest.xml:193:17
 	android:name
-		ADDED from AndroidManifest.xml:197:25
+		ADDED from AndroidManifest.xml:193:25
 action#cn.jpush.android.intent.UNREGISTRATION
-ADDED from AndroidManifest.xml:199:17
+ADDED from AndroidManifest.xml:195:17
 	android:name
-		ADDED from AndroidManifest.xml:199:25
+		ADDED from AndroidManifest.xml:195:25
 action#cn.jpush.android.intent.MESSAGE_RECEIVED
+ADDED from AndroidManifest.xml:196:17
+	android:name
+		ADDED from AndroidManifest.xml:196:25
+action#cn.jpush.android.intent.NOTIFICATION_RECEIVED
+ADDED from AndroidManifest.xml:198:17
+	android:name
+		ADDED from AndroidManifest.xml:198:25
+action#cn.jpush.android.intent.NOTIFICATION_OPENED
 ADDED from AndroidManifest.xml:200:17
 	android:name
 		ADDED from AndroidManifest.xml:200:25
-action#cn.jpush.android.intent.NOTIFICATION_RECEIVED
+action#cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK
 ADDED from AndroidManifest.xml:202:17
 	android:name
 		ADDED from AndroidManifest.xml:202:25
-action#cn.jpush.android.intent.NOTIFICATION_OPENED
+action#cn.jpush.android.intent.CONNECTION
 ADDED from AndroidManifest.xml:204:17
 	android:name
 		ADDED from AndroidManifest.xml:204:25
-action#cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK
-ADDED from AndroidManifest.xml:206:17
-	android:name
-		ADDED from AndroidManifest.xml:206:25
-action#cn.jpush.android.intent.CONNECTION
-ADDED from AndroidManifest.xml:208:17
-	android:name
-		ADDED from AndroidManifest.xml:208:25
 meta-data#JPUSH_CHANNEL
-ADDED from AndroidManifest.xml:215:9
+ADDED from AndroidManifest.xml:211:9
 	android:value
-		ADDED from AndroidManifest.xml:217:13
+		ADDED from AndroidManifest.xml:213:13
 	android:name
-		ADDED from AndroidManifest.xml:216:13
+		ADDED from AndroidManifest.xml:212:13
 meta-data#JPUSH_APPKEY
-ADDED from AndroidManifest.xml:218:9
+ADDED from AndroidManifest.xml:214:9
 	android:value
-		ADDED from AndroidManifest.xml:220:13
+		ADDED from AndroidManifest.xml:216:13
 	android:name
-		ADDED from AndroidManifest.xml:219:13
+		ADDED from AndroidManifest.xml:215:13
 activity#com.umeng.socialize.view.ShareActivity
-ADDED from AndroidManifest.xml:226:9
+ADDED from AndroidManifest.xml:222:9
 	android:launchMode
-		ADDED from AndroidManifest.xml:229:13
+		ADDED from AndroidManifest.xml:225:13
 	android:noHistory
-		ADDED from AndroidManifest.xml:230:13
+		ADDED from AndroidManifest.xml:226:13
 	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:232:13
-	android:configChanges
 		ADDED from AndroidManifest.xml:228:13
-	android:theme
-		ADDED from AndroidManifest.xml:231:13
-	android:name
-		ADDED from AndroidManifest.xml:227:13
-activity#com.tencent.tauth.AuthActivity
-ADDED from AndroidManifest.xml:236:9
-	android:launchMode
-		ADDED from AndroidManifest.xml:238:13
-	android:noHistory
-		ADDED from AndroidManifest.xml:239:13
-	android:name
-		ADDED from AndroidManifest.xml:237:13
-intent-filter#android.intent.action.VIEW+android.intent.category.BROWSABLE+android.intent.category.DEFAULT
-ADDED from AndroidManifest.xml:240:13
-action#android.intent.action.VIEW
-ADDED from AndroidManifest.xml:241:17
-	android:name
-		ADDED from AndroidManifest.xml:241:25
-category#android.intent.category.BROWSABLE
-ADDED from AndroidManifest.xml:244:17
-	android:name
-		ADDED from AndroidManifest.xml:244:27
-activity#com.tencent.connect.common.AssistActivity
-ADDED from AndroidManifest.xml:249:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:251:13
-	android:theme
-		ADDED from AndroidManifest.xml:252:13
-	android:name
-		ADDED from AndroidManifest.xml:250:13
-activity#com.aglook.comapp.wxapi.WXEntryActivity
-ADDED from AndroidManifest.xml:259:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:263:13
-	android:exported
-		ADDED from AndroidManifest.xml:262:13
 	android:configChanges
-		ADDED from AndroidManifest.xml:261:13
+		ADDED from AndroidManifest.xml:224:13
 	android:theme
-		ADDED from AndroidManifest.xml:264:13
+		ADDED from AndroidManifest.xml:227:13
 	android:name
-		ADDED from AndroidManifest.xml:260:13
-activity#com.aglook.comapp.Activity.MainActivity
-ADDED from AndroidManifest.xml:265:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:269:13
-	android:label
-		ADDED from AndroidManifest.xml:267:13
+		ADDED from AndroidManifest.xml:223:13
+activity#com.tencent.tauth.AuthActivity
+ADDED from AndroidManifest.xml:232:9
 	android:launchMode
-		ADDED from AndroidManifest.xml:268:13
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:270:13
+		ADDED from AndroidManifest.xml:234:13
+	android:noHistory
+		ADDED from AndroidManifest.xml:235:13
 	android:name
+		ADDED from AndroidManifest.xml:233:13
+intent-filter#android.intent.action.VIEW+android.intent.category.BROWSABLE+android.intent.category.DEFAULT
+ADDED from AndroidManifest.xml:236:13
+action#android.intent.action.VIEW
+ADDED from AndroidManifest.xml:237:17
+	android:name
+		ADDED from AndroidManifest.xml:237:25
+category#android.intent.category.BROWSABLE
+ADDED from AndroidManifest.xml:240:17
+	android:name
+		ADDED from AndroidManifest.xml:240:27
+activity#com.tencent.connect.common.AssistActivity
+ADDED from AndroidManifest.xml:245:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:247:13
+	android:theme
+		ADDED from AndroidManifest.xml:248:13
+	android:name
+		ADDED from AndroidManifest.xml:246:13
+activity#com.aglook.comapp.wxapi.WXEntryActivity
+ADDED from AndroidManifest.xml:255:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:259:13
+	android:exported
+		ADDED from AndroidManifest.xml:258:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:257:13
+	android:theme
+		ADDED from AndroidManifest.xml:260:13
+	android:name
+		ADDED from AndroidManifest.xml:256:13
+activity#com.aglook.comapp.Activity.MainActivity
+ADDED from AndroidManifest.xml:261:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:265:13
+	android:label
+		ADDED from AndroidManifest.xml:263:13
+	android:launchMode
+		ADDED from AndroidManifest.xml:264:13
+	android:windowSoftInputMode
 		ADDED from AndroidManifest.xml:266:13
+	android:name
+		ADDED from AndroidManifest.xml:262:13
 activity#com.aglook.comapp.Activity.BaseActivity
+ADDED from AndroidManifest.xml:267:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:270:13
+	android:label
+		ADDED from AndroidManifest.xml:269:13
+	android:name
+		ADDED from AndroidManifest.xml:268:13
+activity#com.aglook.comapp.Activity.LoginActivity
 ADDED from AndroidManifest.xml:271:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:274:13
@@ -375,7 +383,7 @@ ADDED from AndroidManifest.xml:271:9
 		ADDED from AndroidManifest.xml:273:13
 	android:name
 		ADDED from AndroidManifest.xml:272:13
-activity#com.aglook.comapp.Activity.LoginActivity
+activity#com.aglook.comapp.Activity.RegisterActivity
 ADDED from AndroidManifest.xml:275:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:278:13
@@ -383,7 +391,7 @@ ADDED from AndroidManifest.xml:275:9
 		ADDED from AndroidManifest.xml:277:13
 	android:name
 		ADDED from AndroidManifest.xml:276:13
-activity#com.aglook.comapp.Activity.RegisterActivity
+activity#com.aglook.comapp.Activity.ClassifyActivity
 ADDED from AndroidManifest.xml:279:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:282:13
@@ -391,7 +399,7 @@ ADDED from AndroidManifest.xml:279:9
 		ADDED from AndroidManifest.xml:281:13
 	android:name
 		ADDED from AndroidManifest.xml:280:13
-activity#com.aglook.comapp.Activity.ClassifyActivity
+activity#com.aglook.comapp.Activity.GoodsDetailActivity
 ADDED from AndroidManifest.xml:283:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:286:13
@@ -399,7 +407,7 @@ ADDED from AndroidManifest.xml:283:9
 		ADDED from AndroidManifest.xml:285:13
 	android:name
 		ADDED from AndroidManifest.xml:284:13
-activity#com.aglook.comapp.Activity.GoodsDetailActivity
+activity#com.aglook.comapp.Activity.GuideActivity
 ADDED from AndroidManifest.xml:287:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:290:13
@@ -407,7 +415,7 @@ ADDED from AndroidManifest.xml:287:9
 		ADDED from AndroidManifest.xml:289:13
 	android:name
 		ADDED from AndroidManifest.xml:288:13
-activity#com.aglook.comapp.Activity.GuideActivity
+activity#com.aglook.comapp.Activity.FindPasswordActivity
 ADDED from AndroidManifest.xml:291:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:294:13
@@ -415,43 +423,43 @@ ADDED from AndroidManifest.xml:291:9
 		ADDED from AndroidManifest.xml:293:13
 	android:name
 		ADDED from AndroidManifest.xml:292:13
-activity#com.aglook.comapp.Activity.FindPasswordActivity
+activity#com.aglook.comapp.Activity.BasicInformationActivity
 ADDED from AndroidManifest.xml:295:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:298:13
 	android:label
 		ADDED from AndroidManifest.xml:297:13
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:299:13
 	android:name
 		ADDED from AndroidManifest.xml:296:13
-activity#com.aglook.comapp.Activity.BasicInformationActivity
-ADDED from AndroidManifest.xml:299:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:302:13
-	android:label
-		ADDED from AndroidManifest.xml:301:13
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:303:13
-	android:name
-		ADDED from AndroidManifest.xml:300:13
 activity#com.aglook.comapp.Activity.GuaDanDetailActivity
+ADDED from AndroidManifest.xml:300:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:303:13
+	android:label
+		ADDED from AndroidManifest.xml:302:13
+	android:name
+		ADDED from AndroidManifest.xml:301:13
+activity#com.aglook.comapp.Activity.GuaDanAddActivity
 ADDED from AndroidManifest.xml:304:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:307:13
 	android:label
 		ADDED from AndroidManifest.xml:306:13
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:308:13
 	android:name
 		ADDED from AndroidManifest.xml:305:13
-activity#com.aglook.comapp.Activity.GuaDanAddActivity
-ADDED from AndroidManifest.xml:308:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:311:13
-	android:label
-		ADDED from AndroidManifest.xml:310:13
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:312:13
-	android:name
-		ADDED from AndroidManifest.xml:309:13
 activity#com.aglook.comapp.Activity.SettingActivity
+ADDED from AndroidManifest.xml:309:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:312:13
+	android:label
+		ADDED from AndroidManifest.xml:311:13
+	android:name
+		ADDED from AndroidManifest.xml:310:13
+activity#com.aglook.comapp.Activity.SearchActivity
 ADDED from AndroidManifest.xml:313:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:316:13
@@ -459,7 +467,7 @@ ADDED from AndroidManifest.xml:313:9
 		ADDED from AndroidManifest.xml:315:13
 	android:name
 		ADDED from AndroidManifest.xml:314:13
-activity#com.aglook.comapp.Activity.SearchActivity
+activity#com.aglook.comapp.Activity.PayResultActivity
 ADDED from AndroidManifest.xml:317:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:320:13
@@ -467,7 +475,7 @@ ADDED from AndroidManifest.xml:317:9
 		ADDED from AndroidManifest.xml:319:13
 	android:name
 		ADDED from AndroidManifest.xml:318:13
-activity#com.aglook.comapp.Activity.PayResultActivity
+activity#com.aglook.comapp.Activity.PersonInformationActivity
 ADDED from AndroidManifest.xml:321:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:324:13
@@ -475,7 +483,7 @@ ADDED from AndroidManifest.xml:321:9
 		ADDED from AndroidManifest.xml:323:13
 	android:name
 		ADDED from AndroidManifest.xml:322:13
-activity#com.aglook.comapp.Activity.PersonInformationActivity
+activity#com.aglook.comapp.Activity.BandCardActivity
 ADDED from AndroidManifest.xml:325:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:328:13
@@ -483,7 +491,7 @@ ADDED from AndroidManifest.xml:325:9
 		ADDED from AndroidManifest.xml:327:13
 	android:name
 		ADDED from AndroidManifest.xml:326:13
-activity#com.aglook.comapp.Activity.BandCardActivity
+activity#com.aglook.comapp.Activity.ScreenActivity
 ADDED from AndroidManifest.xml:329:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:332:13
@@ -491,25 +499,25 @@ ADDED from AndroidManifest.xml:329:9
 		ADDED from AndroidManifest.xml:331:13
 	android:name
 		ADDED from AndroidManifest.xml:330:13
-activity#com.aglook.comapp.Activity.ScreenActivity
+activity#com.aglook.comapp.Activity.ConfirmOrderActivity
 ADDED from AndroidManifest.xml:333:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:336:13
 	android:label
 		ADDED from AndroidManifest.xml:335:13
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:337:13
 	android:name
 		ADDED from AndroidManifest.xml:334:13
-activity#com.aglook.comapp.Activity.ConfirmOrderActivity
-ADDED from AndroidManifest.xml:337:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:340:13
-	android:label
-		ADDED from AndroidManifest.xml:339:13
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:341:13
-	android:name
-		ADDED from AndroidManifest.xml:338:13
 activity#com.aglook.comapp.Activity.AllOrderActivity
+ADDED from AndroidManifest.xml:338:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:341:13
+	android:label
+		ADDED from AndroidManifest.xml:340:13
+	android:name
+		ADDED from AndroidManifest.xml:339:13
+activity#com.aglook.comapp.Activity.AllGuaDanActivity
 ADDED from AndroidManifest.xml:342:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:345:13
@@ -517,7 +525,7 @@ ADDED from AndroidManifest.xml:342:9
 		ADDED from AndroidManifest.xml:344:13
 	android:name
 		ADDED from AndroidManifest.xml:343:13
-activity#com.aglook.comapp.Activity.AllGuaDanActivity
+activity#com.aglook.comapp.Activity.ToPayActivity
 ADDED from AndroidManifest.xml:346:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:349:13
@@ -525,7 +533,7 @@ ADDED from AndroidManifest.xml:346:9
 		ADDED from AndroidManifest.xml:348:13
 	android:name
 		ADDED from AndroidManifest.xml:347:13
-activity#com.aglook.comapp.Activity.ToPayActivity
+activity#com.aglook.comapp.Activity.TransSucceedActivity
 ADDED from AndroidManifest.xml:350:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:353:13
@@ -533,7 +541,7 @@ ADDED from AndroidManifest.xml:350:9
 		ADDED from AndroidManifest.xml:352:13
 	android:name
 		ADDED from AndroidManifest.xml:351:13
-activity#com.aglook.comapp.Activity.TransSucceedActivity
+activity#com.aglook.comapp.Activity.CardListActivity
 ADDED from AndroidManifest.xml:354:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:357:13
@@ -541,7 +549,7 @@ ADDED from AndroidManifest.xml:354:9
 		ADDED from AndroidManifest.xml:356:13
 	android:name
 		ADDED from AndroidManifest.xml:355:13
-activity#com.aglook.comapp.Activity.CardListActivity
+activity#com.aglook.comapp.Activity.MyCangDanActivity
 ADDED from AndroidManifest.xml:358:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:361:13
@@ -549,7 +557,7 @@ ADDED from AndroidManifest.xml:358:9
 		ADDED from AndroidManifest.xml:360:13
 	android:name
 		ADDED from AndroidManifest.xml:359:13
-activity#com.aglook.comapp.Activity.MyCangDanActivity
+activity#com.aglook.comapp.Activity.PlatformActivity
 ADDED from AndroidManifest.xml:362:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:365:13
@@ -557,7 +565,7 @@ ADDED from AndroidManifest.xml:362:9
 		ADDED from AndroidManifest.xml:364:13
 	android:name
 		ADDED from AndroidManifest.xml:363:13
-activity#com.aglook.comapp.Activity.PlatformActivity
+activity#com.aglook.comapp.Activity.PickUpActivity
 ADDED from AndroidManifest.xml:366:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:369:13
@@ -565,25 +573,25 @@ ADDED from AndroidManifest.xml:366:9
 		ADDED from AndroidManifest.xml:368:13
 	android:name
 		ADDED from AndroidManifest.xml:367:13
-activity#com.aglook.comapp.Activity.PickUpActivity
+activity#com.aglook.comapp.Activity.PickInfoActivity
 ADDED from AndroidManifest.xml:370:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:373:13
 	android:label
 		ADDED from AndroidManifest.xml:372:13
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:374:13
 	android:name
 		ADDED from AndroidManifest.xml:371:13
-activity#com.aglook.comapp.Activity.PickInfoActivity
-ADDED from AndroidManifest.xml:374:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:377:13
-	android:label
-		ADDED from AndroidManifest.xml:376:13
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:378:13
-	android:name
-		ADDED from AndroidManifest.xml:375:13
 activity#com.aglook.comapp.Activity.DriverListActivity
+ADDED from AndroidManifest.xml:375:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:378:13
+	android:label
+		ADDED from AndroidManifest.xml:377:13
+	android:name
+		ADDED from AndroidManifest.xml:376:13
+activity#com.aglook.comapp.Activity.DriverAddActivity
 ADDED from AndroidManifest.xml:379:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:382:13
@@ -591,7 +599,7 @@ ADDED from AndroidManifest.xml:379:9
 		ADDED from AndroidManifest.xml:381:13
 	android:name
 		ADDED from AndroidManifest.xml:380:13
-activity#com.aglook.comapp.Activity.DriverAddActivity
+activity#com.aglook.comapp.Activity.DriverInfoActivity
 ADDED from AndroidManifest.xml:383:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:386:13
@@ -599,7 +607,7 @@ ADDED from AndroidManifest.xml:383:9
 		ADDED from AndroidManifest.xml:385:13
 	android:name
 		ADDED from AndroidManifest.xml:384:13
-activity#com.aglook.comapp.Activity.DriverInfoActivity
+activity#com.aglook.comapp.Activity.OrderDetailActivity
 ADDED from AndroidManifest.xml:387:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:390:13
@@ -607,7 +615,7 @@ ADDED from AndroidManifest.xml:387:9
 		ADDED from AndroidManifest.xml:389:13
 	android:name
 		ADDED from AndroidManifest.xml:388:13
-activity#com.aglook.comapp.Activity.OrderDetailActivity
+activity#com.aglook.comapp.Activity.ModifyPasswordActivity
 ADDED from AndroidManifest.xml:391:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:394:13
@@ -615,25 +623,25 @@ ADDED from AndroidManifest.xml:391:9
 		ADDED from AndroidManifest.xml:393:13
 	android:name
 		ADDED from AndroidManifest.xml:392:13
-activity#com.aglook.comapp.Activity.ModifyPasswordActivity
+activity#com.aglook.comapp.Activity.ZiXunListActivity
 ADDED from AndroidManifest.xml:395:9
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:398:13
+		ADDED from AndroidManifest.xml:399:13
 	android:label
+		ADDED from AndroidManifest.xml:398:13
+	android:exported
 		ADDED from AndroidManifest.xml:397:13
 	android:name
 		ADDED from AndroidManifest.xml:396:13
-activity#com.aglook.comapp.Activity.ZiXunListActivity
-ADDED from AndroidManifest.xml:399:9
+activity#com.aglook.comapp.Activity.HangDetailActivity
+ADDED from AndroidManifest.xml:400:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:403:13
 	android:label
 		ADDED from AndroidManifest.xml:402:13
-	android:exported
-		ADDED from AndroidManifest.xml:401:13
 	android:name
-		ADDED from AndroidManifest.xml:400:13
-activity#com.aglook.comapp.Activity.HangDetailActivity
+		ADDED from AndroidManifest.xml:401:13
+activity#com.aglook.comapp.Activity.PlatformDetailActivity
 ADDED from AndroidManifest.xml:404:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:407:13
@@ -641,7 +649,7 @@ ADDED from AndroidManifest.xml:404:9
 		ADDED from AndroidManifest.xml:406:13
 	android:name
 		ADDED from AndroidManifest.xml:405:13
-activity#com.aglook.comapp.Activity.PlatformDetailActivity
+activity#com.aglook.comapp.Activity.PickUpDtailActivity
 ADDED from AndroidManifest.xml:408:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:411:13
@@ -649,7 +657,7 @@ ADDED from AndroidManifest.xml:408:9
 		ADDED from AndroidManifest.xml:410:13
 	android:name
 		ADDED from AndroidManifest.xml:409:13
-activity#com.aglook.comapp.Activity.PickUpDtailActivity
+activity#com.aglook.comapp.Activity.FriendsListActivity
 ADDED from AndroidManifest.xml:412:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:415:13
@@ -657,7 +665,7 @@ ADDED from AndroidManifest.xml:412:9
 		ADDED from AndroidManifest.xml:414:13
 	android:name
 		ADDED from AndroidManifest.xml:413:13
-activity#com.aglook.comapp.Activity.FriendsListActivity
+activity#com.aglook.comapp.Activity.FriendsAddActivity
 ADDED from AndroidManifest.xml:416:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:419:13
@@ -665,7 +673,7 @@ ADDED from AndroidManifest.xml:416:9
 		ADDED from AndroidManifest.xml:418:13
 	android:name
 		ADDED from AndroidManifest.xml:417:13
-activity#com.aglook.comapp.Activity.FriendsAddActivity
+activity#com.aglook.comapp.Activity.GoodsCollectActivity
 ADDED from AndroidManifest.xml:420:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:423:13
@@ -673,7 +681,7 @@ ADDED from AndroidManifest.xml:420:9
 		ADDED from AndroidManifest.xml:422:13
 	android:name
 		ADDED from AndroidManifest.xml:421:13
-activity#com.aglook.comapp.Activity.GoodsCollectActivity
+activity#com.aglook.comapp.Activity.FriendsDetailActivity
 ADDED from AndroidManifest.xml:424:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:427:13
@@ -681,7 +689,7 @@ ADDED from AndroidManifest.xml:424:9
 		ADDED from AndroidManifest.xml:426:13
 	android:name
 		ADDED from AndroidManifest.xml:425:13
-activity#com.aglook.comapp.Activity.FriendsDetailActivity
+activity#com.aglook.comapp.Activity.TradeingActivity
 ADDED from AndroidManifest.xml:428:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:431:13
@@ -689,7 +697,7 @@ ADDED from AndroidManifest.xml:428:9
 		ADDED from AndroidManifest.xml:430:13
 	android:name
 		ADDED from AndroidManifest.xml:429:13
-activity#com.aglook.comapp.Activity.TradeingActivity
+activity#com.aglook.comapp.Activity.PayActivity
 ADDED from AndroidManifest.xml:432:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:435:13
@@ -697,7 +705,7 @@ ADDED from AndroidManifest.xml:432:9
 		ADDED from AndroidManifest.xml:434:13
 	android:name
 		ADDED from AndroidManifest.xml:433:13
-activity#com.aglook.comapp.Activity.PayActivity
+activity#com.aglook.comapp.Activity.ModifyPickUpActivity
 ADDED from AndroidManifest.xml:436:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:439:13
@@ -705,7 +713,7 @@ ADDED from AndroidManifest.xml:436:9
 		ADDED from AndroidManifest.xml:438:13
 	android:name
 		ADDED from AndroidManifest.xml:437:13
-activity#com.aglook.comapp.Activity.ModifyPickUpActivity
+activity#com.aglook.comapp.Activity.GuaDanStateActivity
 ADDED from AndroidManifest.xml:440:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:443:13
@@ -713,43 +721,43 @@ ADDED from AndroidManifest.xml:440:9
 		ADDED from AndroidManifest.xml:442:13
 	android:name
 		ADDED from AndroidManifest.xml:441:13
-activity#com.aglook.comapp.Activity.GuaDanStateActivity
+activity#com.aglook.comapp.Activity.ModifyGuaDanActivity
 ADDED from AndroidManifest.xml:444:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:447:13
 	android:label
 		ADDED from AndroidManifest.xml:446:13
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:448:13
 	android:name
 		ADDED from AndroidManifest.xml:445:13
-activity#com.aglook.comapp.Activity.ModifyGuaDanActivity
-ADDED from AndroidManifest.xml:448:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:451:13
-	android:label
-		ADDED from AndroidManifest.xml:450:13
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:452:13
-	android:name
-		ADDED from AndroidManifest.xml:449:13
 activity#com.aglook.comapp.Activity.BuyerListActivity
+ADDED from AndroidManifest.xml:449:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:452:13
+	android:label
+		ADDED from AndroidManifest.xml:451:13
+	android:name
+		ADDED from AndroidManifest.xml:450:13
+activity#com.aglook.comapp.Activity.ShoppingCartActivity
 ADDED from AndroidManifest.xml:453:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:456:13
 	android:label
 		ADDED from AndroidManifest.xml:455:13
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:457:13
 	android:name
 		ADDED from AndroidManifest.xml:454:13
-activity#com.aglook.comapp.Activity.ShoppingCartActivity
-ADDED from AndroidManifest.xml:457:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:460:13
-	android:label
-		ADDED from AndroidManifest.xml:459:13
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:461:13
-	android:name
-		ADDED from AndroidManifest.xml:458:13
 activity#com.aglook.comapp.Activity.MessageActivity
+ADDED from AndroidManifest.xml:458:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:461:13
+	android:label
+		ADDED from AndroidManifest.xml:460:13
+	android:name
+		ADDED from AndroidManifest.xml:459:13
+activity#com.aglook.comapp.Activity.HelpCenterActivity
 ADDED from AndroidManifest.xml:462:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:465:13
@@ -757,35 +765,35 @@ ADDED from AndroidManifest.xml:462:9
 		ADDED from AndroidManifest.xml:464:13
 	android:name
 		ADDED from AndroidManifest.xml:463:13
-activity#com.aglook.comapp.Activity.HelpCenterActivity
+activity#com.aglook.comapp.Activity.LaunchActivity
 ADDED from AndroidManifest.xml:466:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:469:13
 	android:label
 		ADDED from AndroidManifest.xml:468:13
+	android:theme
+		ADDED from AndroidManifest.xml:470:13
 	android:name
 		ADDED from AndroidManifest.xml:467:13
-activity#com.aglook.comapp.Activity.LaunchActivity
-ADDED from AndroidManifest.xml:470:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:473:13
-	android:label
-		ADDED from AndroidManifest.xml:472:13
-	android:theme
-		ADDED from AndroidManifest.xml:474:13
-	android:name
-		ADDED from AndroidManifest.xml:471:13
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:475:13
+ADDED from AndroidManifest.xml:471:13
 action#android.intent.action.MAIN
-ADDED from AndroidManifest.xml:476:17
+ADDED from AndroidManifest.xml:472:17
 	android:name
-		ADDED from AndroidManifest.xml:476:25
+		ADDED from AndroidManifest.xml:472:25
 category#android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:478:17
+ADDED from AndroidManifest.xml:474:17
 	android:name
-		ADDED from AndroidManifest.xml:478:27
+		ADDED from AndroidManifest.xml:474:27
 activity#com.aglook.comapp.Activity.TransDetailActivity
+ADDED from AndroidManifest.xml:485:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:488:13
+	android:label
+		ADDED from AndroidManifest.xml:487:13
+	android:name
+		ADDED from AndroidManifest.xml:486:13
+activity#com.aglook.comapp.Activity.AddAddressActivity
 ADDED from AndroidManifest.xml:489:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:492:13
@@ -793,7 +801,7 @@ ADDED from AndroidManifest.xml:489:9
 		ADDED from AndroidManifest.xml:491:13
 	android:name
 		ADDED from AndroidManifest.xml:490:13
-activity#com.aglook.comapp.Activity.AddAddressActivity
+activity#com.aglook.comapp.Activity.AddressListActivity
 ADDED from AndroidManifest.xml:493:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:496:13
@@ -801,15 +809,15 @@ ADDED from AndroidManifest.xml:493:9
 		ADDED from AndroidManifest.xml:495:13
 	android:name
 		ADDED from AndroidManifest.xml:494:13
-activity#com.aglook.comapp.Activity.AddressListActivity
-ADDED from AndroidManifest.xml:497:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:500:13
-	android:label
-		ADDED from AndroidManifest.xml:499:13
-	android:name
-		ADDED from AndroidManifest.xml:498:13
 activity#com.aglook.comapp.Activity.FaPiaoActivity
+ADDED from AndroidManifest.xml:498:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:501:13
+	android:label
+		ADDED from AndroidManifest.xml:500:13
+	android:name
+		ADDED from AndroidManifest.xml:499:13
+activity#com.aglook.comapp.Activity.VersionActivity
 ADDED from AndroidManifest.xml:502:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:505:13
@@ -817,7 +825,7 @@ ADDED from AndroidManifest.xml:502:9
 		ADDED from AndroidManifest.xml:504:13
 	android:name
 		ADDED from AndroidManifest.xml:503:13
-activity#com.aglook.comapp.Activity.VersionActivity
+activity#com.aglook.comapp.Activity.IntroActivity
 ADDED from AndroidManifest.xml:506:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:509:13
@@ -825,7 +833,7 @@ ADDED from AndroidManifest.xml:506:9
 		ADDED from AndroidManifest.xml:508:13
 	android:name
 		ADDED from AndroidManifest.xml:507:13
-activity#com.aglook.comapp.Activity.IntroActivity
+activity#com.aglook.comapp.Activity.IndexActivity
 ADDED from AndroidManifest.xml:510:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:513:13
@@ -833,24 +841,16 @@ ADDED from AndroidManifest.xml:510:9
 		ADDED from AndroidManifest.xml:512:13
 	android:name
 		ADDED from AndroidManifest.xml:511:13
-activity#com.aglook.comapp.Activity.IndexActivity
-ADDED from AndroidManifest.xml:514:9
+activity#com.aglook.comapp.Activity.ImageActivity
+ADDED from AndroidManifest.xml:515:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:517:13
 	android:label
-		ADDED from AndroidManifest.xml:516:13
-	android:name
-		ADDED from AndroidManifest.xml:515:13
-activity#com.aglook.comapp.Activity.ImageActivity
-ADDED from AndroidManifest.xml:519:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:521:13
-	android:label
-		ADDED from AndroidManifest.xml:523:13
+		ADDED from AndroidManifest.xml:519:13
 	android:hardwareAccelerated
-		ADDED from AndroidManifest.xml:522:13
+		ADDED from AndroidManifest.xml:518:13
 	android:name
-		ADDED from AndroidManifest.xml:520:13
+		ADDED from AndroidManifest.xml:516:13
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 MERGED from com.android.support:appcompat-v7:22.0.0:20:5

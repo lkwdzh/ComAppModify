@@ -5,7 +5,6 @@ import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
 import com.aglook.comapp.Application.ExitApplication;
@@ -22,10 +21,12 @@ public class HangDetailActivity extends BaseActivity {
 
     private CustomProgress customProgress;
     private ImageView right_image;
+    public static HangDetailActivity instance;
 
     @Override
     public void initView() {
         setContentView(R.layout.activity_hang_detail);
+        instance=this;
         className = getIntent().getStringExtra("className");
         setTitleBar(className);
         ExitApplication.getInstance().addActivity(this);
@@ -45,7 +46,7 @@ public class HangDetailActivity extends BaseActivity {
 
         web_hangdetail.setWebChromeClient(new WebChromeClient());// 支持运行特殊的javascript（例如：alert()）
 
-        web_hangdetail.setWebViewClient(new WebViewClient());// 当点击超链地址后不会新打开浏览器来访问，而是始终在本app中浏览页面
+//        web_hangdetail.setWebViewClient(new WebViewClient());// 当点击超链地址后不会新打开浏览器来访问，而是始终在本app中浏览页面
 //web_hangdetail.setWebViewClient(new MyWebViewClient());
         // 设置可以支持缩放
         web_hangdetail.getSettings().setSupportZoom(true);

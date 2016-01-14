@@ -52,6 +52,7 @@ public class BasicInformationActivity extends BaseActivity {
     private View view_company_address;
     private TextView tv_company_basic_info;
     private TextView tv_company_address_basic_info;
+    private TextView tv_trueName;
 
 
     @Override
@@ -85,6 +86,7 @@ public class BasicInformationActivity extends BaseActivity {
         et_guding_basic_info = (EditText) findViewById(R.id.et_guding_basic_info);
         tv_change_basic_info = (TextView) findViewById(R.id.tv_change_basic_info);
         et_qq_basic_info = (EditText) findViewById(R.id.et_qq_basic_info);
+        tv_trueName = (TextView) findViewById(R.id.tv_trueName);
         if ((login.getPshUser().getUserTName()==null||"".equals(login.getPshUser().getUserTName()))||
                 (login.getPshUser().getUserId()==null||"".equals(login.getPshUser().getUserId()))
                 ||( (login.getPshUser().getUserEmail()==null||"".equals(login.getPshUser().getUserEmail())))){
@@ -167,6 +169,7 @@ public class BasicInformationActivity extends BaseActivity {
                     view_company.setVisibility(View.GONE);
                     ll_company_address.setVisibility(View.GONE);
                     view_company_address.setVisibility(View.GONE);
+                    tv_trueName.setText("真实姓名");
                 }else {
                     //公司
                     ll_company.setVisibility(View.VISIBLE);
@@ -175,6 +178,7 @@ public class BasicInformationActivity extends BaseActivity {
                     view_company_address.setVisibility(View.VISIBLE);
                     tv_company_basic_info.setText(user.getUserCompany());
                     tv_company_address_basic_info.setText(user.getUserAddres());
+                    tv_trueName.setText("负责人姓名");
                 }
             }
         }

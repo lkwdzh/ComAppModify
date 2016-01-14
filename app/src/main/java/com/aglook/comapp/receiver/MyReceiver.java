@@ -116,6 +116,7 @@ public class MyReceiver extends BroadcastReceiver {
             intent1.putExtra("className", "消息");
             intent1.putExtra("isMessage", true);
             intent1.putExtra("isReceiver", true);
+            intent1.putExtra("isWebview",false);
             intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             context.startActivity(intent1);

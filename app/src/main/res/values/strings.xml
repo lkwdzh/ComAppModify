@@ -11,7 +11,7 @@
     <string name="title_activity_guide">GuideActivity</string>
     <string name="title_activity_find_password">FindPasswordActivity</string>
 
-    <!-- 商品详情 -->
+    <!-- 商品详情 GoodsDetailActivity-->
     <string name="title_activity_goods_detail">GoodsDetailActivity</string>
     <string name="goods_detail_cangdanhao">仓单号：</string>
     <string name="goods_detail_huowuzhonglei">货物种类：</string>
@@ -29,7 +29,7 @@
     <string name="goods_detail_gouwuche">购物车</string>
     <string name="goods_detail_add_cart">加入购物车</string>
 
-    <!-- 基本信息 -->
+    <!-- 基本信息 BasicInformationActivity-->
     <string name="title_activity_basic_information">BasicInformationActivity</string>
     <string name="basic_information_icon">头像</string>
     <string name="basic_information_name">用户名</string>

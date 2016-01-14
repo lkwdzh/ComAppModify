@@ -8,13 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +22,8 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.ToxicBakery.viewpager.transforms.ABaseTransformer;
+import com.ToxicBakery.viewpager.transforms.DefaultTransformer;
 import com.aglook.comapp.Activity.ClassifyActivity;
 import com.aglook.comapp.Activity.HelpCenterActivity;
 import com.aglook.comapp.Activity.LoginActivity;
@@ -48,43 +45,33 @@ import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.CustomProgress;
+import com.aglook.comapp.view.LocalImageHolderView;
 import com.aglook.comapp.view.MyExpandableListView;
 import com.aglook.comapp.view.MyGridView;
+import com.bigkoo.convenientbanner.ConvenientBanner;
+import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by aglook on 2015/10/26.
  */
-public class HomePageFragment extends Fragment implements ViewPager.OnPageChangeListener, View.OnClickListener {
+public class HomePageFragment extends Fragment implements View.OnClickListener {
     private List<Information> inList;
     private List<String> list = new ArrayList<>();
-    //    private RecycleHomePageAdapter adapter;
-    private ViewPager vp_home_page_head;
     private int index = 0;
 
-    //    private static final int POINT_LENGTH = 4;
     private int mCurrentIndex;
     private int mCurrentPagePosition = FIRST_ITEM_INDEX;
     private static final int FIRST_ITEM_INDEX = 0;
     private boolean mIsChanged = false;
     private CustomProgress customProgress;
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            if (msg.what == 1) {
-//                viewpager自动切换
-                vp_home_page_head.setCurrentItem(index % 5);
-                handler.sendEmptyMessageDelayed(1, 3000);
-                index++;
-            }
-        }
-    };
     private PullToRefreshScrollView sv_homepage;
     private RelativeLayout rl_search_homepage_fragment;
 
@@ -105,19 +92,18 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     private int scrollLength;
     // 点点资源数组
     private ImageView[] tips;
-    private ViewGroup viewGroup;
 
     private boolean isLogin = false;
-    private RelativeLayout rl_viewpager;
-    //    private int count=0;
 
-
+    private ConvenientBanner convenientBanner;
+    private ArrayList<Integer> localImages = new ArrayList<Integer>();
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = View.inflate(getActivity(), R.layout.layout_homepage_fragment, null);
         comAppApplication = (ComAppApplication) getActivity().getApplication();
         initView(view);
+        addView();
 //        Log.d("result_login", isLogin + "___");
         getData();
 
@@ -149,10 +135,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     public void initView(View view) {
         mList = new ArrayList<>();
         inList = new ArrayList<>();
-//        scrollList = new ArrayList<>();
-//        adapter = new RecycleHomePageAdapter(getActivity(),inList);
-        vp_home_page_head = (ViewPager) view.findViewById(R.id.vp_home_page_head);
-        rl_viewpager = (RelativeLayout) view.findViewById(R.id.rl_viewpager);
+        convenientBanner = (ConvenientBanner) view.findViewById(R.id.convenientBanner);
         sv_homepage = (PullToRefreshScrollView) view.findViewById(R.id.sv_homepage);
         mgv_homePage = (MyGridView) view.findViewById(R.id.mgv_homePage);
         melv_homePage = (MyExpandableListView) view.findViewById(R.id.melv_homePage);
@@ -169,18 +152,8 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         });
 //        令scrollview显示顶部
         sv_homepage.getRefreshableView().smoothScrollBy(0, 0);
-//        rv_homepage = (RecyclerView) view.findViewById(R.id.rv_homepage);
 
         customProgress = CustomProgress.show(getActivity(), "", true);
-
-
-        viewGroup = (ViewGroup) view.findViewById(R.id.viewGroup);
-        MyFramentPageAdapter myViewPagerAdapter = new MyFramentPageAdapter(getChildFragmentManager());
-                        vp_home_page_head.setAdapter(myViewPagerAdapter);
-                        setTips();
-                        handler.sendEmptyMessageDelayed(1, 3000);
-        vp_home_page_head.setOnPageChangeListener(this);
-        vp_home_page_head.setCurrentItem(mCurrentPagePosition, false);
 
 
         sv_homepage.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
@@ -191,12 +164,60 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         //获取屏幕宽度
 
         int widgh = getActivity().getWindowManager().getDefaultDisplay().getWidth();
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, (int)(widgh/1.81));
-        vp_home_page_head.setLayoutParams(params);
-        LinearLayout.LayoutParams llparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int)(widgh/1.81));
-        rl_viewpager.setLayoutParams(llparams);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int)(widgh/1.81));
+        convenientBanner.setLayoutParams(params);
     }
 
+    //填充图片
+    public void addView(){
+        for (int i = 1; i < 6; i++) {
+            localImages.add(getResId("viewpage" + i, R.drawable.class));
+        }
+
+        String transforemerName = (DefaultTransformer.class.getSimpleName());
+        try {
+            Class cls = Class.forName("com.ToxicBakery.viewpager.transforms." + transforemerName);
+            ABaseTransformer transforemer= (ABaseTransformer)cls.newInstance();
+            convenientBanner.getViewPager().setPageTransformer(true,transforemer);
+
+            //部分3D特效需要调整滑动速度
+            if(transforemerName.equals("StackTransformer")){
+                convenientBanner.setScrollDuration(1200);
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (java.lang.InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        convenientBanner.setPages(new CBViewHolderCreator<LocalImageHolderView>() {
+            @Override
+            public LocalImageHolderView createHolder() {
+                return new LocalImageHolderView();
+            }
+        },localImages)
+                .setPageIndicator(new int[]{R.drawable.ic_page_indicator, R.drawable.ic_page_indicator_focused});
+
+    }
+    /**
+     * 通过文件名获取资源id 例子：getResId("icon", R.drawable.class);
+     *
+     * @param variableName
+     * @param c
+     * @return
+     */
+    public static int getResId(String variableName, Class<?> c) {
+        try {
+            Field idField = c.getDeclaredField(variableName);
+            return idField.getInt(idField);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
     //接收广播
     private BroadcastReceiver myReceiver2 = new BroadcastReceiver() {
         @Override
@@ -240,6 +261,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                         getId(className);
                         intent.putExtra("classId", classId);
                         intent.putExtra("className", className);
+                        intent.putExtra("isWebview",false);
                         startActivity(intent);
                         break;
                     case 1:
@@ -248,6 +270,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                         getId(className);
                         intent.putExtra("classId", classId);
                         intent.putExtra("className", className);
+                        intent.putExtra("isWebview",false);
                         startActivity(intent);
                         break;
                     case 2:
@@ -256,6 +279,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                         getId(className);
                         intent1.putExtra("classId", classId);
                         intent1.putExtra("className", className);
+                        intent.putExtra("isWebview",false);
                         startActivity(intent1);
                         break;
                     case 3:
@@ -264,6 +288,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                         getId(className);
                         intent.putExtra("classId", classId);
                         intent.putExtra("className", className);
+                        intent.putExtra("isWebview",false);
                         startActivity(intent);
                         break;
                     case 4:
@@ -272,6 +297,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                         getId(className);
                         intent.putExtra("classId", classId);
                         intent.putExtra("className", className);
+                        intent.putExtra("isWebview",false);
                         startActivity(intent);
                         break;
                     case 5:
@@ -280,6 +306,7 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
                         getId(className);
                         intent.putExtra("classId", classId);
                         intent.putExtra("className", className);
+                        intent.putExtra("isWebview",false);
                         startActivity(intent);
                         break;
                     case 6:
@@ -326,25 +353,6 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
         }
     }
 
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-        setCurrentDot(position);
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-        if (ViewPager.SCROLL_STATE_IDLE == state) {
-            if (mIsChanged) {
-                mIsChanged = false;
-                vp_home_page_head.setCurrentItem(mCurrentPagePosition, false);
-            }
-        }
-    }
 
     @Override
     public void onClick(View v) {
@@ -390,53 +398,21 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        //开始自动翻页
+        convenientBanner.startTurning(3000);
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
-        handler.removeMessages(1);
-    }
-
-    class MyFramentPageAdapter extends FragmentPagerAdapter {
-        public MyFramentPageAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return HomePageViewPagerFragment.myFragment(position);
-        }
-
-        @Override
-        public int getCount() {
-            return 5;
-        }
+        //停止翻页
+        convenientBanner.stopTurning();
     }
 
 
-    //设置点数
-    public void setTips() {
-//        if (scrollLength > 0) {
 
-            // 将小点点装入ViewGroup
-            tips = new ImageView[5];
-            for (int i = 0; i < tips.length; i++) {
-                ImageView imageTip = new ImageView(getActivity());
-                imageTip.setLayoutParams(new ViewGroup.LayoutParams(200, 200));
-                tips[i] = imageTip;
-                if (i == 0) {
-                    tips[i].setBackgroundResource(R.drawable.checked);
-                } else {
-                    tips[i].setBackgroundResource(R.drawable.checked_no);
-                }
-
-                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                        new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                                ViewGroup.LayoutParams.WRAP_CONTENT));
-                layoutParams.leftMargin = 20;
-                layoutParams.rightMargin = 20;
-                viewGroup.addView(imageTip, layoutParams);
-            }
-//        }
-    }
 
     private List<HomePage> mList;
 
@@ -588,22 +564,6 @@ public class HomePageFragment extends Fragment implements ViewPager.OnPageChange
     }
 
 
-//    //选择平台仓单与仓单的对话框
-//    private Dialog dialog;
-//
-//    public void showDailog() {
-//        LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        View view = layoutInflater.inflate(R.layout.layout_home_dialog, null);
-//        tv_cangdan_home = (TextView) view.findViewById(R.id.tv_cangdan_home);
-//        tv_plat_home = (TextView) view.findViewById(R.id.tv_plat_home);
-//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//        builder.create();
-//        builder.setView(view);
-////        builder.setCancelable(false);
-//        dialog = builder.show();
-//        tv_cangdan_home.setOnClickListener(this);
-//        tv_plat_home.setOnClickListener(this);
-//    }
     private Dialog dialog;
     private TextView tv_delete_order;
 

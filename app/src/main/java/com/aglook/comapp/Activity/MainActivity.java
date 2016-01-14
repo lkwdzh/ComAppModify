@@ -160,6 +160,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
             intent1.putExtra("className", "消息");
             intent1.putExtra("isMessage", true);
             intent1.putExtra("isReceiver", true);
+            intent1.putExtra("isWebview",false);
             startActivity(intent1);
         }
         checkUpdate();

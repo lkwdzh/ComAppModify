@@ -302,6 +302,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 intent.setClass(getActivity(), ZiXunListActivity.class);
                 intent.putExtra("isMessage", true);
                 intent.putExtra("className", "消息");
+                intent.putExtra("isWebview",false);
                 startActivity(intent);
 //                }
                 break;

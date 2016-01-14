@@ -61,7 +61,7 @@ public class HelpCenterActivity extends BaseActivity {
                 Intent intent = new Intent();
                 intent.setClass(HelpCenterActivity.this, ZiXunListActivity.class);
                 intent.putExtra("className", mList.get(position).getClassName());
-
+                intent.putExtra("isWebview",false);
                 intent.putExtra("classId", mList.get(position).getClassId());
                 startActivity(intent);
             }

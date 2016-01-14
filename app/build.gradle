@@ -30,7 +30,10 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.0.0'
     compile project(':pullToRefreshLibrary')
     compile 'com.android.support:recyclerview-v7:22.0.0'
-//    compile 'com.umeng.analytics:analytics:latest.integration'
+    //    compile 'com.umeng.analytics:analytics:latest.integration'
+    compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile project(':convenientbanner')
 }
 
 //allprojects {
