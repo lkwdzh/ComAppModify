@@ -3,6 +3,7 @@ package com.aglook.comapp.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,7 +67,7 @@ public class ConfirmOrderActivity extends BaseActivity {
 
     //选择地址
     public final int CHOOSE_ADDRESS = 1;
-    private final int FAPIAO=2;
+    private final int FAPIAO = 2;
 
     private String defaultFlag = "1";//1默认 0 非默认（非必须）
     private TextView tv_isNull;
@@ -77,7 +78,7 @@ public class ConfirmOrderActivity extends BaseActivity {
     private TextView tv_address;
     private TextView tv_diqu;
 
-    private String taitou,content;//发票信息
+    private String taitou, content;//发票信息
     private String addressId;//用户地址
 
     @Override
@@ -167,7 +168,7 @@ public class ConfirmOrderActivity extends BaseActivity {
         for (int i = 0; i < mList.size(); i++) {
             ShoppingCart cart = mList.get(i);
             goodsMoney += cart.getProductMoney() * cart.getProductNum();
-            goodsMoney=Double.parseDouble(df.format(goodsMoney));
+            goodsMoney = Double.parseDouble(df.format(goodsMoney));
             costMoney += cart.getCostMoney();
             String format = df.format(costMoney);
             costMoney = Double.parseDouble(format);
@@ -230,8 +231,8 @@ public class ConfirmOrderActivity extends BaseActivity {
                 //线判断是否绑定银行号，若绑定则确认订单并支付，否则，先绑定
                 if (DefineUtil.BANKBAND) {
                     //获取发票地址与信息
-                    if (address!=null){
-                        addressId=String.valueOf(address.getId());
+                    if (address != null) {
+                        addressId = String.valueOf(address.getId());
                     }
                     getData();
                 } else {
@@ -249,14 +250,14 @@ public class ConfirmOrderActivity extends BaseActivity {
                     //传递id判断
                     intent.putExtra("id", address.getId());
                 }
-                intent.putExtra("isFromConfirm",true);
+                intent.putExtra("isFromConfirm", true);
                 startActivityForResult(intent, CHOOSE_ADDRESS);
                 break;
             case R.id.tv_diqu:
-                intent.setClass(ConfirmOrderActivity.this,FaPiaoActivity.class);
-                intent.putExtra("taitou",taitou);
-                intent.putExtra("content",content);
-                startActivityForResult(intent,FAPIAO);
+                intent.setClass(ConfirmOrderActivity.this, FaPiaoActivity.class);
+                intent.putExtra("taitou", taitou);
+                intent.putExtra("content", content);
+                startActivityForResult(intent, FAPIAO);
                 break;
         }
     }
@@ -266,9 +267,9 @@ public class ConfirmOrderActivity extends BaseActivity {
         if (requestCode == CHOOSE_ADDRESS && resultCode == RESULT_OK) {
             address = (Address) data.getSerializableExtra("selectAddress");
             fillAddress();
-        }else if (requestCode==FAPIAO&&resultCode==RESULT_OK){
-            taitou=data.getStringExtra("taitou");
-            content=data.getStringExtra("content");
+        } else if (requestCode == FAPIAO && resultCode == RESULT_OK) {
+            taitou = data.getStringExtra("taitou");
+            content = data.getStringExtra("content");
             tv_diqu.setText(taitou);
         }
     }
@@ -321,11 +322,11 @@ public class ConfirmOrderActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-//                Log.d("result_confirmOrder", cartids + "--------" + arg0.result);
+                Log.d("result_confirmOrder", cartids + "--------" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
-                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
                 if (status.equals("1")) {
+                    String obj = JsonUtils.getJsonParam(arg0.result, "obj");
                     //TODO 成功后，会调用支付,获取订单号
                     orderId = JsonUtils.getJsonParam(obj, "orderId");
                     money = JsonUtils.getJsonParam(obj, "money");
@@ -337,12 +338,12 @@ public class ConfirmOrderActivity extends BaseActivity {
 //                    Log.d("result_confirm_De", DefineUtil.BANKBAND + "");
 //                    Log.d("result_confirm_con", comAppApplication.getLogin() + "");
 //                    Log.d("result_confirm", comAppApplication.getLogin().isBankBind() + "");
-                        Intent intent = new Intent(ConfirmOrderActivity.this, PayActivity.class);
-                        intent.putExtra("orderId", orderId);
-                        intent.putExtra("money", money);
-                        startActivity(intent);
+                    Intent intent = new Intent(ConfirmOrderActivity.this, PayActivity.class);
+                    intent.putExtra("orderId", orderId);
+                    intent.putExtra("money", money);
+                    startActivity(intent);
 //                    ConfirmOrderActivity.this.setResult(1);
-                        ConfirmOrderActivity.this.finish();
+                    ConfirmOrderActivity.this.finish();
                 } else {
                     AppUtils.toastText(ConfirmOrderActivity.this, message);
                 }
@@ -352,7 +353,7 @@ public class ConfirmOrderActivity extends BaseActivity {
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        }.datePostCheck(DefineUtil.CREATE_ORDER, ConfirmOrderUrl.postConfirmOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartids, String.valueOf(allMoney), text, String.valueOf(costMoney),addressId,taitou,content), ConfirmOrderActivity.this);
+        }.datePostCheck(DefineUtil.CREATE_ORDER, ConfirmOrderUrl.postConfirmOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartids, String.valueOf(allMoney), text, String.valueOf(costMoney), addressId, taitou, content), ConfirmOrderActivity.this);
     }
 
 

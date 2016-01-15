@@ -414,9 +414,9 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
 //                Log.d("result_main_login", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
-                String str = JsonUtils.getJsonParam(arg0.result, "obj");
-                login = JsonUtils.parse(str, Login.class);
                 if (status.equals("1")) {//登录成功,跳转页面
+                    String str = JsonUtils.getJsonParam(arg0.result, "obj");
+                    login = JsonUtils.parse(str, Login.class);
                     DefineUtil.TOKEN = login.getToken();
                     DefineUtil.USERID = login.getPshUser().getUserId();
                     DefineUtil.BANKBAND = login.isBankBind();

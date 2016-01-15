@@ -8,8 +8,10 @@ import java.util.regex.Pattern;
 
 /**
  * Created by aglook on 2016/1/7.
+ * 匹配电话号与车牌号
  */
 public class PatternNum {
+    //电话号
     public static boolean isMobileNO(String mobiles) {
         Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9])|(17[0,6,7,8])|(14[5,7]))\\d{8}$");
 

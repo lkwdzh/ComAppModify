@@ -49,12 +49,12 @@ public class PayUrl {
             e.printStackTrace();
         }
 
-        String url = "code=" + "2002" + "&content=" +Base64.encodeToString(content.getBytes(), Base64.DEFAULT) + "&merchantNo=" + DefineUtil.MERCHANTNO + "&serviceScope=" +
+        String url = "code=" + "2001" + "&content=" +Base64.encodeToString(content.getBytes(), Base64.DEFAULT) + "&merchantNo=" + DefineUtil.MERCHANTNO + "&serviceScope=" +
                 DefineUtil.SERVICESCOPE + "&signType=" + DefineUtil.SIGNTYPE + "&version=" + DefineUtil.VERSON;
         url=url.replaceAll("\\n","");
         String ss = MD5.ss(url, "xxxxxxxx");
 
-        String uu=DefineUtil.PAY+"?sign="+ss+"&code=2002&merchantNo="+DefineUtil.MERCHANTNO+"&serviceScope="
+        String uu=DefineUtil.PAY+"?sign="+ss+"&code=2001&merchantNo="+DefineUtil.MERCHANTNO+"&serviceScope="
                 +DefineUtil.SERVICESCOPE+"&signType="+DefineUtil.SIGNTYPE+"&version="+DefineUtil.VERSON+"&content="
                 +Base64.encodeToString(content.getBytes(), Base64.DEFAULT);
         uu=uu.replaceAll("\\n","");

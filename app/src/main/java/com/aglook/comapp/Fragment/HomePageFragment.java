@@ -96,7 +96,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private boolean isLogin = false;
 
     private ConvenientBanner convenientBanner;
-    private ArrayList<Integer> localImages = new ArrayList<Integer>();
+    private ArrayList<Integer> localImages;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -164,12 +165,13 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         //获取屏幕宽度
 
         int widgh = getActivity().getWindowManager().getDefaultDisplay().getWidth();
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int)(widgh/1.81));
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) (widgh / 1.81));
         convenientBanner.setLayoutParams(params);
     }
 
     //填充图片
-    public void addView(){
+    public void addView() {
+        localImages = new ArrayList<Integer>();
         for (int i = 1; i < 6; i++) {
             localImages.add(getResId("viewpage" + i, R.drawable.class));
         }
@@ -177,11 +179,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         String transforemerName = (DefaultTransformer.class.getSimpleName());
         try {
             Class cls = Class.forName("com.ToxicBakery.viewpager.transforms." + transforemerName);
-            ABaseTransformer transforemer= (ABaseTransformer)cls.newInstance();
-            convenientBanner.getViewPager().setPageTransformer(true,transforemer);
+            ABaseTransformer transforemer = (ABaseTransformer) cls.newInstance();
+            convenientBanner.getViewPager().setPageTransformer(true, transforemer);
 
             //部分3D特效需要调整滑动速度
-            if(transforemerName.equals("StackTransformer")){
+            if (transforemerName.equals("StackTransformer")) {
                 convenientBanner.setScrollDuration(1200);
             }
 
@@ -198,10 +200,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             public LocalImageHolderView createHolder() {
                 return new LocalImageHolderView();
             }
-        },localImages)
+        }, localImages)
                 .setPageIndicator(new int[]{R.drawable.ic_page_indicator, R.drawable.ic_page_indicator_focused});
 
     }
+
     /**
      * 通过文件名获取资源id 例子：getResId("icon", R.drawable.class);
      *
@@ -218,6 +221,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             return -1;
         }
     }
+
     //接收广播
     private BroadcastReceiver myReceiver2 = new BroadcastReceiver() {
         @Override
@@ -231,7 +235,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (MainActivity.instance!=null) {
+        if (MainActivity.instance != null) {
             getActivity().unregisterReceiver(myReceiver2);
         }
     }
@@ -261,7 +265,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                         getId(className);
                         intent.putExtra("classId", classId);
                         intent.putExtra("className", className);
-                        intent.putExtra("isWebview",false);
+                        intent.putExtra("isWebview", false);
                         startActivity(intent);
                         break;
                     case 1:
@@ -270,7 +274,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                         getId(className);
                         intent.putExtra("classId", classId);
                         intent.putExtra("className", className);
-                        intent.putExtra("isWebview",false);
+                        intent.putExtra("isWebview", false);
                         startActivity(intent);
                         break;
                     case 2:
@@ -279,7 +283,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                         getId(className);
                         intent1.putExtra("classId", classId);
                         intent1.putExtra("className", className);
-                        intent.putExtra("isWebview",false);
+                        intent.putExtra("isWebview", false);
                         startActivity(intent1);
                         break;
                     case 3:
@@ -288,7 +292,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                         getId(className);
                         intent.putExtra("classId", classId);
                         intent.putExtra("className", className);
-                        intent.putExtra("isWebview",false);
+                        intent.putExtra("isWebview", false);
                         startActivity(intent);
                         break;
                     case 4:
@@ -297,7 +301,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                         getId(className);
                         intent.putExtra("classId", classId);
                         intent.putExtra("className", className);
-                        intent.putExtra("isWebview",false);
+                        intent.putExtra("isWebview", false);
                         startActivity(intent);
                         break;
                     case 5:
@@ -306,12 +310,12 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                         getId(className);
                         intent.putExtra("classId", classId);
                         intent.putExtra("className", className);
-                        intent.putExtra("isWebview",false);
+                        intent.putExtra("isWebview", false);
                         startActivity(intent);
                         break;
                     case 6:
 //                        showDailog();
-                        intent.setClass(getActivity(),HelpCenterActivity.class);
+                        intent.setClass(getActivity(), HelpCenterActivity.class);
                         startActivity(intent);
                         break;
                     case 7:
@@ -400,6 +404,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
+//        addView();
         //开始自动翻页
         convenientBanner.startTurning(3000);
     }
@@ -407,11 +412,10 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onPause() {
         super.onPause();
+//        ConvenientBanner.mPointViews.clear();
         //停止翻页
         convenientBanner.stopTurning();
     }
-
-
 
 
     private List<HomePage> mList;
@@ -433,13 +437,13 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 List<HomePageList> listAppoint = new ArrayList<HomePageList>();
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
-                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
-                if (obj != null && !"".equals(obj)) {
-                    String pointProduct = JsonUtils.getJsonParam(obj, "pointProduct");
-                    String ProductList = JsonUtils.getJsonParam(obj, "productList");
-                    list = JsonUtils.parseList(ProductList, HomePage.class);
-                    listAppoint = JsonUtils.parseList(pointProduct, HomePageList.class);
-                    if (status.equals("1")) {
+                if (status.equals("1")) {
+                    String obj = JsonUtils.getJsonParam(arg0.result, "obj");
+                    if (obj != null && !"".equals(obj)) {
+                        String pointProduct = JsonUtils.getJsonParam(obj, "pointProduct");
+                        String ProductList = JsonUtils.getJsonParam(obj, "productList");
+                        list = JsonUtils.parseList(ProductList, HomePage.class);
+                        listAppoint = JsonUtils.parseList(pointProduct, HomePageList.class);
                         //假如成功,给每个实体加上标识，并且将指定的list放在首位
                         if (isLogin) {
 //                            Log.d("result_mList", "mList.toString()");
