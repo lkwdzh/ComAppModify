@@ -32,8 +32,12 @@
                     android:padding="@dimen/px_20"
                     android:layout_marginLeft="@dimen/px_40"
                     android:text="1.修改模式介绍跳转功能" />
-
-
+                <View style="@style/line_1" />
+                <TextView
+                    style="@style/grayTextView_666666_13"
+                    android:padding="@dimen/px_20"
+                    android:layout_marginLeft="@dimen/px_40"
+                    android:text="2.修复了更新的问题，请下载最新版本" />
                 <View style="@style/line_1" />
 
             </LinearLayout>

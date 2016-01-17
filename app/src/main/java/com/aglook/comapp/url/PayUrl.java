@@ -19,19 +19,20 @@ public class PayUrl {
 
     /**
      * 企业
+     *
      * @param orderId
      * @param userId
      * @param amount
      * @param money
      * @return
      */
-    public static String  postPay(String orderId, String userId, String amount, String money) {
+    public static String postPay(String orderId, String userId, String amount, String money) {
         params = new RequestParams();
         JSONObject jsonObject = new JSONObject();
         JSONObject object = new JSONObject();
         try {
-            object.put("payType","online");
-            object.put("money",money);
+            object.put("payType", "online");
+            object.put("money", money);
             JSONArray jsonArray = new JSONArray();
             jsonArray.add(object);
             jsonObject.put("orderId", orderId);
@@ -49,15 +50,15 @@ public class PayUrl {
             e.printStackTrace();
         }
 
-        String url = "code=" + "2001" + "&content=" +Base64.encodeToString(content.getBytes(), Base64.DEFAULT) + "&merchantNo=" + DefineUtil.MERCHANTNO + "&serviceScope=" +
+        String url = "code=" + "2001" + "&content=" + Base64.encodeToString(content.getBytes(), Base64.DEFAULT) + "&merchantNo=" + DefineUtil.MERCHANTNO + "&serviceScope=" +
                 DefineUtil.SERVICESCOPE + "&signType=" + DefineUtil.SIGNTYPE + "&version=" + DefineUtil.VERSON;
-        url=url.replaceAll("\\n","");
+        url = url.replaceAll("\\n", "");
         String ss = MD5.ss(url, "xxxxxxxx");
 
-        String uu=DefineUtil.PAY+"?sign="+ss+"&code=2001&merchantNo="+DefineUtil.MERCHANTNO+"&serviceScope="
-                +DefineUtil.SERVICESCOPE+"&signType="+DefineUtil.SIGNTYPE+"&version="+DefineUtil.VERSON+"&content="
-                +Base64.encodeToString(content.getBytes(), Base64.DEFAULT);
-        uu=uu.replaceAll("\\n","");
+        String uu = DefineUtil.PAY + "?sign=" + ss + "&code=2001&merchantNo=" + DefineUtil.MERCHANTNO + "&serviceScope="
+                + DefineUtil.SERVICESCOPE + "&signType=" + DefineUtil.SIGNTYPE + "&version=" + DefineUtil.VERSON + "&content="
+                + Base64.encodeToString(content.getBytes(), Base64.DEFAULT);
+        uu = uu.replaceAll("\\n", "");
 //        Log.d("result_uu——1",uu);
 
 
@@ -66,19 +67,20 @@ public class PayUrl {
 
     /**
      * 个人支付
+     *
      * @param orderId
      * @param userId
      * @param amount
      * @param money
      * @return
      */
-    public static String  postPayPer(String orderId, String userId, String amount, String money) {
+    public static String postPayPer(String orderId, String userId, String amount, String money) {
         params = new RequestParams();
         JSONObject jsonObject = new JSONObject();
         JSONObject object = new JSONObject();
         try {
-            object.put("payType","online");
-            object.put("money",money);
+            object.put("payType", "online");
+            object.put("money", money);
             JSONArray jsonArray = new JSONArray();
             jsonArray.add(object);
             jsonObject.put("orderId", orderId);
@@ -96,15 +98,15 @@ public class PayUrl {
             e.printStackTrace();
         }
 
-        String url = "code=" + "1003" + "&content=" +Base64.encodeToString(content.getBytes(), Base64.DEFAULT) + "&merchantNo=" + DefineUtil.MERCHANTNO + "&serviceScope=" +
+        String url = "code=" + "1003" + "&content=" + Base64.encodeToString(content.getBytes(), Base64.DEFAULT) + "&merchantNo=" + DefineUtil.MERCHANTNO + "&serviceScope=" +
                 DefineUtil.SERVICESCOPEPER + "&signType=" + DefineUtil.SIGNTYPE + "&version=" + DefineUtil.VERSON;
-        url=url.replaceAll("\\n","");
+        url = url.replaceAll("\\n", "");
         String ss = MD5.ss(url, "xxxxxxxx");
 
-        String uu=DefineUtil.PAY+"?sign="+ss+"&code=1003&merchantNo="+DefineUtil.MERCHANTNO+"&serviceScope="
-                +DefineUtil.SERVICESCOPEPER+"&signType="+DefineUtil.SIGNTYPE+"&version="+DefineUtil.VERSON+"&content="
-                +Base64.encodeToString(content.getBytes(), Base64.DEFAULT);
-        uu=uu.replaceAll("\\n","");
+        String uu = DefineUtil.PAY + "?sign=" + ss + "&code=1003&merchantNo=" + DefineUtil.MERCHANTNO + "&serviceScope="
+                + DefineUtil.SERVICESCOPEPER + "&signType=" + DefineUtil.SIGNTYPE + "&version=" + DefineUtil.VERSON + "&content="
+                + Base64.encodeToString(content.getBytes(), Base64.DEFAULT);
+        uu = uu.replaceAll("\\n", "");
 //        Log.d("result_uu——2",uu);
 
 

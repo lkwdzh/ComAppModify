@@ -212,11 +212,11 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
                                 if (forcedUpdate == 0) {
                                     //非强制
                                     isForce = false;
-                                    tv_delete_order.setText("检测到有新版本，确认更新?");
+//                                    tv_delete_order.setText("检测到有新版本，确认更新?");
                                 } else if (forcedUpdate == 1) {
                                     //强制
                                     isForce = true;
-                                    tv_delete_order.setText("检测到有重要版本，确认更新?");
+//                                    tv_delete_order.setText("检测到有重要版本，确认更新?");
                                 }
                                 showDailog(isForce);
                             }
