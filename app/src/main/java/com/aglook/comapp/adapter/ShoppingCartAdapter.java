@@ -217,6 +217,8 @@ public class ShoppingCartAdapter extends BaseAdapter {
                 total += list.get(i).getTotal();
             }
         }
+        num=Double.parseDouble(decimalFormat.format(num));
+        total=Double.parseDouble(decimalFormat.format(total));
         callBackData.callBack(num, total);
     }
 

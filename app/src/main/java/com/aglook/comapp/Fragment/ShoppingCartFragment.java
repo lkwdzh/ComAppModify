@@ -42,6 +42,7 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,7 +85,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
     private View emptyView;
     private View viewAll;
     private LinearLayout ll_cb_bottom;
-
+    private DecimalFormat decimalFormat = new DecimalFormat("#.00");
     //选中的list
 //    private List<ShoppingCart>selectedList=new ArrayList<>();
     @Override
@@ -467,6 +468,7 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                         for (int i = 0; i < mList.size(); i++) {
                             num+=mList.get(i).getProductNum();
                             mList.get(i).setChecked(true);
+
                             DefineUtil.NUM=num;
                         }
 

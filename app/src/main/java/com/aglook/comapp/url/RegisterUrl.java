@@ -42,7 +42,7 @@ public class RegisterUrl {
         params.addBodyParameter("userCompany",userCompany);
         params.addBodyParameter("userAddres",userAddres);
         params.addBodyParameter("userCode",userCode);
-//        Log.d("result_params",new Gson().toJson(params));
+//        Log.d("result_params", new Gson().toJson(params));
         return params;
     }
 }

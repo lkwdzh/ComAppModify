@@ -2,6 +2,7 @@ package com.aglook.comapp.Activity;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -243,7 +244,7 @@ public class RegisterActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-//                Log.d("result_getPhoneCode", arg0.result);
+                Log.d("result_getPhoneCode", arg0.result);
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 if (status.equals("1")) {

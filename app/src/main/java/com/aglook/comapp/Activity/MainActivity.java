@@ -44,6 +44,7 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.umeng.analytics.MobclickAgent;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,7 +64,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
 
     private String password;
     private boolean isLogin;
-
+    private DecimalFormat decimalFormat = new DecimalFormat("#.00");
     private String appName = "com.aglook.comapp";
     //Fragment集合
     private Class fragmentArray[] = {
@@ -455,6 +456,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
                         for (int i = 0; i < list.size(); i++) {
                             DefineUtil.NUM += list.get(i).getProductNum();
                         }
+                        DefineUtil.NUM=Double.parseDouble(decimalFormat.format(DefineUtil.NUM));
                         if (DefineUtil.NUM != 0) {
                             tv_shopping_point.setVisibility(View.VISIBLE);
                             tv_shopping_point.setText(DefineUtil.NUM + "");

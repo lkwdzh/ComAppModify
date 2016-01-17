@@ -34,6 +34,7 @@ import com.aglook.comapp.util.XHttpuTools;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class LoginActivity extends BaseActivity {
     private SpinnerAdapter adapter;
     private TextView tv_name;
     private TextView tv_register;
-
+    private DecimalFormat decimalFormat = new DecimalFormat("#.00");
     @Override
     public void initView() {
         setContentView(R.layout.activity_login);
@@ -219,6 +220,7 @@ public class LoginActivity extends BaseActivity {
                     if (list != null && list.size() != 0) {
                         for (int i = 0; i < list.size(); i++) {
                             DefineUtil.NUM+=list.get(i).getProductNum();
+                            DefineUtil.NUM=Double.parseDouble(decimalFormat.format(DefineUtil.NUM));
                         }
                     }
                     Intent intent = new Intent();
