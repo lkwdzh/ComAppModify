@@ -32,6 +32,7 @@ public class AllGuaDanActivity extends BaseActivity {
     private List<GuaDanList> mList = new ArrayList<>();
     private GuaDan guaDan;
     private String code = "4001";
+
     private int pageNum = 1;
     private int pageSize = 10;
     private String _sort;
