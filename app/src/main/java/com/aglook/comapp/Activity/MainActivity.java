@@ -227,7 +227,6 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-
             }
         }.datePostCheck(DefineUtil.CHECK_UPDATE, MainUrl.postCheckUpUrl(appName, channel), MainActivity.this);
     }
