@@ -33,6 +33,7 @@ public class HelpCenterActivity extends BaseActivity {
     private List<Information> mList = new ArrayList<>();
     private ListView lv_help_center;
     private HelpCenterAdapter adapter;
+
     //    private TextView tv_lc_help;
     private View emptyView;
 
