@@ -1,8 +1,8 @@
 package com.aglook.comapp.Activity;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -158,15 +158,15 @@ public class RegisterActivity extends BaseActivity {
             return;
         }
         if (userName.length() < 6) {
-            AppUtils.toastText(RegisterActivity.this, "请输入6-15位字符");
+            AppUtils.toastText(RegisterActivity.this, "用户名请输入6-15位字符");
             return;
         }
         if (userPw == null || "".equals(userPw)) {
             AppUtils.toastText(RegisterActivity.this, "请输入密码");
             return;
         }
-        if (userName.length() < 6) {
-            AppUtils.toastText(RegisterActivity.this, "请输入6-20位字符");
+        if (userPw.length() < 6) {
+            AppUtils.toastText(RegisterActivity.this, "密码请输入6-20位字符");
             return;
         }
 
@@ -244,10 +244,14 @@ public class RegisterActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_getPhoneCode", arg0.result);
+//                Log.d("result_getPhoneCode", arg0.result);
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 if (status.equals("1")) {
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    intent.putExtra("username",userName);
+                    intent.putExtra("password",userPw);
+                    RegisterActivity.this.setResult(RESULT_OK,intent);
                     RegisterActivity.this.finish();
                 } else {
                     AppUtils.toastText(RegisterActivity.this, message);

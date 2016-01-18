@@ -9,12 +9,12 @@ public class DefineUtil {
     //    测试环境端口
 //    public static String URL_HOST = "http://192.168.1.118:8080/payment/";
 //    public static String URL_HOST = "http://192.168.1.105:8080/payment/";
-//    public static String URL_HOST = "http://trade.decxgroup.com/trade/";
+    public static String URL_HOST = "http://trade.decxgroup.com/trade/";
 
     /**
      * 正式环境
      */
-    public static String URL_HOST = "http://www.decxgroup.com/trade/";
+//    public static String URL_HOST = "http://www.decxgroup.com/trade/";
 
     //    登录
     public static String LOGIN_IN = URL_HOST + "login-in";
@@ -192,6 +192,14 @@ public class DefineUtil {
      */
     public static String CHECK_UPDATE = URL_HOST + "phone/appVersion/check";
 
+    /**
+     * 找回密码
+     */
+    public static String FIND_PASSWORD=URL_HOST+"userInfo/getBackPassword";
+    /**
+     * 找回密码验证码
+     */
+    public static String FIND_PWD_CODE=URL_HOST+"userInfo/getPhoneCodeForGetBackPwd";
 
     //程序是否启动
     public static boolean IS_LAUNCH = false;

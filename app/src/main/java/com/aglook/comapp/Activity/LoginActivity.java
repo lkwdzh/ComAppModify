@@ -61,6 +61,10 @@ public class LoginActivity extends BaseActivity {
     private TextView tv_name;
     private TextView tv_register;
     private DecimalFormat decimalFormat = new DecimalFormat("#.00");
+    private TextView tv_find_password;
+    private final int LOGIN_TO_REGISTER=0;
+    private final int LOGIN_TO_FINDPWD=1;
+
     @Override
     public void initView() {
         setContentView(R.layout.activity_login);
@@ -86,6 +90,7 @@ public class LoginActivity extends BaseActivity {
         }
         tv_name.setText("用户名：");
         tv_register = (TextView) findViewById(R.id.tv_register);
+        tv_find_password = (TextView) findViewById(R.id.tv_find_password);
         fillData();
     }
 
@@ -105,6 +110,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void click() {
+        tv_find_password.setOnClickListener(this);
         btn_login.setOnClickListener(this);
         tv_name.setOnClickListener(this);
         ll_top.setOnTouchListener(new View.OnTouchListener() {
@@ -140,13 +146,13 @@ public class LoginActivity extends BaseActivity {
                 mEditor.putString("accountType", accountType);
                 mEditor.putString("password", password);
                 mEditor.commit();
-                if (userName==null||"".equals(userName)){
-                    AppUtils.toastText(LoginActivity.this,"用户名或席位号不能为空");
+                if (userName == null || "".equals(userName)) {
+                    AppUtils.toastText(LoginActivity.this, "用户名或席位号不能为空");
                     return;
                 }
 
-                if (password==null||"".equals(password)){
-                    AppUtils.toastText(LoginActivity.this,"密码不能为空");
+                if (password == null || "".equals(password)) {
+                    AppUtils.toastText(LoginActivity.this, "密码不能为空");
                     return;
                 }
                 login();
@@ -155,12 +161,29 @@ public class LoginActivity extends BaseActivity {
                 showWindow(view);
                 break;
             case R.id.tv_register:
-                intent.setClass(LoginActivity.this,RegisterActivity.class);
-                startActivity(intent);
+                intent.setClass(LoginActivity.this, RegisterActivity.class);
+                startActivityForResult(intent, LOGIN_TO_REGISTER);
+                break;
+            case R.id.tv_find_password:
+                intent.setClass(LoginActivity.this, FindPasswordActivity.class);
+                startActivityForResult(intent, LOGIN_TO_FINDPWD);
                 break;
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==LOGIN_TO_REGISTER&&resultCode==RESULT_OK){
+            userName=data.getStringExtra("username");
+            password=data.getStringExtra("password");
+            et_username_login.setText(userName);
+            et_password_login.setText(password);
+        }else if (requestCode==LOGIN_TO_FINDPWD&&resultCode==RESULT_OK){
+            password=data.getStringExtra("password");
+            et_password_login.setText(password);
+        }
+    }
 
     //登录账户
     public void login() {
@@ -180,20 +203,20 @@ public class LoginActivity extends BaseActivity {
                     comAppApplication.setLogin(login);
                     // 发送广播给MainActivity
                     //如果真实姓名，身份证与邮箱有一个为空，则去个人信息页面完善
-                    if ((login.getPshUser().getUserTName()==null||"".equals(login.getPshUser().getUserTName()))||
-                            (login.getPshUser().getUserId()==null||"".equals(login.getPshUser().getUserId()))
-                            ||( (login.getPshUser().getUserEmail()==null||"".equals(login.getPshUser().getUserEmail())))){
+                    if ((login.getPshUser().getUserTName() == null || "".equals(login.getPshUser().getUserTName())) ||
+                            (login.getPshUser().getUserId() == null || "".equals(login.getPshUser().getUserId()))
+                            || ((login.getPshUser().getUserEmail() == null || "".equals(login.getPshUser().getUserEmail())))) {
                         Intent intent = new Intent(LoginActivity.this, BasicInformationActivity.class);
                         LoginActivity.this.setResult(1);
                         LoginActivity.this.finish();
                         startActivity(intent);
-                    }else {
+                    } else {
 
                         LoginActivity.this.setResult(1);
                         LoginActivity.this.finish();
                     }
-                        getCartListData();
-                        getNotPayData();
+                    getCartListData();
+                    getNotPayData();
                 }
                 AppUtils.toastText(LoginActivity.this, message);
             }
@@ -201,7 +224,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
             }
-        }.datePostCheck(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType,DefineUtil.DEVICE_NUM), LoginActivity.this);
+        }.datePostCheck(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType, DefineUtil.DEVICE_NUM), LoginActivity.this);
     }
 
     //    获取购物车列表
@@ -216,11 +239,11 @@ public class LoginActivity extends BaseActivity {
                 List<ShoppingCart> list = new ArrayList<ShoppingCart>();
                 list = JsonUtils.parseList(obj, ShoppingCart.class);
                 if (status.equals("1")) {
-                    DefineUtil.NUM=0;
+                    DefineUtil.NUM = 0;
                     if (list != null && list.size() != 0) {
                         for (int i = 0; i < list.size(); i++) {
-                            DefineUtil.NUM+=list.get(i).getProductNum();
-                            DefineUtil.NUM=Double.parseDouble(decimalFormat.format(DefineUtil.NUM));
+                            DefineUtil.NUM += list.get(i).getProductNum();
+                            DefineUtil.NUM = Double.parseDouble(decimalFormat.format(DefineUtil.NUM));
                         }
                     }
                     Intent intent = new Intent();

@@ -29,7 +29,7 @@
                     style="@style/save_TextView_666666_13_center"
                     android:maxLength="15"
                     android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                    android:hint="请输入6-15位字符" />
+                    android:hint="请输入6-15位字符(数字/字母)" />
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -45,7 +45,8 @@
                     style="@style/save_TextView_666666_13_center"
                     android:inputType="textPassword"
                     android:maxLength="20"
-                    android:hint="请输入6-20位字符" />
+                    android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:hint="请输入6-20位字符(数字/字母)" />
             </LinearLayout>
 
             <View style="@style/line_1" />

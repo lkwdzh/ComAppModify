@@ -262,6 +262,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
             unregisterReceiver(myReceiver);
         }
         DefineUtil.IS_LAUNCH = false;
+        ExitApplication.getInstance().exit();
     }
 
     private BroadcastReceiver myReceiver = new BroadcastReceiver() {
