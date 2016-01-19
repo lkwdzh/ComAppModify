@@ -1,0 +1,151 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ll_match_content_ver"
+    android:background="@color/gray_eeeeee">
+
+
+    <include layout="@layout/activity_base_title_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            style="@style/ll_match_content_ver"
+            android:background="@color/gray_eeeeee">
+
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/basic_infor_ll_weight">
+
+                <TextView
+                    style="@style/company_basic_infor_TextView_333333_13"
+                    android:text="单位名称" />
+
+                <TextView
+                    android:id="@+id/et_cmompanyName_bill"
+                    style="@style/company_basic_infor_edittext_weight_13"
+                    android:hint="请输入单位名称" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="必须是您公司营业执照上的全称" />
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/basic_infor_ll_weight">
+
+                <TextView
+                    style="@style/company_basic_infor_TextView_333333_13"
+                    android:text="纳税人识别号" />
+
+                <EditText
+                    android:id="@+id/tv_num_bill"
+                    android:digits="1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:hint="请输入纳税人识别号"
+                    style="@style/company_basic_infor_edittext_weight_13" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="必须是您公司《税务登记证》的编号，一般为15位，请仔细核对后输入" />
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/basic_infor_ll_weight">
+
+                <TextView
+                    style="@style/company_basic_infor_TextView_333333_13"
+                    android:text="注册地址" />
+
+                <EditText
+                    android:id="@+id/tv_companyAddres_bill"
+                    android:hint="请输入注册地址"
+                    style="@style/company_basic_infor_edittext_weight_13" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="必须是您公司营业执照上的注册地址" />
+
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/basic_infor_ll_weight">
+
+                <TextView
+                    style="@style/company_basic_infor_TextView_333333_13"
+                    android:text="电话" />
+
+                <EditText
+                    android:id="@+id/tv_phone_bill"
+                    android:inputType="phone"
+                    android:hint="请输入电话号码"
+                    style="@style/company_basic_infor_edittext_weight_13" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="请提供能与您公司保持联系的有效电话" />
+
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/basic_infor_ll_weight">
+
+                <TextView
+                    android:id="@+id/tv_trueName"
+                    style="@style/company_basic_infor_TextView_333333_13"
+                    android:text="开户银行" />
+
+                <EditText
+                    android:id="@+id/et_bank_bill"
+                    style="@style/company_basic_infor_edittext_weight_13"
+                    android:hint="请输入开户银行" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="必须是您公司银行开户许可证上的开户银行" />
+
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/basic_infor_ll_weight">
+
+                <TextView
+                    style="@style/company_basic_infor_TextView_333333_13"
+                    android:text="银行账号" />
+
+                <EditText
+                    android:id="@+id/et_bankNum_bill"
+                    style="@style/company_basic_infor_edittext_weight_13"
+                    android:digits="1234567890xX"
+                    android:maxLength="18"
+                    android:hint="请输入必须是您公司银行开户许可证上的开户银行" />
+            </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="必须是您公司开户许可证上的银行账号" />
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -25,6 +25,116 @@ public class LoginPshUser implements Serializable {
     private String userCompany;//公司名称
     private String userAddres;//公司地址
 
+
+    /**
+     * 普通发票税号
+     */
+    private String userInvoice;
+    /**
+     * 增值发票税号
+     */
+    private String userInvoices;
+    /**
+     * 经理姓名
+     */
+    private String userJname;
+    /**
+     * 增值税发票公司名称
+     */
+    private String userCaty;
+    /**
+     * 增值税发票纳税人识别号
+     */
+    private String userNnumb;
+    /**
+     * 增值税发票注册地址
+     */
+    private String userZcdz;
+    /**
+     * 增值税发票公司电话
+     */
+    private String userTels;
+    /**
+     * 增值税发票开户银行
+     */
+    private String userBanks;
+    /**
+     * 增值税发票银行账户
+     */
+    private String userBnumb;
+
+    public String getUserInvoice() {
+        return userInvoice;
+    }
+
+    public void setUserInvoice(String userInvoice) {
+        this.userInvoice = userInvoice;
+    }
+
+    public String getUserInvoices() {
+        return userInvoices;
+    }
+
+    public void setUserInvoices(String userInvoices) {
+        this.userInvoices = userInvoices;
+    }
+
+    public String getUserJname() {
+        return userJname;
+    }
+
+    public void setUserJname(String userJname) {
+        this.userJname = userJname;
+    }
+
+    public String getUserCaty() {
+        return userCaty;
+    }
+
+    public void setUserCaty(String userCaty) {
+        this.userCaty = userCaty;
+    }
+
+    public String getUserNnumb() {
+        return userNnumb;
+    }
+
+    public void setUserNnumb(String userNnumb) {
+        this.userNnumb = userNnumb;
+    }
+
+    public String getUserZcdz() {
+        return userZcdz;
+    }
+
+    public void setUserZcdz(String userZcdz) {
+        this.userZcdz = userZcdz;
+    }
+
+    public String getUserTels() {
+        return userTels;
+    }
+
+    public void setUserTels(String userTels) {
+        this.userTels = userTels;
+    }
+
+    public String getUserBanks() {
+        return userBanks;
+    }
+
+    public void setUserBanks(String userBanks) {
+        this.userBanks = userBanks;
+    }
+
+    public String getUserBnumb() {
+        return userBnumb;
+    }
+
+    public void setUserBnumb(String userBnumb) {
+        this.userBnumb = userBnumb;
+    }
+
     public int getUserType() {
         return userType;
     }
@@ -181,6 +291,15 @@ public class LoginPshUser implements Serializable {
                 ", userType=" + userType +
                 ", userCompany='" + userCompany + '\'' +
                 ", userAddres='" + userAddres + '\'' +
+                ", userInvoice='" + userInvoice + '\'' +
+                ", userInvoices='" + userInvoices + '\'' +
+                ", userJname='" + userJname + '\'' +
+                ", userCaty='" + userCaty + '\'' +
+                ", userNnumb='" + userNnumb + '\'' +
+                ", userZcdz='" + userZcdz + '\'' +
+                ", userTels='" + userTels + '\'' +
+                ", userBanks='" + userBanks + '\'' +
+                ", userBnumb='" + userBnumb + '\'' +
                 '}';
     }
 }

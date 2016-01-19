@@ -21,6 +21,7 @@ public class PersonInformationActivity extends BaseActivity {
     private TextView tv_name_person_info;
     private ComAppApplication comAppApplication;
     private TextView tv_address_person_info;
+    private TextView tv_bill_person_info;
 
     @Override
     public void initView() {
@@ -42,6 +43,7 @@ public class PersonInformationActivity extends BaseActivity {
         tv_friend_person_info = (TextView) findViewById(R.id.tv_friend_person_info);
         tv_name_person_info = (TextView) findViewById(R.id.tv_name_person_info);
         tv_address_person_info = (TextView) findViewById(R.id.tv_address_person_info);
+        tv_bill_person_info = (TextView) findViewById(R.id.tv_bill_person_info);
     }
     public void click(){
         tv_basic_infor_peson_info.setOnClickListener(this);
@@ -50,6 +52,7 @@ public class PersonInformationActivity extends BaseActivity {
         tv_driver_person_info.setOnClickListener(this);
         tv_friend_person_info.setOnClickListener(this);
         tv_address_person_info.setOnClickListener(this);
+        tv_bill_person_info.setOnClickListener(this);
     }
 
     public void fillData(){
@@ -93,6 +96,10 @@ public class PersonInformationActivity extends BaseActivity {
                 break;
             case R.id.tv_address_person_info:
                 intent.setClass(PersonInformationActivity.this,AddressListActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.tv_bill_person_info:
+                intent.setClass(PersonInformationActivity.this,BillActivity.class);
                 startActivity(intent);
                 break;
         }

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -161,7 +162,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
             intent1.putExtra("className", "消息");
             intent1.putExtra("isMessage", true);
             intent1.putExtra("isReceiver", true);
-            intent1.putExtra("isWebview",false);
+            intent1.putExtra("isWebview", false);
             startActivity(intent1);
         }
         checkUpdate();
@@ -186,7 +187,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
             @Override
             public void initViews(ResponseInfo<String> arg0) {
 //                Log.d("result_check", arg0.result);
-                if (arg0.result != null && !"".equals(arg0.result)&&!"null".equals(arg0.result)) {
+                if (arg0.result != null && !"".equals(arg0.result) && !"null".equals(arg0.result)) {
                     String status = JsonUtils.getJsonParam(arg0.result, "status");
                     if (status != null && !"".equals(status)) {
 
@@ -393,7 +394,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (System.currentTimeMillis() - exitTime > 2000) {
-                AppUtils.toastText(MainActivity.this, "再按一次退出程序");
+                AppUtils.toastTextNew(MainActivity.this, "再按一次退出程序");
                 exitTime = System.currentTimeMillis();
             } else {
                 finish();
@@ -405,9 +406,6 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
 
     //登录账户
     public void login() {
-//        TelephonyManager TelephonyMgr = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
-//        String szImei = TelephonyMgr.getDeviceId();
-//        Log.d("szImei",szImei);
         new XHttpuTools() {
 
             @Override
@@ -423,6 +421,12 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
                     DefineUtil.BANKBAND = login.isBankBind();
 //                    Log.d("result_login_main", DefineUtil.BANKBAND + "");
                     comAppApplication.setLogin(login);
+                    if ((login.getPshUser().getUserNumber() == null || "".equals(login.getPshUser().getUserNumber()))) {
+                        infoDialog();
+                        //假如信息为空，则去填写
+
+                    }
+
                     getCartListData();
                     getNotPayData();
                     isLogin = true;
@@ -438,6 +442,31 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
             public void failureInitViews(HttpException arg0, String arg1) {
             }
         }.datePostCheck(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType, DefineUtil.DEVICE_NUM), MainActivity.this);
+    }
+
+    //登录后跳转去完善信息的dialog
+    public void infoDialog(){
+        AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage("您的信息尚未完善，请先完善信息");
+        builder.setTitle("提示");
+        builder.setPositiveButton("确认",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                //如果是个人
+                if (login.getPshUser().getUserType() == 2) {
+                    Intent intent = new Intent(MainActivity.this, BasicInformationActivity.class);
+                    startActivity(intent);
+
+                } else if (login.getPshUser().getUserType() == 1) {
+                    //跳转到公司界面
+                    Intent intent = new Intent(MainActivity.this, CompanyInfoActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+        builder.setCancelable(false);
+        builder.create().show();
     }
 
     //    获取购物车列表
@@ -457,7 +486,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
                         for (int i = 0; i < list.size(); i++) {
                             DefineUtil.NUM += list.get(i).getProductNum();
                         }
-                        DefineUtil.NUM=Double.parseDouble(decimalFormat.format(DefineUtil.NUM));
+                        DefineUtil.NUM = Double.parseDouble(decimalFormat.format(DefineUtil.NUM));
                         if (DefineUtil.NUM != 0) {
                             tv_shopping_point.setVisibility(View.VISIBLE);
                             tv_shopping_point.setText(DefineUtil.NUM + "");

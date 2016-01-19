@@ -12,7 +12,6 @@ import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.url.SettingUrl;
-import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
@@ -138,7 +137,6 @@ public class SettingActivity extends BaseActivity {
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
                 if (status.equals("1")){
                     //成功退出
-                    AppUtils.toastText(SettingActivity.this,"退出成功");
                     comAppApplication.setLogin(null);
                     SettingActivity.this.finish();
                 }

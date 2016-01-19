@@ -11,7 +11,7 @@
     <string name="title_activity_guide">GuideActivity</string>
     <string name="title_activity_find_password">FindPasswordActivity</string>
 
-    <!-- 商品详情 GoodsDetailActivity-->
+    <!-- 商品详情 GoodsDetailActivity -->
     <string name="title_activity_goods_detail">GoodsDetailActivity</string>
     <string name="goods_detail_cangdanhao">仓单号：</string>
     <string name="goods_detail_huowuzhonglei">货物种类：</string>
@@ -29,7 +29,7 @@
     <string name="goods_detail_gouwuche">购物车</string>
     <string name="goods_detail_add_cart">加入购物车</string>
 
-    <!-- 基本信息 BasicInformationActivity-->
+    <!-- 基本信息 BasicInformationActivity -->
     <string name="title_activity_basic_information">BasicInformationActivity</string>
     <string name="basic_information_icon">头像</string>
     <string name="basic_information_name">用户名</string>
@@ -87,7 +87,7 @@
     <string name="mine_fragment_my_cang">我的仓单</string>
     <string name="mine_fragment_my_cang_dan">仓单</string>
     <string name="title_activity_band_card">BandCardActivity</string>
-    <string name="band_card_name">姓名</string>
+    <string name="band_card_name">银行账户</string>
     <string name="bang_card_num">卡号</string>
     <string name="bang_card_bank">银行</string>
     <string name="bang_card_phone">预留手机号</string>
@@ -107,7 +107,7 @@
     <string name="title_activity_to_receive">ToReceiveActivity</string>
     <string name="title_activity_card_list">CardListActivity</string>
     <string name="basic_information_true_name">真实姓名</string>
-    //我的仓单                                                                                                                                <string name="title_activity_my_cang_dan">MyCangDanActivity</string>
+    //我的仓单        <string name="title_activity_my_cang_dan">MyCangDanActivity</string>
     <string name="house_num_my_cangdan">仓单编号</string>
     <string name="in_time_my_cangdan">入仓时间：</string>
     <string name="type_lv_lv">类型：</string>
@@ -116,7 +116,7 @@
     <string name="weight_lv_lv">重量：</string>
     <string name="trans_all_order_lv">仓单交易</string>
     <string name="tihuo_all_order_lv">提货</string>
-    //平台仓单                                                                                                                                <string name="title_activity_platform">PlatformActivity</string>
+    //平台仓单        <string name="title_activity_platform">PlatformActivity</string>
     <string name="platform_house_num">仓单号</string>
     <string name="platform_in_time">入仓时间</string>
     <string name="platform_goods_name">货物名称</string>
@@ -169,5 +169,7 @@
     <string name="title_activity_intro">IntroActivity</string>
     <string name="title_activity_index">IndexActivity</string>
     <string name="title_activity_image">ImageActivity</string>
+    <string name="title_activity_company_info">CompanyInfoActivity</string>
+    <string name="title_activity_bill">BillActivity</string>
 
 </resources>

@@ -62,8 +62,8 @@ public class LoginActivity extends BaseActivity {
     private TextView tv_register;
     private DecimalFormat decimalFormat = new DecimalFormat("#.00");
     private TextView tv_find_password;
-    private final int LOGIN_TO_REGISTER=0;
-    private final int LOGIN_TO_FINDPWD=1;
+    private final int LOGIN_TO_REGISTER = 0;
+    private final int LOGIN_TO_FINDPWD = 1;
 
     @Override
     public void initView() {
@@ -174,13 +174,13 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==LOGIN_TO_REGISTER&&resultCode==RESULT_OK){
-            userName=data.getStringExtra("username");
-            password=data.getStringExtra("password");
+        if (requestCode == LOGIN_TO_REGISTER && resultCode == RESULT_OK) {
+            userName = data.getStringExtra("username");
+            password = data.getStringExtra("password");
             et_username_login.setText(userName);
             et_password_login.setText(password);
-        }else if (requestCode==LOGIN_TO_FINDPWD&&resultCode==RESULT_OK){
-            password=data.getStringExtra("password");
+        } else if (requestCode == LOGIN_TO_FINDPWD && resultCode == RESULT_OK) {
+            password = data.getStringExtra("password");
             et_password_login.setText(password);
         }
     }
@@ -203,13 +203,22 @@ public class LoginActivity extends BaseActivity {
                     comAppApplication.setLogin(login);
                     // 发送广播给MainActivity
                     //如果真实姓名，身份证与邮箱有一个为空，则去个人信息页面完善
-                    if ((login.getPshUser().getUserTName() == null || "".equals(login.getPshUser().getUserTName())) ||
-                            (login.getPshUser().getUserId() == null || "".equals(login.getPshUser().getUserId()))
-                            || ((login.getPshUser().getUserEmail() == null || "".equals(login.getPshUser().getUserEmail())))) {
-                        Intent intent = new Intent(LoginActivity.this, BasicInformationActivity.class);
-                        LoginActivity.this.setResult(1);
-                        LoginActivity.this.finish();
-                        startActivity(intent);
+                    if ((login.getPshUser().getUserNumber() == null || "".equals(login.getPshUser().getUserNumber()))) {
+                        //假如信息为空，则去填写
+                        //如果是个人
+                        if (login.getPshUser().getUserType() == 2) {
+                            Intent intent = new Intent(LoginActivity.this, BasicInformationActivity.class);
+                            LoginActivity.this.setResult(1);
+                            LoginActivity.this.finish();
+                            startActivity(intent);
+
+                        } else if (login.getPshUser().getUserType() == 1) {
+                            //跳转到公司界面
+                            Intent intent = new Intent(LoginActivity.this, CompanyInfoActivity.class);
+                            LoginActivity.this.setResult(1);
+                            LoginActivity.this.finish();
+                            startActivity(intent);
+                        }
                     } else {
 
                         LoginActivity.this.setResult(1);
@@ -217,14 +226,17 @@ public class LoginActivity extends BaseActivity {
                     }
                     getCartListData();
                     getNotPayData();
+                }else {
+                    AppUtils.toastTextNew(LoginActivity.this,message);
                 }
-                AppUtils.toastText(LoginActivity.this, message);
             }
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
             }
-        }.datePostCheck(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType, DefineUtil.DEVICE_NUM), LoginActivity.this);
+        }.datePostCheck(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType, DefineUtil.DEVICE_NUM), LoginActivity
+
+                                .this);
     }
 
     //    获取购物车列表

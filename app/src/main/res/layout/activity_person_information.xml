@@ -156,6 +156,26 @@
                 android:visibility="visible"
                 android:textColor="@color/textcolor_333333"
                 android:textSize="15sp" />
+            <View style="@style/line_1" />
+
+            <View
+                style="@style/line_1"
+                android:visibility="visible"
+                android:layout_marginTop="@dimen/px_14" />
+
+            <TextView
+                android:id="@+id/tv_bill_person_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:drawableLeft="@drawable/address"
+                android:drawableRight="@drawable/next"
+                android:gravity="center_vertical"
+                android:padding="@dimen/px_14"
+                android:text="发票信息"
+                android:visibility="visible"
+                android:textColor="@color/textcolor_333333"
+                android:textSize="15sp" />
 
             <View
                 style="@style/line_1"

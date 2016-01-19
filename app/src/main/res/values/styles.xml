@@ -4,7 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
     </style>
-<!-- LinearLayout与RelativeLa布局-->
+    <!-- LinearLayout与RelativeLa布局-->
     <style name="ll_match_content_hor">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -45,6 +45,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>
     </style>
+
     <style name="ll_match_content_ver_white">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -255,6 +256,18 @@
         <item name="android:layout_weight">1</item>
     </style>
 
+    <!--基本信息-->
+    <!--黑色333333的textview_15sp_-->
+    <style name="company_basic_infor_TextView_333333_13" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/textcolor_333333</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">@dimen/px_25</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
     <style name="basic_infor_ll_weight">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/px_70</item>
@@ -279,6 +292,17 @@
     </style>
 
 
+    <style name="company_basic_infor_edittext_weight_13">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">@dimen/px_10</item>
+        <item name="android:layout_weight">3</item>
+        <item name="android:background">@null</item>
+        <item name="android:textColorHint">@color/textcolor_999999</item>
+        <item name="android:textColor">@color/textcolor_666666</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">13sp</item>
+    </style>
     <!--挂单详情-->
     <style name="guadan_ll_weight">
         <item name="android:layout_width">match_parent</item>
@@ -311,6 +335,7 @@
         <item name="android:layout_marginLeft">@dimen/px_25</item>
         <item name="android:layout_weight">1</item>
     </style>
+
     <style name="guadan_edittext_weight">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
@@ -322,6 +347,7 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:textSize">15sp</item>
     </style>
+
     <style name="register_edittext_weight">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
@@ -333,6 +359,7 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:textSize">13sp</item>
     </style>
+
     <style name="guadan_edittext_weight_1">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
@@ -502,6 +529,7 @@
         <item name="android:paddingTop">@dimen/px_10</item>
         <item name="android:paddingBottom">@dimen/px_10</item>
     </style>
+
     <style name="imageview_px120">
         <item name="android:layout_width">@dimen/px_120</item>
         <item name="android:layout_height">@dimen/px_120</item>
@@ -534,21 +562,24 @@
     </style>
 
 
-        <style name="dialog" parent="@android:style/Theme.Dialog">
-            <item name="android:windowFrame">@null</item><!--边框-->
-            <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
-            <item name="android:windowIsTranslucent">false</item><!--半透明-->
-            <item name="android:windowNoTitle">true</item>
-            <item name="android:background">@android:color/transparent</item>
-            <item name="android:windowBackground">@null</item>
-            <item name="android:backgroundDimEnabled">false</item><!--模糊-->
+    <style name="dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!--边框-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">false</item>
+        <!--半透明-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <!--模糊-->
 
-            <item name="android:windowContentOverlay">@null</item>
-            <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
-            <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
 
-        </style>
-
+    </style>
 
 
     <!--我的界面的weightsum=3的linearlayout-->
@@ -590,5 +621,19 @@
         <item name="android:paddingTop">@dimen/px_20</item>
         <item name="android:paddingBottom">@dimen/px_20</item>
     </style>
+
+    <!--提醒文字-->
+    <style name="remind_TextView_666666_11_center" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/textcolor_666666</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/px_20</item>
+        <item name="android:paddingRight">@dimen/px_20</item>
+        <item name="android:paddingTop">@dimen/px_10</item>
+        <item name="android:paddingBottom">@dimen/px_10</item>
+    </style>
+
 </resources>
 

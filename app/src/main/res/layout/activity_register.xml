@@ -34,6 +34,12 @@
 
             <View style="@style/line_1" />
 
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="请输入6-15位字符(只支持字母与数字)" />
+
+            <View style="@style/line_1" />
+
             <LinearLayout style="@style/ll_match_wrap_content_horWe3">
 
                 <TextView
@@ -48,6 +54,12 @@
                     android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:hint="请输入6-20位字符(数字/字母)" />
             </LinearLayout>
+
+            <View style="@style/line_1" />
+
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="请输入6-20位字符(只支持字母与数字)" />
 
             <View style="@style/line_1" />
 
@@ -184,6 +196,13 @@
                 </LinearLayout>
 
                 <View style="@style/line_1" />
+
+                <TextView
+                    style="@style/remind_TextView_666666_11_center"
+                    android:text="请填写公司名称一经填写不能修改" />
+
+                <View style="@style/line_1" />
+
                 <LinearLayout style="@style/ll_match_wrap_content_horWe3">
 
                     <TextView
@@ -198,6 +217,10 @@
                 </LinearLayout>
 
                 <View style="@style/line_1" />
+
+                <TextView
+                    style="@style/remind_TextView_666666_11_center"
+                    android:text="请填写公司地址一经填写不能修改" />
 
 
             </LinearLayout>

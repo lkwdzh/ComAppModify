@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
 public class BasicInformationActivity extends BaseActivity {
 
     private TextView right_text;
-//    private RelativeLayout rl_right;
+    //    private RelativeLayout rl_right;
     private TextView et_username_basic_info;
     private EditText et_truename_basic_info;
     private TextView tv_seat_basic_info;
@@ -87,9 +87,7 @@ public class BasicInformationActivity extends BaseActivity {
         tv_change_basic_info = (TextView) findViewById(R.id.tv_change_basic_info);
         et_qq_basic_info = (EditText) findViewById(R.id.et_qq_basic_info);
         tv_trueName = (TextView) findViewById(R.id.tv_trueName);
-        if ((login.getPshUser().getUserTName()==null||"".equals(login.getPshUser().getUserTName()))||
-                (login.getPshUser().getUserId()==null||"".equals(login.getPshUser().getUserId()))
-                ||( (login.getPshUser().getUserEmail()==null||"".equals(login.getPshUser().getUserEmail())))){
+        if ((login.getPshUser().getUserNumber() == null || "".equals(login.getPshUser().getUserNumber()))) {
             //有一个为空
             left_icon.setVisibility(View.GONE);
             et_truename_basic_info.setFocusable(true);
@@ -105,7 +103,7 @@ public class BasicInformationActivity extends BaseActivity {
             et_num_basic_info.requestFocus();
 
 
-        }else {
+        } else {
             left_icon.setVisibility(View.VISIBLE);
             et_truename_basic_info.setFocusable(false);
             et_truename_basic_info.setFocusableInTouchMode(false);
@@ -132,11 +130,9 @@ public class BasicInformationActivity extends BaseActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            if ((login.getPshUser().getUserTName()==null||"".equals(login.getPshUser().getUserTName()))||
-                    (login.getPshUser().getUserId()==null||"".equals(login.getPshUser().getUserId()))
-                    ||( (login.getPshUser().getUserEmail()==null||"".equals(login.getPshUser().getUserEmail())))){
+            if ((login.getPshUser().getUserNumber() == null || "".equals(login.getPshUser().getUserNumber()))) {
                 return true;
-            }else {
+            } else {
                 BasicInformationActivity.this.finish();
                 return false;
             }
@@ -145,6 +141,7 @@ public class BasicInformationActivity extends BaseActivity {
         }
 
     }
+
     //填充数据
     public void fillData() {
         if (login != null) {
@@ -158,19 +155,19 @@ public class BasicInformationActivity extends BaseActivity {
                 et_qq_basic_info.setText(user.getUserQq());
                 et_guding_basic_info.setText(user.getUserTel());
                 et_phone_basic_info.setText(user.getUserPhone());
-                userMoney=user.getUserMoney();
-                userPoint=user.getUserPoint();
-                userAllPoint=user.getUserAllPoint();
-                userAddress=user.getUserAddress();
-                userSeat=user.getUserSeat();
-                if (user.getUserType()==2){
+                userMoney = user.getUserMoney();
+                userPoint = user.getUserPoint();
+                userAllPoint = user.getUserAllPoint();
+                userAddress = user.getUserAddress();
+                userSeat = user.getUserSeat();
+                if (user.getUserType() == 2) {
                     //个人
                     ll_company.setVisibility(View.GONE);
                     view_company.setVisibility(View.GONE);
                     ll_company_address.setVisibility(View.GONE);
                     view_company_address.setVisibility(View.GONE);
                     tv_trueName.setText("真实姓名");
-                }else {
+                } else {
                     //公司
                     ll_company.setVisibility(View.VISIBLE);
                     view_company.setVisibility(View.VISIBLE);
@@ -213,29 +210,23 @@ public class BasicInformationActivity extends BaseActivity {
             public void initViews(ResponseInfo<String> arg0) {
 //                Log.d("result_basinfo", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
-                String status=JsonUtils.getJsonParam(arg0.result,"status");
-                if (status.equals("1")){
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                if (status.equals("1")) {
                     finish();
                     LoginPshUser pshUser = login.getPshUser();
-//                    if (userQq!=null&&!"".equals(userQq)){
-//                        pshUser.setUserQq(userQq);
-//                    }
-//                    if (userTel!=null&&!"".equals(userTel)){
-//                        pshUser.setUserTel(userTel);
-//                    }
-                    if (userEmail!=null&&!"".equals(userEmail)){
+                    if (userEmail != null && !"".equals(userEmail)) {
                         pshUser.setUserEmail(userEmail);
                     }
-                    if (userNumber!=null&&!"".equals(userNumber)){
+                    if (userNumber != null && !"".equals(userNumber)) {
                         pshUser.setUserNumber(userNumber);
                     }
-                    if (userPhone!=null&&!"".equals(userPhone)){
+                    if (userPhone != null && !"".equals(userPhone)) {
                         pshUser.setUserPhone(userPhone);
                     }
-                    if (username!=null&&!"".equals(username)){
+                    if (username != null && !"".equals(username)) {
                         pshUser.setUsername(username);
                     }
-                    if (userTName!=null&&!"".equals(userTName)){
+                    if (userTName != null && !"".equals(userTName)) {
                         pshUser.setUserTName(userTName);
                     }
 
@@ -247,7 +238,7 @@ public class BasicInformationActivity extends BaseActivity {
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        }.datePostUp(DefineUtil.PERSON_UPDATE, BasicInformationUrl.postBasicInfoUpdateUrl(DefineUtil.USERID, DefineUtil.TOKEN, userTName,userNumber,userPhone,userEmail,userTel,userQq,userMoney,userPoint,userAllPoint,username,userAddress,userSeat), BasicInformationActivity.this);
+        }.datePostUp(DefineUtil.PERSON_UPDATE, BasicInformationUrl.postBasicInfoUpdateUrl(DefineUtil.USERID, DefineUtil.TOKEN, userTName, userNumber, userPhone, userEmail, userTel, userQq, userMoney, userPoint, userAllPoint, username, userAddress, userSeat), BasicInformationActivity.this);
     }
 
     //获取输入内容
@@ -260,35 +251,35 @@ public class BasicInformationActivity extends BaseActivity {
         userPhone = AppUtils.toStringTrim_ET(et_phone_basic_info);
         username = AppUtils.toStringTrim_TV(et_username_basic_info);
         userTName = AppUtils.toStringTrim_ET(et_truename_basic_info);
-        if (userTName==null||"".equals(userTName)){
-            AppUtils.toastText(BasicInformationActivity.this,"真实姓名不能为空");
+        if (userTName == null || "".equals(userTName)) {
+            AppUtils.toastText(BasicInformationActivity.this, "真实姓名不能为空");
             return;
         }
-        if (userNumber==null||"".equals(userNumber)){
-            AppUtils.toastText(BasicInformationActivity.this,"身份证号不能为空");
+        if (userNumber == null || "".equals(userNumber)) {
+            AppUtils.toastText(BasicInformationActivity.this, "身份证号不能为空");
             return;
         }
         //判断身份证格式
-        String ss= IDCard.IDCardValidate(userNumber);
-        if (!"".equals(ss)){
-            AppUtils.toastText(BasicInformationActivity.this,ss);
+        String ss = IDCard.IDCardValidate(userNumber);
+        if (!"".equals(ss)) {
+            AppUtils.toastText(BasicInformationActivity.this, ss);
             return;
         }
-        if (userEmail==null||"".equals(userEmail)){
-            AppUtils.toastText(BasicInformationActivity.this,"邮箱不能为空");
+        if (userEmail == null || "".equals(userEmail)) {
+            AppUtils.toastText(BasicInformationActivity.this, "邮箱不能为空");
             return;
         }
         //判断邮箱格式
-        if (!isEmail(userEmail)){
-            AppUtils.toastText(BasicInformationActivity.this,"邮箱格式不正确");
+        if (!isEmail(userEmail)) {
+            AppUtils.toastText(BasicInformationActivity.this, "邮箱格式不正确");
             return;
         }
-        if (userPhone==null||"".equals(userPhone)){
-            AppUtils.toastText(BasicInformationActivity.this,"手机号不能为空");
+        if (userPhone == null || "".equals(userPhone)) {
+            AppUtils.toastText(BasicInformationActivity.this, "手机号不能为空");
             return;
         }
-        if (userPhone.length()!=11){
-            AppUtils.toastText(BasicInformationActivity.this,"请输入11位手机号");
+        if (userPhone.length() != 11) {
+            AppUtils.toastText(BasicInformationActivity.this, "请输入11位手机号");
             return;
         }
         updata();
