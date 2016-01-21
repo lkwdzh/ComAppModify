@@ -1,2 +1,2 @@
-include ':app', ':convenientbanner'
+include ':app', ':convenientbanner', ':library'
 include ':pullToRefreshLibrary'
