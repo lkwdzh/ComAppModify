@@ -55,24 +55,20 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/textcolor_333333"
                     android:textSize="15sp"
+                    android:text="账   号："
                     android:drawablePadding="@dimen/px_3" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:src="@drawable/jiage_down" />
             </LinearLayout>
 
             <EditText
                 android:id="@+id/et_username_login"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/px_8"
                 android:layout_weight="3"
                 android:background="@null"
                 android:hint="用户名/席位号"
-                android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_"
                 android:textColorHint="@color/textcolor_999999"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -100,7 +96,7 @@
             <EditText
                 android:id="@+id/et_password_login"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:background="@null"
                 android:hint="密码"
@@ -129,6 +125,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/tv_find_password"
             style="@style/redTextView_c91014"
@@ -137,6 +134,7 @@
             android:layout_marginRight="@dimen/px_20"
             android:layout_marginTop="@dimen/px_20"
             android:text="忘记密码" />
+
         <TextView
             android:id="@+id/tv_register"
             style="@style/redTextView_c91014"

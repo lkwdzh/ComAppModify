@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:layout_height="match_parent">
+
+    <LinearLayout style="@style/orderDetail_ll_weight">
+
+        <TextView
+            style="@style/orderDetail_TextView_666666_13"
+            android:text="发票地址" />
+
+        <TextView
+            android:id="@+id/tv_billAddress_increase"
+            style="@style/orderDetail_TextView_333333_13" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+
+    <LinearLayout style="@style/orderDetail_ll_weight">
+
+        <TextView
+            style="@style/orderDetail_TextView_666666_13"
+            android:text="发票抬头" />
+
+        <TextView
+            android:id="@+id/tv_billTai_increase"
+            style="@style/orderDetail_TextView_333333_13" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+    <LinearLayout style="@style/orderDetail_ll_weight">
+
+        <TextView
+            style="@style/orderDetail_TextView_666666_13"
+            android:text="发票类型" />
+
+        <TextView
+            android:id="@+id/tv_billType_increase"
+            style="@style/orderDetail_TextView_333333_13" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+    <LinearLayout style="@style/orderDetail_ll_weight">
+
+        <TextView
+            style="@style/orderDetail_TextView_666666_13"
+            android:text="公司名称" />
+
+        <TextView
+            android:id="@+id/tv_companyName_increase"
+            style="@style/orderDetail_TextView_333333_13" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+    <LinearLayout style="@style/orderDetail_ll_weight">
+
+        <TextView
+            style="@style/orderDetail_TextView_666666_13"
+            android:text="纳税人识别号" />
+
+        <TextView
+            android:id="@+id/tv_billNum_increase"
+            style="@style/orderDetail_TextView_333333_13" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+    <LinearLayout style="@style/orderDetail_ll_weight">
+
+        <TextView
+            style="@style/orderDetail_TextView_666666_13"
+            android:text="注册公司地址" />
+
+        <TextView
+            android:id="@+id/tv_companyAddress_increase"
+            style="@style/orderDetail_TextView_333333_13" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+    <LinearLayout style="@style/orderDetail_ll_weight">
+
+        <TextView
+            style="@style/orderDetail_TextView_666666_13"
+            android:text="公司联系电话" />
+
+        <TextView
+            android:id="@+id/tv_companyPhone_increase"
+            style="@style/orderDetail_TextView_333333_13" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+    <LinearLayout style="@style/orderDetail_ll_weight">
+
+        <TextView
+            style="@style/orderDetail_TextView_666666_13"
+            android:text="开户银行" />
+
+        <TextView
+            android:id="@+id/tv_bank_increase"
+            style="@style/orderDetail_TextView_333333_13" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+    <LinearLayout style="@style/orderDetail_ll_weight">
+
+        <TextView
+            style="@style/orderDetail_TextView_666666_13"
+            android:text="银行账号" />
+
+        <TextView
+            android:id="@+id/tv_bankNum_increase"
+            style="@style/orderDetail_TextView_333333_13" />
+    </LinearLayout>
+
+    <View style="@style/line_1" />
+    <LinearLayout style="@style/orderDetail_ll_weight">
+
+        <TextView
+            style="@style/orderDetail_TextView_666666_13"
+            android:text="买家留言" />
+
+        <TextView
+            android:id="@+id/tv_billMessage_increase"
+            style="@style/orderDetail_TextView_333333_13" />
+    </LinearLayout>
+
+</LinearLayout>

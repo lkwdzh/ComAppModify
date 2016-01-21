@@ -4,21 +4,31 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.Application.ExitApplication;
+import com.aglook.comapp.Fragment.OrdinaryBillFragment;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.OrderDetailAdapter;
-import com.aglook.comapp.bean.AllOrder;
 import com.aglook.comapp.bean.AllOrderDataList;
 import com.aglook.comapp.bean.Login;
+import com.aglook.comapp.bean.OrderDetail;
+import com.aglook.comapp.bean.OrderDetailOrder;
 import com.aglook.comapp.url.AllOrderUrl;
+import com.aglook.comapp.url.OrderDetailUrl;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
@@ -32,7 +42,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderDetailActivity extends BaseActivity {
+public class OrderDetailActivity extends FragmentActivity implements View.OnClickListener {
 
 
     private MyListView lv_all_order_lv;
@@ -48,9 +58,9 @@ public class OrderDetailActivity extends BaseActivity {
     private TextView tv_phone_order_detail;
     private TextView tv_username_order_detail;
     private TextView tv_name_order_detail;
-    private TextView tv_address_order_detail;
+    //    private TextView tv_address_order_detail;
     private TextView tv_over_order_detail;
-    private AllOrder allOrder;
+    private OrderDetail orderDetail;
     private List<AllOrderDataList> mList = new ArrayList<>();
     private Login login;
     private ComAppApplication comAppApplication;
@@ -68,20 +78,25 @@ public class OrderDetailActivity extends BaseActivity {
 
 
     private String orderStatus;
+    private FrameLayout fragment_content;
     private ImageView left_icon;
+    private TextView title;
     //    private String  pageSize=10;
 //    private String  pageNum=1;
 
     @Override
-    public void initView() {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
-        setTitleBar("订单详情");
+        title = (TextView) findViewById(R.id.title);
+        title.setText("订单详情");
         comAppApplication = (ComAppApplication) getApplication();
         login = comAppApplication.getLogin();
         ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }
+
 
     public void init() {
         lv_all_order_lv = (MyListView) findViewById(R.id.lv_all_order_lv);
@@ -106,14 +121,16 @@ public class OrderDetailActivity extends BaseActivity {
         tv_phone_order_detail = (TextView) findViewById(R.id.tv_phone_order_detail);
         tv_username_order_detail = (TextView) findViewById(R.id.tv_username_order_detail);
         tv_name_order_detail = (TextView) findViewById(R.id.tv_name_order_detail);
-        tv_address_order_detail = (TextView) findViewById(R.id.tv_address_order_detail);
+//        tv_address_order_detail = (TextView) findViewById(R.id.tv_address_order_detail);
         tv_over_order_detail = (TextView) findViewById(R.id.tv_over_order_detail);
+        fragment_content = (FrameLayout) findViewById(R.id.fragment_content);
     }
 
     //填充数据
     public void fillData() {
-        tv_order_num_order_detail.setText(allOrder.getOrderId());
-        if (allOrder.getOrderStatus().equals("notpay")) {
+        OrderDetailOrder order = orderDetail.getOrder();
+        tv_order_num_order_detail.setText(String.valueOf(order.getOrderId()));
+        if (orderDetail.getOrderStatus().equals("notpay")) {
             tv_success_order_detail.setText("待支付");
             tv_success_order_detail.setTextColor((getResources().getColor(R.color.green_356600)));
             isSuccess = false;
@@ -121,7 +138,7 @@ public class OrderDetailActivity extends BaseActivity {
             tv_click_all_order_lv.setVisibility(View.VISIBLE);
             tv_delete_order_detail.setText("取消");
             tv_click_all_order_lv.setText("去支付");
-        } else if (allOrder.getOrderStatus().equals("success")) {
+        } else if (orderDetail.getOrderStatus().equals("success")) {
             tv_success_order_detail.setText("交易成功");
             tv_success_order_detail.setTextColor((getResources().getColor(R.color.red_c91014)));
             isSuccess = true;
@@ -129,7 +146,7 @@ public class OrderDetailActivity extends BaseActivity {
             tv_click_all_order_lv.setVisibility(View.GONE);
             tv_delete_order_detail.setText("交易");
             tv_click_all_order_lv.setText("提货");
-        } else if (allOrder.getOrderStatus().equals("close")) {
+        } else if (orderDetail.getOrderStatus().equals("close")) {
             tv_success_order_detail.setText("交易关闭");
             tv_success_order_detail.setTextColor((getResources().getColor(R.color.red_c91014)));
             isSuccess = false;
@@ -137,28 +154,41 @@ public class OrderDetailActivity extends BaseActivity {
             tv_click_all_order_lv.setVisibility(View.GONE);
         }
         adapter.isSuccess(isSuccess);
-        tv_order_total_order_detail.setText(allOrder.getOrderDateList().size() + "");
-        if (allOrder.getOrderTime() != null && !"".equals(allOrder.getOrderTime())) {
-            tv_xia_order_detail.setText(Timestamp.getDateTo(allOrder.getOrderTime()));
+        tv_order_total_order_detail.setText(String.valueOf(order.getOrderMoney()));
+        if (order.getOrderAtime() != 0) {
+            tv_xia_order_detail.setText(Timestamp.getDateTo(String.valueOf(order.getOrderAtime())));
         }
-        if (allOrder.getPrderPayTime() != null && !"".equals(allOrder.getPrderPayTime())&&!"0".equals(allOrder.getPrderPayTime())) {
-            tv_pay_order_detail.setText(Timestamp.getDateTo(allOrder.getPrderPayTime()));
-            tv_over_order_detail.setText(Timestamp.getDateTo(allOrder.getPrderPayTime()));
-
-        }else {
+        if (order.getOrderPtime() != 0) {
+            tv_pay_order_detail.setText(Timestamp.getDateTo(String.valueOf(order.getOrderPtime())));
+        } else {
             tv_pay_order_detail.setText("未付款");
+        }
+
+        if (order.getOrderFtime() != 0) {
+            tv_over_order_detail.setText(Timestamp.getDateTo(String.valueOf(order.getOrderFtime())));
+        } else {
             tv_over_order_detail.setText("未确认");
         }
-        tv_money_order_detail.setText(allOrder.getMoney() + "");
-        tv_cost_order_detail.setText(allOrder.getTotalFee());
-        if (login != null && !"".equals(login)) {
-            tv_phone_order_detail.setText(login.getPshUser().getUserPhone());
-            tv_username_order_detail.setText(login.getPshUser().getUsername());
-            tv_name_order_detail.setText(login.getPshUser().getUserTName());
-            tv_address_order_detail.setText(login.getPshUser().getUserAddress());
+        tv_money_order_detail.setText(String.valueOf(order.getOrderMoney()));
+        tv_cost_order_detail.setText(String.valueOf(order.getCounterFee()));
+        tv_phone_order_detail.setText(order.getUserPhone());
+        tv_username_order_detail.setText(orderDetail.getUserSeat());
+        tv_name_order_detail.setText(order.getUserTname());
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("orderDetail", orderDetail);
+        if (order.getFType().equals("0")) {//普通
+            OrdinaryBillFragment ordinaryBillFragment = new OrdinaryBillFragment();
+            ordinaryBillFragment.setArguments(bundle);
+            showFragment(ordinaryBillFragment);
         }
-//        Log.d("status", allOrder.getOrderStatus() + "____" + isSuccess);
         adapter.notifyDataSetChanged();
+    }
+
+    //显示fragment
+    public void showFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_content,fragment);
+        transaction.commit();
     }
 
     public void click() {
@@ -168,7 +198,7 @@ public class OrderDetailActivity extends BaseActivity {
     }
 
     @Override
-    public void widgetClick(View view) {
+    public void onClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.tv_delete_order_detail:
@@ -177,8 +207,8 @@ public class OrderDetailActivity extends BaseActivity {
             case R.id.tv_click_all_order_lv:
                 if (DefineUtil.BANKBAND) {
                     //已绑定银行卡
-                    money = String.valueOf(allOrder.getMoney());
-                    orderId = allOrder.getOrderId();
+                    money = String.valueOf(orderDetail.getOrder().getOrderMoney());
+                    orderId = String.valueOf(orderDetail.getOrder().getOrderId());
                     intent.setClass(OrderDetailActivity.this, PayActivity.class);
                     intent.putExtra("orderId", orderId);
                     intent.putExtra("money", money);
@@ -224,19 +254,19 @@ public class OrderDetailActivity extends BaseActivity {
         if (requestCode == DETAIL_PAY && resultCode == 2) {
             isPay = true;
             getData();
-        }else if (requestCode==33&&resultCode==1){
+        } else if (requestCode == 33 && resultCode == 1) {
             mList.clear();
             getData();
-        }else if (requestCode==13&&resultCode==RESULT_OK){
+        } else if (requestCode == 13 && resultCode == RESULT_OK) {
             mList.clear();
             getData();
-        }else if (requestCode==13&&resultCode==1){
+        } else if (requestCode == 13 && resultCode == 1) {
             mList.clear();
             getData();
         }
     }
 
-//获取数据
+    //获取数据
     public void getData() {
         customProgress = CustomProgress.show(this, "", true);
         new XHttpuTools() {
@@ -245,32 +275,26 @@ public class OrderDetailActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-//                Log.d("result_detail", orderId + "_____" + arg0.result);
+                Log.d("result_detail", orderId + "_____" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
-                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
-                List<AllOrder> faList = new ArrayList<AllOrder>();
-                faList = JsonUtils.parseList(obj, AllOrder.class);
                 if (status.equals("1")) {
-                                if (isPay) {
-                                    mList.clear();
-                                    isPay = false;
-                                }
+                    String obj = JsonUtils.getJsonParam(arg0.result, "obj");
+                    orderDetail = JsonUtils.parse(obj, OrderDetail.class);
+                    if (isPay) {
+                        mList.clear();
+                        isPay = false;
+                    }
 
-                                if (isDelete) {
-                                    isDelete = false;
-                                    mList.clear();
-                                }
-                    if (faList != null && faList.size() != 0) {
-                        allOrder = faList.get(0);
-                        if (allOrder != null) {
-
-                            if (allOrder.getOrderDateList() != null && allOrder.getOrderDateList().size() != 0) {
-                                mList.addAll(allOrder.getOrderDateList());
-                            }
-                            fillData();
+                    if (isDelete) {
+                        isDelete = false;
+                        mList.clear();
+                    }
+                    if (orderDetail != null && !"".equals(orderDetail)) {
+                        if (orderDetail.getOrderDetailList() != null && orderDetail.getOrderDetailList().size() != 0) {
+                            mList.addAll(orderDetail.getOrderDetailList());
                         }
-
+                        fillData();
                     }
                 }
 
@@ -283,7 +307,7 @@ public class OrderDetailActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.ORDER_LIST, AllOrderUrl.postAllOrderUrl1(DefineUtil.USERID, DefineUtil.TOKEN, orderId), OrderDetailActivity.this);
+        }.datePost(DefineUtil.ORDER_DETAIL, OrderDetailUrl.postOrdetDetailUrl(DefineUtil.USERID, DefineUtil.TOKEN, orderId), OrderDetailActivity.this);
     }
 
     private Dialog dialog;
@@ -335,5 +359,6 @@ public class OrderDetailActivity extends BaseActivity {
             }
         }.datePost(DefineUtil.CANCEL_ORDER, AllOrderUrl.postCancelOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, orderId), OrderDetailActivity.this);
     }
+
 
 }

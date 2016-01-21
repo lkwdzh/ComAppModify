@@ -7,10 +7,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.CardListAdapter;
 import com.aglook.comapp.bean.CardList;
+import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.url.CardListUrl;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
@@ -44,14 +46,20 @@ public class CardListActivity extends BaseActivity {
     private boolean isDelete = false;
     private CustomProgress customProgress;
     private View emptyView;
-//    private ImageView left_icon;
+    //    private ImageView left_icon;
     private String defaut;
+
+    private String bankName;
+    private ComAppApplication comAppApplication;
+    private Login login;
 
     @Override
     public void initView() {
         setContentView(R.layout.activity_card_list);
-        setTitleBar("银行卡列表");
+        setTitleBar("银行账户列表");
         ExitApplication.getInstance().addActivity(this);
+        comAppApplication = (ComAppApplication) getApplication();
+        login = comAppApplication.getLogin();
         init();
         getCardListData();
         click();
@@ -78,20 +86,15 @@ public class CardListActivity extends BaseActivity {
         lv_card_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                defaut=mList.get(position-1).getDefaultType();
-//                if (mList.get(position-1).getDefaultType().equals("1")){
-//                    //默认，无法删除
-//                    AppUtils.toastText(CardListActivity.this,"无法删除默认银行卡");
-//                }else {
-                    bankCardId = mList.get(position - 1).getBankCardId();
-                    popupWindow = new SelectPopupWindow(CardListActivity.this, itemsOnClick);
-                    // 显示窗口
-                    popupWindow.showAtLocation(CardListActivity.this.findViewById(R.id.waww),
-                            Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
-//                }
+                defaut = mList.get(position - 1).getDefaultType();
+                bankCardId = mList.get(position - 1).getBankCardId();
+                bankName = mList.get(position - 1).getBankAlis();
+                popupWindow = new SelectPopupWindow(CardListActivity.this, itemsOnClick);
+                // 显示窗口
+                popupWindow.showAtLocation(CardListActivity.this.findViewById(R.id.waww),
+                        Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
             }
         });
-//        left_icon.setOnClickListener(this);
     }
 
     @Override
@@ -101,21 +104,11 @@ public class CardListActivity extends BaseActivity {
             case R.id.right_text:
                 intent.setClass(CardListActivity.this, BandCardActivity.class);
                 isAdded = true;
+               if (mList==null||mList.size()==0){
+                   intent.putExtra("isFirst",true);
+               }
                 startActivityForResult(intent, 1);
                 break;
-//            case R.id.left_icon:
-//                //如果FLAG=1，表示是从确认订单调过来的，返回时需要调到订单界面，
-//                Log.d("result_DefineUtil.FLAG__!",DefineUtil.FLAG+"");
-//                if (DefineUtil.FLAG == 1) {
-//                    intent.setClass(CardListActivity.this, MainActivity.class);
-//                    DefineUtil.FLAG=2;
-//                    startActivity(intent);
-//                    Log.d("result_DefineUtil.FLAG__2",DefineUtil.FLAG+"");
-//                    CardListActivity.this.finish();
-//                } else {
-//                    CardListActivity.this.finish();
-//                }
-//                break;
         }
     }
 
@@ -124,7 +117,7 @@ public class CardListActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == 1) {
             getCardListData();
-        }else if (requestCode==33&&resultCode==1){
+        } else if (requestCode == 33 && resultCode == 1) {
             mList.clear();
             getCardListData();
         }
@@ -159,7 +152,14 @@ public class CardListActivity extends BaseActivity {
                     }
                     if (list.size() != 0 && list != null) {
                         mList.addAll(list);
-                        DefineUtil.BANKBAND=true;
+                        DefineUtil.BANKBAND = true;
+                        //遍历mlist，判断默认银行卡是否是兴业
+                        for (int i = 0; i < mList.size(); i++) {
+                            if (mList.get(i).getDefaultType().equals("1") && mList.get(i).getBankAlis().equals("兴业银行")) {
+                                login.setXingYe(true);
+                            }
+                        }
+                        comAppApplication.setLogin(login);
                     } else {
                         DefineUtil.BANKBAND = false;
                     }
@@ -191,12 +191,12 @@ public class CardListActivity extends BaseActivity {
                     break;
                 case R.id.tv_delete_select_popup:
                     popupWindow.dismiss();
-                    if (defaut.equals("1")){
+                    if (defaut.equals("1")) {
                         //默认，无法删除
-                        AppUtils.toastText(CardListActivity.this,"无法删除默认银行卡");
+                        AppUtils.toastText(CardListActivity.this, "无法删除默认银行卡");
                         return;
                     }
-                    customProgress=CustomProgress.show(CardListActivity.this,"",true);
+                    customProgress = CustomProgress.show(CardListActivity.this, "", true);
                     isDelete = true;
                     deleteCard();
                     break;
@@ -214,7 +214,10 @@ public class CardListActivity extends BaseActivity {
                 if (status.equals("1")) {
                     isMoRen = true;
                     getCardListData();
-                AppUtils.toastText(CardListActivity.this, message);
+                    //如果是兴业银行，
+                    if (bankName.equals("兴业银行")) {
+
+                    }
                 }
             }
 

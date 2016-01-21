@@ -26,14 +26,14 @@
                 <EditText
                     android:id="@+id/et_cmompanyName_bill"
                     style="@style/company_basic_infor_edittext_weight_13"
-                    android:hint="请输入单位名称" />
+                    android:hint="请输入单位名称(必填)" />
             </LinearLayout>
 
             <View style="@style/line_1" />
 
             <TextView
                 style="@style/remind_TextView_666666_11_center"
-                android:text="必须是您公司营业执照上的全称" />
+                android:text="必须是您公司营业执照上的全称(必填)" />
 
             <View style="@style/line_1" />
 
@@ -47,7 +47,7 @@
                     android:id="@+id/tv_num_bill"
                     android:digits="1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:maxLength="15"
-                    android:hint="请输入纳税人识别号"
+                    android:hint="请输入纳税人识别号(必填)"
                     style="@style/company_basic_infor_edittext_weight_13" />
             </LinearLayout>
 
@@ -55,7 +55,7 @@
 
             <TextView
                 style="@style/remind_TextView_666666_11_center"
-                android:text="必须是您公司《税务登记证》的编号，一般为15位，请仔细核对后输入，例如：123456789000WJ" />
+                android:text="必须是您公司《税务登记证》的编号，一般为15位，请仔细核对后输入，例如：123456789000WJ(必填)" />
 
             <View style="@style/line_1" />
 
@@ -67,7 +67,7 @@
 
                 <EditText
                     android:id="@+id/tv_companyAddres_bill"
-                    android:hint="请输入注册地址"
+                    android:hint="请输入注册地址(必填)"
                     style="@style/company_basic_infor_edittext_weight_13" />
             </LinearLayout>
 
@@ -75,7 +75,7 @@
 
             <TextView
                 style="@style/remind_TextView_666666_11_center"
-                android:text="必须是您公司营业执照上的注册地址" />
+                android:text="必须是您公司营业执照上的注册地址(必填)" />
 
 
             <View style="@style/line_1" />
@@ -89,7 +89,7 @@
                 <EditText
                     android:id="@+id/tv_phone_bill"
                     android:inputType="phone"
-                    android:hint="请输入电话号码"
+                    android:hint="请输入电话号码(必填)"
                     style="@style/company_basic_infor_edittext_weight_13" />
             </LinearLayout>
 
@@ -97,7 +97,7 @@
 
             <TextView
                 style="@style/remind_TextView_666666_11_center"
-                android:text="请提供能与您公司保持联系的有效电话" />
+                android:text="请提供能与您公司保持联系的有效电话(必填)" />
 
 
             <View style="@style/line_1" />
@@ -111,14 +111,14 @@
                 <EditText
                     android:id="@+id/et_bank_bill"
                     style="@style/company_basic_infor_edittext_weight_13"
-                    android:hint="请输入开户银行" />
+                    android:hint="请输入开户银行(必填)" />
             </LinearLayout>
 
             <View style="@style/line_1" />
 
             <TextView
                 style="@style/remind_TextView_666666_11_center"
-                android:text="必须是您公司银行开户许可证上的开户银行" />
+                android:text="必须是您公司银行开户许可证上的开户银行(必填)" />
 
 
             <View style="@style/line_1" />
@@ -134,17 +134,14 @@
                     style="@style/company_basic_infor_edittext_weight_13"
                     android:digits="1234567890xX"
                     android:maxLength="18"
-                    android:hint="请输入银行账户" />
+                    android:hint="请输入银行账户(必填)" />
             </LinearLayout>
 
             <View style="@style/line_1" />
 
             <TextView
                 style="@style/remind_TextView_666666_11_center"
-                android:text="必须是您公司开户许可证上的银行账号" />
-
-
-
+                android:text="必须是您公司开户许可证上的银行账号(必填)" />
 
         </LinearLayout>
     </ScrollView>

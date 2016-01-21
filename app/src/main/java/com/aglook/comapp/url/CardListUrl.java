@@ -37,7 +37,7 @@ public class CardListUrl {
 
     //绑定银行卡
     public static RequestParams postBandUrl(String userId, String token, String cardNo, String userName, String cardType,
-                                            String bankCode, String bankAlis, String cardPhone) {
+                                            String bankCode, String bankAlis, String cardPhone,String bankCompanyHan,String bankDefault ) {
         params = new RequestParams();
         params.addBodyParameter("userId", userId);
         params.addBodyParameter("token", token);
@@ -47,6 +47,8 @@ public class CardListUrl {
         params.addBodyParameter("bankCode", bankCode);
         params.addBodyParameter("bankAlis", bankAlis);
         params.addBodyParameter("cardPhone", cardPhone);
+        params.addBodyParameter("bankCompanyHan", bankCompanyHan);
+        params.addBodyParameter("bankDefault", bankDefault);
 //        Log.d("result_card",new Gson().toJson(params));
         return params;
     }

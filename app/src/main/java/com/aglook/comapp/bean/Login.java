@@ -10,6 +10,24 @@ public class Login  implements Serializable{
     private String isNeedFee;
     private LoginPshUser pshUser;
     private boolean bankBind;//是否绑定银行卡
+    private CardList bankCard;//银行卡信息
+    private boolean isXingYe;//是否是兴业
+
+    public CardList getBankCard() {
+        return bankCard;
+    }
+
+    public void setBankCard(CardList bankCard) {
+        this.bankCard = bankCard;
+    }
+
+    public boolean isXingYe() {
+        return isXingYe;
+    }
+
+    public void setXingYe(boolean isXingYe) {
+        this.isXingYe = isXingYe;
+    }
 
     public boolean isBankBind() {
         return bankBind;
@@ -26,6 +44,8 @@ public class Login  implements Serializable{
                 ", isNeedFee='" + isNeedFee + '\'' +
                 ", pshUser=" + pshUser +
                 ", bankBind=" + bankBind +
+                ", bankCard=" + bankCard +
+                ", isXingYe=" + isXingYe +
                 '}';
     }
 

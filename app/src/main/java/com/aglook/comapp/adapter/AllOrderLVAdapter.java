@@ -1,18 +1,23 @@
 package com.aglook.comapp.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.aglook.comapp.Activity.CardListActivity;
 import com.aglook.comapp.Activity.GuaDanAddActivity;
 import com.aglook.comapp.Activity.PickInfoActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.AllOrderDataList;
+import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.XBitmap;
 
 import java.util.List;
@@ -97,16 +102,49 @@ public class AllOrderLVAdapter extends BaseAdapter implements View.OnClickListen
                 break;
             case R.id.tv_sell_all_order_lv:
                 index=(int)v.getTag();
-                //转售
-                intent.setClass(context, GuaDanAddActivity.class);
-                intent.putExtra("code","2002");
-                intent.putExtra("codeGua","2003");
-                intent.putExtra("isPlate",true);
-                intent.putExtra("orderdataId",list.get(index).getOrderdataId());
-                intent.putExtra("originalListId",list.get(index).getProductListId());
-                context.startActivityForResult(intent,13);
+                //如果没有绑定银行卡，不能出售
+                if (DefineUtil.BANKBAND) {
+                    //转售
+                    intent.setClass(context, GuaDanAddActivity.class);
+                    intent.putExtra("code", "2002");
+                    intent.putExtra("codeGua", "2003");
+                    intent.putExtra("isPlate", true);
+                    intent.putExtra("orderdataId", list.get(index).getOrderdataId());
+                    intent.putExtra("originalListId", list.get(index).getProductListId());
+                    context.startActivityForResult(intent, 13);
+                }else {
+                    showDialog();
+                }
+                break;
+            case R.id.btn_cancel_pay_popup:
+                dialog.dismiss();
+                break;
+            case R.id.btn_confirm_pay_popup:
+                intent.setClass(context, CardListActivity.class);
+                context.startActivity(intent);
+                dialog.dismiss();
                 break;
         }
+    }
+    private Dialog dialog;
+    private Button btn_cancel_pay_popup;
+    private Button btn_confirm_pay_popup;
+    private TextView tv_message;
+
+    public void showDialog() {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View inView = inflater.inflate(R.layout.layout_pay_dialog, null);
+        btn_cancel_pay_popup = (Button) inView.findViewById(R.id.btn_cancel_pay_popup);
+        btn_confirm_pay_popup = (Button) inView.findViewById(R.id.btn_confirm_pay_popup);
+        tv_message = (TextView) inView.findViewById(R.id.tv_message);
+        tv_message.setText("尚未绑定银行卡，不能支付，去绑定？");
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.create();
+        builder.setView(inView);
+//        builder.setCancelable(false);
+        dialog = builder.show();
+        btn_cancel_pay_popup.setOnClickListener(this);
+        btn_confirm_pay_popup.setOnClickListener(this);
     }
 
 

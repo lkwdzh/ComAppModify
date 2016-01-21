@@ -12,9 +12,10 @@
         android:layout_height="match_parent">
 
         <LinearLayout style="@style/ll_match_content_ver">
-           <View
-               style="@style/line_1"
-               android:layout_marginTop="@dimen/px_14"/>
+
+            <View
+                style="@style/line_1"
+                android:layout_marginTop="@dimen/px_14" />
 
             <RelativeLayout
                 style="@style/rl_wrap_content"
@@ -33,7 +34,7 @@
                         android:id="@+id/tv_order_num_order_detail"
                         style="@style/grayTextView_333333_13"
 
-                       />
+                        />
 
                 </LinearLayout>
 
@@ -42,8 +43,7 @@
                     style="@style/redTextView_c91014"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:textSize="13sp"
-                     />
+                    android:textSize="13sp" />
             </RelativeLayout>
 
             <View style="@style/line_1" />
@@ -52,8 +52,7 @@
                 android:id="@+id/lv_all_order_lv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:divider="@null"
-                ></com.aglook.comapp.view.MyListView>
+                android:divider="@null"></com.aglook.comapp.view.MyListView>
 
             <View style="@style/line_1" />
 
@@ -76,8 +75,7 @@
 
                     <TextView
                         android:id="@+id/tv_order_total_order_detail"
-                        style="@style/grayTextView_333333_13"
-                        />
+                        style="@style/grayTextView_333333_13" />
 
                     <TextView
                         style="@style/grayTextView_333333_13"
@@ -94,8 +92,7 @@
 
                     <TextView
                         android:id="@+id/tv_money_order_detail"
-                        style="@style/grayTextView_333333_13"
-                        />
+                        style="@style/grayTextView_333333_13" />
 
                     <TextView
                         style="@style/grayTextView_333333_13"
@@ -141,111 +138,125 @@
                 </LinearLayout>
             </LinearLayout>
 
-           <View
-              style="@style/line_1"
-               android:layout_marginTop="@dimen/px_14"/>
+            <View
+                style="@style/line_1"
+                android:layout_marginTop="@dimen/px_14" />
+
             <LinearLayout
                 style="@style/ll_match_content_ver"
                 android:background="@color/white">
-                <TextView
-                   style="@style/grayTextView_333333_13"
-                    android:paddingLeft="@dimen/px_20"
-                    android:paddingTop="@dimen/px_10"
-                    android:paddingBottom="@dimen/px_10"
-                    android:text="订单详情"/>
-                <View
-                    style="@style/line_1"/>
-                <LinearLayout
-                   style="@style/orderDetail_ll_weight">
-                    <TextView
-                        style="@style/orderDetail_TextView_666666_13"
-                        android:text="下单时间"/>
-                    <TextView
-                        android:id="@+id/tv_xia_order_detail"
-                       style="@style/orderDetail_TextView_333333_13"
-                       />
-                   </LinearLayout>
-                <View
-                    style="@style/line_1"/>
-                <LinearLayout
-                    style="@style/orderDetail_ll_weight">
-                    <TextView
-                        style="@style/orderDetail_TextView_666666_13"
-                        android:text="付款时间"/>
-                    <TextView
-                        android:id="@+id/tv_pay_order_detail"
-                        style="@style/orderDetail_TextView_333333_13"
-                        />
-                </LinearLayout>
-                <View
-                    style="@style/line_1"/>
-                <LinearLayout
-                    style="@style/orderDetail_ll_weight">
-                    <TextView
-                        style="@style/orderDetail_TextView_666666_13"
-                        android:text="联系电话"/>
-                    <TextView
-                        android:id="@+id/tv_phone_order_detail"
-                        style="@style/orderDetail_TextView_333333_13"
-                        />
-                </LinearLayout>
-                <View
-                    style="@style/line_1"/>
+
                 <TextView
                     style="@style/grayTextView_333333_13"
                     android:paddingLeft="@dimen/px_20"
                     android:paddingTop="@dimen/px_10"
                     android:paddingBottom="@dimen/px_10"
-                    android:text="收货信息"/>
-                <View
-                    style="@style/line_1"/>
-                <LinearLayout
-                    style="@style/orderDetail_ll_weight">
+                    android:text="订单详情" />
+
+                <View style="@style/line_1" />
+
+                <LinearLayout style="@style/orderDetail_ll_weight">
+
                     <TextView
                         style="@style/orderDetail_TextView_666666_13"
-                        android:text="用户账号"/>
+                        android:text="下单时间" />
+
+                    <TextView
+                        android:id="@+id/tv_xia_order_detail"
+                        style="@style/orderDetail_TextView_333333_13" />
+                </LinearLayout>
+
+                <View style="@style/line_1" />
+
+                <LinearLayout style="@style/orderDetail_ll_weight">
+
+                    <TextView
+                        style="@style/orderDetail_TextView_666666_13"
+                        android:text="付款时间" />
+
+                    <TextView
+                        android:id="@+id/tv_pay_order_detail"
+                        style="@style/orderDetail_TextView_333333_13" />
+                </LinearLayout>
+
+                <View style="@style/line_1" />
+
+                <LinearLayout style="@style/orderDetail_ll_weight">
+
+                    <TextView
+                        style="@style/orderDetail_TextView_666666_13"
+                        android:text="联系电话" />
+
+                    <TextView
+                        android:id="@+id/tv_phone_order_detail"
+                        style="@style/orderDetail_TextView_333333_13" />
+                </LinearLayout>
+
+                <View style="@style/line_1" />
+
+                <TextView
+                    style="@style/grayTextView_333333_13"
+                    android:paddingLeft="@dimen/px_20"
+                    android:paddingTop="@dimen/px_10"
+                    android:paddingBottom="@dimen/px_10"
+                    android:text="收货信息" />
+
+                <View style="@style/line_1" />
+
+                <LinearLayout style="@style/orderDetail_ll_weight">
+
+                    <TextView
+                        style="@style/orderDetail_TextView_666666_13"
+                        android:text="用户账号" />
+
                     <TextView
                         android:id="@+id/tv_username_order_detail"
-                        style="@style/orderDetail_TextView_333333_13"
-                        />
+                        style="@style/orderDetail_TextView_333333_13" />
                 </LinearLayout>
-                <View
-                    style="@style/line_1"/>
-                <LinearLayout
-                    style="@style/orderDetail_ll_weight">
+
+                <View style="@style/line_1" />
+
+                <LinearLayout style="@style/orderDetail_ll_weight">
+
                     <TextView
                         style="@style/orderDetail_TextView_666666_13"
-                        android:text="买家姓名"/>
+                        android:text="买家姓名" />
+
                     <TextView
                         android:id="@+id/tv_name_order_detail"
-                        style="@style/orderDetail_TextView_333333_13"
-                       />
+                        style="@style/orderDetail_TextView_333333_13" />
                 </LinearLayout>
-                <View
-                    style="@style/line_1"/>
-                <LinearLayout
-                    style="@style/orderDetail_ll_weight">
+
+                <View style="@style/line_1" />
+
+
+                <LinearLayout style="@style/orderDetail_ll_weight">
+
                     <TextView
                         style="@style/orderDetail_TextView_666666_13"
-                        android:text="发票地址"/>
-                    <TextView
-                        android:id="@+id/tv_address_order_detail"
-                        style="@style/orderDetail_TextView_333333_13"
-                       />
-                </LinearLayout>
-                <View
-                    style="@style/line_1"/>
-                <LinearLayout
-                    style="@style/orderDetail_ll_weight">
-                    <TextView
-                        style="@style/orderDetail_TextView_666666_13"
-                        android:text="完成时间"/>
+                        android:text="完成时间" />
+
                     <TextView
                         android:id="@+id/tv_over_order_detail"
-                        style="@style/orderDetail_TextView_333333_13"
-                       />
+                        style="@style/orderDetail_TextView_333333_13" />
                 </LinearLayout>
-                </LinearLayout>
+
+                <TextView
+                    style="@style/grayTextView_333333_13"
+                    android:paddingLeft="@dimen/px_20"
+                    android:paddingTop="@dimen/px_10"
+                    android:paddingBottom="@dimen/px_10"
+                    android:text="发票信息" />
+
+                <View style="@style/line_1" />
+
+             <FrameLayout
+                 android:id="@+id/fragment_content"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"></FrameLayout>
+
+                <View style="@style/line_1" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

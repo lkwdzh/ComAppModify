@@ -73,7 +73,7 @@
     <!-- 个人信息 -->
     <string name="title_activity_person_information">PersonInformationActivity</string>
     <string name="person_information_jibenxinxi">基本信息</string>
-    <string name="person_information_card">绑定银行卡</string>
+    <string name="person_information_card">绑定银行账户</string>
 
     <!-- 我的Fragment -->
     <string name="mine_fragment_person_info">账户管理、个人信息</string>

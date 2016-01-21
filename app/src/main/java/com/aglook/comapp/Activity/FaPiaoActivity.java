@@ -5,8 +5,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
+import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.util.AppUtils;
 
 public class FaPiaoActivity extends BaseActivity {
@@ -17,12 +19,16 @@ public class FaPiaoActivity extends BaseActivity {
     private String taitou;
     private String content;
     private Button btn_baocun;
+    private ComAppApplication comAppApplication;
+    private Login login;
 
     @Override
     public void initView() {
         setContentView(R.layout.activity_fa_piao);
         ExitApplication.getInstance().addActivity(this);
         setTitleBar("发票详情");
+        comAppApplication= (ComAppApplication) getApplication();
+        login=comAppApplication.getLogin();
         init();
         click();
     }
@@ -33,6 +39,9 @@ public class FaPiaoActivity extends BaseActivity {
         btn_baocun = (Button) findViewById(R.id.btn_baocun);
         taitou=getIntent().getStringExtra("taitou");
         content=getIntent().getStringExtra("content");
+        if (taitou==null||"".equals(taitou)){
+            taitou=login.getPshUser().getUserTName();
+        }
         et_taitou.setText(taitou);
         et_content.setText(content);
     }

@@ -1,6 +1,6 @@
 package com.aglook.comapp.Activity;
 
-import android.view.KeyEvent;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -11,9 +11,16 @@ import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.bean.LoginPshUser;
+import com.aglook.comapp.url.BasicInformationUrl;
 import com.aglook.comapp.util.AppUtils;
+import com.aglook.comapp.util.DefineUtil;
+import com.aglook.comapp.util.JsonUtils;
+import com.aglook.comapp.util.XHttpuTools;
+import com.aglook.comapp.view.CustomProgress;
 import com.aglook.comapp.view.IDCard;
 import com.aglook.comapp.view.PatternNum;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -63,6 +70,8 @@ public class CompanyInfoActivity extends BaseActivity {
     private String phone;
     private String telephone;
     private String email;
+    private CustomProgress customProgress;
+    private LoginPshUser user;
 
     @Override
     public void initView() {
@@ -72,12 +81,14 @@ public class CompanyInfoActivity extends BaseActivity {
         ExitApplication.getInstance().addActivity(this);
         comAppApplication = (ComAppApplication) getApplication();
         login = comAppApplication.getLogin();
+        user = login.getPshUser();
         rightText.setVisibility(View.VISIBLE);
         rightText.setText("完成");
         fillData();
         inputType();
         click();
     }
+
 
     public void click() {
         rightText.setOnClickListener(this);
@@ -148,10 +159,11 @@ public class CompanyInfoActivity extends BaseActivity {
             return;
         }
         //判断邮箱格式
-        if (!!PatternNum.isEmail(email)) {
+        if (!PatternNum.isEmail(email)) {
             AppUtils.toastText(CompanyInfoActivity.this, "邮箱格式不正确");
             return;
         }
+        upData();
     }
 
     //填充数据
@@ -168,7 +180,7 @@ public class CompanyInfoActivity extends BaseActivity {
             tvCompanyIncreNum.setText(user.getUserInvoices());
             etManagerName.setText(user.getUserJname());
             etPhoneBasicInfo.setText(user.getUserPhone());
-            etGudingBasicInfo.setText(user.getUserTels());
+            etGudingBasicInfo.setText(user.getUserTel());
             etEmailBasicInfo.setText(user.getUserEmail());
         }
     }
@@ -178,7 +190,7 @@ public class CompanyInfoActivity extends BaseActivity {
         if (login != null && !"".equals(login)) {
 
             if ((login.getPshUser().getUserNumber() == null || "".equals(login.getPshUser().getUserNumber()))) {
-                leftIcon.setVisibility(View.INVISIBLE);
+//                leftIcon.setVisibility(View.INVISIBLE);
                 tvCompanyIncreNum.setFocusable(true);
                 tvCompanyIncreNum.setFocusableInTouchMode(true);
                 tvCompanyIncreNum.requestFocus();
@@ -191,17 +203,13 @@ public class CompanyInfoActivity extends BaseActivity {
                 etNumBasicInfo.setFocusableInTouchMode(true);
                 etNumBasicInfo.requestFocus();
 
-
                 etTruenameBasicInfo.setFocusable(true);
                 etTruenameBasicInfo.setFocusableInTouchMode(true);
                 etTruenameBasicInfo.requestFocus();
 
-
-
-
             } else {
 
-                leftIcon.setVisibility(View.VISIBLE);
+//                leftIcon.setVisibility(View.VISIBLE);
                 etTruenameBasicInfo.setFocusable(false);
                 etTruenameBasicInfo.setFocusableInTouchMode(false);
 
@@ -217,20 +225,54 @@ public class CompanyInfoActivity extends BaseActivity {
         }
     }
 
-    //监听返回键
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            if ((login.getPshUser().getUserNumber() == null || "".equals(login.getPshUser().getUserNumber()))) {
-                return true;
-            } else {
-                CompanyInfoActivity.this.finish();
-                return false;
-            }
-        } else {
-            return super.onKeyDown(keyCode, event);
-        }
+//    //监听返回键
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+//            if ((login.getPshUser().getUserNumber() == null || "".equals(login.getPshUser().getUserNumber()))) {
+//                return true;
+//            } else {
+//                CompanyInfoActivity.this.finish();
+//                return false;
+//            }
+//        } else {
+//            return super.onKeyDown(keyCode, event);
+//        }
+//
+//    }
 
+
+    //更新数据
+    public void upData() {
+        customProgress=CustomProgress.show(CompanyInfoActivity.this,"",true);
+        new XHttpuTools() {
+            @Override
+            public void initViews(ResponseInfo<String> arg0) {
+                if (customProgress!=null&&customProgress.isShowing()){
+                    customProgress.dismiss();
+                }
+                Log.d("result_company",arg0.result);
+                String status= JsonUtils.getJsonParam(arg0.result,"status");
+                String message=JsonUtils.getJsonParam(arg0.result,"message");
+                if (status.equals("1")){
+                    CompanyInfoActivity.this.finish();
+                    user.setUserTName(trueName);
+                    user.setUserNumber(idCard);
+                    user.setUserInvoice(ordinaryNum);
+                    user.setUserInvoices(increNum);
+                    user.setUserJname(managerName);
+                    user.setUserPhone(phone);
+                    user.setUserTel(telephone);
+                    user.setUserEmail(email);
+                }
+            }
+
+            @Override
+            public void failureInitViews(HttpException arg0, String arg1) {
+
+            }
+        }.datePost(DefineUtil.PERSON_UPDATE, BasicInformationUrl.postCompanyInfoUpdateUrl(DefineUtil.USERID, DefineUtil.TOKEN,
+                trueName, idCard, phone, email, telephone, managerName, ordinaryNum, increNum), CompanyInfoActivity.this);
     }
 
 }

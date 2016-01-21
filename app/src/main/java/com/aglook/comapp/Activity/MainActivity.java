@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -103,7 +104,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         accountType = mShare.getString("accountType", "");
         password = mShare.getString("password", "");
         if (!"".equals(accountType)) {
-            if (accountType.equals("1")) {
+//            if (accountType.equals("1")) {
                 //用户名登录
                 userName = mShare.getString("userName", "");
                 if (!"".equals(userName) && !"".equals(password)) {
@@ -113,16 +114,16 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
                     }
                 }
 
-            } else if (accountType.equals("0")) {
-                //席位号登录
-                userName = mShare.getString("setName", "");
-                if (!"".equals(userName) && !"".equals(password)) {
-                    if (comAppApplication.getLogin() == null) {
-//                        Log.d("result_acc", accountType + "____" + userName + "____" + password);
-                        login();
-                    }
-                }
-            }
+//            } else if (accountType.equals("0")) {
+//                //席位号登录
+//                userName = mShare.getString("setName", "");
+//                if (!"".equals(userName) && !"".equals(password)) {
+//                    if (comAppApplication.getLogin() == null) {
+////                        Log.d("result_acc", accountType + "____" + userName + "____" + password);
+//                        login();
+//                    }
+//                }
+//            }
         }
 
 
@@ -214,11 +215,9 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
                                 if (forcedUpdate == 0) {
                                     //非强制
                                     isForce = false;
-//                                    tv_delete_order.setText("检测到有新版本，确认更新?");
                                 } else if (forcedUpdate == 1) {
                                     //强制
                                     isForce = true;
-//                                    tv_delete_order.setText("检测到有重要版本，确认更新?");
                                 }
                                 showDailog(isForce);
                             }
@@ -243,6 +242,9 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         btn_confirm_delete = (Button) view.findViewById(R.id.btn_confirm_delete);
         tv_delete_order = (TextView) view.findViewById(R.id.tv_delete_order);
         tv_delete_order.setText("检测到有新版本，确认更新?");
+        if (isforce){
+            btn_cancel_delete.setVisibility(View.GONE);
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.create();
         builder.setView(view);
@@ -423,9 +425,18 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
                     comAppApplication.setLogin(login);
                     if ((login.getPshUser().getUserNumber() == null || "".equals(login.getPshUser().getUserNumber()))) {
                         //TODO 先暂时去掉
-//                        infoDialog();
+                        infoDialog();
                         //假如信息为空，则去填写
-
+                        //判断是否绑定银行卡，并且是否是兴业银行
+                        if (login.getBankCard()!=null&&!"".equals(login.getBankCard())){
+                            if ("兴业银行".equals(login.getBankCard().getBankAlis())){
+                                login.setXingYe(true);
+                            }else {
+                                login.setXingYe(false);
+                            }
+                        }else {
+                            login.setXingYe(false);
+                        }
                     }
 
                     getCartListData();
@@ -514,7 +525,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-//                Log.d("result_all_order", arg0.result);
+                Log.d("result_all_order", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");

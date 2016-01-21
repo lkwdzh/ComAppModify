@@ -1,11 +1,8 @@
 package com.aglook.comapp.Activity;
 
 import android.content.Intent;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
@@ -35,7 +32,6 @@ public class BasicInformationActivity extends BaseActivity {
     private EditText et_email_basic_info;
     private EditText et_phone_basic_info;
     private EditText et_guding_basic_info;
-    private TextView tv_change_basic_info;
 
     private ComAppApplication comAppApplication;
     private Login login;
@@ -43,13 +39,6 @@ public class BasicInformationActivity extends BaseActivity {
 
     private SelectPopupWindow popupWindow;
     private EditText et_qq_basic_info;
-    private ImageView left_icon;
-    private LinearLayout ll_company;
-    private View view_company;
-    private LinearLayout ll_company_address;
-    private View view_company_address;
-    private TextView tv_company_basic_info;
-    private TextView tv_company_address_basic_info;
     private TextView tv_trueName;
 
 
@@ -73,7 +62,6 @@ public class BasicInformationActivity extends BaseActivity {
         right_text.setVisibility(View.VISIBLE);
         right_text.setText("完成");
         login = comAppApplication.getLogin();
-        left_icon = (ImageView) findViewById(R.id.left_icon);
 
         et_username_basic_info = (TextView) findViewById(R.id.et_username_basic_info);
         et_truename_basic_info = (EditText) findViewById(R.id.et_truename_basic_info);
@@ -82,12 +70,10 @@ public class BasicInformationActivity extends BaseActivity {
         et_email_basic_info = (EditText) findViewById(R.id.et_email_basic_info);
         et_phone_basic_info = (EditText) findViewById(R.id.et_phone_basic_info);
         et_guding_basic_info = (EditText) findViewById(R.id.et_guding_basic_info);
-        tv_change_basic_info = (TextView) findViewById(R.id.tv_change_basic_info);
         et_qq_basic_info = (EditText) findViewById(R.id.et_qq_basic_info);
         tv_trueName = (TextView) findViewById(R.id.tv_trueName);
         if ((login.getPshUser().getUserNumber() == null || "".equals(login.getPshUser().getUserNumber()))) {
             //有一个为空
-            left_icon.setVisibility(View.INVISIBLE);
 
 
             et_num_basic_info.setFocusable(true);
@@ -99,7 +85,6 @@ public class BasicInformationActivity extends BaseActivity {
             et_truename_basic_info.requestFocus();
 
         } else {
-            left_icon.setVisibility(View.VISIBLE);
             et_truename_basic_info.setFocusable(false);
             et_truename_basic_info.setFocusableInTouchMode(false);
 //            et_email_basic_info.setFocusable(false);
@@ -112,30 +97,24 @@ public class BasicInformationActivity extends BaseActivity {
             et_email_basic_info.setText(login.getPshUser().getUserEmail());
         }
 
-        ll_company = (LinearLayout) findViewById(R.id.ll_company);
-        view_company = (View) findViewById(R.id.view_company);
-        ll_company_address = (LinearLayout) findViewById(R.id.ll_company_address);
-        view_company_address = (View) findViewById(R.id.view_company_address);
-        tv_company_basic_info = (TextView) findViewById(R.id.tv_company_basic_info);
-        tv_company_address_basic_info = (TextView) findViewById(R.id.tv_company_address_basic_info);
         fillData();
     }
 
-    //监听返回键
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            if ((login.getPshUser().getUserNumber() == null || "".equals(login.getPshUser().getUserNumber()))) {
-                return true;
-            } else {
-                BasicInformationActivity.this.finish();
-                return false;
-            }
-        } else {
-            return super.onKeyDown(keyCode, event);
-        }
-
-    }
+//    //监听返回键
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+//            if ((login.getPshUser().getUserNumber() == null || "".equals(login.getPshUser().getUserNumber()))) {
+//                return true;
+//            } else {
+//                BasicInformationActivity.this.finish();
+//                return false;
+//            }
+//        } else {
+//            return super.onKeyDown(keyCode, event);
+//        }
+//
+//    }
 
     //填充数据
     public void fillData() {
@@ -155,23 +134,7 @@ public class BasicInformationActivity extends BaseActivity {
                 userAllPoint = user.getUserAllPoint();
                 userAddress = user.getUserAddress();
                 userSeat = user.getUserSeat();
-                if (user.getUserType() == 2) {
-                    //个人
-                    ll_company.setVisibility(View.GONE);
-                    view_company.setVisibility(View.GONE);
-                    ll_company_address.setVisibility(View.GONE);
-                    view_company_address.setVisibility(View.GONE);
-                    tv_trueName.setText("真实姓名");
-                } else {
-                    //公司
-                    ll_company.setVisibility(View.VISIBLE);
-                    view_company.setVisibility(View.VISIBLE);
-                    ll_company_address.setVisibility(View.VISIBLE);
-                    view_company_address.setVisibility(View.VISIBLE);
-                    tv_company_basic_info.setText(user.getUserCompany());
-                    tv_company_address_basic_info.setText(user.getUserAddres());
-                    tv_trueName.setText("负责人姓名");
-                }
+
             }
         }
 
@@ -180,7 +143,6 @@ public class BasicInformationActivity extends BaseActivity {
 
     public void click() {
         right_text.setOnClickListener(this);
-        tv_change_basic_info.setOnClickListener(this);
 //        rl_right.setOnClickListener(this);
     }
 
@@ -188,10 +150,6 @@ public class BasicInformationActivity extends BaseActivity {
     public void widgetClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
-            case R.id.tv_change_basic_info:
-                intent.setClass(BasicInformationActivity.this, ModifyPasswordActivity.class);
-                startActivity(intent);
-                break;
             case R.id.right_text:
                 getInput();
                 break;
@@ -233,7 +191,7 @@ public class BasicInformationActivity extends BaseActivity {
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        }.datePostUp(DefineUtil.PERSON_UPDATE, BasicInformationUrl.postBasicInfoUpdateUrl(DefineUtil.USERID, DefineUtil.TOKEN, userTName, userNumber, userPhone, userEmail, userTel, userQq, userMoney, userPoint, userAllPoint, username, userAddress, userSeat), BasicInformationActivity.this);
+        }.datePostUp(DefineUtil.PERSON_UPDATE, BasicInformationUrl.postBasicInfoUpdateUrl(DefineUtil.USERID, DefineUtil.TOKEN, userTName, userNumber, userPhone, userEmail), BasicInformationActivity.this);
     }
 
     //获取输入内容

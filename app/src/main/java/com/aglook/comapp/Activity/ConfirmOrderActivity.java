@@ -8,7 +8,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -86,7 +85,7 @@ public class ConfirmOrderActivity extends BaseActivity {
     private RadioButton rb_ordinaryBill_confirmFoot;
     private RadioButton rb_increBill_confirmFoot;
 
-    private int billType=1;//发票类型：1.普通，2.增值税
+    private int billType = 1;//发票类型：1.普通，2.增值税
 
     @Override
     public void initView() {
@@ -100,9 +99,15 @@ public class ConfirmOrderActivity extends BaseActivity {
         getAddressData();
     }
 
-    public void init() {
-
+    @Override
+    protected void onResume() {
+        super.onResume();
         login = comAppApplication.getLogin();
+    }
+
+    public void init() {
+        login = comAppApplication.getLogin();
+
         mList = (List<ShoppingCart>) getIntent().getSerializableExtra("CharList");
         tv_name_confirm_order = (TextView) findViewById(id.tv_name_confirm_order);
         tv_phone_confirm_order = (TextView) findViewById(id.tv_phone_confirm_order);
@@ -117,6 +122,10 @@ public class ConfirmOrderActivity extends BaseActivity {
         rg_billType_confirmFoot = (RadioGroup) view.findViewById(id.rg_billType_confirmFoot);
         rb_ordinaryBill_confirmFoot = (RadioButton) view.findViewById(id.rb_ordinaryBill_confirmFoot);
         rb_increBill_confirmFoot = (RadioButton) view.findViewById(id.rb_increBill_confirmFoot);
+        //假如是个人用户，只有普通发票
+        if (login.getPshUser().getUserType() == 2) {
+            rb_increBill_confirmFoot.setVisibility(View.INVISIBLE);
+        }
         left_icon = (ImageView) findViewById(id.left_icon);
         addCostMoney();
 
@@ -222,12 +231,12 @@ public class ConfirmOrderActivity extends BaseActivity {
         rg_billType_confirmFoot.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId== R.id.rb_ordinaryBill_confirmFoot){
-                    billType=1;
+                if (checkedId == R.id.rb_ordinaryBill_confirmFoot) {
+                    billType = 1;
                     rb_ordinaryBill_confirmFoot.setTextColor(getResources().getColor(R.color.white));
                     rb_increBill_confirmFoot.setTextColor(getResources().getColor(R.color.textcolor_333333));
-                }else if (checkedId== id.rb_increBill_confirmFoot){
-                    billType=2;
+                } else if (checkedId == id.rb_increBill_confirmFoot) {
+                    billType = 2;
                     rb_increBill_confirmFoot.setTextColor(getResources().getColor(R.color.white));
                     rb_ordinaryBill_confirmFoot.setTextColor(getResources().getColor(R.color.textcolor_333333));
                 }
@@ -240,27 +249,31 @@ public class ConfirmOrderActivity extends BaseActivity {
         Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.btn_cancel_pay_popup:
-//                ConfirmOrderActivity.this.setResult(1);
-//                ConfirmOrderActivity.this.finish();
                 dialog.dismiss();
                 break;
             case R.id.btn_confirm_pay_popup:
                 intent.setClass(ConfirmOrderActivity.this, CardListActivity.class);
-//                ConfirmOrderActivity.this.finish();
-//                DefineUtil.FLAG = 1;
                 startActivity(intent);
                 dialog.dismiss();
                 break;
             case R.id.tv_confirm_confirm_order:
                 //线判断是否绑定银行号，若绑定则确认订单并支付，否则，先绑定
+                //获取发票地址与信息
+                if (address != null) {
+                    addressId = String.valueOf(address.getId());
+                }
                 if (DefineUtil.BANKBAND) {
-                    //获取发票地址与信息
-                    if (address != null) {
-                        addressId = String.valueOf(address.getId());
+                    //判断是否是个人，个人直接下订单，公司则判断兴业银行卡是否是默认银行卡
+                    if (login.getPshUser().getUserType() == 2) {
+                        getData();
+                    } else if (login.isXingYe()) {
+                        //假如默认是兴业，则
+                        getData();
+                    } else {
+                        showDialog("默认银行不是兴业银行，去选择？");
                     }
-                    getData();
                 } else {
-                    showDialog();
+                    showDialog("尚未绑定银行卡，不能支付，去绑定？");
                 }
                 break;
             case R.id.left_icon:
@@ -278,11 +291,11 @@ public class ConfirmOrderActivity extends BaseActivity {
                 startActivityForResult(intent, CHOOSE_ADDRESS);
                 break;
             case R.id.tv_diqu:
-                if (billType==1) {
+                if (billType == 1) {
                     intent.setClass(ConfirmOrderActivity.this, FaPiaoActivity.class);
                     intent.putExtra("taitou", taitou);
                     intent.putExtra("content", content);
-                }else {
+                } else {
                     intent.setClass(ConfirmOrderActivity.this, BillActivity.class);
                 }
                 startActivityForResult(intent, FAPIAO);
@@ -320,16 +333,15 @@ public class ConfirmOrderActivity extends BaseActivity {
     private Dialog dialog;
     private Button btn_cancel_pay_popup;
     private Button btn_confirm_pay_popup;
-    private TextView tv_money_pay_popup;
-    private TextView tv_card_pay_popup;
-    private EditText et_input_pay_popup;
-    private TextView tv_yanzheng_pay_popup;
+    private TextView tv_message;
 
-    public void showDialog() {
+    public void showDialog(String message) {
         LayoutInflater inflater = LayoutInflater.from(ConfirmOrderActivity.this);
         View inView = inflater.inflate(R.layout.layout_pay_dialog, null);
         btn_cancel_pay_popup = (Button) inView.findViewById(id.btn_cancel_pay_popup);
         btn_confirm_pay_popup = (Button) inView.findViewById(id.btn_confirm_pay_popup);
+        tv_message = (TextView) inView.findViewById(R.id.tv_message);
+        tv_message.setText(message);
         AlertDialog.Builder builder = new AlertDialog.Builder(ConfirmOrderActivity.this);
         builder.create();
         builder.setView(inView);
@@ -338,6 +350,7 @@ public class ConfirmOrderActivity extends BaseActivity {
         btn_cancel_pay_popup.setOnClickListener(this);
         btn_confirm_pay_popup.setOnClickListener(this);
     }
+
 
     private String orderId;
     private String money;

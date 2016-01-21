@@ -80,14 +80,14 @@
                 <EditText
                     android:id="@+id/et_truename_basic_info"
                     style="@style/company_basic_infor_edittext_weight_13"
-                    android:hint="请输入法人姓名" />
+                    android:hint="请输入法人姓名(必填)" />
             </LinearLayout>
 
             <View style="@style/line_1" />
 
             <TextView
                 style="@style/remind_TextView_666666_11_center"
-                android:text="请填写真实姓名，一经填写不能修改,此名字必须与银行卡开户名字相同！" />
+                android:text="请填写真实姓名，一经填写不能修改,此名字必须与银行卡开户名字相同！(必填)" />
 
             <View style="@style/line_1" />
 
@@ -104,14 +104,14 @@
                     style="@style/company_basic_infor_edittext_weight_13"
                     android:digits="1234567890xX"
                     android:maxLength="18"
-                    android:hint="请输入法人身份证号" />
+                    android:hint="请输入法人身份证号(必填)" />
             </LinearLayout>
 
             <View style="@style/line_1" />
 
             <TextView
                 style="@style/remind_TextView_666666_11_center"
-                android:text="请填写正确身份证号一经填写不能修改" />
+                android:text="请填写正确身份证号一经填写不能修改(必填)" />
 
             <View style="@style/line_1" />
 
@@ -124,7 +124,7 @@
                 <EditText
                     android:id="@+id/tv_company_ordinaryNum"
                     android:digits="1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                    android:hint="请输入普通税票号"
+                    android:hint="请输入普通税票号(必填)"
                     style="@style/company_basic_infor_edittext_weight_13" />
             </LinearLayout>
 
@@ -132,7 +132,7 @@
 
             <TextView
                 style="@style/remind_TextView_666666_11_center"
-                android:text="请填写正确普通票税号，一经填写不能修改" />
+                android:text="请填写正确普通票税号，一经填写不能修改(必填)" />
 
             <View style="@style/line_1" />
 
@@ -144,7 +144,7 @@
 
                 <EditText
                     android:id="@+id/tv_company_increNum"
-                    android:hint="请输入增值票税号"
+                    android:hint="请输入增值票税号(必填)"
                     android:digits="1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     style="@style/company_basic_infor_edittext_weight_13" />
             </LinearLayout>
@@ -153,7 +153,7 @@
 
             <TextView
                 style="@style/remind_TextView_666666_11_center"
-                android:text="请填写正确增值票税号，一经填写不能修改" />
+                android:text="请填写正确增值票税号，一经填写不能修改(必填)" />
 
             <View style="@style/line_1" />
 
@@ -170,7 +170,7 @@
                 <EditText
                     android:id="@+id/et_managerName"
                     style="@style/company_basic_infor_edittext_weight_13"
-                    android:hint="请输入经理姓名" />
+                    android:hint="请输入经理姓名(必填)" />
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -186,7 +186,7 @@
                     style="@style/company_basic_infor_edittext_weight_13"
                     android:inputType="phone"
                     android:maxLength="11"
-                    android:hint="请输入经理手机号" />
+                    android:hint="请输入经理手机号(必填)" />
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -201,8 +201,8 @@
                 <EditText
                     android:id="@+id/et_guding_basic_info"
                     style="@style/company_basic_infor_edittext_weight_13"
-                    android:digits="1234567890-"
-                    android:hint="请输入固定电话" />
+                    android:inputType="phone"
+                    android:hint="请输入固定电话(选填)" />
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -217,7 +217,7 @@
                     android:id="@+id/et_email_basic_info"
                     style="@style/company_basic_infor_edittext_weight_13"
                     android:inputType="textEmailAddress"
-                    android:hint="请输入常用邮箱" />
+                    android:hint="请输入常用邮箱(必填)" />
             </LinearLayout>
 
 

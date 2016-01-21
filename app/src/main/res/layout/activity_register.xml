@@ -29,14 +29,14 @@
                     style="@style/save_TextView_666666_13_center"
                     android:maxLength="15"
                     android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_"
-                    android:hint="请输入6-15位字符" />
+                    android:hint="请输入6-15位字符(必填)" />
             </LinearLayout>
 
             <View style="@style/line_1" />
 
             <TextView
                 style="@style/remind_TextView_666666_11_center"
-                android:text="请输入6-15位字符(数字/英文大小写/下划线，例如：ttTT_123)" />
+                android:text="请输入6-15位字符(数字/英文大小写/下划线，例如：ttTT_123(必填))" />
 
             <View style="@style/line_1" />
 
@@ -52,14 +52,14 @@
                     android:inputType="textPassword"
                     android:maxLength="20"
                     android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                    android:hint="请输入6-20位字符" />
+                    android:hint="请输入6-20位字符(必填)" />
             </LinearLayout>
 
             <View style="@style/line_1" />
 
             <TextView
                 style="@style/remind_TextView_666666_11_center"
-                android:text="请输入6-20位字符(数字/英文大小写，例如：ttTT123)" />
+                android:text="请输入6-20位字符(数字/英文大小写，例如：ttTT123(必填))" />
 
             <View style="@style/line_1" />
 
@@ -74,14 +74,14 @@
                     style="@style/save_TextView_666666_13_center"
                     android:inputType="phone"
                     android:maxLength="11"
-                    android:hint="请输入手机号" />
+                    android:hint="请输入手机号(必填)" />
             </LinearLayout>
 
             <View style="@style/line_1" />
 
             <TextView
                 style="@style/remind_TextView_666666_11_center"
-                android:text="请填写您的常用手机，以方便与您联系，一个手机号可以注册多个用户" />
+                android:text="请填写您的常用手机，以方便与您联系，一个手机号可以注册多个用户(必填)" />
 
             <View style="@style/line_1" />
 
@@ -105,7 +105,7 @@
                         style="@style/save_TextView_666666_13_center"
                         android:layout_marginRight="@dimen/px_20"
                         android:inputType="number"
-                        android:hint="请输入验证码" />
+                        android:hint="请输入验证码(必填)" />
 
                     <TextView
                         android:id="@+id/tv_code_register"
@@ -133,7 +133,7 @@
                     style="@style/save_TextView_666666_13_center"
                     android:inputType="number"
                     android:maxLength="11"
-                    android:hint="请输入推荐人席位号" />
+                    android:hint="请输入推荐人席位号(选填)" />
             </LinearLayout>
 
             <View style="@style/line_1" />

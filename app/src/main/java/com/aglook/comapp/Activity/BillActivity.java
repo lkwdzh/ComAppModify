@@ -4,7 +4,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.R;
+import com.aglook.comapp.bean.Login;
+import com.aglook.comapp.bean.LoginPshUser;
 import com.aglook.comapp.util.AppUtils;
 
 import butterknife.Bind;
@@ -33,6 +36,8 @@ public class BillActivity extends BaseActivity {
     private String bank;
     private String bankNum;
 
+    private ComAppApplication comAppApplication;
+    private Login login;
 
     @Override
     public void initView() {
@@ -41,8 +46,24 @@ public class BillActivity extends BaseActivity {
         setTitleBar("发票信息");
         rightText.setText("保存");
         rightText.setVisibility(View.VISIBLE);
-
+        comAppApplication = (ComAppApplication) getApplication();
+        login = comAppApplication.getLogin();
+        fillData();
         click();
+    }
+
+    public void fillData() {
+        if (login != null && !"".equals(login)) {
+            LoginPshUser user = login.getPshUser();
+            if (user != null && !"".equals(user)) {
+                etCmompanyNameBill.setText(user.getUserCaty());
+                tvNumBill.setText(user.getUserNnumb());
+                tvCompanyAddresBill.setText(user.getUserZcdz());
+                tvPhoneBill.setText(user.getUserTels());
+                etBankBill.setText(user.getUserBanks());
+                etBankNumBill.setText(user.getUserBnumb());
+            }
+        }
     }
 
     public void click() {

@@ -28,6 +28,7 @@ import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.util.DefineUtil;
+import com.aglook.comapp.util.ShareUtil;
 
 /**
  * Created by aglook on 2015/10/26.
@@ -64,7 +65,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private TextView tv_type_user;
     private LinearLayout ll_info_mine_fragment;
     private TextView tv_intro;
+    private TextView tv_share;
 
+    private String downloadUrl="http://www.decxagri.com/trade/appVersion/download?appType=android&appName=com.aglook.comapp&marketType=local";
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -113,6 +116,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         tv_tihuo_point = (TextView) view.findViewById(R.id.tv_tihuo_point);
         ll_info_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_info_mine_fragment);
         tv_intro = (TextView) view.findViewById(R.id.tv_intro);
+        tv_share = (TextView) view.findViewById(R.id.tv_share);
     }
 
     //点击事件
@@ -131,6 +135,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         ll_jiaoyichenggong_mine_fragment.setOnClickListener(this);
         tv_message_mine_fragment.setOnClickListener(this);
         tv_intro.setOnClickListener(this);
+        tv_share.setOnClickListener(this);
     }
 
 
@@ -309,6 +314,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             case R.id.tv_intro:
                 intent.setClass(getActivity(),IntroActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.tv_share:
+                ShareUtil.Share(getActivity(),"DECX",downloadUrl);
                 break;
         }
     }

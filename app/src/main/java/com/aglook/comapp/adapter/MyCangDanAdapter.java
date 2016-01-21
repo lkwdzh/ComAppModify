@@ -12,15 +12,18 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.aglook.comapp.Activity.CardListActivity;
 import com.aglook.comapp.Activity.GuaDanAddActivity;
 import com.aglook.comapp.Activity.PickInfoActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.CangDanList;
 import com.aglook.comapp.util.AppUtils;
+import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.XBitmap;
 import com.aglook.comapp.view.Timestamp;
 
@@ -78,10 +81,10 @@ public class MyCangDanAdapter extends BaseAdapter implements View.OnClickListene
             holder.tv_in_time_my_cangdan.setText(Timestamp.getDateTo(cangDanList.getInnerTime()));
         }
         XBitmap.displayImage(holder.iv_lv_lv, cangDanList.getGetlistPic(), context);
-        if (cangDanList.getPshCategory()!=null) {
+        if (cangDanList.getPshCategory() != null) {
             holder.tv_name_lv_lv.setText(cangDanList.getPshCategory().getCategoryName());
-        }else {
-            holder.tv_name_lv_lv.setText(cangDanList.getGoodsPlace()+cangDanList.getDepotQuality());
+        } else {
+            holder.tv_name_lv_lv.setText(cangDanList.getGoodsPlace() + cangDanList.getDepotQuality());
         }
         holder.tv_weight_lv_lv.setText(cangDanList.getWeightUseable() + "吨");
 
@@ -93,13 +96,18 @@ public class MyCangDanAdapter extends BaseAdapter implements View.OnClickListene
         Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.tv_trans_all_order_lv:
-                intent.setClass(context, GuaDanAddActivity.class);
-                int index = (int) v.getTag();
-                intent.putExtra("originalId", String.valueOf(list.get(index).getId()));
-                intent.putExtra("code", "1002");
-                intent.putExtra("codeGua", "1003");
-                intent.putExtra("isPlate", false);
-                context.startActivityForResult(intent, 1);
+                //如果没有绑定银行卡，不能出售
+                if (DefineUtil.BANKBAND) {
+                    intent.setClass(context, GuaDanAddActivity.class);
+                    int index = (int) v.getTag();
+                    intent.putExtra("originalId", String.valueOf(list.get(index).getId()));
+                    intent.putExtra("code", "1002");
+                    intent.putExtra("codeGua", "1003");
+                    intent.putExtra("isPlate", false);
+                    context.startActivityForResult(intent, 1);
+                }else {
+                    showDialogXY();
+                }
                 break;
             case R.id.tv_tihuo_all_order_lv:
                 intent.setClass(context, PickInfoActivity.class);
@@ -132,9 +140,36 @@ public class MyCangDanAdapter extends BaseAdapter implements View.OnClickListene
             case R.id.tv_quxiao:
                 builder.dismiss();
                 break;
+            case R.id.btn_cancel_pay_popup:
+                dialog.dismiss();
+                break;
+            case R.id.btn_confirm_pay_popup:
+                intent.setClass(context, CardListActivity.class);
+                context.startActivity(intent);
+                dialog.dismiss();
+                break;
         }
     }
+    private Dialog dialogXY;
+    private Button btn_cancel_pay_popupXY;
+    private Button btn_confirm_pay_popupXY;
+    private TextView tv_messageXY;
 
+    public void showDialogXY() {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View inView = inflater.inflate(R.layout.layout_pay_dialog, null);
+        btn_cancel_pay_popupXY = (Button) inView.findViewById(R.id.btn_cancel_pay_popup);
+        btn_confirm_pay_popupXY = (Button) inView.findViewById(R.id.btn_confirm_pay_popup);
+        tv_messageXY = (TextView) inView.findViewById(R.id.tv_message);
+        tv_messageXY.setText("尚未绑定银行卡，不能支付，去绑定？");
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.create();
+        builder.setView(inView);
+//        builder.setCancelable(false);
+        dialog = builder.show();
+        btn_cancel_pay_popupXY.setOnClickListener(this);
+        btn_confirm_pay_popupXY.setOnClickListener(this);
+    }
     class ViewHolder {
         ImageView iv_lv_lv;
         TextView tv_name_lv_lv;

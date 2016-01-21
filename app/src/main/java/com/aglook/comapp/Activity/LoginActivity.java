@@ -5,18 +5,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.BitmapDrawable;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
@@ -60,7 +55,7 @@ public class LoginActivity extends BaseActivity {
     private int totalNum;
     private int index;
     private SpinnerAdapter adapter;
-    private TextView tv_name;
+//    private TextView tv_name;
     private TextView tv_register;
     private DecimalFormat decimalFormat = new DecimalFormat("#.00");
     private TextView tv_find_password;
@@ -82,7 +77,7 @@ public class LoginActivity extends BaseActivity {
         mEditor = mShare.edit();
         adapter = new SpinnerAdapter(this, str);
         btn_login = (Button) findViewById(R.id.btn_login);
-        tv_name = (TextView) findViewById(R.id.tv_name);
+//        tv_name = (TextView) findViewById(R.id.tv_name);
         ll_top = (LinearLayout) findViewById(R.id.ll_top);
         et_username_login = (EditText) findViewById(R.id.et_username_login);
         et_password_login = (EditText) findViewById(R.id.et_password_login);
@@ -90,7 +85,7 @@ public class LoginActivity extends BaseActivity {
         if (accountType == null || "".equals(accountType)) {
             accountType = "1";
         }
-        tv_name.setText("用户名：");
+//        tv_name.setText("用户名：");
         tv_register = (TextView) findViewById(R.id.tv_register);
         tv_find_password = (TextView) findViewById(R.id.tv_find_password);
         fillData();
@@ -98,23 +93,23 @@ public class LoginActivity extends BaseActivity {
 
     public void fillData() {
 //        accountType=mShare.getString("accountType","");
-        if (accountType.equals("0")) {
-            et_username_login.setText(mShare.getString("setName", ""));
-            tv_name.setText("席位号：");
-            index = 1;
-        } else {
-            tv_name.setText("用户名：");
+//        if (accountType.equals("0")) {
+//            et_username_login.setText(mShare.getString("setName", ""));
+//            tv_name.setText("席位号：");
+//            index = 1;
+//        } else {
+//            tv_name.setText("用户名：");
             et_username_login.setText(mShare.getString("userName", ""));
-            index = 0;
-        }
-        adapter.setSelectItem(index);
+//            index = 0;
+//        }
+//        adapter.setSelectItem(index);
         et_password_login.setText(mShare.getString("password", ""));
     }
 
     public void click() {
         tv_find_password.setOnClickListener(this);
         btn_login.setOnClickListener(this);
-        tv_name.setOnClickListener(this);
+//        tv_name.setOnClickListener(this);
         ll_top.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -140,16 +135,16 @@ public class LoginActivity extends BaseActivity {
             case R.id.btn_login:
                 userName = AppUtils.toStringTrim_ET(et_username_login);
                 password = AppUtils.toStringTrim_ET(et_password_login);
-                if (accountType.equals("1")) {
+//                if (accountType.equals("1")) {
                     mEditor.putString("userName", userName);
-                } else {
-                    mEditor.putString("setName", userName);
-                }
+//                } else {
+//                    mEditor.putString("setName", userName);
+//                }
                 mEditor.putString("accountType", accountType);
                 mEditor.putString("password", password);
                 mEditor.commit();
                 if (userName == null || "".equals(userName)) {
-                    AppUtils.toastText(LoginActivity.this, "用户名或席位号不能为空");
+                    AppUtils.toastText(LoginActivity.this, "账号不能为空");
                     return;
                 }
 
@@ -159,9 +154,9 @@ public class LoginActivity extends BaseActivity {
                 }
                 login();
                 break;
-            case R.id.tv_name:
-                showWindow(view);
-                break;
+//            case R.id.tv_name:
+//                showWindow(view);
+//                break;
             case R.id.tv_register:
                 intent.setClass(LoginActivity.this, RegisterActivity.class);
                 startActivityForResult(intent, LOGIN_TO_REGISTER);
@@ -192,7 +187,7 @@ public class LoginActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-//                Log.d("result_login", accountType + "_______" + arg0.result);
+                Log.d("result_login", accountType + "_______" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String str = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -202,25 +197,20 @@ public class LoginActivity extends BaseActivity {
                     DefineUtil.USERID = login.getPshUser().getUserId();
                     DefineUtil.BANKBAND = login.isBankBind();
 //                    Log.d("result_login", DefineUtil.BANKBAND+"");
+                    //判断是否绑定银行卡，并且是否是兴业银行
+                    if (login.getBankCard()!=null&&!"".equals(login.getBankCard())){
+                        if ("兴业银行".equals(login.getBankCard().getBankAlis())){
+                            login.setXingYe(true);
+                        }else {
+                            login.setXingYe(false);
+                        }
+                    }else {
+                        login.setXingYe(false);
+                    }
                     comAppApplication.setLogin(login);
                     // 发送广播给MainActivity
                     //如果真实姓名，身份证与邮箱有一个为空，则去个人信息页面完善
                     if ((login.getPshUser().getUserNumber() == null || "".equals(login.getPshUser().getUserNumber()))) {
-                        //假如信息为空，则去填写
-//                        //如果是个人
-//                        if (login.getPshUser().getUserType() == 2) {
-//                            Intent intent = new Intent(LoginActivity.this, BasicInformationActivity.class);
-//                            LoginActivity.this.setResult(1);
-//                            LoginActivity.this.finish();
-//                            startActivity(intent);
-//
-//                        } else if (login.getPshUser().getUserType() == 1) {
-//                            //跳转到公司界面
-//                            Intent intent = new Intent(LoginActivity.this, CompanyInfoActivity.class);
-//                            LoginActivity.this.setResult(1);
-//                            LoginActivity.this.finish();
-//                            startActivity(intent);
-//                        }
                         infoDialog();
                     } else {
 
@@ -302,52 +292,52 @@ public class LoginActivity extends BaseActivity {
     }
 
 
-    private PopupWindow popupWindow;
-    private View view;
-    private ListView listView;
-
-    public void showWindow(View v) {
-        if (popupWindow == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) LoginActivity.this
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = layoutInflater.inflate(R.layout.layout_spinner, null);
-            listView = (ListView) view.findViewById(R.id.listView);
-            popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
-        }
-
-        // 使其聚焦
-        popupWindow.setFocusable(true);
-        // 设置允许在外点击消失
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.update();
-        // 点击back也会返回
-        popupWindow.setBackgroundDrawable(new BitmapDrawable());
-        popupWindow.showAsDropDown(v, 0, 0);
-        listView.setAdapter(adapter);
-        // 当开始时间选中后，获取选中的position，并且使结束时间的list只能从当前position开始选择
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                index = position;
-
-                if (position == 0) {
-                    accountType = "1";
-                } else {
-                    accountType = "0";
-                }
-                mEditor.putString("accountType", accountType);
-                fillData();
-                adapter.notifyDataSetChanged();
-                if (popupWindow != null) {
-                    popupWindow.dismiss();
-                }
-
-            }
-        });
-
-    }
+//    private PopupWindow popupWindow;
+//    private View view;
+//    private ListView listView;
+//
+//    public void showWindow(View v) {
+//        if (popupWindow == null) {
+//            LayoutInflater layoutInflater = (LayoutInflater) LoginActivity.this
+//                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//            view = layoutInflater.inflate(R.layout.layout_spinner, null);
+//            listView = (ListView) view.findViewById(R.id.listView);
+//            popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+//        }
+//
+//        // 使其聚焦
+//        popupWindow.setFocusable(true);
+//        // 设置允许在外点击消失
+//        popupWindow.setOutsideTouchable(true);
+//        popupWindow.update();
+//        // 点击back也会返回
+//        popupWindow.setBackgroundDrawable(new BitmapDrawable());
+//        popupWindow.showAsDropDown(v, 0, 0);
+//        listView.setAdapter(adapter);
+//        // 当开始时间选中后，获取选中的position，并且使结束时间的list只能从当前position开始选择
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view,
+//                                    int position, long id) {
+//                index = position;
+//
+//                if (position == 0) {
+//                    accountType = "1";
+//                } else {
+//                    accountType = "0";
+//                }
+//                mEditor.putString("accountType", accountType);
+//                fillData();
+//                adapter.notifyDataSetChanged();
+//                if (popupWindow != null) {
+//                    popupWindow.dismiss();
+//                }
+//
+//            }
+//        });
+//
+//    }
 
     private String orderStatus = "1";
     private int pageNum = 1;

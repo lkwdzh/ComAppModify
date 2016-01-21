@@ -1,9 +1,11 @@
 package com.aglook.comapp.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by aglook on 2015/11/12.
  */
-public class CardList {
+public class CardList implements Serializable{
     private String bankCardId;//银行卡id
     private String cardNo;//银行卡号: "5432123456788881"
     private String cardPhone;//手机号: "18613346633"

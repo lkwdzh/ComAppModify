@@ -25,8 +25,7 @@
 
                 <TextView
                     android:id="@+id/et_username_basic_info"
-                    style="@style/company_basic_infor_edittext_weight_13"
-                    android:hint="请输入用户名" />
+                    style="@style/company_basic_infor_edittext_weight_13" />
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -44,37 +43,6 @@
 
             <View style="@style/line_1" />
 
-            <LinearLayout
-                style="@style/basic_infor_ll_weight"
-                android:id="@+id/ll_company">
-
-                <TextView
-                    style="@style/company_basic_infor_TextView_333333_13"
-                    android:text="公司名称" />
-
-                <TextView
-                    android:id="@+id/tv_company_basic_info"
-                    style="@style/company_basic_infor_edittext_weight_13" />
-            </LinearLayout>
-
-            <View
-                style="@style/line_1"
-                android:id="@+id/view_company" />
-
-            <LinearLayout
-                style="@style/basic_infor_ll_weight"
-                android:id="@+id/ll_company_address">
-
-                <TextView
-                    style="@style/company_basic_infor_TextView_333333_13"
-                    android:text="公司地址" />
-
-                <TextView
-                    android:id="@+id/tv_company_address_basic_info"
-                    style="@style/company_basic_infor_edittext_weight_13" />
-            </LinearLayout>
-
-            <View style="@style/line_1" />
 
             <LinearLayout style="@style/basic_infor_ll_weight">
 
@@ -86,14 +54,14 @@
                 <EditText
                     android:id="@+id/et_truename_basic_info"
                     style="@style/company_basic_infor_edittext_weight_13"
-                    android:hint="请输入真实姓名" />
+                    android:hint="请输入真实姓名(必填)" />
             </LinearLayout>
 
             <View style="@style/line_1" />
 
             <TextView
                 style="@style/remind_TextView_666666_11_center"
-                android:text="请填写真实姓名一经填写不能修改,此名字必须与银行卡开户名字相同！" />
+                android:text="请填写真实姓名一经填写不能修改,此名字必须与银行卡开户名字相同！(必填)" />
 
             <View style="@style/line_1" />
 
@@ -108,14 +76,14 @@
                     style="@style/company_basic_infor_edittext_weight_13"
                     android:digits="1234567890xX"
                     android:maxLength="18"
-                    android:hint="请输入身份证号" />
+                    android:hint="请输入身份证号(必填)" />
             </LinearLayout>
 
             <View style="@style/line_1" />
 
             <TextView
                 style="@style/remind_TextView_666666_11_center"
-                android:text="请填写身份证号一经填写不能修改" />
+                android:text="请填写身份证号一经填写不能修改(必填)" />
 
             <View style="@style/line_1" />
 
@@ -129,7 +97,7 @@
                     android:id="@+id/et_email_basic_info"
                     style="@style/company_basic_infor_edittext_weight_13"
                     android:inputType="textEmailAddress"
-                    android:hint="请输入邮箱" />
+                    android:hint="请输入邮箱(必填)" />
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -170,11 +138,9 @@
                     android:hint="请输入固定电话" />
             </LinearLayout>
 
-            <View style="@style/line_1" />
+            <View style="@style/line_1"
+                android:visibility="gone"/>
 
-            <View
-                style="@style/line_1"
-                android:visibility="gone" />
 
             <LinearLayout style="@style/basic_infor_ll_weight">
 
@@ -187,36 +153,17 @@
                     style="@style/company_basic_infor_edittext_weight_13"
                     android:inputType="phone"
                     android:maxLength="11"
-                    android:hint="请输入手机号" />
+                    android:hint="请输入手机号(必填)" />
             </LinearLayout>
 
-
-            <View
-                style="@style/line_1"
-                android:id="@+id/view_company_address" />
-            <TextView
-                style="@style/remind_TextView_666666_11_center"
-                android:text="请填写您的常用手机，以方便与您联系，一个手机号可以注册多个用户" />
 
             <View style="@style/line_1" />
-            <LinearLayout
-                style="@style/basic_infor_ll_weight"
-                android:visibility="gone">
 
-                <TextView
-                    style="@style/company_basic_infor_TextView_333333_13"
-                    android:text="@string/basic_information_safe" />
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="请填写您的常用手机，以方便与您联系，一个手机号可以注册多个用户(必填)" />
 
-                <TextView
-                    android:id="@+id/tv_change_basic_info"
-                    style="@style/company_basic_infor_edittext_weight_13"
-                    android:drawableRight="@drawable/next"
-                    android:text="可修改密码" />
-            </LinearLayout>
 
-            <View
-                style="@style/line_1"
-                android:visibility="gone" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

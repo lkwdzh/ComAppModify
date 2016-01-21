@@ -1,19 +1,24 @@
 package com.aglook.comapp.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.aglook.comapp.Activity.CardListActivity;
 import com.aglook.comapp.Activity.GuaDanAddActivity;
 import com.aglook.comapp.Activity.PickInfoActivity;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.PlatformCangDanList;
+import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.XBitmap;
 import com.aglook.comapp.view.Timestamp;
 
@@ -103,13 +108,18 @@ public class PlatformAdapter extends BaseAdapter implements View.OnClickListener
         Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.tv_trans_all_order_lv:
-                intent.setClass(context, GuaDanAddActivity.class);
-                index = (int) v.getTag();
-                intent.putExtra("orderdataId", list.get(index).getOrderdataId());
-                intent.putExtra("code", "2002");
-                intent.putExtra("codeGua", "2003");
-                intent.putExtra("isPlate", true);
-                context.startActivityForResult(intent,2);
+                //如果没有绑定银行卡，不能出售
+                if (DefineUtil.BANKBAND) {
+                    intent.setClass(context, GuaDanAddActivity.class);
+                    index = (int) v.getTag();
+                    intent.putExtra("orderdataId", list.get(index).getOrderdataId());
+                    intent.putExtra("code", "2002");
+                    intent.putExtra("codeGua", "2003");
+                    intent.putExtra("isPlate", true);
+                    context.startActivityForResult(intent, 2);
+                }else {
+                    showDialog();
+                }
                 break;
             case R.id.tv_tihuo_all_order_lv:
                 index = (int) v.getTag();
@@ -119,9 +129,36 @@ public class PlatformAdapter extends BaseAdapter implements View.OnClickListener
                 intent.putExtra("isPlate", true);
                 context.startActivityForResult(intent,2);
                 break;
+            case R.id.btn_cancel_pay_popup:
+                dialog.dismiss();
+                break;
+            case R.id.btn_confirm_pay_popup:
+                intent.setClass(context, CardListActivity.class);
+                context.startActivity(intent);
+                dialog.dismiss();
+                break;
         }
     }
+    private Dialog dialog;
+    private Button btn_cancel_pay_popup;
+    private Button btn_confirm_pay_popup;
+    private TextView tv_message;
 
+    public void showDialog() {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View inView = inflater.inflate(R.layout.layout_pay_dialog, null);
+        btn_cancel_pay_popup = (Button) inView.findViewById(R.id.btn_cancel_pay_popup);
+        btn_confirm_pay_popup = (Button) inView.findViewById(R.id.btn_confirm_pay_popup);
+        tv_message = (TextView) inView.findViewById(R.id.tv_message);
+        tv_message.setText("尚未绑定银行卡，不能支付，去绑定？");
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.create();
+        builder.setView(inView);
+//        builder.setCancelable(false);
+        dialog = builder.show();
+        btn_cancel_pay_popup.setOnClickListener(this);
+        btn_confirm_pay_popup.setOnClickListener(this);
+    }
     class ViewHolder {
         ImageView iv_lv_lv;
         TextView tv_name_lv_lv;
