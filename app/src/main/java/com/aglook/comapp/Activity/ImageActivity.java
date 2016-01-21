@@ -2,14 +2,15 @@ package com.aglook.comapp.Activity;
 
 import android.graphics.Bitmap;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 
+import uk.co.senab.photoview.PhotoView;
+
 public class ImageActivity extends BaseActivity {
     private int num;
-    private ImageView scrollview;
+    private PhotoView scrollview;
     private Bitmap bitmap;
 
     @Override
@@ -17,7 +18,7 @@ public class ImageActivity extends BaseActivity {
         setContentView(R.layout.activity_image);
         ExitApplication.getInstance().addActivity(this);
         num = getIntent().getIntExtra("num", 0);
-        scrollview = (ImageView) findViewById(R.id.scrollview);
+        scrollview = (PhotoView) findViewById(R.id.scrollview);
         switch (num) {
             case 1:
                 setTitleBar("登录-注册");

@@ -8,37 +8,30 @@
     <View style="@style/line_1" />
 
 
-    <!--<TextView-->
-    <!--android:id="@+id/tv_help_setting"-->
-    <!--style="@style/basic_infor_TextView_333333_set"-->
-    <!--android:drawableRight="@drawable/next"-->
-    <!--android:text="帮助中心" />-->
-
-
-    <!--<View style="@style/line_1" />-->
-
-
-
-
     <RelativeLayout
         android:id="@+id/tv_update_setting"
-       android:layout_width="match_parent"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/px_65"
         android:background="@color/white"
-        android:paddingLeft="@dimen/px_14"
         android:visibility="visible"
-        android:paddingRight="@dimen/px_14"
-        android:paddingTop="@dimen/px_20"
-        android:paddingBottom="@dimen/px_20">
+        >
 
         <TextView
             style="@style/grayTextView_333333_15"
             android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/px_14"
+            android:paddingRight="@dimen/px_14"
+            android:paddingTop="@dimen/px_20"
+            android:paddingBottom="@dimen/px_20"
             android:text="版本信息" />
 
         <TextView
             android:id="@+id/tv_versionName_setting"
             style="@style/grayTextView_999999_15"
+            android:paddingLeft="@dimen/px_14"
+            android:paddingRight="@dimen/px_14"
+            android:paddingTop="@dimen/px_20"
+            android:paddingBottom="@dimen/px_20"
             android:layout_alignParentRight="true"
             android:drawableRight="@drawable/next"
             android:layout_centerVertical="true" />
@@ -47,39 +40,36 @@
 
     <View style="@style/line_1" />
 
-    <TextView
-        android:id="@+id/tv_share"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/px_65"
-        android:textColor="@color/textcolor_333333"
-        android:textSize="15sp"
-        android:text="邀请好友"
-        android:visibility="gone"
         android:background="@color/white"
-        android:paddingLeft="@dimen/px_14"
-        android:paddingRight="@dimen/px_14"
-        android:drawableRight="@drawable/next"
-        android:paddingTop="@dimen/px_20"
-        android:paddingBottom="@dimen/px_20" />
+        android:visibility="visible"
+       >
 
-    <View style="@style/line_1"
-        android:visibility="gone"/>
+        <TextView
+            style="@style/grayTextView_333333_15"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/px_14"
+            android:paddingRight="@dimen/px_14"
+            android:paddingTop="@dimen/px_20"
+            android:paddingBottom="@dimen/px_20"
+            android:text="推送" />
 
-    <TextView
-        android:id="@+id/tv_intro"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/px_65"
-        android:textColor="@color/textcolor_333333"
-        android:textSize="15sp"
-        android:text="功能介绍"
-        android:background="@color/white"
-        android:paddingLeft="@dimen/px_14"
-        android:paddingRight="@dimen/px_14"
-        android:drawableRight="@drawable/next"
-        android:paddingTop="@dimen/px_20"
-        android:paddingBottom="@dimen/px_20" />
+        <CheckBox
+            android:id="@+id/cb_jpush"
+            style="@style/grayTextView_999999_15"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="@dimen/px_14"
+            android:paddingRight="@dimen/px_14"
+            android:paddingTop="@dimen/px_20"
+            android:paddingBottom="@dimen/px_20"
+            android:button="@drawable/cb_setting"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
 
     <View style="@style/line_1" />
+
     <TextView
         android:id="@+id/tv_modify_pwd"
         android:layout_width="match_parent"
@@ -95,15 +85,5 @@
         android:text="修改密码" />
 
     <View style="@style/line_1" />
-    <Button
-        android:id="@+id/btn_tuichu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/anjian"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/px_50"
-        android:text="退出登录"
-        android:textSize="15sp"
-        android:textColor="@color/white"
-        android:gravity="center" />
+
 </LinearLayout>

@@ -11,6 +11,9 @@ import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.bean.LoginPshUser;
+import com.aglook.comapp.util.AppUtils;
+import com.aglook.comapp.view.IDCard;
+import com.aglook.comapp.view.PatternNum;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -40,7 +43,7 @@ public class CompanyInfoActivity extends BaseActivity {
     @Bind(R.id.tv_company_increNum)
     EditText tvCompanyIncreNum;
     @Bind(R.id.et_managerName)
-    TextView etManagerName;
+    EditText etManagerName;
     @Bind(R.id.et_phone_basic_info)
     EditText etPhoneBasicInfo;
     @Bind(R.id.et_guding_basic_info)
@@ -52,10 +55,19 @@ public class CompanyInfoActivity extends BaseActivity {
 
     private ComAppApplication comAppApplication;
     private Login login;
+    private String trueName;
+    private String idCard;
+    private String ordinaryNum;
+    private String increNum;
+    private String managerName;
+    private String phone;
+    private String telephone;
+    private String email;
 
     @Override
     public void initView() {
         setContentView(R.layout.activity_company_info);
+        setTitleBar("公司信息");
         ButterKnife.bind(this);
         ExitApplication.getInstance().addActivity(this);
         comAppApplication = (ComAppApplication) getApplication();
@@ -64,11 +76,82 @@ public class CompanyInfoActivity extends BaseActivity {
         rightText.setText("完成");
         fillData();
         inputType();
+        click();
+    }
+
+    public void click() {
+        rightText.setOnClickListener(this);
     }
 
     @Override
     public void widgetClick(View view) {
+        switch (view.getId()) {
+            case R.id.right_text:
+                getInput();
+                break;
+        }
+    }
 
+
+    //获取输入值并判断
+    public void getInput() {
+        trueName = AppUtils.toStringTrim_ET(etTruenameBasicInfo);
+        idCard = AppUtils.toStringTrim_ET(etNumBasicInfo);
+        ordinaryNum = AppUtils.toStringTrim_ET(tvCompanyOrdinaryNum);
+        increNum = AppUtils.toStringTrim_ET(tvCompanyIncreNum);
+        managerName = AppUtils.toStringTrim_ET(etManagerName);
+        phone = AppUtils.toStringTrim_ET(etPhoneBasicInfo);
+        telephone = AppUtils.toStringTrim_ET(etGudingBasicInfo);
+        email = AppUtils.toStringTrim_ET(etEmailBasicInfo);
+        if (trueName == null || "".equals(trueName)) {
+            AppUtils.toastText(CompanyInfoActivity.this, "法人姓名不能为空");
+            return;
+        }
+
+        if (idCard == null || "".equals(idCard)) {
+            AppUtils.toastText(CompanyInfoActivity.this, "法人身份证号不能为空");
+            return;
+        }
+        //判断身份证格式
+        String ss = IDCard.IDCardValidate(idCard);
+        if (!"".equals(ss)) {
+            AppUtils.toastText(CompanyInfoActivity.this, ss);
+            return;
+        }
+
+        if (ordinaryNum == null || "".equals(ordinaryNum)) {
+            AppUtils.toastText(CompanyInfoActivity.this, "普通票税号不能为空");
+            return;
+        }
+
+        if (increNum == null || "".equals(increNum)) {
+            AppUtils.toastText(CompanyInfoActivity.this, "增值票税号不能为空");
+            return;
+        }
+
+        if (managerName == null || "".equals(managerName)) {
+            AppUtils.toastText(CompanyInfoActivity.this, "经理姓名不能为空");
+            return;
+        }
+
+        if (phone == null || "".equals(phone)) {
+            AppUtils.toastText(CompanyInfoActivity.this, "经理手机号不能为空");
+            return;
+        }
+        if (!PatternNum.isMobileNO(phone)) {
+            AppUtils.toastText(CompanyInfoActivity.this, "请输入正确手机号");
+            return;
+        }
+
+        if (email == null || "".equals(email)) {
+            AppUtils.toastText(CompanyInfoActivity.this, "常用邮箱不能为空");
+            return;
+        }
+        //判断邮箱格式
+        if (!!PatternNum.isEmail(email)) {
+            AppUtils.toastText(CompanyInfoActivity.this, "邮箱格式不正确");
+            return;
+        }
     }
 
     //填充数据
@@ -95,22 +178,27 @@ public class CompanyInfoActivity extends BaseActivity {
         if (login != null && !"".equals(login)) {
 
             if ((login.getPshUser().getUserNumber() == null || "".equals(login.getPshUser().getUserNumber()))) {
-                leftIcon.setVisibility(View.GONE);
-                etTruenameBasicInfo.setFocusable(true);
-                etTruenameBasicInfo.setFocusableInTouchMode(true);
-                etTruenameBasicInfo.requestFocus();
-
-                etNumBasicInfo.setFocusable(true);
-                etNumBasicInfo.setFocusableInTouchMode(true);
-                etNumBasicInfo.requestFocus();
+                leftIcon.setVisibility(View.INVISIBLE);
+                tvCompanyIncreNum.setFocusable(true);
+                tvCompanyIncreNum.setFocusableInTouchMode(true);
+                tvCompanyIncreNum.requestFocus();
 
                 tvCompanyOrdinaryNum.setFocusable(true);
                 tvCompanyOrdinaryNum.setFocusableInTouchMode(true);
                 tvCompanyOrdinaryNum.requestFocus();
 
-                tvCompanyIncreNum.setFocusable(true);
-                tvCompanyIncreNum.setFocusableInTouchMode(true);
-                tvCompanyIncreNum.requestFocus();
+                etNumBasicInfo.setFocusable(true);
+                etNumBasicInfo.setFocusableInTouchMode(true);
+                etNumBasicInfo.requestFocus();
+
+
+                etTruenameBasicInfo.setFocusable(true);
+                etTruenameBasicInfo.setFocusableInTouchMode(true);
+                etTruenameBasicInfo.requestFocus();
+
+
+
+
             } else {
 
                 leftIcon.setVisibility(View.VISIBLE);

@@ -194,7 +194,11 @@
             <View
                 style="@style/line_1"
                 android:id="@+id/view_company_address" />
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="请填写您的常用手机，以方便与您联系，一个手机号可以注册多个用户" />
 
+            <View style="@style/line_1" />
             <LinearLayout
                 style="@style/basic_infor_ll_weight"
                 android:visibility="gone">

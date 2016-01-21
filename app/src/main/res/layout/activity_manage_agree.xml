@@ -1,0 +1,231 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_eeeeee"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_base_title_bar" />
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/px_20"
+        android:orientation="vertical"
+        android:paddingRight="@dimen/px_20">
+
+        <TextView
+            android:text="DECX电子商务网管理办法"
+            android:layout_marginTop="@dimen/px_20"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="发布日期：2015-11-14 18:27　浏览量：1788"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="第一章 总则" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="第一条 为促进小宗农产品的生产和流通，规范买卖的组织和行为，维护买卖参与方的合法权益，成立DECX电子商务网。\n
+第二条 为规范在DECX电子商务网进行的买卖活动，保障网站客户的合法权益，维护DECX电子商务网的秩序。根据国家有关法律、法规制定本管理办法。\n
+第三条 商品买卖应当遵循自愿平等、诚实可信和公开、公平、公正的原则，不得侵犯他人合法权益和损害社会公共利益。\n
+第四条 买卖过程中所有买卖信息的真实性、合法性和有效性由信息提供方负责。\n
+第五条 客户登陆DECX电子商务网（www.decxagri.com）进行注册，填写注册信息并提交，生成席位号。客户在注册时填写推荐人，推荐人可享有网站收益，详情咨询客服：010-64827535，010-53669806。\n
+第六条 注册完成生成席位号后，客户会收到网站发送的提示短信。系统通过手机号码验证客户的唯一性，客户通过手机号码找回注册账号和密码。网站推荐客户优先使用兴业银行服务，兴业银行直接与客户进行沟通开立银行账户。兴业银行会上门服务或定点集中服务，为客户的银行账户进行激活。客户对自己的个人信息资料进行完善，并将席位号与银行账户进行绑定。客户要对自己的账号、密码进行妥善保管。\n
+第七条 买卖申报经DECX电子商务网买卖系统组织成交即生效，成交结果视为双方达成买卖合同（仓库现货买卖合同详见附件一，远期合同买卖合同详见附件二），具有法律效力。买卖合同信息通过电子成交回报系统发送至网站的计算机终端。\n
+第八条 客户按照DECX电子商务网公布的仓库信息将货物存入指定交收仓库（详见附件三），仓库对客户的货物进行验收及存管，检验标准以仓库为准。客户的货物在存放仓库后形成仓单，货物在网站出售期间，客户的仓储费用由网站根据仓库收费标准代仓库进行收取。（仓储费用明细详情参见网站公告）。\n
+第九条 DECX电子商务网提供指定交收仓库，指定交收仓库对货物进行入库检验和货物存管。出库时货物如发生短重量(货物损耗在总重量的千分之一以内免赔)、质量发生霉变等，由仓库方面全部承担，如有货物出现涨吨现象，权益归最初入库人所有。客户须同意DECX电子商务网关于仓储费用的相关规定。\n
+第十条 货物质量保障\n
+(一) 为保证货物质量，成立联盟委员会，联盟常委单位由行业选举产生，每两年进行更换，推选行业里做事公平、讲信誉的单位，委派专业经验丰富的人当代表。联盟在DECX电子商务网指定的仓库门口立公示牌，标示13个常委单位驻仓库人员及其联系方式。“联盟验证货物”由联盟委员会制定标准并严格执行，经联盟验证的货物用标识标明等级。“非联盟验证货物”质量由买家自己把控，仓库描述只作为参考。若客户对货物质量有疑虑，由买卖双方各找一名信赖的常委单位驻仓库人员协同网站委派的一名常委单位驻仓库人员对货物进行再次检验。\n
+(二) 根据《中华人民共和国食品安全法》的相关规定，为保证在网站流通的货物质量，网站根据具体品种规定各品种在网站流转时间具体详见品种公告。\n
+(三) 根据国家税法相关规定，本网站买卖价格均为税后带票价格，挂单买卖时请卖家酌情考虑挂单价格，买卖成交即视为买卖双方已签订相对应的购销合同，买卖双方均须承担相应的责任和义务。\n
+第十一条 银行以客户在DECX电子商务网进行的买卖成交记录为依据，对客户提供融资服务，加快货物流通，便利客户买卖。\n" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="第二章 术语和定义" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="第一条 买卖参与方：在网站注册登记，经本网站审核批准获得买卖资格，在本网站从事小宗农产品买卖的企业、农村经纪人、个体工商户等。\n
+第二条 买卖摊位：买卖参与方在查看买卖信息、输入买卖指令、参与买卖活动时所使用的电子买卖通道，即客户注册时生成的账户。\n
+第三条 买卖品种：经DECX电子商务网认定，在本网站买卖系统中注册登记和公布，按照本网站规定的买卖模式进行买卖并用于交收的小宗农产品。\n
+第四条 买卖模式：买卖参与方按照网站规定的合同签订模式进行买卖，具体包括仓库现货和远期合同两种模式。\n
+第五条 买卖合同：买卖参与方通过DECX电子商务网的电子买卖系统签订的约定购销合同。\n
+第六条 仓单：由DECX电子商务网指定交收仓库开具的，经本网站注册登记的存货凭证。\n
+第七条 电子仓单：由DECX电子商务网生成的仓单。\n
+第八条 提货序列号：DECX电子商务网生成的唯一提货凭证。\n
+第九条 结算银行：由DECX电子商务网确认的，用于存放买卖资金并对买卖资金进行监管、结算、划拨的银行。\n
+第十条 交收：即交货、交钱，买卖双方确定交货的同时伴随着货款的结算，货钱两清时即交收完毕。\n
+第十一条 交收定金：为保障合同的履约，根据不同品种在交收日前，随着交收日的临近不断提高的定金。\n
+第十二条 交收日：买卖双方合同约定的交货日期。\n
+第十三条 指定交收仓库：由DECX电子商务网指定的，用于买卖双方履行合同进行货物交收的仓库\n" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="第三章 仓库现货" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="第一条 DECX电子商务网仓库现货买卖时间：详见网站公告。DECX电子商务网有权根据实际情况对买卖时间做出调整。\n
+第二条 客户角色为买方时如何操作\n
+(一) 客户登陆DECX电子商务网对相关农产品买卖信息进行浏览，选中符合客户需求的商品货物，将相关商品添加到购物车中，然后去进行支付货款，三十分钟内未进行支付或者支付失败，客户的订单将被取消；如该客户一天之内三次订单未能执行，网站将取消该客户当天买卖权利，第二天恢复其买卖权利；\n
+(二) 支付成功后买方货款打到卖方账户，买方会收到购买货物成功的短信；买卖完成时买卖双方向网站缴纳一定服务费（前半年买卖免费）。\n
+(三) 客户可以选择将DECX电子商务网仓单再次进行出售（参见第三条），也可将对应的电子仓单进行提货；如果将仓单进行再次出售，需填写数量、价格和买卖时间；如果将对应仓单进行提货，买方则需要填写提货人信息，包括提货司机的手机号、车牌号、身份证号等信息。\n
+(四) DECX电子商务网将会根据买家填写的提货信息给提货司机发送短信，短信内包含提货序列号，提货人根据网站所发短信到网站指定仓库进行提货；仓库验证提货司机提供的信息以及仓库管理平台查询到的买卖信息，如信息一致，仓库允许提货人提货；若信息不符，仓库有权拒绝放货。\n
+(五) 提货时凭唯一提货序列号作为提货依据，仓库人员须认真审核提货人出示的短信中的提货序列号。\n
+第三条 客户角色为卖方时如何操作\n
+(一) 客户将货物运到DECX电子商务网指定仓库进行货物入库，仓库对卖方运送的货物进行验收并生成仓单。客户登陆DECX电子商务网，根据仓单信息填写出售价格、数量等，同时完善货物详情描述，完成挂单出售。\n
+(二) 客户也可选择定向出售，即卖方填写指定买家席位号，只有特定买家才能看到其发布的货物信息。\n
+(三) 如商品被成功出售，卖家会收到由DECX电子商务网发送的卖货成功信息，并成功收到购买人所支付的货款。买方货款100%冻结并实时从买方账户直接打入卖方账户，卖方收到的汇款单显示汇款方为买方，收款方为卖方。卖方直接给买方提供发票。\n
+(四) 客户为个人用户时，DECX电子商务网指定代理公司进行买卖，相关费用由客户自行负担（代理费用为货物总额的千分之一，前半年买卖免代理费）。\n" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="第四章 远期合同" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\n第一条 DECX电子商务网远期合同实行定金制度。客户参与远期合同买卖时，网站通过买卖系统自动冻结相应的定金、手续费和交收手续费。未达成成交合同的，系统自动解除冻结。\n
+第二条 买卖时间：详见网站公告。\n
+第三条 买卖品种：网站规定的符合网站标准的标的物。\n
+第四条 合同转让最小价格变动单位：1元
+第五条 买卖报价：元(人民币)/吨\n
+第六条 买卖手续费：货物总额的千分之一\n
+第七条 交收手续费：货物总额的千分之一\n
+第八条 合同签订最小单位：一吨\n
+第九条 合同转让最小单位：一吨\n
+第十条 卖方客户应根据其选择的买卖品种，并根据远期合同买卖系统的要求，如实申报买卖合同的条款，包括：品名、规格、原产地、数量、质量标准、价格、交货地、交收时间、交货方式、最少买卖量等内容。\n
+第十一条 客户选择远期合同进行买卖：\n
+(一) 选择合同，购买合同；\n
+(二) 在未提交申请交收之前，客户可以对订购合同进行转让或者继续持有；\n
+(三) 在申请交收时间期限内（在申请交收时间开始到合同交收日为止，客户须按照合同规定提高定金的比例，直到支付合同的全款，提高定金比例以具体远期合同为准参见品种公告）。\n
+1. 客户未提交交收申请，则继续持有合同或者转让。\n
+2. 客户提交交收申请。网站审核通过，至合同交收日止，客户根据远期合同到仓库进行提货；如果网站审核不通过，客户则继续持有合同或转让。经网站审核通过交收申请的客户，网站会根据实际情况通知客户交货时间。\n
+第十二条 定金比例：购买远期合同的定金比例不得低于20%，受行情波动的影响，低于20%网站将通知客户补足定金，客户有义务在第二个买卖日开始前补足定金，以确保客户账户有足够资金可以进行买卖。（如有变动详见网站品种公告）\n
+第十三条 根据当日行情波动价格，定金比例低于10%网站将对客户仓单进行平仓。\n
+第十四条 交收定金变动比例：随着交收日期的临近，交收定金会逐步增加，根据系统提醒补足定金。具体详情参见各品种公告。\n" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="第五章 结算" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="第一条 DECX电子商务网根据买卖结果、买卖双方之间的合同约定和本网站相关规定对买卖双方货款及各项费用等进行每日结算。买卖双方可通过本网站电子买卖系统提取出兴业银行每日的结算数据。\n
+第二条 买卖双方参与 DECX电子商务网买卖，应在本网站指定结算银行账户存入足够资金，以确保货款的及时支付。买卖资金由兴业银行进行第三方监管，网站无权动用客户资金。买卖资金的划拨由兴业银行负责以保障资金的安全性和及时性。网站指定兴业银行为结算银行，网站客户应当在兴业银行开立自有资金账户并与买卖资金账户绑定。客户的买卖资金在其买卖资金账户和其自有资金账户之间划转。\n
+第三条 客户进行买卖时，买卖资金不足以支付全部应付货款的情况下，DECX电子商务网没有义务和责任为其垫付货款，未能及时足额的付清货款的责任由买方客户承担责任。\n
+第四条 本网站采用数据电文等方式向买卖双方提供当日结算数据，买卖双方通过本网站电子买卖系统提取银行当日的结算数据。\n
+第五条 买卖双方应对当日结算数据进行核对，如有异议，须在下一买卖日开始前书面申请DECX电子商务网复核。本网站将以电子买卖系统数据库的记录为依据作出复核结论。否则，视为无异议。\n
+第六条 买卖双方的资金不足时，本网站提供的结算数据即视为本网站向买卖双方发出的催款通知，买卖双方应在下一买卖日开始前补足。\n
+第七条 因特殊情况造成本网站不能按时提供结算数据时，本网站将及时通知提供结算数据的时间。" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="第六章 交收" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="第一条 交收：客户根据不同品种详情参见品种公告提前向DECX电子商务网递交交收申请，网站审核通过后方可进行交收。卖方请提前与仓库联系以确保交收日完成交收。\n
+第二条 未提交交收申请的客户以及未通过审核的客户，DECX电子商务网将于交收日的前一个买卖日对其合同进行平仓。\n
+第三条 交收当日卖家将货物存入指定仓库，收到全部货款，退回全部定金，卖家直接给买家开具发票。\n
+第四条 交收当日买家支付全部货款，货物转入仓库现货流程。\n
+第五条 购买方对货物质量如有异议，应当以书面形式提交DECX电子商务网。网站将通知购销双方24小时内协商解决。\n
+第六条 如果因参与买卖的一方违约给另一方带来的损失，网站将协助守约方向违约方追索，以双方定金为最大索赔金额。\n" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="第七章 信息发布" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="第一条 信息发布通过官方网站DECX电子商务网（www.decxagri.com）发布本文件、通知、公告及与买卖相关的其他信息。\n
+第二条 DECX电子商务网发布的商品信息包括：货物名称、货物质量、货物数量、买卖数量、买卖金额等相关信息。\n
+第三条 信息发布根据不同内容定期发布，网站可根据实际情况对信息的发布进行相应调整。\n
+第四条 DECX电子商务网对根据本办法做出的其他决定、进行的规则调整等，均通过网站对外进行公布，自公布之日起生效（另有规定除外）\n。
+第五条 DECX电子商务网通过公告或者其他形式发布的信息，一经发布即视为DECX电子商务网将信息送达客户，客户已知悉信息内容。\n
+第六条 国家公布的相关法律、法规及政府相关部门颁布的规定如对农产品买卖有特别规定的，从其规定。\n" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="第八章 调解与处罚" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="第一条 买卖双方对其签订的合同负有履行和承担风险的责任。\n
+第二条 买卖双方因履约发生纠纷，可协商解决，也可向网站申请调解。若双发达成调解协议，可由DECX电子商务网监督实施。\n
+第三条 买卖双方因履约发生纠纷，经协商仍未解决的可依法向哈尔滨人民法院提起诉讼。\n
+第四条 本网站有权根据买卖情况对买卖双方不正当买卖行为进行劝戒、调整其定金额度或终止其买卖资格。对有下列行为之一的，责令改正，情节较轻的，给予警告、暂停买卖、中止和取消买卖资格等处罚；违规行为构成犯罪的，移交司法机关追究刑事责任。\n
+(一) 通过恶意串通，联手买卖，按事先约定的方式或价格进行买卖，制造买卖假象，影响或企图影响货物买卖价格的；\n
+(二) 以操纵买卖为目的，用直接或间接的方法操纵或扰乱买卖秩序，妨碍或有损于公正买卖，有损于国家利益和社会公众利益的；\n
+(三) 其它违反本网站有关买卖管理规定的。\n
+第五条 买卖双方可在接到DECX电子商务网对其做出处理决定后十日内，向本网站提出书面复议申请，要求对有关处理进行复议，在做出复议决定之前，原决定仍然有效。\n
+第六条 DECX电子商务网规范工作人员行为，凡发现我方工作人员有受贿、弄虚作假、故意泄露秘密和诱导买卖双方买卖等行为的，任何人都可以向本网站投诉，本网站经调查核实后按有关规定处罚，并将结果书面通知举报者。\n
+第七条 买卖双方、指定交收仓库、指定结算银行之间发生争议，协商无效的，可以提请网站调解或者直接依法提请仲裁或诉讼。\n" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="第九章 风险控制和异常处理" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="第一条 在买卖过程中，如果出现以下情形之一的，DECX电子商务网可以宣布进入异常情况，采取紧急措施化解风险。\n
+(一) 地震、水灾、火灾等不可抗力或计算机系统故障等不可归责于本网站的原因导致买卖无法正常进行的；\n
+(二) 买卖双方出现结算、交收危机，网站出现异常情况，对网站正在产生或者将产生重大影响的；\n
+(三) 本网站规定的其他情况。\n
+(四) 出现异常情况时，本网站有权采取调整买卖时间、暂停买卖、提高定金等紧急措施。在异常情况下，本网站有权采取现金交收机制。\n
+(五) 因不可预测或无法控制的系统故障、设备故障、通讯故障、停电等突发事故，造成买卖中断，恢复买卖时以故障发生前电子买卖系统最终记录的买卖数据为有效买卖数据。由于买卖双方计算机终端、通讯系统等买卖设施发生故障，本网站有权暂停买卖，直至故障消除为止。\n" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="第十章 附则" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="第一条 本办法中所包含的附件为本办法不可或缺的部分，参与本网的各方须遵守其中规定。本办法最终解释权归DECX电子商务网所有。DECX电子商务网有权根据实际情况对本管理办法进行修订。\n
+第二条 本办法自发布之日起执行。\n" />
+    </LinearLayout>
+
+</ScrollView>
+
+
+</LinearLayout>

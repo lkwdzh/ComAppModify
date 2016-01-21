@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -51,17 +53,20 @@ public class RegisterActivity extends BaseActivity {
     private Button btn_register;
     private String userCode;
 
-    private int time=60;
+    private boolean isAgreeXie;
+    private boolean isAgreeBan;
 
-    private Handler handler=new Handler(){
+    private int time = 60;
+
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            if (msg.what==1){
-                if (time==0){
+            if (msg.what == 1) {
+                if (time == 0) {
                     tv_code_register.setText("验证码");
                     handler.removeMessages(1);
-                    time=60;
-                }else {
+                    time = 60;
+                } else {
                     tv_code_register.setText(time + "");
                     time--;
                     handler.sendEmptyMessageDelayed(1, 1000);
@@ -70,6 +75,10 @@ public class RegisterActivity extends BaseActivity {
         }
     };
     private EditText et_tuijian__register;
+    private CheckBox cb_xieYi;
+    private TextView tv_xieYi;
+    private CheckBox cb_banFa;
+    private TextView tv_banFa;
 
     @Override
     public void initView() {
@@ -94,6 +103,10 @@ public class RegisterActivity extends BaseActivity {
         et_company_address_register = (EditText) findViewById(R.id.et_company_address_register);
         btn_register = (Button) findViewById(R.id.btn_register);
         et_tuijian__register = (EditText) findViewById(R.id.et_tuijian__register);
+        cb_xieYi = (CheckBox) findViewById(R.id.cb_xieYi);
+        tv_xieYi = (TextView) findViewById(R.id.tv_xieYi);
+        cb_banFa = (CheckBox) findViewById(R.id.cb_banFa);
+        tv_banFa = (TextView) findViewById(R.id.tv_banFa);
     }
 
     public void click() {
@@ -115,10 +128,34 @@ public class RegisterActivity extends BaseActivity {
         });
         tv_code_register.setOnClickListener(this);
         btn_register.setOnClickListener(this);
+
+        tv_xieYi.setOnClickListener(this);
+        tv_banFa.setOnClickListener(this);
+        cb_xieYi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    isAgreeXie = true;
+                } else {
+                    isAgreeXie = false;
+                }
+            }
+        });
+        cb_banFa.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    isAgreeBan = true;
+                } else {
+                    isAgreeBan = false;
+                }
+            }
+        });
     }
 
     @Override
     public void widgetClick(View view) {
+        Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.tv_code_register:
                 userPhone = AppUtils.toStringTrim_ET(et_phone__register);
@@ -130,16 +167,24 @@ public class RegisterActivity extends BaseActivity {
                     AppUtils.toastText(RegisterActivity.this, "请输入正确手机号");
                     return;
                 }
-                if (!PatternNum.isMobileNO(userPhone)){
+                if (!PatternNum.isMobileNO(userPhone)) {
                     AppUtils.toastText(RegisterActivity.this, "请输入正确手机号");
                     return;
                 }
-                if (time==60) {
+                if (time == 60) {
                     getPhoneCode();
                 }
                 break;
             case R.id.btn_register:
                 getInput();
+                break;
+            case R.id.tv_xieYi:
+                intent.setClass(RegisterActivity.this, RegisterAgreementActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.tv_banFa:
+                intent.setClass(RegisterActivity.this, ManageAgreeActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -152,7 +197,7 @@ public class RegisterActivity extends BaseActivity {
         authCode = AppUtils.toStringTrim_ET(et_code_register);
         userCompany = AppUtils.toStringTrim_ET(et_company_register);
         userAddres = AppUtils.toStringTrim_ET(et_company_address_register);
-        userCode=AppUtils.toStringTrim_ET(et_tuijian__register);
+        userCode = AppUtils.toStringTrim_ET(et_tuijian__register);
         if (userName == null || "".equals(userName)) {
             AppUtils.toastText(RegisterActivity.this, "请输入用户名");
             return;
@@ -178,7 +223,7 @@ public class RegisterActivity extends BaseActivity {
             AppUtils.toastText(RegisterActivity.this, "请输入正确手机号");
             return;
         }
-        if (!PatternNum.isMobileNO(userPhone)){
+        if (!PatternNum.isMobileNO(userPhone)) {
             AppUtils.toastText(RegisterActivity.this, "请输入正确手机号");
             return;
         }
@@ -202,6 +247,14 @@ public class RegisterActivity extends BaseActivity {
             userAddres = null;
         }
 
+        if (!isAgreeXie) {
+            AppUtils.toastText(RegisterActivity.this, "是否同意 \"DECX用户注册协议\"");
+            return;
+        }
+        if (!isAgreeBan) {
+            AppUtils.toastText(RegisterActivity.this, "是否同意 \"DECX电子商务网管理办法\"");
+            return;
+        }
         register();
     }
 
@@ -249,9 +302,9 @@ public class RegisterActivity extends BaseActivity {
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 if (status.equals("1")) {
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                    intent.putExtra("username",userName);
-                    intent.putExtra("password",userPw);
-                    RegisterActivity.this.setResult(RESULT_OK,intent);
+                    intent.putExtra("username", userName);
+                    intent.putExtra("password", userPw);
+                    RegisterActivity.this.setResult(RESULT_OK, intent);
                     RegisterActivity.this.finish();
                 } else {
                     AppUtils.toastText(RegisterActivity.this, message);
@@ -262,7 +315,7 @@ public class RegisterActivity extends BaseActivity {
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        }.datePostCheck(DefineUtil.REGISTER, RegisterUrl.postRegisterUrl(userName, userPw, userPhone, authCode, userType, userCompany, userAddres,userCode), RegisterActivity.this);
+        }.datePostCheck(DefineUtil.REGISTER, RegisterUrl.postRegisterUrl(userName, userPw, userPhone, authCode, userType, userCompany, userAddres, userCode), RegisterActivity.this);
     }
 
 }

@@ -441,19 +441,25 @@
                 style="@style/line_1"
                 android:layout_marginBottom="@dimen/px_15" />
 
-            <View style="@style/line_1" android:visibility="gone"/>
+
+            <View style="@style/line_1" />
 
             <TextView
-                android:id="@+id/tv_help_setting"
-                style="@style/basic_infor_TextView_333333_set"
+                android:id="@+id/tv_intro"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_65"
+                android:textColor="@color/textcolor_333333"
+                android:textSize="15sp"
+                android:text="软件操作手册"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/px_14"
+                android:paddingRight="@dimen/px_14"
                 android:drawableRight="@drawable/next"
-                android:visibility="gone"
-                android:text="帮助中心" />
-
+                android:paddingTop="@dimen/px_20"
+                android:paddingBottom="@dimen/px_20" />
 
             <View
                 style="@style/line_1"
-                android:visibility="gone"
                 android:layout_marginBottom="@dimen/px_15" />
 
         </LinearLayout>

@@ -230,9 +230,14 @@
         <meta-data
             android:name="JPUSH_CHANNEL"
             android:value="developer-default" />
+        <!--<meta-data-->
+            <!--android:name="JPUSH_APPKEY"-->
+            <!--android:value="a1e5c517ff725468b26b6e23" />-->
         <meta-data
             android:name="JPUSH_APPKEY"
-            android:value="a1e5c517ff725468b26b6e23" />
+            android:value="8e4369d68c026da580882f9e" />
+
+
         <!-- </>值来自开发者平台取得的AppKey -->
 
 
@@ -551,6 +556,14 @@
         <activity
             android:name=".Activity.BillActivity"
             android:label="@string/title_activity_bill" >
+        </activity>
+        <activity
+            android:name=".Activity.RegisterAgreementActivity"
+            android:label="@string/title_activity_register_agreement" >
+        </activity>
+        <activity
+            android:name=".Activity.ManageAgreeActivity"
+            android:label="@string/title_activity_manage_agree" >
         </activity>
     </application>
 

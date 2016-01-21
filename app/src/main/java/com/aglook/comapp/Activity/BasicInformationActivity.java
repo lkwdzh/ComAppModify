@@ -19,12 +19,10 @@ import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
 import com.aglook.comapp.util.XHttpuTools;
 import com.aglook.comapp.view.IDCard;
+import com.aglook.comapp.view.PatternNum;
 import com.aglook.comapp.view.SelectPopupWindow;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class BasicInformationActivity extends BaseActivity {
 
@@ -89,19 +87,16 @@ public class BasicInformationActivity extends BaseActivity {
         tv_trueName = (TextView) findViewById(R.id.tv_trueName);
         if ((login.getPshUser().getUserNumber() == null || "".equals(login.getPshUser().getUserNumber()))) {
             //有一个为空
-            left_icon.setVisibility(View.GONE);
-            et_truename_basic_info.setFocusable(true);
-            et_truename_basic_info.setFocusableInTouchMode(true);
-            et_truename_basic_info.requestFocus();
+            left_icon.setVisibility(View.INVISIBLE);
 
-//            et_email_basic_info.setFocusable(true);
-//            et_email_basic_info.setFocusableInTouchMode(true);
-//            et_email_basic_info.requestFocus();
 
             et_num_basic_info.setFocusable(true);
             et_num_basic_info.setFocusableInTouchMode(true);
             et_num_basic_info.requestFocus();
 
+            et_truename_basic_info.setFocusable(true);
+            et_truename_basic_info.setFocusableInTouchMode(true);
+            et_truename_basic_info.requestFocus();
 
         } else {
             left_icon.setVisibility(View.VISIBLE);
@@ -270,7 +265,7 @@ public class BasicInformationActivity extends BaseActivity {
             return;
         }
         //判断邮箱格式
-        if (!isEmail(userEmail)) {
+        if (!PatternNum.isEmail(userEmail)) {
             AppUtils.toastText(BasicInformationActivity.this, "邮箱格式不正确");
             return;
         }
@@ -286,11 +281,4 @@ public class BasicInformationActivity extends BaseActivity {
     }
 
 
-    //判断邮箱格式
-    public boolean isEmail(String email) {
-        String str = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
-        Pattern p = Pattern.compile(str);
-        Matcher m = p.matcher(email);
-        return m.matches();
-    }
 }

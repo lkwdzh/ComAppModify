@@ -422,7 +422,8 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
 //                    Log.d("result_login_main", DefineUtil.BANKBAND + "");
                     comAppApplication.setLogin(login);
                     if ((login.getPshUser().getUserNumber() == null || "".equals(login.getPshUser().getUserNumber()))) {
-                        infoDialog();
+                        //TODO 先暂时去掉
+//                        infoDialog();
                         //假如信息为空，则去填写
 
                     }

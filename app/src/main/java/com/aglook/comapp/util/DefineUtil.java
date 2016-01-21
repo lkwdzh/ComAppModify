@@ -14,7 +14,7 @@ public class DefineUtil {
     /**
      * 正式环境
      */
-//    public static String URL_HOST = "http://www.decxgroup.com/trade/";
+//    public static String URL_HOST = "http://www.decxagri.com/trade/";
 
     //    登录
     public static String LOGIN_IN = URL_HOST + "login-in";

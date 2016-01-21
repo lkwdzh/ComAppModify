@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.BandCardDialogAdapter;
@@ -41,11 +42,16 @@ public class BandCardActivity extends BaseActivity {
     private BandCardDialogAdapter adapter;
 
     private CustomProgress customProgress;
+    private TextView tv_name_bang_card;
+    private TextView tv_name_remind;
+    private ComAppApplication comAppApplication;
+
     @Override
     public void initView() {
         setContentView(R.layout.activity_band_card);
         setTitleBar("绑定银行卡");
         ExitApplication.getInstance().addActivity(this);
+        comAppApplication = (ComAppApplication) getApplication();
         init();
         click();
     }
@@ -59,6 +65,19 @@ public class BandCardActivity extends BaseActivity {
         et_num_bang_card = (EditText) findViewById(R.id.et_num_bang_card);
         tv_bank_bang_card = (TextView) findViewById(R.id.tv_bank_bang_card);
         et_phone_bang_card = (EditText) findViewById(R.id.et_phone_bang_card);
+        tv_name_bang_card = (TextView) findViewById(R.id.tv_name_bang_card);
+        tv_name_remind = (TextView) findViewById(R.id.tv_name_remind);
+        if (comAppApplication.getLogin().getPshUser().getUserType() == 2) {
+            //个人
+            tv_name_bang_card.setText("持卡人姓名");
+            et_name_bang_card.setHint("请输入持卡人姓名");
+            tv_name_remind.setText("姓名要与用户真实姓名一致否则绑定不成功");
+        } else {
+            //公司
+            tv_name_bang_card.setText("账户公司名称");
+            et_name_bang_card.setHint("请输入账户公司名称");
+            tv_name_remind.setText("账户公司名称要与用户公司名称一致否则绑定不成功");
+        }
     }
 
     public void click() {
@@ -83,23 +102,23 @@ public class BandCardActivity extends BaseActivity {
         userName = AppUtils.toStringTrim_ET(et_name_bang_card);
         cardNo = AppUtils.toStringTrim_ET(et_num_bang_card);
         cardPhone = AppUtils.toStringTrim_ET(et_phone_bang_card);
-        if (userName==null||"".equals(userName)){
-            AppUtils.toastText(BandCardActivity.this,"姓名不能为空");
+        if (userName == null || "".equals(userName)) {
+            AppUtils.toastText(BandCardActivity.this, "姓名不能为空");
             return;
         }
-        if (cardNo==null||"".equals(cardNo)){
-            AppUtils.toastText(BandCardActivity.this,"银行卡号不能为空");
+        if (cardNo == null || "".equals(cardNo)) {
+            AppUtils.toastText(BandCardActivity.this, "银行卡号不能为空");
             return;
         }
-        if (bankCode==null||"".equals(bankCode)){
-            AppUtils.toastText(BandCardActivity.this,"请选择银行");
+        if (bankCode == null || "".equals(bankCode)) {
+            AppUtils.toastText(BandCardActivity.this, "请选择银行");
             return;
         }
-        if (cardPhone==null||"".equals(cardPhone)){
-            AppUtils.toastText(BandCardActivity.this,"银行预留手机号不能为空");
+        if (cardPhone == null || "".equals(cardPhone)) {
+            AppUtils.toastText(BandCardActivity.this, "银行预留手机号不能为空");
             return;
         }
-        if (!PatternNum.isMobileNO(cardPhone)){
+        if (!PatternNum.isMobileNO(cardPhone)) {
             AppUtils.toastText(BandCardActivity.this, "请输入正确手机号");
             return;
         }
@@ -174,7 +193,7 @@ public class BandCardActivity extends BaseActivity {
 //                Log.d("result_bandCard_res", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
-                if (status.equals("1")){
+                if (status.equals("1")) {
                     //如果FLAG=1，表示是从确认订单调过来的，返回时需要调到订单界面，
 //                    if (DefineUtil.FLAG == 1) {
 //                        Intent intent = new Intent();
@@ -184,8 +203,8 @@ public class BandCardActivity extends BaseActivity {
 //                        BandCardActivity.this.finish();
 //                    }else {
 
-                        BandCardActivity.this.setResult(1);
-                        finish();
+                    BandCardActivity.this.setResult(1);
+                    finish();
 //                    }
                 }
 

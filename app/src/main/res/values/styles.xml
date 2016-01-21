@@ -624,7 +624,7 @@
 
     <!--提醒文字-->
     <style name="remind_TextView_666666_11_center" parent="android:Widget.TextView">
-        <item name="android:textColor">@color/textcolor_666666</item>
+        <item name="android:textColor">@color/red_ff0000</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">11sp</item>

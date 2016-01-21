@@ -1,6 +1,8 @@
 package com.aglook.comapp.Activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
@@ -205,20 +207,21 @@ public class LoginActivity extends BaseActivity {
                     //如果真实姓名，身份证与邮箱有一个为空，则去个人信息页面完善
                     if ((login.getPshUser().getUserNumber() == null || "".equals(login.getPshUser().getUserNumber()))) {
                         //假如信息为空，则去填写
-                        //如果是个人
-                        if (login.getPshUser().getUserType() == 2) {
-                            Intent intent = new Intent(LoginActivity.this, BasicInformationActivity.class);
-                            LoginActivity.this.setResult(1);
-                            LoginActivity.this.finish();
-                            startActivity(intent);
-
-                        } else if (login.getPshUser().getUserType() == 1) {
-                            //跳转到公司界面
-                            Intent intent = new Intent(LoginActivity.this, CompanyInfoActivity.class);
-                            LoginActivity.this.setResult(1);
-                            LoginActivity.this.finish();
-                            startActivity(intent);
-                        }
+//                        //如果是个人
+//                        if (login.getPshUser().getUserType() == 2) {
+//                            Intent intent = new Intent(LoginActivity.this, BasicInformationActivity.class);
+//                            LoginActivity.this.setResult(1);
+//                            LoginActivity.this.finish();
+//                            startActivity(intent);
+//
+//                        } else if (login.getPshUser().getUserType() == 1) {
+//                            //跳转到公司界面
+//                            Intent intent = new Intent(LoginActivity.this, CompanyInfoActivity.class);
+//                            LoginActivity.this.setResult(1);
+//                            LoginActivity.this.finish();
+//                            startActivity(intent);
+//                        }
+                        infoDialog();
                     } else {
 
                         LoginActivity.this.setResult(1);
@@ -234,9 +237,37 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
             }
-        }.datePostCheck(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType, DefineUtil.DEVICE_NUM), LoginActivity
+        }.datePostCheck(DefineUtil.LOGIN_IN, LoginUrl.postLonginUrl(userName, password, accountType, DefineUtil.DEVICE_NUM), LoginActivity .this);
+    }
 
-                                .this);
+
+    //登录后跳转去完善信息的dialog
+    public void infoDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setMessage("您的信息尚未完善，请先完善信息");
+        builder.setTitle("提示");
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                //如果是个人
+                if (login.getPshUser().getUserType() == 2) {
+                    Intent intent = new Intent(LoginActivity.this, BasicInformationActivity.class);
+                    LoginActivity.this.setResult(1);
+                    LoginActivity.this.finish();
+                    startActivity(intent);
+
+                } else if (login.getPshUser().getUserType() == 1) {
+                    //跳转到公司界面
+                    Intent intent = new Intent(LoginActivity.this, CompanyInfoActivity.class);
+                    LoginActivity.this.setResult(1);
+                    LoginActivity.this.finish();
+                    startActivity(intent);
+                }
+            }
+        });
+        builder.setCancelable(false);
+        builder.create().show();
     }
 
     //    获取购物车列表

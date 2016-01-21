@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.aglook.comapp.Activity.AllGuaDanActivity;
 import com.aglook.comapp.Activity.AllOrderActivity;
-import com.aglook.comapp.Activity.HelpCenterActivity;
+import com.aglook.comapp.Activity.IntroActivity;
 import com.aglook.comapp.Activity.LoginActivity;
 import com.aglook.comapp.Activity.MyCangDanActivity;
 import com.aglook.comapp.Activity.PersonInformationActivity;
@@ -61,9 +61,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private TextView tv_message_mine_fragment;
 
     private final int NOTPAY = 1;
-    private TextView tv_help_setting;
     private TextView tv_type_user;
     private LinearLayout ll_info_mine_fragment;
+    private TextView tv_intro;
 
 
     @Override
@@ -100,7 +100,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         ll_jiaoyichenggong_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_jiaoyichenggong_mine_fragment);
         tv_name_mine_fragment = (TextView) view.findViewById(R.id.tv_name_mine_fragment);
         tv_message_mine_fragment = (TextView) view.findViewById(R.id.tv_message_mine_fragment);
-        tv_help_setting = (TextView) view.findViewById(R.id.tv_help_setting);
         tv_type_user = (TextView) view.findViewById(R.id.tv_type_user);
         //红点
         tv_all_order_point = (TextView) view.findViewById(R.id.tv_all_order_point);
@@ -113,6 +112,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         tv_pingtaicangdan_point = (TextView) view.findViewById(R.id.tv_pingtaicangdan_point);
         tv_tihuo_point = (TextView) view.findViewById(R.id.tv_tihuo_point);
         ll_info_mine_fragment = (LinearLayout) view.findViewById(R.id.ll_info_mine_fragment);
+        tv_intro = (TextView) view.findViewById(R.id.tv_intro);
     }
 
     //点击事件
@@ -130,7 +130,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         ll_jiaoyizhong_mine_fragment.setOnClickListener(this);
         ll_jiaoyichenggong_mine_fragment.setOnClickListener(this);
         tv_message_mine_fragment.setOnClickListener(this);
-        tv_help_setting.setOnClickListener(this);
+        tv_intro.setOnClickListener(this);
     }
 
 
@@ -154,9 +154,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         if (login != null) {
             tv_name_mine_fragment.setText(login.getPshUser().getUsername());
             ll_info_mine_fragment.setVisibility(View.VISIBLE);
-            if (login.getPshUser().getUserType()==2){
+            if (login.getPshUser().getUserType() == 2) {
                 tv_type_user.setText("个人");
-            }else if (login.getPshUser().getUserType()==1){
+            } else if (login.getPshUser().getUserType() == 1) {
                 tv_type_user.setText("公司");
             }
             if (DefineUtil.NOTPAY_NUM != 0) {
@@ -223,8 +223,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 //                    intent.setClass(getActivity(), LoginActivity.class);
 //                    startActivityForResult(intent, 1);
 //                } else {
-                    intent.setClass(getActivity(), SettingActivity.class);
-                    startActivity(intent);
+                intent.setClass(getActivity(), SettingActivity.class);
+                startActivity(intent);
 //                }
                 break;
             case R.id.ll_all_order_mine_fragment:
@@ -302,12 +302,12 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 intent.setClass(getActivity(), ZiXunListActivity.class);
                 intent.putExtra("isMessage", true);
                 intent.putExtra("className", "消息");
-                intent.putExtra("isWebview",false);
+                intent.putExtra("isWebview", false);
                 startActivity(intent);
 //                }
                 break;
-            case R.id.tv_help_setting:
-                intent.setClass(getActivity(),HelpCenterActivity.class);
+            case R.id.tv_intro:
+                intent.setClass(getActivity(),IntroActivity.class);
                 startActivity(intent);
                 break;
         }

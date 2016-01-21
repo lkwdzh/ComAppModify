@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
@@ -80,6 +82,11 @@ public class ConfirmOrderActivity extends BaseActivity {
 
     private String taitou, content;//发票信息
     private String addressId;//用户地址
+    private RadioGroup rg_billType_confirmFoot;
+    private RadioButton rb_ordinaryBill_confirmFoot;
+    private RadioButton rb_increBill_confirmFoot;
+
+    private int billType=1;//发票类型：1.普通，2.增值税
 
     @Override
     public void initView() {
@@ -107,6 +114,9 @@ public class ConfirmOrderActivity extends BaseActivity {
         tv_zonge_confirm_order = (TextView) view.findViewById(id.tv_zonge_confirm_order);
         tv_shouxufei_confirm_order = (TextView) view.findViewById(id.tv_shouxufei_confirm_order);
         tv_diqu = (TextView) view.findViewById(id.tv_diqu);
+        rg_billType_confirmFoot = (RadioGroup) view.findViewById(id.rg_billType_confirmFoot);
+        rb_ordinaryBill_confirmFoot = (RadioButton) view.findViewById(id.rb_ordinaryBill_confirmFoot);
+        rb_increBill_confirmFoot = (RadioButton) view.findViewById(id.rb_increBill_confirmFoot);
         left_icon = (ImageView) findViewById(id.left_icon);
         addCostMoney();
 
@@ -209,6 +219,20 @@ public class ConfirmOrderActivity extends BaseActivity {
         left_icon.setOnClickListener(this);
         ll_info_confirm_order.setOnClickListener(this);
         tv_diqu.setOnClickListener(this);
+        rg_billType_confirmFoot.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId== R.id.rb_ordinaryBill_confirmFoot){
+                    billType=1;
+                    rb_ordinaryBill_confirmFoot.setTextColor(getResources().getColor(R.color.white));
+                    rb_increBill_confirmFoot.setTextColor(getResources().getColor(R.color.textcolor_333333));
+                }else if (checkedId== id.rb_increBill_confirmFoot){
+                    billType=2;
+                    rb_increBill_confirmFoot.setTextColor(getResources().getColor(R.color.white));
+                    rb_ordinaryBill_confirmFoot.setTextColor(getResources().getColor(R.color.textcolor_333333));
+                }
+            }
+        });
     }
 
     @Override
@@ -254,9 +278,13 @@ public class ConfirmOrderActivity extends BaseActivity {
                 startActivityForResult(intent, CHOOSE_ADDRESS);
                 break;
             case R.id.tv_diqu:
-                intent.setClass(ConfirmOrderActivity.this, FaPiaoActivity.class);
-                intent.putExtra("taitou", taitou);
-                intent.putExtra("content", content);
+                if (billType==1) {
+                    intent.setClass(ConfirmOrderActivity.this, FaPiaoActivity.class);
+                    intent.putExtra("taitou", taitou);
+                    intent.putExtra("content", content);
+                }else {
+                    intent.setClass(ConfirmOrderActivity.this, BillActivity.class);
+                }
                 startActivityForResult(intent, FAPIAO);
                 break;
         }
