@@ -20,6 +20,7 @@ import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ConfirmOrderAdapter;
 import com.aglook.comapp.bean.Address;
+import com.aglook.comapp.bean.Bill;
 import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.bean.ShoppingCart;
 import com.aglook.comapp.url.AddressUrl;
@@ -68,7 +69,8 @@ public class ConfirmOrderActivity extends BaseActivity {
 
     //选择地址
     public final int CHOOSE_ADDRESS = 1;
-    private final int FAPIAO = 2;
+    private final int FAPIAO_PUTONG = 2;
+    private final int FAPIAO_ZENG = 3;
 
     private String defaultFlag = "1";//1默认 0 非默认（非必须）
     private TextView tv_isNull;
@@ -85,7 +87,13 @@ public class ConfirmOrderActivity extends BaseActivity {
     private RadioButton rb_ordinaryBill_confirmFoot;
     private RadioButton rb_increBill_confirmFoot;
 
-    private int billType = 1;//发票类型：1.普通，2.增值税
+    private int billType = 0;//发票类型：0.普通，1.增值税
+    private String userCaty;
+    private String userNnumb;
+    private String userZcdz;
+    private String userTels;
+    private String userBanks;
+    private String userBnumb;
 
     @Override
     public void initView() {
@@ -232,11 +240,11 @@ public class ConfirmOrderActivity extends BaseActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.rb_ordinaryBill_confirmFoot) {
-                    billType = 1;
+                    billType = 0;
                     rb_ordinaryBill_confirmFoot.setTextColor(getResources().getColor(R.color.white));
                     rb_increBill_confirmFoot.setTextColor(getResources().getColor(R.color.textcolor_333333));
                 } else if (checkedId == id.rb_increBill_confirmFoot) {
-                    billType = 2;
+                    billType = 1;
                     rb_increBill_confirmFoot.setTextColor(getResources().getColor(R.color.white));
                     rb_ordinaryBill_confirmFoot.setTextColor(getResources().getColor(R.color.textcolor_333333));
                 }
@@ -291,14 +299,16 @@ public class ConfirmOrderActivity extends BaseActivity {
                 startActivityForResult(intent, CHOOSE_ADDRESS);
                 break;
             case R.id.tv_diqu:
-                if (billType == 1) {
+                if (billType == 0) {
                     intent.setClass(ConfirmOrderActivity.this, FaPiaoActivity.class);
                     intent.putExtra("taitou", taitou);
                     intent.putExtra("content", content);
+                    startActivityForResult(intent, FAPIAO_PUTONG);
                 } else {
                     intent.setClass(ConfirmOrderActivity.this, BillActivity.class);
+                    intent.putExtra("isFromConfirm", true);
+                    startActivityForResult(intent, FAPIAO_ZENG);
                 }
-                startActivityForResult(intent, FAPIAO);
                 break;
         }
     }
@@ -308,10 +318,21 @@ public class ConfirmOrderActivity extends BaseActivity {
         if (requestCode == CHOOSE_ADDRESS && resultCode == RESULT_OK) {
             address = (Address) data.getSerializableExtra("selectAddress");
             fillAddress();
-        } else if (requestCode == FAPIAO && resultCode == RESULT_OK) {
+        } else if (requestCode == FAPIAO_PUTONG && resultCode == RESULT_OK) {
             taitou = data.getStringExtra("taitou");
             content = data.getStringExtra("content");
             tv_diqu.setText(taitou);
+        } else if (requestCode == FAPIAO_ZENG && resultCode == RESULT_OK) {
+            Bill bill = (Bill) data.getSerializableExtra("Bill");
+            taitou = bill.getTaitou();
+            content = bill.getContent();
+            userCaty = bill.getConpanyName();
+            userNnumb = bill.getNumBill();
+            userZcdz = bill.getCompanyAddress();
+            userTels = bill.getPhone();
+            userBanks = bill.getBank();
+            userBnumb = bill.getBankNum();
+            tv_diqu.setText(userCaty);
         }
     }
 
@@ -394,7 +415,8 @@ public class ConfirmOrderActivity extends BaseActivity {
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        }.datePostCheck(DefineUtil.CREATE_ORDER, ConfirmOrderUrl.postConfirmOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartids, String.valueOf(allMoney), text, String.valueOf(costMoney), addressId, taitou, content), ConfirmOrderActivity.this);
+        }.datePostCheck(DefineUtil.CREATE_ORDER, ConfirmOrderUrl.postConfirmOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartids, String.valueOf(allMoney), String.valueOf(costMoney),
+                content, addressId, String.valueOf(billType), userCaty, taitou, userNnumb, userZcdz, userTels, userBanks, userBnumb), ConfirmOrderActivity.this);
     }
 
 

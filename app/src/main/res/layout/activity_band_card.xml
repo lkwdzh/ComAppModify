@@ -80,8 +80,6 @@
             <EditText
                 android:id="@+id/et_zhiHang_bang_card"
                 style="@style/company_basic_infor_edittext_weight_13"
-                android:inputType="phone"
-                android:maxLength="11"
                 android:hint="请输入开户支行" />
         </LinearLayout>
 

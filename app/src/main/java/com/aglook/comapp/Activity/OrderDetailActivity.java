@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
 import com.aglook.comapp.Application.ExitApplication;
+import com.aglook.comapp.Fragment.IncreaseBillFragment;
 import com.aglook.comapp.Fragment.OrdinaryBillFragment;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.OrderDetailAdapter;
@@ -180,6 +181,10 @@ public class OrderDetailActivity extends FragmentActivity implements View.OnClic
             OrdinaryBillFragment ordinaryBillFragment = new OrdinaryBillFragment();
             ordinaryBillFragment.setArguments(bundle);
             showFragment(ordinaryBillFragment);
+        }else {
+            IncreaseBillFragment increaseBillFragment = new IncreaseBillFragment();
+            increaseBillFragment.setArguments(bundle);
+            showFragment(increaseBillFragment);
         }
         adapter.notifyDataSetChanged();
     }

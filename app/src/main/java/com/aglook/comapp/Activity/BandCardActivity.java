@@ -2,6 +2,7 @@ package com.aglook.comapp.Activity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -145,10 +146,12 @@ public class BandCardActivity extends BaseActivity {
             AppUtils.toastText(BandCardActivity.this, "请选择银行");
             return;
         }
-        if (bankCompanyHan == null || "".equals(bankCompanyHan)) {
+        if (comAppApplication.getLogin().getPshUser().getUserType() == 1) {
+            if (bankCompanyHan == null || "".equals(bankCompanyHan)) {
             AppUtils.toastText(BandCardActivity.this, "开户支行不能为空");
             return;
         }
+    }
         bandCard();
     }
 
@@ -217,7 +220,7 @@ public class BandCardActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-//                Log.d("result_bandCard_res", arg0.result);
+                Log.d("result_bandCard_res", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {

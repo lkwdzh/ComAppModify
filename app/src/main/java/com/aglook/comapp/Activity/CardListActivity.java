@@ -5,6 +5,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
@@ -73,10 +74,9 @@ public class CardListActivity extends BaseActivity {
 
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
         lv_card_list = (PullToRefreshListView) findViewById(R.id.lv_card_list);
-        lv_card_list.setMode(PullToRefreshBase.Mode.BOTH);
         adapter = new CardListAdapter(CardListActivity.this, mList);
         lv_card_list.setAdapter(adapter);
-        lv_card_list.setMode(PullToRefreshBase.Mode.DISABLED);
+        lv_card_list.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
     }
 
     public void click() {
@@ -93,6 +93,13 @@ public class CardListActivity extends BaseActivity {
                 // 显示窗口
                 popupWindow.showAtLocation(CardListActivity.this.findViewById(R.id.waww),
                         Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+            }
+        });
+        lv_card_list.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+            @Override
+            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+               mList.clear();
+                getCardListData();
             }
         });
     }
@@ -147,7 +154,6 @@ public class CardListActivity extends BaseActivity {
                         isMoRen = false;
                     } else if (isDelete) {
                         mList.clear();
-//                        Log.d("result_isDelete",isDelete+"");
                         isDelete = false;
                     }
                     if (list.size() != 0 && list != null) {

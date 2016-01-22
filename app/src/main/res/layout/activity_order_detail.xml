@@ -240,6 +240,7 @@
                         android:id="@+id/tv_over_order_detail"
                         style="@style/orderDetail_TextView_333333_13" />
                 </LinearLayout>
+                <View style="@style/line_1" />
 
                 <TextView
                     style="@style/grayTextView_333333_13"

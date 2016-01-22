@@ -101,7 +101,7 @@ public class GoodsDetailActivity extends BaseActivity {
         isSelf = getIntent().getBooleanExtra("isSelf", false);
         productId = getIntent().getStringExtra("productId");
         pointUser = getIntent().getStringExtra("pointUser");
-        url = "http://www.decxgroup.com/product/" + productId;
+        url = "http://www.decxagri.com/product/" + productId;
         iv_detail = (ImageView) findViewById(R.id.iv_detail);
         tv_detail_goods_detail = (TextView) findViewById(R.id.tv_detail_goods_detail);
         tv_price_goods_detail = (TextView) findViewById(R.id.tv_price_goods_detail);

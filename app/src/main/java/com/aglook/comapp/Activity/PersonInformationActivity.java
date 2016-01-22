@@ -3,6 +3,7 @@ package com.aglook.comapp.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
@@ -32,6 +33,7 @@ public class PersonInformationActivity extends BaseActivity {
     private TextView tv_bill_person_info;
     private Button btn_tuichu;
     private CustomProgress customProgress;
+    private LinearLayout ll_faPiao;
 
     @Override
     public void initView() {
@@ -54,8 +56,13 @@ public class PersonInformationActivity extends BaseActivity {
         tv_name_person_info = (TextView) findViewById(R.id.tv_name_person_info);
         tv_address_person_info = (TextView) findViewById(R.id.tv_address_person_info);
         tv_bill_person_info = (TextView) findViewById(R.id.tv_bill_person_info);
+        ll_faPiao = (LinearLayout) findViewById(R.id.ll_faPiao);
         btn_tuichu = (Button) findViewById(R.id.btn_tuichu);
-        btn_tuichu.setOnClickListener(this);
+        if (login.getPshUser().getUserType()==2){
+            ll_faPiao.setVisibility(View.GONE);
+        }else {
+            ll_faPiao.setVisibility(View.VISIBLE);
+        }
     }
 
     public void click() {
@@ -66,6 +73,7 @@ public class PersonInformationActivity extends BaseActivity {
         tv_friend_person_info.setOnClickListener(this);
         tv_address_person_info.setOnClickListener(this);
         tv_bill_person_info.setOnClickListener(this);
+        btn_tuichu.setOnClickListener(this);
     }
 
     public void fillData() {
@@ -143,6 +151,8 @@ public class PersonInformationActivity extends BaseActivity {
                     //成功退出
                     comAppApplication.setLogin(null);
                     PersonInformationActivity.this.finish();
+                    DefineUtil.USERID=null;
+                    DefineUtil.TOKEN=null;
                 }
 
             }

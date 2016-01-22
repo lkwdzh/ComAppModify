@@ -53,4 +53,31 @@ public class BasicInformationUrl {
         return params;
     }
 
+
+    /**
+     *
+     * @param userId id
+     * @param token token
+     * @param userCaty 发票公司名称
+     * @param userNnumb 纳税人识别号
+     * @param userZcdz 注册公司地址
+     * @param userTels 公司联系电话
+     * @param userBanks 增值税发票开户行:
+     * @param userBnumb 增值税发票银行账户
+     * @return
+     */
+    public static RequestParams postUpDateBillInfoUrl(String userId, String token,String userCaty,String  userNnumb,String userZcdz,
+                                                      String userTels,String userBanks,String userBnumb){
+        params = new RequestParams();
+        params.addBodyParameter("userId", userId);
+        params.addBodyParameter("token", token);
+        params.addBodyParameter("userCaty", userCaty);
+        params.addBodyParameter("userNnumb", userNnumb);
+        params.addBodyParameter("userZcdz", userZcdz);
+        params.addBodyParameter("userTels", userTels);
+        params.addBodyParameter("userBanks", userBanks);
+        params.addBodyParameter("userBnumb", userBnumb);
+        return params;
+    }
+
 }

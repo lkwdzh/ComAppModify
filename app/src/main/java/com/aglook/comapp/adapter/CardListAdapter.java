@@ -42,7 +42,6 @@ public class CardListAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return position;
     }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
@@ -56,7 +55,17 @@ public class CardListAdapter extends BaseAdapter {
         CardList cardList = list.get(position);
         holder.tv_bank_name_card_lv.setText(cardList.getBankAlis());
         holder.tv_success_card_lv.setText(cardList.getDefaultType());
-        holder.tv_num_card_lv.setText(cardList.getCardNo());
+        String cardNo = cardList.getCardNo();
+            String str = "";
+        if (cardNo.length()>8) {
+            String cardNoCenter = cardNo.substring(4, cardNo.length() - 4);
+            for (int i = 0; i < cardNoCenter.length(); i++) {
+//            cardNoCenter.replace(cardNoCenter.charAt(i),'*');
+                str += "*";
+            }
+        }
+//        holder.tv_num_card_lv.setText(cardList.getCardNo());
+        holder.tv_num_card_lv.setText(cardNo.substring(0,4)+" "+str+" "+cardNo.substring(cardNo.length()-4,cardNo.length()));
         holder.tv_type_card_lv.setText(cardList.getCardType());
         if (cardList.getDefaultType().equals("1")) {
             holder.tv_is_moren_card_list.setVisibility(View.VISIBLE);

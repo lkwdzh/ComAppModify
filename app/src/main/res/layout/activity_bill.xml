@@ -14,8 +14,28 @@
             style="@style/ll_match_content_ver"
             android:background="@color/gray_eeeeee">
 
-
             <View style="@style/line_1" />
+
+            <LinearLayout
+                android:id="@+id/ll_taiTou"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout style="@style/basic_infor_ll_weight">
+
+                    <TextView
+                        style="@style/company_basic_infor_TextView_333333_13"
+                        android:text="发票抬头" />
+
+                    <EditText
+                        android:id="@+id/et_taiTou_bill"
+                        style="@style/company_basic_infor_edittext_weight_13"
+                        android:hint="请输入发票抬头" />
+                </LinearLayout>
+
+                <View style="@style/line_1" />
+            </LinearLayout>
 
             <LinearLayout style="@style/basic_infor_ll_weight">
 
@@ -55,7 +75,7 @@
 
             <TextView
                 style="@style/remind_TextView_666666_11_center"
-                android:text="必须是您公司《税务登记证》的编号，一般为15位，请仔细核对后输入，例如：123456789000WJ(必填)" />
+                android:text="必须是您公司《税务登记证》的编号，一般为15位，请仔细核对后输入，例如：123456789000WJA(必填)" />
 
             <View style="@style/line_1" />
 
@@ -143,6 +163,26 @@
                 style="@style/remind_TextView_666666_11_center"
                 android:text="必须是您公司开户许可证上的银行账号(必填)" />
 
+            <LinearLayout
+                android:id="@+id/ll_content_bill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout style="@style/basic_infor_ll_weight">
+
+                    <TextView
+                        style="@style/company_basic_infor_TextView_333333_13"
+                        android:text="发票内容" />
+
+                    <EditText
+                        android:id="@+id/et_content_bill"
+                        style="@style/company_basic_infor_edittext_weight_13"
+                        android:hint="请输入发票内容" />
+                </LinearLayout>
+
+                <View style="@style/line_1" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -423,20 +423,24 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
                     DefineUtil.BANKBAND = login.isBankBind();
 //                    Log.d("result_login_main", DefineUtil.BANKBAND + "");
                     comAppApplication.setLogin(login);
+                    //判断是否绑定银行卡，并且是否是兴业银行
+                    if (login.getBankCard()!=null&&!"".equals(login.getBankCard())){
+                        if ("兴业银行".equals(login.getBankCard().getBankAlis())){
+                            login.setXingYe(true);
+                        }else {
+                            login.setXingYe(false);
+                        }
+                    }else {
+                        login.setXingYe(false);
+                    }
+                    if (login.isXingYe()){
+                        boolean aa=login.isXingYe();
+                    }
                     if ((login.getPshUser().getUserNumber() == null || "".equals(login.getPshUser().getUserNumber()))) {
                         //TODO 先暂时去掉
                         infoDialog();
                         //假如信息为空，则去填写
-                        //判断是否绑定银行卡，并且是否是兴业银行
-                        if (login.getBankCard()!=null&&!"".equals(login.getBankCard())){
-                            if ("兴业银行".equals(login.getBankCard().getBankAlis())){
-                                login.setXingYe(true);
-                            }else {
-                                login.setXingYe(false);
-                            }
-                        }else {
-                            login.setXingYe(false);
-                        }
+
                     }
 
                     getCartListData();
