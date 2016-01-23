@@ -21,7 +21,7 @@ public class IntroActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_intro);
         ExitApplication.getInstance().addActivity(this);
-        setTitleBar("功能介绍");
+        setTitleBar("软件操作手册");
         init();
         click();
     }

@@ -29,7 +29,7 @@ public abstract class XHttpuTools {
                 comAppApplication = (ComAppApplication) context.getApplication();
                 String status = JsonUtils.getJsonParam(objectResponseInfo.result, "status");
                 String message = JsonUtils.getJsonParam(objectResponseInfo.result, "message");
-                if (status != null && !"".equals(status)) {
+                if (status != null) {
                     initViews(objectResponseInfo);
                     if (!"1".equals(status)) {
                         String error = JsonUtils.getJsonParam(objectResponseInfo.result, "errCode");
@@ -41,7 +41,10 @@ public abstract class XHttpuTools {
                                 comAppApplication.setLogin(null);
                                 Intent intent = new Intent(context, LoginActivity.class);
                                 context.startActivityForResult(intent, 33);
+                                DefineUtil.TOKEN=null;
+                                DefineUtil.USERID=null;
                                 AppUtils.toastText(context, "账号登录异常，请重新登录");
+                                SharedPreferencesUtils.saveBoolean(context,"auto_login",false);
                             } else if (errCode.equals("W1026")) {
                                 AppUtils.toastText(context, "不能购买自己出售的商品");
                             } else {
@@ -73,7 +76,7 @@ public abstract class XHttpuTools {
                 comAppApplication = (ComAppApplication) context.getApplication();
                 String status = JsonUtils.getJsonParam(objectResponseInfo.result, "status");
                 String message = JsonUtils.getJsonParam(objectResponseInfo.result, "message");
-                if (status != null && !"".equals(status)) {
+                if (status != null) {
                     initViews(objectResponseInfo);
 
                     if (!"1".equals(status)) {
@@ -115,7 +118,7 @@ public abstract class XHttpuTools {
                 comAppApplication = (ComAppApplication) context.getApplication();
                 String status = JsonUtils.getJsonParam(objectResponseInfo.result, "status");
                 String message = JsonUtils.getJsonParam(objectResponseInfo.result, "message");
-                if (status != null && !"".equals(status)) {
+                if (status != null) {
                     initViews(objectResponseInfo);
                     if (!"1".equals(status)) {
                         String error = JsonUtils.getJsonParam(objectResponseInfo.result, "errCode");
@@ -155,7 +158,7 @@ public abstract class XHttpuTools {
             @Override
             public void onSuccess(ResponseInfo<String> objectResponseInfo) {
                 String status = JsonUtils.getJsonParam(objectResponseInfo.result, "status");
-                if (status != null && !"".equals(status)) {
+                if (status != null) {
                     initViews(objectResponseInfo);
 
                 }
@@ -177,7 +180,7 @@ public abstract class XHttpuTools {
             @Override
             public void onSuccess(ResponseInfo<String> objectResponseInfo) {
                 String status = JsonUtils.getJsonParam(objectResponseInfo.result, "status");
-                if (status != null && !"".equals(status)) {
+                if (status != null) {
                     initViews(objectResponseInfo);
 
                 }
@@ -199,7 +202,7 @@ public abstract class XHttpuTools {
             @Override
             public void onSuccess(ResponseInfo<String> objectResponseInfo) {
                 String status = JsonUtils.getJsonParam(objectResponseInfo.result, "status");
-                if (status != null && !"".equals(status)) {
+                if (status != null) {
                     initViews(objectResponseInfo);
 
                 }

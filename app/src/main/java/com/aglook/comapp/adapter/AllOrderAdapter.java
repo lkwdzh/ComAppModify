@@ -210,7 +210,7 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
         btn_cancel_delete = (Button) view.findViewById(R.id.btn_cancel_delete);
         btn_confirm_delete = (Button) view.findViewById(R.id.btn_confirm_delete);
         tv_delete_order = (TextView) view.findViewById(R.id.tv_delete_order);
-        tv_delete_order.setText("确认删除此订单?");
+        tv_delete_order.setText("确认取消此订单?");
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.create();
         builder.setView(view);

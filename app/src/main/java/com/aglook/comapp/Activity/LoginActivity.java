@@ -27,6 +27,7 @@ import com.aglook.comapp.url.ShoppingCartUrl;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
+import com.aglook.comapp.util.SharedPreferencesUtils;
 import com.aglook.comapp.util.XHttpuTools;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -197,6 +198,9 @@ public class LoginActivity extends BaseActivity {
                     DefineUtil.USERID = login.getPshUser().getUserId();
                     DefineUtil.BANKBAND = login.isBankBind();
 //                    Log.d("result_login", DefineUtil.BANKBAND+"");
+                    //登录成功，存储自动登录
+                    SharedPreferencesUtils.saveBoolean(LoginActivity.this,"auto_login",true);
+
                     //判断是否绑定银行卡，并且是否是兴业银行
                     if (login.getBankCard()!=null&&!"".equals(login.getBankCard())){
                         if ("兴业银行".equals(login.getBankCard().getBankAlis())){

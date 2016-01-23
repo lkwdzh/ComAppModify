@@ -47,7 +47,7 @@ public class DriverListActivity extends BaseActivity {
     private boolean isUpDate;
     private CustomProgress customProgress;
     private View emptyView;
-    private String code="3005";
+    private String code = "3005";
     private String getListDriverId;
     private String getId;
     private String driverId;
@@ -67,8 +67,8 @@ public class DriverListActivity extends BaseActivity {
 
     public void init() {
         emptyView = LayoutInflater.from(this).inflate(R.layout.empty_view_layout, null);
-        getListDriverId=getIntent().getStringExtra("getListDriverId");
-        getId=getIntent().getStringExtra("getId");
+        getListDriverId = getIntent().getStringExtra("getListDriverId");
+        getId = getIntent().getStringExtra("getId");
         right_text = (TextView) findViewById(R.id.right_text);
         right_text.setText("添加");
         right_text.setVisibility(View.VISIBLE);
@@ -159,7 +159,6 @@ public class DriverListActivity extends BaseActivity {
     }
 
 
-
     @Override
     public void widgetClick(View view) {
         Intent intent = new Intent();
@@ -188,12 +187,12 @@ public class DriverListActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == 1) {
-            isAdd=true;
+            isAdd = true;
             getData();
-        }else if (requestCode==2&&resultCode==RESULT_OK){
-            isUpDate=true;
+        } else if (requestCode == 2 && resultCode == RESULT_OK) {
+            isUpDate = true;
             getData();
-        }else if (requestCode==33&&resultCode==1){
+        } else if (requestCode == 33 && resultCode == 1) {
             mList.clear();
             getData();
         }
@@ -215,13 +214,13 @@ public class DriverListActivity extends BaseActivity {
                 List<DriverList> sonListt = new ArrayList<DriverList>();
                 if (status.equals("1")) {
                     sonListt = JsonUtils.parseList(obj, DriverList.class);
-                    if (isAdd){
-                        isAdd=false;
+                    if (isAdd) {
+                        isAdd = false;
                         mList.clear();
                     }
 
-                    if (isUpDate){
-                        isUpDate=false;
+                    if (isUpDate) {
+                        isUpDate = false;
                         mList.clear();
                     }
                     if (sonListt != null && sonListt.size() != 0) {
@@ -229,7 +228,15 @@ public class DriverListActivity extends BaseActivity {
                         compareList();
                     }
                 }
-
+                if (mList.size() == 0) {
+                    rl_bottom.setVisibility(View.GONE);
+                }else {
+                    if (canCheck) {
+                        rl_bottom.setVisibility(View.VISIBLE);
+                    } else {
+                        rl_bottom.setVisibility(View.GONE);
+                    }
+                }
                 adapter.notifyDataSetChanged();
                 lv_driver_list.setEmptyView(emptyView);
             }
@@ -243,12 +250,11 @@ public class DriverListActivity extends BaseActivity {
         }.datePost(DefineUtil.DRIVER_LIST, DriverUrl.postDriverListUrl(DefineUtil.TOKEN, DefineUtil.USERID), DriverListActivity.this);
 
 
-
     }
 
 
     //修改司机信息
-    public void modifyDriver(){
+    public void modifyDriver() {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
@@ -256,15 +262,15 @@ public class DriverListActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
 //                Log.d("result_modify——getId,driverId,getListDriverId",getId+"_____"+driverId+"_____"+getListDriverId+"_____"+arg0.result);
-                String message=JsonUtils.getJsonParam(arg0.result,"message");
-                String status=JsonUtils.getJsonParam(arg0.result,"status");
-                if (status.equals("1")){
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                if (status.equals("1")) {
                     Intent intent = new Intent();
                     intent.setClass(DriverListActivity.this, ModifyPickUpActivity.class);
                     intent.putExtra("name", name);
                     DriverListActivity.this.setResult(RESULT_OK, intent);
                     DriverListActivity.this.finish();
-                    AppUtils.toastText(DriverListActivity.this,"修改成功");
+                    AppUtils.toastText(DriverListActivity.this, "修改成功");
                 }
 
             }
@@ -275,7 +281,7 @@ public class DriverListActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePostUp(DefineUtil.CANG_DAN, PickUpUrl.postModifyDriverUrl(code,DefineUtil.TOKEN,DefineUtil.USERID,getId,driverId,getListDriverId),DriverListActivity.this);
+        }.datePostUp(DefineUtil.CANG_DAN, PickUpUrl.postModifyDriverUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, getId, driverId, getListDriverId), DriverListActivity.this);
     }
 
 }

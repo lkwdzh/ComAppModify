@@ -57,6 +57,7 @@ public class IncreaseBillFragment extends Fragment {
     public void fillData() {
         OrderDetailOrder order = orderDetail.getOrder();
         if (order != null && !"".equals(order)) {
+            tvBillTaiIncrease.setText(order.getUserRise());
             tvBillAddressIncrease.setText(order.getUserAddress());
             tvBankIncrease.setText(order.getUserRise());
             tvBillTypeIncrease.setText("增值税发票");

@@ -42,6 +42,7 @@ public class CardListAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return position;
     }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
@@ -56,20 +57,21 @@ public class CardListAdapter extends BaseAdapter {
         holder.tv_bank_name_card_lv.setText(cardList.getBankAlis());
         holder.tv_success_card_lv.setText(cardList.getDefaultType());
         String cardNo = cardList.getCardNo();
-            String str = "";
-        if (cardNo.length()>8) {
+        String str = "";
+        if (cardNo.length() > 8) {
             String cardNoCenter = cardNo.substring(4, cardNo.length() - 4);
             for (int i = 0; i < cardNoCenter.length(); i++) {
 //            cardNoCenter.replace(cardNoCenter.charAt(i),'*');
                 str += "*";
             }
+            holder.tv_num_card_lv.setText(cardNo.substring(0, 4) + " " + str + " " + cardNo.substring(cardNo.length() - 4, cardNo.length()));
+        }else {
+        holder.tv_num_card_lv.setText(cardList.getCardNo());
         }
-//        holder.tv_num_card_lv.setText(cardList.getCardNo());
-        holder.tv_num_card_lv.setText(cardNo.substring(0,4)+" "+str+" "+cardNo.substring(cardNo.length()-4,cardNo.length()));
         holder.tv_type_card_lv.setText(cardList.getCardType());
         if (cardList.getDefaultType().equals("1")) {
             holder.tv_is_moren_card_list.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             holder.tv_is_moren_card_list.setVisibility(View.GONE);
         }
         if (cardList.getCardType().equals("0")) {
@@ -79,37 +81,37 @@ public class CardListAdapter extends BaseAdapter {
         }
 //        holder.iv_card_lv.setImageResource(R.drawable.bejing);
         String bankCode = cardList.getBankCode();
-        if (bankCode.equals("6")){
+        if (bankCode.equals("6")) {
             holder.iv_card_lv.setImageResource(R.drawable.bejing);
-        }else if (bankCode.equals("62")){
+        } else if (bankCode.equals("62")) {
             holder.iv_card_lv.setImageResource(R.drawable.huaxia);
-        }else if (bankCode.equals("76")){
+        } else if (bankCode.equals("76")) {
             holder.iv_card_lv.setImageResource(R.drawable.jiaotong);
-        }else if (bankCode.equals("109")){
+        } else if (bankCode.equals("109")) {
             holder.iv_card_lv.setImageResource(R.drawable.pingan);
-        }else if (bankCode.equals("123")){
+        } else if (bankCode.equals("123")) {
             holder.iv_card_lv.setImageResource(R.drawable.shanghai);
-        }else if (bankCode.equals("156")){
+        } else if (bankCode.equals("156")) {
             holder.iv_card_lv.setImageResource(R.drawable.zhaoshang);
-        }else if (bankCode.equals("166")){
+        } else if (bankCode.equals("166")) {
             holder.iv_card_lv.setImageResource(R.drawable.gongshang);
-        }else if (bankCode.equals("167")){
+        } else if (bankCode.equals("167")) {
             holder.iv_card_lv.setImageResource(R.drawable.guangda);
-        }else if (bankCode.equals("168")){
+        } else if (bankCode.equals("168")) {
             holder.iv_card_lv.setImageResource(R.drawable.jianshe);
-        }else if (bankCode.equals("169")){
+        } else if (bankCode.equals("169")) {
             holder.iv_card_lv.setImageResource(R.drawable.minsheng);
-        }else if (bankCode.equals("170")){
+        } else if (bankCode.equals("170")) {
             holder.iv_card_lv.setImageResource(R.drawable.nongye);
-        }else if (bankCode.equals("171")){
+        } else if (bankCode.equals("171")) {
             holder.iv_card_lv.setImageResource(R.drawable.zhongguo);
-        }else if (bankCode.equals("172")){
+        } else if (bankCode.equals("172")) {
             holder.iv_card_lv.setImageResource(R.drawable.youzheng);
-        }else if (bankCode.equals("173")){
+        } else if (bankCode.equals("173")) {
             holder.iv_card_lv.setImageResource(R.drawable.zhongxin);
-        }else if (bankCode.equals("177")){
+        } else if (bankCode.equals("177")) {
             holder.iv_card_lv.setImageResource(R.drawable.xingye);
-        }else {
+        } else {
             holder.iv_card_lv.setImageResource(R.drawable.moren);
         }
 

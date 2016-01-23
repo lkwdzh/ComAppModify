@@ -159,8 +159,10 @@ public class DefineUtil {
     public static String PAY = URL_HOST + "payment/v2/order/pay";
     //verson
     public static String VERSON = "1.0";
-    //    商户号
-    public static String MERCHANTNO = "Q0000167";
+    //    商户号 正式
+//    public static String MERCHANTNO = "Q0000167";
+    //    商户号 测试
+    public static String MERCHANTNO = "Q0000157";
     //协议适用范围
     public static String SERVICESCOPE = "www";
     //协议适用范围

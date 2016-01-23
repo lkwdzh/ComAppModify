@@ -41,6 +41,7 @@ import com.aglook.comapp.url.ShoppingCartUrl;
 import com.aglook.comapp.util.AppUtils;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.JsonUtils;
+import com.aglook.comapp.util.SharedPreferencesUtils;
 import com.aglook.comapp.util.XHttpuTools;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -81,6 +82,8 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
     private boolean isGoods = false;
     private TextView tv_shopping_point;
     public static MainActivity instance = null;
+    //是否自动登录
+    private boolean auto_login;
 
     //private DbUtils db;
     @Override
@@ -96,34 +99,23 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
 
     //初始化控件
     public void initView() {
-//        db=DbUtils.create(this,"MESSAGE");
-//        comAppApplication.setDb(db);
-
         mShare = getSharedPreferences("une_pwd", MainActivity.this.MODE_PRIVATE);
         mEditor = mShare.edit();
         accountType = mShare.getString("accountType", "");
         password = mShare.getString("password", "");
         if (!"".equals(accountType)) {
-//            if (accountType.equals("1")) {
-                //用户名登录
-                userName = mShare.getString("userName", "");
-                if (!"".equals(userName) && !"".equals(password)) {
-                    if (comAppApplication.getLogin() == null) {
+            //用户名登录
+            userName = mShare.getString("userName", "");
+            if (!"".equals(userName) && !"".equals(password)) {
+                if (comAppApplication.getLogin() == null) {
 //                        Log.d("result_acc", accountType + "____" + userName + "____" + password);
+                    auto_login = SharedPreferencesUtils.getBoolean(MainActivity.this, "auto_login", false);
+                    if (auto_login) {
                         login();
                     }
                 }
+            }
 
-//            } else if (accountType.equals("0")) {
-//                //席位号登录
-//                userName = mShare.getString("setName", "");
-//                if (!"".equals(userName) && !"".equals(password)) {
-//                    if (comAppApplication.getLogin() == null) {
-////                        Log.d("result_acc", accountType + "____" + userName + "____" + password);
-//                        login();
-//                    }
-//                }
-//            }
         }
 
 
@@ -242,7 +234,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         btn_confirm_delete = (Button) view.findViewById(R.id.btn_confirm_delete);
         tv_delete_order = (TextView) view.findViewById(R.id.tv_delete_order);
         tv_delete_order.setText("检测到有新版本，确认更新?");
-        if (isforce){
+        if (isforce) {
             btn_cancel_delete.setVisibility(View.GONE);
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -424,17 +416,17 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
 //                    Log.d("result_login_main", DefineUtil.BANKBAND + "");
                     comAppApplication.setLogin(login);
                     //判断是否绑定银行卡，并且是否是兴业银行
-                    if (login.getBankCard()!=null&&!"".equals(login.getBankCard())){
-                        if ("兴业银行".equals(login.getBankCard().getBankAlis())){
+                    if (login.getBankCard() != null && !"".equals(login.getBankCard())) {
+                        if ("兴业银行".equals(login.getBankCard().getBankAlis())) {
                             login.setXingYe(true);
-                        }else {
+                        } else {
                             login.setXingYe(false);
                         }
-                    }else {
+                    } else {
                         login.setXingYe(false);
                     }
-                    if (login.isXingYe()){
-                        boolean aa=login.isXingYe();
+                    if (login.isXingYe()) {
+                        boolean aa = login.isXingYe();
                     }
                     if ((login.getPshUser().getUserNumber() == null || "".equals(login.getPshUser().getUserNumber()))) {
                         //TODO 先暂时去掉
@@ -461,11 +453,11 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
     }
 
     //登录后跳转去完善信息的dialog
-    public void infoDialog(){
-        AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+    public void infoDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setMessage("您的信息尚未完善，请先完善信息");
         builder.setTitle("提示");
-        builder.setPositiveButton("确认",new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

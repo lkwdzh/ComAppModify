@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aglook.comapp"
-    android:versionName="1.0" >
+    android:versionName="1.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -45,7 +45,7 @@
         android:allowBackup="true"
         android:icon="@drawable/icon_decx"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="5666add8e0f55a3b0c0023ad" />
@@ -134,7 +134,7 @@
             android:name="cn.jpush.android.ui.PushActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="false"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
 
@@ -153,7 +153,7 @@
         <service
             android:name="cn.jpush.android.service.PushService"
             android:enabled="true"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTER" />
                 <action android:name="cn.jpush.android.intent.REPORT" />
@@ -167,7 +167,7 @@
         <service
             android:name="cn.jpush.android.service.DaemonService"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService" />
 
@@ -179,8 +179,8 @@
         <receiver
             android:name="cn.jpush.android.service.PushReceiver"
             android:enabled="true"
-            android:exported="false" >
-            <intent-filter android:priority="1000" >
+            android:exported="false">
+            <intent-filter android:priority="1000">
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
                 <!-- Required  显示通知栏 -->
                 <category android:name="com.aglook.comapp" />
@@ -207,7 +207,7 @@
         <receiver
             android:name=".receiver.MyReceiver"
             android:enabled="true"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTRATION" />
                 <!-- Required  用户注册SDK的intent -->
@@ -230,12 +230,9 @@
         <meta-data
             android:name="JPUSH_CHANNEL"
             android:value="developer-default" />
-        <!--<meta-data-->
-            <!--android:name="JPUSH_APPKEY"-->
-            <!--android:value="a1e5c517ff725468b26b6e23" />-->
         <meta-data
             android:name="JPUSH_APPKEY"
-            android:value="8e4369d68c026da580882f9e" />
+            android:value="a1e5c517ff725468b26b6e23" />
 
 
         <!-- </>值来自开发者平台取得的AppKey -->
@@ -255,7 +252,7 @@
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
-            android:noHistory="true" >
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -284,8 +281,7 @@
             android:name=".Activity.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.BaseActivity"
             android:label="@string/title_activity_base"
@@ -419,7 +415,7 @@
             android:name=".Activity.ZiXunListActivity"
             android:label="@string/title_activity_hang_qing_list"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -500,7 +496,7 @@
             android:name=".Activity.LaunchActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent" >
+            android:theme="@android:style/Theme.Translucent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -551,20 +547,16 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.CompanyInfoActivity"
-            android:label="@string/title_activity_company_info" >
-        </activity>
+            android:label="@string/title_activity_company_info"></activity>
         <activity
             android:name=".Activity.BillActivity"
-            android:label="@string/title_activity_bill" >
-        </activity>
+            android:label="@string/title_activity_bill"></activity>
         <activity
             android:name=".Activity.RegisterAgreementActivity"
-            android:label="@string/title_activity_register_agreement" >
-        </activity>
+            android:label="@string/title_activity_register_agreement"></activity>
         <activity
             android:name=".Activity.ManageAgreeActivity"
-            android:label="@string/title_activity_manage_agree" >
-        </activity>
+            android:label="@string/title_activity_manage_agree"></activity>
     </application>
 
 </manifest>

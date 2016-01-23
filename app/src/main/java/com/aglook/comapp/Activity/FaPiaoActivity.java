@@ -21,6 +21,7 @@ public class FaPiaoActivity extends BaseActivity {
     private Button btn_baocun;
     private ComAppApplication comAppApplication;
     private Login login;
+    private boolean isCompany;
 
     @Override
     public void initView() {
@@ -29,6 +30,7 @@ public class FaPiaoActivity extends BaseActivity {
         setTitleBar("发票详情");
         comAppApplication = (ComAppApplication) getApplication();
         login = comAppApplication.getLogin();
+        isCompany = getIntent().getBooleanExtra("isCompany", false);
         init();
         click();
     }
@@ -39,6 +41,9 @@ public class FaPiaoActivity extends BaseActivity {
         btn_baocun = (Button) findViewById(R.id.btn_baocun);
         taitou = getIntent().getStringExtra("taitou");
         content = getIntent().getStringExtra("content");
+        if (isCompany) {
+            taitou = login.getPshUser().getUserCaty();
+        }
         if (taitou == null || "".equals(taitou)) {
             taitou = login.getPshUser().getUserTName();
         }

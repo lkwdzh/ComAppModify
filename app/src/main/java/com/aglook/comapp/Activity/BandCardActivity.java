@@ -99,6 +99,7 @@ public class BandCardActivity extends BaseActivity {
         if (isFirst) {
             ll_moren.setVisibility(View.GONE);
             cb_moren.setChecked(true);
+            bankDefault="1";
         }
     }
 

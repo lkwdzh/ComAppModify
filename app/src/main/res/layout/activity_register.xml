@@ -250,6 +250,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:paddingLeft="@dimen/px_15"
+                        android:checked="true"
                         android:paddingTop="@dimen/px_15"
                         android:button="@drawable/ischecked" />
 
@@ -284,6 +285,7 @@
                         android:gravity="center"
                         android:paddingLeft="@dimen/px_15"
                         android:paddingTop="@dimen/px_15"
+                        android:checked="true"
                         android:button="@drawable/ischecked" />
 
                     <TextView

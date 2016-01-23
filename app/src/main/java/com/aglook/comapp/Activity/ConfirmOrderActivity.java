@@ -3,7 +3,6 @@ package com.aglook.comapp.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
@@ -94,6 +94,8 @@ public class ConfirmOrderActivity extends BaseActivity {
     private String userTels;
     private String userBanks;
     private String userBnumb;
+    private Bill bill;
+    private RelativeLayout rl_fapiao;
 
     @Override
     public void initView() {
@@ -130,9 +132,14 @@ public class ConfirmOrderActivity extends BaseActivity {
         rg_billType_confirmFoot = (RadioGroup) view.findViewById(id.rg_billType_confirmFoot);
         rb_ordinaryBill_confirmFoot = (RadioButton) view.findViewById(id.rb_ordinaryBill_confirmFoot);
         rb_increBill_confirmFoot = (RadioButton) view.findViewById(id.rb_increBill_confirmFoot);
+        rl_fapiao = (RelativeLayout) view.findViewById(id.rl_fapiao);
         //假如是个人用户，只有普通发票
         if (login.getPshUser().getUserType() == 2) {
             rb_increBill_confirmFoot.setVisibility(View.INVISIBLE);
+          taitou=  login.getPshUser().getUserTName();
+        }else {
+            taitou=login.getPshUser().getUserCaty();
+
         }
         left_icon = (ImageView) findViewById(id.left_icon);
         addCostMoney();
@@ -152,6 +159,7 @@ public class ConfirmOrderActivity extends BaseActivity {
             tv_zonge_confirm_order.setText(goodsMoney + "");
             tv_shouxufei_confirm_order.setText(costMoney + "");
             tv_money_confirm_order.setText(allMoney + "");
+            tv_diqu.setText(taitou);
         }
     }
 
@@ -214,7 +222,6 @@ public class ConfirmOrderActivity extends BaseActivity {
         JSONObject jsonObject;
         JSONArray jsonArray = new JSONArray();
 //        List<String >list=new ArrayList<>();
-        //TODO 拼接字符串
         for (int i = 0; i < mList.size(); i++) {
             jsonObject = new JSONObject();
             try {
@@ -235,7 +242,8 @@ public class ConfirmOrderActivity extends BaseActivity {
         tv_confirm_confirm_order.setOnClickListener(this);
         left_icon.setOnClickListener(this);
         ll_info_confirm_order.setOnClickListener(this);
-        tv_diqu.setOnClickListener(this);
+//        tv_diqu.setOnClickListener(this);
+        rl_fapiao.setOnClickListener(this);
         rg_billType_confirmFoot.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -274,11 +282,28 @@ public class ConfirmOrderActivity extends BaseActivity {
                     //判断是否是个人，个人直接下订单，公司则判断兴业银行卡是否是默认银行卡
                     if (login.getPshUser().getUserType() == 2) {
                         getData();
-                    } else if (login.isXingYe()) {
-                        //假如默认是兴业，则
-                        getData();
-                    } else {
-                        showDialog("默认银行不是兴业银行，去选择？");
+                    } else {//公司
+                        //假如是增值税，则必须填写
+                        if (billType == 1) {
+                            if (bill == null) {
+                                AppUtils.toastText(ConfirmOrderActivity.this, "请填写增值税发票信息");
+                            } else {
+                                if (login.isXingYe()) {
+                                    //假如默认是兴业，则
+                                    getData();
+                                } else {
+                                    showDialog("默认银行不是兴业银行，去选择？");
+                                }
+                            }
+                        } else {
+                            if (login.isXingYe()) {
+                                //假如默认是兴业，则
+                                getData();
+                            } else {
+                                showDialog("默认银行不是兴业银行，去选择？");
+                            }
+                        }
+
                     }
                 } else {
                     showDialog("尚未绑定银行卡，不能支付，去绑定？");
@@ -298,15 +323,22 @@ public class ConfirmOrderActivity extends BaseActivity {
                 intent.putExtra("isFromConfirm", true);
                 startActivityForResult(intent, CHOOSE_ADDRESS);
                 break;
-            case R.id.tv_diqu:
+            case R.id.rl_fapiao:
                 if (billType == 0) {
                     intent.setClass(ConfirmOrderActivity.this, FaPiaoActivity.class);
                     intent.putExtra("taitou", taitou);
                     intent.putExtra("content", content);
+                    if (login.getPshUser().getUserType() == 1) {
+                        //如果是公司
+                        intent.putExtra("isCompany", true);
+                    } else {
+                        intent.putExtra("isCompany", false);
+                    }
                     startActivityForResult(intent, FAPIAO_PUTONG);
                 } else {
                     intent.setClass(ConfirmOrderActivity.this, BillActivity.class);
                     intent.putExtra("isFromConfirm", true);
+                    intent.putExtra("confirmBill",bill);
                     startActivityForResult(intent, FAPIAO_ZENG);
                 }
                 break;
@@ -323,7 +355,7 @@ public class ConfirmOrderActivity extends BaseActivity {
             content = data.getStringExtra("content");
             tv_diqu.setText(taitou);
         } else if (requestCode == FAPIAO_ZENG && resultCode == RESULT_OK) {
-            Bill bill = (Bill) data.getSerializableExtra("Bill");
+            bill = (Bill) data.getSerializableExtra("Bill");
             taitou = bill.getTaitou();
             content = bill.getContent();
             userCaty = bill.getConpanyName();
@@ -332,7 +364,7 @@ public class ConfirmOrderActivity extends BaseActivity {
             userTels = bill.getPhone();
             userBanks = bill.getBank();
             userBnumb = bill.getBankNum();
-            tv_diqu.setText(userCaty);
+            tv_diqu.setText(taitou);
         }
     }
 
@@ -384,12 +416,11 @@ public class ConfirmOrderActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                Log.d("result_confirmOrder", cartids + "--------" + arg0.result);
+//                Log.d("result_confirmOrder", cartids + "--------" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
                     String obj = JsonUtils.getJsonParam(arg0.result, "obj");
-                    //TODO 成功后，会调用支付,获取订单号
                     orderId = JsonUtils.getJsonParam(obj, "orderId");
                     money = JsonUtils.getJsonParam(obj, "money");
                     totalFee = String.valueOf(Double.parseDouble(money) - Double.parseDouble(JsonUtils.getJsonParam(obj, "totalFee")));
@@ -406,6 +437,7 @@ public class ConfirmOrderActivity extends BaseActivity {
                     startActivity(intent);
 //                    ConfirmOrderActivity.this.setResult(1);
                     ConfirmOrderActivity.this.finish();
+                    AppUtils.toastTextNew(ConfirmOrderActivity.this, "创建订单成功");
                 } else {
                     AppUtils.toastText(ConfirmOrderActivity.this, message);
                 }

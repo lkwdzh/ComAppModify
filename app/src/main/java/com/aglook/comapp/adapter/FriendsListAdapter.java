@@ -61,9 +61,12 @@ public class FriendsListAdapter extends BaseAdapter{
         }
 
         final LinkMan linkMan = list.get(position);
-        holder.tv_driver_lv.setText(linkMan.getUserName());
+        holder.tv_seat_lv.setVisibility(View.VISIBLE);
+        holder.tv_phone_lv.setVisibility(View.VISIBLE);
+        holder.tv_driver_lv.setText(linkMan.getUserTname());
         holder.cb_driver_lv.setChecked(linkMan.isChecked());
-
+        holder.tv_seat_lv.setText(linkMan.getUserSeat());
+        holder.tv_phone_lv.setText(linkMan.getUserPhone());
         holder.cb_driver_lv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,10 +87,14 @@ public class FriendsListAdapter extends BaseAdapter{
     class ViewHolder{
         TextView tv_driver_lv;
         CheckBox cb_driver_lv;
+        TextView tv_seat_lv;
+        TextView tv_phone_lv;
 
         ViewHolder(View view) {
             tv_driver_lv=(TextView)view.findViewById(R.id.tv_driver_lv);
             cb_driver_lv=(CheckBox)view.findViewById(R.id.cb_driver_lv);
+            tv_seat_lv=(TextView)view.findViewById(R.id.tv_seat_lv);
+            tv_phone_lv=(TextView)view.findViewById(R.id.tv_phone_lv);
         }
     }
 

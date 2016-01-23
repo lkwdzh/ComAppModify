@@ -53,8 +53,8 @@ public class RegisterActivity extends BaseActivity {
     private Button btn_register;
     private String userCode;
 
-    private boolean isAgreeXie;
-    private boolean isAgreeBan;
+    private boolean isAgreeXie=true;
+    private boolean isAgreeBan=true;
 
     private int time = 60;
 

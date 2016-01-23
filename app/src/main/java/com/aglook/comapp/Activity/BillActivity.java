@@ -73,27 +73,38 @@ public class BillActivity extends BaseActivity {
         comAppApplication = (ComAppApplication) getApplication();
         login = comAppApplication.getLogin();
         isFromConfirm = getIntent().getBooleanExtra("isFromConfirm", false);
+        bill = (Bill) getIntent().getSerializableExtra("confirmBill");
         fillData();
         click();
     }
 
     public void fillData() {
-        if (login != null && !"".equals(login)) {
-            LoginPshUser user = login.getPshUser();
-            if (user != null && !"".equals(user)) {
-                etCmompanyNameBill.setText(user.getUserCaty());
-                tvNumBill.setText(user.getUserNnumb());
-                tvCompanyAddresBill.setText(user.getUserZcdz());
-                tvPhoneBill.setText(user.getUserTels());
-                etBankBill.setText(user.getUserBanks());
-                etBankNumBill.setText(user.getUserBnumb());
-                if (isFromConfirm) {
-                    llTaiTou.setVisibility(View.VISIBLE);
-                    llContentBill.setVisibility(View.VISIBLE);
-                    etTaiTouBill.setText(user.getUserCaty());
-                } else {
-                    llTaiTou.setVisibility(View.GONE);
-                    llContentBill.setVisibility(View.GONE);
+        if (bill != null && !"".equals(bill)) {
+            etTaiTouBill.setText(bill.getTaitou());
+            etCmompanyNameBill.setText(bill.getConpanyName());
+            tvNumBill.setText(bill.getNumBill());
+            tvCompanyAddresBill.setText(bill.getCompanyAddress());
+            tvPhoneBill.setText(bill.getPhone());
+            etBankBill.setText(bill.getBank());
+            etBankNumBill.setText(bill.getBankNum());
+        } else {
+            if (login != null && !"".equals(login)) {
+                LoginPshUser user = login.getPshUser();
+                if (user != null && !"".equals(user)) {
+                    etCmompanyNameBill.setText(user.getUserCaty());
+                    tvNumBill.setText(user.getUserNnumb());
+                    tvCompanyAddresBill.setText(user.getUserZcdz());
+                    tvPhoneBill.setText(user.getUserTels());
+                    etBankBill.setText(user.getUserBanks());
+                    etBankNumBill.setText(user.getUserBnumb());
+                    if (isFromConfirm) {
+                        llTaiTou.setVisibility(View.VISIBLE);
+                        llContentBill.setVisibility(View.VISIBLE);
+                        etTaiTouBill.setText(user.getUserCaty());
+                    } else {
+                        llTaiTou.setVisibility(View.GONE);
+                        llContentBill.setVisibility(View.GONE);
+                    }
                 }
             }
         }
@@ -138,10 +149,10 @@ public class BillActivity extends BaseActivity {
             AppUtils.toastText(BillActivity.this, "纳税人识别号不能为空");
             return;
         }
-        if (numBill.length() < 15) {
-            AppUtils.toastText(BillActivity.this, "请输入正确的纳税人识别号");
-            return;
-        }
+//        if (numBill.length() < 15) {
+//            AppUtils.toastText(BillActivity.this, "请输入正确的纳税人识别号");
+//            return;
+//        }
         if (companyAddress == null || "".equals(companyAddress)) {
             AppUtils.toastText(BillActivity.this, "注册地址不能为空");
             return;
@@ -161,10 +172,16 @@ public class BillActivity extends BaseActivity {
 
         if (!isFromConfirm) {
             //假如不是从确认订单过来，则调用接口提交
-            //TODO 调用接口
             upData();
         } else {
+            //如果原先信息没有，先调用接口，在返回数据
+            if (login.getPshUser().getUserNnumb() == null || "".equals(login.getPshUser().getUserNnumb())) {
+                upData();
+            }
             //将值返回上一个界面
+            if (bill==null){
+                bill=new Bill();
+            }
             bill.setTaitou(taitou);
             bill.setConpanyName(conpanyName);
             bill.setCompanyAddress(companyAddress);
@@ -182,17 +199,17 @@ public class BillActivity extends BaseActivity {
 
 
     public void upData() {
-        customProgress=CustomProgress.show(BillActivity.this,"",true);
+        customProgress = CustomProgress.show(BillActivity.this, "", true);
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                if (customProgress!=null&&customProgress.isShowing()){
+                if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_bill",arg0.result);
-                String status= JsonUtils.getJsonParam(arg0.result, "status");
-                String message=JsonUtils.getJsonParam(arg0.result,"message");
-                if (status.equals("1")){
+                Log.d("result_bill", arg0.result);
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                if (status.equals("1")) {
                     upDataUser();
                     BillActivity.this.finish();
                 }
@@ -200,7 +217,7 @@ public class BillActivity extends BaseActivity {
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-                if (customProgress!=null&&customProgress.isShowing()){
+                if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
             }
@@ -209,7 +226,7 @@ public class BillActivity extends BaseActivity {
     }
 
     //更新本地信息
-    public void upDataUser(){
+    public void upDataUser() {
         LoginPshUser user = login.getPshUser();
         user.setUserCaty(conpanyName);
         user.setUserNnumb(numBill);
