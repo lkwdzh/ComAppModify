@@ -159,18 +159,23 @@ public class CardListActivity extends BaseActivity {
                     if (list.size() != 0 && list != null) {
                         mList.addAll(list);
                         DefineUtil.BANKBAND = true;
-                        //遍历mlist，判断默认银行卡是否是兴业
-                        for (int i = 0; i < mList.size(); i++) {
-                            if (mList.get(i).getDefaultType().equals("1") && mList.get(i).getBankAlis().equals("兴业银行")) {
-                                login.setXingYe(true);
-                            }
-                        }
+
                         comAppApplication.setLogin(login);
                     } else {
                         DefineUtil.BANKBAND = false;
                     }
                 }
-
+                login.setXingYe(false);
+                if (mList!=null&&mList.size()!=0){
+                    //遍历mlist，判断默认银行卡是否是兴业
+                    for (int i = 0; i < mList.size(); i++) {
+                        if (mList.get(i).getDefaultType().equals("1") && mList.get(i).getBankAlis().equals("兴业银行")) {
+                            login.setXingYe(true);
+                        }
+                    }
+                }else {
+                    login.setXingYe(false);
+                }
                 adapter.notifyDataSetChanged();
                 lv_card_list.setEmptyView(emptyView);
                 lv_card_list.onRefreshComplete();

@@ -307,7 +307,7 @@ public class ConfirmOrderActivity extends BaseActivity {
                                     //假如默认是兴业，则
                                     getData();
                                 } else {
-                                    showDialog("默认银行不是兴业银行，去选择？");
+                                    showDialog("默认银行不是兴业银行，去选择默认银行卡？");
                                 }
                             }
                         } else {

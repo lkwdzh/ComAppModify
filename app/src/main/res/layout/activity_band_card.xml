@@ -129,7 +129,7 @@
                 style="@style/grayTextView_333333_13"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/px_25"
-                android:text="设为默认地址" />
+                android:text="设为默认账户" />
 
             <CheckBox
                 android:id="@+id/cb_moren"
