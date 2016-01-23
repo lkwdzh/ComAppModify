@@ -126,6 +126,7 @@ public class ConfirmOrderActivity extends BaseActivity {
             bill.setPhone(login.getPshUser().getUserTels());
             bill.setBank(login.getPshUser().getUserBanks());
             bill.setBankNum(login.getPshUser().getUserBnumb());
+            getBillContent();
         }
     }
 
@@ -370,16 +371,20 @@ public class ConfirmOrderActivity extends BaseActivity {
             tv_diqu.setText(taitou);
         } else if (requestCode == FAPIAO_ZENG && resultCode == RESULT_OK) {
             bill = (Bill) data.getSerializableExtra("Bill");
-            taitou = bill.getTaitou();
-            content = bill.getContent();
-            userCaty = bill.getConpanyName();
-            userNnumb = bill.getNumBill();
-            userZcdz = bill.getCompanyAddress();
-            userTels = bill.getPhone();
-            userBanks = bill.getBank();
-            userBnumb = bill.getBankNum();
-            tv_diqu.setText(taitou);
+          getBillContent();
         }
+    }
+
+    public void getBillContent(){
+        taitou = bill.getTaitou();
+        content = bill.getContent();
+        userCaty = bill.getConpanyName();
+        userNnumb = bill.getNumBill();
+        userZcdz = bill.getCompanyAddress();
+        userTels = bill.getPhone();
+        userBanks = bill.getBank();
+        userBnumb = bill.getBankNum();
+        tv_diqu.setText(taitou);
     }
 
     //监听返回键
