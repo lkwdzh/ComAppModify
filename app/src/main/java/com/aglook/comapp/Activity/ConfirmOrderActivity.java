@@ -94,7 +94,7 @@ public class ConfirmOrderActivity extends BaseActivity {
     private String userTels;
     private String userBanks;
     private String userBnumb;
-    private Bill bill;
+    private Bill bill=new Bill();
     private RelativeLayout rl_fapiao;
 
     @Override
@@ -105,6 +105,7 @@ public class ConfirmOrderActivity extends BaseActivity {
         ExitApplication.getInstance().addActivity(this);
         comAppApplication = (ComAppApplication) getApplication();
         init();
+        fillBill();
         click();
         getAddressData();
     }
@@ -113,6 +114,19 @@ public class ConfirmOrderActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         login = comAppApplication.getLogin();
+    }
+
+    //填充Bill
+    public void fillBill(){
+        if (login!=null&&login.getPshUser()!=null){
+            bill.setTaitou(login.getPshUser().getUserCaty());
+            bill.setConpanyName(login.getPshUser().getUserCaty());
+            bill.setNumBill(login.getPshUser().getUserNnumb());
+            bill.setCompanyAddress(login.getPshUser().getUserZcdz());
+            bill.setPhone(login.getPshUser().getUserTels());
+            bill.setBank(login.getPshUser().getUserBanks());
+            bill.setBankNum(login.getPshUser().getUserBnumb());
+        }
     }
 
     public void init() {
