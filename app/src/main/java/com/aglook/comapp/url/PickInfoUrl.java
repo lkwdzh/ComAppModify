@@ -29,7 +29,7 @@ public class PickInfoUrl {
 //                    jsonObject1.put("id", "1");
                     jsonObject1.put("id", dirverList.get(i).getId());
                     if (dirverList.get(i).getWeight() != null) {
-                        jsonObject1.put("getWeight", dirverList.get(i).getWeight());
+                        jsonObject1.put("getWeight", 0);
                     }
 //                    jsonObject1.put("getWeight", Integer.parseInt(dirverList.get(i).getWeight()));
 //                    jsonObject1.put("getWeight", 1);

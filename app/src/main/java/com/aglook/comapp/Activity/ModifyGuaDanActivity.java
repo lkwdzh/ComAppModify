@@ -6,6 +6,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -42,7 +44,7 @@ public class ModifyGuaDanActivity extends BaseActivity {
     private SimpleDateFormat df;
     private String dateIn;
     private String dateUseful;
-//    private TextView tv_userful_time_gua_dan_add;
+    //    private TextView tv_userful_time_gua_dan_add;
     //    private TextView tv_goods_image_gua_dan_add;
 //    private TextView tv_huo_quan_image_gua_dan_add;
     private EditText et_goods_name_gua_dan;
@@ -83,9 +85,13 @@ public class ModifyGuaDanActivity extends BaseActivity {
     private String validTime;
     private String productDesc;
     private CangDanDetail cangDanDetail;
-    private List<Buyer>mList=new ArrayList<>();
+    private List<Buyer> mList = new ArrayList<>();
     private TextView tv_goods_zhiliang_gua_dan;
     private CustomProgress customProgress;
+
+    private String actionFlag = "0";//是否匿名,0,不匿名，1.匿名
+    private CheckBox cb_niMing;
+
     @Override
     public void initView() {
         setContentView(R.layout.activity_modify_gua_dan);
@@ -129,8 +135,10 @@ public class ModifyGuaDanActivity extends BaseActivity {
         tv_2_gua_dan_add = (TextView) findViewById(R.id.tv_2_gua_dan_add);
         iv_huowu = (ImageView) findViewById(R.id.iv_huowu);
         iv_huoquan = (ImageView) findViewById(R.id.iv_huoquan);
+        cb_niMing = (CheckBox) findViewById(R.id.cb_niMing);
         et_price_gua_dan.addTextChangedListener(new MyTextWatcher());
     }
+
     class MyTextWatcher implements TextWatcher {
 
         @Override
@@ -166,17 +174,18 @@ public class ModifyGuaDanActivity extends BaseActivity {
 
         }
     }
+
     //填充数据
     public void fillData() {
         XBitmap.displayImage(iv_huowu, cangDanDetail.getProductLogo(), ModifyGuaDanActivity.this);
         XBitmap.displayImage(iv_huoquan, cangDanDetail.getProductOwnerProve(), ModifyGuaDanActivity.this);
 
-        tv_use_weight_gua_dan.setText(cangDanDetail.getWeightUseable()+"吨");
+        tv_use_weight_gua_dan.setText(cangDanDetail.getWeightUseable() + "吨");
         et_goods_name_gua_dan.setText(cangDanDetail.getProductName());
         tv_cangdanhao_gua_dan_add.setText(cangDanDetail.getOriginalListId());
         tv_goods_kind_gua_dan.setText(cangDanDetail.getCategoryName());
-        tv_stock_weight_gua_dan.setText(cangDanDetail.getWeightUseable()+"吨");
-        if (cangDanDetail.getInnerTime()!=null&&!"".equals(cangDanDetail.getInnerTime())) {
+        tv_stock_weight_gua_dan.setText(cangDanDetail.getWeightUseable() + "吨");
+        if (cangDanDetail.getInnerTime() != null && !"".equals(cangDanDetail.getInnerTime())) {
             tv_in_time_gua_dan_add.setText(Timestamp.getDateToString(cangDanDetail.getInnerTime()));
         }
 
@@ -190,7 +199,7 @@ public class ModifyGuaDanActivity extends BaseActivity {
         et_cang_email_gua_dan.setText(cangDanDetail.getResponsibleEmail());
         et_cang_address_gua_dan.setText(cangDanDetail.getDepotAddress());
         tv_goods_zhiliang_gua_dan.setText(cangDanDetail.getDepotQuality());
-        if (cangDanDetail.getCustomerList()!=null&&cangDanDetail.getCustomerList().size()!=0){
+        if (cangDanDetail.getCustomerList() != null && cangDanDetail.getCustomerList().size() != 0) {
             mList.addAll(cangDanDetail.getCustomerList());
             if (mList != null && mList.size() != 0) {
                 if (mList.size() == 1) {
@@ -213,14 +222,14 @@ public class ModifyGuaDanActivity extends BaseActivity {
         productName = AppUtils.toStringTrim_ET(et_goods_name_gua_dan);
 //        validTime=Timestamp.dateToTime(AppUtils.toStringTrim_TV(tv_userful_time_gua_dan_add)).toString();
         productDesc = AppUtils.toStringTrim_ET(et_goods_detail_gua_dan);
-        if (productName==null||"".equals(productName)){
-            AppUtils.toastText(ModifyGuaDanActivity.this,"商品名称不能为空");
+        if (productName == null || "".equals(productName)) {
+            AppUtils.toastText(ModifyGuaDanActivity.this, "商品名称不能为空");
             return;
         }
 
 
-        if (productMoney==null||"".equals(productMoney)){
-            AppUtils.toastText(ModifyGuaDanActivity.this,"商品价格不能为空");
+        if (productMoney == null || "".equals(productMoney)) {
+            AppUtils.toastText(ModifyGuaDanActivity.this, "商品价格不能为空");
             return;
         }
 //        if (tradeNum==null||"".equals(tradeNum)){
@@ -235,6 +244,16 @@ public class ModifyGuaDanActivity extends BaseActivity {
 //        tv_userful_time_gua_dan_add.setOnClickListener(this);
         right_text.setOnClickListener(this);
         ll_buyer_gua_dan.setOnClickListener(this);
+        cb_niMing.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    actionFlag = "1";
+                } else {
+                    actionFlag = "0";
+                }
+            }
+        });
     }
 
 
@@ -266,7 +285,7 @@ public class ModifyGuaDanActivity extends BaseActivity {
                 break;
             case R.id.ll_buyer_gua_dan:
                 intent.setClass(ModifyGuaDanActivity.this, BuyerListActivity.class);
-                    intent.putExtra("list", (Serializable) mList);
+                intent.putExtra("list", (Serializable) mList);
 
                 startActivity(intent);
                 break;
@@ -298,7 +317,7 @@ public class ModifyGuaDanActivity extends BaseActivity {
             public void failureInitViews(HttpException arg0, String arg1) {
 
             }
-        }.datePost(DefineUtil.CANG_DAN, AllGuaDanUrl.postModifyUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, productName, productMoney, validTime, productId, productDesc), ModifyGuaDanActivity.this);
+        }.datePost(DefineUtil.CANG_DAN, AllGuaDanUrl.postModifyUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, productName, productMoney, validTime, productId, productDesc,actionFlag), ModifyGuaDanActivity.this);
     }
 
 
@@ -311,13 +330,13 @@ public class ModifyGuaDanActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_Modi", productId+"______"+arg0.result);
-                String message=JsonUtils.getJsonParam(arg0.result,"message");
-                String status=JsonUtils.getJsonParam(arg0.result,"status");
-                String obj=JsonUtils.getJsonParam(arg0.result,"obj");
-                cangDanDetail=JsonUtils.parse(obj,CangDanDetail.class);
-                if (status.equals("1")){
-                    if (cangDanDetail!=null){
+                Log.d("result_Modi", productId + "______" + arg0.result);
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
+                cangDanDetail = JsonUtils.parse(obj, CangDanDetail.class);
+                if (status.equals("1")) {
+                    if (cangDanDetail != null) {
                         fillData();
                     }
                 }

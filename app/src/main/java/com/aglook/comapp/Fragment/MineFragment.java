@@ -316,7 +316,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.tv_share:
-                ShareUtil.Share(getActivity(),"DECX",downloadUrl);
+                ShareUtil.Share(getActivity(),"DECX ",downloadUrl);
                 break;
         }
     }

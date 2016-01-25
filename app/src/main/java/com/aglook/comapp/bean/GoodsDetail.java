@@ -24,6 +24,35 @@ public class GoodsDetail {
     private String isCollect;//0:未收藏，1：已收藏
     private String productOwnerProve;//货权图片
 
+    private int anonymous;//是否匿名
+    private String userJname;//经理电话
+    private String userZcdz;//公司地址
+
+
+    public int getAnonymous() {
+        return anonymous;
+    }
+
+    public void setAnonymous(int anonymous) {
+        this.anonymous = anonymous;
+    }
+
+    public String getUserJname() {
+        return userJname;
+    }
+
+    public void setUserJname(String userJname) {
+        this.userJname = userJname;
+    }
+
+    public String getUserZcdz() {
+        return userZcdz;
+    }
+
+    public void setUserZcdz(String userZcdz) {
+        this.userZcdz = userZcdz;
+    }
+
     public String getProductOwnerProve() {
         return productOwnerProve;
     }
@@ -176,28 +205,4 @@ public class GoodsDetail {
         this.depotAddress = depotAddress;
     }
 
-    @Override
-    public String toString() {
-        return "GoodsDetail{" +
-                "productId='" + productId + '\'' +
-                ", productName='" + productName + '\'' +
-                ", productMoney='" + productMoney + '\'' +
-                ", productListId='" + productListId + '\'' +
-                ", productSellNum=" + productSellNum +
-                ", productAppDesc='" + productAppDesc + '\'' +
-                ", productAvailable='" + productAvailable + '\'' +
-                ", productLogo='" + productLogo + '\'' +
-                ", categoryName='" + categoryName + '\'' +
-                ", innerTime='" + innerTime + '\'' +
-                ", goodsPlace='" + goodsPlace + '\'' +
-                ", goodsType='" + goodsType + '\'' +
-                ", mark='" + mark + '\'' +
-                ", depotResponsible='" + depotResponsible + '\'' +
-                ", responsibleMobile='" + responsibleMobile + '\'' +
-                ", responsibleEmail='" + responsibleEmail + '\'' +
-                ", depotAddress='" + depotAddress + '\'' +
-                ", isCollect='" + isCollect + '\'' +
-                ", productOwnerProve='" + productOwnerProve + '\'' +
-                '}';
-    }
 }

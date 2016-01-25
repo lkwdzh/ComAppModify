@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="4"
+        android:weightSum="3"
         android:paddingBottom="@dimen/px_10"
         android:paddingTop="@dimen/px_10"
         android:orientation="horizontal">
@@ -22,6 +22,7 @@
         <TextView
             android:id="@+id/tv_weight_modify_pick_up"
             style="@style/orderDetail_TextView_666666_13_center"
+            android:visibility="gone"
            />
 
         <TextView

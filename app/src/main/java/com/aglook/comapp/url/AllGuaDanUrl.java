@@ -158,7 +158,7 @@ public class AllGuaDanUrl {
      * @param productDesc
      * @return
      */
-    public static RequestParams postModifyUrl(String code, String token, String userId, String productName, String productMoney, String validTime, String productId, String productDesc) {
+    public static RequestParams postModifyUrl(String code, String token, String userId, String productName, String productMoney, String validTime, String productId, String productDesc,String actionFlag) {
         params = new RequestParams();
         JSONObject jsonObject = new JSONObject();
         try {
@@ -178,6 +178,7 @@ public class AllGuaDanUrl {
         params.addBodyParameter("version", DefineUtil.VERSON);
         params.addBodyParameter("content", content);
         params.addBodyParameter("sign", sign);
+        params.addBodyParameter("actionFlag", actionFlag);
         return params;
     }
 

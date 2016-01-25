@@ -7,8 +7,9 @@
 
     <include layout="@layout/activity_base_title_bar" />
 
-    <View style="@style/line_1"
-        android:layout_marginTop="@dimen/px_14"/>
+    <View
+        style="@style/line_1"
+        android:layout_marginTop="@dimen/px_14" />
 
     <LinearLayout style="@style/guadan_ll_weight">
 
@@ -21,6 +22,7 @@
             style="@style/guadan_edittext_weight"
             android:hint="请输入指定司机" />
     </LinearLayout>
+
     <View style="@style/line_1" />
 
     <LinearLayout style="@style/guadan_ll_weight">
@@ -38,7 +40,6 @@
     </LinearLayout>
 
 
-
     <View style="@style/line_1" />
 
     <LinearLayout style="@style/guadan_ll_weight">
@@ -51,9 +52,10 @@
             android:id="@+id/et_num_driver_add"
             style="@style/guadan_edittext_weight"
             android:digits="0123456789xX"
-           android:maxLength="18"
+            android:maxLength="18"
             android:hint="请输入司机身份证号" />
     </LinearLayout>
+
     <View style="@style/line_1" />
 
     <LinearLayout style="@style/guadan_ll_weight">
@@ -67,6 +69,10 @@
             style="@style/guadan_edittext_weight"
             android:hint="请输入司机车牌号" />
     </LinearLayout>
+
     <View style="@style/line_1" />
+    <TextView
+        style="@style/remind_TextView_666666_11_center"
+        android:text="英文字母为大写" />
 
 </LinearLayout>

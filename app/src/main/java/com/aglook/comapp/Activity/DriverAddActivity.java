@@ -32,6 +32,7 @@ public class DriverAddActivity extends BaseActivity {
     private String carCode;
     private String cardNo;
     private CustomProgress customProgress;
+
     @Override
     public void initView() {
         setContentView(R.layout.activity_driver_add);
@@ -56,43 +57,43 @@ public class DriverAddActivity extends BaseActivity {
         right_text.setOnClickListener(this);
     }
 
-    public void getInput(){
-        driverName=AppUtils.toStringTrim_ET(et_name_driver_add);
-        driverPhone=AppUtils.toStringTrim_ET(et_phone_driver_add);
-        carCode=AppUtils.toStringTrim_ET(et_email_driver_add);
-        cardNo=AppUtils.toStringTrim_ET(et_num_driver_add);
-        if (driverName==null||"".equals(driverName)){
-            AppUtils.toastText(this,"司机姓名不能为空");
+    public void getInput() {
+        driverName = AppUtils.toStringTrim_ET(et_name_driver_add);
+        driverPhone = AppUtils.toStringTrim_ET(et_phone_driver_add);
+        carCode = AppUtils.toStringTrim_ET(et_email_driver_add);
+        cardNo = AppUtils.toStringTrim_ET(et_num_driver_add);
+        if (driverName == null || "".equals(driverName)) {
+            AppUtils.toastText(this, "司机姓名不能为空");
             return;
         }
-        if (driverPhone==null||"".equals(driverPhone)){
-            AppUtils.toastText(this,"司机手机号不能为空");
+        if (driverPhone == null || "".equals(driverPhone)) {
+            AppUtils.toastText(this, "司机手机号不能为空");
             return;
         }
-        if (driverPhone.length()!=11){
-            AppUtils.toastText(this,"请输入11位手机号");
+        if (driverPhone.length() != 11) {
+            AppUtils.toastText(this, "请输入11位手机号");
             return;
         }
-        if (!PatternNum.isMobileNO(driverPhone)){
-            AppUtils.toastText(this,"请输入正确手机号");
+        if (!PatternNum.isMobileNO(driverPhone)) {
+            AppUtils.toastText(this, "请输入正确手机号");
             return;
         }
-        if (cardNo==null||"".equals(cardNo)){
-            AppUtils.toastText(this,"司机身份证号不能为空");
+        if (cardNo == null || "".equals(cardNo)) {
+            AppUtils.toastText(this, "司机身份证号不能为空");
             return;
         }
         //判断身份证格式
-        String ss= IDCard.IDCardValidate(cardNo);
-        if (!"".equals(ss)){
-            AppUtils.toastText(DriverAddActivity.this,ss);
+        String ss = IDCard.IDCardValidate(cardNo);
+        if (!"".equals(ss)) {
+            AppUtils.toastText(DriverAddActivity.this, ss);
             return;
         }
-        if (carCode==null||"".equals(carCode)){
-            AppUtils.toastText(this,"司机车牌号不能为空");
+        if (carCode == null || "".equals(carCode)) {
+            AppUtils.toastText(this, "司机车牌号不能为空");
             return;
         }
-        if (!PatternNum.isCarnumberNO(carCode)){
-            AppUtils.toastText(this,"请输入正确车牌号");
+        if (!PatternNum.isCarnumberNO(carCode)) {
+            AppUtils.toastText(this, "请输入正确车牌号");
             return;
         }
         addDriver();
@@ -110,7 +111,7 @@ public class DriverAddActivity extends BaseActivity {
     }
 
     //添加司机
-    public void addDriver(){
+    public void addDriver() {
         customProgress = CustomProgress.show(this, "", true);
 
         new XHttpuTools() {
@@ -120,9 +121,9 @@ public class DriverAddActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
 //                Log.d("result_add",arg0.result);
-                String message= JsonUtils.getJsonParam(arg0.result,"message");
-                String status=JsonUtils.getJsonParam(arg0.result,"status");
-                if (status.equals("1")){
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                if (status.equals("1")) {
                     //成功
                     DriverAddActivity.this.setResult(1);
                     DriverAddActivity.this.finish();
@@ -135,7 +136,7 @@ public class DriverAddActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePostCheck(DefineUtil.DRIVER_ADD, DriverUrl.postDriverAddUrl(DefineUtil.TOKEN,DefineUtil.USERID,driverName,driverTel,driverPhone,carCode,cardNo),DriverAddActivity.this);
+        }.datePostCheck(DefineUtil.DRIVER_ADD, DriverUrl.postDriverAddUrl(DefineUtil.TOKEN, DefineUtil.USERID, driverName, driverTel, driverPhone, carCode, cardNo), DriverAddActivity.this);
     }
 
 

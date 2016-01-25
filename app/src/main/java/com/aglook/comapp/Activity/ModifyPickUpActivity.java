@@ -39,13 +39,14 @@ public class ModifyPickUpActivity extends BaseActivity {
     private List<ModfyDriverList> mList = new ArrayList<>();
     private ImageView left_icon;
     private String getId;
-    private String code="3004";
+    private String code = "3004";
     private PickUpDetail pickUpDetail;
     private TextView tv_house_num_my_cangdan;
     private TextView tv_success_all_order_lv;
     private TextView tv_in_time_my_cangdan;
     private TextView tv_time_tihuo;
-private CustomProgress customProgress;
+    private CustomProgress customProgress;
+
     @Override
     public void initView() {
         setContentView(R.layout.activity_modify_pick_up_activity2);
@@ -57,8 +58,8 @@ private CustomProgress customProgress;
     }
 
     public void init() {
-        customProgress=CustomProgress.show(this,"",true);
-        getId=getIntent().getStringExtra("getId");
+        customProgress = CustomProgress.show(this, "", true);
+        getId = getIntent().getStringExtra("getId");
 //        DriverList driverList;
 //        for (int i = 0; i < 10; i++) {
 //            driverList=new DriverList();
@@ -86,7 +87,7 @@ private CustomProgress customProgress;
             public void callBackIndex(int index) {
                 position = index;
             }
-        },mList);
+        }, mList);
         lv_modify_pick_up.setAdapter(adapter);
 
         tv_house_num_my_cangdan = (TextView) findViewById(R.id.tv_house_num_my_cangdan);
@@ -95,21 +96,21 @@ private CustomProgress customProgress;
         tv_time_tihuo = (TextView) findViewById(R.id.tv_time_tihuo);
     }
 
-    public void fillData(){
+    public void fillData() {
         tv_house_num_my_cangdan.setText(pickUpDetail.getGetId());
-        if (pickUpDetail.getIsget()!=null&&!"".equals(pickUpDetail.getIsget())){
-            if (pickUpDetail.getIsget().equals("0")){
+        if (pickUpDetail.getIsget() != null && !"".equals(pickUpDetail.getIsget())) {
+            if (pickUpDetail.getIsget().equals("0")) {
                 tv_success_all_order_lv.setText("已取消");
-            }else  if (pickUpDetail.getIsget().equals("1")){
+            } else if (pickUpDetail.getIsget().equals("1")) {
                 tv_success_all_order_lv.setText("等待提货");
-            }else  if (pickUpDetail.getIsget().equals("2")){
+            } else if (pickUpDetail.getIsget().equals("2")) {
                 tv_success_all_order_lv.setText("提货成功");
             }
         }
 //        if (pickUpDetail.getGetAtime()!=null&&!"".equals(pickUpDetail.getGetAtime())){
 //            tv_in_time_my_cangdan.setText(Timestamp.getDateTo(pickUpDetail.getGetAtime()));
 //        }
-        if (pickUpDetail.getGetCtime()!=null&&!"".equals(pickUpDetail.getGetAtime())){
+        if (pickUpDetail.getGetCtime() != null && !"".equals(pickUpDetail.getGetAtime())) {
             tv_in_time_my_cangdan.setText(Timestamp.getDateTo(pickUpDetail.getGetAtime()));
         }
     }
@@ -122,11 +123,11 @@ private CustomProgress customProgress;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == RESULT_OK) {
-            String  name =  data.getStringExtra("name");
+            String name = data.getStringExtra("name");
             mList.get(position).setName(name);
 //            mList.add(position, driverList);
             adapter.notifyDataSetChanged();
-        }else if (requestCode==33&&resultCode==1){
+        } else if (requestCode == 33 && resultCode == 1) {
             mList.clear();
             getDetailData();
         }
@@ -157,22 +158,22 @@ private CustomProgress customProgress;
     }
 
     //提货详情
-    public void getDetailData(){
+    public void getDetailData() {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-                if (customProgress!=null&&customProgress.isShowing()){
+                if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
 //                Log.d("result_detail",arg0.result);
-                String message= JsonUtils.getJsonParam(arg0.result,"message");
-                String status=JsonUtils.getJsonParam(arg0.result,"status");
-                String obj=JsonUtils.getJsonParam(arg0.result,"obj");
-                if (status.equals("1")){
-                    pickUpDetail=JsonUtils.parse(obj,PickUpDetail.class);
+                String message = JsonUtils.getJsonParam(arg0.result, "message");
+                String status = JsonUtils.getJsonParam(arg0.result, "status");
+                String obj = JsonUtils.getJsonParam(arg0.result, "obj");
+                if (status.equals("1")) {
+                    pickUpDetail = JsonUtils.parse(obj, PickUpDetail.class);
                     fillData();
                     adapter.getID(pickUpDetail.getGetId());
-                    if (pickUpDetail.getDriverList()!=null&&pickUpDetail.getDriverList().size()!=0){
+                    if (pickUpDetail.getDriverList() != null && pickUpDetail.getDriverList().size() != 0) {
                         mList.addAll(pickUpDetail.getDriverList());
                     }
                 }
@@ -182,11 +183,11 @@ private CustomProgress customProgress;
 
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
-                if (customProgress!=null&&customProgress.isShowing()){
+                if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.CANG_DAN, PickUpUrl.postDetailUrl(code,DefineUtil.TOKEN,DefineUtil.USERID,getId),ModifyPickUpActivity.this);
+        }.datePost(DefineUtil.CANG_DAN, PickUpUrl.postDetailUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, getId), ModifyPickUpActivity.this);
     }
 
 }

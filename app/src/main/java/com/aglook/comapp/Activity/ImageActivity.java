@@ -26,32 +26,32 @@ public class ImageActivity extends BaseActivity {
         switch (num) {
             case 1:
                 setTitleBar("登录-注册");
-                scrollview.setImageResource(R.drawable.image_login);
-//                scrollview.setImageBitmap(getBitmap(R.drawable.image_login));
+//                scrollview.setImageResource(R.drawable.image_login);
+                scrollview.setImageBitmap(getBitmap(R.drawable.image_login));
 //                bitmap= BitmapFactory.decodeResource(getResources(),R.drawable.image_login);
                 break;
             case 2:
                 setTitleBar("购买");
-                scrollview.setImageResource(R.drawable.image_buy);
-//                scrollview.setImageBitmap(getBitmap(R.drawable.image_buy));
+//                scrollview.setImageResource(R.drawable.image_buy);
+                scrollview.setImageBitmap(getBitmap(R.drawable.image_buy));
 //                bitmap= BitmapFactory.decodeResource(getResources(),R.drawable.image_buy);
                 break;
             case 3:
                 setTitleBar("挂单");
-                scrollview.setImageResource(R.drawable.image_guadan);
-//                scrollview.setImageBitmap(getBitmap(R.drawable.image_guadan));
+//                scrollview.setImageResource(R.drawable.image_guadan);
+                scrollview.setImageBitmap(getBitmap(R.drawable.image_guadan));
 //                bitmap= BitmapFactory.decodeResource(getResources(),R.drawable.image_guadan);
                 break;
             case 4:
                 setTitleBar("融资买货");
-                scrollview.setImageResource(R.drawable.image_rongzi);
-//                scrollview.setImageBitmap(getBitmap(R.drawable.image_rongzi));
+//                scrollview.setImageResource(R.drawable.image_rongzi);
+                scrollview.setImageBitmap(getBitmap(R.drawable.image_rongzi));
 //                bitmap= BitmapFactory.decodeResource(getResources(),R.drawable.image_rongzi);
                 break;
             case 5:
                 setTitleBar("提货");
-                scrollview.setImageResource(R.drawable.image_pick);
-//                scrollview.setImageBitmap(getBitmap(R.drawable.image_pick));
+//                scrollview.setImageResource(R.drawable.image_pick);
+                scrollview.setImageBitmap(getBitmap(R.drawable.image_pick));
 //                bitmap= BitmapFactory.decodeResource(getResources(),R.drawable.image_pick);
                 break;
         }

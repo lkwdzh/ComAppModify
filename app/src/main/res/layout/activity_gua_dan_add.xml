@@ -17,7 +17,6 @@
             android:orientation="vertical">
 
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,8 +34,7 @@
 
                     <ImageView
                         android:id="@+id/iv_huowu"
-                        style="@style/imageview_px120"
-                        />
+                        style="@style/imageview_px120" />
 
                     <TextView
                         style="@style/grayTextView_333333_15"
@@ -58,8 +56,7 @@
 
                     <ImageView
                         android:id="@+id/iv_huoquan"
-                        style="@style/imageview_px120_centerInside"
-                        />
+                        style="@style/imageview_px120_centerInside" />
 
                     <TextView
                         style="@style/grayTextView_333333_15"
@@ -92,11 +89,11 @@
 
                 <TextView
                     android:id="@+id/tv_cangdanhao_gua_dan_add"
-                    style="@style/guadan_edittext_weight"
-                     />
+                    style="@style/guadan_edittext_weight" />
             </LinearLayout>
 
             <View style="@style/line_1" />
+
             <LinearLayout style="@style/guadan_ll_weight">
 
                 <TextView
@@ -105,11 +102,11 @@
 
                 <TextView
                     android:id="@+id/tv_in_time_gua_dan_add"
-                    style="@style/guadan_edittext_weight"
-                    />
+                    style="@style/guadan_edittext_weight" />
             </LinearLayout>
 
             <View style="@style/line_1" />
+
             <LinearLayout style="@style/guadan_ll_weight">
 
                 <TextView
@@ -119,11 +116,11 @@
                 <TextView
                     android:id="@+id/tv_stock_weight_gua_dan"
                     style="@style/guadan_edittext_weight"
-                    android:inputType="number"
-                    />
+                    android:inputType="number" />
             </LinearLayout>
 
             <View style="@style/line_1" />
+
             <LinearLayout style="@style/guadan_ll_weight">
 
                 <TextView
@@ -132,11 +129,11 @@
 
                 <TextView
                     android:id="@+id/et_goods_area_gua_dan"
-                    style="@style/guadan_edittext_weight"
-                    />
+                    style="@style/guadan_edittext_weight" />
             </LinearLayout>
 
             <View style="@style/line_1" />
+
             <LinearLayout style="@style/guadan_ll_weight">
 
                 <TextView
@@ -145,9 +142,9 @@
 
                 <TextView
                     android:id="@+id/tv_goods_kind_gua_dan"
-                    style="@style/guadan_edittext_weight"
-                     />
+                    style="@style/guadan_edittext_weight" />
             </LinearLayout>
+
             <View style="@style/line_1" />
 
             <LinearLayout style="@style/guadan_ll_weight">
@@ -158,9 +155,9 @@
 
                 <TextView
                     android:id="@+id/tv_goods_zhiliang_gua_dan"
-                    style="@style/guadan_edittext_weight"
-                    />
+                    style="@style/guadan_edittext_weight" />
             </LinearLayout>
+
             <View style="@style/line_1" />
 
             <LinearLayout style="@style/guadan_ll_weight">
@@ -171,8 +168,7 @@
 
                 <TextView
                     android:id="@+id/tv_xue_tou_gua_dan_add"
-                    style="@style/guadan_edittext_weight"
-                    />
+                    style="@style/guadan_edittext_weight" />
             </LinearLayout>
 
             <!--<View style="@style/line_1" />-->
@@ -206,6 +202,7 @@
             </LinearLayout>
 
             <View style="@style/line_1" />
+
             <LinearLayout style="@style/guadan_ll_weight">
 
                 <TextView
@@ -222,10 +219,6 @@
             <View style="@style/line_1" />
 
 
-
-
-
-
             <LinearLayout style="@style/guadan_ll_weight">
 
                 <TextView
@@ -234,8 +227,7 @@
 
                 <TextView
                     android:id="@+id/et_cang_name_gua_dan"
-                    style="@style/guadan_edittext_weight"
-                   />
+                    style="@style/guadan_edittext_weight" />
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -270,25 +262,57 @@
 
             <View style="@style/line_1" />
 
-            <LinearLayout style="@style/guadan_ll_weight">
+            <LinearLayout style="@style/guadan_ll_weight_xiang">
 
                 <TextView
                     style="@style/guadan_TextView_333333"
+                    android:layout_marginTop="@dimen/px_20"
+                    android:layout_marginBottom="@dimen/px_20"
                     android:text="@string/gua_dan_cang_address" />
 
                 <TextView
                     android:id="@+id/et_cang_address_gua_dan"
-                    style="@style/guadan_edittext_weight"
-                   />
+                    style="@style/guadan_edittext_weight" />
             </LinearLayout>
 
             <View style="@style/line_1" />
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_65"
+                android:background="@color/white"
+                android:visibility="visible">
 
-            <LinearLayout style="@style/guadan_ll_weight">
+                <TextView
+                    style="@style/grayTextView_333333_15"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="@dimen/px_25"
+                    android:paddingRight="@dimen/px_14"
+                    android:paddingTop="@dimen/px_20"
+                    android:paddingBottom="@dimen/px_20"
+                    android:text="是否匿名" />
+
+                <CheckBox
+                    android:id="@+id/cb_niMing"
+                    style="@style/grayTextView_999999_15"
+                    android:layout_alignParentRight="true"
+                    android:paddingLeft="@dimen/px_14"
+                    android:paddingRight="@dimen/px_14"
+                    android:paddingTop="@dimen/px_20"
+                    android:paddingBottom="@dimen/px_20"
+                    android:button="@drawable/cb_setting"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+
+            <View style="@style/line_1" />
+
+
+            <LinearLayout style="@style/guadan_ll_weight_xiang">
 
                 <TextView
                     style="@style/guadan_TextView_333333"
+                    android:layout_marginTop="@dimen/px_20"
+                    android:layout_marginBottom="@dimen/px_20"
                     android:text="@string/gua_dan_goods_detail" />
 
                 <EditText

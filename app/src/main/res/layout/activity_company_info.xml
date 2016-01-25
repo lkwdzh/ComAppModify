@@ -63,7 +63,7 @@
                     style="@style/company_basic_infor_TextView_333333_13"
                     android:text="公司地址" />
 
-                <TextView
+                <EditText
                     android:id="@+id/tv_company_address_basic_info"
                     style="@style/company_basic_infor_edittext_weight_13" />
             </LinearLayout>

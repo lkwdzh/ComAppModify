@@ -26,6 +26,7 @@ public abstract class XHttpuTools {
         httpUtils.send(HttpRequest.HttpMethod.POST, url, params, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> objectResponseInfo) {
+
                 comAppApplication = (ComAppApplication) context.getApplication();
                 String status = JsonUtils.getJsonParam(objectResponseInfo.result, "status");
                 String message = JsonUtils.getJsonParam(objectResponseInfo.result, "message");

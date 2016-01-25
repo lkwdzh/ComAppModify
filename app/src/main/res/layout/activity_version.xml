@@ -23,6 +23,57 @@
                 <TextView
                     style="@style/grayTextView_333333_13"
                     android:padding="@dimen/px_20"
+                    android:text="V1.2:" />
+
+                <View style="@style/line_1" />
+
+                <TextView
+                    style="@style/grayTextView_666666_13"
+                    android:padding="@dimen/px_20"
+                    android:layout_marginLeft="@dimen/px_40"
+                    android:text="1.增加增值税发票" />
+                <View style="@style/line_1" />
+                <TextView
+                    style="@style/grayTextView_666666_13"
+                    android:padding="@dimen/px_20"
+                    android:layout_marginLeft="@dimen/px_40"
+                    android:text="2.增加企业发票信息填写" />
+                <View style="@style/line_1" />
+                <TextView
+                    style="@style/grayTextView_666666_13"
+                    android:padding="@dimen/px_20"
+                    android:layout_marginLeft="@dimen/px_40"
+                    android:text="3.修改提示方式" />
+                <View style="@style/line_1" />
+                <TextView
+                    style="@style/grayTextView_666666_13"
+                    android:padding="@dimen/px_20"
+                    android:layout_marginLeft="@dimen/px_40"
+                    android:text="4.增加各种填写框提示" />
+                <View style="@style/line_1" />
+                <TextView
+                    style="@style/grayTextView_666666_13"
+                    android:padding="@dimen/px_20"
+                    android:layout_marginLeft="@dimen/px_40"
+                    android:text="5.优化用户体验" />
+                <View style="@style/line_1" />
+                <TextView
+                    style="@style/grayTextView_666666_13"
+                    android:padding="@dimen/px_20"
+                    android:layout_marginLeft="@dimen/px_40"
+                    android:text="6.修改bug" />
+                <View style="@style/line_1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white">
+
+                <TextView
+                    style="@style/grayTextView_333333_13"
+                    android:padding="@dimen/px_20"
                     android:text="V1.1.2:" />
 
                 <View style="@style/line_1" />

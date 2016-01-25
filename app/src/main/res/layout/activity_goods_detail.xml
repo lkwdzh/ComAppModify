@@ -71,8 +71,7 @@
             <LinearLayout
                 style="@style/ll_match_content_ver"
                 android:background="@color/white"
-                android:gravity="center_vertical"
-                >
+                android:gravity="center_vertical">
 
                 <LinearLayout
                     style="@style/ll_match_wrap_content_hor_sum4"
@@ -103,7 +102,9 @@
                         android:id="@+id/tv_huowuzhonglei_goods_detail"
                         style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
+
                 <View style="@style/line_1" />
+
                 <LinearLayout
                     style="@style/ll_match_wrap_content_hor_sum4"
                     android:layout_gravity="center_vertical"
@@ -117,7 +118,9 @@
                         android:id="@+id/tv_weight_goods_detail"
                         style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
+
                 <View style="@style/line_1" />
+
                 <LinearLayout
                     style="@style/ll_match_wrap_content_hor_sum4"
                     android:layout_gravity="center_vertical"
@@ -131,7 +134,9 @@
                         android:id="@+id/tv_in_time_goods_detail"
                         style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
+
                 <View style="@style/line_1" />
+
                 <LinearLayout
                     style="@style/ll_match_wrap_content_hor_sum4"
                     android:layout_gravity="center_vertical"
@@ -145,7 +150,9 @@
                         android:id="@+id/tv_producing_area_goods_detail"
                         style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
+
                 <View style="@style/line_1" />
+
                 <LinearLayout
                     style="@style/ll_match_wrap_content_hor_sum4"
                     android:layout_gravity="center_vertical"
@@ -159,6 +166,7 @@
                         android:id="@+id/tv_xuetou_goods_detail"
                         style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:visibility="gone"
                     style="@style/ll_match_wrap_content_hor_sum4"
@@ -173,7 +181,9 @@
                         android:id="@+id/tv_userful_life_goods_detail"
                         style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
+
                 <View style="@style/line_1" />
+
                 <LinearLayout
                     style="@style/ll_match_wrap_content_hor_sum4"
                     android:layout_gravity="center_vertical"
@@ -187,7 +197,9 @@
                         android:id="@+id/tv_name_goods_detail"
                         style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
+
                 <View style="@style/line_1" />
+
                 <LinearLayout
                     style="@style/ll_match_wrap_content_hor_sum4"
                     android:layout_gravity="center_vertical"
@@ -201,7 +213,9 @@
                         android:id="@+id/tv_phone_goods_detail"
                         style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
+
                 <View style="@style/line_1" />
+
                 <LinearLayout
                     style="@style/ll_match_wrap_content_hor_sum4"
                     android:layout_gravity="center_vertical"
@@ -215,7 +229,9 @@
                         android:id="@+id/tv_emailgoods_detail"
                         style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
+
                 <View style="@style/line_1" />
+
                 <LinearLayout
                     style="@style/ll_match_wrap_content_hor_sum4"
                     android:layout_gravity="center_vertical"
@@ -229,7 +245,9 @@
                         android:id="@+id/tv_address_goods_detail"
                         style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
+
                 <View style="@style/line_1" />
+
                 <LinearLayout
                     style="@style/ll_match_wrap_content_hor"
                     android:layout_gravity="center_vertical"
@@ -246,11 +264,135 @@
                         android:id="@+id/tv_goods_detail_goods_detail"
                         style="@style/grayTextView_333333_13_we3" />
                 </LinearLayout>
+
                 <View style="@style/line_1" />
+
                 <TextView
-                   style="@style/grayTextView_333333_13"
+                    style="@style/grayTextView_333333_13"
                     android:layout_margin="@dimen/px_14"
-                    android:text="其他图片"/>
+                    android:visibility="gone"
+                    android:text="卖方信息" />
+
+                <View style="@style/line_1"
+                    android:visibility="gone"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/ll_person_detail"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            style="@style/ll_match_wrap_content_hor_sum4"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="@dimen/px_14">
+
+                            <TextView
+                                style="@style/grayTextView_999999_13_we1"
+                                android:text="联系人:" />
+
+                            <TextView
+                                android:id="@+id/tv_linkmanPerson_detail"
+                                style="@style/grayTextView_333333_13_we3" />
+                        </LinearLayout>
+
+                        <View style="@style/line_1" />
+
+                        <LinearLayout
+                            style="@style/ll_match_wrap_content_hor_sum4"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="@dimen/px_14">
+
+                            <TextView
+                                style="@style/grayTextView_999999_13_we1"
+                                android:text="电话:" />
+
+                            <TextView
+                                android:id="@+id/tv_phonePerson_detail"
+                                style="@style/grayTextView_333333_13_we3" />
+                        </LinearLayout>
+
+                        <View style="@style/line_1" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/ll_company_detail"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            style="@style/ll_match_wrap_content_hor_sum4"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="@dimen/px_14">
+
+                            <TextView
+                                style="@style/grayTextView_999999_13_we1"
+                                android:text="公司名称：" />
+
+                            <TextView
+                                android:id="@+id/tv_companyName_detail"
+                                style="@style/grayTextView_333333_13_we3" />
+                        </LinearLayout>
+                        <View style="@style/line_1" />
+                        <LinearLayout
+                            style="@style/ll_match_wrap_content_hor_sum4"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="@dimen/px_14">
+
+                            <TextView
+                                style="@style/grayTextView_999999_13_we1"
+                                android:text="联系人：" />
+
+                            <TextView
+                                android:id="@+id/tv_linkmanCompany_detail"
+                                style="@style/grayTextView_333333_13_we3" />
+                        </LinearLayout>
+
+                        <View style="@style/line_1" />
+
+                        <LinearLayout
+                            style="@style/ll_match_wrap_content_hor_sum4"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="@dimen/px_14">
+
+                            <TextView
+                                style="@style/grayTextView_999999_13_we1"
+                                android:text="电话：" />
+
+                            <TextView
+                                android:id="@+id/tv_phoneCompany_detail"
+                                style="@style/grayTextView_333333_13_we3" />
+                        </LinearLayout>
+
+                        <View style="@style/line_1" />
+                        <LinearLayout
+                            style="@style/ll_match_wrap_content_hor_sum4"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="@dimen/px_14">
+
+                            <TextView
+                                style="@style/grayTextView_999999_13_we1"
+                                android:text="地址：" />
+
+                            <TextView
+                                android:id="@+id/tv_addressCompany_detail"
+                                style="@style/grayTextView_333333_13_we3" />
+                        </LinearLayout>
+
+                        <View style="@style/line_1" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <TextView
+                    style="@style/grayTextView_333333_13"
+                    android:layout_margin="@dimen/px_14"
+                    android:text="其他图片" />
+
                 <ImageView
                     android:id="@+id/iv_hq"
                     android:layout_width="match_parent"
@@ -259,7 +401,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="@dimen/px_20"
-                    android:scaleType="centerInside"/>
+                    android:scaleType="centerInside" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

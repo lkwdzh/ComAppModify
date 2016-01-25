@@ -267,10 +267,12 @@
 
             <View style="@style/line_1" />
 
-            <LinearLayout style="@style/guadan_ll_weight">
+            <LinearLayout style="@style/guadan_ll_weight_xiang">
 
                 <TextView
                     style="@style/guadan_TextView_333333"
+                    android:layout_marginTop="@dimen/px_20"
+                    android:layout_marginBottom="@dimen/px_20"
                     android:text="@string/gua_dan_cang_address" />
 
                 <TextView
@@ -280,12 +282,41 @@
             </LinearLayout>
 
             <View style="@style/line_1" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_65"
+                android:background="@color/white"
+                android:visibility="visible">
 
+                <TextView
+                    style="@style/grayTextView_333333_15"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="@dimen/px_25"
+                    android:paddingRight="@dimen/px_14"
+                    android:paddingTop="@dimen/px_20"
+                    android:paddingBottom="@dimen/px_20"
+                    android:text="是否匿名" />
 
-            <LinearLayout style="@style/guadan_ll_weight">
+                <CheckBox
+                    android:id="@+id/cb_niMing"
+                    style="@style/grayTextView_999999_15"
+                    android:layout_alignParentRight="true"
+                    android:paddingLeft="@dimen/px_14"
+                    android:paddingRight="@dimen/px_14"
+                    android:paddingTop="@dimen/px_20"
+                    android:paddingBottom="@dimen/px_20"
+                    android:button="@drawable/cb_setting"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+
+            <View style="@style/line_1" />
+
+            <LinearLayout style="@style/guadan_ll_weight_xiang">
 
                 <TextView
                     style="@style/guadan_TextView_333333"
+                    android:layout_marginTop="@dimen/px_20"
+                    android:layout_marginBottom="@dimen/px_20"
                     android:text="@string/gua_dan_goods_detail" />
 
                 <EditText

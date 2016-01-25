@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -43,7 +45,7 @@ public class GuaDanAddActivity extends BaseActivity {
     private SimpleDateFormat df;
     private String dateIn;
     private String dateUseful;
-//    private TextView tv_userful_time_gua_dan_add;
+    //    private TextView tv_userful_time_gua_dan_add;
     private EditText et_goods_name_gua_dan;
     private TextView tv_cangdanhao_gua_dan_add;
     private TextView tv_goods_kind_gua_dan;
@@ -84,6 +86,10 @@ public class GuaDanAddActivity extends BaseActivity {
     private boolean isPlate;
     private TextView tv_goods_zhiliang_gua_dan;
     private CustomProgress customProgress;
+    private CheckBox cb_niMing;
+
+    private String actionFlag = "0";//是否匿名,0,不匿名，1.匿名
+
     @Override
     public void initView() {
         setContentView(R.layout.activity_gua_dan_add);
@@ -135,6 +141,7 @@ public class GuaDanAddActivity extends BaseActivity {
         tv_2_gua_dan_add = (TextView) findViewById(R.id.tv_2_gua_dan_add);
         iv_huowu = (ImageView) findViewById(R.id.iv_huowu);
         iv_huoquan = (ImageView) findViewById(R.id.iv_huoquan);
+        cb_niMing = (CheckBox) findViewById(R.id.cb_niMing);
         et_price_gua_dan.addTextChangedListener(new MyTextWatcher());
     }
 
@@ -143,14 +150,12 @@ public class GuaDanAddActivity extends BaseActivity {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count,
                                       int after) {
-            // TODO Auto-generated method stub
 
         }
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before,
                                   int count) {
-            // TODO Auto-generated method stub
 
         }
 
@@ -176,8 +181,8 @@ public class GuaDanAddActivity extends BaseActivity {
 
     //填充数据
     public void fillData() {
-            XBitmap.displayImage(iv_huowu, cangDanDetail.getProductLogo(), GuaDanAddActivity.this);
-            XBitmap.displayImage(iv_huoquan, cangDanDetail.getProductOwnerProve(), GuaDanAddActivity.this);
+        XBitmap.displayImage(iv_huowu, cangDanDetail.getProductLogo(), GuaDanAddActivity.this);
+        XBitmap.displayImage(iv_huoquan, cangDanDetail.getProductOwnerProve(), GuaDanAddActivity.this);
         et_goods_name_gua_dan.setText(cangDanDetail.getProductName());
         tv_cangdanhao_gua_dan_add.setText(cangDanDetail.getOriginalListId());
         tv_goods_kind_gua_dan.setText(cangDanDetail.getCategoryName());
@@ -247,17 +252,17 @@ public class GuaDanAddActivity extends BaseActivity {
 
         }
         //判断参数是否为空
-        if (productName==null||"".equals(productName)){
-            AppUtils.toastText(GuaDanAddActivity.this,"商品名称不能为空");
+        if (productName == null || "".equals(productName)) {
+            AppUtils.toastText(GuaDanAddActivity.this, "商品名称不能为空");
             return;
         }
 
-        if (tradeNum==null||"".equals(tradeNum)){
-            AppUtils.toastText(GuaDanAddActivity.this,"商品交易数量不能为空");
+        if (tradeNum == null || "".equals(tradeNum)) {
+            AppUtils.toastText(GuaDanAddActivity.this, "商品交易数量不能为空");
             return;
         }
-        if (tradePrice==null||"".equals(tradePrice)){
-            AppUtils.toastText(GuaDanAddActivity.this,"商品交易价格不能为空");
+        if (tradePrice == null || "".equals(tradePrice)) {
+            AppUtils.toastText(GuaDanAddActivity.this, "商品交易价格不能为空");
             return;
         }
 
@@ -280,6 +285,16 @@ public class GuaDanAddActivity extends BaseActivity {
 //        tv_userful_time_gua_dan_add.setOnClickListener(this);
         right_text.setOnClickListener(this);
         ll_buyer_gua_dan.setOnClickListener(this);
+        cb_niMing.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    actionFlag = "1";
+                } else {
+                    actionFlag = "0";
+                }
+            }
+        });
     }
 
 
@@ -341,7 +356,7 @@ public class GuaDanAddActivity extends BaseActivity {
                 tv_1_gua_dan_add.setText("");
                 tv_2_gua_dan_add.setText("");
             }
-        }else if (requestCode==33&&resultCode==1){
+        } else if (requestCode == 33 && resultCode == 1) {
             if (isPlate) {
                 customProgress = CustomProgress.show(this, "", true);
                 getPlatData();
@@ -379,7 +394,7 @@ public class GuaDanAddActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.CANG_DAN, GuaDanUrl.postGuaDanAddUrl(codeGua, DefineUtil.TOKEN, DefineUtil.USERID, originalListid, tradeNum, limitDate, tradePrice, productName, designatedUserid, productText), GuaDanAddActivity.this);
+        }.datePost(DefineUtil.CANG_DAN, GuaDanUrl.postGuaDanAddUrl(codeGua, DefineUtil.TOKEN, DefineUtil.USERID, originalListid, tradeNum, limitDate, tradePrice, productName, designatedUserid, productText, actionFlag), GuaDanAddActivity.this);
     }
 
     //提交

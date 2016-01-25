@@ -37,7 +37,7 @@ public class BasicInformationUrl {
      */
     public static RequestParams postCompanyInfoUpdateUrl(String userId, String token, String userTName,
                                                          String userNumber, String userPhone, String userEmail, String userTel,
-                                                         String userJname, String userInvoice, String userInvoices) {
+                                                         String userJname, String userInvoice, String userInvoices,String userAddress ) {
         params = new RequestParams();
         params.addBodyParameter("userId", userId);
         params.addBodyParameter("token", token);
@@ -49,7 +49,7 @@ public class BasicInformationUrl {
         params.addBodyParameter("userJname", userJname);
         params.addBodyParameter("userInvoice", userInvoice);
         params.addBodyParameter("userInvoices", userInvoices);
-//        params.addBodyParameter("userAllPoint", userAllPoint);
+        params.addBodyParameter("userAddres ", userAddress );
         return params;
     }
 

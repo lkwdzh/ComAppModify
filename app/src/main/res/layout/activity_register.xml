@@ -36,7 +36,7 @@
 
             <TextView
                 style="@style/remind_TextView_666666_11_center"
-                android:text="请输入6-15位字符(数字/英文大小写/下划线，例如：ttTT_123(必填))" />
+                android:text="由6-15位字符组成(可以是字母、数字、下划线)，例abc123。注册成功后可以使用用户名或者网站生成的席位号进行登录" />
 
             <View style="@style/line_1" />
 
@@ -197,7 +197,6 @@
                     <EditText
                         android:id="@+id/et_company_register"
                         style="@style/save_TextView_666666_13_center"
-                        android:maxLength="11"
                         android:hint="请输入公司名称" />
                 </LinearLayout>
 
@@ -218,7 +217,6 @@
                     <EditText
                         android:id="@+id/et_company_address_register"
                         style="@style/save_TextView_666666_13_center"
-                        android:maxLength="11"
                         android:hint="请输入公司地址" />
                 </LinearLayout>
 
@@ -308,6 +306,7 @@
                 android:layout_marginLeft="@dimen/px_50"
                 android:layout_marginRight="@dimen/px_50"
                 android:layout_marginTop="@dimen/px_20"
+                android:layout_marginBottom="@dimen/px_40"
                 android:background="@drawable/anjian"
                 android:gravity="center"
                 android:text="注册"

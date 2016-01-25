@@ -315,6 +315,18 @@
         <item name="android:weightSum">3</item>
     </style>
 
+    <!--挂单详情-->
+    <style name="guadan_ll_weight_xiang">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:paddingTop">@dimen/px_5</item>
+        <item name="android:paddingBottom">@dimen/px_5</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:weightSum">3</item>
+    </style>
+
     <!--黑色333333的textview_15sp_-->
     <style name="guadan_TextView_333333" parent="android:Widget.TextView">
         <item name="android:textColor">@color/textcolor_333333</item>

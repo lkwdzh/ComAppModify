@@ -26,11 +26,12 @@ public class GuaDanUrl {
      * @param productName
      * @param designatedUserid
      * @param productText
+     * @param actionFlag 是否匿名 0，不匿名，1，匿名
      * @return
      */
     public static RequestParams postGuaDanAddUrl(String code,String token, String userId, String originalListid,
                                                  String tradeNum, String limitDate, String tradePrice,
-                                                 String productName, String designatedUserid,String productText) {
+                                                 String productName, String designatedUserid,String productText,String actionFlag ) {
 
         params=new RequestParams();
         String sign=null;
@@ -53,6 +54,7 @@ public class GuaDanUrl {
         params.addBodyParameter("version", DefineUtil.VERSON);
         params.addBodyParameter("content", content);
         params.addBodyParameter("sign", sign);
+        params.addBodyParameter("actionFlag", actionFlag);
 //        Log.d("result_json",new Gson().toJson(params));
         return params;
     }

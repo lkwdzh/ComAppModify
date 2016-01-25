@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,6 +79,15 @@ public class GoodsDetailActivity extends BaseActivity {
     private String title;
     private String imageUrl;
     private DecimalFormat decimalFormat = new DecimalFormat("#.00");
+    private LinearLayout ll_person_detail;
+    private TextView tv_linkmanPerson_detail;
+    private TextView tv_phonePerson_detail;
+    private LinearLayout ll_company_detail;
+    private TextView tv_companyName_detail;
+    private TextView tv_linkmanCompany_detail;
+    private TextView tv_phoneCompany_detail;
+    private TextView tv_addressCompany_detail;
+
     @Override
     public void initView() {
         setContentView(R.layout.activity_goods_detail);
@@ -125,6 +135,17 @@ public class GoodsDetailActivity extends BaseActivity {
         iv_shoucang_goods_detail = (ImageView) findViewById(R.id.iv_shoucang_goods_detail);
         ll_attention_goods_detail = (LinearLayout) findViewById(R.id.ll_attention_goods_detail);
         ll_kefu_goods_detail = (LinearLayout) findViewById(R.id.ll_kefu_goods_detail);
+        //个人信息
+        ll_person_detail = (LinearLayout) findViewById(R.id.ll_person_detail);
+        tv_linkmanPerson_detail = (TextView) findViewById(R.id.tv_linkmanPerson_detail);
+        tv_phonePerson_detail = (TextView) findViewById(R.id.tv_phonePerson_detail);
+        //公司信息
+        ll_company_detail = (LinearLayout) findViewById(R.id.ll_company_detail);
+        tv_companyName_detail = (TextView) findViewById(R.id.tv_companyName_detail);
+        tv_linkmanCompany_detail = (TextView) findViewById(R.id.tv_linkmanCompany_detail);
+        tv_phoneCompany_detail = (TextView) findViewById(R.id.tv_phoneCompany_detail);
+        tv_addressCompany_detail = (TextView) findViewById(R.id.tv_addressCompany_detail);
+
         iv_hq = (ImageView) findViewById(R.id.iv_hq);
         //获取屏幕宽度
 
@@ -152,7 +173,7 @@ public class GoodsDetailActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-//                Log.d("result_GoodsDetail", productId + "-------" + arg0.result);
+                Log.d("result_GoodsDetail", productId + "-------" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -212,6 +233,10 @@ public class GoodsDetailActivity extends BaseActivity {
             if (goodsDetail.getProductOwnerProve() != null && !"".equals(goodsDetail.getProductOwnerProve())) {
                 XBitmap.displayImage(iv_hq, goodsDetail.getProductOwnerProve(), GoodsDetailActivity.this);
             }
+
+            //判断
+            //如果是
+
         }
 //        //判断是否已经登录，若登录则显示购物车个数，否则不显示
 //        if (comAppApplication.getLogin() != null && !"".equals(comAppApplication.getLogin())) {

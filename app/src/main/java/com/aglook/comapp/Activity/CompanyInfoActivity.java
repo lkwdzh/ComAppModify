@@ -38,7 +38,7 @@ public class CompanyInfoActivity extends BaseActivity {
     @Bind(R.id.view_company)
     View viewCompany;
     @Bind(R.id.tv_company_address_basic_info)
-    TextView tvCompanyAddressBasicInfo;
+    EditText tvCompanyAddressBasicInfo;
     @Bind(R.id.tv_trueName)
     TextView tvTrueName;
     @Bind(R.id.et_truename_basic_info)
@@ -72,6 +72,7 @@ public class CompanyInfoActivity extends BaseActivity {
     private String email;
     private CustomProgress customProgress;
     private LoginPshUser user;
+    private String companyAddress;
 
     @Override
     public void initView() {
@@ -114,6 +115,11 @@ public class CompanyInfoActivity extends BaseActivity {
         phone = AppUtils.toStringTrim_ET(etPhoneBasicInfo);
         telephone = AppUtils.toStringTrim_ET(etGudingBasicInfo);
         email = AppUtils.toStringTrim_ET(etEmailBasicInfo);
+        companyAddress = AppUtils.toStringTrim_ET(tvCompanyAddressBasicInfo);
+        if (companyAddress==null||"".equals(companyAddress)){
+            AppUtils.toastText(CompanyInfoActivity.this, "公司地址不能为空");
+            return;
+        }
         if (trueName == null || "".equals(trueName)) {
             AppUtils.toastText(CompanyInfoActivity.this, "法人姓名不能为空");
             return;
@@ -264,6 +270,7 @@ public class CompanyInfoActivity extends BaseActivity {
                     user.setUserPhone(phone);
                     user.setUserTel(telephone);
                     user.setUserEmail(email);
+                    user.setUserAddres(companyAddress);
                 }
             }
 
@@ -272,7 +279,7 @@ public class CompanyInfoActivity extends BaseActivity {
 
             }
         }.datePost(DefineUtil.PERSON_UPDATE, BasicInformationUrl.postCompanyInfoUpdateUrl(DefineUtil.USERID, DefineUtil.TOKEN,
-                trueName, idCard, phone, email, telephone, managerName, ordinaryNum, increNum), CompanyInfoActivity.this);
+                trueName, idCard, phone, email, telephone, managerName, ordinaryNum, increNum,companyAddress), CompanyInfoActivity.this);
     }
 
 }

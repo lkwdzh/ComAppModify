@@ -238,6 +238,10 @@ public class RegisterActivity extends BaseActivity {
                 AppUtils.toastText(RegisterActivity.this, "请输入公司名称");
                 return;
             }
+            if (!userCompany.endsWith("公司")){
+                AppUtils.toastText(RegisterActivity.this, "请输入正确的公司名称");
+                return;
+            }
             if (userAddres == null || "".equals(userAddres)) {
                 AppUtils.toastText(RegisterActivity.this, "请输入公司地址");
                 return;
