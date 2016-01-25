@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -310,7 +311,7 @@ public class ModifyGuaDanActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-//                Log.d("result_Modi",arg0.result);
+                Log.d("result_Modi", productId+"______"+arg0.result);
                 String message=JsonUtils.getJsonParam(arg0.result,"message");
                 String status=JsonUtils.getJsonParam(arg0.result,"status");
                 String obj=JsonUtils.getJsonParam(arg0.result,"obj");

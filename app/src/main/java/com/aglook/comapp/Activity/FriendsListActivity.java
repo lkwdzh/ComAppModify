@@ -235,6 +235,8 @@ public class FriendsListActivity extends BaseActivity {
                         } else {
                             rl_bottom.setVisibility(View.GONE);
                         }
+                    }else {
+                        rl_bottom.setVisibility(View.GONE);
                     }
                 adapter.notifyDataSetChanged();
                 compareList();
