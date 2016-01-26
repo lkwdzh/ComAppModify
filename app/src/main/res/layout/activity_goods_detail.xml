@@ -270,15 +270,15 @@
                 <TextView
                     style="@style/grayTextView_333333_13"
                     android:layout_margin="@dimen/px_14"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:text="卖方信息" />
 
                 <View style="@style/line_1"
-                    android:visibility="gone"/>
+                    android:visibility="visible"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:layout_height="wrap_content">
 
                     <LinearLayout

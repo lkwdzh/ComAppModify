@@ -59,7 +59,7 @@
 
             <TextView
                 style="@style/remind_TextView_666666_11_center"
-                android:text="请输入6-20位字符(数字/英文大小写，例如：ttTT123(必填))" />
+                android:text="请输入6-20位字符(数字/英文大小写)，例如：ttTT123.(必填)" />
 
             <View style="@style/line_1" />
 

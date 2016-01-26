@@ -100,6 +100,7 @@
         <EditText
             android:id="@+id/tv_email_driver_info"
             style="@style/guadan_edittext_weight"
+            android:maxLength="10"
             android:hint="请输入车牌号"/>
     </LinearLayout>
 

@@ -67,12 +67,13 @@
         <EditText
             android:id="@+id/et_email_driver_add"
             style="@style/guadan_edittext_weight"
+            android:maxLength="10"
             android:hint="请输入司机车牌号" />
     </LinearLayout>
 
     <View style="@style/line_1" />
-    <TextView
-        style="@style/remind_TextView_666666_11_center"
-        android:text="英文字母为大写" />
+    <!--<TextView-->
+        <!--style="@style/remind_TextView_666666_11_center"-->
+        <!--android:text="英文字母为大写" />-->
 
 </LinearLayout>

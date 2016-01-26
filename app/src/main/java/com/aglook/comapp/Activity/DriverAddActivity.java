@@ -92,10 +92,10 @@ public class DriverAddActivity extends BaseActivity {
             AppUtils.toastText(this, "司机车牌号不能为空");
             return;
         }
-        if (!PatternNum.isCarnumberNO(carCode)) {
-            AppUtils.toastText(this, "请输入正确车牌号");
-            return;
-        }
+//        if (!PatternNum.isCarnumberNO(carCode)) {
+//            AppUtils.toastText(this, "请输入正确车牌号");
+//            return;
+//        }
         addDriver();
     }
 

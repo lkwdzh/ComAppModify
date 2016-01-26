@@ -46,6 +46,7 @@ public class GuaDanUrl {
             jsonObject.put("productName", productName);
             jsonObject.put("designatedUserid", designatedUserid);
             jsonObject.put("productText",productText);
+            jsonObject.put("actionFlag", actionFlag);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -54,14 +55,13 @@ public class GuaDanUrl {
         params.addBodyParameter("version", DefineUtil.VERSON);
         params.addBodyParameter("content", content);
         params.addBodyParameter("sign", sign);
-        params.addBodyParameter("actionFlag", actionFlag);
 //        Log.d("result_json",new Gson().toJson(params));
         return params;
     }
 
     public static RequestParams postGuaDanPlateAddUrl(String code,String token, String userId, String originalListId,
                                                  String tradeNum, String limitDate, String tradePrice,
-                                                 String productName, String designatedUserid,String productText,String orderdataId) {
+                                                 String productName, String designatedUserid,String productText,String orderdataId,String actionFlag) {
 
         params=new RequestParams();
         String sign=null;
@@ -77,6 +77,7 @@ public class GuaDanUrl {
             jsonObject.put("designatedUserid", designatedUserid);
             jsonObject.put("productText",productText);
             jsonObject.put("orderdataId",orderdataId);
+            jsonObject.put("actionFlag", actionFlag);
         } catch (JSONException e) {
             e.printStackTrace();
         }

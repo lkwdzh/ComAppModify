@@ -10,13 +10,12 @@ public class DefineUtil {
 //    public static String URL_HOST = "http://192.168.1.118:8080/payment/";
 //    public static String URL_HOST = "http://192.168.1.105:8080/payment/";
 
-//    public static String URL_HOST = "http://trade.decxgroup.com/trade/";
+    public static String URL_HOST = "http://trade.decxgroup.com/trade/";
 
     /**
      * 正式环境
      */
-    public static String URL_HOST = "http://www.decxagri.com/trade/";
-
+//    public static String URL_HOST = "http://www.decxagri.com/trade/";
     //    登录
     public static String LOGIN_IN = URL_HOST + "login-in";
 
@@ -161,9 +160,9 @@ public class DefineUtil {
     //verson
     public static String VERSON = "1.0";
     //    商户号 正式
-//    public static String MERCHANTNO = "Q0000167";
+    public static String MERCHANTNO = "Q0000167";
     //    商户号 测试
-    public static String MERCHANTNO = "Q0000157";
+//    public static String MERCHANTNO = "Q0000157";
     //协议适用范围
     public static String SERVICESCOPE = "www";
     //协议适用范围

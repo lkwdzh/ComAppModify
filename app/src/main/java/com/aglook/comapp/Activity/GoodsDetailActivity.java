@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -173,7 +172,7 @@ public class GoodsDetailActivity extends BaseActivity {
                 if (customProgress != null && customProgress.isShowing()) {
                     customProgress.dismiss();
                 }
-                Log.d("result_GoodsDetail", productId + "-------" + arg0.result);
+//                Log.d("result_GoodsDetail", productId + "-------" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");
@@ -235,7 +234,60 @@ public class GoodsDetailActivity extends BaseActivity {
             }
 
             //判断
-            //如果是
+            //如果是公司，
+            if (goodsDetail.getUserType() == 1) {
+                ll_company_detail.setVisibility(View.VISIBLE);
+                ll_person_detail.setVisibility(View.GONE);
+                //如果非匿名
+                if (goodsDetail.getAnonymous() == 0) {
+                    tv_companyName_detail.setText(goodsDetail.getSellUserCompany());
+                    tv_linkmanCompany_detail.setText(goodsDetail.getUserJname());
+                    tv_phoneCompany_detail.setText(goodsDetail.getSellUserPhone());
+                    tv_addressCompany_detail.setText(goodsDetail.getUserZcdz());
+                } else {
+
+                    if (goodsDetail.getSellUserCompany()!=null&&goodsDetail.getSellUserCompany().length() > 3) {
+                        tv_companyName_detail.setText(goodsDetail.getSellUserCompany().substring(0, 3) + transStar(goodsDetail.getSellUserCompany().length() - 3));
+                    }else {
+                        tv_companyName_detail.setText(goodsDetail.getSellUserCompany());
+                    }
+                    if (goodsDetail.getUserJname().length() > 1) {
+                        tv_linkmanCompany_detail.setText(goodsDetail.getUserJname().substring(0, 1) + transStar(goodsDetail.getUserJname().length() - 1));
+                    }else {
+                        tv_linkmanCompany_detail.setText(goodsDetail.getUserJname());
+                    }
+                    if (goodsDetail.getSellUserPhone().length() > 3) {
+                        tv_phoneCompany_detail.setText(goodsDetail.getSellUserPhone().substring(0, 3) + transStar(goodsDetail.getSellUserPhone().length() - 3));
+                    }else {
+                        tv_phoneCompany_detail.setText(goodsDetail.getSellUserPhone());
+                    }
+                    if (goodsDetail.getUserZcdz().length() > 3) {
+                        tv_addressCompany_detail.setText(goodsDetail.getUserZcdz().substring(0, 3) + transStar(goodsDetail.getUserZcdz().length() - 3));
+                    }else {
+                        tv_addressCompany_detail.setText(goodsDetail.getUserZcdz());
+                    }
+                }
+
+            } else {
+                ll_company_detail.setVisibility(View.GONE);
+                ll_person_detail.setVisibility(View.VISIBLE);
+                //如果非匿名
+                if (goodsDetail.getAnonymous() == 0) {
+                    tv_linkmanPerson_detail.setText(goodsDetail.getUserTname());
+                    tv_phonePerson_detail.setText(goodsDetail.getSellUserPhone());
+                } else {
+                    if (goodsDetail.getUserTname().length() > 1) {
+                        tv_linkmanPerson_detail.setText(goodsDetail.getUserTname().substring(0, 1) + transStar(goodsDetail.getUserTname().length() - 1));
+                    }else {
+                        tv_linkmanPerson_detail.setText(goodsDetail.getUserTname());
+                    }
+                    if (goodsDetail.getSellUserPhone().length() > 3) {
+                        tv_phonePerson_detail.setText(goodsDetail.getSellUserPhone().substring(0, 3) + transStar(goodsDetail.getSellUserPhone().length() - 3));
+                    }else {
+                        tv_phonePerson_detail.setText(goodsDetail.getSellUserPhone());
+                    }
+                }
+            }
 
         }
 //        //判断是否已经登录，若登录则显示购物车个数，否则不显示
@@ -260,6 +312,14 @@ public class GoodsDetailActivity extends BaseActivity {
 //            cb_shoucang_goods_detail.setChecked(false);
 //        }
 
+    }
+
+    public String transStar(int length) {
+        String str = "";
+        for (int i = 0; i < length; i++) {
+            str += "*";
+        }
+        return str;
     }
 
     @Override
@@ -434,7 +494,7 @@ public class GoodsDetailActivity extends BaseActivity {
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 if (status.equals("1")) {
                     AppUtils.toastText(GoodsDetailActivity.this, message);
-                    DefineUtil.NUM+=Double.parseDouble(productNum);
+                    DefineUtil.NUM += Double.parseDouble(productNum);
                     DefineUtil.NUM = Double.parseDouble(decimalFormat.format(DefineUtil.NUM));
                     tv_num_goods_detail.setVisibility(View.VISIBLE);
                     tv_num_goods_detail.setText(DefineUtil.NUM + "");

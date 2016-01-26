@@ -423,7 +423,7 @@ public class GuaDanAddActivity extends BaseActivity {
                     customProgress.dismiss();
                 }
             }
-        }.datePost(DefineUtil.CANG_DAN, GuaDanUrl.postGuaDanPlateAddUrl(codeGua, DefineUtil.TOKEN, DefineUtil.USERID, originalListid, tradeNum, limitDate, tradePrice, productName, designatedUserid, productText, orderdataId), GuaDanAddActivity.this);
+        }.datePost(DefineUtil.CANG_DAN, GuaDanUrl.postGuaDanPlateAddUrl(codeGua, DefineUtil.TOKEN, DefineUtil.USERID, originalListid, tradeNum, limitDate, tradePrice, productName, designatedUserid, productText, orderdataId,actionFlag), GuaDanAddActivity.this);
     }
 
 

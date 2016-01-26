@@ -89,7 +89,7 @@ public class ModifyGuaDanActivity extends BaseActivity {
     private TextView tv_goods_zhiliang_gua_dan;
     private CustomProgress customProgress;
 
-    private String actionFlag = "0";//是否匿名,0,不匿名，1.匿名
+    private String actionFlag;//是否匿名,0,不匿名，1.匿名
     private CheckBox cb_niMing;
 
     @Override
@@ -188,7 +188,8 @@ public class ModifyGuaDanActivity extends BaseActivity {
         if (cangDanDetail.getInnerTime() != null && !"".equals(cangDanDetail.getInnerTime())) {
             tv_in_time_gua_dan_add.setText(Timestamp.getDateToString(cangDanDetail.getInnerTime()));
         }
-
+        et_goods_detail_gua_dan.setText(cangDanDetail.getProductDesc());
+        et_price_gua_dan.setText(cangDanDetail.getProductMoney());
 //        if (cangDanDetail.getValidTime()!=null&&!"".equals(cangDanDetail.getValidTime())){
 //            tv_userful_time_gua_dan_add.setText(Timestamp.getDateToString(cangDanDetail.getValidTime()));
 //        }
@@ -213,6 +214,12 @@ public class ModifyGuaDanActivity extends BaseActivity {
                 tv_1_gua_dan_add.setText("");
                 tv_2_gua_dan_add.setText("");
             }
+        }
+        actionFlag=String.valueOf(cangDanDetail.getActionFlag());
+        if (cangDanDetail.getActionFlag()==0){
+            cb_niMing.setChecked(false);
+        }else {
+            cb_niMing.setChecked(true);
         }
     }
 
@@ -299,7 +306,7 @@ public class ModifyGuaDanActivity extends BaseActivity {
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-//                Log.d("result_add", arg0.result);
+                Log.d("result_add", actionFlag+"_____"+arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
                 String obj = JsonUtils.getJsonParam(arg0.result, "obj");

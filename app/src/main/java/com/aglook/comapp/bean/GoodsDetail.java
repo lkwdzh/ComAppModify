@@ -27,7 +27,42 @@ public class GoodsDetail {
     private int anonymous;//是否匿名
     private String userJname;//经理电话
     private String userZcdz;//公司地址
+    private String userTname;//联系人姓名
+    private String sellUserPhone;//联系人手机号
+    private String sellUserCompany;//公司名称
+    private int userType;//类型 1，公司，2，个人
 
+    public String getSellUserCompany() {
+        return sellUserCompany;
+    }
+
+    public void setSellUserCompany(String sellUserCompany) {
+        this.sellUserCompany = sellUserCompany;
+    }
+
+    public String getUserTname() {
+        return userTname;
+    }
+
+    public void setUserTname(String userTname) {
+        this.userTname = userTname;
+    }
+
+    public String getSellUserPhone() {
+        return sellUserPhone;
+    }
+
+    public void setSellUserPhone(String sellUserPhone) {
+        this.sellUserPhone = sellUserPhone;
+    }
+
+    public int getUserType() {
+        return userType;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
 
     public int getAnonymous() {
         return anonymous;
@@ -205,4 +240,35 @@ public class GoodsDetail {
         this.depotAddress = depotAddress;
     }
 
+    @Override
+    public String toString() {
+        return "GoodsDetail{" +
+                "productId='" + productId + '\'' +
+                ", productName='" + productName + '\'' +
+                ", productMoney='" + productMoney + '\'' +
+                ", productListId='" + productListId + '\'' +
+                ", productSellNum=" + productSellNum +
+                ", productAppDesc='" + productAppDesc + '\'' +
+                ", productAvailable='" + productAvailable + '\'' +
+                ", productLogo='" + productLogo + '\'' +
+                ", categoryName='" + categoryName + '\'' +
+                ", innerTime='" + innerTime + '\'' +
+                ", goodsPlace='" + goodsPlace + '\'' +
+                ", goodsType='" + goodsType + '\'' +
+                ", mark='" + mark + '\'' +
+                ", depotResponsible='" + depotResponsible + '\'' +
+                ", responsibleMobile='" + responsibleMobile + '\'' +
+                ", responsibleEmail='" + responsibleEmail + '\'' +
+                ", depotAddress='" + depotAddress + '\'' +
+                ", isCollect='" + isCollect + '\'' +
+                ", productOwnerProve='" + productOwnerProve + '\'' +
+                ", anonymous=" + anonymous +
+                ", userJname='" + userJname + '\'' +
+                ", userZcdz='" + userZcdz + '\'' +
+                ", userTname='" + userTname + '\'' +
+                ", sellUserPhone='" + sellUserPhone + '\'' +
+                ", sellUserCompany='" + sellUserCompany + '\'' +
+                ", userType=" + userType +
+                '}';
+    }
 }

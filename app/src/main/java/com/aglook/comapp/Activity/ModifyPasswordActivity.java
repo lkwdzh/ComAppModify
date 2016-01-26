@@ -61,6 +61,22 @@ public class ModifyPasswordActivity extends BaseActivity {
                 pwd = AppUtils.toStringTrim_ET(et_name_modify_password);
                 newPwd = AppUtils.toStringTrim_ET(et_phone_modify_password);
                 secPwd=AppUtils.toStringTrim_ET(et_email_modify_password);
+                if (pwd==null||"".equals(pwd)){
+                    AppUtils.toastText(ModifyPasswordActivity.this,"请输入原始密码");
+                    return;
+                }
+                if (pwd.length()<6){
+                    AppUtils.toastText(ModifyPasswordActivity.this,"原密码长度不正确");
+                    return;
+                }
+                if (newPwd==null||"".equals(newPwd)){
+                    AppUtils.toastText(ModifyPasswordActivity.this,"请输入新密码");
+                    return;
+                }
+                if (newPwd.length()<6){
+                    AppUtils.toastText(ModifyPasswordActivity.this,"新密码长度不正确");
+                    return;
+                }
                 if (!newPwd.equals(secPwd)){
                     AppUtils.toastText(ModifyPasswordActivity.this,"两次输入密码不一致");
                     return;

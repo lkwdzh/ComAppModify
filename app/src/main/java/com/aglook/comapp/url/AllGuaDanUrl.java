@@ -169,6 +169,7 @@ public class AllGuaDanUrl {
             jsonObject.put("validTime", validTime);
             jsonObject.put("productId", productId);
             jsonObject.put("productDesc", productDesc);
+            jsonObject.put("actionFlag", actionFlag);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -178,7 +179,6 @@ public class AllGuaDanUrl {
         params.addBodyParameter("version", DefineUtil.VERSON);
         params.addBodyParameter("content", content);
         params.addBodyParameter("sign", sign);
-        params.addBodyParameter("actionFlag", actionFlag);
         return params;
     }
 

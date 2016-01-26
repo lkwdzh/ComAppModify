@@ -28,6 +28,16 @@ public class CangDanDetail {
     private String productOwnerProve;//货权图片
     private String productLogo;//货物图片
 
+    private int actionFlag;//0,不匿名，1，匿名
+
+    public int getActionFlag() {
+        return actionFlag;
+    }
+
+    public void setActionFlag(int actionFlag) {
+        this.actionFlag = actionFlag;
+    }
+
     public String getProductOwnerProve() {
         return productOwnerProve;
     }
@@ -220,6 +230,7 @@ public class CangDanDetail {
                 ", customerList=" + customerList +
                 ", productOwnerProve='" + productOwnerProve + '\'' +
                 ", productLogo='" + productLogo + '\'' +
+                ", actionFlag=" + actionFlag +
                 '}';
     }
 }
