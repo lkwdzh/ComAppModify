@@ -188,11 +188,15 @@
                     style="@style/guadan_edittext_weight"
                     android:inputType="numberDecimal"
                     android:digits="0123456789."
-                    android:hint="请输入提货数量" />
+                    android:hint="请输入提货数量/吨" />
             </LinearLayout>
 
             <View style="@style/line_1" />
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="请输入不超过两位小数的提货数量/吨(必填)" />
 
+            <View style="@style/line_1" />
 
             <LinearLayout style="@style/guadan_ll_weight">
 
@@ -270,6 +274,12 @@
                 android:layout_width="match_parent"
                 android:divider="@null"
                 android:layout_height="wrap_content"></com.aglook.comapp.view.MyListView>
+            <View style="@style/line_1" />
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:layout_marginBottom="@dimen/px_20"
+                android:text="请点击选择指定司机(必选)" />
+
         </LinearLayout>
     </ScrollView>
 

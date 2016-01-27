@@ -80,7 +80,11 @@
             </LinearLayout>
 
             <View style="@style/line_1" />
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="请输入商品名称" />
 
+            <View style="@style/line_1" />
             <LinearLayout style="@style/guadan_ll_weight">
 
                 <TextView
@@ -198,11 +202,15 @@
                     style="@style/guadan_edittext_weight"
                     android:inputType="numberDecimal"
                     android:digits="0123456789."
-                    android:hint="请输入交易数量" />
+                    android:hint="请输入交易数量/吨" />
             </LinearLayout>
 
             <View style="@style/line_1" />
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="请输入不超过两位小数的交易数量/吨" />
 
+            <View style="@style/line_1" />
             <LinearLayout style="@style/guadan_ll_weight">
 
                 <TextView
@@ -213,12 +221,16 @@
                     android:id="@+id/et_price_gua_dan"
                     style="@style/guadan_edittext_weight"
                     android:inputType="numberDecimal"
-                    android:hint="请输入价格" />
+                    android:hint="请输入价格/元" />
             </LinearLayout>
 
             <View style="@style/line_1" />
 
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="请输入不超过两位小数的交易价格/元" />
 
+            <View style="@style/line_1" />
             <LinearLayout style="@style/guadan_ll_weight">
 
                 <TextView
@@ -305,7 +317,11 @@
             </RelativeLayout>
 
             <View style="@style/line_1" />
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="请选择是否匿名" />
 
+            <View style="@style/line_1" />
 
             <LinearLayout style="@style/guadan_ll_weight_xiang">
 
@@ -322,7 +338,11 @@
             </LinearLayout>
 
             <View style="@style/line_1" />
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="请输入商品详情（非必须）" />
 
+            <View style="@style/line_1" />
             <LinearLayout
                 android:id="@+id/ll_buyer_gua_dan"
                 style="@style/guadan_ll_weight">
@@ -373,7 +393,12 @@
                         android:src="@drawable/tianjia" />
                 </RelativeLayout>
             </LinearLayout>
+            <View style="@style/line_1" />
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="点击选择想要指定的买家（非必须）" />
 
+            <View style="@style/line_1" />
             <!--<TextView-->
             <!--android:id="@+id/tv_buyer_gua_dan"-->
             <!--android:layout_width="match_parent"-->

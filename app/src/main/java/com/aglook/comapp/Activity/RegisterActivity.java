@@ -180,10 +180,14 @@ public class RegisterActivity extends BaseActivity {
                 break;
             case R.id.tv_xieYi:
                 intent.setClass(RegisterActivity.this, RegisterAgreementActivity.class);
+                intent.putExtra("className","DECX用户注册协议");
+                intent.putExtra("url","http://www.decxagri.com/trade/information/detail?articleId=26&type=register");
                 startActivity(intent);
                 break;
             case R.id.tv_banFa:
-                intent.setClass(RegisterActivity.this, ManageAgreeActivity.class);
+                intent.setClass(RegisterActivity.this, RegisterAgreementActivity.class);
+                intent.putExtra("className","DECX电子商务网管理办法");
+                intent.putExtra("url","http://www.decxagri.com/trade/information/detail?articleId=56&type=register");
                 startActivity(intent);
                 break;
         }

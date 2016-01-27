@@ -17,7 +17,6 @@
             android:orientation="vertical">
 
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,8 +34,7 @@
 
                     <ImageView
                         android:id="@+id/iv_huowu"
-                        style="@style/imageview_px120"
-                        />
+                        style="@style/imageview_px120" />
 
                     <TextView
                         style="@style/grayTextView_333333_15"
@@ -58,8 +56,7 @@
 
                     <ImageView
                         android:id="@+id/iv_huoquan"
-                        style="@style/imageview_px120"
-                       />
+                        style="@style/imageview_px120" />
 
                     <TextView
                         style="@style/grayTextView_333333_15"
@@ -84,6 +81,12 @@
 
             <View style="@style/line_1" />
 
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="请输入商品新名称（选填）" />
+
+            <View style="@style/line_1" />
+
             <LinearLayout style="@style/guadan_ll_weight">
 
                 <TextView
@@ -97,6 +100,7 @@
             </LinearLayout>
 
             <View style="@style/line_1" />
+
             <LinearLayout style="@style/guadan_ll_weight">
 
                 <TextView
@@ -105,11 +109,11 @@
 
                 <TextView
                     android:id="@+id/tv_in_time_gua_dan_add"
-                    style="@style/guadan_edittext_weight"
-                    android:hint="请选择入库时间" />
+                    style="@style/guadan_edittext_weight" />
             </LinearLayout>
 
             <View style="@style/line_1" />
+
             <LinearLayout style="@style/guadan_ll_weight">
 
                 <TextView
@@ -118,11 +122,11 @@
 
                 <TextView
                     android:id="@+id/tv_use_weight_gua_dan"
-                    style="@style/guadan_edittext_weight"
-                    />
+                    style="@style/guadan_edittext_weight" />
             </LinearLayout>
 
             <View style="@style/line_1" />
+
             <LinearLayout style="@style/guadan_ll_weight">
 
                 <TextView
@@ -131,8 +135,7 @@
 
                 <TextView
                     android:id="@+id/et_goods_area_gua_dan"
-                    style="@style/guadan_edittext_weight"
-                    android:hint="请输入货物产地" />
+                    style="@style/guadan_edittext_weight" />
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -145,9 +148,9 @@
 
                 <TextView
                     android:id="@+id/tv_goods_kind_gua_dan"
-                    style="@style/guadan_edittext_weight"
-                    android:hint="请输入货物种类" />
+                    style="@style/guadan_edittext_weight" />
             </LinearLayout>
+
             <View style="@style/line_1" />
 
             <LinearLayout style="@style/guadan_ll_weight">
@@ -158,10 +161,11 @@
 
                 <TextView
                     android:id="@+id/tv_goods_zhiliang_gua_dan"
-                    style="@style/guadan_edittext_weight"
-                    />
+                    style="@style/guadan_edittext_weight" />
             </LinearLayout>
+
             <View style="@style/line_1" />
+
             <LinearLayout style="@style/guadan_ll_weight">
 
                 <TextView
@@ -171,10 +175,11 @@
                 <TextView
                     android:id="@+id/tv_xue_tou_gua_dan_add"
                     style="@style/guadan_edittext_weight"
-                    android:text="mark" />
+                     />
             </LinearLayout>
 
             <View style="@style/line_1" />
+
             <LinearLayout style="@style/guadan_ll_weight">
 
                 <TextView
@@ -184,7 +189,7 @@
                 <TextView
                     android:id="@+id/tv_stock_weight_gua_dan"
                     style="@style/guadan_edittext_weight"
-                    android:hint="请输入交易重量" />
+                     />
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -200,25 +205,26 @@
                     android:id="@+id/et_price_gua_dan"
                     style="@style/guadan_edittext_weight"
                     android:inputType="numberDecimal"
-                    android:hint="请输入价格" />
+                    android:hint="请输入价格/元" />
             </LinearLayout>
 
             <View style="@style/line_1" />
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="请输入不超过两位小数的交易价格/元（选填）" />
 
-
-
-
+            <View style="@style/line_1" />
 
             <!--<LinearLayout style="@style/guadan_ll_weight">-->
 
-                <!--<TextView-->
-                    <!--style="@style/guadan_TextView_333333"-->
-                    <!--android:text="@string/gua_dan_userful_time" />-->
+            <!--<TextView-->
+            <!--style="@style/guadan_TextView_333333"-->
+            <!--android:text="@string/gua_dan_userful_time" />-->
 
-                <!--<TextView-->
-                    <!--android:id="@+id/tv_userful_time_gua_dan_add"-->
-                    <!--style="@style/guadan_edittext_weight"-->
-                    <!--android:hint="请选择挂单有效期" />-->
+            <!--<TextView-->
+            <!--android:id="@+id/tv_userful_time_gua_dan_add"-->
+            <!--style="@style/guadan_edittext_weight"-->
+            <!--android:hint="请选择挂单有效期" />-->
             <!--</LinearLayout>-->
 
             <!--<View style="@style/line_1" />-->
@@ -232,7 +238,7 @@
                 <TextView
                     android:id="@+id/et_cang_name_gua_dan"
                     style="@style/guadan_edittext_weight"
-                    android:hint="请输入仓管名称" />
+                 />
             </LinearLayout>
 
             <View style="@style/line_1" />
@@ -246,7 +252,6 @@
                 <TextView
                     android:id="@+id/et_cang_phone_gua_dan"
                     style="@style/guadan_edittext_weight"
-                    android:hint="请输入仓管电话"
                     android:inputType="phone" />
             </LinearLayout>
 
@@ -261,7 +266,6 @@
                 <TextView
                     android:id="@+id/et_cang_email_gua_dan"
                     style="@style/guadan_edittext_weight"
-                    android:hint="请输入仓管邮箱"
                     android:inputType="textEmailAddress" />
             </LinearLayout>
 
@@ -278,10 +282,11 @@
                 <TextView
                     android:id="@+id/et_cang_address_gua_dan"
                     style="@style/guadan_edittext_weight"
-                    android:hint="请输入仓库地址" />
+                  />
             </LinearLayout>
 
             <View style="@style/line_1" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px_65"
@@ -310,7 +315,11 @@
             </RelativeLayout>
 
             <View style="@style/line_1" />
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="请选择是否匿名" />
 
+            <View style="@style/line_1" />
             <LinearLayout style="@style/guadan_ll_weight_xiang">
 
                 <TextView
@@ -326,7 +335,11 @@
             </LinearLayout>
 
             <View style="@style/line_1" />
+            <TextView
+                style="@style/remind_TextView_666666_11_center"
+                android:text="请输入商品详情（选填）" />
 
+            <View style="@style/line_1" />
             <LinearLayout
                 android:id="@+id/ll_buyer_gua_dan"
                 style="@style/guadan_ll_weight">

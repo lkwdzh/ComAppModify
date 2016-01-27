@@ -63,6 +63,18 @@
                     android:layout_marginLeft="@dimen/px_40"
                     android:text="6.修改bug" />
                 <View style="@style/line_1" />
+                <TextView
+                    style="@style/grayTextView_666666_13"
+                    android:padding="@dimen/px_20"
+                    android:layout_marginLeft="@dimen/px_40"
+                    android:text="7.增加挂单匿名功能" />
+                <View style="@style/line_1" />
+                <TextView
+                    style="@style/grayTextView_666666_13"
+                    android:padding="@dimen/px_20"
+                    android:layout_marginLeft="@dimen/px_40"
+                    android:text="8.增加商品卖家信息功能" />
+                <View style="@style/line_1" />
             </LinearLayout>
 
             <LinearLayout
