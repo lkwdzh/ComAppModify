@@ -10,12 +10,12 @@ public class DefineUtil {
 //    public static String URL_HOST = "http://192.168.1.118:8080/payment/";
 //    public static String URL_HOST = "http://192.168.1.105:8080/payment/";
 
-//    public static String URL_HOST = "http://trade.decxgroup.com/trade/";
+    public static String URL_HOST = "http://trade.decxgroup.com/trade/";
 
     /**
      * 正式环境
      */
-    public static String URL_HOST = "http://www.decxagri.com/trade/";
+//    public static String URL_HOST = "http://www.decxagri.com/trade/";
     //    登录
     public static String LOGIN_IN = URL_HOST + "login-in";
 

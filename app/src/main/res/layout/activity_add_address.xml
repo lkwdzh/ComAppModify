@@ -19,12 +19,12 @@
 
             <TextView
                 style="@style/foot_TextView_333333"
-                android:text="收货人" />
+                android:text="@string/addAddress_tv_name" />
 
             <EditText
                 android:id="@+id/et_name_add_address"
                 style="@style/foot_edittext_weight"
-                android:hint="请输入发票收货人姓名" />
+                android:hint="@string/addAddress_et_name" />
         </LinearLayout>
 
         <View style="@style/line_1" />
@@ -33,14 +33,14 @@
 
             <TextView
                 style="@style/foot_TextView_333333"
-                android:text="手机号码" />
+                android:text="@string/addAddress_tv_phone" />
 
             <EditText
                 android:id="@+id/et_phone_add_address"
                 style="@style/foot_edittext_weight"
                 android:inputType="phone"
                 android:maxLength="11"
-                android:hint="请输入发票收货人手机号码" />
+                android:hint="@string/addAddress_et_phone" />
         </LinearLayout>
 
         <View style="@style/line_1" />
@@ -49,12 +49,12 @@
 
             <TextView
                 style="@style/foot_TextView_333333"
-                android:text="所在地区" />
+                android:text="@string/addAddress__tv_diqu" />
 
             <TextView
                 android:id="@+id/tv_diqu"
                 style="@style/foot_edittext_weight"
-                android:hint="请选择地区"
+                android:hint="@string/addAddress_tv_diqu_hint"
                 android:drawableRight="@drawable/next" />
         </LinearLayout>
     </LinearLayout>
@@ -65,12 +65,12 @@
 
         <TextView
             style="@style/foot_TextView_333333"
-            android:text="详细地址" />
+            android:text="@string/addAddress_tv_detail" />
 
         <EditText
             android:id="@+id/et_detail"
             style="@style/foot_edittext_weight"
-            android:hint="请输入详细地址" />
+            android:hint="@string/addAddress_et_detail" />
     </LinearLayout>
 
     <View style="@style/line_1" />
@@ -85,7 +85,7 @@
             style="@style/grayTextView_333333_13"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/px_25"
-            android:text="设为默认地址" />
+            android:text="@string/addAddress_ab_moren" />
 
         <CheckBox
             android:id="@+id/cb_moren"
@@ -110,7 +110,7 @@
         android:layout_marginTop="@dimen/px_40"
         android:background="@drawable/anjian"
         android:gravity="center"
-        android:text="保存"
+        android:text="@string/addAddress_btn_baocun"
         android:textColor="@color/white"
         android:textSize="13sp" />
 

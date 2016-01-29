@@ -16,7 +16,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ConfirmOrderAdapter;
 import com.aglook.comapp.bean.Address;
@@ -102,7 +101,7 @@ public class ConfirmOrderActivity extends BaseActivity {
         setContentView(R.layout.activity_confirm_order);
         setTitleBar("确认订单");
         instance = this;
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         comAppApplication = (ComAppApplication) getApplication();
         init();
         fillBill();
@@ -497,7 +496,7 @@ public class ConfirmOrderActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_addresslist", arg0.result);
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
@@ -521,7 +520,7 @@ public class ConfirmOrderActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.ADDRESS_LIST, AddressUrl.postAddressListUrl(DefineUtil.USERID, DefineUtil.TOKEN, defaultFlag), ConfirmOrderActivity.this);

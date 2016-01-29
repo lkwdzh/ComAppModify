@@ -3,7 +3,6 @@ package com.aglook.comapp.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.BuyerListAdapter;
 import com.aglook.comapp.bean.Buyer;
@@ -21,7 +20,7 @@ public class BuyerListActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_buyer_list2);
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         setTitleBar("联系人列表");
         init();
         click();

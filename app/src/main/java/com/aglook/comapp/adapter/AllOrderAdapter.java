@@ -229,7 +229,7 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_cancel", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -246,7 +246,7 @@ public class AllOrderAdapter extends BaseAdapter implements View.OnClickListener
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.CANCEL_ORDER, AllOrderUrl.postCancelOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, orderId), activity);

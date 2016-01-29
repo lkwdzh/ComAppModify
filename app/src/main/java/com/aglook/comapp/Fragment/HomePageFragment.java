@@ -427,7 +427,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_HomePage", arg0.result);
 //                未指定买家
@@ -494,7 +494,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePostCheck(DefineUtil.HOT_LIST, HomePageUrl.postHomePageCategoryUrl(DefineUtil.USERID), getActivity());

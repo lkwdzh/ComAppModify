@@ -91,7 +91,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         instance = this;
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         comAppApplication = (ComAppApplication) getApplication();
         isJpush = getIntent().getBooleanExtra("isJpush", false);
         initView();
@@ -179,7 +179,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         new XHttpuTools() {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
-//                Log.d("result_check", arg0.result);
+                Log.d("result_check", arg0.result);
                 if (arg0.result != null && !"".equals(arg0.result) && !"null".equals(arg0.result)) {
                     String status = JsonUtils.getJsonParam(arg0.result, "status");
                     if (status != null && !"".equals(status)) {
@@ -240,7 +240,7 @@ public class MainActivity extends FragmentActivity implements ShoppingCartFragme
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.create();
         builder.setView(view);
-        builder.setCancelable(isforce);
+        builder.setCancelable(!isforce);
         dialog = builder.show();
 //        dialog.setTitle("版本更新");
         btn_cancel_delete.setOnClickListener(this);

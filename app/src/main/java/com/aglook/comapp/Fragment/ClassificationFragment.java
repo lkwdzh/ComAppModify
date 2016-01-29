@@ -129,7 +129,7 @@ public class ClassificationFragment extends Fragment implements View.OnClickList
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_Classify", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");

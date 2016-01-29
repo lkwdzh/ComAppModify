@@ -10,7 +10,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.util.SharedPreferencesUtils;
 
@@ -31,7 +30,7 @@ public class SettingActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_setting);
         setTitleBar("设置");
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         comAppApplication= (ComAppApplication) getApplication();
         init();
         click();

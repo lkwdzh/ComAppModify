@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.Fragment.ShoppingCartFragment;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.GoodsDetail;
@@ -91,7 +90,7 @@ public class GoodsDetailActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_goods_detail);
         setTitleBar("商品详情");
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         comAppApplication = (ComAppApplication) getApplication();
         init();
         getData();
@@ -170,7 +169,7 @@ public class GoodsDetailActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_GoodsDetail", productId + "-------" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -188,7 +187,7 @@ public class GoodsDetailActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePostCheck(DefineUtil.PRODUCT_DETAIL, GoodsDetailUrl.postGoodsDetailUrl(DefineUtil.USERID, productId), GoodsDetailActivity.this);
@@ -487,7 +486,7 @@ public class GoodsDetailActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_class_ada", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -508,7 +507,7 @@ public class GoodsDetailActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.ADDCART, ShoppingCartUrl.postAddCartUrl(DefineUtil.USERID, DefineUtil.TOKEN, productId, productNum, pointUser), GoodsDetailActivity.this);
@@ -521,7 +520,7 @@ public class GoodsDetailActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_shoucang", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -536,7 +535,7 @@ public class GoodsDetailActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.COLLECT, GoodsDetailUrl.postShouUrl(DefineUtil.TOKEN, DefineUtil.USERID, productId), GoodsDetailActivity.this);
@@ -548,7 +547,7 @@ public class GoodsDetailActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_delete", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -564,7 +563,7 @@ public class GoodsDetailActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.DELETE_COLLECT, GoodsDetailUrl.postDeleteUrl(DefineUtil.TOKEN, DefineUtil.USERID, productId), GoodsDetailActivity.this);

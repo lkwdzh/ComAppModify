@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.aglook.comapp.Application.ComAppApplication;
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.AllOrderAdapter;
 import com.aglook.comapp.bean.AllOrder;
@@ -65,7 +64,7 @@ public class AllOrderActivity extends BaseActivity {
             setTitleBar("成功订单");
             orderStatus = "0";
         }
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         init();
         click();
         getData();
@@ -161,7 +160,7 @@ public class AllOrderActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
                 Log.d("result_all_order", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -205,7 +204,7 @@ public class AllOrderActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.ORDER_LIST, AllOrderUrl.postAllOrderUrl(DefineUtil.USERID, DefineUtil.TOKEN, orderStatus, String.valueOf(pageSize), String.valueOf(pageNum), orderId), AllOrderActivity.this);

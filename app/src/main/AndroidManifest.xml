@@ -95,8 +95,8 @@
         -->
 
         <!-- 自己服务器 -->
-        <!--<meta-data android:name="UMENG_CHANNEL" android:value="local" />-->
-        <!--<meta-data android:name="channel" android:value="local" />-->
+        <meta-data android:name="UMENG_CHANNEL" android:value="local" />
+        <meta-data android:name="channel" android:value="local" />
 
         <!-- <!-自己服务器 -->
         -->
@@ -134,8 +134,8 @@
 
 
         <!-- 豌豆荚-->
-        <meta-data  android:value="wandoujia" android:name="UMENG_CHANNEL"/>
-        <meta-data  android:value="wandoujia" android:name="channel"/>
+        <!--<meta-data  android:value="wandoujia" android:name="UMENG_CHANNEL"/>-->
+        <!--<meta-data  android:value="wandoujia" android:name="channel"/>-->
         <!-- 豌豆荚 -->
 
         <!-- Required SDK核心功能 -->

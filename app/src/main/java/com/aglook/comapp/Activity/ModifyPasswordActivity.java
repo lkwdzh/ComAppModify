@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.url.ModifyPasswordUrl;
 import com.aglook.comapp.util.AppUtils;
@@ -35,7 +34,7 @@ public class ModifyPasswordActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_modify_password);
         setTitleBar("修改密码");
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }

@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.GuaDanStataAdapter;
 import com.aglook.comapp.bean.GuaDanStata;
@@ -40,7 +39,7 @@ public class GuaDanStateActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_order_state);
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         setTitleBar("交易记录");
         init();
         click();
@@ -93,7 +92,7 @@ public class GuaDanStateActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_guadan_state", productId + "_____" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -117,7 +116,7 @@ public class GuaDanStateActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.CANG_DAN, AllGuaDanUrl.postLogUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, String.valueOf(pageSize), String.valueOf(pageNum), _sort, productId, orderState), GuaDanStateActivity.this);

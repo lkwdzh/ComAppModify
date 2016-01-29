@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ScreenAdapter;
 import com.aglook.comapp.bean.Screen;
@@ -71,7 +70,7 @@ public class ScreenActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_screen);
         setTitleBar("筛选");
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         init();
         if (isSearch) {
             getSearchData();
@@ -263,7 +262,7 @@ public class ScreenActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_descFlag, clickNum, productMoney, productName", descFlag + "____" + clickNum + "____" + productMoney + "____" + productName);
 //                Log.d("result_Search", arg0.result);
@@ -324,7 +323,7 @@ public class ScreenActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.SEARCH, ScreenUrl.postSearchUrl(DefineUtil.USERID, descFlag, String.valueOf(pageSize),
@@ -339,7 +338,7 @@ public class ScreenActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_categoryId,descFlag, clickNum, productMoney, productName", categoryId + "____" + descFlag + "____" + clickNum + "____" + productMoney + "____" + productName);
 //                Log.d("result_Screen", arg0.result);
@@ -402,7 +401,7 @@ public class ScreenActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.CATEGORY_DETAIL, ScreenUrl.postScreenUrl(DefineUtil.USERID, categoryId, descFlag, String.valueOf(pageSize),

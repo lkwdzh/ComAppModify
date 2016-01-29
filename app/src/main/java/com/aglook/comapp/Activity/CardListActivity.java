@@ -9,7 +9,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.CardListAdapter;
 import com.aglook.comapp.bean.CardList;
@@ -58,7 +57,7 @@ public class CardListActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_card_list);
         setTitleBar("银行账户列表");
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         comAppApplication = (ComAppApplication) getApplication();
         login = comAppApplication.getLogin();
         init();
@@ -137,7 +136,7 @@ public class CardListActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_cardList", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -184,7 +183,7 @@ public class CardListActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.BANKCARD_LIST, CardListUrl.postBankCardListUrl(DefineUtil.USERID, DefineUtil.TOKEN), CardListActivity.this);

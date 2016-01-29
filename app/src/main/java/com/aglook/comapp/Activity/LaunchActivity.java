@@ -5,7 +5,6 @@ import android.os.Handler;
 import android.telephony.TelephonyManager;
 import android.view.View;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.util.DefineUtil;
 import com.aglook.comapp.util.SharedPreferencesUtils;
@@ -19,7 +18,7 @@ public class LaunchActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_launch);
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         init();
         TelephonyManager TelephonyMgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
         DefineUtil.DEVICE_NUM = TelephonyMgr.getDeviceId();

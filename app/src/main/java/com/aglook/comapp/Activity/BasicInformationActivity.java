@@ -6,7 +6,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.bean.LoginPshUser;
@@ -46,7 +45,7 @@ public class BasicInformationActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_basic_information);
         setTitleBar("基本信息");
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         comAppApplication = (ComAppApplication) getApplication();
         init();
         click();

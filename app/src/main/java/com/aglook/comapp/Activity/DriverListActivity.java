@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.DriverListAdapter;
 import com.aglook.comapp.bean.DriverList;
@@ -59,7 +58,7 @@ public class DriverListActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_driver_list);
         setTitleBar("司机列表");
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         init();
         click();
         getData();
@@ -205,7 +204,7 @@ public class DriverListActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_driver", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -244,7 +243,7 @@ public class DriverListActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.DRIVER_LIST, DriverUrl.postDriverListUrl(DefineUtil.TOKEN, DefineUtil.USERID), DriverListActivity.this);
@@ -259,7 +258,7 @@ public class DriverListActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_modify——getId,driverId,getListDriverId",getId+"_____"+driverId+"_____"+getListDriverId+"_____"+arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -278,7 +277,7 @@ public class DriverListActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePostUp(DefineUtil.CANG_DAN, PickUpUrl.postModifyDriverUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, getId, driverId, getListDriverId), DriverListActivity.this);

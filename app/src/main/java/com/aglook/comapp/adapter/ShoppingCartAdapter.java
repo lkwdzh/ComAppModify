@@ -262,7 +262,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result___", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -287,7 +287,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
                 indexAdd--;
                 list.get(indexAdd).setProductNum(numAdd);

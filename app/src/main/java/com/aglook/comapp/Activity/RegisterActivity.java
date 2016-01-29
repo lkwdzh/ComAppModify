@@ -13,7 +13,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.url.RegisterUrl;
 import com.aglook.comapp.util.AppUtils;
@@ -83,7 +82,7 @@ public class RegisterActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_register);
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         setTitleBar("注册");
         init();
         click();
@@ -274,7 +273,7 @@ public class RegisterActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_getPhoneCode", arg0.result);
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
@@ -289,7 +288,7 @@ public class RegisterActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePostCheck(DefineUtil.GETPHONECODE, RegisterUrl.postGetCodeUrl(userPhone), RegisterActivity.this);
@@ -303,7 +302,7 @@ public class RegisterActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_getPhoneCode", arg0.result);
                 String status = JsonUtils.getJsonParam(arg0.result, "status");

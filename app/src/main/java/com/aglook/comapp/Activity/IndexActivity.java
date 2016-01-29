@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.Fragment.IndexPageFragment;
 import com.aglook.comapp.R;
 
@@ -20,7 +19,7 @@ public class IndexActivity extends FragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index);
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         instance = this;
         init();
         click();

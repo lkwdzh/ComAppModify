@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.CangDanList;
 import com.aglook.comapp.util.XBitmap;
@@ -39,7 +38,7 @@ public class GuaDanDetailActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_gua_dan_detail);
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         setTitleBar(title);
         init();
         click();

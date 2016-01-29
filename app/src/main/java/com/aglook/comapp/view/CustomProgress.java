@@ -95,7 +95,8 @@ public class CustomProgress extends Dialog {
 	public static void cancle() {
 		try {
 			if (dialog != null) {
-				dialog.cancel();
+				dialog.dismiss();
+                dialog=null;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

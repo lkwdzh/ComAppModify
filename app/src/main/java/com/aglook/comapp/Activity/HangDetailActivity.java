@@ -7,7 +7,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.util.ShareUtil;
 import com.aglook.comapp.view.CustomProgress;
@@ -29,7 +28,7 @@ public class HangDetailActivity extends BaseActivity {
         instance=this;
         className = getIntent().getStringExtra("className");
         setTitleBar(className);
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }
@@ -66,7 +65,7 @@ public class HangDetailActivity extends BaseActivity {
             @Override
             public void run() {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }, 2000);

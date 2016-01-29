@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.url.FriendsUrl;
 import com.aglook.comapp.util.AppUtils;
@@ -27,7 +26,7 @@ public class FriendsAddActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_buyer_add);
         setTitleBar("添加联系人");
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }
@@ -66,7 +65,7 @@ public class FriendsAddActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress!=null&&customProgress.isShowing()){
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_add_friend",arg0.result);
                 String message= JsonUtils.getJsonParam(arg0.result,"message");
@@ -83,7 +82,7 @@ public class FriendsAddActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress!=null&&customProgress.isShowing()){
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.ADD_CONTACT, FriendsUrl.postAddUrl(DefineUtil.USERID,DefineUtil.TOKEN,seatNo),FriendsAddActivity.this);

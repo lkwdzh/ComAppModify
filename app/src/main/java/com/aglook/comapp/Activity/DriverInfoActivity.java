@@ -7,7 +7,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.DriverList;
 import com.aglook.comapp.url.DriverUrl;
@@ -45,7 +44,7 @@ public class DriverInfoActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_driver_info);
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }
@@ -171,7 +170,7 @@ public class DriverInfoActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_update",driverId+"_____"+arg0.result);
                 String message= JsonUtils.getJsonParam(arg0.result,"message");
@@ -187,7 +186,7 @@ public class DriverInfoActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.DRIVER_UPDATE, DriverUrl.postDriverUpdateUrl(DefineUtil.TOKEN,DefineUtil.USERID,driverId,driverName,driverTel,driverPhone,carCode,cardNo),DriverInfoActivity.this);

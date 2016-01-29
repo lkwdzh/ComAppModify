@@ -13,7 +13,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.AddressDialogShengAdapter;
 import com.aglook.comapp.adapter.AddressDialogShiAdapter;
@@ -82,7 +81,7 @@ public class AddAddressActivity extends BaseActivity {
         }else {
             setTitleBar("新增发票地址");
         }
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         isOnly=getIntent().getBooleanExtra("isOnly",false);
         init();
         click();
@@ -217,7 +216,7 @@ public class AddAddressActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_addressAdd", arg0.result);
                 String status= JsonUtils.getJsonParam(arg0.result,"status");
@@ -244,7 +243,7 @@ public class AddAddressActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_addressAdd", arg0.result);
                 String status= JsonUtils.getJsonParam(arg0.result,"status");
@@ -271,7 +270,7 @@ public class AddAddressActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_addressdelete", arg0.result);
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
@@ -286,7 +285,7 @@ public class AddAddressActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.ADDRESS_UPDATE, AddressUrl.postDeletaAddressUrl(DefineUtil.USERID, DefineUtil.TOKEN, String.valueOf(modifyAddress.getId())), AddAddressActivity.this);

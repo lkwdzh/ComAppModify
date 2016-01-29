@@ -204,7 +204,7 @@ public class BillActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
                 Log.d("result_bill", arg0.result);
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
@@ -218,7 +218,7 @@ public class BillActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.PERSON_UPDATE, BasicInformationUrl.postUpDateBillInfoUrl(DefineUtil.USERID, DefineUtil.TOKEN, conpanyName, numBill, companyAddress,

@@ -7,7 +7,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.url.SettingUrl;
@@ -40,7 +39,7 @@ public class PersonInformationActivity extends BaseActivity {
         setContentView(R.layout.activity_person_information);
         setTitleBar("个人信息");
         comAppApplication = (ComAppApplication) getApplication();
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         init();
         fillData();
         click();
@@ -142,7 +141,7 @@ public class PersonInformationActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_login_out",arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -160,7 +159,7 @@ public class PersonInformationActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePostUp(DefineUtil.LOGIN_OUT, SettingUrl.postLogin_out_url(DefineUtil.USERID), PersonInformationActivity.this);

@@ -3,7 +3,6 @@ package com.aglook.comapp.Activity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.FriendsDetailAdapter;
 import com.aglook.comapp.view.MyListView;
@@ -23,7 +22,7 @@ public class FriendsDetailActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_friends_detail);
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         setTitleBar("联系人的挂单");
         init();
         click();

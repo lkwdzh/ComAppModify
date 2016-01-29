@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.HelpCenterAdapter;
 import com.aglook.comapp.bean.Information;
@@ -40,7 +39,7 @@ public class HelpCenterActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_help_center);
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         setTitleBar("帮助中心");
         init();
         click();
@@ -105,7 +104,7 @@ public class HelpCenterActivity extends BaseActivity {
 //                Log.d("result_help", arg0.result);
 
                 if (customProgress!=null&&customProgress.isShowing()){
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
@@ -131,7 +130,7 @@ public class HelpCenterActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress!=null&&customProgress.isShowing()){
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.SETTING_HELP, SettingUrl.postHelpUrl(String.valueOf(pageSize), String.valueOf(pageNumber)), HelpCenterActivity.this);

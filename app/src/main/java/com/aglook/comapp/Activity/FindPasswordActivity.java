@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.url.FindPasswordUrl;
 import com.aglook.comapp.util.AppUtils;
@@ -70,7 +69,7 @@ public class FindPasswordActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         setContentView(R.layout.activity_find_password);
         setTitleBar("找回密码");
         // TODO: add setContentView(...) invocation
@@ -171,7 +170,7 @@ public class FindPasswordActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_getPhoneCode", arg0.result);
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
@@ -187,7 +186,7 @@ public class FindPasswordActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePostCheck(DefineUtil.FIND_PWD_CODE, FindPasswordUrl.postFindPwdCodeUrl(phone), FindPasswordActivity.this);
@@ -201,7 +200,7 @@ public class FindPasswordActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_getPhoneCode", arg0.result);
                 String status = JsonUtils.getJsonParam(arg0.result, "status");
@@ -220,7 +219,7 @@ public class FindPasswordActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.FIND_PASSWORD, FindPasswordUrl.postFindPasswordUrl(phone, userName, password, phoneCode), FindPasswordActivity.this);

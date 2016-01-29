@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.bean.LoginPshUser;
@@ -79,7 +78,7 @@ public class CompanyInfoActivity extends BaseActivity {
         setContentView(R.layout.activity_company_info);
         setTitleBar("公司信息");
         ButterKnife.bind(this);
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         comAppApplication = (ComAppApplication) getApplication();
         login = comAppApplication.getLogin();
         user = login.getPshUser();
@@ -255,7 +254,7 @@ public class CompanyInfoActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress!=null&&customProgress.isShowing()){
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
                 Log.d("result_company",arg0.result);
                 String status= JsonUtils.getJsonParam(arg0.result,"status");

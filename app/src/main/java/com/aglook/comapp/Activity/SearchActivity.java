@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.SearchGVAdapter;
 import com.aglook.comapp.adapter.SearchLVAdapter;
@@ -53,7 +52,7 @@ public class
     @Override
     public void initView() {
         setContentView(R.layout.activity_search);
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         init();
         getData();
         click();

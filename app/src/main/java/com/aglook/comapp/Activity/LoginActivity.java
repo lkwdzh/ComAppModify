@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.SpinnerAdapter;
 import com.aglook.comapp.bean.AllOrder;
@@ -67,7 +66,7 @@ public class LoginActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_login);
         setTitleBar("登录");
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }

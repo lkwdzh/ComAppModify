@@ -50,7 +50,7 @@ public class RegisterAgreementActivity extends BaseActivity {
             @Override
             public void run() {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }, 2000);

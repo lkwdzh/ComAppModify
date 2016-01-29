@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ToPayAdapter;
 import com.aglook.comapp.bean.AllOrder;
@@ -40,7 +39,7 @@ public class ToPayActivity extends BaseActivity {
         }else {
         setTitleBar("待付款");
         }
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         init();
         click();
         getData();
@@ -103,7 +102,7 @@ public class ToPayActivity extends BaseActivity {
 //            @Override
 //            public void initViews(ResponseInfo<String> arg0) {
 //                if (customProgress != null && customProgress.isShowing()) {
-//                    customProgress.dismiss();
+//                    customProgress.cancle();
 //                }
 //                Log.d("result_trading", arg0.result);
 //                String message= JsonUtils.getJsonParam(arg0.result, "message");
@@ -134,7 +133,7 @@ public class ToPayActivity extends BaseActivity {
 //            @Override
 //            public void failureInitViews(HttpException arg0, String arg1) {
 //                if (customProgress != null && customProgress.isShowing()) {
-//                    customProgress.dismiss();
+//                    customProgress.cancle();
 //                }
 //            }
 //        }.datePost(DefineUtil.ORDER_LIST, AllOrderUrl.postAllOrderUrl(code,DefineUtil.TOKEN, DefineUtil.USERID,  String.valueOf(pageSize), String.valueOf(pageNum),_sort, orderState), ToPayActivity.this);

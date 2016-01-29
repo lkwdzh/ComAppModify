@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.PickInfoAdapter;
 import com.aglook.comapp.bean.CangDanDetail;
@@ -74,7 +73,7 @@ public class PickInfoActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_pick_info);
         setTitleBar("填写提货信息");
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         init();
         click();
         if (isPlate){
@@ -238,7 +237,7 @@ public class PickInfoActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_pickinfo", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -253,7 +252,7 @@ public class PickInfoActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePostUp(DefineUtil.CANG_DAN, PickInfoUrl.postPickInfoUrl(codePick, DefineUtil.TOKEN, DefineUtil.USERID, originalListId, orderdataId, deliveryNum,mList), PickInfoActivity.this);
@@ -267,7 +266,7 @@ public class PickInfoActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_detail",originalId+"____"+arg0.result);
                 String message=JsonUtils.getJsonParam(arg0.result,"message");
@@ -284,7 +283,7 @@ public class PickInfoActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.CANG_DAN, CangDanUrl.postCangDanDetailUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, originalId),PickInfoActivity.this);
@@ -298,7 +297,7 @@ public class PickInfoActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_Platdetail",arg0.result);
                 String message=JsonUtils.getJsonParam(arg0.result,"message");
@@ -316,7 +315,7 @@ public class PickInfoActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.CANG_DAN, CangDanUrl.postPlatCangDanDetailUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, orderdataId),PickInfoActivity.this);

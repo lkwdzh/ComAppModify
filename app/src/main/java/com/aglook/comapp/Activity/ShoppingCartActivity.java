@@ -19,7 +19,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aglook.comapp.Application.ComAppApplication;
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ShoppingCartAdapter;
 import com.aglook.comapp.bean.ShoppingCart;
@@ -73,7 +72,7 @@ public class ShoppingCartActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_shopping_cart);
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         setTitleBar("购物车");
         init();
         click();
@@ -351,7 +350,7 @@ public class ShoppingCartActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_getCartList", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -432,7 +431,7 @@ public class ShoppingCartActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.CARTLIST, ShoppingCartUrl.postCartListUrl(DefineUtil.USERID, DefineUtil.TOKEN), ShoppingCartActivity.this);
@@ -468,7 +467,7 @@ public class ShoppingCartActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_delete", cartId + "-------" + cartId.length() + "------" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -491,7 +490,7 @@ public class ShoppingCartActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.EDIT_CART, ShoppingCartUrl.postDeleteUrl(DefineUtil.USERID, DefineUtil.TOKEN, cartId, productNum, deleteFlag), ShoppingCartActivity.this);

@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.CangDanDetail;
 import com.aglook.comapp.bean.LinkMan;
@@ -94,7 +93,7 @@ public class GuaDanAddActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_gua_dan_add);
         setTitleBar("我要挂单");
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         init();
         click();
         if (isPlate) {
@@ -374,7 +373,7 @@ public class GuaDanAddActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_add", orderdataId + "___" + originalListid + "__" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -391,7 +390,7 @@ public class GuaDanAddActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.CANG_DAN, GuaDanUrl.postGuaDanAddUrl(codeGua, DefineUtil.TOKEN, DefineUtil.USERID, originalListid, tradeNum, limitDate, tradePrice, productName, designatedUserid, productText, actionFlag), GuaDanAddActivity.this);
@@ -403,7 +402,7 @@ public class GuaDanAddActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_add_plate", orderdataId + "___" + originalListid + "__" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -420,7 +419,7 @@ public class GuaDanAddActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.CANG_DAN, GuaDanUrl.postGuaDanPlateAddUrl(codeGua, DefineUtil.TOKEN, DefineUtil.USERID, originalListid, tradeNum, limitDate, tradePrice, productName, designatedUserid, productText, orderdataId,actionFlag), GuaDanAddActivity.this);
@@ -435,7 +434,7 @@ public class GuaDanAddActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_detail", originalId + "____" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -453,7 +452,7 @@ public class GuaDanAddActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.CANG_DAN, CangDanUrl.postCangDanDetailUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, originalId), GuaDanAddActivity.this);
@@ -466,7 +465,7 @@ public class GuaDanAddActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_Platdetail", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -484,7 +483,7 @@ public class GuaDanAddActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.CANG_DAN, CangDanUrl.postPlatCangDanDetailUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, orderdataId), GuaDanAddActivity.this);

@@ -6,7 +6,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.aglook.comapp.Application.ComAppApplication;
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.Login;
 import com.aglook.comapp.util.AppUtils;
@@ -26,7 +25,7 @@ public class FaPiaoActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_fa_piao);
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         setTitleBar("发票详情");
         comAppApplication = (ComAppApplication) getApplication();
         login = comAppApplication.getLogin();

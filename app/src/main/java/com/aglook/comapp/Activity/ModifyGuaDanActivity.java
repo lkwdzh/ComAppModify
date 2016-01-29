@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.bean.Buyer;
 import com.aglook.comapp.bean.CangDanDetail;
@@ -96,7 +95,7 @@ public class ModifyGuaDanActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_modify_gua_dan);
         setTitleBar("修改挂单");
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         init();
         click();
 
@@ -335,7 +334,7 @@ public class ModifyGuaDanActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
                 Log.d("result_Modi", productId + "______" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -353,7 +352,7 @@ public class ModifyGuaDanActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.CANG_DAN, AllGuaDanUrl.postgetDetailUrl(codeGua, DefineUtil.TOKEN, DefineUtil.USERID, productId), ModifyGuaDanActivity.this);

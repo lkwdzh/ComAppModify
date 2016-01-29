@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ScreenAdapter;
 import com.aglook.comapp.bean.Screen;
@@ -34,7 +33,7 @@ public class GoodsCollectActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_friends);
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         setTitleBar("我的收藏");
         init();
         click();
@@ -85,7 +84,7 @@ public class GoodsCollectActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 
 //                Log.d("result_collect", DefineUtil.TOKEN + "____" + DefineUtil.USERID + "_____" + arg0.result);
@@ -143,7 +142,7 @@ public class GoodsCollectActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.COLLECT_LIST, GoodsCollectUrl.postGoodsCollectUrl(DefineUtil.USERID, DefineUtil.TOKEN), GoodsCollectActivity.this);

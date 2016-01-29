@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.TradeingAdapter;
 import com.aglook.comapp.bean.GuaDanStataLi;
@@ -42,7 +41,7 @@ public class TradeingActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_tradeing);
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         setTitleBar("交易中");
         init();
         click();
@@ -107,7 +106,7 @@ public class TradeingActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_trading", DefineUtil.TOKEN + "____" + DefineUtil.USERID + "___" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -136,7 +135,7 @@ public class TradeingActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.CANG_DAN, AllGuaDanUrl.postTranUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, String.valueOf(pageSize), String.valueOf(pageNum), _sort, orderState), TradeingActivity.this);

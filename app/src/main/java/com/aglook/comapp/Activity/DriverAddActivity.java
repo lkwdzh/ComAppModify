@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.url.DriverUrl;
 import com.aglook.comapp.util.AppUtils;
@@ -37,7 +36,7 @@ public class DriverAddActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_driver_add);
         setTitleBar("添加司机");
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         init();
         click();
     }
@@ -118,7 +117,7 @@ public class DriverAddActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_add",arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -133,7 +132,7 @@ public class DriverAddActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePostCheck(DefineUtil.DRIVER_ADD, DriverUrl.postDriverAddUrl(DefineUtil.TOKEN, DefineUtil.USERID, driverName, driverTel, driverPhone, carCode, cardNo), DriverAddActivity.this);

@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.View;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 
 import java.io.IOException;
@@ -20,7 +19,7 @@ public class ImageActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_image);
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         num = getIntent().getIntExtra("num", 0);
         scrollview = (PhotoView) findViewById(R.id.scrollview);
         switch (num) {

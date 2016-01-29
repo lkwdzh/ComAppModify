@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 
 public class GuideActivity extends BaseActivity {
@@ -17,7 +16,7 @@ public class GuideActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_guide);
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         vp_guide = (ViewPager) findViewById(R.id.vp_guide);
         MyViewPagerAdapter adapter = new MyViewPagerAdapter();
         vp_guide.setAdapter(adapter);

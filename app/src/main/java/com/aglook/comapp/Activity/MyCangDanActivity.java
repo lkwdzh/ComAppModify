@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.MyCangDanAdapter;
 import com.aglook.comapp.bean.CangDan;
@@ -41,7 +40,7 @@ public class MyCangDanActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_my_cang_dan);
         setTitleBar("原始仓单");
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         init();
         click();
         getData();
@@ -103,7 +102,7 @@ public class MyCangDanActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_myCangdan", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -129,7 +128,7 @@ public class MyCangDanActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.CANG_DAN, CangDanUrl.postCangDanUrl(code, DefineUtil.TOKEN, DefineUtil.USERID, String.valueOf(pageSize), String.valueOf(pageNum), _sort), this);

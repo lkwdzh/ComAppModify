@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ZiXunListAdapter;
 import com.aglook.comapp.bean.ZiXunList;
@@ -54,7 +53,7 @@ public class ZiXunListActivity extends BaseActivity {
 
         setTitleBar(className);
 
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         init();
         click();
         if (isMessage) {
@@ -203,7 +202,7 @@ public class ZiXunListActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_zixunList", classId + "___" + arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -228,7 +227,7 @@ public class ZiXunListActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.INFOR_LIST, ZiXunUrl.postZiXunListUrl(classId, String.valueOf(pageSize), String.valueOf(pageNum)), ZiXunListActivity.this);
@@ -241,7 +240,7 @@ public class ZiXunListActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_zixunList", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -267,7 +266,7 @@ public class ZiXunListActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.PUSH_MESSAGE, ZiXunUrl.postMessageUrl(String.valueOf(pageSize), String.valueOf(pageNum)), ZiXunListActivity.this);

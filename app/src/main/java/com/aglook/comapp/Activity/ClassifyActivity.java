@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.ClassificationLeftAdapter;
 import com.aglook.comapp.adapter.ClassificationRightAdapter;
@@ -35,7 +34,7 @@ public class ClassifyActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_classify);
         setTitleBar("价格走势");
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         init();
         getData();
         click();
@@ -105,7 +104,7 @@ public class ClassifyActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
 //                Log.d("result_Classify", arg0.result);
                 String message = JsonUtils.getJsonParam(arg0.result, "message");
@@ -124,7 +123,7 @@ public class ClassifyActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.CATEGORY, ClassifyActivity.this);

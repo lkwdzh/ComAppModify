@@ -14,7 +14,6 @@ import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.aglook.comapp.Application.ExitApplication;
 import com.aglook.comapp.R;
 import com.aglook.comapp.adapter.FriendsListAdapter;
 import com.aglook.comapp.bean.LinkMan;
@@ -66,7 +65,7 @@ public class FriendsListActivity extends BaseActivity {
         }else {
             setTitleBar("联系人列表");
         }
-        ExitApplication.getInstance().addActivity(this);
+//        ExitApplication.getInstance().addActivity(this);
         init();
         click();
         getData();
@@ -207,7 +206,7 @@ public class FriendsListActivity extends BaseActivity {
             @Override
             public void initViews(ResponseInfo<String> arg0) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
                 List<LinkMan> llList = new ArrayList<>();
 //                Log.d("result_BuyerList", arg0.result);
@@ -246,7 +245,7 @@ public class FriendsListActivity extends BaseActivity {
             @Override
             public void failureInitViews(HttpException arg0, String arg1) {
                 if (customProgress != null && customProgress.isShowing()) {
-                    customProgress.dismiss();
+                    customProgress.cancle();
                 }
             }
         }.datePost(DefineUtil.CONTACT_USER, FriendsUrl.postFriendsListUrl(DefineUtil.USERID, DefineUtil.TOKEN), FriendsListActivity.this);

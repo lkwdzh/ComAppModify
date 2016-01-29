@@ -39,6 +39,7 @@
     <string name="basic_information_phone_num">手机号</string>
     <string name="basic_information_fix_num">固定电话</string>
     <string name="basic_information_safe">账户安全</string>
+
     <string name="title_activity_gua_dan_detail">GuaDanDetailActivity</string>
     <string name="gua_dan_goods_image">货物图片</string>
     <string name="gua_dan_huo_quan">货权图片</string>
@@ -86,6 +87,7 @@
     <string name="mine_fragment__all_guadan">全部挂单</string>
     <string name="mine_fragment_my_cang">我的仓单</string>
     <string name="mine_fragment_my_cang_dan">仓单</string>
+
     <string name="title_activity_band_card">BandCardActivity</string>
     <string name="band_card_name">银行账户</string>
     <string name="bang_card_num">账户号码</string>
@@ -101,13 +103,19 @@
     <string name="screen_gridview_weight">重量：</string>
     <string name="screen_gridview_price">价格：￥</string>
     <string name="title_activity_confirm_order">ConfirmOrderActivity</string>
+
     <string name="title_activity_all_order">AllOrderActivity</string>
+
     <string name="title_activity_all_gua_dan">AllGuaDanActivity</string>
+
     <string name="title_activity_to_pay">ToPayActivity</string>
+
     <string name="title_activity_to_receive">ToReceiveActivity</string>
+
     <string name="title_activity_card_list">CardListActivity</string>
     <string name="basic_information_true_name">真实姓名</string>
-    //我的仓单                <string name="title_activity_my_cang_dan">MyCangDanActivity</string>
+    //我的仓单
+    <string name="title_activity_my_cang_dan">MyCangDanActivity</string>
     <string name="house_num_my_cangdan">仓单编号</string>
     <string name="in_time_my_cangdan">入仓时间：</string>
     <string name="type_lv_lv">类型：</string>
@@ -116,7 +124,8 @@
     <string name="weight_lv_lv">重量：</string>
     <string name="trans_all_order_lv">仓单交易</string>
     <string name="tihuo_all_order_lv">提货</string>
-    //平台仓单                <string name="title_activity_platform">PlatformActivity</string>
+    //平台仓单
+    <string name="title_activity_platform">PlatformActivity</string>
     <string name="platform_house_num">仓单号</string>
     <string name="platform_in_time">入仓时间</string>
     <string name="platform_goods_name">货物名称</string>
@@ -138,40 +147,80 @@
     <string name="driver_add_phone">电话</string>
     <string name="driver_add_email">邮箱</string>
     <string name="title_activity_driver_info">DriverInfoActivity</string>
+
     <string name="title_activity_order_detail">OrderDetailActivity</string>
+
     <string name="title_activity_modify_password">ModifyPasswordActivity</string>
+
     <string name="title_activity_hang_qing_list">HangQingListActivity</string>
+
     <string name="title_activity_hang_detail">HangDetailActivity</string>
+
     <string name="title_activity_platform_detail">PlatformDetailActivity</string>
+
     <string name="title_activity_pick_up_dtail_activity2">PickUpDtailActivity2</string>
+
     <string name="title_activity_buyer_list">BuyerListActivity</string>
     <string name="person_info_linkman">常用联系人</string>
     <string name="person_info_driver">常用司机</string>
     <string name="person_info_friend">我的收藏</string>
+
     <string name="title_activity_buyer_add">BuyerAddActivity</string>
     <string name="buyer_add_name">姓名</string>
+
     <string name="title_activity_friends">FriendsActivity</string>
+
     <string name="title_activity_friends_detail">FriendsDetailActivity</string>
+
     <string name="title_activity_tradeing">TradeingActivity</string>
+
     <string name="title_activity_pay">PayActivity</string>
+
     <string name="title_activity_modify_pick_up_activity2">ModifyPickUpActivity2</string>
+
     <string name="title_activity_order_state">OrderStateActivity</string>
+
     <string name="title_activity_modify_gua_dan">ModifyGuaDanActivity</string>
+
     <string name="title_activity_shopping_cart">ShoppingCartActivity</string>
     <string name="title_activity_message">MessageActivity</string>
+
     <string name="title_activity_help_center">HelpCenterActivity</string>
+
     <string name="title_activity_launch">LaunchActivity</string>
+
     <string name="title_activity_trans_detail">TransDetailActivity</string>
+
     <string name="title_activity_add_address">AddAddressActivity</string>
+    <string name="addAddress_tv_name">收货人</string>
+    <string name="addAddress_et_name">请输入发票收货人姓名</string>
+    <string name="addAddress_tv_phone">手机号码</string>
+    <string name="addAddress_et_phone">请输入发票收货人手机号码</string>
+    <string name="addAddress__tv_diqu">所在地区</string>
+    <string name="addAddress_tv_diqu_hint">请选择地区</string>
+    <string name="addAddress_tv_detail">详细地址</string>
+    <string name="addAddress_et_detail">请输入详细地址</string>
+    <string name="addAddress_ab_moren">设为默认地址</string>
+    <string name="addAddress_btn_baocun">保存</string>
     <string name="title_activity_address_list">AddressListActivity</string>
+
     <string name="title_activity_fa_piao">FaPiaoActivity</string>
+
     <string name="title_activity_version">VersionActivity</string>
+
     <string name="title_activity_intro">IntroActivity</string>
+
     <string name="title_activity_index">IndexActivity</string>
+
     <string name="title_activity_image">ImageActivity</string>
+
     <string name="title_activity_company_info">CompanyInfoActivity</string>
+
     <string name="title_activity_bill">BillActivity</string>
+
     <string name="title_activity_register_agreement">RegisterAgreementActivity</string>
+
     <string name="title_activity_manage_agree">ManageAgreeActivity</string>
+
 
 </resources>
